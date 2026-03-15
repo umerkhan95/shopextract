@@ -14,13 +14,10 @@ No existing pip package lets you extract structured product data from any store 
 ## Installation
 
 ```bash
-pip install shopextract                 # core (extraction, comparison, monitoring)
-pip install shopextract[data]           # + pandas, polars, parquet export
-pip install shopextract[llm]            # + LLM-powered extraction (GPT-4o, etc.)
-pip install shopextract[all]            # everything
+pip install shopextract
 ```
 
-Requires Python 3.10+.
+Requires Python 3.10+. Includes everything: extraction, comparison, monitoring, LLM support, pandas export.
 
 ---
 
@@ -386,7 +383,7 @@ shopextract.to_json(products, "products.json")
 shopextract.to_feed(products, "google_feed.xml", format="google_shopping")
 shopextract.to_feed(products, "idealo_feed.tsv", format="idealo")
 
-# Data science formats (requires shopextract[data])
+# Data science formats
 df = shopextract.to_dataframe(products)
 shopextract.to_parquet(products, "products.parquet")
 ```
@@ -452,7 +449,7 @@ Any store with product pages will work. Platform detection just enables faster A
 
 ### LLM Tier Configuration
 
-The LLM tier requires `pip install shopextract[llm]` and an API key. It supports **every major LLM provider** via LiteLLM:
+The LLM tier requires an API key (or Ollama for local/free). It supports **every major LLM provider** via LiteLLM:
 
 ```python
 # Pass API key directly

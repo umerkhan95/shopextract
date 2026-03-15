@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "shopextract"
-version = "0.1.0"
+version = "0.1.1"
 description = "Extract, compare, and monitor product data from any e-commerce store"
 readme = "README.md"
 license = {text = "MIT"}
@@ -28,14 +28,12 @@ dependencies = [
     "defusedxml>=0.7",
     "beautifulsoup4>=4.12",
     "click>=8.0",
+    "litellm>=1.0",
+    "pandas>=2.0",
 ]
 
 [project.optional-dependencies]
-llm = ["litellm>=1.0"]
-ml = ["sentence-transformers>=2.0", "numpy>=1.24"]
-data = ["pandas>=2.0", "polars>=0.20", "pyarrow>=14.0"]
 dev = ["pytest>=8.0", "pytest-asyncio>=0.24", "respx>=0.22", "build>=1.0"]
-all = ["shopextract[llm,ml,data]"]
 
 [project.scripts]
 shopextract = "shopextract.cli:main"
