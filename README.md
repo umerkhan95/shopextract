@@ -660,6 +660,28 @@ The notebook demonstrates all features: extraction, analysis, matching, validati
 
 ---
 
+## Testing
+
+### Test Stores
+
+The notebooks and tests use public demo stores designed for developer testing:
+
+| Platform | URL | Description |
+|:---------|:----|:------------|
+| **Shopify** | `https://hydrogen-preview.myshopify.com` | Official Shopify Hydrogen demo store |
+| **Magento** | `https://magento.softwaretestingboard.com` | Official Magento test store |
+
+These are maintained by their respective platforms for integration testing and will not trigger anti-bot protections.
+
+### Running Tests
+
+```bash
+pip install -e ".[dev]"
+python -m pytest tests/ -q
+```
+
+---
+
 ## Contributing
 
 1. Fork the repository
