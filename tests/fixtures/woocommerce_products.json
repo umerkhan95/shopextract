@@ -1,0 +1,39 @@
+[
+  {
+    "id": 501,
+    "name": "Organic Green Tea",
+    "description": "<p>Premium organic green tea leaves.</p>",
+    "permalink": "https://example.com/product/organic-green-tea",
+    "prices": {
+      "price": "899",
+      "regular_price": "1099",
+      "currency_code": "USD",
+      "currency_minor_unit": 2
+    },
+    "images": [
+      {"src": "https://example.com/images/green-tea.jpg"},
+      {"src": "https://example.com/images/green-tea-2.jpg"}
+    ],
+    "sku": "OGT-100",
+    "tags": [{"name": "tea"}, {"name": "organic"}],
+    "categories": [{"name": "Tea"}, {"name": "Green Tea"}]
+  },
+  {
+    "id": 502,
+    "name": "Chamomile Herbal Tea",
+    "description": "Relaxing chamomile tea.",
+    "permalink": "https://example.com/product/chamomile-herbal-tea",
+    "prices": {
+      "price": "599",
+      "regular_price": "599",
+      "currency_code": "USD",
+      "currency_minor_unit": 2
+    },
+    "images": [
+      {"src": "https://example.com/images/chamomile.jpg"}
+    ],
+    "sku": "CHT-50",
+    "tags": [],
+    "categories": [{"name": "Tea"}, {"name": "Herbal"}]
+  }
+]

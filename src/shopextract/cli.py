@@ -124,7 +124,7 @@ async def _discover(url: str, max_urls: int) -> None:
 
 
 async def _compare(query: str, stores: list[str]) -> None:
-    from .compare import compare_prices
+    from .compare import compare as compare_prices
     result = await compare_prices(query, stores)
     click.echo(json.dumps({
         "query": result.query,
@@ -137,18 +137,17 @@ async def _compare(query: str, stores: list[str]) -> None:
 
 
 async def _snapshot(url: str) -> None:
-    from .monitor import take_snapshot
-    snap = await take_snapshot(url)
+    from .monitor import snapshot as take_snapshot
+    count = await take_snapshot(url)
     click.echo(json.dumps({
-        "domain": snap.domain,
-        "timestamp": snap.timestamp.isoformat(),
-        "product_count": snap.product_count,
+        "url": url,
+        "product_count": count,
     }, indent=2))
 
 
 async def _changes(domain: str) -> None:
-    from .monitor import diff_latest
-    changes_list = await diff_latest(domain)
+    from .monitor import changes as detect_changes
+    changes_list = detect_changes(domain)
     for change in changes_list:
         click.echo(json.dumps({
             "type": change.change_type.value,
@@ -161,13 +160,16 @@ async def _changes(domain: str) -> None:
 
 async def _history(domain: str, product: str) -> None:
     from .monitor import price_history
-    entries = await price_history(domain, product)
-    click.echo(json.dumps(entries, indent=2, default=str))
+    entries = price_history(domain, product)
+    click.echo(json.dumps(
+        [{"timestamp": ts.isoformat(), "price": price} for ts, price in entries],
+        indent=2,
+    ))
 
 
 async def _analyze(url: str, max_urls: int) -> None:
-    from .analyze import catalog_stats
-    stats = await catalog_stats(url, max_urls=max_urls)
+    from .analyze import analyze as catalog_stats
+    stats = await catalog_stats(url, max_products=max_urls)
     click.echo(json.dumps({
         "total_products": stats.total_products,
         "price_range": list(stats.price_range),

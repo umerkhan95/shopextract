@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "id": 1001,
+      "title": "Classic Espresso Blend",
+      "body_html": "<p>Rich and bold espresso blend.</p>",
+      "vendor": "BeanCo",
+      "product_type": "Coffee",
+      "handle": "classic-espresso-blend",
+      "tags": "coffee, espresso, blend",
+      "variants": [
+        {
+          "id": 2001,
+          "title": "250g",
+          "price": "14.99",
+          "compare_at_price": "19.99",
+          "sku": "ESP-250",
+          "barcode": "4006381333931",
+          "inventory_quantity": 50
+        },
+        {
+          "id": 2002,
+          "title": "500g",
+          "price": "24.99",
+          "compare_at_price": null,
+          "sku": "ESP-500",
+          "barcode": null,
+          "inventory_quantity": 30
+        }
+      ],
+      "images": [
+        {"src": "https://cdn.shopify.com/espresso-main.jpg"},
+        {"src": "https://cdn.shopify.com/espresso-side.jpg"}
+      ]
+    },
+    {
+      "id": 1002,
+      "title": "Decaf Morning Roast",
+      "body_html": "<p>Smooth decaf for mornings.</p>",
+      "vendor": "BeanCo",
+      "product_type": "Coffee",
+      "handle": "decaf-morning-roast",
+      "tags": "coffee, decaf",
+      "variants": [
+        {
+          "id": 2003,
+          "title": "Default",
+          "price": "12.99",
+          "compare_at_price": null,
+          "sku": "DEC-250",
+          "barcode": null,
+          "inventory_quantity": 0
+        }
+      ],
+      "images": [
+        {"src": "https://cdn.shopify.com/decaf-main.jpg"}
+      ]
+    }
+  ]
+}

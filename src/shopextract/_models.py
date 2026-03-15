@@ -169,8 +169,8 @@ class ChangeType(StrEnum):
 class Change:
     """Base change between snapshots."""
 
-    change_type: ChangeType
-    title: str
+    change_type: ChangeType = ChangeType.PRICE_CHANGE
+    title: str = ""
     detected_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 
