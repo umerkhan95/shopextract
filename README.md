@@ -5,7 +5,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/shopextract.svg)](https://pypi.org/project/shopextract/)
 [![Python versions](https://img.shields.io/pypi/pyversions/shopextract.svg)](https://pypi.org/project/shopextract/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Tests](https://img.shields.io/github/actions/workflow/status/umerkhan95/shopextract/tests.yml?label=tests)](https://github.com/umerkhan95/shopextract/actions)
+[![Tests](https://img.shields.io/github/actions/workflow/status/umerkhan95/shopextract/test.yml?label=tests)](https://github.com/umerkhan95/shopextract/actions)
 
 No existing pip package lets you extract structured product data from any store URL with zero config. `shopextract` does. Point it at a store, get back clean product data -- titles, prices, images, GTINs, variants -- ready for analysis, comparison, or feed generation.
 
