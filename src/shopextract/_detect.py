@@ -43,6 +43,12 @@ _USER_AGENT = (
 )
 
 
+async def _run_all_probes(client, url, signals):
+    await _probe_headers(client, url, signals)
+    await _probe_api_endpoints(client, url, signals)
+    await _probe_html_content(client, url, signals)
+
+
 async def detect(url: str, *, client: httpx.AsyncClient | None = None) -> PlatformResult:
     """Detect the e-commerce platform for the given URL.
 
@@ -73,11 +79,11 @@ async def detect(url: str, *, client: httpx.AsyncClient | None = None) -> Platfo
         )
 
     try:
-        async with asyncio.timeout(TOTAL_TIMEOUT):
-            await _probe_headers(client, url, signals)
-            await _probe_api_endpoints(client, url, signals)
-            await _probe_html_content(client, url, signals)
-    except TimeoutError:
+        await asyncio.wait_for(
+            _run_all_probes(client, url, signals),
+            timeout=TOTAL_TIMEOUT,
+        )
+    except asyncio.TimeoutError:
         logger.warning("Platform detection timed out after %ss for %s", TOTAL_TIMEOUT, url)
     except Exception as e:
         logger.error("Error during platform detection for %s: %s", url, e)
