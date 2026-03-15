@@ -54,12 +54,47 @@ async def extract(
         platform: Pre-detected platform (auto-detected if None).
         max_urls: Maximum product URLs to process.
         shop_url: Base shop URL for normalization (defaults to url).
-        llm_api_key: API key for LLM extraction (OpenAI, Anthropic, etc.).
-            Enables Tier 4 (LLM) as final fallback. If not provided, LLM
-            tier is skipped and CSS is the last resort.
-        llm_model: LLM model identifier (default: "openai/gpt-4o-mini").
-            Uses LiteLLM format: "openai/gpt-4o", "anthropic/claude-sonnet-4-20250514",
-            "groq/llama-3.1-70b-versatile", etc.
+        llm_api_key: API key for LLM extraction. Enables Tier 4 (LLM) as
+            final fallback. If not provided, reads from SHOPEXTRACT_LLM_API_KEY
+            env var, then falls back to provider-specific env vars (OPENAI_API_KEY,
+            ANTHROPIC_API_KEY, etc.). For Ollama, no key is needed.
+        llm_model: LLM model identifier in LiteLLM format (default: "openai/gpt-4o-mini").
+
+            Supported providers and models:
+
+            Cloud providers:
+              - "openai/gpt-4o-mini"          (cheapest, recommended)
+              - "openai/gpt-4o"               (best quality)
+              - "anthropic/claude-sonnet-4-20250514"  (strong alternative)
+              - "anthropic/claude-haiku-4-5-20251001"  (fast + cheap)
+              - "gemini/gemini-2.0-flash"     (Google, fast)
+              - "gemini/gemini-2.5-pro-preview-06-05"     (Google, best quality)
+              - "deepseek/deepseek-chat"      (cheap, good quality)
+              - "groq/llama-3.1-70b-versatile"  (fast, free tier)
+              - "groq/llama-3.3-70b-versatile"  (latest Llama)
+              - "mistral/mistral-large-latest"  (Mistral AI)
+              - "mistral/mistral-small-latest"  (Mistral AI, cheap)
+              - "cohere/command-r-plus"       (Cohere)
+              - "perplexity/sonar-pro"        (Perplexity)
+
+            Local models (no API key needed):
+              - "ollama/llama3.1"             (local, free)
+              - "ollama/mistral"              (local, free)
+              - "ollama/qwen2.5"              (local, free)
+              - "ollama/deepseek-r1"          (local, free)
+              - "ollama/phi3"                 (local, small)
+
+            Other providers:
+              - "together_ai/meta-llama/..."  (Together AI)
+              - "bedrock/anthropic.claude..." (AWS Bedrock)
+              - "vertex_ai/gemini-..."        (Google Cloud)
+              - "azure/gpt-4o"               (Azure OpenAI)
+              - "cloudflare/..."             (Cloudflare Workers AI)
+              - "replicate/..."              (Replicate)
+              - "openrouter/..."             (OpenRouter, 100+ models)
+
+            Any model supported by LiteLLM works. See https://docs.litellm.ai/docs/providers
+
         llm_temperature: LLM temperature (default: 0.2).
 
     Returns:
@@ -70,9 +105,8 @@ async def extract(
 
     # Read LLM config from env if not provided
     if llm_api_key is None:
-        llm_api_key = os.environ.get("SHOPEXTRACT_LLM_API_KEY", "")
-    if llm_model == "openai/gpt-4o-mini":
-        llm_model = os.environ.get("SHOPEXTRACT_LLM_MODEL", llm_model)
+        llm_api_key = _resolve_llm_api_key(llm_model)
+    llm_model = os.environ.get("SHOPEXTRACT_LLM_MODEL", llm_model)
 
     # Step 1: Detect platform
     if platform is None:
@@ -266,6 +300,48 @@ async def from_feed(feed_url: str, *, shop_url: str = "") -> ExtractionResult:
 
 
 # -- Internal helpers ---------------------------------------------------------
+
+# Provider-specific env var mapping
+_PROVIDER_ENV_KEYS = {
+    "openai": "OPENAI_API_KEY",
+    "anthropic": "ANTHROPIC_API_KEY",
+    "gemini": "GEMINI_API_KEY",
+    "deepseek": "DEEPSEEK_API_KEY",
+    "groq": "GROQ_API_KEY",
+    "mistral": "MISTRAL_API_KEY",
+    "cohere": "COHERE_API_KEY",
+    "perplexity": "PERPLEXITY_API_KEY",
+    "together_ai": "TOGETHER_API_KEY",
+    "bedrock": "AWS_ACCESS_KEY_ID",
+    "vertex_ai": "GOOGLE_APPLICATION_CREDENTIALS",
+    "azure": "AZURE_API_KEY",
+    "cloudflare": "CLOUDFLARE_API_KEY",
+    "replicate": "REPLICATE_API_TOKEN",
+    "openrouter": "OPENROUTER_API_KEY",
+    "ollama": None,  # No key needed
+}
+
+
+def _resolve_llm_api_key(model: str) -> str:
+    """Resolve API key from environment variables based on model provider."""
+    # 1. Check shopextract-specific env var
+    key = os.environ.get("SHOPEXTRACT_LLM_API_KEY", "")
+    if key:
+        return key
+
+    # 2. Check provider-specific env var
+    provider = model.split("/")[0] if "/" in model else model
+    if provider == "ollama":
+        return "ollama"  # Ollama needs no real key
+
+    env_var = _PROVIDER_ENV_KEYS.get(provider)
+    if env_var:
+        key = os.environ.get(env_var, "")
+        if key:
+            return key
+
+    return ""
+
 
 async def _try_llm_extraction(
     urls: list[str],
