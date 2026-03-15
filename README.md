@@ -692,6 +692,25 @@ python -m pytest tests/ -q
 
 ---
 
+## Legal & Responsible Use
+
+shopextract extracts publicly visible product data (titles, prices, images, SKUs) — factual information that is not copyrightable. It does not extract personal data, bypass authentication, or circumvent CAPTCHAs.
+
+By default:
+- `robots.txt` is respected (`check_robots_txt=True`)
+- Requests are rate-limited (max 10 concurrent per domain)
+- Extraction is capped at 20 URLs by default
+- No login bypass or authentication circumvention
+
+Users are responsible for ensuring their use complies with applicable laws, including:
+- **EU Database Directive (96/9/EC)** — extracting a "substantial part" of a protected database may require authorization from the database maker. shopextract is designed for analysis, comparison, and research — not for reproducing entire catalogs.
+- **GDPR** — shopextract does not collect personal data. If you extend it to process personal data, you are responsible for GDPR compliance.
+- **Website Terms of Service** — some websites prohibit automated access in their ToS. Violating ToS is a contractual matter, not criminal, but users should review the terms of sites they extract from.
+
+This library is a tool. Like any tool, it can be used responsibly or irresponsibly. Use it ethically.
+
+---
+
 ## License
 
 [MIT](LICENSE) -- Copyright (c) 2026 Umer Khan
