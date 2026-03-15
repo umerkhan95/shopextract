@@ -105,6 +105,16 @@ __all__ = [
     "price_position",
     "assortment_gaps",
     "brand_coverage",
+    # Validate functions
+    "validate",
+    "check_images",
+    "find_duplicates",
+    # Export functions
+    "to_csv",
+    "to_json",
+    "to_feed",
+    "to_dataframe",
+    "to_parquet",
     # Data models
     "AssortmentGaps",
     "CatalogStats",
@@ -115,6 +125,7 @@ __all__ = [
     "ExtractionResult",
     "ExtractionTier",
     "ExtractorResult",
+    "ImageIssue",
     "Match",
     "NewProduct",
     "Platform",
@@ -123,6 +134,8 @@ __all__ = [
     "PricePosition",
     "Product",
     "RemovedProduct",
+    "ValidationIssue",
+    "ValidationReport",
     "Variant",
     # Utilities
     "QualityScorer",
