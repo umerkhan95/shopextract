@@ -158,7 +158,8 @@ class SchemaOrgExtractor:
 
                 except json.JSONDecodeError:
                     continue
-                except Exception:
+                except Exception as e:
+                    logger.debug("Error processing JSON-LD block for %s: %s", url, e)
                     continue
 
             if not products:

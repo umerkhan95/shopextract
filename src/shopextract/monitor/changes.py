@@ -6,7 +6,7 @@ import json
 import logging
 import sqlite3
 from datetime import datetime
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from .._models import Change, NewProduct, PriceChange, RemovedProduct
@@ -78,7 +78,7 @@ def _detect_changes(
         if title_key not in previous:
             result.append(NewProduct(
                 title=cur_prod.get("title", ""),
-                price=Decimal(str(cur_prod.get("price", 0))),
+                price=_safe_decimal(cur_prod.get("price", 0)),
                 currency=cur_prod.get("currency", "USD"),
             ))
         else:
@@ -89,11 +89,20 @@ def _detect_changes(
         if title_key not in current:
             result.append(RemovedProduct(
                 title=prev_prod.get("title", ""),
-                last_price=Decimal(str(prev_prod.get("price", 0))),
+                last_price=_safe_decimal(prev_prod.get("price", 0)),
                 currency=prev_prod.get("currency", "USD"),
             ))
 
     return result
+
+
+def _safe_decimal(value: object) -> Decimal:
+    """Convert a value to Decimal, returning 0 for non-numeric values."""
+    try:
+        return Decimal(str(value))
+    except (InvalidOperation, ValueError, TypeError):
+        logger.debug("Non-numeric price value: %r, defaulting to 0", value)
+        return Decimal("0")
 
 
 def _check_price_change(
@@ -102,8 +111,8 @@ def _check_price_change(
     cur: dict,
 ) -> None:
     """Append a PriceChange if prices differ."""
-    old_price = Decimal(str(prev.get("price", 0)))
-    new_price = Decimal(str(cur.get("price", 0)))
+    old_price = _safe_decimal(prev.get("price", 0))
+    new_price = _safe_decimal(cur.get("price", 0))
     if old_price != new_price:
         result.append(PriceChange(
             title=cur.get("title", ""),
@@ -140,7 +149,10 @@ def price_history(
         by_title = _products_by_title(products)
         if title_lower in by_title:
             ts = datetime.fromisoformat(created_at)
-            price = float(by_title[title_lower].get("price", 0))
+            try:
+                price = float(by_title[title_lower].get("price", 0))
+            except (ValueError, TypeError):
+                price = 0.0
             history.append((ts, price))
 
     return history

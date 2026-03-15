@@ -250,7 +250,10 @@ async def _extract_batch_concurrent(
             except Exception as e:
                 errors.append(f"Error extracting {u}: {e}")
 
-    await asyncio.gather(*[_extract_single(u) for u in urls], return_exceptions=True)
+    results = await asyncio.gather(*[_extract_single(u) for u in urls], return_exceptions=True)
+    for i, result in enumerate(results):
+        if isinstance(result, Exception):
+            logger.warning("Unhandled extraction error for URL %s: %s", urls[i], result)
 
     return ExtractorResult(
         products=all_products,

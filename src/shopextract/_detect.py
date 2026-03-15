@@ -149,8 +149,8 @@ async def _probe_shopify_api(
             data = response.json()
             if "products" in data:
                 signals[Platform.SHOPIFY].append("api:/products.json")
-    except Exception:
-        pass
+    except Exception as e:
+        logger.debug("Shopify API probe failed for %s: %s", base_url, e)
 
 
 async def _probe_woocommerce_api(
@@ -162,8 +162,8 @@ async def _probe_woocommerce_api(
             data = response.json()
             if "namespaces" in data:
                 signals[Platform.WOOCOMMERCE].append("api:/wp-json/")
-    except Exception:
-        pass
+    except Exception as e:
+        logger.debug("WooCommerce API probe failed for %s: %s", base_url, e)
 
 
 async def _probe_magento_api(
@@ -175,8 +175,8 @@ async def _probe_magento_api(
             data = response.json()
             if isinstance(data, list) and len(data) > 0:
                 signals[Platform.MAGENTO].append("api:/rest/V1/store/storeConfigs")
-    except Exception:
-        pass
+    except Exception as e:
+        logger.debug("Magento API probe failed for %s: %s", base_url, e)
 
 
 async def _probe_shopware_api(
@@ -186,8 +186,8 @@ async def _probe_shopware_api(
         response = await client.get(f"{base_url}/api/_info/config", timeout=PROBE_TIMEOUT)
         if response.status_code == 200:
             signals[Platform.SHOPWARE].append("api:/api/_info/config")
-    except Exception:
-        pass
+    except Exception as e:
+        logger.debug("Shopware API probe failed for %s: %s", base_url, e)
 
 
 # -- HTML content probes -----------------------------------------------------

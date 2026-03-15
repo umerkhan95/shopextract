@@ -227,8 +227,8 @@ class LLMExtractor:
                             url_products = []
                         url_products = self._merge_chunk_products(url_products)
                         all_products.extend(url_products)
-                    except json.JSONDecodeError:
-                        pass
+                    except json.JSONDecodeError as e:
+                        logger.debug("Failed to parse LLM extracted content for %s: %s", result.url, e)
         except Exception as e:
             logger.exception("Batch LLM extraction failed: %s", e)
             error = str(e)

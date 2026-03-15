@@ -159,7 +159,8 @@ def _shopify_variants(variants_raw: list[dict]) -> list[Variant]:
                 sku=v.get("sku"),
                 in_stock=variant_in_stock,
             ))
-        except Exception:
+        except Exception as e:
+            logger.debug("Failed to parse Shopify variant %s: %s", v.get("id", "?"), e)
             continue
     return variants
 
@@ -419,7 +420,8 @@ def _normalize_shopware(raw: dict, shop_url: str) -> dict | None:
                 sku=v.get("sku"),
                 in_stock=bool(v.get("in_stock", True)),
             ))
-        except Exception:
+        except Exception as e:
+            logger.debug("Failed to parse Shopware variant %s: %s", v.get("id", "?"), e)
             continue
 
     return {

@@ -136,7 +136,8 @@ class UnifiedCrawlExtractor:
             if e.response.status_code in (403, 429, 503):
                 logger.debug("httpx blocked (%d) for %s, will try browser", e.response.status_code, url)
             return None
-        except httpx.RequestError:
+        except httpx.RequestError as e:
+            logger.debug("httpx request error for %s: %s", url, e)
             return None
 
     @staticmethod
@@ -187,7 +188,8 @@ class UnifiedCrawlExtractor:
                         products = self._extract_from_crawl_result(result, url)
                         if products:
                             return products
-                    except Exception:
+                    except Exception as e:
+                        logger.debug("Browser crawl at stealth level %s failed for %s: %s", level.value, url, e)
                         continue
         except Exception as e:
             logger.warning("Browser startup error for %s: %s", url, e)

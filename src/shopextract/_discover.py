@@ -140,7 +140,8 @@ async def _discover_shopify(
                 urls.append(f"{base_url}/products.json?limit=250&page={page}")
 
         return urls
-    except Exception:
+    except Exception as e:
+        logger.debug("Shopify /products.json failed for %s: %s, falling back to sitemap", base_url, e)
         return await _discover_via_sitemap(base_url, platform, timeout, client)
     finally:
         if own_client:
@@ -158,8 +159,8 @@ async def _discover_woocommerce(
         response = await c.get(api_url)
         response.raise_for_status()
         return [api_url]
-    except Exception:
-        pass
+    except Exception as e:
+        logger.debug("WooCommerce Store API not available for %s: %s", base_url, e)
     finally:
         if own_client:
             await c.aclose()
@@ -182,8 +183,8 @@ async def _discover_magento(
         response = await c.get(api_url)
         response.raise_for_status()
         return [api_url]
-    except Exception:
-        pass
+    except Exception as e:
+        logger.debug("Magento REST API not available for %s: %s", base_url, e)
     finally:
         if own_client:
             await c.aclose()
@@ -294,7 +295,8 @@ async def _try_product_sitemaps(
 def _parse_sitemap_xml(xml_text: str) -> list[str]:
     try:
         root = ET.fromstring(xml_text)
-    except (DefusedXmlException, ET.ParseError):
+    except (DefusedXmlException, ET.ParseError) as e:
+        logger.debug("Failed to parse sitemap XML: %s", e)
         return []
 
     urls: list[str] = []

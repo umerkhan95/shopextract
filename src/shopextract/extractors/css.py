@@ -74,7 +74,8 @@ class CSSExtractor:
                         products = self._parse_extracted_content(url, result)
                         if products:
                             return ExtractorResult(products=products)
-                    except Exception:
+                    except Exception as e:
+                        logger.debug("CSS extraction at stealth level %s failed for %s: %s", level.value, url, e)
                         continue
         except Exception as e:
             logger.exception("CSS browser startup failed for %s: %s", url, e)
@@ -115,8 +116,8 @@ class CSSExtractor:
                             all_products.extend(extracted)
                         elif isinstance(extracted, dict) and extracted:
                             all_products.append(extracted)
-                    except json.JSONDecodeError:
-                        pass
+                    except json.JSONDecodeError as e:
+                        logger.debug("Failed to parse extracted content for %s: %s", result.url, e)
         except Exception as e:
             logger.exception("Batch CSS extraction failed: %s", e)
             error = str(e)
