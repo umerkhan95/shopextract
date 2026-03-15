@@ -6,8 +6,11 @@
 [![Python versions](https://img.shields.io/pypi/pyversions/shopextract.svg)](https://pypi.org/project/shopextract/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Tests](https://img.shields.io/github/actions/workflow/status/umerkhan95/shopextract/test.yml?label=tests)](https://github.com/umerkhan95/shopextract/actions)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/umerkhan95/shopextract/blob/main/notebooks/shopextract_demo.ipynb)
 
 No existing pip package lets you extract structured product data from any store URL with zero config. `shopextract` does. Point it at a store, get back clean product data -- titles, prices, images, GTINs, variants -- ready for analysis, comparison, or feed generation.
+
+**Works on any website** -- not just 6 platforms. Shopify, WooCommerce, Magento, BigCommerce, Shopware get the fast API path. Everything else (IKEA, Nike, custom stores) goes through the intelligent scraper. JS-heavy sites use LLM extraction with 17+ provider support including free local models via Ollama.
 
 ---
 
@@ -18,6 +21,8 @@ pip install shopextract
 ```
 
 Requires Python 3.10+. Includes everything: extraction, comparison, monitoring, LLM support, pandas export.
+
+**Try it now:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/umerkhan95/shopextract/blob/main/notebooks/shopextract_demo.ipynb)
 
 ---
 
@@ -423,16 +428,26 @@ shopextract validate products.json -m idealo
 
 ## Supported Platforms
 
-| Platform | Detection | API Extraction | Scraping |
-|:---------|:---------:|:--------------:|:--------:|
-| **Shopify** | Headers, CDN, `/products.json` | `/products.json` (public) | UnifiedCrawl, CSS |
-| **WooCommerce** | Headers, wp-json, plugin paths | Store API v1 (public) | UnifiedCrawl, CSS |
-| **Magento 2** | Headers, REST API | `/rest/V1/products` (public) | UnifiedCrawl, CSS |
-| **BigCommerce** | Meta tags, CDN | -- | UnifiedCrawl, CSS |
-| **Shopware 6** | Headers, API config | -- | UnifiedCrawl, CSS |
-| **Generic** | Fallback | -- | UnifiedCrawl, CSS |
+### API-Detected Platforms (fastest extraction)
 
-Any store with product pages will work. Platform detection just enables faster API-based extraction when available.
+| Platform | Market Share | Detection | Extraction Method |
+|:---------|:------------|:---------:|:-----------------|
+| **Shopify** | ~26% | Headers, CDN, `/products.json` | Public REST API |
+| **WooCommerce** | ~36% | Headers, wp-json, plugins | Public Store API |
+| **Magento 2** | ~2% | Headers, REST API | Public REST API |
+| **BigCommerce** | ~2% | Meta tags, CDN | UnifiedCrawl |
+| **Shopware 6** | ~1% | Headers, API config | UnifiedCrawl |
+
+### Any Other Website (universal scraping)
+
+| Site Type | Example | Extraction Method |
+|:----------|:--------|:-----------------|
+| Sites with JSON-LD | IKEA, Target, Walmart | httpx fast path (no browser) |
+| Sites with OG tags | Most retail sites | httpx fast path |
+| JS-rendered sites | Custom stores | Browser + markdown parsing |
+| Anti-bot / JS-heavy | Zara, H&M | LLM extraction (17+ providers) |
+
+**shopextract works on any website with product pages.** Platform detection enables the fast API path for known platforms. Everything else goes through the intelligent scraper with automatic fallback through 4 tiers.
 
 ---
 
@@ -618,12 +633,39 @@ All commands output JSON by default.
 
 ---
 
+## Environment Variables
+
+| Variable | Default | Description |
+|:---------|:--------|:------------|
+| `SHOPEXTRACT_LLM_API_KEY` | -- | API key for LLM extraction (any provider) |
+| `SHOPEXTRACT_LLM_MODEL` | `openai/gpt-4o-mini` | LLM model identifier |
+| `OPENAI_API_KEY` | -- | Auto-detected for `openai/...` models |
+| `ANTHROPIC_API_KEY` | -- | Auto-detected for `anthropic/...` models |
+| `GEMINI_API_KEY` | -- | Auto-detected for `gemini/...` models |
+| `MISTRAL_API_KEY` | -- | Auto-detected for `mistral/...` models |
+| `DEEPSEEK_API_KEY` | -- | Auto-detected for `deepseek/...` models |
+| `GROQ_API_KEY` | -- | Auto-detected for `groq/...` models |
+
+For Ollama models (`ollama/llama3.1`, etc.), no API key is needed -- just have Ollama running locally.
+
+---
+
+## Interactive Demo
+
+Try shopextract without installing anything:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/umerkhan95/shopextract/blob/main/notebooks/shopextract_demo.ipynb)
+
+The notebook demonstrates all features: extraction, analysis, matching, validation, monitoring, export, quality scoring, and duplicate detection.
+
+---
+
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/my-feature`)
 3. Install dev dependencies: `pip install -e ".[dev]"`
-4. Run tests: `pytest`
+4. Run tests: `pytest` (308 tests)
 5. Submit a pull request
 
 ---
