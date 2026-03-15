@@ -76,6 +76,27 @@ raw = await shopextract.extract_one("https://example-store.com/products/cool-wid
 print(raw)  # {"title": "Cool Widget", "price": "29.99", ...}
 ```
 
+Use LLM for hard-to-scrape sites (JS-heavy, no structured data):
+
+```python
+# With OpenAI
+result = await shopextract.extract(
+    "https://hard-to-scrape-store.com",
+    llm_api_key="sk-...",
+    llm_model="openai/gpt-4o-mini",
+)
+
+# With local Ollama (free, no API key)
+result = await shopextract.extract(
+    "https://hard-to-scrape-store.com",
+    llm_model="ollama/llama3.1",
+)
+
+# Or set env vars and forget about it
+# export OPENAI_API_KEY=sk-...
+result = await shopextract.extract("https://any-store.com")
+```
+
 Import from a Google Shopping feed:
 
 ```python
@@ -422,14 +443,66 @@ Any store with product pages will work. Platform detection just enables faster A
 
 `shopextract` uses a tiered fallback strategy -- it tries the fastest method first and falls back automatically.
 
-| Tier | Method | Speed | Reliability | Cost |
-|:-----|:-------|:-----:|:-----------:|:----:|
-| **API** | Platform REST APIs | Fast | High | Free |
-| **UnifiedCrawl** | JSON-LD + OG + markdown parsing | Medium | High | Free |
-| **CSS** | Browser-based CSS selectors | Slow | Medium | Free |
-| **LLM** | GPT-4o / LLM extraction | Slow | High | Paid |
+| Tier | Method | Speed | Reliability | Cost | Works On |
+|:-----|:-------|:-----:|:-----------:|:----:|:---------|
+| **API** | Platform REST APIs | Fast | High | Free | Shopify, WooCommerce, Magento |
+| **UnifiedCrawl** | JSON-LD + OG + markdown parsing | Medium | High | Free | Any site with structured data |
+| **CSS** | Browser-based CSS selectors | Slow | Medium | Free | Any site |
+| **LLM** | AI-powered extraction | Slow | High | Varies | Any site (universal fallback) |
 
-The LLM tier requires `pip install shopextract[llm]` and a `LLM_API_KEY` environment variable.
+### LLM Tier Configuration
+
+The LLM tier requires `pip install shopextract[llm]` and an API key. It supports **every major LLM provider** via LiteLLM:
+
+```python
+# Pass API key directly
+result = await shopextract.extract(
+    "https://some-store.com",
+    llm_api_key="sk-...",
+    llm_model="openai/gpt-4o-mini",
+)
+
+# Or use environment variables
+# export SHOPEXTRACT_LLM_API_KEY=sk-...
+# export SHOPEXTRACT_LLM_MODEL=anthropic/claude-sonnet-4-20250514
+result = await shopextract.extract("https://some-store.com")
+
+# Local models with Ollama (free, no API key)
+result = await shopextract.extract(
+    "https://some-store.com",
+    llm_model="ollama/llama3.1",
+)
+```
+
+#### Supported Providers
+
+| Provider | Model Examples | Env Var | Cost |
+|:---------|:--------------|:--------|:-----|
+| **OpenAI** | `openai/gpt-4o-mini`, `openai/gpt-4o` | `OPENAI_API_KEY` | ~$0.01-0.03/page |
+| **Anthropic** | `anthropic/claude-sonnet-4-20250514`, `anthropic/claude-haiku-4-5-20251001` | `ANTHROPIC_API_KEY` | ~$0.01-0.02/page |
+| **Google Gemini** | `gemini/gemini-2.0-flash`, `gemini/gemini-2.5-pro-preview-06-05` | `GEMINI_API_KEY` | ~$0.01/page |
+| **Ollama (local)** | `ollama/llama3.1`, `ollama/mistral`, `ollama/qwen2.5`, `ollama/deepseek-r1`, `ollama/phi3` | None needed | Free |
+| **Mistral** | `mistral/mistral-large-latest`, `mistral/mistral-small-latest` | `MISTRAL_API_KEY` | ~$0.01/page |
+| **DeepSeek** | `deepseek/deepseek-chat` | `DEEPSEEK_API_KEY` | ~$0.002/page |
+| **Groq** | `groq/llama-3.1-70b-versatile`, `groq/llama-3.3-70b-versatile` | `GROQ_API_KEY` | Free tier |
+| **Cohere** | `cohere/command-r-plus` | `COHERE_API_KEY` | ~$0.01/page |
+| **Perplexity** | `perplexity/sonar-pro` | `PERPLEXITY_API_KEY` | ~$0.01/page |
+| **Together AI** | `together_ai/meta-llama/...` | `TOGETHER_API_KEY` | Varies |
+| **AWS Bedrock** | `bedrock/anthropic.claude...` | `AWS_ACCESS_KEY_ID` | Varies |
+| **Google Vertex AI** | `vertex_ai/gemini-...` | `GOOGLE_APPLICATION_CREDENTIALS` | Varies |
+| **Azure OpenAI** | `azure/gpt-4o` | `AZURE_API_KEY` | Varies |
+| **Cloudflare** | `cloudflare/...` | `CLOUDFLARE_API_KEY` | Free tier |
+| **Replicate** | `replicate/...` | `REPLICATE_API_TOKEN` | Varies |
+| **OpenRouter** | `openrouter/...` (100+ models) | `OPENROUTER_API_KEY` | Varies |
+
+Any model supported by [LiteLLM](https://docs.litellm.ai/docs/providers) works.
+
+#### API Key Resolution Order
+
+1. `llm_api_key` parameter (explicit)
+2. `SHOPEXTRACT_LLM_API_KEY` environment variable
+3. Provider-specific env var (e.g., `OPENAI_API_KEY` for `openai/...` models)
+4. For `ollama/*` models -- no key needed (runs locally)
 
 ---
 
@@ -457,8 +530,8 @@ All commands output JSON by default.
 
 | Function | Signature | Returns |
 |:---------|:----------|:--------|
-| `extract` | `async (url, *, platform=None, max_urls=20, shop_url=None)` | `ExtractionResult` |
-| `extract_one` | `async (url)` | `dict` |
+| `extract` | `async (url, *, platform=None, max_urls=20, shop_url=None, llm_api_key=None, llm_model="openai/gpt-4o-mini", llm_temperature=0.2)` | `ExtractionResult` |
+| `extract_one` | `async (url, *, llm_api_key=None, llm_model="openai/gpt-4o-mini")` | `dict` |
 | `from_feed` | `async (feed_url, *, shop_url="")` | `ExtractionResult` |
 | `detect` | `async (url, *, client=None)` | `PlatformResult` |
 | `discover` | `async (url, *, platform=None, max_urls=100, timeout=30.0, client=None)` | `list[str]` |
