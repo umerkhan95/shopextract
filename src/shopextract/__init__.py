@@ -75,7 +75,7 @@ from .export import to_csv, to_dataframe, to_feed, to_json, to_parquet
 from .monitor import changes, price_history, snapshot, watch
 from .validate import check_images, find_duplicates, validate
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 __all__ = [
     # Core functions

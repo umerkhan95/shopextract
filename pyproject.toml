@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "shopextract"
-version = "0.1.1"
+version = "0.1.2"
 description = "Extract, compare, and monitor product data from any e-commerce store"
 readme = "README.md"
 license = {text = "MIT"}
