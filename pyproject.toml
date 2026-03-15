@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "shopextract"
+version = "0.1.0"
+description = "Extract, compare, and monitor product data from any e-commerce store"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [{name = "Umer Khan"}]
+keywords = ["ecommerce", "scraping", "product-data", "price-comparison", "shopify", "woocommerce"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+]
+dependencies = [
+    "httpx>=0.27",
+    "crawl4ai>=0.6",
+    "defusedxml>=0.7",
+    "beautifulsoup4>=4.12",
+]
+
+[project.optional-dependencies]
+llm = ["litellm>=1.0"]
+ml = ["sentence-transformers>=2.0", "numpy>=1.24"]
+data = ["pandas>=2.0", "polars>=0.20", "pyarrow>=14.0"]
+all = ["shopextract[llm,ml,data]"]
+
+[project.scripts]
+shopextract = "shopextract.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/umerkhan95/shopextract"
+Repository = "https://github.com/umerkhan95/shopextract"
+Issues = "https://github.com/umerkhan95/shopextract/issues"
