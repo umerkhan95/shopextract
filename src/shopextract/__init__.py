@@ -3,8 +3,8 @@
 Public API:
     detect(url) -> PlatformResult
     discover(url, ...) -> list[str]
-    extract(url, ...) -> ExtractionResult
-    extract_one(url) -> dict
+    extract(url, ..., llm_api_key=, llm_model=) -> ExtractionResult
+    extract_one(url, ..., llm_api_key=, llm_model=) -> dict
     from_feed(feed_url, ...) -> ExtractionResult
     compare(query, stores) -> ComparisonResult
     compare_catalogs(store_a, store_b) -> CatalogDiff

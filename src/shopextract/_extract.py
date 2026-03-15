@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 from collections.abc import Iterator
 from typing import Any
 
@@ -36,13 +37,16 @@ async def extract(
     platform: Platform | None = None,
     max_urls: int = 20,
     shop_url: str | None = None,
+    llm_api_key: str | None = None,
+    llm_model: str = "openai/gpt-4o-mini",
+    llm_temperature: float = 0.2,
 ) -> ExtractionResult:
     """Extract products from an e-commerce store.
 
     This is the main extraction function. It:
     1. Detects the platform (if not provided)
     2. Discovers product URLs
-    3. Extracts products using tiered fallback (API > UnifiedCrawl > CSS)
+    3. Extracts products using tiered fallback (API > UnifiedCrawl > CSS > LLM)
     4. Normalizes to unified Product model
 
     Args:
@@ -50,12 +54,25 @@ async def extract(
         platform: Pre-detected platform (auto-detected if None).
         max_urls: Maximum product URLs to process.
         shop_url: Base shop URL for normalization (defaults to url).
+        llm_api_key: API key for LLM extraction (OpenAI, Anthropic, etc.).
+            Enables Tier 4 (LLM) as final fallback. If not provided, LLM
+            tier is skipped and CSS is the last resort.
+        llm_model: LLM model identifier (default: "openai/gpt-4o-mini").
+            Uses LiteLLM format: "openai/gpt-4o", "anthropic/claude-sonnet-4-20250514",
+            "groq/llama-3.1-70b-versatile", etc.
+        llm_temperature: LLM temperature (default: 0.2).
 
     Returns:
         ExtractionResult with products, tier used, quality score.
     """
     if shop_url is None:
         shop_url = url.rstrip("/")
+
+    # Read LLM config from env if not provided
+    if llm_api_key is None:
+        llm_api_key = os.environ.get("SHOPEXTRACT_LLM_API_KEY", "")
+    if llm_model == "openai/gpt-4o-mini":
+        llm_model = os.environ.get("SHOPEXTRACT_LLM_MODEL", llm_model)
 
     # Step 1: Detect platform
     if platform is None:
@@ -133,25 +150,63 @@ async def extract(
         batch_result = await css.extract_batch(batch_urls)
         all_products.extend(batch_result.products)
 
+    if all_products:
+        products = _normalize_batch(all_products, platform, shop_url)
+        return ExtractionResult(
+            products=products,
+            raw_products=all_products,
+            tier=ExtractionTier.CSS,
+            quality_score=scorer.score_batch(all_products),
+            platform=platform,
+            urls_attempted=len(urls),
+            urls_succeeded=len(products),
+        )
+
+    # Step 6: LLM extraction (final fallback, requires API key)
+    if llm_api_key:
+        llm_products = await _try_llm_extraction(
+            urls, llm_api_key, llm_model, llm_temperature
+        )
+        if llm_products:
+            products = _normalize_batch(llm_products, platform, shop_url)
+            return ExtractionResult(
+                products=products,
+                raw_products=llm_products,
+                tier=ExtractionTier.LLM,
+                quality_score=scorer.score_batch(llm_products),
+                platform=platform,
+                urls_attempted=len(urls),
+                urls_succeeded=len(products),
+            )
+
+    # Nothing worked
     products = _normalize_batch(all_products, platform, shop_url)
     return ExtractionResult(
         products=products,
         raw_products=all_products,
         tier=ExtractionTier.CSS,
-        quality_score=scorer.score_batch(all_products) if all_products else 0.0,
+        quality_score=0.0,
         platform=platform,
         urls_attempted=len(urls),
         urls_succeeded=len(products),
     )
 
 
-async def extract_one(url: str) -> dict:
+async def extract_one(
+    url: str,
+    *,
+    llm_api_key: str | None = None,
+    llm_model: str = "openai/gpt-4o-mini",
+) -> dict:
     """Extract product data from a single product page URL.
 
-    Returns raw product dict (not normalized). For quick single-page extraction.
+    Tries UnifiedCrawl first. If that fails and llm_api_key is provided,
+    falls back to LLM extraction.
 
     Args:
         url: Product page URL.
+        llm_api_key: API key for LLM fallback (optional).
+        llm_model: LLM model identifier (default: "openai/gpt-4o-mini").
 
     Returns:
         Raw product dict or empty dict if extraction fails.
@@ -162,6 +217,15 @@ async def extract_one(url: str) -> dict:
     result = await extractor.extract(url)
     if result.products:
         return result.products[0]
+
+    # LLM fallback for single page
+    if llm_api_key:
+        llm_products = await _try_llm_extraction(
+            [url], llm_api_key, llm_model, 0.2,
+        )
+        if llm_products:
+            return llm_products[0]
+
     return {}
 
 
@@ -202,6 +266,40 @@ async def from_feed(feed_url: str, *, shop_url: str = "") -> ExtractionResult:
 
 
 # -- Internal helpers ---------------------------------------------------------
+
+async def _try_llm_extraction(
+    urls: list[str],
+    api_key: str,
+    model: str,
+    temperature: float,
+) -> list[dict]:
+    """Try LLM-based extraction on URLs."""
+    try:
+        from crawl4ai import LLMConfig
+        from .extractors.llm import LLMExtractor
+
+        llm_config = LLMConfig(provider=model, api_token=api_key)
+        extractor = LLMExtractor(
+            llm_config=llm_config,
+            temperature=temperature,
+        )
+
+        all_products: list[dict] = []
+        for url in urls[:10]:  # Limit to 10 URLs for cost control
+            try:
+                result = await extractor.extract(url)
+                all_products.extend(result.products)
+            except Exception as e:
+                logger.debug("LLM extraction failed for %s: %s", url, e)
+
+        return all_products
+    except ImportError:
+        logger.warning("LLM extraction requires crawl4ai[llm] — pip install shopextract[llm]")
+        return []
+    except Exception as e:
+        logger.warning("LLM extraction failed: %s", e)
+        return []
+
 
 async def _try_api_extraction(url: str, platform: Platform) -> ExtractorResult | None:
     """Try platform-specific API extraction."""
