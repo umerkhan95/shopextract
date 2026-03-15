@@ -6,7 +6,7 @@ import json
 import logging
 import sqlite3
 from dataclasses import asdict
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from decimal import Decimal
 from pathlib import Path
 from urllib.parse import urlparse
@@ -77,7 +77,7 @@ async def snapshot(
     try:
         conn.execute(
             "INSERT INTO snapshots (domain, products_json, created_at) VALUES (?, ?, ?)",
-            (domain, json.dumps(products_data, cls=_DecimalEncoder), datetime.now(UTC).isoformat()),
+            (domain, json.dumps(products_data, cls=_DecimalEncoder), datetime.now(timezone.utc).isoformat()),
         )
         conn.commit()
     finally:

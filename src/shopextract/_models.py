@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from decimal import Decimal
 from enum import StrEnum
 
@@ -64,7 +64,7 @@ class Product:
     additional_images: list[str] = field(default_factory=list)
     category_path: list[str] = field(default_factory=list)
     platform: Platform = Platform.GENERIC
-    scraped_at: datetime = field(default_factory=lambda: datetime.now(UTC))
+    scraped_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     raw_data: dict = field(default_factory=dict)
 
 
@@ -171,7 +171,7 @@ class Change:
 
     change_type: ChangeType = ChangeType.PRICE_CHANGE
     title: str = ""
-    detected_at: datetime = field(default_factory=lambda: datetime.now(UTC))
+    detected_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 @dataclass
