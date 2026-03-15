@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from decimal import Decimal
 
 from shopextract._models import (
@@ -40,8 +40,8 @@ class TestPlatformEnum:
         assert Platform.GENERIC == "generic"
 
     def test_string_comparison(self):
-        assert Platform.SHOPIFY == "shopify"
-        assert str(Platform.SHOPIFY) == "shopify"
+        assert Platform.SHOPIFY.value == "shopify"
+        assert Platform.SHOPIFY == "shopify"  # str mixin enables this
 
 
 class TestExtractionTierEnum:

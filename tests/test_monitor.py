@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from decimal import Decimal
 
 import pytest
@@ -41,7 +41,7 @@ class TestDecimalEncoder:
         assert '"19.99"' in result
 
     def test_datetime(self):
-        dt = datetime(2026, 3, 15, 12, 0, 0, tzinfo=UTC)
+        dt = datetime(2026, 3, 15, 12, 0, 0, tzinfo=timezone.utc)
         result = json.dumps({"ts": dt}, cls=_DecimalEncoder)
         assert "2026-03-15" in result
 

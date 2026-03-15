@@ -5,10 +5,10 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from decimal import Decimal
-from enum import StrEnum
+from enum import Enum
 
 
-class Platform(StrEnum):
+class Platform(str, Enum):
     """Supported e-commerce platforms."""
 
     SHOPIFY = "shopify"
@@ -19,7 +19,7 @@ class Platform(StrEnum):
     GENERIC = "generic"
 
 
-class ExtractionTier(StrEnum):
+class ExtractionTier(str, Enum):
     """Product extraction tier/strategy."""
 
     API = "api"
@@ -157,7 +157,7 @@ class CatalogDiff:
 # --- Monitor models (#11, #12, #13) ---
 
 
-class ChangeType(StrEnum):
+class ChangeType(str, Enum):
     """Type of product change between snapshots."""
 
     PRICE_CHANGE = "price_change"
