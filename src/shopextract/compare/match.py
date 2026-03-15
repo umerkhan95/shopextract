@@ -7,7 +7,7 @@ from difflib import SequenceMatcher
 _DEFAULT_THRESHOLD = 0.8
 
 
-def _title_similarity(a: str, b: str) -> float:
+def title_similarity(a: str, b: str) -> float:
     """Compute normalized title similarity using SequenceMatcher."""
     return SequenceMatcher(
         None,
@@ -39,7 +39,7 @@ def fuzzy_match(
         for idx, prod_b in enumerate(products_b):
             if idx in used_b:
                 continue
-            sim = _title_similarity(title_a, prod_b.get("title", ""))
+            sim = title_similarity(title_a, prod_b.get("title", ""))
             if sim > best_sim:
                 best_sim = sim
                 best_idx = idx

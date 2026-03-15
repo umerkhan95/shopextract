@@ -133,6 +133,44 @@ def _is_valid_product(product: Product) -> bool:
     return True
 
 
+def _shopify_stock_status(variants_raw: list[dict]) -> bool:
+    if not variants_raw:
+        return True
+    for variant in variants_raw:
+        inventory_qty = variant.get("inventory_quantity")
+        if inventory_qty is None or inventory_qty > 0:
+            return True
+    return False
+
+
+def _shopify_variants(variants_raw: list[dict]) -> list[Variant]:
+    variants = []
+    for v in variants_raw:
+        try:
+            variant_price = Decimal(v.get("price", "0"))
+            variant_in_stock = True
+            inventory_qty = v.get("inventory_quantity")
+            if inventory_qty is not None:
+                variant_in_stock = inventory_qty > 0
+            variants.append(Variant(
+                variant_id=str(v.get("id", "")),
+                title=v.get("title", ""),
+                price=variant_price,
+                sku=v.get("sku"),
+                in_stock=variant_in_stock,
+            ))
+        except Exception:
+            continue
+    return variants
+
+
+def _shopify_tags(raw: dict) -> list[str]:
+    tags_raw = raw.get("tags", "")
+    if isinstance(tags_raw, str):
+        return [tag.strip() for tag in tags_raw.split(",") if tag.strip()]
+    return list(tags_raw) if tags_raw else []
+
+
 def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
     title = raw.get("title", "").strip()
     if not title:
@@ -157,47 +195,8 @@ def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
     image_url = images[0]["src"] if images else ""
     additional_images = [img["src"] for img in images[1:] if img.get("src")]
 
-    gtin = _validate_gtin(first_variant.get("barcode"))
-
     handle = raw.get("handle", "")
     product_url = f"{shop_url.rstrip('/')}/products/{handle}" if handle else shop_url
-
-    tags_raw = raw.get("tags", "")
-    if isinstance(tags_raw, str):
-        tags = [tag.strip() for tag in tags_raw.split(",") if tag.strip()]
-    else:
-        tags = list(tags_raw) if tags_raw else []
-
-    if variants_raw:
-        in_stock = False
-        for variant in variants_raw:
-            inventory_qty = variant.get("inventory_quantity")
-            if inventory_qty is None:
-                in_stock = True
-                break
-            if inventory_qty > 0:
-                in_stock = True
-                break
-    else:
-        in_stock = True
-
-    variants = []
-    for v in variants_raw:
-        try:
-            variant_price = Decimal(v.get("price", "0"))
-            variant_in_stock = True
-            inventory_qty = v.get("inventory_quantity")
-            if inventory_qty is not None:
-                variant_in_stock = inventory_qty > 0
-            variants.append(Variant(
-                variant_id=str(v.get("id", "")),
-                title=v.get("title", ""),
-                price=variant_price,
-                sku=v.get("sku"),
-                in_stock=variant_in_stock,
-            ))
-        except Exception:
-            continue
 
     return {
         "external_id": str(raw.get("id", "")),
@@ -209,14 +208,14 @@ def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
         "image_url": image_url,
         "product_url": product_url,
         "sku": first_variant.get("sku"),
-        "gtin": gtin,
+        "gtin": _validate_gtin(first_variant.get("barcode")),
         "mpn": None,
         "vendor": raw.get("vendor"),
         "product_type": raw.get("product_type"),
-        "in_stock": in_stock,
+        "in_stock": _shopify_stock_status(variants_raw),
         "condition": None,
-        "variants": variants,
-        "tags": tags,
+        "variants": _shopify_variants(variants_raw),
+        "tags": _shopify_tags(raw),
         "additional_images": additional_images,
         "category_path": [raw["product_type"]] if raw.get("product_type") else [],
     }
@@ -442,7 +441,7 @@ def _normalize_shopware(raw: dict, shop_url: str) -> dict | None:
         "variants": variants,
         "tags": list(raw.get("tags") or []),
         "additional_images": list(raw.get("additional_images") or []),
-        "category_path": list(raw.get("tags") or []),
+        "category_path": list(raw.get("categories") or []),
     }
 
 

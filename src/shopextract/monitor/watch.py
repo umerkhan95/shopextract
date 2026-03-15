@@ -5,7 +5,6 @@ from __future__ import annotations
 import asyncio
 import logging
 from collections.abc import AsyncGenerator, Callable
-from urllib.parse import urlparse
 
 from .._models import Change
 from .changes import changes as detect_changes

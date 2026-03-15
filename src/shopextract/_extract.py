@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+from collections.abc import Iterator
 from typing import Any
 
 from ._models import (
@@ -285,7 +286,6 @@ def _get_generic_css_schema() -> dict:
     }
 
 
-def _chunks(lst: list, n: int):
-    """Yield successive n-sized chunks from lst."""
+def _chunks(lst: list, n: int) -> Iterator[list]:
     for i in range(0, len(lst), n):
         yield lst[i:i + n]

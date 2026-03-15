@@ -23,6 +23,7 @@ dependencies = [
     "crawl4ai>=0.6",
     "defusedxml>=0.7",
     "beautifulsoup4>=4.12",
+    "click>=8.0",
 ]
 
 [project.optional-dependencies]

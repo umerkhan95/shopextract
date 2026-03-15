@@ -22,6 +22,14 @@ Public API:
     price_position(my_product, competitors) -> PricePosition
     assortment_gaps(my_store, competitors) -> AssortmentGaps
     brand_coverage(catalogs) -> dict[str, dict[str, int]]
+    validate(products, marketplace) -> ValidationReport
+    check_images(products) -> list[ImageIssue]
+    find_duplicates(products, method, threshold) -> list[tuple]
+    to_csv(products, path) -> None
+    to_json(products, path, indent) -> None
+    to_feed(products, path, format) -> None
+    to_dataframe(products) -> pandas.DataFrame
+    to_parquet(products, path) -> None
 """
 
 from ._detect import detect
@@ -37,6 +45,7 @@ from ._models import (
     ExtractionResult,
     ExtractionTier,
     ExtractorResult,
+    ImageIssue,
     Match,
     NewProduct,
     Platform,
@@ -45,6 +54,8 @@ from ._models import (
     PricePosition,
     Product,
     RemovedProduct,
+    ValidationIssue,
+    ValidationReport,
     Variant,
 )
 from ._normalize import normalize
@@ -60,7 +71,9 @@ from .analyze import (
     price_position,
 )
 from .compare import compare, compare_catalogs, fuzzy_match, match_gtin
+from .export import to_csv, to_dataframe, to_feed, to_json, to_parquet
 from .monitor import changes, price_history, snapshot, watch
+from .validate import check_images, find_duplicates, validate
 
 __version__ = "0.1.0"
 
@@ -107,6 +120,7 @@ __all__ = [
     "Platform",
     "PlatformResult",
     "PriceChange",
+    "PricePosition",
     "Product",
     "RemovedProduct",
     "Variant",

@@ -7,7 +7,7 @@ import logging
 
 from .._extract import extract
 from .._models import CatalogDiff, Product
-from .match import _title_similarity
+from .match import title_similarity
 
 logger = logging.getLogger(__name__)
 
@@ -79,7 +79,7 @@ def _find_best_match(
     for idx, candidate in enumerate(candidates):
         if idx in used:
             continue
-        sim = _title_similarity(product.title, candidate.title)
+        sim = title_similarity(product.title, candidate.title)
         if sim > best_sim:
             best_sim = sim
             best_idx = idx

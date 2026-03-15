@@ -8,7 +8,7 @@ from decimal import Decimal
 
 from .._extract import extract
 from .._models import ComparisonResult, Match
-from .match import _title_similarity
+from .match import title_similarity
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +48,7 @@ def _collect_matches(
             logger.warning("Extraction failed for %s: %s", store, result)
             continue
         for product in result.products:
-            sim = _title_similarity(query, product.title)
+            sim = title_similarity(query, product.title)
             if sim >= threshold:
                 matches.append(Match(
                     title=product.title,
