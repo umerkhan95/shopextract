@@ -88,7 +88,7 @@ class ExtractorResult:
     pages_expected: int | None = None
 
     @property
-    def product_count(self) -> int:
+    def product_count(self) -> int:  # noqa: E303
         return len(self.products)
 
     @property
@@ -112,3 +112,190 @@ class ExtractionResult:
     @property
     def product_count(self) -> int:
         return len(self.products)
+
+
+# --- Compare models (#8, #9) ---
+
+
+@dataclass
+class Match:
+    """A product matched across stores."""
+
+    title: str
+    price: Decimal
+    currency: str
+    store: str
+    product_url: str
+    similarity: float = 1.0
+
+
+@dataclass
+class ComparisonResult:
+    """Result of cross-store price comparison."""
+
+    query: str
+    matches: list[Match] = field(default_factory=list)
+    cheapest: Match | None = None
+    most_expensive: Match | None = None
+    avg_price: Decimal = Decimal("0")
+    price_spread: Decimal = Decimal("0")
+
+
+@dataclass
+class CatalogDiff:
+    """Difference between two store catalogs."""
+
+    store_a: str
+    store_b: str
+    only_in_a: list[Product] = field(default_factory=list)
+    only_in_b: list[Product] = field(default_factory=list)
+    in_both: list[tuple[Product, Product]] = field(default_factory=list)
+    cheaper_in_a: list[tuple[Product, Product]] = field(default_factory=list)
+    cheaper_in_b: list[tuple[Product, Product]] = field(default_factory=list)
+
+
+# --- Monitor models (#11, #12, #13) ---
+
+
+class ChangeType(StrEnum):
+    """Type of product change between snapshots."""
+
+    PRICE_CHANGE = "price_change"
+    NEW_PRODUCT = "new_product"
+    REMOVED_PRODUCT = "removed_product"
+
+
+@dataclass
+class Change:
+    """Base change between snapshots."""
+
+    change_type: ChangeType
+    title: str
+    detected_at: datetime = field(default_factory=lambda: datetime.now(UTC))
+
+
+@dataclass
+class PriceChange(Change):
+    """Price changed between snapshots."""
+
+    old_price: Decimal = Decimal("0")
+    new_price: Decimal = Decimal("0")
+    currency: str = "USD"
+
+    def __post_init__(self) -> None:
+        self.change_type = ChangeType.PRICE_CHANGE
+
+
+@dataclass
+class NewProduct(Change):
+    """Product appeared in latest snapshot."""
+
+    price: Decimal = Decimal("0")
+    currency: str = "USD"
+
+    def __post_init__(self) -> None:
+        self.change_type = ChangeType.NEW_PRODUCT
+
+
+@dataclass
+class RemovedProduct(Change):
+    """Product disappeared from latest snapshot."""
+
+    last_price: Decimal = Decimal("0")
+    currency: str = "USD"
+
+    def __post_init__(self) -> None:
+        self.change_type = ChangeType.REMOVED_PRODUCT
+
+
+# --- Analyze models (#14, #15) ---
+
+
+@dataclass
+class CatalogStats:
+    """Aggregate statistics for a product catalog."""
+
+    total_products: int = 0
+    price_range: tuple[float, float] = (0.0, 0.0)
+    avg_price: float = 0.0
+    median_price: float = 0.0
+    currencies: dict[str, int] = field(default_factory=dict)
+    brands: dict[str, int] = field(default_factory=dict)
+    categories: dict[str, int] = field(default_factory=dict)
+    in_stock: int = 0
+    out_of_stock: int = 0
+    has_gtin: int = 0
+    has_images: int = 0
+    completeness_score: float = 0.0
+
+
+@dataclass
+class PricePosition:
+    """Price positioning of a product relative to competitors."""
+
+    product_title: str = ""
+    my_price: float = 0.0
+    rank: int = 0
+    total_competitors: int = 0
+    percentile: float = 0.0
+    market_avg: float = 0.0
+    cheapest: float = 0.0
+    most_expensive: float = 0.0
+    competitor_prices: dict[str, float] = field(default_factory=dict)
+
+
+@dataclass
+class AssortmentGaps:
+    """Categories and brands that competitors have but you don't."""
+
+    missing_categories: list[str] = field(default_factory=list)
+    missing_brands: list[str] = field(default_factory=list)
+    competitor_category_counts: dict[str, dict[str, int]] = field(default_factory=dict)
+    competitor_brand_counts: dict[str, dict[str, int]] = field(default_factory=dict)
+    my_categories: list[str] = field(default_factory=list)
+    my_brands: list[str] = field(default_factory=list)
+
+
+# --- Validate models (#16) ---
+
+
+@dataclass
+class ValidationIssue:
+    """A single validation issue for a product."""
+
+    product_index: int
+    product_title: str
+    field: str
+    error: str
+    severity: str = "error"  # "error" or "warning"
+
+
+@dataclass
+class ValidationReport:
+    """Result of marketplace validation."""
+
+    marketplace: str
+    total: int = 0
+    valid: int = 0
+    invalid: int = 0
+    issues: list[ValidationIssue] = field(default_factory=list)
+    warnings: int = 0
+
+    @property
+    def pass_rate(self) -> float:
+        """Percentage of products that passed validation."""
+        if self.total == 0:
+            return 0.0
+        return self.valid / self.total * 100.0
+
+
+@dataclass
+class ImageIssue:
+    """Issue found during image URL validation."""
+
+    product_index: int
+    product_title: str
+    image_url: str
+    status_code: int | None = None
+    content_type: str | None = None
+    error: str = ""
