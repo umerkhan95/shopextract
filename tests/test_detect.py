@@ -101,7 +101,7 @@ class TestDeterminePlatform:
 @pytest.mark.asyncio
 async def test_detect_shopify():
     """Detect Shopify via header + API probe."""
-    transport = httpx.MockTransport(lambda req: _shopify_mock_handler(req))
+    transport = httpx.MockTransport(_shopify_mock_handler)
     client = httpx.AsyncClient(transport=transport, follow_redirects=True)
     result = await detect("https://shop.example.com", client=client)
     await client.aclose()
@@ -112,7 +112,7 @@ async def test_detect_shopify():
 @pytest.mark.asyncio
 async def test_detect_woocommerce():
     """Detect WooCommerce via header + API probe."""
-    transport = httpx.MockTransport(lambda req: _woocommerce_mock_handler(req))
+    transport = httpx.MockTransport(_woocommerce_mock_handler)
     client = httpx.AsyncClient(transport=transport, follow_redirects=True)
     result = await detect("https://woo.example.com", client=client)
     await client.aclose()
@@ -123,7 +123,7 @@ async def test_detect_woocommerce():
 @pytest.mark.asyncio
 async def test_detect_magento():
     """Detect Magento via header + API probe."""
-    transport = httpx.MockTransport(lambda req: _magento_mock_handler(req))
+    transport = httpx.MockTransport(_magento_mock_handler)
     client = httpx.AsyncClient(transport=transport, follow_redirects=True)
     result = await detect("https://magento.example.com", client=client)
     await client.aclose()
@@ -134,7 +134,7 @@ async def test_detect_magento():
 @pytest.mark.asyncio
 async def test_detect_bigcommerce():
     """Detect BigCommerce via HTML meta tag."""
-    transport = httpx.MockTransport(lambda req: _bigcommerce_mock_handler(req))
+    transport = httpx.MockTransport(_bigcommerce_mock_handler)
     client = httpx.AsyncClient(transport=transport, follow_redirects=True)
     result = await detect("https://bc.example.com", client=client)
     await client.aclose()
@@ -144,7 +144,7 @@ async def test_detect_bigcommerce():
 @pytest.mark.asyncio
 async def test_detect_shopware():
     """Detect Shopware via header + API probe."""
-    transport = httpx.MockTransport(lambda req: _shopware_mock_handler(req))
+    transport = httpx.MockTransport(_shopware_mock_handler)
     client = httpx.AsyncClient(transport=transport, follow_redirects=True)
     result = await detect("https://sw.example.com", client=client)
     await client.aclose()

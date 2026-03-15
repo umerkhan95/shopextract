@@ -252,68 +252,38 @@ class TestFindDuplicates:
 
 @pytest.mark.asyncio
 async def test_check_images_valid():
-    """Valid images should produce no issues."""
     products = [{"title": "A", "image_url": "https://example.com/a.jpg"}]
-
-    transport = httpx.MockTransport(
-        lambda req: httpx.Response(200, headers={"content-type": "image/jpeg"})
-    )
+    transport = httpx.MockTransport(lambda req: httpx.Response(200, headers={"content-type": "image/jpeg"}))
     async with httpx.AsyncClient(transport=transport) as client:
-        with patch("shopextract.validate.images.httpx.AsyncClient") as MockClient:
-            MockClient.return_value.__aenter__ = AsyncMock(return_value=client)
-            MockClient.return_value.__aexit__ = AsyncMock(return_value=False)
-            issues = await check_images(products)
-
+        issues = await check_images(products, client=client)
     assert len(issues) == 0
 
 
 @pytest.mark.asyncio
 async def test_check_images_missing_url():
-    """Products with no image_url should produce an issue."""
     products = [{"title": "A", "image_url": ""}]
-
     transport = httpx.MockTransport(lambda req: httpx.Response(200))
     async with httpx.AsyncClient(transport=transport) as client:
-        with patch("shopextract.validate.images.httpx.AsyncClient") as MockClient:
-            MockClient.return_value.__aenter__ = AsyncMock(return_value=client)
-            MockClient.return_value.__aexit__ = AsyncMock(return_value=False)
-            issues = await check_images(products)
-
+        issues = await check_images(products, client=client)
     assert len(issues) == 1
     assert "No image URL" in issues[0].error
 
 
 @pytest.mark.asyncio
 async def test_check_images_404():
-    """Broken image links should produce an issue."""
     products = [{"title": "A", "image_url": "https://example.com/missing.jpg"}]
-
-    transport = httpx.MockTransport(
-        lambda req: httpx.Response(404, headers={"content-type": "text/html"})
-    )
+    transport = httpx.MockTransport(lambda req: httpx.Response(404, headers={"content-type": "text/html"}))
     async with httpx.AsyncClient(transport=transport) as client:
-        with patch("shopextract.validate.images.httpx.AsyncClient") as MockClient:
-            MockClient.return_value.__aenter__ = AsyncMock(return_value=client)
-            MockClient.return_value.__aexit__ = AsyncMock(return_value=False)
-            issues = await check_images(products)
-
+        issues = await check_images(products, client=client)
     assert len(issues) == 1
     assert "404" in issues[0].error
 
 
 @pytest.mark.asyncio
 async def test_check_images_wrong_content_type():
-    """Non-image content type should produce an issue."""
     products = [{"title": "A", "image_url": "https://example.com/page.html"}]
-
-    transport = httpx.MockTransport(
-        lambda req: httpx.Response(200, headers={"content-type": "text/html"})
-    )
+    transport = httpx.MockTransport(lambda req: httpx.Response(200, headers={"content-type": "text/html"}))
     async with httpx.AsyncClient(transport=transport) as client:
-        with patch("shopextract.validate.images.httpx.AsyncClient") as MockClient:
-            MockClient.return_value.__aenter__ = AsyncMock(return_value=client)
-            MockClient.return_value.__aexit__ = AsyncMock(return_value=False)
-            issues = await check_images(products)
-
+        issues = await check_images(products, client=client)
     assert len(issues) == 1
     assert "Non-image" in issues[0].error

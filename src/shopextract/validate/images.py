@@ -28,6 +28,7 @@ async def check_images(
     *,
     timeout: float = _TIMEOUT,
     concurrency: int = _CONCURRENCY,
+    client: httpx.AsyncClient | None = None,
 ) -> list[ImageIssue]:
     """Check image URLs for broken links and wrong content types.
 
@@ -35,6 +36,7 @@ async def check_images(
         products: List of product dicts with 'image_url' field.
         timeout: HTTP timeout per request in seconds.
         concurrency: Max concurrent HEAD requests.
+        client: Optional httpx.AsyncClient (for testing).
 
     Returns:
         List of ImageIssue for broken or invalid images.
@@ -42,14 +44,21 @@ async def check_images(
     issues: list[ImageIssue] = []
     semaphore = asyncio.Semaphore(concurrency)
 
-    async with httpx.AsyncClient(
-        timeout=timeout, follow_redirects=True,
-    ) as client:
+    if client is not None:
         tasks = [
             _check_single(client, semaphore, idx, product, issues)
             for idx, product in enumerate(products)
         ]
         await asyncio.gather(*tasks, return_exceptions=True)
+    else:
+        async with httpx.AsyncClient(
+            timeout=timeout, follow_redirects=True,
+        ) as _client:
+            tasks = [
+                _check_single(_client, semaphore, idx, product, issues)
+                for idx, product in enumerate(products)
+            ]
+            await asyncio.gather(*tasks, return_exceptions=True)
 
     return issues
 
