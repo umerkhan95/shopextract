@@ -185,7 +185,12 @@ print(f"Cheaper in A: {len(diff.cheaper_in_a)}")
 print(f"Cheaper in B: {len(diff.cheaper_in_b)}")
 ```
 
-Match products by title similarity or GTIN:
+Catalog comparisons accept unique evidence-backed exact matches and expose
+review candidates in `diff.match_report`. Capacity and pack differences never
+enter exact price comparisons. See [Product identity and matching](docs/product-identity.md)
+for stable IDs, snapshot migration, relationship reports and evaluation.
+
+Legacy candidate lookup by title similarity or identifier:
 
 ```python
 # Fuzzy title matching
@@ -193,8 +198,16 @@ matches = shopextract.fuzzy_match(products_a, products_b, threshold=0.8)
 for prod_a, prod_b, similarity in matches:
     print(f"{prod_a['title']} <-> {prod_b['title']} ({similarity:.0%})")
 
-# Exact GTIN/SKU matching
+# Legacy GTIN/SKU candidate lookup
 found = shopextract.match_gtin("4260442152415", all_products)
+```
+
+For evidence-backed matching:
+
+```python
+report = shopextract.match_products(products_a, products_b)
+for decision in report:
+    print(decision.relation.value, decision.evidence, decision.needs_review)
 ```
 
 ### Monitor stores for changes
@@ -556,9 +569,19 @@ All commands output JSON by default.
 | Function | Signature | Returns |
 |:---------|:----------|:--------|
 | `compare` | `async (query, stores, *, max_per_store=50, threshold=0.6)` | `ComparisonResult` |
-| `compare_catalogs` | `async (store_a, store_b, *, max_products=200, threshold=0.8)` | `CatalogDiff` |
+| `compare_catalogs` | `async (store_a, store_b, *, max_products=200, threshold=0.8, semantic_candidates=None)` | `CatalogDiff` |
 | `fuzzy_match` | `(products_a, products_b, *, threshold=0.8)` | `list[tuple[dict, dict, float]]` |
 | `match_gtin` | `(gtin, products)` | `list[dict]` |
+
+### Identity and matching
+
+| Function | Signature | Returns |
+|:---------|:----------|:--------|
+| `match_products` | `(products_a, products_b, *, threshold=0.8, semantic_candidates=None)` | `list[MatchDecision]` |
+| `classify_match` | `(a, b, *, threshold=0.8)` | `MatchDecision` |
+| `assign_identity` | `(product, supplier_id="")` | `Product` (mutated) |
+| `evaluate_matching` | `(dataset, *, threshold=0.8)` | `dict` |
+| `migrate_snapshot_identities` | `(conn, domain=None)` | Updated snapshot count |
 
 ### Monitor
 
@@ -566,7 +589,7 @@ All commands output JSON by default.
 |:---------|:----------|:--------|
 | `snapshot` | `async (url, *, db_path="~/.shopextract/snapshots.db", max_urls=200)` | `int` |
 | `changes` | `(domain, *, db_path=...)` | `list[Change]` |
-| `price_history` | `(domain, product_title, *, db_path=...)` | `list[tuple[datetime, float]]` |
+| `price_history` | `(domain, product_title="", *, db_path=..., canonical_product_id=None)` | `list[tuple[datetime, float]]` |
 | `watch` | `async (url, *, interval=3600, db_path=...)` | `AsyncGenerator[Change]` |
 
 ### Analyze

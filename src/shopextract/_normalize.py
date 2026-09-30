@@ -7,6 +7,7 @@ import re
 from decimal import Decimal, InvalidOperation
 
 from ._models import Platform, Product, Variant
+from .identity import assign_identity
 
 logger = logging.getLogger(__name__)
 
@@ -120,6 +121,14 @@ def normalize(
 
     if not _is_valid_product(product):
         return None
+    product.attributes = dict(raw.get("attributes") or {}) if isinstance(raw.get("attributes"), dict) else {}
+    product.pack_quantity = raw.get("pack_quantity")
+    product.bundle_components = list(raw.get("bundle_components") or [])
+    brand = raw.get("brand")
+    product.vendor = product.vendor or raw.get("vendor") or (brand if isinstance(brand, str) else None)
+    scope = raw.get("supplier_id") or shop_url or product.product_url
+    if scope:
+        assign_identity(product, scope)
     return product
 
 
@@ -158,6 +167,8 @@ def _shopify_variants(variants_raw: list[dict]) -> list[Variant]:
                 price=variant_price,
                 sku=v.get("sku"),
                 in_stock=variant_in_stock,
+                gtin=_validate_gtin(v.get("barcode")),
+                attributes={f"option{i}": str(v[f"option{i}"]) for i in range(1, 4) if v.get(f"option{i}")},
             ))
         except Exception as e:
             logger.debug("Failed to parse Shopify variant %s: %s", v.get("id", "?"), e)

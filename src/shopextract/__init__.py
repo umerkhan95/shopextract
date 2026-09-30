@@ -58,6 +58,8 @@ from ._models import (
     ValidationReport,
     Variant,
 )
+from .identity import assign_identity, migrate_snapshot_identities
+from .compare.identity_match import MatchDecision, MatchRelation, classify_match, match_products, normalized_attributes
 from ._normalize import normalize
 from ._quality import QualityScorer
 from .analyze import (
@@ -70,7 +72,7 @@ from .analyze import (
     price_distribution,
     price_position,
 )
-from .compare import compare, compare_catalogs, fuzzy_match, match_gtin
+from .compare import compare, compare_catalogs, evaluate_matching, fuzzy_match, match_gtin
 from .export import to_csv, to_dataframe, to_feed, to_json, to_parquet
 from .monitor import changes, price_history, snapshot, watch
 from .validate import check_images, find_duplicates, validate
@@ -78,6 +80,9 @@ from .validate import check_images, find_duplicates, validate
 __version__ = "0.1.2"
 
 __all__ = [
+    "evaluate_matching",
+    "assign_identity", "migrate_snapshot_identities",
+    "MatchDecision", "MatchRelation", "classify_match", "match_products", "normalized_attributes",
     # Core functions
     "detect",
     "discover",

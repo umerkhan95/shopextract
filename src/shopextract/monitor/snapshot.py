@@ -12,6 +12,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from .._extract import extract
+from ..identity import identify_records, migrate_snapshot_identities, supplier_scope
 
 logger = logging.getLogger(__name__)
 
@@ -70,11 +71,14 @@ async def snapshot(
     Returns the number of products stored.
     """
     result = await extract(url, max_urls=max_urls)
-    domain = _domain_from_url(url)
+    domain = supplier_scope(_domain_from_url(url))
     products_data = [asdict(p) for p in result.products]
 
     conn = _get_connection(db_path)
     try:
+        conn.execute("BEGIN IMMEDIATE")
+        migrate_snapshot_identities(conn, domain)
+        identify_records(conn, products_data, domain, legacy_titles=True)
         conn.execute(
             "INSERT INTO snapshots (domain, products_json, created_at) VALUES (?, ?, ?)",
             (domain, json.dumps(products_data, cls=_DecimalEncoder), datetime.now(timezone.utc).isoformat()),

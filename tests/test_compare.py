@@ -115,6 +115,8 @@ class TestDiffCatalogs:
             title=title,
             price=Decimal(str(price)),
             external_id=title.lower().replace(" ", "-"),
+            vendor="FixtureBrand",
+            mpn=title.lower().replace(" ", "-"),
             platform=Platform.GENERIC,
         )
 

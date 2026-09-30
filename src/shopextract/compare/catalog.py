@@ -7,7 +7,7 @@ import logging
 
 from .._extract import extract
 from .._models import CatalogDiff, Product
-from .match import title_similarity
+from .identity_match import MatchRelation, SemanticCandidates, match_products
 
 logger = logging.getLogger(__name__)
 
@@ -21,10 +21,11 @@ async def compare_catalogs(
     *,
     max_products: int = _DEFAULT_MAX_PRODUCTS,
     threshold: float = _MATCH_THRESHOLD,
+    semantic_candidates: SemanticCandidates | None = None,
 ) -> CatalogDiff:
     """Compare two store catalogs and report differences.
 
-    Extracts both catalogs, fuzzy-matches products by title,
+    Extracts both catalogs, accepts unique evidence-backed exact matches,
     and categorizes into only_in_a, only_in_b, in_both,
     cheaper_in_a, cheaper_in_b.
     """
@@ -35,7 +36,7 @@ async def compare_catalogs(
     return _diff_catalogs(
         store_a, store_b,
         result_a.products, result_b.products,
-        threshold,
+        threshold, semantic_candidates=semantic_candidates,
     )
 
 
@@ -45,47 +46,26 @@ def _diff_catalogs(
     products_a: list[Product],
     products_b: list[Product],
     threshold: float,
+    *,
+    semantic_candidates: SemanticCandidates | None = None,
 ) -> CatalogDiff:
     """Build catalog diff from two product lists."""
     diff = CatalogDiff(store_a=store_a, store_b=store_b)
-    matched_b: set[int] = set()
-
-    for prod_a in products_a:
-        best = _find_best_match(prod_a, products_b, matched_b, threshold)
-        if best is None:
-            diff.only_in_a.append(prod_a)
-        else:
-            idx, prod_b = best
-            matched_b.add(idx)
-            diff.in_both.append((prod_a, prod_b))
-            _classify_price(diff, prod_a, prod_b)
-
-    for idx, prod_b in enumerate(products_b):
-        if idx not in matched_b:
-            diff.only_in_b.append(prod_b)
-
-    return diff
-
-
-def _find_best_match(
-    product: Product,
-    candidates: list[Product],
-    used: set[int],
-    threshold: float,
-) -> tuple[int, Product] | None:
-    """Find the best title match above threshold."""
-    best_sim = 0.0
-    best_idx = -1
-    for idx, candidate in enumerate(candidates):
-        if idx in used:
+    diff.match_report = match_products(products_a, products_b, threshold=threshold, semantic_candidates=semantic_candidates)
+    matched_a, matched_b = set(), set()
+    for decision in diff.match_report:
+        if decision.relation != MatchRelation.EXACT or decision.needs_review:
             continue
-        sim = title_similarity(product.title, candidate.title)
-        if sim > best_sim:
-            best_sim = sim
-            best_idx = idx
-    if best_sim >= threshold and best_idx >= 0:
-        return best_idx, candidates[best_idx]
-    return None
+        i, j = decision.index_a, decision.index_b
+        prod_a, prod_b = products_a[i], products_b[j]
+        matched_a.add(i)
+        matched_b.add(j)
+        diff.in_both.append((prod_a, prod_b))
+        if prod_a.currency == prod_b.currency:
+            _classify_price(diff, prod_a, prod_b)
+    diff.only_in_a = [p for i, p in enumerate(products_a) if i not in matched_a]
+    diff.only_in_b = [p for j, p in enumerate(products_b) if j not in matched_b]
+    return diff
 
 
 def _classify_price(

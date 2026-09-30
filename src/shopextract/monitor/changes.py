@@ -10,6 +10,7 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from .._models import Change, NewProduct, PriceChange, RemovedProduct
+from ..identity import migrate_snapshot_identities, supplier_scope
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +33,7 @@ def _load_latest_snapshots(
 ) -> list[list[dict]]:
     """Load the N most recent snapshots for a domain."""
     rows = conn.execute(
-        "SELECT products_json FROM snapshots WHERE domain = ? ORDER BY created_at DESC LIMIT ?",
+        "SELECT products_json FROM snapshots WHERE domain = ? ORDER BY created_at DESC, id DESC LIMIT ?",
         (domain, count),
     ).fetchall()
     return [json.loads(row[0]) for row in rows]
@@ -41,6 +42,11 @@ def _load_latest_snapshots(
 def _products_by_title(products: list[dict]) -> dict[str, dict]:
     """Index products by lowercase title."""
     return {p.get("title", "").lower().strip(): p for p in products if p.get("title")}
+
+
+def _products_by_identity(products: list[dict]) -> dict[str, dict]:
+    """Index migrated records without collapsing identical display titles."""
+    return {p["canonical_product_id"]: p for p in products}
 
 
 def changes(
@@ -52,8 +58,11 @@ def changes(
 
     Returns PriceChange, NewProduct, and RemovedProduct objects.
     """
+    domain = supplier_scope(domain)
     conn = _open_db(db_path)
     try:
+        with conn:
+            migrate_snapshot_identities(conn, domain)
         snapshots = _load_latest_snapshots(conn, domain, count=2)
     finally:
         conn.close()
@@ -62,8 +71,8 @@ def changes(
         logger.info("Need at least 2 snapshots for %s, found %d", domain, len(snapshots))
         return []
 
-    current = _products_by_title(snapshots[0])
-    previous = _products_by_title(snapshots[1])
+    current = _products_by_identity(snapshots[0])
+    previous = _products_by_identity(snapshots[1])
     return _detect_changes(previous, current)
 
 
@@ -124,35 +133,39 @@ def _check_price_change(
 
 def price_history(
     domain: str,
-    product_title: str,
+    product_title: str = "",
     *,
     db_path: str = _DEFAULT_DB_PATH,
+    canonical_product_id: str | None = None,
 ) -> list[tuple[datetime, float]]:
-    """Get price history for a specific product across all snapshots.
+    """Get identity-based history, resolving any historical display title.
 
+    Ambiguous titles raise ValueError; pass canonical_product_id instead.
     Returns list of (timestamp, price) tuples in chronological order.
     """
+    domain = supplier_scope(domain)
     conn = _open_db(db_path)
     try:
+        with conn:
+            migrate_snapshot_identities(conn, domain)
         rows = conn.execute(
-            "SELECT products_json, created_at FROM snapshots WHERE domain = ? ORDER BY created_at ASC",
+            "SELECT products_json, created_at FROM snapshots WHERE domain = ? ORDER BY created_at ASC, id ASC",
             (domain,),
         ).fetchall()
     finally:
         conn.close()
 
-    title_lower = product_title.lower().strip()
-    history: list[tuple[datetime, float]] = []
-
-    for products_json, created_at in rows:
-        products = json.loads(products_json)
-        by_title = _products_by_title(products)
-        if title_lower in by_title:
-            ts = datetime.fromisoformat(created_at)
-            try:
-                price = float(by_title[title_lower].get("price", 0))
-            except (ValueError, TypeError):
-                price = 0.0
-            history.append((ts, price))
-
+    decoded = [(json.loads(payload), ts) for payload, ts in rows]
+    if canonical_product_id is None:
+        title = product_title.casefold().strip()
+        ids = {p["canonical_product_id"] for products, _ in decoded for p in products
+               if str(p.get("title", "")).casefold().strip() == title}
+        if len(ids) > 1:
+            raise ValueError("Ambiguous product title; use canonical_product_id")
+        canonical_product_id = next(iter(ids), None)
+    history = []
+    for products, created_at in decoded:
+        for p in products:
+            if p["canonical_product_id"] == canonical_product_id:
+                history.append((datetime.fromisoformat(created_at), float(_safe_decimal(p.get("price", 0)))))
     return history
