@@ -9,6 +9,7 @@ from decimal import Decimal
 from .._extract import extract
 from .._models import ComparisonResult, Match
 from .match import title_similarity
+from .identity_match import classify_match
 
 logger = logging.getLogger(__name__)
 
@@ -48,6 +49,9 @@ def _collect_matches(
             logger.warning("Extraction failed for %s: %s", store, result)
             continue
         for product in result.products:
+            decision = classify_match({"title": query}, product, threshold=threshold)
+            if any(not c.startswith("missing attributes:") for c in decision.conflicts):
+                continue
             sim = title_similarity(query, product.title)
             if sim >= threshold:
                 matches.append(Match(

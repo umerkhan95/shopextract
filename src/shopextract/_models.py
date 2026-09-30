@@ -6,6 +6,10 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from decimal import Decimal
 from enum import Enum
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .compare.identity_match import MatchDecision
 
 
 class Platform(str, Enum):
@@ -38,6 +42,9 @@ class Variant:
     price: Decimal = Decimal("0")
     sku: str | None = None
     in_stock: bool = True
+    canonical_variant_id: str = ""
+    attributes: dict[str, str] = field(default_factory=dict)
+    gtin: str | None = None
 
 
 @dataclass
@@ -66,6 +73,11 @@ class Product:
     platform: Platform = Platform.GENERIC
     scraped_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     raw_data: dict = field(default_factory=dict)
+    canonical_product_id: str = ""
+    supplier_id: str = ""
+    attributes: dict[str, str] = field(default_factory=dict)
+    pack_quantity: int | None = None
+    bundle_components: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -86,6 +98,7 @@ class ExtractorResult:
     error: str | None = None
     pages_completed: int | None = None
     pages_expected: int | None = None
+    completeness_reason: str | None = None
 
     @property
     def product_count(self) -> int:  # noqa: E303
@@ -108,6 +121,9 @@ class ExtractionResult:
     urls_attempted: int = 0
     urls_succeeded: int = 0
     errors: list[str] = field(default_factory=list)
+    catalog_complete: bool | None = None
+    observation_scope: str = ""
+    incompleteness_reasons: list[str] = field(default_factory=list)
 
     @property
     def product_count(self) -> int:
@@ -152,6 +168,7 @@ class CatalogDiff:
     in_both: list[tuple[Product, Product]] = field(default_factory=list)
     cheaper_in_a: list[tuple[Product, Product]] = field(default_factory=list)
     cheaper_in_b: list[tuple[Product, Product]] = field(default_factory=list)
+    match_report: list[MatchDecision] = field(default_factory=list)
 
 
 # --- Monitor models (#11, #12, #13) ---

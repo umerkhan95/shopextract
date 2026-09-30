@@ -12,6 +12,7 @@ import os
 from collections.abc import Iterator
 from typing import Any
 
+from ._scope import catalog_scope
 from ._models import (
     ExtractionResult,
     ExtractionTier,
@@ -40,6 +41,8 @@ async def extract(
     llm_api_key: str | None = None,
     llm_model: str = "openai/gpt-4o-mini",
     llm_temperature: float = 0.2,
+    enrich_identifiers: bool = False,
+    restore_short_gtin: bool = False,
 ) -> ExtractionResult:
     """Extract products from an e-commerce store.
 
@@ -52,7 +55,9 @@ async def extract(
     Args:
         url: The merchant's website URL.
         platform: Pre-detected platform (auto-detected if None).
-        max_urls: Maximum product URLs to process.
+        max_urls: Maximum crawl URLs or API products retained; Shopify pagination is bounded.
+        enrich_identifiers: Opt into ID-checked Shopify detail barcode reads.
+        restore_short_gtin: Opt into checksum-validated 11-digit UPC zero restoration.
         shop_url: Base shop URL for normalization (defaults to url).
         llm_api_key: API key for LLM extraction. Enables Tier 4 (LLM) as
             final fallback. If not provided, reads from SHOPEXTRACT_LLM_API_KEY
@@ -100,6 +105,8 @@ async def extract(
     Returns:
         ExtractionResult with products, tier used, quality score.
     """
+    if not isinstance(max_urls, int) or isinstance(max_urls, bool) or max_urls <= 0:
+        raise ValueError("max_urls must be a positive integer")
     if shop_url is None:
         shop_url = url.rstrip("/")
 
@@ -114,14 +121,37 @@ async def extract(
         result = await detect(url)
         platform = result.platform
 
+    observation_scope = catalog_scope(url, platform)
+
     # Step 2: Try API extraction first
-    api_result = await _try_api_extraction(url, platform)
-    if api_result and api_result.products:
+    api_result = await _try_api_extraction(url, platform, max_products=max_urls, enrich_identifiers=enrich_identifiers)
+    if api_result is not None and (api_result.products or api_result.complete):
+        truncated = len(api_result.products) > max_urls
+        api_result.products = api_result.products[:max_urls]
         scorer = QualityScorer()
         quality = scorer.score_batch(api_result.products)
-        if quality >= _QUALITY_THRESHOLD:
-            products = _normalize_batch(api_result.products, platform, shop_url)
+        if quality >= _QUALITY_THRESHOLD or not api_result.products:
+            products = _normalize_batch(api_result.products, platform, shop_url, restore_short_gtin=restore_short_gtin)
+            reasons = []
+            if api_result.complete is not True:
+                reasons.append(api_result.completeness_reason or "source_incomplete")
+            if api_result.error:
+                reasons.append("source_error")
+            if truncated:
+                reasons.append("product_budget_reached")
+            if len(products) != len(api_result.products):
+                reasons.append("normalization_dropped_records")
+            # Only Shopify's exhaustion-aware enumeration currently certifies
+            # coverage; the other API and crawl paths remain unverified.
+            if platform != Platform.SHOPIFY:
+                reasons.append("catalog_coverage_unverified")
+            catalog_complete = not reasons if platform == Platform.SHOPIFY else None
+            if any(reason != "catalog_coverage_unverified" for reason in reasons):
+                catalog_complete = False
             return ExtractionResult(
+                observation_scope=observation_scope,
+                catalog_complete=catalog_complete,
+                incompleteness_reasons=list(dict.fromkeys(reasons)),
                 products=products,
                 raw_products=api_result.products,
                 tier=ExtractionTier.API,
@@ -129,6 +159,9 @@ async def extract(
                 platform=platform,
                 urls_attempted=1,
                 urls_succeeded=1,
+                errors=([api_result.error] if api_result.error else []) + [
+                    error for raw in api_result.products for error in raw.get("_identifier_enrichment_errors", [])
+                ],
             )
 
     # Step 3: Discover URLs for crawl-based extraction
@@ -137,6 +170,8 @@ async def extract(
 
     if not urls:
         return ExtractionResult(
+            observation_scope=observation_scope,
+            incompleteness_reasons=["crawl_coverage_unverified"],
             platform=platform,
             errors=["No product URLs discovered"],
         )
@@ -164,6 +199,8 @@ async def extract(
 
             products = _normalize_batch(all_products, platform, shop_url)
             return ExtractionResult(
+                observation_scope=observation_scope,
+                incompleteness_reasons=["crawl_coverage_unverified"],
                 products=products,
                 raw_products=all_products,
                 tier=ExtractionTier.UNIFIED_CRAWL,
@@ -187,6 +224,8 @@ async def extract(
     if all_products:
         products = _normalize_batch(all_products, platform, shop_url)
         return ExtractionResult(
+            observation_scope=observation_scope,
+            incompleteness_reasons=["crawl_coverage_unverified"],
             products=products,
             raw_products=all_products,
             tier=ExtractionTier.CSS,
@@ -204,6 +243,8 @@ async def extract(
         if llm_products:
             products = _normalize_batch(llm_products, platform, shop_url)
             return ExtractionResult(
+                observation_scope=observation_scope,
+                incompleteness_reasons=["crawl_coverage_unverified"],
                 products=products,
                 raw_products=llm_products,
                 tier=ExtractionTier.LLM,
@@ -216,6 +257,8 @@ async def extract(
     # Nothing worked
     products = _normalize_batch(all_products, platform, shop_url)
     return ExtractionResult(
+        observation_scope=observation_scope,
+        incompleteness_reasons=["crawl_coverage_unverified"],
         products=products,
         raw_products=all_products,
         tier=ExtractionTier.CSS,
@@ -377,15 +420,16 @@ async def _try_llm_extraction(
         return []
 
 
-async def _try_api_extraction(url: str, platform: Platform) -> ExtractorResult | None:
+async def _try_api_extraction(url: str, platform: Platform, *, max_products: int = 20,
+                              enrich_identifiers: bool = False) -> ExtractorResult | None:
     """Try platform-specific API extraction."""
     base_url = url.rstrip("/")
 
     if platform == Platform.SHOPIFY:
         from .extractors.shopify import ShopifyExtractor
         extractor = ShopifyExtractor()
-        result = await extractor.extract(base_url)
-        if result.products:
+        result = await extractor.extract(base_url, max_products=max_products, enrich_identifiers=enrich_identifiers)
+        if result.products or result.complete:
             return result
 
     elif platform == Platform.WOOCOMMERCE:
@@ -437,12 +481,12 @@ async def _extract_batch_concurrent(
 
 
 def _normalize_batch(
-    raw_products: list[dict], platform: Platform, shop_url: str
+    raw_products: list[dict], platform: Platform, shop_url: str, *, restore_short_gtin: bool = False
 ) -> list[Product]:
     """Normalize a batch of raw product dicts."""
     products = []
     for raw in raw_products:
-        product = normalize(raw, platform=platform, shop_url=shop_url)
+        product = normalize(raw, platform=platform, shop_url=shop_url, restore_short_gtin=restore_short_gtin)
         if product:
             products.append(product)
     return products
