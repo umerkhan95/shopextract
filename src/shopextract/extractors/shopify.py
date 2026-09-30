@@ -31,6 +31,7 @@ class ShopifyExtractor:
         base_url = shop_url.rstrip("/")
         shop_currency: str | None = None
         complete = True
+        completeness_reason: str | None = None
         error: str | None = None
         pages_completed = 0
 
@@ -61,9 +62,8 @@ class ShopifyExtractor:
                             break
 
                     if response.status_code == 404:
-                        if not all_products:
-                            complete = False
-                            error = "404 Not Found"
+                        complete = False
+                        error = f"404 Not Found on page {page}"
                         break
 
                     if response.status_code >= 500:
@@ -78,6 +78,8 @@ class ShopifyExtractor:
 
                     try:
                         data = response.json()
+                        if not isinstance(data, dict) or not isinstance(data.get("products"), list) or not all(isinstance(p, dict) for p in data["products"]):
+                            raise ValueError("Expected a products list of objects")
                     except Exception as e:
                         complete = False
                         error = f"Invalid JSON on page {page}: {e}"
@@ -94,6 +96,11 @@ class ShopifyExtractor:
                     remaining = max_products - len(all_products) if max_products is not None else len(products)
                     all_products.extend(products[:remaining])
                     if max_products is not None and len(all_products) >= max_products:
+                        # A short final page proves exhaustion only if no records
+                        # were discarded. An exactly full page cannot prove it.
+                        complete = len(products) < limit and len(products) <= remaining
+                        if not complete:
+                            completeness_reason = "product_budget_reached"
                         break
                     if len(products) < limit:
                         break
@@ -112,6 +119,10 @@ class ShopifyExtractor:
                     complete = False
                     error = f"Unexpected error on page {page}: {e}"
                     break
+
+            else:
+                complete = False
+                completeness_reason = "page_budget_reached"
 
             if enrich_identifiers:
                 origin = urlsplit(base_url)
@@ -149,4 +160,5 @@ class ShopifyExtractor:
             complete=complete,
             error=error,
             pages_completed=pages_completed,
+            completeness_reason=completeness_reason or ("source_error" if error else None),
         )

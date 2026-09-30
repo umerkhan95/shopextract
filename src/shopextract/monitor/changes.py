@@ -11,6 +11,7 @@ from pathlib import Path
 
 from .._models import Change, NewProduct, PriceChange, RemovedProduct
 from ..identity import migrate_snapshot_identities, supplier_scope
+from .snapshot import _ensure_snapshot_metadata
 
 logger = logging.getLogger(__name__)
 
@@ -30,13 +31,14 @@ def _load_latest_snapshots(
     conn: sqlite3.Connection,
     domain: str,
     count: int = 2,
-) -> list[list[dict]]:
+) -> list[tuple[list[dict], str | None, bool | None]]:
     """Load the N most recent snapshots for a domain."""
     rows = conn.execute(
-        "SELECT products_json FROM snapshots WHERE domain = ? ORDER BY created_at DESC, id DESC LIMIT ?",
+        "SELECT products_json, observation_scope, catalog_complete FROM snapshots WHERE domain = ? ORDER BY created_at DESC, id DESC LIMIT ?",
         (domain, count),
     ).fetchall()
-    return [json.loads(row[0]) for row in rows]
+    return [(json.loads(payload), scope, True if complete == 1 else False if complete == 0 else None)
+            for payload, scope, complete in rows]
 
 
 def _products_by_title(products: list[dict]) -> dict[str, dict]:
@@ -56,14 +58,19 @@ def changes(
 ) -> list[Change]:
     """Compare latest two snapshots and return detected changes.
 
+    Membership events require matching known scopes. Removal requires a complete
+    current catalog; addition requires a complete previous catalog. Shared prices
+    remain observable in partial/legacy history. Different known scopes are skipped.
     Returns PriceChange, NewProduct, and RemovedProduct objects.
     """
     domain = supplier_scope(domain)
     conn = _open_db(db_path)
     try:
         with conn:
+            conn.execute("BEGIN IMMEDIATE")
+            _ensure_snapshot_metadata(conn)
             migrate_snapshot_identities(conn, domain)
-        snapshots = _load_latest_snapshots(conn, domain, count=2)
+            snapshots = _load_latest_snapshots(conn, domain, count=2)
     finally:
         conn.close()
 
@@ -71,20 +78,37 @@ def changes(
         logger.info("Need at least 2 snapshots for %s, found %d", domain, len(snapshots))
         return []
 
-    current = _products_by_identity(snapshots[0])
-    previous = _products_by_identity(snapshots[1])
-    return _detect_changes(previous, current)
+    current_products, current_scope, current_complete = snapshots[0]
+    previous_products, previous_scope, previous_complete = snapshots[1]
+    if current_scope and previous_scope and current_scope != previous_scope:
+        logger.info("Snapshot scopes differ for %s; comparison suppressed", domain)
+        return []
+    comparable_scope = bool(current_scope and current_scope == previous_scope)
+    current = _products_by_identity(current_products)
+    previous = _products_by_identity(previous_products)
+    allow_removals = comparable_scope and current_complete is True
+    if previous.keys() - current.keys() and not allow_removals:
+        logger.info("Unobserved products not marked removed for %s: complete=%s, comparable_scope=%s",
+                    domain, current_complete, comparable_scope)
+    return _detect_changes(previous, current,
+                           allow_removals=allow_removals,
+                           allow_additions=comparable_scope and previous_complete is True)
 
 
 def _detect_changes(
     previous: dict[str, dict],
     current: dict[str, dict],
+    *,
+    allow_removals: bool = True,
+    allow_additions: bool = True,
 ) -> list[Change]:
     """Detect price changes, new products, and removed products."""
     result: list[Change] = []
 
     for title_key, cur_prod in current.items():
         if title_key not in previous:
+            if not allow_additions:
+                continue
             result.append(NewProduct(
                 title=cur_prod.get("title", ""),
                 price=_safe_decimal(cur_prod.get("price", 0)),
@@ -95,7 +119,7 @@ def _detect_changes(
             _check_price_change(result, prev_prod, cur_prod)
 
     for title_key, prev_prod in previous.items():
-        if title_key not in current:
+        if title_key not in current and allow_removals:
             result.append(RemovedProduct(
                 title=prev_prod.get("title", ""),
                 last_price=_safe_decimal(prev_prod.get("price", 0)),

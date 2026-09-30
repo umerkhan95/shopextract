@@ -98,6 +98,7 @@ class ExtractorResult:
     error: str | None = None
     pages_completed: int | None = None
     pages_expected: int | None = None
+    completeness_reason: str | None = None
 
     @property
     def product_count(self) -> int:  # noqa: E303
@@ -120,6 +121,9 @@ class ExtractionResult:
     urls_attempted: int = 0
     urls_succeeded: int = 0
     errors: list[str] = field(default_factory=list)
+    catalog_complete: bool | None = None
+    observation_scope: str = ""
+    incompleteness_reasons: list[str] = field(default_factory=list)
 
     @property
     def product_count(self) -> int:

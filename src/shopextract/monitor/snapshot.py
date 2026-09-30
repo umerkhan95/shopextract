@@ -12,6 +12,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from .._extract import extract
+from .._scope import catalog_scope
 from ..identity import identify_records, migrate_snapshot_identities, supplier_scope
 
 logger = logging.getLogger(__name__)
@@ -46,7 +47,22 @@ def _get_connection(db_path: str) -> sqlite3.Connection:
     path = _expand_path(db_path)
     conn = sqlite3.connect(str(path))
     conn.execute(_CREATE_TABLE)
+    with conn:
+        conn.execute("BEGIN IMMEDIATE")
+        _ensure_snapshot_metadata(conn)
     return conn
+
+
+def _ensure_snapshot_metadata(conn: sqlite3.Connection) -> None:
+    """Add nullable observation metadata; legacy completeness stays unknown.
+
+    Call inside a write transaction to serialize concurrent schema upgrades.
+    """
+    columns = {row[1] for row in conn.execute("PRAGMA table_info(snapshots)")}
+    for name, sql_type in (("observation_scope", "TEXT"), ("catalog_complete", "INTEGER"),
+                           ("incompleteness_reasons_json", "TEXT"), ("max_urls", "INTEGER")):
+        if name not in columns:
+            conn.execute(f"ALTER TABLE snapshots ADD COLUMN {name} {sql_type}")
 
 
 class _DecimalEncoder(json.JSONEncoder):
@@ -68,11 +84,17 @@ async def snapshot(
 ) -> int:
     """Take a snapshot of a store's products and save to SQLite.
 
-    Returns the number of products stored.
+    Stores nullable completeness, catalog scope, budget and incompleteness reasons.
+    Returns the number of observed products stored, not a full catalog guarantee.
     """
     result = await extract(url, max_urls=max_urls)
     domain = supplier_scope(_domain_from_url(url))
     products_data = [asdict(p) for p in result.products]
+    scope = result.observation_scope or catalog_scope(url, result.platform)
+    reasons = list(result.incompleteness_reasons)
+    if not reasons and result.catalog_complete is not True:
+        reasons = ["source_incomplete" if result.catalog_complete is False else "catalog_coverage_unverified"]
+    complete = result.catalog_complete if not reasons else (False if result.catalog_complete is not None else None)
 
     conn = _get_connection(db_path)
     try:
@@ -80,8 +102,9 @@ async def snapshot(
         migrate_snapshot_identities(conn, domain)
         identify_records(conn, products_data, domain, legacy_titles=True)
         conn.execute(
-            "INSERT INTO snapshots (domain, products_json, created_at) VALUES (?, ?, ?)",
-            (domain, json.dumps(products_data, cls=_DecimalEncoder), datetime.now(timezone.utc).isoformat()),
+            "INSERT INTO snapshots (domain, products_json, created_at, observation_scope, catalog_complete, incompleteness_reasons_json, max_urls) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (domain, json.dumps(products_data, cls=_DecimalEncoder), datetime.now(timezone.utc).isoformat(),
+             scope, complete, json.dumps(reasons), max_urls),
         )
         conn.commit()
     finally:

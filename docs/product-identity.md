@@ -233,3 +233,66 @@ PYTHONPATH=src python examples/live_identity_check.py --output-dir artifacts/liv
 The example keeps a fixed four-GTIN approval list from the manually reviewed
 sample and saves source observations, policy decisions and budget/stock checks.
 It performs public reads only, with no paid model, login or catalog changes.
+
+## Safe membership alerts from bounded observations
+
+`ExtractionResult` now includes `catalog_complete: bool | None`,
+`observation_scope: str`, and `incompleteness_reasons: list[str]`. `None` means
+coverage is unverified; it must not be interpreted as complete. Shopify API
+extraction certifies `True` only when it reaches catalog exhaustion without
+truncation, source failure or dropped normalized records. Hitting a product or
+page budget marks the result incomplete with `product_budget_reached` or
+`page_budget_reached`. An exactly full final page cannot prove exhaustion;
+`max_urls=18` returning exactly 18 therefore remains incomplete without a
+short/empty terminal page. No extra request is made past the product budget.
+A short final page can prove completeness if none of its records were discarded.
+An observed complete empty API catalog remains distinct from an extraction
+failure or an empty crawl result. Crawl and other API coverage currently remain
+unverified unless an incomplete condition is known.
+
+Snapshots persist these fields in additive nullable SQLite columns:
+`catalog_complete`, `observation_scope`, `incompleteness_reasons_json`, and
+`max_urls`. The scope preserves platform, source URL/collection path and query
+context. Legacy rows receive **NULL completeness and scope**, never inferred
+completeness based on their size or extraction tier. Historical prices,
+identities and timestamps remain intact. `snapshot()` still returns the number
+of observed records and preserves its existing call signature.
+
+For `changes()`:
+
+- A confirmed removal requires a **complete current observation** and matching,
+  known scopes. Missing records in partial, failed or unverified observations
+  emit no `RemovedProduct` events.
+- A confirmed addition requires a **complete previous observation** and matching,
+  known scopes. Rotating bounded samples do not emit false new-product alerts.
+- Price changes on shared observed identities remain detectable in partial and
+  legacy history. If both scopes are known and differ, the comparison is skipped.
+- Membership means presence in the recorded catalog scope (for example a
+  collection), not proof of deletion from the supplier's entire store.
+
+`changes(domain)` still compares that domain's latest two observations. Monitoring
+different collections under one domain may result in a skipped comparison until
+two consecutive observations have the same scope. Legacy unknown-scope pairs
+continue to support shared price history but cannot certify membership changes.
+An empty change list after a partial observation is not proof that a full catalog
+was unchanged. Budgeted jobs needing removal detection must arrange complete,
+comparable observations; this implementation does not make individual absence
+confirmation requests.
+
+The original live review reproduced 13 false removals from an 18→5 transition.
+The fixed live rerun produced zero events for that transition, for a proven
+complete 18→5 transition (first budget 100), and for a captured legacy-schema
+18→5 upgrade replay. The fresh read with budget 100 still observed all 18
+products. Automated regressions also verify genuine complete-scope removals,
+complete empty catalogs, page failures, normalization loss, scope mismatches,
+and same-budget sample rotation while preserving shared price changes.
+
+Reproduce the public snapshot regression and controlled legacy upgrade replay:
+
+```sh
+PYTHONPATH=src python examples/live_snapshot_completeness.py --output-dir artifacts/live-snapshot-completeness
+```
+
+The script saves counts, events and stored metadata, and asserts that the live
+18→5 budget transition cannot certify removals. It overwrites only its named
+local output databases; it performs no supplier mutations.
