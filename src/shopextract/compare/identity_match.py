@@ -95,7 +95,8 @@ def normalized_attributes(product: Product | dict) -> dict[str, str]:
     return result
 
 
-def classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 0.8) -> MatchDecision:
+def classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 0.8,
+                   publisher_aliases: dict[str, list[str]] | None = None) -> MatchDecision:
     """Classify a pair. Conflicts always override agreeing identifiers."""
     if not 0 <= threshold <= 1:
         raise ValueError("threshold must be between 0 and 1")
@@ -104,16 +105,39 @@ def classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 0
     conflicts = [f"{k}: {aa[k]} != {ab[k]}" for k in sorted(aa.keys() & ab.keys()) if aa[k] != ab[k]]
     missing = sorted(aa.keys() ^ ab.keys())
     brand_a, brand_b = _text(a.get("vendor") or a.get("brand")), _text(b.get("vendor") or b.get("brand"))
-    if brand_a and brand_b and brand_a != brand_b:
-        conflicts.append("brand differs")
     if a.get("condition") and b.get("condition") and _text(a["condition"]) != _text(b["condition"]):
         conflicts.append("condition differs")
     evidence = []
     ga = _gtin(a.get("gtin") or a.get("ean") or a.get("upc"))
     gb = _gtin(b.get("gtin") or b.get("ean") or b.get("upc"))
+    approved = False
+    if ga and ga == gb and publisher_aliases:
+        for identifier, publishers in publisher_aliases.items():
+            if _gtin(identifier) == ga:
+                names = {_text(name) for name in publishers}
+                approved = bool(brand_a and brand_b and brand_a in names and brand_b in names)
+                break
+    if brand_a and brand_b and brand_a != brand_b:
+        if approved:
+            evidence.append("explicit GTIN-scoped publisher alias approved")
+        else:
+            conflicts.append("brand differs")
     if ga and gb:
         if ga == gb:
             evidence.append("validated GTIN agrees")
+            for side, record in (("a", a), ("b", b)):
+                raw = record.get("raw_data") or {}
+                if raw.get("_identifier_normalization"):
+                    evidence.append(f"supplier UPC leading-zero policy applied ({side})")
+                for source in raw.get("_identifier_sources", []):
+                    source_gtin = _gtin(source.get("value"))
+                    if not source_gtin:
+                        for note in raw.get("_identifier_normalization", []):
+                            if str(note.get("source_barcode")) == str(source.get("value")) and note.get("variant_id") == source.get("variant_id"):
+                                source_gtin = _gtin(note.get("normalized_gtin"))
+                                break
+                    if source_gtin == ga:
+                        evidence.append(f"GTIN source ({side}): {source.get('url')}")
         else:
             conflicts.append("GTIN differs")
     scope_a, scope_b = supplier_scope(str(a.get("supplier_id") or "")), supplier_scope(str(b.get("supplier_id") or ""))
@@ -141,11 +165,13 @@ def classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 0
     family_similarity = title_similarity(fa, fb) if fa and fb else 0.0
     related = bool(evidence) or max(similarity, family_similarity) >= threshold
     if not related:
-        # Same category is sufficient only to suggest a substitute for review.
+        # Category alone is too broad to suggest interchangeability. Require
+        # an explicit shared purpose or compatibility attribute as well.
         category_a = a.get("product_type") or a.get("category_path")
         category_b = b.get("product_type") or b.get("category_path")
-        if category_a and _text(category_a) == _text(category_b):
-            return MatchDecision(MatchRelation.SUBSTITUTE, 0.4, ["category agrees"], conflicts, True)
+        shared_use = [key for key in ("purpose", "compatibility") if aa.get(key) and aa.get(key) == ab.get(key)]
+        if category_a and _text(category_a) == _text(category_b) and shared_use:
+            return MatchDecision(MatchRelation.SUBSTITUTE, 0.4, ["category agrees", "shared " + ", ".join(shared_use)], conflicts, True)
         return MatchDecision(MatchRelation.UNMATCHED, 0.0, [], conflicts)
     # A missing pack cue means unknown, never an assumed single item.
     pack_conflict = any(c.startswith(("pack_quantity:", "bundle_components:")) for c in conflicts)
@@ -170,7 +196,8 @@ SemanticCandidates = Callable[[dict, list[dict]], Iterable[int]]
 
 
 def match_products(products_a: list[Product | dict], products_b: list[Product | dict], *,
-                   threshold: float = 0.8, semantic_candidates: SemanticCandidates | None = None) -> list[MatchDecision]:
+                   threshold: float = 0.8, publisher_aliases: dict[str, list[str]] | None = None,
+                   semantic_candidates: SemanticCandidates | None = None) -> list[MatchDecision]:
     """Report all related candidates and unmatched records, reserving unique exact pairs.
 
     Ambiguous exact edges require review. Semantic callbacks run only for sources
@@ -182,7 +209,7 @@ def match_products(products_a: list[Product | dict], products_b: list[Product | 
     for i, a in enumerate(products_a):
         candidates = []
         for j, b in enumerate(products_b):
-            decision = classify_match(a, b, threshold=threshold)
+            decision = classify_match(a, b, threshold=threshold, publisher_aliases=publisher_aliases)
             if decision.relation != MatchRelation.UNMATCHED:
                 decision.index_a, decision.index_b = i, j
                 candidates.append(decision)
@@ -193,7 +220,7 @@ def match_products(products_a: list[Product | dict], products_b: list[Product | 
             for j in dict.fromkeys(semantic_candidates(_record(a), [_record(b) for b in products_b])):
                 if not isinstance(j, int) or not 0 <= j < len(products_b):
                     raise ValueError("Semantic candidate index outside target catalog")
-                d = classify_match(a, products_b[j], threshold=threshold)
+                d = classify_match(a, products_b[j], threshold=threshold, publisher_aliases=publisher_aliases)
                 if d.relation == MatchRelation.UNMATCHED:
                     d = MatchDecision(MatchRelation.UNCERTAIN, 0.0, ["semantic candidate only"], d.conflicts, True)
                 d.index_a, d.index_b, d.candidate_method = i, j, "semantic"

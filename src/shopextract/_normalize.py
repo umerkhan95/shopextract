@@ -28,7 +28,7 @@ def _validate_gtin(value: str | None) -> str | None:
     """Validate and normalize a GTIN/EAN/UPC value."""
     if not value:
         return None
-    value = value.strip().replace("-", "").replace(" ", "")
+    value = str(value).strip().replace("-", "").replace(" ", "")
     if not value:
         return None
     if not value.isdigit():
@@ -59,6 +59,8 @@ def normalize(
     raw: dict,
     platform: Platform = Platform.GENERIC,
     shop_url: str = "",
+    *,
+    restore_short_gtin: bool = False,
 ) -> Product | None:
     """Normalize raw product dict from ANY extractor to unified Product model.
 
@@ -87,6 +89,18 @@ def normalize(
     if not normalized_data:
         return None
 
+    identifier_notes = []
+    if platform == Platform.SHOPIFY and restore_short_gtin:
+        from .compare.identity_match import _gtin
+        for index, variant in enumerate(raw.get("variants") or []):
+            barcode = str(variant.get("barcode") or "").strip()
+            if len(barcode) == 11 and _gtin("0" + barcode):
+                restored = _validate_gtin("0" + barcode)
+                identifier_notes.append({"variant_id": str(variant.get("id", "")), "source_barcode": barcode, "normalized_gtin": restored, "policy": "restore_upc_leading_zero"})
+                if index == 0:
+                    normalized_data["gtin"] = restored
+                if index < len(normalized_data.get("variants", [])):
+                    normalized_data["variants"][index].gtin = restored
     # Default condition
     if not normalized_data.get("condition"):
         normalized_data["condition"] = "NEW"
@@ -119,6 +133,8 @@ def normalize(
         logger.warning("Failed to create Product from normalized data: %s", e)
         return None
 
+    if identifier_notes:
+        product.raw_data = {**raw, "_identifier_normalization": identifier_notes}
     if not _is_valid_product(product):
         return None
     product.attributes = dict(raw.get("attributes") or {}) if isinstance(raw.get("attributes"), dict) else {}
@@ -146,6 +162,10 @@ def _shopify_stock_status(variants_raw: list[dict]) -> bool:
     if not variants_raw:
         return True
     for variant in variants_raw:
+        if isinstance(variant.get("available"), bool):
+            if variant["available"]:
+                return True
+            continue
         inventory_qty = variant.get("inventory_quantity")
         if inventory_qty is None or inventory_qty > 0:
             return True
@@ -157,10 +177,8 @@ def _shopify_variants(variants_raw: list[dict]) -> list[Variant]:
     for v in variants_raw:
         try:
             variant_price = Decimal(v.get("price", "0"))
-            variant_in_stock = True
             inventory_qty = v.get("inventory_quantity")
-            if inventory_qty is not None:
-                variant_in_stock = inventory_qty > 0
+            variant_in_stock = v["available"] if isinstance(v.get("available"), bool) else (inventory_qty is None or inventory_qty > 0)
             variants.append(Variant(
                 variant_id=str(v.get("id", "")),
                 title=v.get("title", ""),
@@ -216,7 +234,7 @@ def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
         "description": _strip_html(raw.get("body_html", "")),
         "price": price,
         "compare_at_price": compare_at_price,
-        "currency": raw.get("_shop_currency", "USD"),
+        "currency": first_variant.get("price_currency") or raw.get("currency") or raw.get("_shop_currency") or "USD",
         "image_url": image_url,
         "product_url": product_url,
         "sku": first_variant.get("sku"),
@@ -224,7 +242,7 @@ def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
         "mpn": None,
         "vendor": raw.get("vendor"),
         "product_type": raw.get("product_type"),
-        "in_stock": _shopify_stock_status(variants_raw),
+        "in_stock": raw["available"] if isinstance(raw.get("available"), bool) else _shopify_stock_status(variants_raw),
         "condition": None,
         "variants": _shopify_variants(variants_raw),
         "tags": _shopify_tags(raw),

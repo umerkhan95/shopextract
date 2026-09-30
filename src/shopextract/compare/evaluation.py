@@ -4,7 +4,8 @@ from __future__ import annotations
 from .identity_match import MatchRelation, classify_match
 
 
-def evaluate_matching(dataset: list[dict], *, threshold: float = 0.8) -> dict:
+def evaluate_matching(dataset: list[dict], *, threshold: float = 0.8,
+                      publisher_aliases: dict[str, list[str]] | None = None) -> dict:
     """Report exact precision and recall/coverage, plus review and relation accuracy.
 
     Rows contain id, a, b, label. Coverage is recovered labeled exact pairs divided
@@ -14,7 +15,7 @@ def evaluate_matching(dataset: list[dict], *, threshold: float = 0.8) -> dict:
     predictions = []
     for row in dataset:
         label = MatchRelation(row["label"])
-        decision = classify_match(row["a"], row["b"], threshold=threshold)
+        decision = classify_match(row["a"], row["b"], threshold=threshold, publisher_aliases=publisher_aliases)
         accepted = decision.relation == MatchRelation.EXACT and not decision.needs_review
         expected_exact += label == MatchRelation.EXACT
         tp += accepted and label == MatchRelation.EXACT

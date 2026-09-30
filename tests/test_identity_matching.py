@@ -64,7 +64,7 @@ def test_normalize_assigns_identity_and_attributes():
     ({"title": "Widget", "gtin": "4006381333932"}, {"title": "Widget", "gtin": "4006381333932"}, R.UNCERTAIN),
     ({"title": "Widget", "gtin": "4006381333931", "attributes": {"color": "Blue"}}, {"title": "Widget", "gtin": "4006381333931"}, R.UNCERTAIN),
     ({"title": ""}, {"title": ""}, R.UNMATCHED),
-    ({"title": "Apples", "product_type": "Food"}, {"title": "Oranges", "product_type": "Food"}, R.SUBSTITUTE),
+    ({"title": "Apples", "product_type": "Food", "attributes": {"purpose": "snack"}}, {"title": "Oranges", "product_type": "Food", "attributes": {"purpose": "snack"}}, R.SUBSTITUTE),
 ])
 def test_classification_guards(a, b, relation):
     d = classify_match(a, b)

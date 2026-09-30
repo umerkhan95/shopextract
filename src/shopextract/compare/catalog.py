@@ -22,6 +22,9 @@ async def compare_catalogs(
     max_products: int = _DEFAULT_MAX_PRODUCTS,
     threshold: float = _MATCH_THRESHOLD,
     semantic_candidates: SemanticCandidates | None = None,
+    publisher_aliases: dict[str, list[str]] | None = None,
+    enrich_identifiers: bool = False,
+    restore_short_gtin: bool = False,
 ) -> CatalogDiff:
     """Compare two store catalogs and report differences.
 
@@ -30,13 +33,13 @@ async def compare_catalogs(
     cheaper_in_a, cheaper_in_b.
     """
     result_a, result_b = await asyncio.gather(
-        extract(store_a, max_urls=max_products),
-        extract(store_b, max_urls=max_products),
+        extract(store_a, max_urls=max_products, enrich_identifiers=enrich_identifiers, restore_short_gtin=restore_short_gtin),
+        extract(store_b, max_urls=max_products, enrich_identifiers=enrich_identifiers, restore_short_gtin=restore_short_gtin),
     )
     return _diff_catalogs(
         store_a, store_b,
         result_a.products, result_b.products,
-        threshold, semantic_candidates=semantic_candidates,
+        threshold, semantic_candidates=semantic_candidates, publisher_aliases=publisher_aliases,
     )
 
 
@@ -48,10 +51,11 @@ def _diff_catalogs(
     threshold: float,
     *,
     semantic_candidates: SemanticCandidates | None = None,
+    publisher_aliases: dict[str, list[str]] | None = None,
 ) -> CatalogDiff:
     """Build catalog diff from two product lists."""
     diff = CatalogDiff(store_a=store_a, store_b=store_b)
-    diff.match_report = match_products(products_a, products_b, threshold=threshold, semantic_candidates=semantic_candidates)
+    diff.match_report = match_products(products_a, products_b, threshold=threshold, semantic_candidates=semantic_candidates, publisher_aliases=publisher_aliases)
     matched_a, matched_b = set(), set()
     for decision in diff.match_report:
         if decision.relation != MatchRelation.EXACT or decision.needs_review:

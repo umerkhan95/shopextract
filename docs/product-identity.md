@@ -57,8 +57,8 @@ Variant option sets on parent records also participate in conflict checks.
 
 Relationships are `exact`, `variant`, `bundle`, `substitute`, `uncertain`, and
 `unmatched`. Capacity/color/size differences suggest variants. Pack or bundle
-composition differences suggest bundles. Same-category alternatives suggest
-substitutes. These suggestions require review and are not equivalence claims.
+composition differences suggest bundles. Same-category alternatives with explicit shared purpose or compatibility
+attributes suggest substitutes; category alone does not. These suggestions require review and are not equivalence claims.
 A title similarity score only generates a review candidate. Identifier conflicts,
 missing discriminating attributes, and multiple exact candidates require review.
 `confidence` is a rule score, not a calibrated probability. Every decision
@@ -127,7 +127,7 @@ this epic's identity foundation.
 
 ## Evaluation and acceptance
 
-`evaluate_matching(dataset, threshold=0.8)` is exported by `shopextract`. Each
+`evaluate_matching(dataset, threshold=0.8, publisher_aliases=None)` is exported by `shopextract`. Each
 row has `id`, `a`, `b`, and a human-assigned `label` relationship. The checked-in
 `tests/fixtures/matching_evaluation.json` is a 32-pair synthetic labeled regression
 set, including 8GB/16GB variants, single/multipack conflicts, reused local SKUs,
@@ -155,3 +155,81 @@ The example substitutes extraction results so it is repeatable without internet
 or a supplier account. Existing mocked extraction, export, comparison, and
 monitoring tests verify compatibility. No catalog mutation, autonomous action,
 MCP wrapper, or other roadmap workstream is introduced.
+
+## Live validation follow-up (30 September 2026)
+
+The original 32-pair synthetic dataset's 80% exact coverage was **not** a live
+accuracy estimate. The selected four corresponding Catan pairs initially had
+0/4 exact acceptance. Real source data revealed stock, currency, missing
+identifiers and extraction-budget gaps. The fixes and explicit policies below
+are covered by `tests/test_live_regressions.py` with compact captured source
+fields in `tests/fixtures/live_catan_pairs.json`.
+
+Shopify explicit variant `available` takes precedence over inventory quantity
+and the previous optimistic fallback. Product-level `available`, when supplied,
+is also respected. Missing availability/inventory still defaults to the legacy
+boolean `True`; this model cannot represent unknown stock. Currency for the
+first variant price comes from observed `price_currency`, then product currency,
+then observed shop cookie currency, then the legacy USD default. Localized EUR
+responses remain EUR; the pipeline does not convert CAD to EUR or claim that
+separate requests use the same market context.
+
+Public `extract(..., max_urls=N)` bounds Shopify products and pagination;
+other API results are truncated to N retained records. Crawl paths still bound
+URLs, which may return multiple products. This is not a universal HTTP-request
+budget. `ShopifyExtractor.extract(..., max_products=N)` uses a constant page
+size and stops when N records have been retained, even if a server ignores its
+page limit. A bounded result is not a complete merchant catalog.
+
+`extract` and `compare_catalogs` add two options (both default to `False`):
+
+- `enrich_identifiers=True`: fetch at most one `.js` detail per retained Shopify
+  product with missing variant barcodes. Product and variant IDs must agree.
+  Only missing barcodes are copied; detail prices, currency and stock do not
+  overwrite catalog observations from a potentially different market context.
+  `raw_data._identifier_sources` records URL, variant ID and copied value.
+  Failures preserve products and surface in extraction errors; missing evidence
+  continues to require review.
+- `restore_short_gtin=True`: for Shopify source barcodes of exactly 11 digits,
+  restore a single leading zero only if the resulting UPC passes its check digit.
+  Original source values remain unchanged; `raw_data._identifier_normalization`
+  records the applied policy. Other shortened lengths and bad checksums are not
+  repaired. A valid checksum alone does not prove a barcode is assigned to a
+  product; enable this only for suppliers whose zero-dropping behavior has been
+  independently checked.
+
+`normalize(..., restore_short_gtin=True)` exposes the same explicit policy for
+captured direct records. `classify_match`, `match_products`, and `compare_catalogs`
+and `evaluate_matching` also accept `publisher_aliases`, mapping **specific validated GTINs** to a list
+of approved publisher names. Alias approval can resolve a brand discrepancy
+only when both records already have the same validated GTIN and both names
+appear in that GTIN's list. It cannot authorize global SKU equivalence, bypass
+capacity/pack conflicts, or authorize unrelated publisher products. Reports
+include the explicit approval and identifier provenance when available.
+
+```python
+aliases = {
+    "029877030712": ["Mayfair Games", "Catan Studio"],  # reviewed Catan fifth edition
+}
+report = match_products(catalog_a, catalog_b, publisher_aliases=aliases)
+```
+
+Fresh selected live checks accepted 4/4 corresponding pairs with checksum
+restoration and explicitly reviewed GTIN-scoped aliases, with no off-diagonal
+accepted pairs in the 4-by-4 catalog. Restoration without publisher approval
+accepted 1/4 and left the three publisher conflicts for review. Bounded public
+collection/demo reads returned 5/3 products, observed CAD on direct selected
+records, and preserved explicit out-of-stock flags. Public same-source catalog
+comparison accepted 5/5, independent snapshots preserved IDs with no false
+changes, and controlled rename/+1 price replay retained history. This small
+selected sample still does not establish production matching precision or coverage.
+
+Run fresh bounded checks (live source data may change):
+
+```sh
+PYTHONPATH=src python examples/live_identity_check.py --output-dir artifacts/live-identity
+```
+
+The example keeps a fixed four-GTIN approval list from the manually reviewed
+sample and saves source observations, policy decisions and budget/stock checks.
+It performs public reads only, with no paid model, login or catalog changes.

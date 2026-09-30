@@ -569,7 +569,7 @@ All commands output JSON by default.
 | Function | Signature | Returns |
 |:---------|:----------|:--------|
 | `compare` | `async (query, stores, *, max_per_store=50, threshold=0.6)` | `ComparisonResult` |
-| `compare_catalogs` | `async (store_a, store_b, *, max_products=200, threshold=0.8, semantic_candidates=None)` | `CatalogDiff` |
+| `compare_catalogs` | `async (store_a, store_b, *, max_products=200, threshold=0.8, semantic_candidates=None, publisher_aliases=None, enrich_identifiers=False, restore_short_gtin=False)` | `CatalogDiff` |
 | `fuzzy_match` | `(products_a, products_b, *, threshold=0.8)` | `list[tuple[dict, dict, float]]` |
 | `match_gtin` | `(gtin, products)` | `list[dict]` |
 
@@ -577,10 +577,10 @@ All commands output JSON by default.
 
 | Function | Signature | Returns |
 |:---------|:----------|:--------|
-| `match_products` | `(products_a, products_b, *, threshold=0.8, semantic_candidates=None)` | `list[MatchDecision]` |
-| `classify_match` | `(a, b, *, threshold=0.8)` | `MatchDecision` |
+| `match_products` | `(products_a, products_b, *, threshold=0.8, semantic_candidates=None, publisher_aliases=None)` | `list[MatchDecision]` |
+| `classify_match` | `(a, b, *, threshold=0.8, publisher_aliases=None)` | `MatchDecision` |
 | `assign_identity` | `(product, supplier_id="")` | `Product` (mutated) |
-| `evaluate_matching` | `(dataset, *, threshold=0.8)` | `dict` |
+| `evaluate_matching` | `(dataset, *, threshold=0.8, publisher_aliases=None)` | `dict` |
 | `migrate_snapshot_identities` | `(conn, domain=None)` | Updated snapshot count |
 
 ### Monitor

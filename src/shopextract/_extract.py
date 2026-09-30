@@ -40,6 +40,8 @@ async def extract(
     llm_api_key: str | None = None,
     llm_model: str = "openai/gpt-4o-mini",
     llm_temperature: float = 0.2,
+    enrich_identifiers: bool = False,
+    restore_short_gtin: bool = False,
 ) -> ExtractionResult:
     """Extract products from an e-commerce store.
 
@@ -52,7 +54,9 @@ async def extract(
     Args:
         url: The merchant's website URL.
         platform: Pre-detected platform (auto-detected if None).
-        max_urls: Maximum product URLs to process.
+        max_urls: Maximum crawl URLs or API products retained; Shopify pagination is bounded.
+        enrich_identifiers: Opt into ID-checked Shopify detail barcode reads.
+        restore_short_gtin: Opt into checksum-validated 11-digit UPC zero restoration.
         shop_url: Base shop URL for normalization (defaults to url).
         llm_api_key: API key for LLM extraction. Enables Tier 4 (LLM) as
             final fallback. If not provided, reads from SHOPEXTRACT_LLM_API_KEY
@@ -100,6 +104,8 @@ async def extract(
     Returns:
         ExtractionResult with products, tier used, quality score.
     """
+    if not isinstance(max_urls, int) or isinstance(max_urls, bool) or max_urls <= 0:
+        raise ValueError("max_urls must be a positive integer")
     if shop_url is None:
         shop_url = url.rstrip("/")
 
@@ -115,12 +121,13 @@ async def extract(
         platform = result.platform
 
     # Step 2: Try API extraction first
-    api_result = await _try_api_extraction(url, platform)
+    api_result = await _try_api_extraction(url, platform, max_products=max_urls, enrich_identifiers=enrich_identifiers)
     if api_result and api_result.products:
+        api_result.products = api_result.products[:max_urls]
         scorer = QualityScorer()
         quality = scorer.score_batch(api_result.products)
         if quality >= _QUALITY_THRESHOLD:
-            products = _normalize_batch(api_result.products, platform, shop_url)
+            products = _normalize_batch(api_result.products, platform, shop_url, restore_short_gtin=restore_short_gtin)
             return ExtractionResult(
                 products=products,
                 raw_products=api_result.products,
@@ -129,6 +136,9 @@ async def extract(
                 platform=platform,
                 urls_attempted=1,
                 urls_succeeded=1,
+                errors=([api_result.error] if api_result.error else []) + [
+                    error for raw in api_result.products for error in raw.get("_identifier_enrichment_errors", [])
+                ],
             )
 
     # Step 3: Discover URLs for crawl-based extraction
@@ -377,14 +387,15 @@ async def _try_llm_extraction(
         return []
 
 
-async def _try_api_extraction(url: str, platform: Platform) -> ExtractorResult | None:
+async def _try_api_extraction(url: str, platform: Platform, *, max_products: int = 20,
+                              enrich_identifiers: bool = False) -> ExtractorResult | None:
     """Try platform-specific API extraction."""
     base_url = url.rstrip("/")
 
     if platform == Platform.SHOPIFY:
         from .extractors.shopify import ShopifyExtractor
         extractor = ShopifyExtractor()
-        result = await extractor.extract(base_url)
+        result = await extractor.extract(base_url, max_products=max_products, enrich_identifiers=enrich_identifiers)
         if result.products:
             return result
 
@@ -437,12 +448,12 @@ async def _extract_batch_concurrent(
 
 
 def _normalize_batch(
-    raw_products: list[dict], platform: Platform, shop_url: str
+    raw_products: list[dict], platform: Platform, shop_url: str, *, restore_short_gtin: bool = False
 ) -> list[Product]:
     """Normalize a batch of raw product dicts."""
     products = []
     for raw in raw_products:
-        product = normalize(raw, platform=platform, shop_url=shop_url)
+        product = normalize(raw, platform=platform, shop_url=shop_url, restore_short_gtin=restore_short_gtin)
         if product:
             products.append(product)
     return products
