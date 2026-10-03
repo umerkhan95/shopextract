@@ -1,0 +1,427 @@
+[
+  {
+    "id": "gtin-title-rename",
+    "a": {
+      "title": "Original Widget",
+      "gtin": "4006381333931"
+    },
+    "b": {
+      "title": "Renamed Widget",
+      "gtin": "4006381333931"
+    },
+    "label": "exact"
+  },
+  {
+    "id": "gtin-whitespace",
+    "a": {
+      "title": "Widget",
+      "gtin": "4006 3813 33931"
+    },
+    "b": {
+      "title": "Widget",
+      "gtin": "4006381333931"
+    },
+    "label": "exact"
+  },
+  {
+    "id": "upc-gtin14",
+    "a": {
+      "title": "Widget",
+      "upc": "012345678905"
+    },
+    "b": {
+      "title": "Widget",
+      "gtin": "00012345678905"
+    },
+    "label": "exact"
+  },
+  {
+    "id": "brand-mpn",
+    "a": {
+      "title": "Original",
+      "vendor": "Acme",
+      "mpn": "W-1"
+    },
+    "b": {
+      "title": "Renamed",
+      "vendor": "ACME",
+      "mpn": "w-1"
+    },
+    "label": "exact"
+  },
+  {
+    "id": "scoped-sku",
+    "a": {
+      "title": "Original",
+      "sku": "LOCAL",
+      "supplier_id": "s.example"
+    },
+    "b": {
+      "title": "Renamed",
+      "sku": "LOCAL",
+      "supplier_id": "s.example"
+    },
+    "label": "exact"
+  },
+  {
+    "id": "scoped-source",
+    "a": {
+      "title": "Original",
+      "external_id": "42",
+      "supplier_id": "s.example"
+    },
+    "b": {
+      "title": "Renamed",
+      "external_id": "42",
+      "supplier_id": "s.example"
+    },
+    "label": "exact"
+  },
+  {
+    "id": "normalized-color",
+    "a": {
+      "title": "Widget",
+      "gtin": "4006381333931",
+      "attributes": {
+        "colour": "BLUE"
+      }
+    },
+    "b": {
+      "title": "Widget",
+      "gtin": "4006381333931",
+      "attributes": {
+        "color": "blue"
+      }
+    },
+    "label": "exact"
+  },
+  {
+    "id": "normalized-memory",
+    "a": {
+      "title": "Laptop",
+      "gtin": "4006381333931",
+      "attributes": {
+        "ram": "8 GB"
+      }
+    },
+    "b": {
+      "title": "Laptop",
+      "gtin": "4006381333931",
+      "attributes": {
+        "memory": "8gb"
+      }
+    },
+    "label": "exact"
+  },
+  {
+    "id": "known-exact-title-only",
+    "a": {
+      "title": "Widget X"
+    },
+    "b": {
+      "title": "Widget X"
+    },
+    "label": "exact"
+  },
+  {
+    "id": "known-exact-missing-attributes",
+    "a": {
+      "title": "Widget",
+      "gtin": "4006381333931",
+      "attributes": {
+        "color": "blue"
+      }
+    },
+    "b": {
+      "title": "Widget",
+      "gtin": "4006381333931"
+    },
+    "label": "exact"
+  },
+  {
+    "id": "variant-11",
+    "a": {
+      "title": "Laptop 8GB",
+      "gtin": "4006381333931"
+    },
+    "b": {
+      "title": "Laptop 16GB",
+      "gtin": "4006381333931"
+    },
+    "label": "variant"
+  },
+  {
+    "id": "variant-12",
+    "a": {
+      "title": "Laptop 8GB"
+    },
+    "b": {
+      "title": "Laptop 16GB"
+    },
+    "label": "variant"
+  },
+  {
+    "id": "variant-13",
+    "a": {
+      "title": "Drive 256GB",
+      "gtin": "4006381333931"
+    },
+    "b": {
+      "title": "Drive 512GB",
+      "gtin": "4006381333931"
+    },
+    "label": "variant"
+  },
+  {
+    "id": "variant-14",
+    "a": {
+      "title": "Widget",
+      "gtin": "4006381333931",
+      "attributes": {
+        "color": "blue"
+      }
+    },
+    "b": {
+      "title": "Widget",
+      "gtin": "4006381333931",
+      "attributes": {
+        "color": "red"
+      }
+    },
+    "label": "variant"
+  },
+  {
+    "id": "variant-15",
+    "a": {
+      "title": "Shirt",
+      "gtin": "4006381333931",
+      "attributes": {
+        "size": "S"
+      }
+    },
+    "b": {
+      "title": "Shirt",
+      "gtin": "4006381333931",
+      "attributes": {
+        "size": "L"
+      }
+    },
+    "label": "variant"
+  },
+  {
+    "id": "bundle-16",
+    "a": {
+      "title": "Soap single",
+      "gtin": "4006381333931"
+    },
+    "b": {
+      "title": "Soap 6-pack",
+      "gtin": "4006381333931"
+    },
+    "label": "bundle"
+  },
+  {
+    "id": "bundle-17",
+    "a": {
+      "title": "Soap",
+      "pack_quantity": 1
+    },
+    "b": {
+      "title": "Soap",
+      "pack_quantity": 6
+    },
+    "label": "bundle"
+  },
+  {
+    "id": "bundle-18",
+    "a": {
+      "title": "Camera"
+    },
+    "b": {
+      "title": "Camera bundle"
+    },
+    "label": "bundle"
+  },
+  {
+    "id": "bundle-19",
+    "a": {
+      "title": "Tool",
+      "bundle_components": [
+        "drill"
+      ]
+    },
+    "b": {
+      "title": "Tool",
+      "bundle_components": [
+        "drill",
+        "battery"
+      ]
+    },
+    "label": "bundle"
+  },
+  {
+    "id": "uncertain-20",
+    "a": {
+      "title": "Widget",
+      "sku": "LOCAL",
+      "supplier_id": "a.example"
+    },
+    "b": {
+      "title": "Widget",
+      "sku": "LOCAL",
+      "supplier_id": "b.example"
+    },
+    "label": "uncertain"
+  },
+  {
+    "id": "uncertain-21",
+    "a": {
+      "title": "Widget",
+      "gtin": "4006381333931"
+    },
+    "b": {
+      "title": "Widget",
+      "gtin": "5901234123457"
+    },
+    "label": "uncertain"
+  },
+  {
+    "id": "uncertain-22",
+    "a": {
+      "title": "Widget",
+      "gtin": "4006381333932"
+    },
+    "b": {
+      "title": "Widget",
+      "gtin": "4006381333932"
+    },
+    "label": "uncertain"
+  },
+  {
+    "id": "uncertain-23",
+    "a": {
+      "title": "Widget",
+      "vendor": "Acme",
+      "mpn": "X"
+    },
+    "b": {
+      "title": "Widget",
+      "vendor": "Other",
+      "mpn": "X"
+    },
+    "label": "uncertain"
+  },
+  {
+    "id": "uncertain-24",
+    "a": {
+      "title": "Widget",
+      "gtin": "4006381333931",
+      "condition": "NEW"
+    },
+    "b": {
+      "title": "Widget",
+      "gtin": "4006381333931",
+      "condition": "USED"
+    },
+    "label": "uncertain"
+  },
+  {
+    "id": "uncertain-25",
+    "a": {
+      "title": "Widget",
+      "gtin": "4006381333931",
+      "pack_quantity": 1
+    },
+    "b": {
+      "title": "Widget",
+      "gtin": "4006381333931"
+    },
+    "label": "uncertain"
+  },
+  {
+    "id": "uncertain-26",
+    "a": {
+      "title": "Widget",
+      "gtin": "4006381333931",
+      "vendor": "Acme"
+    },
+    "b": {
+      "title": "Widget",
+      "gtin": "4006381333931",
+      "vendor": "Other"
+    },
+    "label": "uncertain"
+  },
+  {
+    "id": "uncertain-27",
+    "a": {
+      "title": "Widget",
+      "external_id": "1",
+      "sku": "X",
+      "supplier_id": "s.example"
+    },
+    "b": {
+      "title": "Widget",
+      "external_id": "2",
+      "sku": "X",
+      "supplier_id": "s.example"
+    },
+    "label": "uncertain"
+  },
+  {
+    "id": "substitute-28",
+    "a": {
+      "title": "Apples",
+      "product_type": "Food"
+    },
+    "b": {
+      "title": "Oranges",
+      "product_type": "Food"
+    },
+    "label": "substitute"
+  },
+  {
+    "id": "unmatched-29",
+    "a": {
+      "title": "Apple"
+    },
+    "b": {
+      "title": "Drill"
+    },
+    "label": "unmatched"
+  },
+  {
+    "id": "unmatched-30",
+    "a": {
+      "title": ""
+    },
+    "b": {
+      "title": ""
+    },
+    "label": "unmatched"
+  },
+  {
+    "id": "unmatched-31",
+    "a": {
+      "title": "Original",
+      "external_id": "1",
+      "supplier_id": "a.example"
+    },
+    "b": {
+      "title": "Renamed",
+      "external_id": "1",
+      "supplier_id": "b.example"
+    },
+    "label": "unmatched"
+  },
+  {
+    "id": "uncertain-32",
+    "a": {
+      "title": "Widget Pro"
+    },
+    "b": {
+      "title": "Widget Pro Max"
+    },
+    "label": "uncertain"
+  }
+]

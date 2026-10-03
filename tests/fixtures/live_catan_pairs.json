@@ -1,0 +1,150 @@
+[
+  {
+    "label": "exact",
+    "a": {
+      "id": 472946625,
+      "title": "Catan (Fifth Edition)",
+      "handle": "catan-fifth-edition",
+      "vendor": "Mayfair Games",
+      "variants": [
+        {
+          "id": 1240751041,
+          "title": "Default Title",
+          "price": "54.95",
+          "price_currency": "CAD",
+          "sku": "CN3071",
+          "barcode": "29877030712",
+          "option1": "Default Title"
+        }
+      ]
+    },
+    "b": {
+      "id": 11814697359,
+      "title": "Catan 5th Edition",
+      "handle": "catan-base-game",
+      "vendor": "Catan Studio",
+      "variants": [
+        {
+          "id": 48011018575,
+          "title": "Default Title",
+          "price": "54.95",
+          "price_currency": "CAD",
+          "sku": "CN3071",
+          "barcode": "029877030712",
+          "option1": "Default Title"
+        }
+      ]
+    }
+  },
+  {
+    "label": "exact",
+    "a": {
+      "id": 473005377,
+      "title": "Catan: 5-6 Player Extension (Fifth Edition)",
+      "handle": "catan-5-6-player-extension-fifth-edition",
+      "vendor": "Mayfair Games",
+      "variants": [
+        {
+          "id": 1240892929,
+          "title": "Default Title",
+          "price": "32.95",
+          "price_currency": "CAD",
+          "sku": "CN3072",
+          "barcode": "29877030729",
+          "option1": "Default Title"
+        }
+      ]
+    },
+    "b": {
+      "id": 11817544527,
+      "title": "Catan 5th Edition: 5-6 Player Extension",
+      "handle": "catan-base-game-5-6-player-extension",
+      "vendor": "Catan Studio",
+      "variants": [
+        {
+          "id": 48018564111,
+          "title": "Default Title",
+          "price": "32.95",
+          "price_currency": "CAD",
+          "sku": "CN3072",
+          "barcode": "029877030729",
+          "option1": "Default Title"
+        }
+      ]
+    }
+  },
+  {
+    "label": "exact",
+    "a": {
+      "id": 473070721,
+      "title": "Catan: Seafarers (Fifth Edition)",
+      "handle": "catan-seafarers-fifth-edition",
+      "vendor": "Catan Studio",
+      "variants": [
+        {
+          "id": 1240982145,
+          "title": "Default Title",
+          "price": "62.95",
+          "price_currency": "CAD",
+          "sku": "CN3073",
+          "barcode": "29877030736",
+          "option1": "Default Title"
+        }
+      ]
+    },
+    "b": {
+      "id": 11814698255,
+      "title": "Catan 5th Edition: Seafarers Expansion **",
+      "handle": "catan-seafarers",
+      "vendor": "Catan Studio",
+      "variants": [
+        {
+          "id": 48011028431,
+          "title": "Default Title",
+          "price": "62.95",
+          "price_currency": "CAD",
+          "sku": "CN3073",
+          "barcode": "029877030736",
+          "option1": "Default Title"
+        }
+      ]
+    }
+  },
+  {
+    "label": "exact",
+    "a": {
+      "id": 473103937,
+      "title": "Catan: Cities & Knights - 5-6 Player Extension (Fifth Edition)",
+      "handle": "catan-cities-knights-5-6-player-extension-fifth-edition",
+      "vendor": "Mayfair Games",
+      "variants": [
+        {
+          "id": 1241057793,
+          "title": "Default Title",
+          "price": "34.95",
+          "price_currency": "CAD",
+          "sku": "CN3078",
+          "barcode": "29877030781",
+          "option1": "Default Title"
+        }
+      ]
+    },
+    "b": {
+      "id": 11814697935,
+      "title": "Catan 5th Edition: Cities & Knights 5-6 Player Extension",
+      "handle": "catan-cities-knights-5-6-player-extension",
+      "vendor": "Catan Studio",
+      "variants": [
+        {
+          "id": 48011024015,
+          "title": "Default Title",
+          "price": "34.95",
+          "price_currency": "CAD",
+          "sku": "CN3078",
+          "barcode": "029877030781",
+          "option1": "Default Title"
+        }
+      ]
+    }
+  }
+]

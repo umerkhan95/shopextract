@@ -1,4 +1,4 @@
-"""Product matching — fuzzy title and exact GTIN/SKU (#10)."""
+"""Legacy candidate lookup helpers; use match_products for identity decisions."""
 
 from __future__ import annotations
 
@@ -27,6 +27,8 @@ def fuzzy_match(
     Returns list of (product_a, product_b, similarity) tuples
     where similarity >= threshold.
     """
+    from .identity_match import classify_match
+
     matches: list[tuple[dict, dict, float]] = []
     used_b: set[int] = set()
 
@@ -38,6 +40,9 @@ def fuzzy_match(
 
         for idx, prod_b in enumerate(products_b):
             if idx in used_b:
+                continue
+            decision = classify_match(prod_a, prod_b, threshold=threshold)
+            if any(not c.startswith("missing attributes:") for c in decision.conflicts):
                 continue
             sim = title_similarity(title_a, prod_b.get("title", ""))
             if sim > best_sim:
@@ -55,7 +60,9 @@ def fuzzy_match(
 def match_gtin(gtin: str, products: list[dict]) -> list[dict]:
     """Find products with an exact GTIN or SKU match.
 
-    Checks the 'gtin', 'ean', 'upc', and 'sku' fields.
+    Checks the 'gtin', 'ean', 'upc', and 'sku' fields. This legacy
+    lookup neither validates GTINs nor scopes SKUs; results are candidates,
+    not evidence of cross-store equivalence.
     """
     gtin_clean = gtin.strip()
     matched: list[dict] = []

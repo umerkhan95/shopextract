@@ -44,6 +44,43 @@ Three lines. That's it.
 
 ---
 
+## Completed EPIC: product identity and matching (#21)
+
+The implemented scope covers stable identity and snapshot migration (#30),
+evidence-backed relationship reports (#31), and evaluation plus an offline
+example (#32). Live validation follow-ups also added explicit Shopify identifier
+policies and safe membership alerts for incomplete observations.
+
+- **Stable identity:** supplier-scoped product and variant IDs survive title and
+  price changes. Legacy snapshots migrate additively; renamed products retain
+  their price history. IDs identify supplier records, not a universal master catalog.
+- **Matching reports:** `match_products()` reports `exact`, `variant`, `bundle`,
+  `substitute`, `uncertain`, and `unmatched`, with evidence, conflicts and review
+  flags. Only unique accepted exact pairs enter catalog price comparisons;
+  prices must use the same currency. Title similarity alone is a review candidate.
+- **Explicit source policies:** Shopify identifier enrichment, checksum-checked
+  restoration of an 11-digit source UPC, and GTIN-scoped publisher approvals are
+  opt-in. Stock and currency preserve observed source metadata.
+- **Safe monitoring:** extraction reports completeness, scope and reasons.
+  Removals require a complete current observation; additions require a complete
+  previous observation, both with the same known scope. Shared price changes
+  remain detectable in partial observations.
+- **Evaluation:** the 32-pair synthetic regression fixture requires 100% exact
+  precision, at least 80% exact coverage and zero false exact matches. A selected
+  live four-pair check passed with reviewed policies; neither sample establishes
+  production-wide accuracy.
+
+Read [Product identity and matching](docs/product-identity.md) for API details,
+migration, limitations and live validation. Both [local](notebooks/demo.ipynb)
+and [Colab](notebooks/shopextract_demo.ipynb) notebooks demonstrate the completed
+scope offline, including rename history and partial-snapshot safety.
+
+```bash
+PYTHONPATH=src python examples/identity_matching.py
+```
+
+---
+
 ## Features
 
 ### Extract products from any store
@@ -185,7 +222,12 @@ print(f"Cheaper in A: {len(diff.cheaper_in_a)}")
 print(f"Cheaper in B: {len(diff.cheaper_in_b)}")
 ```
 
-Match products by title similarity or GTIN:
+Catalog comparisons accept unique evidence-backed exact matches and expose
+review candidates in `diff.match_report`. Capacity and pack differences never
+enter exact price comparisons. See [Product identity and matching](docs/product-identity.md)
+for stable IDs, snapshot migration, relationship reports and evaluation.
+
+Legacy candidate lookup by title similarity or identifier:
 
 ```python
 # Fuzzy title matching
@@ -193,13 +235,23 @@ matches = shopextract.fuzzy_match(products_a, products_b, threshold=0.8)
 for prod_a, prod_b, similarity in matches:
     print(f"{prod_a['title']} <-> {prod_b['title']} ({similarity:.0%})")
 
-# Exact GTIN/SKU matching
+# Legacy GTIN/SKU candidate lookup
 found = shopextract.match_gtin("4260442152415", all_products)
+```
+
+For evidence-backed matching:
+
+```python
+report = shopextract.match_products(products_a, products_b)
+for decision in report:
+    print(decision.relation.value, decision.evidence, decision.needs_review)
 ```
 
 ### Monitor stores for changes
 
 Take snapshots over time and detect price changes, new products, and removals.
+Membership alerts require complete comparable observations: budget-limited snapshots
+do not confirm missing products as removals. See [snapshot completeness](docs/product-identity.md#safe-membership-alerts-from-bounded-observations).
 
 ```python
 import asyncio
@@ -542,12 +594,12 @@ All commands output JSON by default.
 
 | Function | Signature | Returns |
 |:---------|:----------|:--------|
-| `extract` | `async (url, *, platform=None, max_urls=20, shop_url=None, llm_api_key=None, llm_model="openai/gpt-4o-mini", llm_temperature=0.2)` | `ExtractionResult` |
+| `extract` | `async (url, *, platform=None, max_urls=20, shop_url=None, llm_api_key=None, llm_model="openai/gpt-4o-mini", llm_temperature=0.2, enrich_identifiers=False, restore_short_gtin=False)` | `ExtractionResult` |
 | `extract_one` | `async (url, *, llm_api_key=None, llm_model="openai/gpt-4o-mini")` | `dict` |
 | `from_feed` | `async (feed_url, *, shop_url="")` | `ExtractionResult` |
 | `detect` | `async (url, *, client=None)` | `PlatformResult` |
 | `discover` | `async (url, *, platform=None, max_urls=100, timeout=30.0, client=None)` | `list[str]` |
-| `normalize` | `(raw, *, platform=GENERIC, shop_url="")` | `Product \| None` |
+| `normalize` | `(raw, *, platform=GENERIC, shop_url="", restore_short_gtin=False)` | `Product \| None` |
 | `QualityScorer.score_product` | `(product: dict)` | `float` |
 | `QualityScorer.score_batch` | `(products: list[dict])` | `float` |
 
@@ -556,9 +608,19 @@ All commands output JSON by default.
 | Function | Signature | Returns |
 |:---------|:----------|:--------|
 | `compare` | `async (query, stores, *, max_per_store=50, threshold=0.6)` | `ComparisonResult` |
-| `compare_catalogs` | `async (store_a, store_b, *, max_products=200, threshold=0.8)` | `CatalogDiff` |
+| `compare_catalogs` | `async (store_a, store_b, *, max_products=200, threshold=0.8, semantic_candidates=None, publisher_aliases=None, enrich_identifiers=False, restore_short_gtin=False)` | `CatalogDiff` |
 | `fuzzy_match` | `(products_a, products_b, *, threshold=0.8)` | `list[tuple[dict, dict, float]]` |
 | `match_gtin` | `(gtin, products)` | `list[dict]` |
+
+### Identity and matching
+
+| Function | Signature | Returns |
+|:---------|:----------|:--------|
+| `match_products` | `(products_a, products_b, *, threshold=0.8, semantic_candidates=None, publisher_aliases=None)` | `list[MatchDecision]` |
+| `classify_match` | `(a, b, *, threshold=0.8, publisher_aliases=None)` | `MatchDecision` |
+| `assign_identity` | `(product, supplier_id="")` | `Product` (mutated) |
+| `evaluate_matching` | `(dataset, *, threshold=0.8, publisher_aliases=None)` | `dict` |
+| `migrate_snapshot_identities` | `(conn, domain=None)` | Updated snapshot count |
 
 ### Monitor
 
@@ -566,7 +628,7 @@ All commands output JSON by default.
 |:---------|:----------|:--------|
 | `snapshot` | `async (url, *, db_path="~/.shopextract/snapshots.db", max_urls=200)` | `int` |
 | `changes` | `(domain, *, db_path=...)` | `list[Change]` |
-| `price_history` | `(domain, product_title, *, db_path=...)` | `list[tuple[datetime, float]]` |
+| `price_history` | `(domain, product_title="", *, db_path=..., canonical_product_id=None)` | `list[tuple[datetime, float]]` |
 | `watch` | `async (url, *, interval=3600, db_path=...)` | `AsyncGenerator[Change]` |
 
 ### Analyze
@@ -609,16 +671,18 @@ All commands output JSON by default.
 
 | Model | Description |
 |:------|:------------|
-| `Product` | Unified product with title, price, currency, description, image_url, gtin, sku, variants, etc. |
-| `Variant` | Product variant (variant_id, title, price, sku, in_stock) |
-| `ExtractionResult` | Extraction output: products, raw_products, tier, quality_score, platform, errors |
+| `Product` | Unified product with canonical_product_id, supplier_id, attributes, pack_quantity and bundle_components, plus source fields, prices and variants |
+| `Variant` | Product variant with source variant_id, canonical_variant_id, attributes and GTIN, plus title, price, SKU and stock |
+| `ExtractionResult` | Extraction output: products, raw_products, tier, quality_score, platform, errors, catalog_complete, observation_scope, incompleteness_reasons |
 | `ExtractorResult` | Raw extractor output: products, complete, error, page counts |
 | `PlatformResult` | Detection result: platform, confidence, signals |
 | `Platform` | Enum: SHOPIFY, WOOCOMMERCE, MAGENTO, BIGCOMMERCE, SHOPWARE, GENERIC |
 | `ExtractionTier` | Enum: API, UNIFIED_CRAWL, GOOGLE_FEED, CSS, LLM |
 | `ComparisonResult` | Price comparison: query, matches, cheapest, most_expensive, avg_price, price_spread |
 | `Match` | Matched product: title, price, currency, store, product_url, similarity |
-| `CatalogDiff` | Catalog comparison: only_in_a, only_in_b, in_both, cheaper_in_a, cheaper_in_b |
+| `CatalogDiff` | Catalog comparison: only_in_a, only_in_b, in_both, cheaper_in_a, cheaper_in_b, match_report |
+| `MatchDecision` | Indexed relationship decision with confidence, evidence, conflicts and needs_review |
+| `MatchRelation` | Enum: EXACT, VARIANT, BUNDLE, SUBSTITUTE, UNCERTAIN, UNMATCHED |
 | `Change` | Base change event: change_type, title, detected_at |
 | `PriceChange` | Price change: old_price, new_price, currency |
 | `NewProduct` | New product detected: price, currency |
@@ -656,7 +720,7 @@ Try shopextract without installing anything:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/umerkhan95/shopextract/blob/main/notebooks/shopextract_demo.ipynb)
 
-The notebook demonstrates all features: extraction, analysis, matching, validation, monitoring, export, quality scoring, and duplicate detection.
+The notebooks demonstrate extraction, analysis, stable identity, evidence-backed matching, rename history, safe partial snapshots, validation, export, quality scoring, and duplicate detection. Use the repository version for the completed EPIC APIs until they are included in a PyPI release.
 
 ---
 
@@ -687,7 +751,7 @@ python -m pytest tests/ -q
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/my-feature`)
 3. Install dev dependencies: `pip install -e ".[dev]"`
-4. Run tests: `pytest` (308 tests)
+4. Run tests: `pytest`
 5. Submit a pull request
 
 ---
