@@ -1,7 +1,10 @@
 # Product identity and matching
 
-Epic #21 is split into #30 (identity/migration), #31 (matching reports), and #32
-(evaluation/example). This implementation is an evidence-backed reporting MVP.
+The implemented Epic #21 scope covers #30 (identity/migration), #31 (matching
+reports), and #32 (evaluation/example). The completed implementation is an
+evidence-backed reporting MVP, with live validation and snapshot completeness
+follow-ups described below. This records repository implementation status; it
+does not imply a PyPI release or a merged pull request.
 All code is MIT, runs locally, and requires no paid service or semantic model.
 
 ## Public API
@@ -296,3 +299,26 @@ PYTHONPATH=src python examples/live_snapshot_completeness.py --output-dir artifa
 The script saves counts, events and stored metadata, and asserts that the live
 18→5 budget transition cannot certify removals. It overwrites only its named
 local output databases; it performs no supplier mutations.
+
+## Notebook walkthroughs
+
+[Local demo](../notebooks/demo.ipynb) and [Colab demo](../notebooks/shopextract_demo.ipynb)
+include executable offline examples for the completed EPIC:
+
+1. Assign supplier-scoped IDs and verify that a title/price change keeps identity.
+2. Inspect accepted exact, capacity variant and title-only review decisions.
+3. Evaluate a small labeled teaching sample (separate from the 32-pair acceptance fixture).
+4. Substitute extraction observations into the real snapshot writer, inspect
+   complete-scope additions/removals and follow a renamed product's price history.
+5. Store a partial observation and verify that missing records do not emit removals.
+
+The snapshot examples use a temporary database and no network calls. Completeness
+is explicitly supplied for these controlled fixtures; never mark real partial
+observations complete to force membership alerts. Legacy snapshots retain unknown
+completeness and require manual reconciliation when identity aliases conflict.
+
+Run the local notebook against an editable repository install (`pip install -e .`).
+The Colab setup pins the validated implementation commit
+`1f840177245d0ac025988ad4c60378b9df3b25c2` to expose the completed APIs before a
+PyPI release and keep the walkthrough reproducible. Live
+extraction cells are optional and report coverage metadata alongside counts.
