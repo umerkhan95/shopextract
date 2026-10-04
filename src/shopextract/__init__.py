@@ -36,6 +36,8 @@ from ._detect import detect
 from ._discover import discover
 from ._extract import extract, extract_one, from_feed
 from ._models import (
+    Evidence, FieldObservation, FieldResolution, SupportState,
+    TrustContract, ValidatedConfidence, factual_paths, trust_view,
     AssortmentGaps,
     CatalogDiff,
     CatalogStats,
@@ -80,6 +82,8 @@ from .validate import check_images, find_duplicates, validate
 __version__ = "0.1.2"
 
 __all__ = [
+    "Evidence", "FieldObservation", "FieldResolution", "SupportState",
+    "TrustContract", "ValidatedConfidence", "factual_paths", "trust_view",
     "evaluate_matching",
     "assign_identity", "migrate_snapshot_identities",
     "MatchDecision", "MatchRelation", "classify_match", "match_products", "normalized_attributes",

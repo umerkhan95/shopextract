@@ -778,3 +778,44 @@ This library is a tool. Like any tool, it can be used responsibly or irresponsib
 ## License
 
 [MIT](LICENSE) -- Copyright (c) 2026 Umer Khan
+
+### Field evidence contracts
+
+The version-one trust contract distinguishes source-supported facts from legacy
+scalar defaults. `product.trust_view()` (also available on `Variant`) marks every
+uncovered factual field, nested attribute and collection element as `unsupported`.
+Its trusted `value` is unavailable while `legacy_value` preserves the existing API
+value. A scalar price of zero or stock of false can be observed only with evidence;
+missing values never gain support from `0`, `USD` or `True` defaults.
+
+```python
+from datetime import datetime, timezone
+from decimal import Decimal
+from uuid import uuid4
+from shopextract import Evidence, FieldObservation, Product, TrustContract
+
+evidence = Evidence(
+    evidence_id="e_" + str(uuid4()),
+    source_url="https://shop.example/api/products/1",
+    observed_at=datetime.now(timezone.utc),
+    method="api",
+    excerpt='{"price": "0.00"}',  # actual captured response fragment
+)
+observation = FieldObservation(
+    observation_id="o_" + str(uuid4()), field_path="/price", state="observed",
+    raw_value="0.00", normalized_value=Decimal("0.00"),
+    evidence_ids=[evidence.evidence_id],
+)
+contract = TrustContract(evidence=[evidence], observations=[observation])
+print(Product(price=Decimal("0.00")).trust_view(contract)["/price"])
+restored = TrustContract.from_dict(contract.to_dict())
+```
+
+Supply real capture URLs/timestamps/fragments in applications. Extractors do not
+populate these contracts automatically yet. The current serializer covers the trust
+contract; capture, source precedence, SQLite evidence retention and portable Product
+bundles are separate follow-up work. Existing constructors, identity, snapshots and
+feed formats retain their behavior. Raw model/rule scores never create validated
+confidence; validation claims require method, dataset and version metadata.
+See [the public contract](specs/002-evidence-data-trust/contracts/evidence.md) and
+[field coverage matrix](specs/002-evidence-data-trust/data-model.md).
