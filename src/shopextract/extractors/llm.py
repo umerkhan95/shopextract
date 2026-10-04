@@ -16,6 +16,7 @@ from crawl4ai.content_filter_strategy import PruningContentFilter
 from crawl4ai.extraction_strategy import LLMExtractionStrategy
 
 from .._models import ExtractorResult
+from .._capture import capture
 from ._browser import (
     StealthLevel,
     get_browser_config,
@@ -180,6 +181,8 @@ class LLMExtractor:
                     products = []
 
                 products = self._merge_chunk_products(products)
+                for product in products:
+                    capture(product, getattr(result, "url", None) or url, "llm", source={})
                 return ExtractorResult(products=products)
 
         except Exception as e:
@@ -226,6 +229,8 @@ class LLMExtractor:
                         else:
                             url_products = []
                         url_products = self._merge_chunk_products(url_products)
+                        for product in url_products:
+                            capture(product, result.url, "llm", source={})
                         all_products.extend(url_products)
                     except json.JSONDecodeError as e:
                         logger.debug("Failed to parse LLM extracted content for %s: %s", result.url, e)

@@ -9,6 +9,7 @@ from typing import Any
 import httpx
 
 from .._models import ExtractorResult
+from .._capture import capture
 from ._browser import DEFAULT_HEADERS, get_default_user_agent
 
 logger = logging.getLogger(__name__)
@@ -83,6 +84,9 @@ class WooCommerceExtractor:
 
                     if not products:
                         break
+
+                    for product in products:
+                        capture(product, str(response.url), "woocommerce_api")
 
                     all_products.extend(products)
                     if len(products) < 100:

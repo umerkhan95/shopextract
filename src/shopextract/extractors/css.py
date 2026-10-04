@@ -5,11 +5,13 @@ from __future__ import annotations
 import json
 import logging
 
+from bs4 import BeautifulSoup
 from crawl4ai import AsyncWebCrawler
 from crawl4ai.async_dispatcher import MemoryAdaptiveDispatcher
 from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
 
 from .._models import ExtractorResult
+from .._capture import capture
 from ._browser import (
     StealthLevel,
     get_browser_config,
@@ -29,8 +31,7 @@ class CSSExtractor:
         self.schema = schema
         self.stealth_level = stealth_level
 
-    @staticmethod
-    def _parse_extracted_content(url: str, result) -> list[dict]:
+    def _parse_extracted_content(self, url: str, result) -> list[dict]:
         if not result.success:
             return []
         if not result.extracted_content:
@@ -41,10 +42,12 @@ class CSSExtractor:
             return []
 
         if isinstance(extracted_data, dict):
-            return [extracted_data] if extracted_data else []
+            products = [extracted_data] if extracted_data else []
         elif isinstance(extracted_data, list):
-            return extracted_data
-        return []
+            products = extracted_data
+        else:
+            return []
+        return self._capture_products(products, result, url)
 
     async def extract(self, url: str) -> ExtractorResult:
         """Extract product data with stealth escalation."""
@@ -111,11 +114,7 @@ class CSSExtractor:
                     if not result.success or not result.extracted_content:
                         continue
                     try:
-                        extracted = json.loads(result.extracted_content)
-                        if isinstance(extracted, list):
-                            all_products.extend(extracted)
-                        elif isinstance(extracted, dict) and extracted:
-                            all_products.append(extracted)
+                        all_products.extend(self._parse_extracted_content(result.url, result))
                     except json.JSONDecodeError as e:
                         logger.debug("Failed to parse extracted content for %s: %s", result.url, e)
         except Exception as e:
@@ -123,3 +122,42 @@ class CSSExtractor:
             error = str(e)
 
         return ExtractorResult(products=all_products, complete=error is None, error=error)
+
+    def _capture_products(self, products, result, url):
+        html = getattr(result, 'html', '') or ''
+        source_url = getattr(result, 'url', None) or url
+        soup = BeautifulSoup(html, 'html.parser')
+        try:
+            bases = soup.select(self.schema.get('baseSelector', 'body'))
+        except Exception:
+            bases = []
+        for product in products:
+            if not isinstance(product, dict):
+                continue
+            candidates = []
+            for base in bases:
+                values, nodes = {}, {}
+                for field in self.schema.get('fields', []):
+                    key = field.get('name')
+                    try:
+                        node = base.select_one(field.get('selector', ''))
+                    except Exception:
+                        continue
+                    if node is None:
+                        continue
+                    if field.get('type') == 'attribute':
+                        value = node.get(field.get('attribute', ''))
+                    elif field.get('type') == 'text':
+                        value = node.get_text(strip=True)
+                    else:
+                        continue
+                    if key in product and value == product[key]:
+                        values[key], nodes[key] = value, str(node)
+                required = {f.get('name') for f in self.schema.get('fields', [])
+                            if f.get('name') in product and product[f.get('name')] not in (None, '')}
+                if required and required <= values.keys():
+                    candidates.append((values, nodes))
+            values, nodes = candidates[0] if len(candidates) == 1 else ({}, {})
+            capture(product, source_url, 'css', source=values,
+                    excerpt=json.dumps(nodes, ensure_ascii=False) if nodes else None)
+        return [p for p in products if isinstance(p, dict)]

@@ -8,13 +8,16 @@ from __future__ import annotations
 
 import csv
 import io
+import json
 import logging
+from datetime import datetime, timezone
 from typing import Any
 
 import defusedxml.ElementTree as ET
 import httpx
 
 from .._models import ExtractorResult
+from .._capture import capture
 
 logger = logging.getLogger(__name__)
 
@@ -48,14 +51,20 @@ class GoogleFeedExtractor:
             logger.warning("Failed to fetch feed %s: %s", feed_url, e)
             return ExtractorResult(products=[], complete=False, error=str(e))
 
+        fetched_url = getattr(body, "source_url", feed_url)
+        observed_at = getattr(body, "observed_at", None)
         try:
             if self._is_xml(body, content_type):
-                products = self._parse_xml(body, feed_url)
+                products = self._parse_xml(body, fetched_url)
             else:
-                products = self._parse_csv(body, feed_url)
+                products = self._parse_csv(body, fetched_url)
         except Exception as e:
             logger.warning("Failed to parse feed %s: %s", feed_url, e)
             return ExtractorResult(products=[], complete=False, error=str(e))
+
+        for product in products:
+            if observed_at is not None:
+                product["_capture"]["at"] = observed_at.isoformat()
 
         logger.info("Parsed %d products from feed %s", len(products), feed_url)
         return ExtractorResult(products=products, complete=True)
@@ -69,7 +78,7 @@ class GoogleFeedExtractor:
             if len(resp.content) > _MAX_RESPONSE_SIZE:
                 raise ValueError(f"Feed exceeds {_MAX_RESPONSE_SIZE // (1024*1024)}MB size limit")
             content_type = resp.headers.get("content-type", "")
-            return resp.text, content_type
+            return _FeedBody(resp.text, str(resp.url)), content_type
 
     @staticmethod
     def _is_xml(body: str, content_type: str) -> bool:
@@ -93,6 +102,7 @@ class GoogleFeedExtractor:
         for item in items:
             product = cls._parse_xml_item(item)
             if product and product.get("title"):
+                capture(product, feed_url, "feed_xml", excerpt=ET.tostring(item, encoding="unicode"))
                 products.append(product)
 
         return products
@@ -120,8 +130,8 @@ class GoogleFeedExtractor:
             "_source": "google_feed",
             "id": g("id"),
             "title": g("title") or (item.findtext("title") or "").strip(),
-            "description": (item.findtext("description") or "").strip(),
-            "link": (item.findtext("link") or "").strip(),
+            "description": g("description"),
+            "link": g("link"),
             "price": price_str,
             "currency": currency or sale_currency,
             "sale_price": sale_price_str,
@@ -146,6 +156,7 @@ class GoogleFeedExtractor:
         for row in reader:
             product = cls._parse_csv_row(row)
             if product and product.get("title"):
+                capture(product, feed_url, "feed_csv", excerpt=json.dumps(row, ensure_ascii=False))
                 products.append(product)
 
         return products
@@ -197,6 +208,9 @@ class GoogleFeedExtractor:
             if candidate.isalpha() and len(candidate) == 3:
                 currency = candidate
                 amount_str = " ".join(parts[:-1])
+            elif parts[0].isalpha() and len(parts[0]) == 3:
+                currency = parts[0].upper()
+                amount_str = " ".join(parts[1:])
 
         if "," in amount_str and "." in amount_str:
             amount_str = amount_str.replace(",", "")
@@ -204,3 +218,11 @@ class GoogleFeedExtractor:
             amount_str = amount_str.replace(",", ".")
 
         return amount_str, currency
+
+
+class _FeedBody(str):
+    def __new__(cls, body, source_url):
+        obj = super().__new__(cls, body)
+        obj.source_url = source_url
+        obj.observed_at = datetime.now(timezone.utc)
+        return obj

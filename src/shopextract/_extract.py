@@ -43,6 +43,7 @@ async def extract(
     llm_temperature: float = 0.2,
     enrich_identifiers: bool = False,
     restore_short_gtin: bool = False,
+    api_options: dict[str, str] | None = None,
 ) -> ExtractionResult:
     """Extract products from an e-commerce store.
 
@@ -59,6 +60,10 @@ async def extract(
         enrich_identifiers: Opt into ID-checked Shopify detail barcode reads.
         restore_short_gtin: Opt into checksum-validated 11-digit UPC zero restoration.
         shop_url: Base shop URL for normalization (defaults to url).
+        api_options: Optional storefront endpoint/access_token overrides and BigCommerce
+            token_type/customer_access_token/customer_id context. Magento
+            protocol defaults to "graphql"; set protocol="rest" for legacy REST.
+            Shopware/BigCommerce otherwise discover explicitly published runtime keys.
         llm_api_key: API key for LLM extraction. Enables Tier 4 (LLM) as
             final fallback. If not provided, reads from SHOPEXTRACT_LLM_API_KEY
             env var, then falls back to provider-specific env vars (OPENAI_API_KEY,
@@ -107,6 +112,14 @@ async def extract(
     """
     if not isinstance(max_urls, int) or isinstance(max_urls, bool) or max_urls <= 0:
         raise ValueError("max_urls must be a positive integer")
+    if api_options is not None:
+        if set(api_options) - {'endpoint', 'access_token', 'protocol', 'token_type',
+                               'customer_access_token', 'customer_id'}:
+            raise ValueError('Unknown storefront API option')
+        if any(not isinstance(v, str) for v in api_options.values()):
+            raise ValueError('Storefront API options must be strings')
+        if api_options.get('protocol', 'graphql') not in ('graphql', 'rest'):
+            raise ValueError('API protocol must be graphql or rest')
     if shop_url is None:
         shop_url = url.rstrip("/")
 
@@ -121,16 +134,35 @@ async def extract(
         result = await detect(url)
         platform = result.platform
 
+    if api_options and 'protocol' in api_options and platform != Platform.MAGENTO:
+        raise ValueError('API protocol option is only supported for Magento')
+
+    from .extractors._bigcommerce_auth import AUTH_OPTIONS, validate_auth
+    if api_options and AUTH_OPTIONS.intersection(api_options):
+        if platform != Platform.BIGCOMMERCE:
+            raise ValueError('BigCommerce authentication options require Platform.BIGCOMMERCE')
+        validate_auth(api_options.get('token_type', 'storefront'), api_options.get('access_token'),
+                      api_options.get('customer_access_token'), api_options.get('customer_id'))
+    customer_context = bool(api_options and (api_options.get('customer_access_token') or
+                                             api_options.get('customer_id')))
+
     observation_scope = catalog_scope(url, platform)
+    if customer_context:
+        import hashlib
+        context = api_options.get('customer_id') or api_options['customer_access_token']
+        observation_scope += ':customer:' + hashlib.sha256(context.encode()).hexdigest()
 
     # Step 2: Try API extraction first
-    api_result = await _try_api_extraction(url, platform, max_products=max_urls, enrich_identifiers=enrich_identifiers)
+    api_kwargs = {'max_products': max_urls, 'enrich_identifiers': enrich_identifiers}
+    if api_options:
+        api_kwargs['api_options'] = api_options
+    api_result = await _try_api_extraction(url, platform, **api_kwargs)
     if api_result is not None and (api_result.products or api_result.complete):
         truncated = len(api_result.products) > max_urls
         api_result.products = api_result.products[:max_urls]
         scorer = QualityScorer()
         quality = scorer.score_batch(api_result.products)
-        if quality >= _QUALITY_THRESHOLD or not api_result.products:
+        if quality >= _QUALITY_THRESHOLD or not api_result.products or customer_context:
             products = _normalize_batch(api_result.products, platform, shop_url, restore_short_gtin=restore_short_gtin)
             reasons = []
             if api_result.complete is not True:
@@ -164,6 +196,12 @@ async def extract(
                 ],
             )
 
+    api_errors = [api_result.error] if api_result is not None and api_result.error else []
+    if customer_context:
+        return ExtractionResult(observation_scope=observation_scope, catalog_complete=False,
+            incompleteness_reasons=['customer_context_unavailable'], tier=ExtractionTier.API,
+            platform=platform, errors=api_errors or ['BigCommerce customer context unavailable'])
+
     # Step 3: Discover URLs for crawl-based extraction
     from ._discover import discover
     urls = await discover(url, platform=platform, max_urls=max_urls)
@@ -173,7 +211,7 @@ async def extract(
             observation_scope=observation_scope,
             incompleteness_reasons=["crawl_coverage_unverified"],
             platform=platform,
-            errors=["No product URLs discovered"],
+            errors=api_errors + ["No product URLs discovered"],
         )
 
     # Step 4: Try UnifiedCrawl on a sample URL
@@ -208,6 +246,7 @@ async def extract(
                 platform=platform,
                 urls_attempted=len(urls),
                 urls_succeeded=len(products),
+                errors=api_errors,
             )
 
     # Step 5: CSS fallback with generic schema
@@ -233,6 +272,7 @@ async def extract(
             platform=platform,
             urls_attempted=len(urls),
             urls_succeeded=len(products),
+            errors=api_errors,
         )
 
     # Step 6: LLM extraction (final fallback, requires API key)
@@ -252,6 +292,7 @@ async def extract(
                 platform=platform,
                 urls_attempted=len(urls),
                 urls_succeeded=len(products),
+                errors=api_errors,
             )
 
     # Nothing worked
@@ -266,8 +307,8 @@ async def extract(
         platform=platform,
         urls_attempted=len(urls),
         urls_succeeded=len(products),
+        errors=api_errors,
     )
-
 
 async def extract_one(
     url: str,
@@ -421,7 +462,8 @@ async def _try_llm_extraction(
 
 
 async def _try_api_extraction(url: str, platform: Platform, *, max_products: int = 20,
-                              enrich_identifiers: bool = False) -> ExtractorResult | None:
+                              enrich_identifiers: bool = False,
+                              api_options: dict[str, str] | None = None) -> ExtractorResult | None:
     """Try platform-specific API extraction."""
     base_url = url.rstrip("/")
 
@@ -439,12 +481,29 @@ async def _try_api_extraction(url: str, platform: Platform, *, max_products: int
         if result.products:
             return result
 
-    elif platform == Platform.MAGENTO:
-        from .extractors.magento import MagentoExtractor
-        extractor = MagentoExtractor()
-        result = await extractor.extract(base_url)
-        if result.products:
-            return result
+    elif platform in (Platform.MAGENTO, Platform.SHOPWARE, Platform.BIGCOMMERCE):
+        options = dict(api_options or {})
+        protocol = options.pop('protocol', 'graphql')
+        if platform == Platform.MAGENTO and protocol == 'rest':
+            from .extractors.magento import MagentoExtractor
+            # Explicit legacy mode; never assume unrestricted anonymous REST access.
+            extractor = MagentoExtractor(max_pages=100, page_size=min(max_products, 100))
+            result = await extractor.extract(base_url, max_products=max_products,
+                                              endpoint=options.get('endpoint'),
+                                              access_token=options.get('access_token'))
+        else:
+            from .extractors.magento_graphql import MagentoGraphQLExtractor
+            from .extractors.shopware import ShopwareExtractor
+            from .extractors.bigcommerce import BigCommerceExtractor
+            cls = {Platform.MAGENTO: MagentoGraphQLExtractor,
+                   Platform.SHOPWARE: ShopwareExtractor,
+                   Platform.BIGCOMMERCE: BigCommerceExtractor}[platform]
+            auth = {key: options[key] for key in ('token_type', 'customer_access_token', 'customer_id')
+                    if platform == Platform.BIGCOMMERCE and key in options}
+            result = await cls().extract(base_url, max_products=max_products,
+                                         endpoint=options.get('endpoint'),
+                                         access_token=options.get('access_token'), **auth)
+        return result
 
     return None
 
@@ -486,6 +545,7 @@ def _normalize_batch(
     """Normalize a batch of raw product dicts."""
     products = []
     for raw in raw_products:
+        # Keep adapter capture context intact; normalize attaches its trust contract.
         product = normalize(raw, platform=platform, shop_url=shop_url, restore_short_gtin=restore_short_gtin)
         if product:
             products.append(product)

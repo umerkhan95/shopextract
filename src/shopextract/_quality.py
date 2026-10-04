@@ -8,8 +8,8 @@ logger = logging.getLogger(__name__)
 
 # Fields that make a product minimally useful
 _TITLE_FIELDS = ("title", "name", "og:title")
-_PRICE_FIELDS = ("price", "og:price:amount", "offers")
-_IMAGE_FIELDS = ("image_url", "image", "og:image", "images")
+_PRICE_FIELDS = ("price", "og:price:amount", "offers", "prices", "price_range", "calculatedPrice")
+_IMAGE_FIELDS = ("image_url", "image", "og:image", "images", "defaultImage", "cover")
 _DESC_FIELDS = ("description", "body_html", "og:description", "short_description")
 _SKU_FIELDS = ("sku", "external_id", "id")
 
