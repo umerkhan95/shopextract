@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 
 from bs4 import BeautifulSoup
+from .._capture import capture
 
 logger = logging.getLogger(__name__)
 
@@ -40,6 +41,8 @@ class OpenGraphExtractor:
                 if property_name and content:
                     og_data[property_name] = content
 
+            if og_data:
+                capture(og_data, url, "opengraph")
             return [og_data] if og_data else []
 
         except Exception as e:

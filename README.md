@@ -10,7 +10,7 @@
 
 No existing pip package lets you extract structured product data from any store URL with zero config. `shopextract` does. Point it at a store, get back clean product data -- titles, prices, images, GTINs, variants -- ready for analysis, comparison, or feed generation.
 
-**Works on any website** -- not just 6 platforms. Shopify, WooCommerce, Magento, BigCommerce, Shopware get the fast API path. Everything else (IKEA, Nike, custom stores) goes through the intelligent scraper. JS-heavy sites use LLM extraction with 17+ provider support including free local models via Ollama.
+**Works on any website** -- not just 6 platforms. Shopify and WooCommerce use public product APIs; Magento uses storefront GraphQL. Shopware and BigCommerce use storefront APIs when their required public or caller-supplied access configuration is available. Missing API access continues through the HTML extraction tiers. Everything else (IKEA, Nike, custom stores) goes through the intelligent scraper. JS-heavy sites use LLM extraction with 17+ provider support including free local models via Ollama.
 
 ---
 
@@ -486,9 +486,11 @@ shopextract validate products.json -m idealo
 |:---------|:------------|:---------:|:-----------------|
 | **Shopify** | ~26% | Headers, CDN, `/products.json` | Public REST API |
 | **WooCommerce** | ~36% | Headers, wp-json, plugins | Public Store API |
-| **Magento 2** | ~2% | Headers, REST API | Public REST API |
-| **BigCommerce** | ~2% | Meta tags, CDN | UnifiedCrawl |
-| **Shopware 6** | ~1% | Headers, API config | UnifiedCrawl |
+| **Magento 2** | ~2% | Headers, GraphQL, REST probes | Storefront GraphQL; explicit legacy REST |
+| **BigCommerce** | ~2% | Meta tags, CDN | Storefront GraphQL when token available; otherwise UnifiedCrawl |
+| **Shopware 6** | ~1% | Headers, public runtime config | Store API when endpoint/key available; otherwise UnifiedCrawl |
+
+See [Storefront API routing](docs/storefront-apis.md) for access discovery, Magento protocol selection, and API configuration.
 
 ### Any Other Website (universal scraping)
 
@@ -509,7 +511,7 @@ shopextract validate products.json -m idealo
 
 | Tier | Method | Speed | Reliability | Cost | Works On |
 |:-----|:-------|:-----:|:-----------:|:----:|:---------|
-| **API** | Platform REST APIs | Fast | High | Free | Shopify, WooCommerce, Magento |
+| **API** | Platform storefront REST/GraphQL APIs | Fast | High | Free | Shopify, WooCommerce, Magento; Shopware/BigCommerce when access available |
 | **UnifiedCrawl** | JSON-LD + OG + markdown parsing | Medium | High | Free | Any site with structured data |
 | **CSS** | Browser-based CSS selectors | Slow | Medium | Free | Any site |
 | **LLM** | AI-powered extraction | Slow | High | Varies | Any site (universal fallback) |
@@ -811,11 +813,57 @@ print(Product(price=Decimal("0.00")).trust_view(contract)["/price"])
 restored = TrustContract.from_dict(contract.to_dict())
 ```
 
-Supply real capture URLs/timestamps/fragments in applications. Extractors do not
-populate these contracts automatically yet. The current serializer covers the trust
-contract; capture, source precedence, SQLite evidence retention and portable Product
-bundles are separate follow-up work. Existing constructors, identity, snapshots and
-feed formats retain their behavior. Raw model/rule scores never create validated
-confidence; validation claims require method, dataset and version metadata.
+Extraction adapters now carry bounded capture context through normalization. Inspect
+`product.trust_view()` and `product.evidence_contract`; normalized variants also expose
+`variant.evidence_contract` and `variant.trust_view()`. Explicit contracts can still be
+passed to `trust_view(contract)`. Products constructed directly retain conservative
+unsupported views. Trust contracts are attached outside dataclass fields; existing
+`asdict`, constructors and exports do not include the contract automatically.
+
+```python
+result = await extract("https://shop.example", max_urls=5)
+product = result.products[0]
+print(product.trust_view()["/price"])
+for observation in product.evidence_contract.observations:
+    print(observation.field_path, observation.state, observation.transformations)
+for evidence in product.evidence_contract.evidence:
+    print(evidence.source_url, evidence.observed_at, evidence.resolve_pointer())
+```
+
+API evidence retains relevant original item values and actual response URLs (including
+redirects). XML/CSV feed projections retain bounded original item/row excerpts where
+available. JSON-LD captures precede layered enrichment. CSS support requires an
+unambiguous matching source node; unsupported selectors/projections are explicit.
+LLM outputs have unsupported observations unless an adapter can verify source spans;
+the current LLM adapter provides no verified spans. Layered Markdown/image fallback,
+implicit stock assumptions and unsupported collection projections remain explicitly
+unsupported. Missing source mappings never borrow a parent variant's value.
+
+Normalizers report the selected source input, conversion outcome and transformation
+once; provenance consumes that result. Rejected API prices may retain the legacy
+zero scalar but remain unsupported. Unrecognized conditions never support a default
+`NEW` value. Image fallbacks follow the source actually chosen, Shopware variants use
+their own source fields, and browser captures use the final redirected page URL.
+Selected inputs must match retained capture; capture truncation cannot cause an
+alternate source to support the original value.
+Stock aggregates retain individual availability/inventory inputs, and response-cookie
+or API-context currency retains its own captured response. Native Magento GraphQL
+and Shopware Store API objects (including child variants) are supported by the
+normalizer and API pipeline. Magento uses GraphQL by default; Shopware and BigCommerce
+API access requires published or caller-supplied storefront configuration. See
+[Storefront API routing](docs/storefront-apis.md) for explicit options and limitations. Feed price parsing accepts currency prefixes and suffixes. CSS can
+trace unambiguous £/€ currency symbols and resolve relative images against the
+fetched page URL. Capture prioritizes leaf fields within the existing byte budgets.
+
+Capture fragments and evidence retained payloads are capped at 4096 UTF-8 JSON bytes;
+source payload retention is capped at 65536 bytes per product capture and per product
+contract. Oversized fragments are omitted, with truncation flags/reasons; smaller
+fields can still have evidence. These limits cover retained support, not legacy raw
+response data, normalized values or total extraction memory. Capture times represent
+UTC observation during extraction, not merchant modification time. Reserved raw
+`_capture` metadata is internal and can change; use the public contract for inspection.
+Raw/model scores and extraction quality never create validated confidence. Source
+precedence, SQLite evidence retention and portable Product bundles remain follow-up
+work. Save a contract explicitly with `product.evidence_contract.to_dict()` for now.
 See [the public contract](specs/002-evidence-data-trust/contracts/evidence.md) and
 [field coverage matrix](specs/002-evidence-data-trust/data-model.md).

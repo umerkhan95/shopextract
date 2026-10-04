@@ -51,7 +51,7 @@ class Variant:
 
     def trust_view(self, contract: TrustContract | None = None) -> dict:
         """Return explicit field support, preserving scalar compatibility."""
-        return trust_view(self, contract)
+        return trust_view(self, contract if contract is not None else getattr(self, "evidence_contract", None))
 
 
 @dataclass
@@ -88,7 +88,7 @@ class Product:
 
     def trust_view(self, contract: TrustContract | None = None) -> dict:
         """Return explicit field support, preserving scalar compatibility."""
-        return trust_view(self, contract)
+        return trust_view(self, contract if contract is not None else getattr(self, "evidence_contract", None))
 
 
 @dataclass

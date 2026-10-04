@@ -142,6 +142,7 @@ async def _probe_api_endpoints(
         _probe_woocommerce_api(client, base_url, signals),
         _probe_magento_api(client, base_url, signals),
         _probe_shopware_api(client, base_url, signals),
+        _probe_magento_graphql(client, base_url, signals),
         return_exceptions=True,
     )
 
@@ -185,6 +186,18 @@ async def _probe_magento_api(
         logger.debug("Magento API probe failed for %s: %s", base_url, e)
 
 
+async def _probe_magento_graphql(client, base_url, signals):
+    try:
+        response = await client.get(base_url + '/graphql',
+            params={'query':'{storeConfig{store_code}}'}, timeout=PROBE_TIMEOUT)
+        if response.status_code == 200:
+            config = response.json().get('data', {}).get('storeConfig')
+            if isinstance(config, dict) and config.get('store_code'):
+                signals[Platform.MAGENTO].append('api:/graphql:storeConfig')
+    except Exception as e:
+        logger.debug('Magento GraphQL probe failed: %s', type(e).__name__)
+
+
 async def _probe_shopware_api(
     client: httpx.AsyncClient, base_url: str, signals: dict[Platform, list[str]]
 ) -> None:
@@ -217,6 +230,10 @@ async def _probe_html_content(
         html = raw_html.lower()
         _analyze_meta_tags(html, signals)
         _analyze_cdn_sources(html, signals)
+        from .extractors._storefront import public_config
+        endpoint, token = public_config(raw_html, 'shopware', str(response.url))
+        if endpoint and token:
+            signals[Platform.SHOPWARE].append('html:public-shopware-store-api')
 
     except Exception as e:
         logger.debug("HTML probe failed for %s: %s", url, e)

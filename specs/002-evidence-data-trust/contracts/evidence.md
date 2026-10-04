@@ -43,3 +43,25 @@ remain responsible for supplying real validation artifacts.
 Legacy Product dicts remain ordinary Product constructor input. Construct them and
 inspect `.trust_view()` for explicit unsupported provenance. No migration timestamp,
 synthetic evidence ID or guessed calibration is manufactured.
+
+## Automatic capture (#35)
+`normalize()` attaches `product.evidence_contract` and variant-relative contracts
+outside dataclass fields. `trust_view()` uses attached contracts by default. API,
+feed, JSON-LD/OpenGraph and verified CSS mappings carry source context. Fields with
+no retained mapping (including unverified LLM outputs) have explicit unsupported
+reasons; explicit empty scalar values have unknown observations.
+
+Retained source payloads use a 4096-byte fragment cap and 65536-byte per-product
+capture/contract cap measured as UTF-8 JSON. Omitted support is explicit. Original
+values remain in `raw_value` and pointer-resolvable evidence; `transformations`
+explain normalization, ID-checked enrichment and opt-in GTIN restoration. The
+retained object may be a projection: `source_pointer` identifies its original item
+location, while the evidence `pointer` resolves locally against retained data.
+Raw dataclass export is not lossless contract export; serialize contracts separately
+until #38. Authority remains unverified until #36 policy.
+
+For response-cookie or API-context fields, a field observation may reference a
+separate capture with that response's URL/time; it cannot borrow the product body's
+source. Aggregate stock retains its individual contributing input pointers. Native
+Shopware Store API children and Magento GraphQL final-price fields use their native
+nested paths. Leaf fragments are attempted before duplicate ancestor projections.

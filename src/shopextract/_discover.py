@@ -9,7 +9,8 @@ from __future__ import annotations
 
 import asyncio
 import logging
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urljoin
+from bs4 import BeautifulSoup
 
 import defusedxml.ElementTree as ET
 from defusedxml.common import DefusedXmlException
@@ -90,7 +91,7 @@ async def discover(
     logger.info("Discovering URLs for %s (platform: %s)", base_url, platform)
 
     try:
-        coro = _discover_for_platform(base_url, platform, timeout, client)
+        coro = _discover_for_platform(base_url, platform, timeout, client, max_urls=max_urls)
         urls = await asyncio.wait_for(coro, timeout=_DISCOVERY_TIMEOUT)
     except asyncio.TimeoutError:
         logger.error("URL discovery timed out after %ds for %s", _DISCOVERY_TIMEOUT, base_url)
@@ -106,7 +107,8 @@ async def discover(
 
 
 async def _discover_for_platform(
-    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None
+    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None,
+    max_urls: int = 100,
 ) -> list[str]:
     if platform == Platform.SHOPIFY:
         return await _discover_shopify(base_url, platform, timeout, client)
@@ -115,7 +117,7 @@ async def _discover_for_platform(
     elif platform == Platform.MAGENTO:
         return await _discover_magento(base_url, platform, timeout, client)
     elif platform == Platform.BIGCOMMERCE:
-        return await _discover_bigcommerce(base_url, platform, timeout, client)
+        return await _discover_bigcommerce(base_url, platform, timeout, client, max_urls=max_urls)
     else:
         return await _discover_generic(base_url, platform, timeout, client)
 
@@ -197,8 +199,28 @@ async def _discover_magento(
 
 
 async def _discover_bigcommerce(
-    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None
+    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None,
+    max_urls: int = 100,
 ) -> list[str]:
+    # Stencil cards identify actual product links, avoiding a browser catalog walk
+    # when the storefront token is absent and only a small sample was requested.
+    from .extractors._storefront import storefront_client, request
+    try:
+        async with storefront_client(client, timeout) as c:
+            response = await request(c, 'GET', base_url, headers={'User-Agent':_USER_AGENT})
+            soup = BeautifulSoup(response.text, 'html.parser')
+            domain = urlparse(str(response.url)).netloc
+            cards = []
+            for anchor in soup.select('.card-title a[href]'):
+                url = urljoin(str(response.url), anchor['href']).split('#', 1)[0]
+                if urlparse(url).netloc == domain and not is_non_product_url(url) and url not in cards:
+                    cards.append(url)
+                    if len(cards) >= max_urls:
+                        break
+            if cards:
+                return cards
+    except Exception as e:
+        logger.debug('BigCommerce public card discovery unavailable: %s', type(e).__name__)
     urls = await _discover_via_sitemap(base_url, platform, timeout, client)
     if urls:
         return urls
