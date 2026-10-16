@@ -413,5 +413,6 @@
     "tests/test_maintenance_stress_prerequisites.py": "e26b8d2e9f766d78edbfed053053983e36bf4310e3b5231763321d13cfa666e2",
     "tests/test_maintenance_workflow.py": "b6edf7cef5236b39aaee2cd73be7b31d92da453a3c7cd0ed065524d9604d2e4f"
   },
-  "excluded": "Unrelated stress/workflow history, other artifacts/spec004 status, generated databases/locks/bytecode"
+  "excluded": "Unrelated stress/workflow history, other artifacts/spec004 status, generated databases/locks/bytecode",
+  "snapshot_phase": "Initial reviewed file copy, before PR status bookkeeping"
 }

@@ -1,0 +1,19 @@
+{
+  "pull_request": "https://github.com/umerkhan95/shopextract/pull/59",
+  "branch": "catalog-maintenance-categories",
+  "base": "13065f3c2bfd5161eec6c71ea92802ff55816760",
+  "tickets": [
+    25,
+    55,
+    56,
+    57,
+    58
+  ],
+  "state": "submitted",
+  "validation": {
+    "reviewed_workspace_tests": 1054,
+    "isolated_focused_passes": 3,
+    "remote_ci": "See PR for live result"
+  },
+  "excluded": "Unrelated stress/workflow history and artifacts, spec004 status, generated databases/locks/bytecode"
+}

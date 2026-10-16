@@ -2,8 +2,10 @@
 
 Local implementation and verification COMPLETE; independent final review PASSED.
 Reviewer: maintenance_reviewer; verdict and reviewed digests are in reviews.md.
-Branch: catalog-maintenance-agent. GitHub #25/#55–58 remain open for publication;
-no PR or remote CI outcome is implied by this local handoff.
+Delivery: [PR #59](https://github.com/umerkhan95/shopextract/pull/59) on `catalog-maintenance-categories`,
+including reviewed category integration. Tickets #25/#55–58 are linked for closure
+on merge. Current merge/CI status is recorded on the PR. Combined current workspace
+regression:1054 passed; original923-test evidence below remains historical.
 All923 distinct collected tests have observed passing outcomes:783original-prefix
 + approved140suffix (1seed+139;64.777606souter). The original whole-suite240s
 command timed out and remains honestly recorded; no whole-suite repeat.
