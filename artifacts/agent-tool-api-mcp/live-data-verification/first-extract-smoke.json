@@ -1,0 +1,53 @@
+{
+  "outcome": "passed",
+  "elapsed": 22.626087897995603,
+  "fields_verified": [
+    {
+      "title": "Bliss Halloween Costume",
+      "external_id": "15445253980445",
+      "price": "65.00",
+      "sku": "0585-0057003",
+      "product_url": "https://www.blissworld.com/products/bliss-halloween-costume",
+      "variant_ids": [
+        "67743111872797"
+      ],
+      "gtin": null,
+      "gtin_support": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_2651187b-3faf-4999-944a-81ec7cc7016e"
+        ],
+        "evidence_ids": []
+      },
+      "source_file": "http-05.body",
+      "source_url": "https://www.blissworld.com/products.json?limit=2&page=1"
+    },
+    {
+      "title": "Salmon DNA Duo",
+      "external_id": "15432203174173",
+      "price": "55.00",
+      "sku": null,
+      "product_url": "https://www.blissworld.com/products/salmon-dna-duo",
+      "variant_ids": [
+        "67705008455965"
+      ],
+      "gtin": null,
+      "gtin_support": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_7aa949bb-5f59-49e1-ae6d-a003cbed17ae"
+        ],
+        "evidence_ids": []
+      },
+      "source_file": "http-05.body",
+      "source_url": "https://www.blissworld.com/products.json?limit=2&page=1"
+    }
+  ],
+  "request_count": 5
+}

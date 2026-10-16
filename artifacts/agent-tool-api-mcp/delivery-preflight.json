@@ -1,0 +1,13 @@
+{
+  "stage": "review ready; not executed",
+  "same48_nodes": true,
+  "cases": 48,
+  "planned_fixture_bytes": 14490163,
+  "fixture_limit": 16777216,
+  "whole_seconds": 180,
+  "case_seconds": 15,
+  "manifest_files": 88,
+  "old_receipts_unchanged": true,
+  "driver_sha256": "c72986075633562417d1ed057db6a106644ce54f134573b9e5d569ed7af8bb33",
+  "manifest_bytes_note": "See delivery-files.json exact file sizes; self-manifest excluded from its recursive hash"
+}

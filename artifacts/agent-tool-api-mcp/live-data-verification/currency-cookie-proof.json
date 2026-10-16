@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://www.blissworld.com/products.json?limit=2&page=1",
+    "body_file": "http-05.body",
+    "body_sha256": "06e56c83039c441787c0f4ec6e0b26f53b28e4efda80c3f5b14051219befbbc5",
+    "only_retained_cookie_projection": {
+      "cart_currency": "USD"
+    },
+    "source_pointer": "/cart_currency",
+    "note": "Value read from actual bounded HTTP response cookie; no other Set-Cookie/session/header values retained"
+  },
+  {
+    "url": "https://www.blissworld.com/products.json?limit=2&page=1",
+    "body_file": "http-07.body",
+    "body_sha256": "8c81603d239cc9846b7a5f9fec1e85f37b4e8e32876ebf5fe018f4d334d946bd",
+    "only_retained_cookie_projection": {
+      "cart_currency": "USD"
+    },
+    "source_pointer": "/cart_currency",
+    "note": "Value read from actual bounded HTTP response cookie; no other Set-Cookie/session/header values retained"
+  }
+]

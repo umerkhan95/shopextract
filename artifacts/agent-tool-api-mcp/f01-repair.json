@@ -1,0 +1,15 @@
+{
+  "old_sha256": "7222d74661a3238384f48a4142c250ee8035ac197ad27376f169473b37cb85e2",
+  "new_sha256": "26f1862d98b211dced1e5be90925fda6ebb91075799e3474c7636cdb9cb788b3",
+  "policy": "Cross-origin safe read-header allowlist; same-origin preserves native context but strips Authorization/Cookie/Host as existing; destination DNS/pinning unchanged",
+  "red": "1 failed (cross-origin sw-access-key leak),1 passed in0.31s",
+  "production_paths": "Actual HTTP framing via HTTPCore/GuardedTransport/PinnedBackend; only final numeric socket endpoint maps to controlled loopback",
+  "green": {
+    "exit": 0,
+    "timeout": false,
+    "seconds": 2.502977230993565,
+    "total_timeout_seconds": 15
+  },
+  "green_summary": "2 passed in0.15s",
+  "test_sha256": "9d2239b619a8cbc058c2bad32256c369634176f2aa33b94d7f53a96c0c66b747"
+}

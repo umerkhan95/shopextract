@@ -1,0 +1,194 @@
+
+CASE M01 tests/test_tool_lifecycle.py::test_immutable_pages_cursor_binding_expiry_and_release
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.                                                                        [100%]
+1 passed in 0.02s
+
+CASE M02 tests/test_tool_lifecycle.py::test_aggregate_rejection_and_eviction_releases_graph
+.                                                                        [100%]
+1 passed in 0.04s
+
+CASE M03 tests/test_tool_lifecycle.py::test_cancel_queue_and_completed_cancel_winner
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M04 tests/test_tool_lifecycle.py::test_retained_charge_includes_products_and_each_real_payload_copy
+.                                                                        [100%]
+1 passed in 0.04s
+
+CASE M05 tests/test_tool_lifecycle.py::test_running_graph_reservation_counts_and_cancel_releases
+.                                                                        [100%]
+1 passed in 0.04s
+
+CASE M06 tests/test_agent_tool_api.py::test_unknown_version_rejected_before_work
+.                                                                        [100%]
+1 passed in 0.12s
+
+CASE M07 tests/test_agent_tool_api.py::test_denied_source_is_structured_error_without_network
+.                                                                        [100%]
+1 passed in 0.04s
+
+CASE M08 tests/test_agent_tool_api.py::test_existing_evidence_denied_through_other_valid_owner
+.                                                                        [100%]
+1 passed in 2.74s
+
+CASE M09 tests/test_agent_tool_api.py::test_invalid_page_size_rejected
+.                                                                        [100%]
+1 passed in 0.27s
+
+CASE M10 tests/test_agent_tool_api.py::test_guard_refuses_nonpublic_dns_before_connect
+.                                                                        [100%]
+1 passed in 0.04s
+
+CASE M11 tests/test_agent_tool_api.py::test_complete_domain_flow_uses_native_code_paths
+.                                                                        [100%]
+1 passed in 4.25s
+
+CASE M12 tests/test_agent_tool_api.py::test_cancel_running_resolution_publishes_no_catalog
+.                                                                        [100%]
+1 passed in 0.04s
+
+CASE M13 tests/test_tool_shopware_policy.py::test_fixed_native_search_and_denied_redirect_target
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M14 tests/test_tool_shopware_policy.py::test_denied_policy_route_and_body_never_send
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M15 tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[shopify]
+.                                                                        [100%]
+1 passed in 1.48s
+
+CASE M16 tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[woocommerce]
+.                                                                        [100%]
+1 passed in 1.43s
+
+CASE M17 tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[magento]
+.                                                                        [100%]
+1 passed in 1.40s
+
+CASE M18 tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[shopware]
+.                                                                        [100%]
+1 passed in 1.42s
+
+CASE M19 tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[bigcommerce]
+.                                                                        [100%]
+1 passed in 1.42s
+
+CASE M20 tests/test_tool_mechanisms.py::test_contract_missing_null_false_and_nonfinite
+.                                                                        [100%]
+1 passed in 0.37s
+
+CASE M21 tests/test_tool_mechanisms.py::test_input_byte_limit_edges
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M22 tests/test_tool_mechanisms.py::test_cursor_tamper_collection_and_session
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M23 tests/test_tool_mechanisms.py::test_empty_page_and_zero_total
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M24 tests/test_tool_mechanisms.py::test_queue_limit_and_waiting_deadline
+.                                                                        [100%]
+1 passed in 0.10s
+
+CASE M25 tests/test_tool_mechanisms.py::test_resolver_process_stall_is_reaped
+.                                                                        [100%]
+1 passed in 0.11s
+
+CASE M26 tests/test_tool_mechanisms.py::test_repeated_process_cancel_no_accumulation
+.                                                                        [100%]
+1 passed in 4.88s
+
+CASE M27 tests/test_tool_mechanisms.py::test_domain_process_deadline_no_success
+.                                                                        [100%]
+1 passed in 0.10s
+
+CASE M28 tests/test_tool_mechanisms.py::test_reaper_failure_stops_replacement
+.                                                                        [100%]
+1 passed in 0.06s
+
+CASE M29 tests/test_tool_mechanisms.py::test_graph_default_byte_cap_and_shared_copies
+.                                                                        [100%]
+1 passed in 0.26s
+
+CASE M30 tests/test_tool_mechanisms.py::test_identity_encoding_rejected_before_stream_read
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M31 tests/test_tool_mechanisms.py::test_raw_body_multichunk_cap_and_false_length
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M32 tests/test_tool_mechanisms.py::test_shared_request_and_redirect_budget
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M33 tests/test_tool_mechanisms.py::test_redirect_count_cap
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M34 tests/test_tool_mechanisms.py::test_nonpublic_address_family_vectors
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M35 tests/test_tool_mechanisms.py::test_mixed_public_private_dns_denied
+.                                                                        [100%]
+1 passed in 0.03s
+
+CASE M36 tests/test_tool_mechanisms.py::test_origin_idna_trailing_dot_port_and_bypass_syntax
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M37 tests/test_tool_mechanisms.py::test_discovered_denied_link_is_diagnostic_only
+.                                                                        [100%]
+1 passed in 0.07s
+
+CASE M38 tests/test_tool_mechanisms.py::test_dns_change_after_discovery_denies_extraction
+.                                                                        [100%]
+1 passed in 0.10s
+
+CASE M39 tests/test_tool_mechanisms.py::test_cross_origin_redirect_no_target_bytes
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M40 tests/test_tool_mechanisms.py::test_pinned_numeric_tcp_preserves_host_and_tls
+.                                                                        [100%]
+1 passed in 0.12s
+
+CASE M41 tests/test_tool_mechanisms.py::test_evidence_response_cap_metadata
+.                                                                        [100%]
+1 passed in 0.05s
+
+CASE M42 tests/test_tool_mechanisms.py::test_incomplete_capture_replay_never_confirms_removal
+.                                                                        [100%]
+1 passed in 5.61s
+
+CASE M43 tests/test_tool_mechanisms.py::test_real_changes_replay_and_capture_grants
+.                                                                        [100%]
+1 passed in 7.39s
+
+CASE M44 tests/test_tool_mechanisms.py::test_supported_empty_distinct_from_backend_failure
+.                                                                        [100%]
+1 passed in 1.40s
+
+CASE M45 tests/test_tool_mechanisms.py::test_publication_fault_releases_reservation
+.                                                                        [100%]
+1 passed in 2.77s
+
+CASE M46 tests/test_tool_mechanisms.py::test_real_evidence_expiry_and_disconnect
+.                                                                        [100%]
+1 passed in 1.40s
+
+CASE M47 tests/test_tool_mechanisms.py::test_feed_static_real_parser_and_evidence
+.                                                                        [100%]
+1 passed in 1.41s
+
+CASE M48 tests/test_tool_mechanisms.py::test_late_cancelled_domain_cannot_publish
+.                                                                        [100%]
+1 passed in 0.06s
