@@ -47,7 +47,7 @@ def _json(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False)
 
 
-def _ensure_evidence_schema(conn):
+def _ensure_evidence_schema(conn, *, backfill=True):
     """Additive, module-versioned migration; caller owns the transaction."""
     conn.execute("CREATE TABLE IF NOT EXISTS evidence_schema (singleton INTEGER PRIMARY KEY CHECK(singleton=1), version INTEGER NOT NULL)")
     version = conn.execute("SELECT version FROM evidence_schema WHERE singleton=1").fetchone()
@@ -68,7 +68,7 @@ def _ensure_evidence_schema(conn):
         conn.execute(sql)
     # Existing scalar rows never imply captured support. Migration leaves their
     # JSON, IDs and timestamps alone; identity migration remains caller-owned.
-    for sid, payload in conn.execute("SELECT id,products_json FROM snapshots WHERE NOT EXISTS (SELECT 1 FROM evidence_owners WHERE snapshot_id=snapshots.id)").fetchall():
+    for sid, payload in (conn.execute("SELECT id,products_json FROM snapshots WHERE NOT EXISTS (SELECT 1 FROM evidence_owners WHERE snapshot_id=snapshots.id)").fetchall() if backfill else []):
         for i, product in enumerate(json.loads(payload)):
             for key in [f"product/{i}"] + [f"product/{i}/variant/{j}" for j in range(len(product.get("variants", [])))]:
                 conn.execute("INSERT OR IGNORE INTO evidence_owners VALUES (?,?,NULL,?)", (sid, key, _REASON))
@@ -234,36 +234,41 @@ def _legacy_product(data):
     return Product(**data)
 
 
+def _load_snapshot(conn, snapshot_id):
+    """Load one selected snapshot using the caller-owned transaction."""
+    row = conn.execute("SELECT products_json FROM snapshots WHERE id=?", (snapshot_id,)).fetchone()
+    if row is None:
+        raise KeyError(snapshot_id)
+    records = conn.execute("SELECT position,record_json FROM evidence_products WHERE snapshot_id=? ORDER BY position", (snapshot_id,)).fetchall()
+    if not records:
+        return [_legacy_product(p) for p in json.loads(row[0])]
+    result = []
+    for i, payload in records:
+        record = json.loads(payload)
+        record["evidence_contract"], tombstones = _owner_graph(conn, snapshot_id, f"product/{i}")
+        if tombstones:
+            old = decode_value(record.get("evidence_availability", []))
+            record["evidence_availability"] = encode_value([t for t in old if t["evidence_id"] not in {n["evidence_id"] for n in tombstones}] + tombstones)
+        variants, availabilities = [], []
+        for j in range(len(record["product"]["variants"])):
+            graph, availability = _owner_graph(conn, snapshot_id, f"product/{i}/variant/{j}")
+            variants.append(graph)
+            availabilities.append(availability)
+        record["variant_contracts"] = variants
+        existing = decode_value(record.get("variant_evidence_availability", [None] * len(variants)))
+        if "variant_evidence_availability" in record or any(availabilities):
+            record["variant_evidence_availability"] = [encode_value([t for t in (old or []) if t["evidence_id"] not in {n["evidence_id"] for n in new}] + new) if old is not None or new else None for old, new in zip(existing, availabilities)]
+        result.append(product_from_record(record))
+    return result
+
+
 def load_snapshot(snapshot_id: int, *, db_path=DEFAULT_DB_PATH) -> list[Product]:
     from .snapshot import _get_connection
     conn = _get_connection(db_path)
     try:
         with conn:
             conn.execute("BEGIN")
-            row = conn.execute("SELECT products_json FROM snapshots WHERE id=?", (snapshot_id,)).fetchone()
-            if row is None:
-                raise KeyError(snapshot_id)
-            records = conn.execute("SELECT position,record_json FROM evidence_products WHERE snapshot_id=? ORDER BY position", (snapshot_id,)).fetchall()
-            if not records:
-                return [_legacy_product(p) for p in json.loads(row[0])]
-            result = []
-            for i, payload in records:
-                record = json.loads(payload)
-                record["evidence_contract"], tombstones = _owner_graph(conn, snapshot_id, f"product/{i}")
-                if tombstones:
-                    old = decode_value(record.get("evidence_availability", []))
-                    record["evidence_availability"] = encode_value([t for t in old if t["evidence_id"] not in {n["evidence_id"] for n in tombstones}] + tombstones)
-                variants, availabilities = [], []
-                for j in range(len(record["product"]["variants"])):
-                    graph, availability = _owner_graph(conn, snapshot_id, f"product/{i}/variant/{j}")
-                    variants.append(graph)
-                    availabilities.append(availability)
-                record["variant_contracts"] = variants
-                existing = decode_value(record.get("variant_evidence_availability", [None] * len(variants)))
-                if "variant_evidence_availability" in record or any(availabilities):
-                    record["variant_evidence_availability"] = [encode_value([t for t in (old or []) if t["evidence_id"] not in {n["evidence_id"] for n in new}] + new) if old is not None or new else None for old, new in zip(existing, availabilities)]
-                result.append(product_from_record(record))
-            return result
+            return _load_snapshot(conn, snapshot_id)
     except (TypeError, AttributeError, json.JSONDecodeError) as exc:
         raise ValueError("Corrupt evidence storage") from exc
     finally:

@@ -1,0 +1,33 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+__________ test_sc08_failure_reasons_override_complete_flag[previous] __________
+tests/test_reliable_changes.py:593: in test_sc08_failure_reasons_override_complete_flag
+    r = report(db, a, b, recheck)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+__________ test_sc08_failure_reasons_override_complete_flag[current] ___________
+tests/test_reliable_changes.py:593: in test_sc08_failure_reasons_override_complete_flag
+    r = report(db, a, b, recheck)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+__________ test_sc08_failure_reasons_override_complete_flag[recheck] ___________
+tests/test_reliable_changes.py:593: in test_sc08_failure_reasons_override_complete_flag
+    r = report(db, a, b, recheck)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+=========================== short test summary info ============================
+FAILED tests/test_reliable_changes.py::test_sc08_failure_reasons_override_complete_flag[previous]
+FAILED tests/test_reliable_changes.py::test_sc08_failure_reasons_override_complete_flag[current]
+FAILED tests/test_reliable_changes.py::test_sc08_failure_reasons_override_complete_flag[recheck]
+3 failed, 87 deselected in 0.52s
