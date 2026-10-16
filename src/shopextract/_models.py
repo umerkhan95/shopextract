@@ -8,6 +8,9 @@ from decimal import Decimal
 from enum import Enum
 from typing import TYPE_CHECKING
 
+from ._evidence import (Evidence, FieldObservation, FieldResolution, SupportState,
+                        TrustContract, ValidatedConfidence, factual_paths, trust_view)
+
 if TYPE_CHECKING:
     from .compare.identity_match import MatchDecision
 
@@ -46,6 +49,10 @@ class Variant:
     attributes: dict[str, str] = field(default_factory=dict)
     gtin: str | None = None
 
+    def trust_view(self, contract: TrustContract | None = None) -> dict:
+        """Return explicit field support, preserving scalar compatibility."""
+        return trust_view(self, contract)
+
 
 @dataclass
 class Product:
@@ -78,6 +85,10 @@ class Product:
     attributes: dict[str, str] = field(default_factory=dict)
     pack_quantity: int | None = None
     bundle_components: list[str] = field(default_factory=list)
+
+    def trust_view(self, contract: TrustContract | None = None) -> dict:
+        """Return explicit field support, preserving scalar compatibility."""
+        return trust_view(self, contract)
 
 
 @dataclass
