@@ -26,3 +26,12 @@ and a two-request live pipeline smoke. Live source values did not change, so
 commercial-change validation remains inconclusive. The driver and compact stage
 logs are included; full storefront responses and the live SQLite database remain
 local and are not included.
+
+Tool API and MCP server (#24): `agent-tool-api-mcp/delivery-summary.json` records
+48 passing current-code mechanism cases with bounded resource usage.
+`agent-tool-api-mcp/live-data-verification/summary.json` and `data-audit.json`
+record the real MCP client flow and source comparisons for two live products.
+Only compact API responses, currency-cookie projections, portable records and
+verification summaries are included. Full storefront HTML, local SQLite databases
+and unrelated experiments remain local. Historical failures remain documented;
+the current delivery run supersedes their coverage gaps without rewriting them.

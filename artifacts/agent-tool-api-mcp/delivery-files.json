@@ -1,0 +1,478 @@
+{
+  "stage": "reviewed delivery files; final documentation/evidence hashes refreshed before staging",
+  "files": [
+    {
+      "path": ".github/workflows/test.yml",
+      "bytes": 1037,
+      "sha256": "95a50c72fea9793152085fe17d44a978eb9bc4bb2044704b412df9e9a7162773"
+    },
+    {
+      "path": "README.md",
+      "bytes": 39053,
+      "sha256": "28142bc99dec6c97cf186e0c85066bf1d09635c164c20b9d9725bc6c7396804e"
+    },
+    {
+      "path": "artifacts/README.md",
+      "bytes": 2377,
+      "sha256": "1d508be12dbe4d2b047f7b03639c322a11e839f80fb53438d5614bc9a30a45ee"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/build-inventory.py",
+      "bytes": 11631,
+      "sha256": "39941b7bd6b68c4024d76e23d754425dc19b2fa09832246fee22c9b9fbf9fd76"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/check-discovery-eligibility.py",
+      "bytes": 1197,
+      "sha256": "6a578fc95fb215afe7f9a32d5d824ecefd78aa86521dd248b317876108f1bd27"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/check-f02-focused.py",
+      "bytes": 1714,
+      "sha256": "4f744dd5b74b018a22a83021fb22cc7d172bce9470c4ae3c8633e10f950f14af"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/check-m11-cache.py",
+      "bytes": 2318,
+      "sha256": "c22de098cb39b6133d908a80a2c7f1e91c869cc08468f2241aef185add956b51"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/check-m39-normalization.py",
+      "bytes": 2079,
+      "sha256": "0c798358fb1ec4054f3b5922a2fd1a283ba8a6446a5c8b5811f4f0ad16f7701d"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/check-three-offline.py",
+      "bytes": 1876,
+      "sha256": "ca3753b825224d28d0cac5442ba0f28b0729748ae1b2eb722d22bfb4f072953d"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/delivery-driver-output.log",
+      "bytes": 836,
+      "sha256": "f13e6f7aef2a7ecca84d2abecab92eb668d2f2f98d108dc248d9dd03e38d86b6"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/delivery-driver.diff",
+      "bytes": 7355,
+      "sha256": "ab047e3bc3157ae01578879dc5aaeb3632f09e07fd5c724f3a137b7fc213ad04"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/delivery-inventory.json",
+      "bytes": 19123,
+      "sha256": "a8d9e43ab5d7e54a49d67de06e2c237f0246bdf96543a1a8d5464c2925ea751a"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/delivery-outer.json",
+      "bytes": 316,
+      "sha256": "9d523b6face5da0d1f881a78c65be2499548bcd0e2c633a7c752e678b5fc8777"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/delivery-preflight.json",
+      "bytes": 457,
+      "sha256": "9c5abbbdf56c9eb8e4b6ec378b209a731852a48833c294f3573981c73733d0c2"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/delivery-progress.json",
+      "bytes": 45932,
+      "sha256": "42d23424472d4babfa4e94a4d6142a1e9e8c77394fd75bb894933798b2bbfd41"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/delivery-run.log",
+      "bytes": 9183,
+      "sha256": "5b7a746a8e94bd6e1fc2e27d1b056ce711ffbb4e2c1642c6dfd98b4df75adcc1"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/delivery-summary.json",
+      "bytes": 961,
+      "sha256": "64fbdf64028f097d6af36bf967ac80525cb80272b4943c506373296c456e12ae"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/diagnose-native.py",
+      "bytes": 1481,
+      "sha256": "b59f34992a8db88a9d6b96e4e602981591e8b559112748d56858399719db37a9"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/diagnose-three-offline.py",
+      "bytes": 2569,
+      "sha256": "6dd7ff632cea5be2dc4ce65703a139ad6810462d062c89ff42555b2aa9237180"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/discovery-eligibility-green-caps.json",
+      "bytes": 842,
+      "sha256": "f5777b24d798838e6ef4e695064f952c6686b7214adabb17cf6127cf72353f45"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/discovery-eligibility-green.json",
+      "bytes": 229,
+      "sha256": "a8087404aa06d9becbbadfe6b2e56f0358acc682ff9ceb39b3321c3647e70bc8"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/discovery-lazy-green.json",
+      "bytes": 591,
+      "sha256": "12c9d34f75ba112599c96a8f9cb488d110351ce8f558efc8f90f1ec96b70ac14"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/f01-green.json",
+      "bytes": 99,
+      "sha256": "a76e68d7aacfd17aceea683943032be22eee028f794ec75ca8dc59a399e3f3a3"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/f01-repair.json",
+      "bytes": 818,
+      "sha256": "98488a40ff0e6a473a35fcd4370e50af786cf55069b87bb69b84e625b13f9260"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/f02-final-full-suite.json",
+      "bytes": 764,
+      "sha256": "c8d11f5695f61b75e246480f1745ff6074eb17cf56237b0ca63116f56c06af2e"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/audit-saved-data.py",
+      "bytes": 4208,
+      "sha256": "230745cc993356ee2a2592ddbc0f37c1d3ab842c49dfa420baa999ad2a5a5dff"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/currency-cookie-proof.json",
+      "bytes": 871,
+      "sha256": "f4fc8e60f5fc8371eab08f2aa6d628401f90a95badfcc55164107f057ee849e0"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/data-audit.json",
+      "bytes": 4064,
+      "sha256": "219623ab5b7b3aba9f84815d18fe10b82375612ded072be505ae23a595464b61"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/extract-1-response.json",
+      "bytes": 41422,
+      "sha256": "fdbfde743eb8855938166d021f17ae36e7e3a78ec32c35d8a5dd7aff8fb39a38"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/extract-2-response.json",
+      "bytes": 41422,
+      "sha256": "be06f6e9ac8ff833d261e6c6892ad0973cc388b627e3702329e046fa1c6676a5"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/first-extract-smoke.json",
+      "bytes": 1562,
+      "sha256": "a5213f8b27d43c6145fc0d4780fb6b4e93e38bfc2ac3a721450bb3a13337d54b"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/http-05.body",
+      "bytes": 3371,
+      "sha256": "06e56c83039c441787c0f4ec6e0b26f53b28e4efda80c3f5b14051219befbbc5"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/http-07.body",
+      "bytes": 3371,
+      "sha256": "8c81603d239cc9846b7a5f9fec1e85f37b4e8e32876ebf5fe018f4d334d946bd"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/outer.json",
+      "bytes": 217,
+      "sha256": "f1b8c53cbf2fd9d5254e2a7cb15f2e148793cf1f77c0ed4f93fe8d0677f00d1f"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/portable-1.json",
+      "bytes": 85383,
+      "sha256": "a6b1ff74867565e3c18be2a476365fef9685b60c82783bcc7d0630a563d8bb31"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/portable-2.json",
+      "bytes": 85383,
+      "sha256": "78bce297eb88db7a8f188dd8e1e5adfb70909829e66769fda15f92a40579f284"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/receipt.json",
+      "bytes": 3540,
+      "sha256": "728e713249b586c3a05c66e870e63213502f203be4eedb6c93a21d0388a8cb66"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/result.json",
+      "bytes": 66550,
+      "sha256": "ddd4953f244e4ccedb205009ca98706b679767625f7e38c92da50517dc18d3cd"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/run.py",
+      "bytes": 10065,
+      "sha256": "6dc903b334e0df629aefa1ebbd0e3ef3d18b894af1ccbc384c8b66c1d5a9ac01"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/summary.json",
+      "bytes": 4598,
+      "sha256": "fd6fd55a9e5f123104fdc996ec12285a06e543888a0b047eb655e43a60c73fbd"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/mechanism-inventory.json",
+      "bytes": 18866,
+      "sha256": "8df2f4894eef4d932620fd74cb71d4a872156393539b8e2e14ac433d80a8feab"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/process-inventory-probe.py",
+      "bytes": 2712,
+      "sha256": "6607b14feb0610c1d3607c9700093bcdabc9bbc891054d0ec09c5bd07467e977"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/run-delivery-mechanisms.py",
+      "bytes": 10377,
+      "sha256": "c72986075633562417d1ed057db6a106644ce54f134573b9e5d569ed7af8bb33"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/run-mechanisms.py",
+      "bytes": 13376,
+      "sha256": "a0befe50feb158dbdbdf512e96d93f4e9f4aa1686883eeb6934dc1464f44616f"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/sdk-probe.py",
+      "bytes": 1684,
+      "sha256": "09285c7fb8591cd900daa7a30e7c728a94ecf9e688b46b4b36f9435e5cc32ebf"
+    },
+    {
+      "path": "docs/agent-tools.md",
+      "bytes": 12152,
+      "sha256": "78baf7655154fdfb11a58adc72a6f7e62b400555b56bdc1ca90aa163b622fdb5"
+    },
+    {
+      "path": "examples/mcp_reference_client.py",
+      "bytes": 3946,
+      "sha256": "863c18e009e2f1488f8f6ceb99fc92e95fe3c39a919916daba25daca0ba72e7f"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 1520,
+      "sha256": "f73c6fc7c93f9b61a44f72420d38b60c9ef3bc56426f9859d60890e124aa99dc"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/components.md",
+      "bytes": 10786,
+      "sha256": "1652dc9f17a153d36aefa4ebae506052bcd2028f17d974e1a971a2299bbea61a"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/delivery-plan.md",
+      "bytes": 2052,
+      "sha256": "108d9c85e796e28a30663e9125d6fbc514b1939c8df28d923061b845da30983f"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/mechanism-inventory.md",
+      "bytes": 11862,
+      "sha256": "76bbe33cf36ffd97377b0d9c6827e013633d1199f4fffa11ef2e7ce37b80fc5a"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/plan.md",
+      "bytes": 9177,
+      "sha256": "04bf88c309090f85ed2d323c3a4ac450cf725f79a68d412488008034b3bad585"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/research.md",
+      "bytes": 13436,
+      "sha256": "52143ad341c50a0796061147c1582a36c9a39bad966396a840fab95dc822b13f"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/reviews.md",
+      "bytes": 94370,
+      "sha256": "c623f1ec0c8e249cd3c6ce22bba94771ebfd2c52c28a770bb10dc5ca1f1ef015"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/skeleton.md",
+      "bytes": 19776,
+      "sha256": "81baab8f9d5f3b029cc827f33bdc11e49b52891ae014aa3340438f56e7ba29a5"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/spec.md",
+      "bytes": 25173,
+      "sha256": "160e102b986149b71f632686cc79fc0e5039245ab5940721878fea160f526053"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/status.md",
+      "bytes": 6261,
+      "sha256": "128db88033eb34fb8be3a17bac5ca4ec084e9eed5f6b84b006b8802b2fb2d92b"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/tasks.md",
+      "bytes": 11480,
+      "sha256": "77a8a388e1bd04c3919e1a68af9f2de66d4988bd183a9505d8ca15c42c7f4282"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/test-design.md",
+      "bytes": 32145,
+      "sha256": "fe4a4dca00b95788447fb22c29d4e9708e1c47d4ba1aa01502736df834a68e2a"
+    },
+    {
+      "path": "specs/004-agent-tool-api-mcp/verification.md",
+      "bytes": 28347,
+      "sha256": "5b7d84675c019caf2c1f03d635781f598653df8ce306c7048f6cd431d14911d2"
+    },
+    {
+      "path": "src/shopextract/extractors/_storefront.py",
+      "bytes": 4769,
+      "sha256": "dbe3e09f20dac8ee9a36e5e45b60a7389baaf78668a4f52958ea92e7449fc2c0"
+    },
+    {
+      "path": "src/shopextract/extractors/shopify.py",
+      "bytes": 8628,
+      "sha256": "9eb2081e148f693b18d4ff0c3856cb12f8d867b892a1439fb6be0f8df3d41dff"
+    },
+    {
+      "path": "src/shopextract/extractors/woocommerce.py",
+      "bytes": 4248,
+      "sha256": "66f72e317fff6757d4c7ad1bdcc4414261f3033d2b6779aa77a152a271a338cf"
+    },
+    {
+      "path": "src/shopextract/monitor/evidence.py",
+      "bytes": 20433,
+      "sha256": "f79c8682912ab94bd7d1869eaba01ac06f4336d75ec482d11d5dc3081256eccf"
+    },
+    {
+      "path": "src/shopextract/tools/__init__.py",
+      "bytes": 190,
+      "sha256": "96a1d67c55da5d7bf565c2a0f89f5ad2bdc3e115ffd25224e2d31222cb6ddea8"
+    },
+    {
+      "path": "src/shopextract/tools/__main__.py",
+      "bytes": 1510,
+      "sha256": "244e047f6a964a39db76a36b7d60d5fb055604376751569a6bbe82c04a70ea1e"
+    },
+    {
+      "path": "src/shopextract/tools/captures.py",
+      "bytes": 3902,
+      "sha256": "d19a89547aacebf0b0e4021d28d2e5def8b196e98da685f4a862881255e16fd6"
+    },
+    {
+      "path": "src/shopextract/tools/context.py",
+      "bytes": 1041,
+      "sha256": "323b6d2023cf83411ac6277b410b6db636a0a51957d4be6df50870824c099086"
+    },
+    {
+      "path": "src/shopextract/tools/contracts.py",
+      "bytes": 3906,
+      "sha256": "0bd9814b31d635fa645938b7ba7de9c9b6fe6d8dec3699bd26c1dfb7cd278cd5"
+    },
+    {
+      "path": "src/shopextract/tools/domain.py",
+      "bytes": 7630,
+      "sha256": "1d9d2ca1a179c3abf7a57b3c0551978cf6ff667092530f90251290fd2d5d14ff"
+    },
+    {
+      "path": "src/shopextract/tools/execution.py",
+      "bytes": 5087,
+      "sha256": "ba460813e9e9fda2535629333b00488b915081e2b9504a8bc64faca0d65d42d1"
+    },
+    {
+      "path": "src/shopextract/tools/jobs.py",
+      "bytes": 7229,
+      "sha256": "a4b6e3931037d7a5bd0ccf9817ed202c2929879208080e66f659da1625186423"
+    },
+    {
+      "path": "src/shopextract/tools/mcp_server.py",
+      "bytes": 3345,
+      "sha256": "582af2d04c55f97fe861728070d6b6f938c77bc320e009a33c4ab027e7fef302"
+    },
+    {
+      "path": "src/shopextract/tools/runtime.py",
+      "bytes": 10507,
+      "sha256": "0757234d05406a66c7c83564b00743e41d04b4781e59ffd548d45b003dc0bf54"
+    },
+    {
+      "path": "src/shopextract/tools/schemas.py",
+      "bytes": 6435,
+      "sha256": "9bb44bd403dbe547d139d085d9ac5abff7f873811fe904450ca4a2c5f51edeb0"
+    },
+    {
+      "path": "src/shopextract/tools/security.py",
+      "bytes": 11967,
+      "sha256": "26f1862d98b211dced1e5be90925fda6ebb91075799e3474c7636cdb9cb788b3"
+    },
+    {
+      "path": "src/shopextract/tools/sources.py",
+      "bytes": 8605,
+      "sha256": "55c12019dd0dfc29fd3d2d7b70604bb323d80930a4b098274f72efa3232aab4c"
+    },
+    {
+      "path": "src/shopextract/tools/state.py",
+      "bytes": 6961,
+      "sha256": "9c0aa94727cddbe6932887684464fffd45d25c1aa4bce6a1fbff818dc1510a4b"
+    },
+    {
+      "path": "tests/mcp_fixture_server.py",
+      "bytes": 256,
+      "sha256": "bdf0890817b917fd2ff71428e85276e48d02cac8a4daba485a47557e2561d0ca"
+    },
+    {
+      "path": "tests/test_agent_tool_api.py",
+      "bytes": 10678,
+      "sha256": "b1fec80d2bb8d53e9ad153e7d87b9d941f28b7efe2046141ecf6c62e82e0589c"
+    },
+    {
+      "path": "tests/test_mcp_reference_client.py",
+      "bytes": 1440,
+      "sha256": "37d55aa53d72c13836a98a9e0a9c0036a047ae22bc5b8cd0967943aff5571ee5"
+    },
+    {
+      "path": "tests/test_mechanism_driver_state.py",
+      "bytes": 3068,
+      "sha256": "af05f426f5733efc2032c7ba0a7df3a27fe1fd58ac8f46998dfd68cf777e1a7c"
+    },
+    {
+      "path": "tests/test_tool_bootstrap.py",
+      "bytes": 9228,
+      "sha256": "47b671fbdaa1e4dd78055c23c75a3179e13765c3730b065213520e251469cec1"
+    },
+    {
+      "path": "tests/test_tool_discovery_lazy.py",
+      "bytes": 4266,
+      "sha256": "57ab15d20ccf1d061d62f41c33038ff14c155091a14daddb91ba8fcff4351635"
+    },
+    {
+      "path": "tests/test_tool_lifecycle.py",
+      "bytes": 4173,
+      "sha256": "2a438c3c4b4082731214673eeab28cb52fae1b8fdb200ff467645a89dad2e2a4"
+    },
+    {
+      "path": "tests/test_tool_mechanisms.py",
+      "bytes": 30510,
+      "sha256": "8513543fc3acf37a46b53fcb228fdc6784c3b9ee2e1ed9b5e86e4a411dfae8c0"
+    },
+    {
+      "path": "tests/test_tool_native_modes.py",
+      "bytes": 4394,
+      "sha256": "98c214a346d8685680210f6876c8d3689a29371a771de23046db83f6af2c7b84"
+    },
+    {
+      "path": "tests/test_tool_redirect_credentials.py",
+      "bytes": 3028,
+      "sha256": "9d2239b619a8cbc058c2bad32256c369634176f2aa33b94d7f53a96c0c66b747"
+    },
+    {
+      "path": "tests/test_tool_shopware_policy.py",
+      "bytes": 3169,
+      "sha256": "7a33a3905658e41bae8dca2278b57951ac01b1d0bd4957b62a813e2a0fe2d0da"
+    },
+    {
+      "path": "tests/tool_api_fixtures.py",
+      "bytes": 1539,
+      "sha256": "4d488c1997753e4b630abf310af51df31e6b226867012d6cb2ae9a79ed20e4c6"
+    },
+    {
+      "path": "tests/tool_faults.py",
+      "bytes": 1355,
+      "sha256": "8b9c8232551b5cba217ca3dd9c495bd744015761ea0a6f803c914fd28c552c43"
+    },
+    {
+      "path": "tests/tool_fixture_budget.py",
+      "bytes": 2458,
+      "sha256": "150b93649d3de2e88ab67d55f72b1c1abcfe0a1b959499cbc524da2b245f03ae"
+    },
+    {
+      "path": "tests/tool_schema_validation.py",
+      "bytes": 709,
+      "sha256": "211ffc69d7d6d43fe6f88a6321f213b335889c0e0b83b48b6139f09bffbcd48a"
+    }
+  ],
+  "exclusions": "Unrelated artifacts; HTML; SQLite databases; large logs; secrets/configured credentials; no local deletions",
+  "postexecution_additions": [
+    "included as exact file rows"
+  ],
+  "manifest_itself": {
+    "path": "artifacts/agent-tool-api-mcp/delivery-files.json",
+    "sha256": "self not recursively hashed; include exact saved manifest"
+  }
+}

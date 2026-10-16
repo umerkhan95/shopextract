@@ -7,6 +7,7 @@ import logging
 from typing import Any
 
 import httpx
+from ._storefront import storefront_client
 
 from .._models import ExtractorResult
 from .._capture import capture
@@ -18,9 +19,10 @@ logger = logging.getLogger(__name__)
 class WooCommerceExtractor:
     """Extract products from WooCommerce stores using the public Store API."""
 
-    def __init__(self, timeout: int = 30, max_pages: int = 100):
+    def __init__(self, timeout: int = 30, max_pages: int = 100, http_client=None):
         self.timeout = timeout
         self.max_pages = max_pages
+        self.http_client = http_client
 
     async def extract(self, shop_url: str) -> ExtractorResult:
         """Fetch all products from WooCommerce Store API with pagination."""
@@ -35,7 +37,7 @@ class WooCommerceExtractor:
             "Accept": "application/json",
         }
 
-        async with httpx.AsyncClient(timeout=self.timeout, follow_redirects=True, headers=headers) as client:
+        async with storefront_client(self.http_client, self.timeout, headers=headers) as client:
             page = 1
 
             while page <= self.max_pages:

@@ -1,0 +1,21 @@
+{
+  "exit": 0,
+  "timed_out": false,
+  "stop_reason": null,
+  "outer_seconds": 204.25265840398788,
+  "total_timeout_seconds": 240,
+  "log_limit_bytes": 1048576,
+  "log_bytes": 1239,
+  "command": ".venv/bin/python -m pytest -q --tb=short",
+  "thread_caps": {
+    "BLAS_OMP_MKL_NUMEXPR_VECLIB": 2,
+    "TOKENIZERS_PARALLELISM": false
+  },
+  "cleanup": "owned process group terminated on exit/timeout",
+  "scope": "one justified ordinary repository suite after F01/F02; closed stress/live unchanged",
+  "passed": 813,
+  "failed": 0,
+  "pytest_seconds": 201.61,
+  "log_sha256": "e8b40b464dd3f8dd9235745ddc53b7f91ed4a1612591ec8c6ad78b98ed8535cb",
+  "coverage": "Current F01/F02 and all8 bootstrap cases plus legacy/real MCP suite; ordinary offline verification only"
+}

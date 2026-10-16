@@ -23,7 +23,20 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: pip install -e ".[dev]"
+        run: pip install -e ".[dev,mcp]"
+
+      - name: Optional SDK import compatibility
+        run: |
+          python - <<'PYCODE'
+          import sys
+          sys.modules["mcp"] = None
+          from shopextract.tools import ToolRuntime, ToolConfig
+          runtime = ToolRuntime(ToolConfig())
+          assert len(runtime.tool_schemas()) == 8
+          PYCODE
+
+      - name: Require MCP extra
+        run: python -c "import mcp; import importlib.metadata; print(importlib.metadata.version('mcp'))"
 
       - name: Run tests
-        run: pytest
+        run: timeout 240s pytest

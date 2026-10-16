@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "stopped_by_outer_limit": false,
+  "outer_seconds": 41.80737412101007,
+  "total_limit_seconds": 120,
+  "log_limit_bytes": 1048576,
+  "log_bytes": 7208,
+  "cleanup": "owned process group terminated"
+}

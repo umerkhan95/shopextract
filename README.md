@@ -895,3 +895,10 @@ Run `PYTHONPATH=src python examples/evidence_trust.py` for capture, fixed-time
 resolution, SQLite restart/retrieval and portable bundle inspection without a network or model.
 See [the public contract](specs/002-evidence-data-trust/contracts/evidence.md) and
 [field coverage matrix](specs/002-evidence-data-trust/data-model.md).
+
+### Agent tools and MCP
+
+The opt-in read-only Python tool API and self-hosted MCP stdio server cover
+discovery, extraction, matching, reliable changes and captured evidence. See
+[setup, contracts, runnable reference client and operating limits](docs/agent-tools.md).
+Install the optional `mcp` extra; existing extraction defaults stay compatible.

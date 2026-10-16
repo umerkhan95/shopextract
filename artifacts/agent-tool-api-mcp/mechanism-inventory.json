@@ -1,0 +1,455 @@
+{
+  "seed": 24,
+  "maximum_cases": 48,
+  "driver_seconds": 120,
+  "fixture_bytes_limit": 16777216,
+  "planned_fixture_bound_bytes": 14490163,
+  "static_fixture_inputs": [
+    {
+      "path": "tests/fixtures/shopify_products.json",
+      "bytes": 1525
+    },
+    {
+      "path": "tests/fixtures/woocommerce_products.json",
+      "bytes": 1086
+    }
+  ],
+  "additional_rss_target_bytes": 268435456,
+  "max_processes": 5,
+  "active_jobs": 1,
+  "prerequisite": "independent fixture/coverage review + saved passing MCP smoke",
+  "cases": [
+    {
+      "id": "M01",
+      "node": "tests/test_tool_lifecycle.py::test_immutable_pages_cursor_binding_expiry_and_release",
+      "mapping": "FR05,07,11 / SC03,07,12 / R6-release",
+      "expected": "Replay pages bind size; expiry invalidates real store handles and releases bytes",
+      "source": "tests/test_tool_lifecycle.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M02",
+      "node": "tests/test_tool_lifecycle.py::test_aggregate_rejection_and_eviction_releases_graph",
+      "mapping": "FR07 / SC09,12 / R6",
+      "expected": "Aggregate admission rejects oversize; eviction releases prior graph charge",
+      "source": "tests/test_tool_lifecycle.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M03",
+      "node": "tests/test_tool_lifecycle.py::test_cancel_queue_and_completed_cancel_winner",
+      "mapping": "FR06 / SC04,12",
+      "expected": "Queued cancellation never runs; succeeded cancellation preserves graph",
+      "source": "tests/test_tool_lifecycle.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M04",
+      "node": "tests/test_tool_lifecycle.py::test_retained_charge_includes_products_and_each_real_payload_copy",
+      "mapping": "FR07,11 / SC07,09 / R5",
+      "expected": "Every actual products/collections/owner payload representation is charged",
+      "source": "tests/test_tool_lifecycle.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M05",
+      "node": "tests/test_tool_lifecycle.py::test_running_graph_reservation_counts_and_cancel_releases",
+      "mapping": "FR06,07 / SC04,09 / R6",
+      "expected": "Running graph allowance reserves session bytes and cancellation releases it",
+      "source": "tests/test_tool_lifecycle.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M06",
+      "node": "tests/test_agent_tool_api.py::test_unknown_version_rejected_before_work",
+      "mapping": "FR02,04 / SC01",
+      "expected": "Unsupported version returns structured error before work",
+      "source": "tests/test_agent_tool_api.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M07",
+      "node": "tests/test_agent_tool_api.py::test_denied_source_is_structured_error_without_network",
+      "mapping": "FR04,08,09 / SC05,06",
+      "expected": "Ungranted metadata origin fails permission before any fetch",
+      "source": "tests/test_agent_tool_api.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M08",
+      "node": "tests/test_agent_tool_api.py::test_existing_evidence_denied_through_other_valid_owner",
+      "mapping": "FR11 / SC07 / MC01-owner",
+      "expected": "Actual existing foreign evidence denied; remapping only scope makes same assertion fail",
+      "source": "tests/test_agent_tool_api.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 524288
+    },
+    {
+      "id": "M09",
+      "node": "tests/test_agent_tool_api.py::test_invalid_page_size_rejected",
+      "mapping": "FR02,05 / SC01,03",
+      "expected": "Boolean page_size rejected and real error matches published schema",
+      "source": "tests/test_agent_tool_api.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M10",
+      "node": "tests/test_agent_tool_api.py::test_guard_refuses_nonpublic_dns_before_connect",
+      "mapping": "FR09 / SC06",
+      "expected": "Private resolver answer denied by real guard",
+      "source": "tests/test_agent_tool_api.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M11",
+      "node": "tests/test_agent_tool_api.py::test_complete_domain_flow_uses_native_code_paths",
+      "mapping": "FR01,02,03,11 / SC01,02,07",
+      "expected": "Real domain flow matches supported GTIN and exact captured price pointer/time; schemas reject corrupted price",
+      "source": "tests/test_agent_tool_api.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 262144
+    },
+    {
+      "id": "M12",
+      "node": "tests/test_agent_tool_api.py::test_cancel_running_resolution_publishes_no_catalog",
+      "mapping": "FR06 / SC04",
+      "expected": "Per-job resolver cancellation signal propagates; no successful catalog",
+      "source": "tests/test_agent_tool_api.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M13",
+      "node": "tests/test_tool_shopware_policy.py::test_fixed_native_search_and_denied_redirect_target",
+      "mapping": "FR08,09 / SC06 / NS02",
+      "expected": "Fixed search allowed; POST redirect sends zero bytes to target",
+      "source": "tests/test_tool_shopware_policy.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M14",
+      "node": "tests/test_tool_shopware_policy.py::test_denied_policy_route_and_body_never_send",
+      "mapping": "FR08 / SC05,06 / NS02,03",
+      "expected": "Missing policy, alternate routes and malformed native body denied before wire",
+      "source": "tests/test_tool_shopware_policy.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M15",
+      "node": "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[shopify]",
+      "mapping": "FR03,07,11 / SC02,07",
+      "expected": "Specific native parser returns actual price support under20 request cap",
+      "source": "tests/test_tool_native_modes.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 262144
+    },
+    {
+      "id": "M16",
+      "node": "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[woocommerce]",
+      "mapping": "FR03,07,11 / SC02,07",
+      "expected": "Specific native parser returns actual price support under20 request cap",
+      "source": "tests/test_tool_native_modes.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 262144
+    },
+    {
+      "id": "M17",
+      "node": "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[magento]",
+      "mapping": "FR03,07,11 / SC02,07",
+      "expected": "Specific native parser returns actual price support under20 request cap",
+      "source": "tests/test_tool_native_modes.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 262144
+    },
+    {
+      "id": "M18",
+      "node": "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[shopware]",
+      "mapping": "FR03,07,11 / SC02,07 / NS01",
+      "expected": "Specific native parser returns actual price support under20 request cap",
+      "source": "tests/test_tool_native_modes.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 262144
+    },
+    {
+      "id": "M19",
+      "node": "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[bigcommerce]",
+      "mapping": "FR03,07,11 / SC02,07",
+      "expected": "Specific native parser returns actual price support under20 request cap",
+      "source": "tests/test_tool_native_modes.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 262144
+    },
+    {
+      "id": "M20",
+      "node": "tests/test_tool_mechanisms.py::test_contract_missing_null_false_and_nonfinite",
+      "mapping": "FR02,04 / SC01",
+      "expected": "Missing/null/false/nonfinite/deep input rejected; error/job schema corruption detected; config invalid values rejected",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M21",
+      "node": "tests/test_tool_mechanisms.py::test_input_byte_limit_edges",
+      "mapping": "FR02,07 / SC01,09",
+      "expected": "Exact UTF8 byte bound accepted and just-above input denied",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M22",
+      "node": "tests/test_tool_mechanisms.py::test_cursor_tamper_collection_and_session",
+      "mapping": "FR05 / SC03",
+      "expected": "Tampered cursor or collection/session mismatch cannot read another view",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M23",
+      "node": "tests/test_tool_mechanisms.py::test_empty_page_and_zero_total",
+      "mapping": "FR05 / SC03",
+      "expected": "Authoritative empty collection is total0 without cursor",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M24",
+      "node": "tests/test_tool_mechanisms.py::test_queue_limit_and_waiting_deadline",
+      "mapping": "FR06,07 / SC04,09",
+      "expected": "Queue excess rejected; waiting deadline counts enqueue time",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M25",
+      "node": "tests/test_tool_mechanisms.py::test_resolver_process_stall_is_reaped",
+      "mapping": "FR06,07,09 / SC04,06,12 / R1",
+      "expected": "Real stalled child times out and reaps within bounded cleanup",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M26",
+      "node": "tests/test_tool_mechanisms.py::test_repeated_process_cancel_no_accumulation",
+      "mapping": "FR06,09 / SC04,06,12 / R2",
+      "expected": "Three real child late-reply attempts after cancel cannot return results or accumulate workers",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M27",
+      "node": "tests/test_tool_mechanisms.py::test_domain_process_deadline_no_success",
+      "mapping": "FR06,07 / SC04,09",
+      "expected": "Noncooperative domain child is killed at absolute deadline",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M28",
+      "node": "tests/test_tool_mechanisms.py::test_reaper_failure_stops_replacement",
+      "mapping": "FR06,07 / SC04,09 / R1-reaper-fault",
+      "expected": "Injected unreapable OS boundary marks broken and rejects replacement",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M29",
+      "node": "tests/test_tool_mechanisms.py::test_graph_default_byte_cap_and_shared_copies",
+      "mapping": "FR07,11 / SC07,09 / R5",
+      "expected": "Actual default4MiB full graph admitted; +1 representation rejected without virtual dedup",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 8392704
+    },
+    {
+      "id": "M30",
+      "node": "tests/test_tool_mechanisms.py::test_identity_encoding_rejected_before_stream_read",
+      "mapping": "FR07,09 / SC09,11 / R3",
+      "expected": "Unsupported encoding rejected before stream iterator/decoder",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M31",
+      "node": "tests/test_tool_mechanisms.py::test_raw_body_multichunk_cap_and_false_length",
+      "mapping": "FR07,09 / SC09,11 / R4-stream",
+      "expected": "Actual streamed size enforces below/at/above limit despite false header",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M32",
+      "node": "tests/test_tool_mechanisms.py::test_shared_request_and_redirect_budget",
+      "mapping": "FR07,09 / SC06,09",
+      "expected": "Redirects cannot reset cumulative source request budget",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M33",
+      "node": "tests/test_tool_mechanisms.py::test_redirect_count_cap",
+      "mapping": "FR07,09 / SC06,09",
+      "expected": "Redirect loop ends at exact finite shared redirect count",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M34",
+      "node": "tests/test_tool_mechanisms.py::test_nonpublic_address_family_vectors",
+      "mapping": "FR09 / SC06",
+      "expected": "Explicit IPv4/IPv6/private/mapped/metadata/multicast vectors all denied",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M35",
+      "node": "tests/test_tool_mechanisms.py::test_mixed_public_private_dns_denied",
+      "mapping": "FR09 / SC06",
+      "expected": "One public DNS answer never permits a mixed private answer",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M36",
+      "node": "tests/test_tool_mechanisms.py::test_origin_idna_trailing_dot_port_and_bypass_syntax",
+      "mapping": "FR08,09 / SC06",
+      "expected": "Origin canonicalization stable; numeric/auth/scheme/escaped bypass syntax denied",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M37",
+      "node": "tests/test_tool_mechanisms.py::test_discovered_denied_link_is_diagnostic_only",
+      "mapping": "FR03,08,09 / SC02,05,06 / R7",
+      "expected": "Unallowed sitemap link is diagnostic-only and never fetched",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M38",
+      "node": "tests/test_tool_mechanisms.py::test_dns_change_after_discovery_denies_extraction",
+      "mapping": "FR03,09 / SC02,06 / R8",
+      "expected": "Current private DNS invalidates formerly eligible extracted URL",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M39",
+      "node": "tests/test_tool_mechanisms.py::test_cross_origin_redirect_no_target_bytes",
+      "mapping": "FR08,09 / SC06 / MC01-redirect",
+      "expected": "Actual origin guard blocks target; changing only its origin set makes zero-send assertion fail",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M40",
+      "node": "tests/test_tool_mechanisms.py::test_pinned_numeric_tcp_preserves_host_and_tls",
+      "mapping": "FR09 / SC06 / R4-framing",
+      "expected": "HTTPCore pins numeric TCP/Host/SNI; framing mismatch fails; controlled TCP denied redirect target untouched",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M41",
+      "node": "tests/test_tool_mechanisms.py::test_evidence_response_cap_metadata",
+      "mapping": "FR07,11 / SC07,09",
+      "expected": "Oversize evidence response returns metadata without complete oversized payload",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M42",
+      "node": "tests/test_tool_mechanisms.py::test_incomplete_capture_replay_never_confirms_removal",
+      "mapping": "FR03,11 / SC08,12 / MC02-partial-replay",
+      "expected": "Real incomplete capture replay cannot promote removal; report/diagnostics stable",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 524288
+    },
+    {
+      "id": "M43",
+      "node": "tests/test_tool_mechanisms.py::test_real_changes_replay_and_capture_grants",
+      "mapping": "FR03,06,11 / SC08,12",
+      "expected": "Real report/event IDs replay; killed actual commit boundary rolls SQLite back with integrity intact",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 524288
+    },
+    {
+      "id": "M44",
+      "node": "tests/test_tool_mechanisms.py::test_supported_empty_distinct_from_backend_failure",
+      "mapping": "FR03,04 / SC11",
+      "expected": "True native empty is complete; failed source is not success[] or secret leak",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    },
+    {
+      "id": "M45",
+      "node": "tests/test_tool_mechanisms.py::test_publication_fault_releases_reservation",
+      "mapping": "FR04,05,06,07 / SC04,09,12 / MC02-dependency-expiry",
+      "expected": "Publication fault releases bytes; actual match losing source TTL fails expired without graph/handles",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 262144
+    },
+    {
+      "id": "M46",
+      "node": "tests/test_tool_mechanisms.py::test_real_evidence_expiry_and_disconnect",
+      "mapping": "FR05,07,11 / SC03,07,12 / MC02-evidence-expiry",
+      "expected": "Real extracted page/support expires through tools; restart cannot reuse owner",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 262144
+    },
+    {
+      "id": "M47",
+      "node": "tests/test_tool_mechanisms.py::test_feed_static_real_parser_and_evidence",
+      "mapping": "FR03,11 / SC02,07",
+      "expected": "Existing XML feed parser/normalizer supplies observed price evidence",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 131072
+    },
+    {
+      "id": "M48",
+      "node": "tests/test_tool_mechanisms.py::test_late_cancelled_domain_cannot_publish",
+      "mapping": "FR06,07 / SC04,12 / MC01-terminal,MC02-late-publication",
+      "expected": "Cancellation-catching late domain result cannot publish; removing only actual guard makes same invariant fail",
+      "source": "tests/test_tool_mechanisms.py",
+      "case_timeout_seconds": 5,
+      "max_fixture_bytes": 65536
+    }
+  ]
+}

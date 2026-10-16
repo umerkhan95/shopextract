@@ -1,0 +1,1754 @@
+{
+  "revision": "8ce4633ae8aec574cd71f53cb21f344523a7ea8da08ca5a7b0f45bc7685d6504",
+  "seed": 24,
+  "cases": {
+    "M01": {
+      "node": "tests/test_tool_lifecycle.py::test_immutable_pages_cursor_binding_expiry_and_release",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 2.5296121330029564,
+      "actual_fixture_bytes": 291,
+      "fixture_categories": {
+        "constructed_graph_representation": 122,
+        "publication_graph_representation": 169
+      }
+    },
+    "M02": {
+      "node": "tests/test_tool_lifecycle.py::test_aggregate_rejection_and_eviction_releases_graph",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.20468067399633583,
+      "actual_fixture_bytes": 1810,
+      "fixture_categories": {
+        "constructed_graph_representation": 966,
+        "publication_graph_representation": 844
+      }
+    },
+    "M03": {
+      "node": "tests/test_tool_lifecycle.py::test_cancel_queue_and_completed_cancel_winner",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.21565675099554937,
+      "actual_fixture_bytes": 244,
+      "fixture_categories": {
+        "constructed_graph_representation": 122,
+        "publication_graph_representation": 122
+      }
+    },
+    "M04": {
+      "node": "tests/test_tool_lifecycle.py::test_retained_charge_includes_products_and_each_real_payload_copy",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.20295917699695565,
+      "actual_fixture_bytes": 2226,
+      "fixture_categories": {
+        "constructed_graph_representation": 1113,
+        "publication_graph_representation": 1113
+      }
+    },
+    "M05": {
+      "node": "tests/test_tool_lifecycle.py::test_running_graph_reservation_counts_and_cancel_releases",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.20377327100140974,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M06": {
+      "node": "tests/test_agent_tool_api.py::test_unknown_version_rejected_before_work",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.2879727149993414,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M07": {
+      "node": "tests/test_agent_tool_api.py::test_denied_source_is_structured_error_without_network",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.21423617299296893,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M08": {
+      "node": "tests/test_agent_tool_api.py::test_existing_evidence_denied_through_other_valid_owner",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 2.917433530994458,
+      "actual_fixture_bytes": 95750,
+      "fixture_categories": {
+        "constructed_graph_representation": 13830,
+        "generated_fixture_files": 81920
+      }
+    },
+    "M09": {
+      "node": "tests/test_agent_tool_api.py::test_invalid_page_size_rejected",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.4451693650044035,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M10": {
+      "node": "tests/test_agent_tool_api.py::test_guard_refuses_nonpublic_dns_before_connect",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.21041393099585548,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M11": {
+      "node": "tests/test_agent_tool_api.py::test_complete_domain_flow_uses_native_code_paths",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 4.441029800000251,
+      "actual_fixture_bytes": 100262,
+      "fixture_categories": {
+        "http_response_representation": 1854,
+        "constructed_graph_representation": 49204,
+        "publication_graph_representation": 49204
+      }
+    },
+    "M12": {
+      "node": "tests/test_agent_tool_api.py::test_cancel_running_resolution_publishes_no_catalog",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.2196685489907395,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M13": {
+      "node": "tests/test_tool_shopware_policy.py::test_fixed_native_search_and_denied_redirect_target",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.21502346299530473,
+      "actual_fixture_bytes": 30,
+      "fixture_categories": {
+        "http_response_representation": 30
+      }
+    },
+    "M14": {
+      "node": "tests/test_tool_shopware_policy.py::test_denied_policy_route_and_body_never_send",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.2199476079986198,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M15": {
+      "node": "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[shopify]",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 1.6652352060045814,
+      "actual_fixture_bytes": 149140,
+      "fixture_categories": {
+        "http_response_representation": 1292,
+        "constructed_graph_representation": 73924,
+        "publication_graph_representation": 73924
+      }
+    },
+    "M16": {
+      "node": "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[woocommerce]",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 1.6327688349992968,
+      "actual_fixture_bytes": 68062,
+      "fixture_categories": {
+        "http_response_representation": 1036,
+        "constructed_graph_representation": 33513,
+        "publication_graph_representation": 33513
+      }
+    },
+    "M17": {
+      "node": "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[magento]",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 1.6063898239954142,
+      "actual_fixture_bytes": 76321,
+      "fixture_categories": {
+        "http_response_representation": 1203,
+        "constructed_graph_representation": 37559,
+        "publication_graph_representation": 37559
+      }
+    },
+    "M18": {
+      "node": "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[shopware]",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 1.6156250790081685,
+      "actual_fixture_bytes": 71299,
+      "fixture_categories": {
+        "http_response_representation": 1781,
+        "constructed_graph_representation": 34759,
+        "publication_graph_representation": 34759
+      }
+    },
+    "M19": {
+      "node": "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[bigcommerce]",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 1.626663513990934,
+      "actual_fixture_bytes": 76162,
+      "fixture_categories": {
+        "http_response_representation": 1982,
+        "constructed_graph_representation": 37090,
+        "publication_graph_representation": 37090
+      }
+    },
+    "M20": {
+      "node": "tests/test_tool_mechanisms.py::test_contract_missing_null_false_and_nonfinite",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.5441348599997582,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M21": {
+      "node": "tests/test_tool_mechanisms.py::test_input_byte_limit_edges",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.22284462199604604,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M22": {
+      "node": "tests/test_tool_mechanisms.py::test_cursor_tamper_collection_and_session",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.22267813699727412,
+      "actual_fixture_bytes": 500,
+      "fixture_categories": {
+        "constructed_graph_representation": 250,
+        "publication_graph_representation": 250
+      }
+    },
+    "M23": {
+      "node": "tests/test_tool_mechanisms.py::test_empty_page_and_zero_total",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.22540222901443485,
+      "actual_fixture_bytes": 222,
+      "fixture_categories": {
+        "constructed_graph_representation": 111,
+        "publication_graph_representation": 111
+      }
+    },
+    "M24": {
+      "node": "tests/test_tool_mechanisms.py::test_queue_limit_and_waiting_deadline",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.2758127679990139,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M25": {
+      "node": "tests/test_tool_mechanisms.py::test_resolver_process_stall_is_reaped",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.3062961379910121,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M26": {
+      "node": "tests/test_tool_mechanisms.py::test_repeated_process_cancel_no_accumulation",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 5.071526268002344,
+      "actual_fixture_bytes": 102,
+      "fixture_categories": {
+        "generated_fixture_files": 102
+      }
+    },
+    "M27": {
+      "node": "tests/test_tool_mechanisms.py::test_domain_process_deadline_no_success",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.3034248199983267,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M28": {
+      "node": "tests/test_tool_mechanisms.py::test_reaper_failure_stops_replacement",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.23633625300135463,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M29": {
+      "node": "tests/test_tool_mechanisms.py::test_graph_default_byte_cap_and_shared_copies",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.4389522370038321,
+      "actual_fixture_bytes": 8388722,
+      "fixture_categories": {
+        "constructed_graph_representation": 113,
+        "publication_graph_representation": 8388609
+      }
+    },
+    "M30": {
+      "node": "tests/test_tool_mechanisms.py::test_identity_encoding_rejected_before_stream_read",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.23327729500306305,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M31": {
+      "node": "tests/test_tool_mechanisms.py::test_raw_body_multichunk_cap_and_false_length",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.2291635959991254,
+      "actual_fixture_bytes": 159,
+      "fixture_categories": {
+        "stream_fixture_input": 96,
+        "http_response_representation": 63
+      }
+    },
+    "M32": {
+      "node": "tests/test_tool_mechanisms.py::test_shared_request_and_redirect_budget",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.22742126100638416,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M33": {
+      "node": "tests/test_tool_mechanisms.py::test_redirect_count_cap",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.22493568499339744,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M34": {
+      "node": "tests/test_tool_mechanisms.py::test_nonpublic_address_family_vectors",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.22807577600178774,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M35": {
+      "node": "tests/test_tool_mechanisms.py::test_mixed_public_private_dns_denied",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.22909495400381275,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M36": {
+      "node": "tests/test_tool_mechanisms.py::test_origin_idna_trailing_dot_port_and_bypass_syntax",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.22950514900730923,
+      "actual_fixture_bytes": 0,
+      "fixture_categories": {}
+    },
+    "M37": {
+      "node": "tests/test_tool_mechanisms.py::test_discovered_denied_link_is_diagnostic_only",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.24978557399299461,
+      "actual_fixture_bytes": 680,
+      "fixture_categories": {
+        "http_response_representation": 232,
+        "constructed_graph_representation": 224,
+        "publication_graph_representation": 224
+      }
+    },
+    "M38": {
+      "node": "tests/test_tool_mechanisms.py::test_dns_change_after_discovery_denies_extraction",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.27583409800718073,
+      "actual_fixture_bytes": 632,
+      "fixture_categories": {
+        "http_response_representation": 298,
+        "constructed_graph_representation": 167,
+        "publication_graph_representation": 167
+      }
+    },
+    "M39": {
+      "node": "tests/test_tool_mechanisms.py::test_cross_origin_redirect_no_target_bytes",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.2284443359967554,
+      "actual_fixture_bytes": 48,
+      "fixture_categories": {
+        "http_response_representation": 48
+      }
+    },
+    "M40": {
+      "node": "tests/test_tool_mechanisms.py::test_pinned_numeric_tcp_preserves_host_and_tls",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.3135519370116526,
+      "actual_fixture_bytes": 158,
+      "fixture_categories": {
+        "controlled_core_wire_input": 80,
+        "http_response_representation": 2,
+        "controlled_tcp_wire_input": 76
+      }
+    },
+    "M41": {
+      "node": "tests/test_tool_mechanisms.py::test_evidence_response_cap_metadata",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.22481936898839194,
+      "actual_fixture_bytes": 548,
+      "fixture_categories": {
+        "constructed_graph_representation": 274,
+        "publication_graph_representation": 274
+      }
+    },
+    "M42": {
+      "node": "tests/test_tool_mechanisms.py::test_incomplete_capture_replay_never_confirms_removal",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 5.802392686993699,
+      "actual_fixture_bytes": 104848,
+      "fixture_categories": {
+        "constructed_graph_representation": 9448,
+        "publication_graph_representation": 1192,
+        "generated_fixture_files": 94208
+      }
+    },
+    "M43": {
+      "node": "tests/test_tool_mechanisms.py::test_real_changes_replay_and_capture_grants",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 7.590612457002862,
+      "actual_fixture_bytes": 135008,
+      "fixture_categories": {
+        "constructed_graph_representation": 21785,
+        "publication_graph_representation": 6175,
+        "generated_fixture_files": 107048
+      }
+    },
+    "M44": {
+      "node": "tests/test_tool_mechanisms.py::test_supported_empty_distinct_from_backend_failure",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 1.6184301399916876,
+      "actual_fixture_bytes": 592,
+      "fixture_categories": {
+        "http_response_representation": 226,
+        "constructed_graph_representation": 183,
+        "publication_graph_representation": 183
+      }
+    },
+    "M45": {
+      "node": "tests/test_tool_mechanisms.py::test_publication_fault_releases_reservation",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 2.9616631120006787,
+      "actual_fixture_bytes": 49929,
+      "fixture_categories": {
+        "constructed_graph_representation": 30298,
+        "http_response_representation": 778,
+        "publication_graph_representation": 18853
+      }
+    },
+    "M46": {
+      "node": "tests/test_tool_mechanisms.py::test_real_evidence_expiry_and_disconnect",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 1.5950086980010383,
+      "actual_fixture_bytes": 38484,
+      "fixture_categories": {
+        "http_response_representation": 778,
+        "constructed_graph_representation": 18853,
+        "publication_graph_representation": 18853
+      }
+    },
+    "M47": {
+      "node": "tests/test_tool_mechanisms.py::test_feed_static_real_parser_and_evidence",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 1.5997800240002107,
+      "actual_fixture_bytes": 43570,
+      "fixture_categories": {
+        "http_response_representation": 380,
+        "constructed_graph_representation": 21595,
+        "publication_graph_representation": 21595
+      }
+    },
+    "M48": {
+      "node": "tests/test_tool_mechanisms.py::test_late_cancelled_domain_cannot_publish",
+      "status": "passed",
+      "exit": 0,
+      "seconds": 0.23904435300210025,
+      "actual_fixture_bytes": 438,
+      "fixture_categories": {
+        "constructed_graph_representation": 292,
+        "publication_graph_representation": 146
+      }
+    }
+  },
+  "elapsed_seconds": 53.4152612839971,
+  "fixture_bytes": 9408848,
+  "prior_revision": null,
+  "prior_cases": {},
+  "resource_failures": {},
+  "identity": [
+    {
+      "path": ".github/workflows/test.yml",
+      "sha256": "95a50c72fea9793152085fe17d44a978eb9bc4bb2044704b412df9e9a7162773"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/build-inventory.py",
+      "sha256": "39941b7bd6b68c4024d76e23d754425dc19b2fa09832246fee22c9b9fbf9fd76"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/check-discovery-eligibility.py",
+      "sha256": "6a578fc95fb215afe7f9a32d5d824ecefd78aa86521dd248b317876108f1bd27"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/check-f02-focused.py",
+      "sha256": "4f744dd5b74b018a22a83021fb22cc7d172bce9470c4ae3c8633e10f950f14af"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/check-m11-cache.py",
+      "sha256": "c22de098cb39b6133d908a80a2c7f1e91c869cc08468f2241aef185add956b51"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/check-m39-normalization.py",
+      "sha256": "0c798358fb1ec4054f3b5922a2fd1a283ba8a6446a5c8b5811f4f0ad16f7701d"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/check-three-offline.py",
+      "sha256": "ca3753b825224d28d0cac5442ba0f28b0729748ae1b2eb722d22bfb4f072953d"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/delivery-inventory.json",
+      "sha256": "a8d9e43ab5d7e54a49d67de06e2c237f0246bdf96543a1a8d5464c2925ea751a"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/diagnose-native.py",
+      "sha256": "b59f34992a8db88a9d6b96e4e602981591e8b559112748d56858399719db37a9"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/diagnose-three-offline.py",
+      "sha256": "6dd7ff632cea5be2dc4ce65703a139ad6810462d062c89ff42555b2aa9237180"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/process-inventory-probe.py",
+      "sha256": "6607b14feb0610c1d3607c9700093bcdabc9bbc891054d0ec09c5bd07467e977"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/run-delivery-mechanisms.py",
+      "sha256": "c72986075633562417d1ed057db6a106644ce54f134573b9e5d569ed7af8bb33"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/run-mechanisms.py",
+      "sha256": "a0befe50feb158dbdbdf512e96d93f4e9f4aa1686883eeb6934dc1464f44616f"
+    },
+    {
+      "path": "artifacts/agent-tool-api-mcp/sdk-probe.py",
+      "sha256": "09285c7fb8591cd900daa7a30e7c728a94ecf9e688b46b4b36f9435e5cc32ebf"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "f73c6fc7c93f9b61a44f72420d38b60c9ef3bc56426f9859d60890e124aa99dc"
+    },
+    {
+      "path": "src/shopextract/__init__.py",
+      "sha256": "8808e1cbce60945fab3199ee9ff5eefe3795f7610c3a80f5dc1bc0306ebae81a"
+    },
+    {
+      "path": "src/shopextract/_capture.py",
+      "sha256": "e2f7cf506e81bc97c06cfbd0c1c537cec6822837d704484b3bd079e22e144946"
+    },
+    {
+      "path": "src/shopextract/_detect.py",
+      "sha256": "fe4d19f4d5ea26ef32dad2dc1d723d5be73e495e032e4c9ae3effa37e7f30bf2"
+    },
+    {
+      "path": "src/shopextract/_discover.py",
+      "sha256": "79379e5f16fac68905f2c55f8f4b2a7d66cbe63f0108bc6745c2cbb46c66f70a"
+    },
+    {
+      "path": "src/shopextract/_evidence.py",
+      "sha256": "368cad9ae37c289951f1bbeec2562f28f419d2c9f9dd8adf0bf63d8f5427859f"
+    },
+    {
+      "path": "src/shopextract/_extract.py",
+      "sha256": "a91a5a2d5d56a34d4ed5d0339d18bdb6d794f66602dd52ac9358855226176d2d"
+    },
+    {
+      "path": "src/shopextract/_filters.py",
+      "sha256": "39f0e609476d60cd850364bd142815472a3bdc98b4d07e17bffa60c1f04156bf"
+    },
+    {
+      "path": "src/shopextract/_models.py",
+      "sha256": "93e4e4e4a2137daf27931657ff5f0d6724fb307429561d4609fe35067afa3c76"
+    },
+    {
+      "path": "src/shopextract/_normalization.py",
+      "sha256": "d989ba3163da04ac7e5ae5c4be8b5101da082fcecb1898d451133ac7efa40672"
+    },
+    {
+      "path": "src/shopextract/_normalize.py",
+      "sha256": "a17358cf615b22d2a0a945f256c14ac51d4bee9afe39d4bde7956f973fa1ee35"
+    },
+    {
+      "path": "src/shopextract/_portable.py",
+      "sha256": "98ef432e6b51bd61ffec3f734ea3b5531fb90ea1e7eb1893e657a824c0a71320"
+    },
+    {
+      "path": "src/shopextract/_quality.py",
+      "sha256": "ce019f2db1c4ef9e43b1d533eca0c27fdc5016b026891eeccd300a9fad0fc3dc"
+    },
+    {
+      "path": "src/shopextract/_resolution.py",
+      "sha256": "1c466e922fe4b2e677389ed68b1a5bc924741a5f7164ced672c8177dd5f7d22a"
+    },
+    {
+      "path": "src/shopextract/_scope.py",
+      "sha256": "39f2172dcedb70b251db43abe5bf6c2fac06a2fb3a55f0356336f4240413422a"
+    },
+    {
+      "path": "src/shopextract/analyze/__init__.py",
+      "sha256": "1b342b49f474e51bd30e9e213ff09a517d2d15620c75476e304eed05a44439c4"
+    },
+    {
+      "path": "src/shopextract/analyze/competitive.py",
+      "sha256": "ccec8995f0abab41bdbe3a1b0737b685dc8209bbb45088bda0f5769698fd7bc6"
+    },
+    {
+      "path": "src/shopextract/analyze/stats.py",
+      "sha256": "04fcf40a81da58c5902ef30331bdaf0a9cda214cfcdc2075bd09fbe5bfc2c9af"
+    },
+    {
+      "path": "src/shopextract/cli.py",
+      "sha256": "39e99388bd641556613cca1f873ff2ec4e65ab1140b1e706dcabc9964cdad37d"
+    },
+    {
+      "path": "src/shopextract/compare/__init__.py",
+      "sha256": "97aa3ad49093f5a5171d55ba1321825a372ff56a4d6c55969251cb0460eb78f1"
+    },
+    {
+      "path": "src/shopextract/compare/catalog.py",
+      "sha256": "4e65139d14d216e2b63bf16439e45b4216f5153a9dbc2f09c93549f526d57b25"
+    },
+    {
+      "path": "src/shopextract/compare/evaluation.py",
+      "sha256": "e01c7ff552754a118f2d3d08bcbc65d86cc6d492e7eb1559725e6ded1d7a840b"
+    },
+    {
+      "path": "src/shopextract/compare/identity_match.py",
+      "sha256": "0931100a27c53cd6773a78917b66a2893f1f8d288bff815ffccb6b88202e2a53"
+    },
+    {
+      "path": "src/shopextract/compare/match.py",
+      "sha256": "3c25f85a8ca37367143c58f72d0bbb079273aa89cfd54b7203d9c7a729fbd2e8"
+    },
+    {
+      "path": "src/shopextract/compare/price.py",
+      "sha256": "ac9d55e8b65c5a35b6711433bdddc145c8944ba4a9369e7c73b0dbe0ae9cd48a"
+    },
+    {
+      "path": "src/shopextract/export/__init__.py",
+      "sha256": "0c6a995bfd80117a2e7b6d9ce913ffdfb423b578f642f7a233337c65672f2c7f"
+    },
+    {
+      "path": "src/shopextract/export/_bundle.py",
+      "sha256": "0afc254ee7b3e68fb3167d25a2d663968832bc20ad962b15ba7383848e97a381"
+    },
+    {
+      "path": "src/shopextract/export/_csv.py",
+      "sha256": "ea0864f967eaa0647ab4666cbede840f297065c6eb94c313e4ef887da9601717"
+    },
+    {
+      "path": "src/shopextract/export/_feed.py",
+      "sha256": "1d6d2548b579b3b2cc7905cc3466db2e75202cd5475dac753c9a9851fd1a7b7a"
+    },
+    {
+      "path": "src/shopextract/export/_json.py",
+      "sha256": "fa11bea8e008e4844bc2bc58b5e44d568460c330d3b16511ec7ab50d96f17c86"
+    },
+    {
+      "path": "src/shopextract/extractors/__init__.py",
+      "sha256": "3b5e8cf86ffb5e68219ed32002f4ad00ea372a6f8cfca1c1c0268dae1750492b"
+    },
+    {
+      "path": "src/shopextract/extractors/_bigcommerce_auth.py",
+      "sha256": "3f6f274c322f43b2dc55cbc4f766cd996f729edf8a491bf5980d187554d3aa2f"
+    },
+    {
+      "path": "src/shopextract/extractors/_browser.py",
+      "sha256": "be669f0a6100fbd78f8e9b9e859bff7ac4a3e743e248ce0720188bad59aa0eeb"
+    },
+    {
+      "path": "src/shopextract/extractors/_markdown_price.py",
+      "sha256": "dc66427bd925064e8015a8b400fe831f5d2071557e5cba2f03c4988591f8ab41"
+    },
+    {
+      "path": "src/shopextract/extractors/_opengraph.py",
+      "sha256": "62b1247e9de5ab4209c696d14b116ced6bfa3088fea39096f9fd8b74abaff00e"
+    },
+    {
+      "path": "src/shopextract/extractors/_schema_org.py",
+      "sha256": "cb1c6570c80d0c3752eca20f990a1df605eff62febb2879100c4c3adea74baac"
+    },
+    {
+      "path": "src/shopextract/extractors/_storefront.py",
+      "sha256": "dbe3e09f20dac8ee9a36e5e45b60a7389baaf78668a4f52958ea92e7449fc2c0"
+    },
+    {
+      "path": "src/shopextract/extractors/bigcommerce.py",
+      "sha256": "41799419ec35031b47cd66608cede34c5a58e77311e118dfd19bed29a6dbbd62"
+    },
+    {
+      "path": "src/shopextract/extractors/css.py",
+      "sha256": "5505f75f39934057a5a893d43afd6c7bc83f3003cabca177ee5ca1e58edfe4de"
+    },
+    {
+      "path": "src/shopextract/extractors/feed.py",
+      "sha256": "7f07356e05cdcd881b3e199ac78039563bf69085ea84786d9059e17139905d9a"
+    },
+    {
+      "path": "src/shopextract/extractors/llm.py",
+      "sha256": "d2a28ea164e3c53a80dbc0f90aa0d214c3949d7aefadb6b014608a1a054b83ff"
+    },
+    {
+      "path": "src/shopextract/extractors/magento.py",
+      "sha256": "c84958ae7bebac714d513f4bf3ed16c850a59b28cf3dddccc2006c93a88113ba"
+    },
+    {
+      "path": "src/shopextract/extractors/magento_graphql.py",
+      "sha256": "ed0f824fbe9d04beff88f130d8de9b597a771e97637f6c65d32d71fdd9f2e3e0"
+    },
+    {
+      "path": "src/shopextract/extractors/shopify.py",
+      "sha256": "9eb2081e148f693b18d4ff0c3856cb12f8d867b892a1439fb6be0f8df3d41dff"
+    },
+    {
+      "path": "src/shopextract/extractors/shopware.py",
+      "sha256": "7b4397851fae3d428519a8ed7e8143d68e9fee9f3aa253aa03be57eeccc22422"
+    },
+    {
+      "path": "src/shopextract/extractors/unified.py",
+      "sha256": "5c11af3056824cc9fb4b21d91732a134e4bdf066851ca4105cf64675de10624a"
+    },
+    {
+      "path": "src/shopextract/extractors/woocommerce.py",
+      "sha256": "66f72e317fff6757d4c7ad1bdcc4414261f3033d2b6779aa77a152a271a338cf"
+    },
+    {
+      "path": "src/shopextract/identity.py",
+      "sha256": "cc9b63aa42d470f22eec6364430c2818a6e189f05d1040d7ef0f386396c37ab4"
+    },
+    {
+      "path": "src/shopextract/monitor/__init__.py",
+      "sha256": "d6468963316bec1d3c48ad182525bbaf816311d0c65bd950fb054ff8583a5f92"
+    },
+    {
+      "path": "src/shopextract/monitor/changes.py",
+      "sha256": "ac9b5d56c09a14c12f23b80db3f0c2c1ccacae659d6ac58d8b86fad0a60f5b84"
+    },
+    {
+      "path": "src/shopextract/monitor/evidence.py",
+      "sha256": "f79c8682912ab94bd7d1869eaba01ac06f4336d75ec482d11d5dc3081256eccf"
+    },
+    {
+      "path": "src/shopextract/monitor/reliable.py",
+      "sha256": "0e7294faf303ee4052de77ec385b0be8fb0cf7a4014df9885a7c1deab2d63139"
+    },
+    {
+      "path": "src/shopextract/monitor/snapshot.py",
+      "sha256": "4429303a02af7be36a5aee8960afc6e626f44a769814930b11db7a2ae7f1ea12"
+    },
+    {
+      "path": "src/shopextract/monitor/watch.py",
+      "sha256": "2c5c6391671e726cc0e0ef8a1a6b2b9a1a37c34f31a43640d72d30b2cdcc8a46"
+    },
+    {
+      "path": "src/shopextract/tools/__init__.py",
+      "sha256": "96a1d67c55da5d7bf565c2a0f89f5ad2bdc3e115ffd25224e2d31222cb6ddea8"
+    },
+    {
+      "path": "src/shopextract/tools/__main__.py",
+      "sha256": "244e047f6a964a39db76a36b7d60d5fb055604376751569a6bbe82c04a70ea1e"
+    },
+    {
+      "path": "src/shopextract/tools/captures.py",
+      "sha256": "d19a89547aacebf0b0e4021d28d2e5def8b196e98da685f4a862881255e16fd6"
+    },
+    {
+      "path": "src/shopextract/tools/context.py",
+      "sha256": "323b6d2023cf83411ac6277b410b6db636a0a51957d4be6df50870824c099086"
+    },
+    {
+      "path": "src/shopextract/tools/contracts.py",
+      "sha256": "0bd9814b31d635fa645938b7ba7de9c9b6fe6d8dec3699bd26c1dfb7cd278cd5"
+    },
+    {
+      "path": "src/shopextract/tools/domain.py",
+      "sha256": "1d9d2ca1a179c3abf7a57b3c0551978cf6ff667092530f90251290fd2d5d14ff"
+    },
+    {
+      "path": "src/shopextract/tools/execution.py",
+      "sha256": "ba460813e9e9fda2535629333b00488b915081e2b9504a8bc64faca0d65d42d1"
+    },
+    {
+      "path": "src/shopextract/tools/jobs.py",
+      "sha256": "a4b6e3931037d7a5bd0ccf9817ed202c2929879208080e66f659da1625186423"
+    },
+    {
+      "path": "src/shopextract/tools/mcp_server.py",
+      "sha256": "582af2d04c55f97fe861728070d6b6f938c77bc320e009a33c4ab027e7fef302"
+    },
+    {
+      "path": "src/shopextract/tools/runtime.py",
+      "sha256": "0757234d05406a66c7c83564b00743e41d04b4781e59ffd548d45b003dc0bf54"
+    },
+    {
+      "path": "src/shopextract/tools/schemas.py",
+      "sha256": "9bb44bd403dbe547d139d085d9ac5abff7f873811fe904450ca4a2c5f51edeb0"
+    },
+    {
+      "path": "src/shopextract/tools/security.py",
+      "sha256": "26f1862d98b211dced1e5be90925fda6ebb91075799e3474c7636cdb9cb788b3"
+    },
+    {
+      "path": "src/shopextract/tools/sources.py",
+      "sha256": "55c12019dd0dfc29fd3d2d7b70604bb323d80930a4b098274f72efa3232aab4c"
+    },
+    {
+      "path": "src/shopextract/tools/state.py",
+      "sha256": "9c0aa94727cddbe6932887684464fffd45d25c1aa4bce6a1fbff818dc1510a4b"
+    },
+    {
+      "path": "src/shopextract/validate/__init__.py",
+      "sha256": "ded2942e818e31ef9e836f9992c108acb9a3ed61d6d076dd5e5621880dcd1ede"
+    },
+    {
+      "path": "src/shopextract/validate/duplicates.py",
+      "sha256": "f51950ca6c34cbe47239fcce3a42d8fc8a0047c3780b0a7d79b55a8674915ac1"
+    },
+    {
+      "path": "src/shopextract/validate/images.py",
+      "sha256": "e993aa115c55eff96931a0732cda47ecd3765ce67c08f0c1e4b5504743e109df"
+    },
+    {
+      "path": "src/shopextract/validate/marketplace.py",
+      "sha256": "273df782b57e31113318ef744e312766eb802e86b65044a3946ce5638ed82333"
+    },
+    {
+      "path": "tests/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "885c6791a9d9210517766e17f15b2575558dda662e838c7a1ddce1df6e669ae8"
+    },
+    {
+      "path": "tests/fixtures/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/fixtures/shopify_products.json",
+      "sha256": "a77dd5fcdd1fcdf476a5f5daffae8d9592edd3ce87d7416cf4ef10d7722fd82d"
+    },
+    {
+      "path": "tests/fixtures/woocommerce_products.json",
+      "sha256": "6ce59ddbc0bf00b82084beb689dfa3f1ee0185bc0388c226118eabbb443f9022"
+    },
+    {
+      "path": "tests/mcp_fixture_server.py",
+      "sha256": "bdf0890817b917fd2ff71428e85276e48d02cac8a4daba485a47557e2561d0ca"
+    },
+    {
+      "path": "tests/test_agent_tool_api.py",
+      "sha256": "b1fec80d2bb8d53e9ad153e7d87b9d941f28b7efe2046141ecf6c62e82e0589c"
+    },
+    {
+      "path": "tests/test_analyze.py",
+      "sha256": "321efd92bac035b82abf9a8bdacef4d43dc394823369b5f6e50580cfcad9e0a5"
+    },
+    {
+      "path": "tests/test_bigcommerce_auth.py",
+      "sha256": "7a13da7fe7e0668d2775ee3056d2a01cc13b7772bba9791814f6171cab731c66"
+    },
+    {
+      "path": "tests/test_capture_provenance.py",
+      "sha256": "cebc224dcf0eb2a676111f2512aef5b55e77a2b8fc6b47b1c59809a2fffe577d"
+    },
+    {
+      "path": "tests/test_compare.py",
+      "sha256": "501bba60c9edfb9fae923334c6b200e569c14ee2e934c024617536123f1662ea"
+    },
+    {
+      "path": "tests/test_detect.py",
+      "sha256": "0d2eba80052a64d2512378eecbca0e943a4ac579e614f4ff6f876e6fc67db291"
+    },
+    {
+      "path": "tests/test_discover.py",
+      "sha256": "415560e5a44b4bbd75b9d1f2a9c4ed03f845255765b96d6c141ad45ba0883157"
+    },
+    {
+      "path": "tests/test_evidence_bundle.py",
+      "sha256": "0cfff266300350c55a40d70dc7ba38dc8b8f63ae4e3bdca9cc61dd39724c7965"
+    },
+    {
+      "path": "tests/test_evidence_contracts.py",
+      "sha256": "7a535ca88a26f3c55503b2c4820b2cfa3f50144a97b12f177c4c5df9a9e96d61"
+    },
+    {
+      "path": "tests/test_evidence_persistence.py",
+      "sha256": "3f600f2f7d1b6cfd70c9e648ec1430258b5ff5f30755e50badd480e83ac08d8d"
+    },
+    {
+      "path": "tests/test_evidence_trust_e2e.py",
+      "sha256": "d60c796ced4b254a09ea32fa8fb5b8d4ab6f74abab4aef7b90ab551deff1701b"
+    },
+    {
+      "path": "tests/test_export.py",
+      "sha256": "77ede4912a38c488ec68bf24f06c28301ac46aa94ad0775abffe790585616243"
+    },
+    {
+      "path": "tests/test_extract.py",
+      "sha256": "40ca162437f6a19abc78f75422896d7864cd6117b62a89ec01f7145821a20e3e"
+    },
+    {
+      "path": "tests/test_field_resolution.py",
+      "sha256": "5496567a00d4bc59326884aa207bd857959515006c98152f282ce62c550e48b1"
+    },
+    {
+      "path": "tests/test_filters.py",
+      "sha256": "4636af79c1585f207c78ccc34b47ace5c6942e4b60a16579142b5dc235d63993"
+    },
+    {
+      "path": "tests/test_identity_matching.py",
+      "sha256": "202aa3421f65bcea715acb2aa3f4a2787a62f7211b9cfca03527147c9777275b"
+    },
+    {
+      "path": "tests/test_live_regressions.py",
+      "sha256": "877be4ea9844e023d1d7a1fa95bc56c0577748045eb85c49b9d041c9499a78c3"
+    },
+    {
+      "path": "tests/test_mcp_reference_client.py",
+      "sha256": "37d55aa53d72c13836a98a9e0a9c0036a047ae22bc5b8cd0967943aff5571ee5"
+    },
+    {
+      "path": "tests/test_mechanism_driver_state.py",
+      "sha256": "af05f426f5733efc2032c7ba0a7df3a27fe1fd58ac8f46998dfd68cf777e1a7c"
+    },
+    {
+      "path": "tests/test_models.py",
+      "sha256": "8bb0e41638a48f1fcdfb11f65f463908342872d9a47ecb53e62391a38b804e17"
+    },
+    {
+      "path": "tests/test_monitor.py",
+      "sha256": "72040ac42b1f3164bcc2de76e55e9374395b162de1a3624604349e8599680325"
+    },
+    {
+      "path": "tests/test_normalize.py",
+      "sha256": "e0b62a4e8f535460a0defd52c755a1baf4aaa6beba0dcaf1855bd33b7a1e91fe"
+    },
+    {
+      "path": "tests/test_quality.py",
+      "sha256": "b4fb008732f2a32aae67e3613101876be0244b24ed0a19d60ea485ff429a7331"
+    },
+    {
+      "path": "tests/test_reliable_changes.py",
+      "sha256": "f3436fbdcbc2706d298aca4c4a2fed7851f2207dd87bf825d4bbd697fcda99b8"
+    },
+    {
+      "path": "tests/test_reliable_changes_stress.py",
+      "sha256": "9df4c675d5e08488a557e21a96099fee30240e458218ac256cfdbd175fafaa4a"
+    },
+    {
+      "path": "tests/test_snapshot_completeness.py",
+      "sha256": "e10bac48dd0aa711549f5118e38494061774f4ec9c78fbb9324de173d1c1694d"
+    },
+    {
+      "path": "tests/test_storefront_apis.py",
+      "sha256": "cbd2702faefa9c057394fbb38f890386f07c9a4e539a29a899f092cf483b777d"
+    },
+    {
+      "path": "tests/test_tool_bootstrap.py",
+      "sha256": "47b671fbdaa1e4dd78055c23c75a3179e13765c3730b065213520e251469cec1"
+    },
+    {
+      "path": "tests/test_tool_discovery_lazy.py",
+      "sha256": "57ab15d20ccf1d061d62f41c33038ff14c155091a14daddb91ba8fcff4351635"
+    },
+    {
+      "path": "tests/test_tool_lifecycle.py",
+      "sha256": "2a438c3c4b4082731214673eeab28cb52fae1b8fdb200ff467645a89dad2e2a4"
+    },
+    {
+      "path": "tests/test_tool_mechanisms.py",
+      "sha256": "8513543fc3acf37a46b53fcb228fdc6784c3b9ee2e1ed9b5e86e4a411dfae8c0"
+    },
+    {
+      "path": "tests/test_tool_native_modes.py",
+      "sha256": "98c214a346d8685680210f6876c8d3689a29371a771de23046db83f6af2c7b84"
+    },
+    {
+      "path": "tests/test_tool_redirect_credentials.py",
+      "sha256": "9d2239b619a8cbc058c2bad32256c369634176f2aa33b94d7f53a96c0c66b747"
+    },
+    {
+      "path": "tests/test_tool_shopware_policy.py",
+      "sha256": "7a33a3905658e41bae8dca2278b57951ac01b1d0bd4957b62a813e2a0fe2d0da"
+    },
+    {
+      "path": "tests/test_validate.py",
+      "sha256": "ab74fbee396c9828f9f8df4ad01bd20ffd6eed661719b439b9a398df873d4911"
+    },
+    {
+      "path": "tests/tool_api_fixtures.py",
+      "sha256": "4d488c1997753e4b630abf310af51df31e6b226867012d6cb2ae9a79ed20e4c6"
+    },
+    {
+      "path": "tests/tool_faults.py",
+      "sha256": "8b9c8232551b5cba217ca3dd9c495bd744015761ea0a6f803c914fd28c552c43"
+    },
+    {
+      "path": "tests/tool_fixture_budget.py",
+      "sha256": "150b93649d3de2e88ab67d55f72b1c1abcfe0a1b959499cbc524da2b245f03ae"
+    },
+    {
+      "path": "tests/tool_schema_validation.py",
+      "sha256": "211ffc69d7d6d43fe6f88a6321f213b335889c0e0b83b48b6139f09bffbcd48a"
+    }
+  ],
+  "environment": {
+    "python": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "platform": "darwin",
+    "pytest": "9.1.1",
+    "pytest-asyncio": "1.4.0",
+    "mcp": "1.30.0",
+    "httpx": "0.28.1",
+    "httpcore": "1.0.9",
+    "anyio": "4.15.1",
+    "jsonschema": "4.26.0",
+    "installed_distributions": [
+      [
+        "Crawl4AI",
+        "0.9.3"
+      ],
+      [
+        "Jinja2",
+        "3.1.6"
+      ],
+      [
+        "MarkupSafe",
+        "3.0.3"
+      ],
+      [
+        "PyJWT",
+        "2.15.1"
+      ],
+      [
+        "PyYAML",
+        "6.0.3"
+      ],
+      [
+        "Pygments",
+        "2.19.1"
+      ],
+      [
+        "RapidFuzz",
+        "3.14.5"
+      ],
+      [
+        "aiofiles",
+        "25.1.0"
+      ],
+      [
+        "aiohappyeyeballs",
+        "2.7.1"
+      ],
+      [
+        "aiohttp",
+        "3.14.3"
+      ],
+      [
+        "aiolimiter",
+        "1.2.1"
+      ],
+      [
+        "aiosignal",
+        "1.4.0"
+      ],
+      [
+        "aiosqlite",
+        "0.22.1"
+      ],
+      [
+        "alphashape",
+        "1.3.1"
+      ],
+      [
+        "annotated-types",
+        "0.8.0"
+      ],
+      [
+        "anyio",
+        "4.15.1"
+      ],
+      [
+        "appnope",
+        "0.1.4"
+      ],
+      [
+        "ast_serialize",
+        "0.11.2"
+      ],
+      [
+        "asttokens",
+        "3.0.0"
+      ],
+      [
+        "async-timeout",
+        "5.0.1"
+      ],
+      [
+        "attrs",
+        "26.1.0"
+      ],
+      [
+        "backports.asyncio.runner",
+        "1.2.0"
+      ],
+      [
+        "beautifulsoup4",
+        "4.12.3"
+      ],
+      [
+        "brotli",
+        "1.2.0"
+      ],
+      [
+        "certifi",
+        "2024.12.14"
+      ],
+      [
+        "cffi",
+        "2.1.1"
+      ],
+      [
+        "chardet",
+        "7.6.0"
+      ],
+      [
+        "charset-normalizer",
+        "3.4.1"
+      ],
+      [
+        "click",
+        "8.5.0"
+      ],
+      [
+        "click-log",
+        "0.4.0"
+      ],
+      [
+        "cloudpickle",
+        "3.1.2"
+      ],
+      [
+        "comm",
+        "0.2.2"
+      ],
+      [
+        "cryptography",
+        "50.0.1"
+      ],
+      [
+        "cssselect",
+        "1.5.0"
+      ],
+      [
+        "debugpy",
+        "1.8.12"
+      ],
+      [
+        "decorator",
+        "5.1.1"
+      ],
+      [
+        "defusedxml",
+        "0.7.1"
+      ],
+      [
+        "distro",
+        "1.9.0"
+      ],
+      [
+        "exceptiongroup",
+        "1.2.2"
+      ],
+      [
+        "executing",
+        "2.2.0"
+      ],
+      [
+        "fake-useragent",
+        "2.2.0"
+      ],
+      [
+        "fastjsonschema",
+        "2.22.2"
+      ],
+      [
+        "fastuuid",
+        "0.14.0"
+      ],
+      [
+        "filelock",
+        "3.32.5"
+      ],
+      [
+        "frozenlist",
+        "1.8.0"
+      ],
+      [
+        "fsspec",
+        "2026.7.0"
+      ],
+      [
+        "graphql-core",
+        "3.2.13"
+      ],
+      [
+        "greenlet",
+        "3.5.5"
+      ],
+      [
+        "grpcio",
+        "1.83.1"
+      ],
+      [
+        "h11",
+        "0.16.0"
+      ],
+      [
+        "h2",
+        "4.4.1"
+      ],
+      [
+        "hf-xet",
+        "1.6.0"
+      ],
+      [
+        "hpack",
+        "4.2.0"
+      ],
+      [
+        "httpcore",
+        "1.0.9"
+      ],
+      [
+        "httpcore2",
+        "2.12.0"
+      ],
+      [
+        "httpx",
+        "0.28.1"
+      ],
+      [
+        "httpx-sse",
+        "0.4.3"
+      ],
+      [
+        "httpx2",
+        "2.12.0"
+      ],
+      [
+        "huggingface_hub",
+        "1.30.0"
+      ],
+      [
+        "humanize",
+        "4.16.0"
+      ],
+      [
+        "hyperframe",
+        "6.1.0"
+      ],
+      [
+        "idna",
+        "3.19"
+      ],
+      [
+        "importlib_metadata",
+        "9.0.1"
+      ],
+      [
+        "iniconfig",
+        "2.3.0"
+      ],
+      [
+        "ipykernel",
+        "6.29.5"
+      ],
+      [
+        "ipython",
+        "8.32.0"
+      ],
+      [
+        "jedi",
+        "0.19.2"
+      ],
+      [
+        "jiter",
+        "0.16.0"
+      ],
+      [
+        "joblib",
+        "1.6.0"
+      ],
+      [
+        "jsonpatch",
+        "1.33"
+      ],
+      [
+        "jsonpointer",
+        "3.1.1"
+      ],
+      [
+        "jsonschema",
+        "4.26.0"
+      ],
+      [
+        "jsonschema-specifications",
+        "2025.9.1"
+      ],
+      [
+        "jupyter_client",
+        "8.6.3"
+      ],
+      [
+        "jupyter_core",
+        "5.7.2"
+      ],
+      [
+        "langchain-core",
+        "1.6.2"
+      ],
+      [
+        "langchain-protocol",
+        "0.0.19"
+      ],
+      [
+        "langchain-text-splitters",
+        "1.1.2"
+      ],
+      [
+        "langsmith",
+        "0.12.1"
+      ],
+      [
+        "lark",
+        "1.3.1"
+      ],
+      [
+        "librt",
+        "0.16.0"
+      ],
+      [
+        "lxml",
+        "6.1.3"
+      ],
+      [
+        "markdown-it-py",
+        "4.2.0"
+      ],
+      [
+        "matplotlib-inline",
+        "0.1.7"
+      ],
+      [
+        "mcp",
+        "1.30.0"
+      ],
+      [
+        "mdurl",
+        "0.1.2"
+      ],
+      [
+        "multidict",
+        "6.7.1"
+      ],
+      [
+        "mypy",
+        "2.4.0"
+      ],
+      [
+        "mypy_extensions",
+        "1.1.0"
+      ],
+      [
+        "nbformat",
+        "5.11.1"
+      ],
+      [
+        "neo4j",
+        "6.4.0"
+      ],
+      [
+        "nest-asyncio",
+        "1.6.0"
+      ],
+      [
+        "networkx",
+        "3.4.2"
+      ],
+      [
+        "nltk",
+        "3.10.3"
+      ],
+      [
+        "numpy",
+        "2.2.6"
+      ],
+      [
+        "openai",
+        "3.8.0"
+      ],
+      [
+        "orjson",
+        "3.12.0"
+      ],
+      [
+        "packaging",
+        "24.2"
+      ],
+      [
+        "pandas",
+        "2.3.3"
+      ],
+      [
+        "parso",
+        "0.8.4"
+      ],
+      [
+        "patchright",
+        "1.62.3"
+      ],
+      [
+        "pathspec",
+        "1.1.1"
+      ],
+      [
+        "pdfminer.six",
+        "20260107"
+      ],
+      [
+        "pdfplumber",
+        "0.11.10"
+      ],
+      [
+        "pexpect",
+        "4.9.0"
+      ],
+      [
+        "pillow",
+        "12.3.0"
+      ],
+      [
+        "pip",
+        "23.0.1"
+      ],
+      [
+        "pip",
+        "23.0.1"
+      ],
+      [
+        "platformdirs",
+        "4.3.6"
+      ],
+      [
+        "playwright",
+        "1.62.0"
+      ],
+      [
+        "playwright-stealth",
+        "2.0.3"
+      ],
+      [
+        "pluggy",
+        "1.6.0"
+      ],
+      [
+        "portalocker",
+        "3.2.0"
+      ],
+      [
+        "prompt_toolkit",
+        "3.0.50"
+      ],
+      [
+        "propcache",
+        "0.5.2"
+      ],
+      [
+        "protobuf",
+        "7.36.1"
+      ],
+      [
+        "psutil",
+        "6.1.1"
+      ],
+      [
+        "ptyprocess",
+        "0.7.0"
+      ],
+      [
+        "pure_eval",
+        "0.2.3"
+      ],
+      [
+        "pyOpenSSL",
+        "26.4.0"
+      ],
+      [
+        "pyarrow",
+        "25.0.1"
+      ],
+      [
+        "pycparser",
+        "3.0"
+      ],
+      [
+        "pydantic",
+        "2.13.5"
+      ],
+      [
+        "pydantic-settings",
+        "2.15.0"
+      ],
+      [
+        "pydantic_core",
+        "2.46.5"
+      ],
+      [
+        "pyee",
+        "13.0.1"
+      ],
+      [
+        "pyflakes",
+        "3.4.0"
+      ],
+      [
+        "pymupdf",
+        "1.28.2"
+      ],
+      [
+        "pypdfium2",
+        "5.13.0"
+      ],
+      [
+        "pytest",
+        "9.1.1"
+      ],
+      [
+        "pytest-asyncio",
+        "1.4.0"
+      ],
+      [
+        "python-dateutil",
+        "2.9.0.post0"
+      ],
+      [
+        "python-dotenv",
+        "1.2.3"
+      ],
+      [
+        "python-multipart",
+        "0.0.32"
+      ],
+      [
+        "pytz",
+        "2026.3.post1"
+      ],
+      [
+        "pyzmq",
+        "26.2.1"
+      ],
+      [
+        "qdrant-client",
+        "1.19.0"
+      ],
+      [
+        "rank-bm25",
+        "0.2.2"
+      ],
+      [
+        "referencing",
+        "0.37.0"
+      ],
+      [
+        "regex",
+        "2026.9.3"
+      ],
+      [
+        "requests",
+        "2.32.3"
+      ],
+      [
+        "requests-toolbelt",
+        "1.0.0"
+      ],
+      [
+        "rich",
+        "15.0.0"
+      ],
+      [
+        "rpds-py",
+        "0.30.0"
+      ],
+      [
+        "rtree",
+        "1.4.1"
+      ],
+      [
+        "scipy",
+        "1.15.3"
+      ],
+      [
+        "setuptools",
+        "65.5.0"
+      ],
+      [
+        "setuptools",
+        "65.5.0"
+      ],
+      [
+        "shapely",
+        "2.1.2"
+      ],
+      [
+        "six",
+        "1.17.0"
+      ],
+      [
+        "sniffio",
+        "1.3.1"
+      ],
+      [
+        "snowballstemmer",
+        "2.2.0"
+      ],
+      [
+        "soupsieve",
+        "2.6"
+      ],
+      [
+        "sse-starlette",
+        "3.5.0"
+      ],
+      [
+        "stack-data",
+        "0.6.3"
+      ],
+      [
+        "starlette",
+        "1.7.0"
+      ],
+      [
+        "tenacity",
+        "9.1.4"
+      ],
+      [
+        "tiktoken",
+        "0.14.0"
+      ],
+      [
+        "tokenizers",
+        "0.23.2"
+      ],
+      [
+        "tomli",
+        "2.4.1"
+      ],
+      [
+        "tornado",
+        "6.4.2"
+      ],
+      [
+        "tqdm",
+        "4.70.0"
+      ],
+      [
+        "traitlets",
+        "5.14.3"
+      ],
+      [
+        "trimesh",
+        "5.1.0"
+      ],
+      [
+        "truststore",
+        "0.10.4"
+      ],
+      [
+        "typing-inspection",
+        "0.4.4"
+      ],
+      [
+        "typing_extensions",
+        "4.16.0"
+      ],
+      [
+        "tzdata",
+        "2026.4"
+      ],
+      [
+        "unclecode-litellm",
+        "1.81.13"
+      ],
+      [
+        "urllib3",
+        "2.3.0"
+      ],
+      [
+        "uuid_utils",
+        "0.17.0"
+      ],
+      [
+        "uvicorn",
+        "0.54.0"
+      ],
+      [
+        "voyageai",
+        "0.5.0"
+      ],
+      [
+        "wcwidth",
+        "0.2.13"
+      ],
+      [
+        "websockets",
+        "16.1.1"
+      ],
+      [
+        "xxhash",
+        "3.8.1"
+      ],
+      [
+        "yarl",
+        "1.24.5"
+      ],
+      [
+        "zipp",
+        "4.1.0"
+      ],
+      [
+        "zstandard",
+        "0.25.0"
+      ]
+    ]
+  },
+  "static_input_bytes": 2611,
+  "static_inputs_charged": true,
+  "memory_measurement": "measured",
+  "peak_additional_rss_bytes": 252899328,
+  "peak_process_count": 3
+}

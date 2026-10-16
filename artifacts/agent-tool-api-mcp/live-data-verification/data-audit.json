@@ -1,0 +1,137 @@
+{
+  "outcome": "passed",
+  "audit_seconds": 0.008159828998032026,
+  "network_requests": 0,
+  "fields": [
+    {
+      "sample": 1,
+      "title": "Bliss Halloween Costume",
+      "price": "65.00",
+      "currency": "USD",
+      "currency_support": "observed",
+      "currency_source": "saved actual cart_currency response cookie",
+      "sku": "0585-0057003",
+      "sku_support": "observed",
+      "stock": true,
+      "stock_support": "observed",
+      "gtin": null,
+      "gtin_support": "unsupported",
+      "variants": [
+        {
+          "variant_id": "67743111872797",
+          "price": "65.00",
+          "sku": "0585-0057003",
+          "in_stock": true
+        }
+      ],
+      "actual_source": "http-05.body",
+      "source_sha256": "06e56c83039c441787c0f4ec6e0b26f53b28e4efda80c3f5b14051219befbbc5"
+    },
+    {
+      "sample": 1,
+      "title": "Salmon DNA Duo",
+      "price": "55.00",
+      "currency": "USD",
+      "currency_support": "observed",
+      "currency_source": "saved actual cart_currency response cookie",
+      "sku": null,
+      "sku_support": "unknown",
+      "stock": true,
+      "stock_support": "observed",
+      "gtin": null,
+      "gtin_support": "unsupported",
+      "variants": [
+        {
+          "variant_id": "67705008455965",
+          "price": "55.00",
+          "sku": null,
+          "in_stock": true
+        }
+      ],
+      "actual_source": "http-05.body",
+      "source_sha256": "06e56c83039c441787c0f4ec6e0b26f53b28e4efda80c3f5b14051219befbbc5"
+    },
+    {
+      "sample": 2,
+      "title": "Bliss Halloween Costume",
+      "price": "65.00",
+      "currency": "USD",
+      "currency_support": "observed",
+      "currency_source": "saved actual cart_currency response cookie",
+      "sku": "0585-0057003",
+      "sku_support": "observed",
+      "stock": true,
+      "stock_support": "observed",
+      "gtin": null,
+      "gtin_support": "unsupported",
+      "variants": [
+        {
+          "variant_id": "67743111872797",
+          "price": "65.00",
+          "sku": "0585-0057003",
+          "in_stock": true
+        }
+      ],
+      "actual_source": "http-07.body",
+      "source_sha256": "8c81603d239cc9846b7a5f9fec1e85f37b4e8e32876ebf5fe018f4d334d946bd"
+    },
+    {
+      "sample": 2,
+      "title": "Salmon DNA Duo",
+      "price": "55.00",
+      "currency": "USD",
+      "currency_support": "observed",
+      "currency_source": "saved actual cart_currency response cookie",
+      "sku": null,
+      "sku_support": "unknown",
+      "stock": true,
+      "stock_support": "observed",
+      "gtin": null,
+      "gtin_support": "unsupported",
+      "variants": [
+        {
+          "variant_id": "67705008455965",
+          "price": "55.00",
+          "sku": null,
+          "in_stock": true
+        }
+      ],
+      "actual_source": "http-07.body",
+      "source_sha256": "8c81603d239cc9846b7a5f9fec1e85f37b4e8e32876ebf5fe018f4d334d946bd"
+    }
+  ],
+  "matches": [
+    {
+      "index_a": 0,
+      "index_b": 0,
+      "relation": "exact",
+      "evidence": [
+        "supplier-scoped canonical_product_id agrees",
+        "supplier-scoped external_id agrees",
+        "supplier-scoped sku agrees"
+      ]
+    },
+    {
+      "index_a": 1,
+      "index_b": 1,
+      "relation": "exact",
+      "evidence": [
+        "supplier-scoped canonical_product_id agrees",
+        "supplier-scoped external_id agrees"
+      ]
+    }
+  ],
+  "evidence": {
+    "source_url": "https://www.blissworld.com/products.json?limit=2&page=1",
+    "pointer": "/value",
+    "retained_data": {
+      "source_pointer": "/variants/0/price",
+      "value": "65.00"
+    }
+  },
+  "wrong_owner": "Live driver asserted not_found and completed successfully; no leaked support",
+  "version_error": "unsupported_version",
+  "changes": "Actual real captures compared,0events; incomplete2-product catalog, no commercial-transition/full-catalog unchanged claim",
+  "captured_response_bytes": 1269967,
+  "observations": "NoGLM/key/model. Native source supplies currency via response cookie, not default. MissingSKU/GTIN stay unknown/unsupported."
+}

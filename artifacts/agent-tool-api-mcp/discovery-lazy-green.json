@@ -1,0 +1,15 @@
+{
+  "exit": 0,
+  "timeout": false,
+  "seconds": 14.03809344599722,
+  "ceiling_seconds": 42.341,
+  "nodes": [
+    "tests/test_tool_discovery_lazy.py",
+    "tests/test_agent_tool_api.py::test_complete_domain_flow_uses_native_code_paths",
+    "tests/test_tool_mechanisms.py::test_discovered_denied_link_is_diagnostic_only",
+    "tests/test_tool_mechanisms.py::test_dns_change_after_discovery_denies_extraction",
+    "tests/test_mcp_reference_client.py::test_reference_mcp_client_complete_flow"
+  ],
+  "prior_red_seconds": 2.658719401995768,
+  "cumulative_focused_seconds": 16.696812847992987
+}

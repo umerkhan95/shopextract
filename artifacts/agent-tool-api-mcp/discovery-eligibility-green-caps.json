@@ -1,0 +1,18 @@
+{
+  "exit": 0,
+  "nodes": [
+    "tests/test_tool_discovery_lazy.py",
+    "tests/test_agent_tool_api.py::test_complete_domain_flow_uses_native_code_paths",
+    "tests/test_tool_mechanisms.py::test_discovered_denied_link_is_diagnostic_only",
+    "tests/test_tool_mechanisms.py::test_dns_change_after_discovery_denies_extraction",
+    "tests/test_mcp_reference_client.py::test_reference_mcp_client_complete_flow"
+  ],
+  "runner_seconds": 13.756094734999351,
+  "measured_fixture_bytes": 104780,
+  "fixture_categories": {
+    "http_response_representation": 5590,
+    "constructed_graph_representation": 49595,
+    "publication_graph_representation": 49595
+  },
+  "byte_measurement_scope": "Actual HTTP response/graph representations in pytest process; existing SDK fixture server subprocess is outside this ledger, no aggregate byte-cap claim"
+}
