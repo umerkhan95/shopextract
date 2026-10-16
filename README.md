@@ -718,6 +718,15 @@ For Ollama models (`ollama/llama3.1`, etc.), no API key is needed -- just have O
 
 ## Interactive Demo
 
+Both [local](notebooks/demo.ipynb) and [Colab](notebooks/shopextract_demo.ipynb)
+notebooks include a runnable offline field-resolution section: evidence references,
+supplier offer versus manufacturer specification authority, unresolved conflicts,
+freshness replay and typed contract serialization. The Colab installation pins the
+implementation commit that supplies these APIs. This covers Epic 2 #34–#36; #37–#39
+persistence, portable Product bundles and end-to-end verification remain pending.
+See [Field resolution](docs/field-resolution.md) and the
+[offline Python example](examples/field_resolution.py).
+
 Try shopextract without installing anything:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/umerkhan95/shopextract/blob/main/notebooks/shopextract_demo.ipynb)
@@ -730,14 +739,24 @@ The notebooks demonstrate extraction, analysis, stable identity, evidence-backed
 
 ### Test Stores
 
-The notebooks and tests use public demo stores designed for developer testing:
+Live provenance/resolution verification sampled these public storefronts. Some are
+retail stores rather than test stores; runs used bounded read-only requests:
 
 | Platform | URL | Description |
 |:---------|:----|:------------|
-| **Shopify** | `https://hydrogen-preview.myshopify.com` | Official Shopify Hydrogen demo store |
-| **Magento** | `https://magento.softwaretestingboard.com` | Official Magento test store |
+| **Shopify** | `https://www.boardgamebliss.com`, `https://store.401games.ca` | Product JSON and independent product HTML |
+| **WooCommerce** | `https://demo.athemes.com/botiga` | Public Store API and HTML |
+| **Magento** | `https://magento2-demo.magebit.com` | Paginated GraphQL and HTML |
+| **Shopware** | `https://frontends-demo.vercel.app` | Store API and HTML |
+| **BigCommerce** | `https://cornerstone-light-demo.mybigcommerce.com` | Public HTML pipeline |
+| **Generic CSS** | `https://books.toscrape.com` | Fresh HTML and production CSS extraction |
 
-These are maintained by their respective platforms for integration testing and will not trigger anti-bot protections.
+The 2026-10-16 field-resolution matrix passed 12 cases across six supported families
+and seven sites: 106 product observations, 262 variant observations and 5,282 field
+resolutions. Counts include overlapping samples, not unique catalog totals.
+See [the live review](artifacts/field-resolution-live/review.md). Availability,
+authentication requirements and anti-bot behavior can change; these samples are not
+coverage claims for every merchant/theme.
 
 ### Running Tests
 
@@ -863,7 +882,11 @@ response data, normalized values or total extraction memory. Capture times repre
 UTC observation during extraction, not merchant modification time. Reserved raw
 `_capture` metadata is internal and can change; use the public contract for inspection.
 Raw/model scores and extraction quality never create validated confidence. Source
-precedence, SQLite evidence retention and portable Product bundles remain follow-up
-work. Save a contract explicitly with `product.evidence_contract.to_dict()` for now.
+precedence is available through `resolve_fields(contract, as_of=...)`: supplier
+offers and verified manufacturer specifications use different authority rules, and
+equal-authority disagreements remain unresolved. See [field resolution](docs/field-resolution.md)
+and the [offline example](examples/field_resolution.py). Matching reports include
+field-support references without changing matching scores. SQLite evidence retention
+and portable Product bundles remain follow-up work. Save a contract explicitly with `product.evidence_contract.to_dict()` for now.
 See [the public contract](specs/002-evidence-data-trust/contracts/evidence.md) and
 [field coverage matrix](specs/002-evidence-data-trust/data-model.md).

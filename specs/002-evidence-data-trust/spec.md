@@ -15,8 +15,8 @@ values and competing values without guessing from Product scalar defaults.
 - FR-07: Bounded capture and retention explicitly expose expired/unavailable support.
 
 #34 delivers interfaces and fixtures for FR-01, FR-02, FR-06. #35 delivers bounded
-capture and automatic normalization observations. Policy (#36), SQLite (#37),
-export (#38) and the end-to-end example (#39) remain pending.
+capture and automatic normalization observations. Policy (#36) now resolves field authority and preserves alternatives. SQLite (#37),
+export (#38) and the full persistence/export end-to-end example (#39) remain pending.
 
 ## Acceptance scenarios for #34
 1. Given absent price/currency/stock normalized through the existing API, when the
@@ -67,3 +67,16 @@ paths, including explicit false availability and zero child prices. Ancestor cap
 must not starve leaf evidence before leaf retention is attempted. Prefix/suffix feed
 currencies and unambiguous CSS currency symbols must preserve source excerpts and
 conversion history; relative CSS images resolve against the fetched page URL.
+
+## Acceptance scenarios for #36
+- Resolve fresh supported observations under a versioned field policy; verified
+  manufacturer specifications outrank supplier claims, while offers use supplier
+  authority and never substitute manufacturer list prices for offer prices.
+- Preserve all candidates/evidence, including excluded stale/unsupported alternatives.
+  Equal-authority disagreements remain conflicting; equivalent top candidates may
+  select a stable representative without inventing confidence.
+- Explicit UTC evaluation time and conservative source timestamps make freshness
+  and input permutations deterministic. Manufacturer authority is caller-verified,
+  never derived from a hostname.
+- Matching reports expose observation/evidence and resolution-policy references
+  without changing identity decisions or score semantics.

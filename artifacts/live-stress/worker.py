@@ -25,7 +25,7 @@ from shopextract.extractors.shopify import ShopifyExtractor
 from shopextract.extractors.woocommerce import WooCommerceExtractor
 
 ROOT=Path(__file__).resolve().parent
-CASE=json.loads(sys.argv[1])
+CASE=json.loads(sys.argv[1]) if __name__ == '__main__' else {}
 NETWORK=[]
 REMOTE_TOTALS=[]
 
@@ -183,4 +183,5 @@ async def main():
     (ROOT/(CASE['name']+'.json')).write_text(json.dumps(result,default=str,indent=2))
     print(json.dumps({k:result[k] for k in ['status','seconds','peak_rss_mib','requests','product_count','variant_count','defects']}),flush=True)
 
-asyncio.run(main())
+if __name__ == '__main__':
+    asyncio.run(main())

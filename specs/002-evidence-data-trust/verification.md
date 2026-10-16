@@ -181,3 +181,56 @@ Coverage and provider-boundary limitations: `artifacts/bigcommerce-auth/review.m
 `tests/fixtures/bigcommerce/README.md` and `docs/storefront-apis.md`. No real
 credentials or live authenticated calls were used. Provider signature/permission
 verification and token issuance remain outside read-only extraction.
+
+## Issue #36 — deterministic field source resolution, 2026-10-16
+
+Baseline evidence/matching suites: **67 passed**, 0.27 seconds.
+Added **53 regression cases** for role authority, equivalent/tied values, age/future
+limits, mixed source support, unsupported/expired inputs, permutations, nested paths,
+contract round trips, score separation and matching references. Focused resolution/
+evidence/matching suites: **120 passed**, 0.45 seconds.
+Full `PYTHONPATH=src .venv/bin/python -m pytest -q`: **588 passed**, 3.72 seconds.
+`git diff --check` passed. `PYTHONPATH=src .venv/bin/python examples/field_resolution.py`
+passed its assertions and saved a deterministic fixture report in
+`artifacts/field-resolution/example.json`; compact test logs are saved beside it.
+
+Resolver evaluation time is explicit UTC. Source-role verification remains a caller
+registration responsibility, not a domain heuristic. Field alignment, variant identity
+and offer/currency context must be established before combining observations.
+Matching relationship/confidence semantics and Product scalar values are unchanged;
+reports now contain field-support references. #37 persistence, #38 portable bundles
+and #39 full end-to-end proof remain pending. No live requests, models or agents used.
+
+## #36 live platform matrix — 2026-10-16
+
+All **12 final cases passed** across Shopify (two stores), WooCommerce, Magento,
+Shopware, BigCommerce HTML and generic CSS: seven actual sites, 106 product
+observations / 262 variant observations plus five independent product HTML captures.
+Audited 5,282 field resolutions for source support, preservation, explicit age expiry,
+shuffled determinism, typed round trips and matching references. Final matrix: 74
+requests; including initial captures before adding paired-source checks: 120 requests.
+96 separately labeled synthetic fault probes exercise policy edge cases seeded by
+actual live values; these are not claimed as manufacturer observations from stores.
+
+Shopware's supported API price (22 EUR) coexisted with an unsupported HTML default
+and resolved correctly. Magento's API/HTML prices agreed at 69 EUR. Both compact
+live-price fixtures now have replay coverage. No new application defect reproduced.
+The stress helper gained an import guard for reusable live extraction/auditing.
+
+Latest resolver suite: **55 passed**, 0.28 seconds; full suite: **590 passed**,
+3.74 seconds. `git diff --check` passed. Case journals, paired contracts, compressed
+evidence and limitations: `artifacts/field-resolution-live/review.md` and `review.json`.
+BigCommerce authenticated GraphQL remains mock-tested; live BigCommerce uses HTML.
+This sample does not assert every merchant/theme or provider permission is supported.
+
+## #36 notebook and documentation handoff — 2026-10-16
+
+Both local/Colab notebooks now include the standalone offline field-resolution
+fixture, policy decisions, matching references, expiry replay and typed contract
+round trip. Eight new cells executed successfully and their saved outputs match
+re-execution. Both notebooks validate against nbformat 4.5; all 63 code cells
+passed syntax checks with IPython magic transformation/top-level await support.
+The older network-dependent notebook sections were not rerun. Colab pins the
+implementation commit containing the new public APIs. README documents the new
+walkthrough and actual live sample sites/counts without promising anti-bot immunity.
+Validation record: `artifacts/field-resolution-live/notebook-verification.json`.

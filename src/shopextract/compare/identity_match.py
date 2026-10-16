@@ -12,6 +12,7 @@ from enum import Enum
 from typing import Callable, Iterable
 
 from .._models import Product
+from .._resolution import resolution_references
 from ..identity import supplier_scope
 from .match import title_similarity
 
@@ -35,6 +36,7 @@ class MatchDecision:
     index_a: int | None = None
     index_b: int | None = None
     candidate_method: str = "rules"
+    field_support: dict = field(default_factory=dict)
 
 
 def _record(product: Product | dict) -> dict:
@@ -95,7 +97,7 @@ def normalized_attributes(product: Product | dict) -> dict[str, str]:
     return result
 
 
-def classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 0.8,
+def _classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 0.8,
                    publisher_aliases: dict[str, list[str]] | None = None) -> MatchDecision:
     """Classify a pair. Conflicts always override agreeing identifiers."""
     if not 0 <= threshold <= 1:
@@ -192,6 +194,21 @@ def classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 0
     return MatchDecision(MatchRelation.UNCERTAIN, similarity, ["normalized title/attribute candidate"], [], True)
 
 
+def _field_support(product):
+    contract = getattr(product, 'evidence_contract', None)
+    return resolution_references(contract) if contract is not None else {}
+
+
+def classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 0.8,
+                   publisher_aliases: dict[str, list[str]] | None = None) -> MatchDecision:
+    """Classify with existing score semantics and optional captured field references."""
+    decision = _classify_match(a, b, threshold=threshold, publisher_aliases=publisher_aliases)
+    support = {side: refs for side, product in [('a', a), ('b', b)]
+               if (refs := _field_support(product))}
+    decision.field_support = support
+    return decision
+
+
 SemanticCandidates = Callable[[dict, list[dict]], Iterable[int]]
 
 
@@ -209,7 +226,7 @@ def match_products(products_a: list[Product | dict], products_b: list[Product | 
     for i, a in enumerate(products_a):
         candidates = []
         for j, b in enumerate(products_b):
-            decision = classify_match(a, b, threshold=threshold, publisher_aliases=publisher_aliases)
+            decision = _classify_match(a, b, threshold=threshold, publisher_aliases=publisher_aliases)
             if decision.relation != MatchRelation.UNMATCHED:
                 decision.index_a, decision.index_b = i, j
                 candidates.append(decision)
@@ -220,7 +237,7 @@ def match_products(products_a: list[Product | dict], products_b: list[Product | 
             for j in dict.fromkeys(semantic_candidates(_record(a), [_record(b) for b in products_b])):
                 if not isinstance(j, int) or not 0 <= j < len(products_b):
                     raise ValueError("Semantic candidate index outside target catalog")
-                d = classify_match(a, products_b[j], threshold=threshold, publisher_aliases=publisher_aliases)
+                d = _classify_match(a, products_b[j], threshold=threshold, publisher_aliases=publisher_aliases)
                 if d.relation == MatchRelation.UNMATCHED:
                     d = MatchDecision(MatchRelation.UNCERTAIN, 0.0, ["semantic candidate only"], d.conflicts, True)
                 d.index_a, d.index_b, d.candidate_method = i, j, "semantic"
@@ -234,4 +251,11 @@ def match_products(products_a: list[Product | dict], products_b: list[Product | 
     targeted = {d.index_b for d in report if d.index_b is not None}
     report.extend(MatchDecision(MatchRelation.UNMATCHED, 0.0, index_b=j)
                   for j in range(len(products_b)) if j not in targeted)
+    support_a = [_field_support(p) for p in products_a]
+    support_b = [_field_support(p) for p in products_b]
+    for decision in report:
+        for side, index, support in [('a', decision.index_a, support_a),
+                                     ('b', decision.index_b, support_b)]:
+            if index is not None and support[index]:
+                decision.field_support[side] = support[index]
     return report

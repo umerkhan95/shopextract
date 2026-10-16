@@ -1,0 +1,808 @@
+{
+  "at": "2026-10-16",
+  "status": "pass",
+  "cases": 12,
+  "platform_families": 6,
+  "sites": 7,
+  "final_requests": 74,
+  "all_execution_requests": 120,
+  "product_observations": 106,
+  "variant_observations": 262,
+  "additional_html_products": 5,
+  "resolved_field_observations": 5282,
+  "synthetic_policy_probes": 96,
+  "family": {
+    "shopify": {
+      "cases": 4,
+      "products": 32,
+      "variants": 32
+    },
+    "woocommerce": {
+      "cases": 2,
+      "products": 14,
+      "variants": 0
+    },
+    "magento": {
+      "cases": 2,
+      "products": 22,
+      "variants": 219
+    },
+    "shopware": {
+      "cases": 2,
+      "products": 22,
+      "variants": 11
+    },
+    "bigcommerce": {
+      "cases": 1,
+      "products": 8,
+      "variants": 0
+    },
+    "generic": {
+      "cases": 1,
+      "products": 8,
+      "variants": 0
+    }
+  },
+  "export_checks": [
+    {
+      "case": "01-shopify-smoke",
+      "export_records": 2
+    },
+    {
+      "case": "02-shopify-bliss",
+      "export_records": 13
+    },
+    {
+      "case": "03-shopify-401",
+      "export_records": 13
+    },
+    {
+      "case": "04-woocommerce",
+      "export_records": 9
+    },
+    {
+      "case": "05-magento",
+      "export_records": 17
+    },
+    {
+      "case": "06-shopware",
+      "export_records": 17
+    },
+    {
+      "case": "07-bigcommerce",
+      "export_records": 8
+    },
+    {
+      "case": "08-generic-css",
+      "export_records": 8
+    },
+    {
+      "case": "09-shopify-public",
+      "export_records": 6
+    },
+    {
+      "case": "10-woo-public",
+      "export_records": 6
+    },
+    {
+      "case": "11-magento-public",
+      "export_records": 6
+    },
+    {
+      "case": "12-shopware-public",
+      "export_records": 6
+    }
+  ],
+  "case_results": [
+    {
+      "case": {
+        "name": "01-shopify-smoke",
+        "kind": "shopify",
+        "platform": "shopify",
+        "url": "https://www.boardgamebliss.com",
+        "limit": 2,
+        "enrich": true
+      },
+      "status": "pass",
+      "seconds": 0.9,
+      "requests": 3,
+      "product_count": 2,
+      "variant_count": 2,
+      "paired_html_count": 0,
+      "paired_comparison": null,
+      "paired_resolutions": null,
+      "peak_rss_mib": 93.43,
+      "defects": []
+    },
+    {
+      "case": {
+        "name": "02-shopify-bliss",
+        "kind": "shopify",
+        "platform": "shopify",
+        "url": "https://www.boardgamebliss.com",
+        "limit": 12,
+        "enrich": true,
+        "paired_html": true
+      },
+      "status": "pass",
+      "seconds": 4.84,
+      "requests": 14,
+      "product_count": 12,
+      "variant_count": 12,
+      "paired_html_count": 1,
+      "paired_comparison": {
+        "api_title": "Harmonies: Crescendo",
+        "html_title": "Harmonies: Crescendo",
+        "same_currency": true,
+        "price_equal": true,
+        "aligned_by_url": true,
+        "note": "Independent live channels, not asserted equivalent product/variant pricing"
+      },
+      "paired_resolutions": {
+        "/currency": {
+          "state": "observed",
+          "observation_ids": [
+            "o_7bb1e372-a4c5-4e77-bc5b-cdf891ade093",
+            "o_f954de3c-a773-4c7e-b4f0-e68a02411772"
+          ],
+          "evidence_ids": [
+            "e_4ac762e7-b771-46f5-a778-f067807a3005",
+            "e_f9605ae7-ab02-4a0e-b8ee-2153a9d21b37"
+          ],
+          "selected_observation_id": "o_7bb1e372-a4c5-4e77-bc5b-cdf891ade093",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_7bb1e372-a4c5-4e77-bc5b-cdf891ade093: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:23.788685+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_7bb1e372-a4c5-4e77-bc5b-cdf891ade093: eligible roles=unverified, authority=1; o_f954de3c-a773-4c7e-b4f0-e68a02411772: eligible roles=unverified, authority=1"
+        },
+        "/gtin": {
+          "state": "observed",
+          "observation_ids": [
+            "o_a5ddca9c-546b-4bf7-a279-a278dcb1a84a",
+            "o_bc31fb73-4377-485c-93c4-562e253024f6"
+          ],
+          "evidence_ids": [
+            "e_6a87bd1c-d28a-41fa-9c50-e54c6feda83f",
+            "e_ac31804f-89f3-4643-b575-d8a501942f49"
+          ],
+          "selected_observation_id": "o_a5ddca9c-546b-4bf7-a279-a278dcb1a84a",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_a5ddca9c-546b-4bf7-a279-a278dcb1a84a: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:23.788685+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_a5ddca9c-546b-4bf7-a279-a278dcb1a84a: eligible roles=unverified, authority=1; o_bc31fb73-4377-485c-93c4-562e253024f6: eligible roles=unverified, authority=1"
+        },
+        "/in_stock": {
+          "state": "observed",
+          "observation_ids": [
+            "o_746f7e8d-8892-4a0e-a024-dd538f40fac0",
+            "o_c0ed6583-d6b3-4b6c-8a50-93ddeca6ff95"
+          ],
+          "evidence_ids": [
+            "e_0baf9095-6f80-466a-bc1e-589243d3efc5",
+            "e_5b9edf88-86ca-41be-8e4c-a4a185e4124e"
+          ],
+          "selected_observation_id": "o_746f7e8d-8892-4a0e-a024-dd538f40fac0",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_746f7e8d-8892-4a0e-a024-dd538f40fac0: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:23.788685+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_746f7e8d-8892-4a0e-a024-dd538f40fac0: eligible roles=unverified, authority=1; o_c0ed6583-d6b3-4b6c-8a50-93ddeca6ff95: eligible roles=unverified, authority=1"
+        },
+        "/price": {
+          "state": "observed",
+          "observation_ids": [
+            "o_2968b625-6239-44f4-9171-a43634b38742",
+            "o_88a11f5d-0342-4a63-be71-a2f0bbe18ead"
+          ],
+          "evidence_ids": [
+            "e_5074c9d6-eb3c-4309-a32b-de8b74cede52",
+            "e_9caa5631-8e84-482a-bef8-62ee557e5db3"
+          ],
+          "selected_observation_id": "o_2968b625-6239-44f4-9171-a43634b38742",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_2968b625-6239-44f4-9171-a43634b38742: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:23.788685+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_2968b625-6239-44f4-9171-a43634b38742: eligible roles=unverified, authority=1; o_88a11f5d-0342-4a63-be71-a2f0bbe18ead: eligible roles=unverified, authority=1"
+        },
+        "/title": {
+          "state": "observed",
+          "observation_ids": [
+            "o_92edb201-80d8-4280-89d7-fe057821c01a",
+            "o_c2002705-3bab-47b1-97e7-f0acd27b0ea3"
+          ],
+          "evidence_ids": [
+            "e_7d827b01-1f0d-45f4-873c-b2be381e6a66",
+            "e_eec29778-da22-42a3-9ea8-937cba42ebe8"
+          ],
+          "selected_observation_id": "o_92edb201-80d8-4280-89d7-fe057821c01a",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_92edb201-80d8-4280-89d7-fe057821c01a: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:23.788685+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_92edb201-80d8-4280-89d7-fe057821c01a: eligible roles=unverified, authority=1; o_c2002705-3bab-47b1-97e7-f0acd27b0ea3: eligible roles=unverified, authority=1"
+        },
+        "/vendor": {
+          "state": "observed",
+          "observation_ids": [
+            "o_285ab831-6279-4dab-bf64-2dd3bacbcc8e",
+            "o_abf938c8-24c1-4397-8781-3115e888af91"
+          ],
+          "evidence_ids": [
+            "e_85592ced-107b-4496-897d-6ba12ae5cd86",
+            "e_cd2beec8-1f83-46dd-8074-1e6f51082195"
+          ],
+          "selected_observation_id": "o_285ab831-6279-4dab-bf64-2dd3bacbcc8e",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_285ab831-6279-4dab-bf64-2dd3bacbcc8e: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:23.788685+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_285ab831-6279-4dab-bf64-2dd3bacbcc8e: eligible roles=unverified, authority=1; o_abf938c8-24c1-4397-8781-3115e888af91: eligible roles=unverified, authority=1"
+        }
+      },
+      "peak_rss_mib": 112.9,
+      "defects": []
+    },
+    {
+      "case": {
+        "name": "03-shopify-401",
+        "kind": "shopify",
+        "platform": "shopify",
+        "url": "https://store.401games.ca",
+        "limit": 12,
+        "enrich": true,
+        "paired_html": true
+      },
+      "status": "pass",
+      "seconds": 3.78,
+      "requests": 14,
+      "product_count": 12,
+      "variant_count": 12,
+      "paired_html_count": 1,
+      "paired_comparison": {
+        "api_title": "Machi Koro Life",
+        "html_title": "Machi Koro Life",
+        "same_currency": true,
+        "price_equal": true,
+        "aligned_by_url": true,
+        "note": "Independent live channels, not asserted equivalent product/variant pricing"
+      },
+      "paired_resolutions": {
+        "/currency": {
+          "state": "observed",
+          "observation_ids": [
+            "o_1cac4369-ad37-49a2-a41f-73b6405039e1",
+            "o_67511890-9176-4b7e-8113-043cc9bcbe12"
+          ],
+          "evidence_ids": [
+            "e_751ad664-5dfa-4a62-9bb5-746003e691b5",
+            "e_aaa7b1c9-1242-47b7-9685-0b60fc4d9df1"
+          ],
+          "selected_observation_id": "o_1cac4369-ad37-49a2-a41f-73b6405039e1",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_1cac4369-ad37-49a2-a41f-73b6405039e1: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:29.564654+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_1cac4369-ad37-49a2-a41f-73b6405039e1: eligible roles=unverified, authority=1; o_67511890-9176-4b7e-8113-043cc9bcbe12: eligible roles=unverified, authority=1"
+        },
+        "/gtin": {
+          "state": "observed",
+          "observation_ids": [
+            "o_00b46d6d-07d0-42cc-bed7-2c298d1fe502",
+            "o_3a3c5ed1-e9d2-4125-ab45-7f7bd7fab3a0"
+          ],
+          "evidence_ids": [
+            "e_803c4103-0ce9-432c-915e-e93dacdd5c9f"
+          ],
+          "selected_observation_id": "o_3a3c5ed1-e9d2-4125-ab45-7f7bd7fab3a0",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_3a3c5ed1-e9d2-4125-ab45-7f7bd7fab3a0: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:29.564654+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_00b46d6d-07d0-42cc-bed7-2c298d1fe502: unsupported: Selected source has no retained capture; support unavailable; o_3a3c5ed1-e9d2-4125-ab45-7f7bd7fab3a0: eligible roles=unverified, authority=1"
+        },
+        "/in_stock": {
+          "state": "observed",
+          "observation_ids": [
+            "o_b2165b87-4014-4fc7-a8ab-8701d41aedc9",
+            "o_d0e335b9-6fc0-4a79-8cd9-f6dad6e7235e"
+          ],
+          "evidence_ids": [
+            "e_d899a89f-9607-400c-997b-2a59266f477c",
+            "e_d96647ac-6e55-4834-b66d-53b9b1ef9222"
+          ],
+          "selected_observation_id": "o_b2165b87-4014-4fc7-a8ab-8701d41aedc9",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_b2165b87-4014-4fc7-a8ab-8701d41aedc9: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:29.564654+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_b2165b87-4014-4fc7-a8ab-8701d41aedc9: eligible roles=unverified, authority=1; o_d0e335b9-6fc0-4a79-8cd9-f6dad6e7235e: eligible roles=unverified, authority=1"
+        },
+        "/price": {
+          "state": "observed",
+          "observation_ids": [
+            "o_57948e59-919f-41f6-b7a4-7ba064bbc09f",
+            "o_ed036f2e-1354-4e91-a9f8-df751e5684a5"
+          ],
+          "evidence_ids": [
+            "e_6b88cd36-33de-4376-83e4-9bcd7a43774c",
+            "e_f39028dc-72ef-4952-b549-df760c6f134c"
+          ],
+          "selected_observation_id": "o_57948e59-919f-41f6-b7a4-7ba064bbc09f",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_57948e59-919f-41f6-b7a4-7ba064bbc09f: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:29.564654+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_57948e59-919f-41f6-b7a4-7ba064bbc09f: eligible roles=unverified, authority=1; o_ed036f2e-1354-4e91-a9f8-df751e5684a5: eligible roles=unverified, authority=1"
+        },
+        "/title": {
+          "state": "observed",
+          "observation_ids": [
+            "o_6b003eb3-e005-4923-8fea-b3eb8282b9f8",
+            "o_c3e85c2e-45f0-457b-843b-7b82228c4a90"
+          ],
+          "evidence_ids": [
+            "e_adb5cc2f-eef0-4511-b1e6-7bc54565916f",
+            "e_e7bad162-2c62-4104-9788-b80073064b95"
+          ],
+          "selected_observation_id": "o_6b003eb3-e005-4923-8fea-b3eb8282b9f8",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_6b003eb3-e005-4923-8fea-b3eb8282b9f8: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:29.564654+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_6b003eb3-e005-4923-8fea-b3eb8282b9f8: eligible roles=unverified, authority=1; o_c3e85c2e-45f0-457b-843b-7b82228c4a90: eligible roles=unverified, authority=1"
+        },
+        "/vendor": {
+          "state": "observed",
+          "observation_ids": [
+            "o_3c01882b-1b3c-4c01-a642-e2193f307eb2",
+            "o_dbabedde-16a8-497b-a296-5f3d53629e06"
+          ],
+          "evidence_ids": [
+            "e_1827a72e-cd4d-480a-aa23-87541d5a1d4f",
+            "e_20ed9cbd-7e58-4358-88b1-41c1ccb86154"
+          ],
+          "selected_observation_id": "o_3c01882b-1b3c-4c01-a642-e2193f307eb2",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_3c01882b-1b3c-4c01-a642-e2193f307eb2: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:29.564654+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_3c01882b-1b3c-4c01-a642-e2193f307eb2: eligible roles=unverified, authority=1; o_dbabedde-16a8-497b-a296-5f3d53629e06: eligible roles=unverified, authority=1"
+        }
+      },
+      "peak_rss_mib": 105.75,
+      "defects": []
+    },
+    {
+      "case": {
+        "name": "04-woocommerce",
+        "kind": "woo",
+        "platform": "woocommerce",
+        "url": "https://demo.athemes.com/botiga",
+        "limit": 40,
+        "max_pages": 2,
+        "paired_html": true
+      },
+      "status": "pass",
+      "seconds": 1.67,
+      "requests": 2,
+      "product_count": 8,
+      "variant_count": 0,
+      "paired_html_count": 1,
+      "paired_comparison": {
+        "api_title": "Eternal Sunset Collection Lip and Cheek",
+        "html_title": "Eternal Sunset Collection Lip and Cheek",
+        "same_currency": true,
+        "price_equal": true,
+        "aligned_by_url": true,
+        "note": "Independent live channels, not asserted equivalent product/variant pricing"
+      },
+      "paired_resolutions": {
+        "/currency": {
+          "state": "observed",
+          "observation_ids": [
+            "o_885416d7-11df-480e-bdba-c72c01ac195a",
+            "o_b165790c-a2e2-4deb-b3e1-10710a38c054"
+          ],
+          "evidence_ids": [
+            "e_4b6e8030-1563-47ca-9bce-e6f1364b2e84",
+            "e_f5bb1a18-3ea3-43ad-9211-bf879b04be30"
+          ],
+          "selected_observation_id": "o_885416d7-11df-480e-bdba-c72c01ac195a",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_885416d7-11df-480e-bdba-c72c01ac195a: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:33.457141+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_885416d7-11df-480e-bdba-c72c01ac195a: eligible roles=unverified, authority=1; o_b165790c-a2e2-4deb-b3e1-10710a38c054: eligible roles=unverified, authority=1"
+        },
+        "/gtin": {
+          "state": "unsupported",
+          "observation_ids": [
+            "o_4c51e9d9-292f-4ed0-8dcd-a407e1a45d75",
+            "o_717201ef-ae2b-4d60-828e-5c731b7c3679"
+          ],
+          "evidence_ids": [],
+          "selected_observation_id": null,
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "No eligible supported candidate; as_of=2026-10-16T08:05:33.457141+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_4c51e9d9-292f-4ed0-8dcd-a407e1a45d75: unsupported: Selected source has no retained capture; support unavailable; o_717201ef-ae2b-4d60-828e-5c731b7c3679: unsupported: Selected source has no retained capture; support unavailable or truncated by capture byte limits"
+        },
+        "/in_stock": {
+          "state": "observed",
+          "observation_ids": [
+            "o_57e83892-1be0-4dd3-b0ad-940fbcac0cec",
+            "o_58476d2d-afd5-446c-8a26-578d4aec8ee8"
+          ],
+          "evidence_ids": [
+            "e_5d201b2d-cb23-4061-9767-c8a3291aa8fb",
+            "e_cd05873b-a661-4cdc-9fb1-e5200d7cccd9"
+          ],
+          "selected_observation_id": "o_57e83892-1be0-4dd3-b0ad-940fbcac0cec",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_57e83892-1be0-4dd3-b0ad-940fbcac0cec: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:33.457141+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_57e83892-1be0-4dd3-b0ad-940fbcac0cec: eligible roles=unverified, authority=1; o_58476d2d-afd5-446c-8a26-578d4aec8ee8: eligible roles=unverified, authority=1"
+        },
+        "/price": {
+          "state": "observed",
+          "observation_ids": [
+            "o_1ac2773f-4605-41fb-ace5-c31ac2b3edc0",
+            "o_d74b3ccf-8807-47d4-8002-6b61d7d45420"
+          ],
+          "evidence_ids": [
+            "e_1562acf7-ac50-42f1-a5ef-47a1c6194beb",
+            "e_35cfc8dd-4acb-4da6-b46a-696f7d9f22ac"
+          ],
+          "selected_observation_id": "o_1ac2773f-4605-41fb-ace5-c31ac2b3edc0",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_1ac2773f-4605-41fb-ace5-c31ac2b3edc0: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:33.457141+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_1ac2773f-4605-41fb-ace5-c31ac2b3edc0: eligible roles=unverified, authority=1; o_d74b3ccf-8807-47d4-8002-6b61d7d45420: eligible roles=unverified, authority=1"
+        },
+        "/title": {
+          "state": "observed",
+          "observation_ids": [
+            "o_85aac198-8420-42bb-a4aa-e971953d54a4",
+            "o_ff0e103a-163c-45eb-9f74-6930fe460ea5"
+          ],
+          "evidence_ids": [
+            "e_7d83492c-f0f2-4bda-ad9f-4f08f316d3c3",
+            "e_d43ec413-e667-4832-8253-6bd09dff76bd"
+          ],
+          "selected_observation_id": "o_85aac198-8420-42bb-a4aa-e971953d54a4",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_85aac198-8420-42bb-a4aa-e971953d54a4: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:33.457141+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_85aac198-8420-42bb-a4aa-e971953d54a4: eligible roles=unverified, authority=1; o_ff0e103a-163c-45eb-9f74-6930fe460ea5: eligible roles=unverified, authority=1"
+        },
+        "/vendor": {
+          "state": "unsupported",
+          "observation_ids": [
+            "o_2175592a-65f6-4e29-8c8b-15d4760b90a5",
+            "o_b812682c-4b8b-4fde-b6c6-e93a8de707d8"
+          ],
+          "evidence_ids": [],
+          "selected_observation_id": null,
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "No eligible supported candidate; as_of=2026-10-16T08:05:33.457141+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_2175592a-65f6-4e29-8c8b-15d4760b90a5: unsupported: Selected source has no retained capture; support unavailable; o_b812682c-4b8b-4fde-b6c6-e93a8de707d8: unsupported: Selected source has no retained capture; support unavailable or truncated by capture byte limits"
+        }
+      },
+      "peak_rss_mib": 97.25,
+      "defects": []
+    },
+    {
+      "case": {
+        "name": "05-magento",
+        "kind": "magento",
+        "platform": "magento",
+        "url": "https://magento2-demo.magebit.com",
+        "limit": 16,
+        "page_size": 3,
+        "paired_html": true
+      },
+      "status": "pass",
+      "seconds": 5.9,
+      "requests": 7,
+      "product_count": 16,
+      "variant_count": 156,
+      "paired_html_count": 1,
+      "paired_comparison": {
+        "api_title": "Abominable Hoodie",
+        "html_title": "Abominable Hoodie",
+        "same_currency": true,
+        "price_equal": true,
+        "aligned_by_url": true,
+        "note": "Independent live channels, not asserted equivalent product/variant pricing"
+      },
+      "paired_resolutions": {
+        "/currency": {
+          "state": "observed",
+          "observation_ids": [
+            "o_1e04d3bd-53bd-4b23-bbd9-a782938a63b6",
+            "o_673e1935-ac2a-4984-b357-cdedc49426ca"
+          ],
+          "evidence_ids": [
+            "e_31b29dcf-4dc1-4665-981b-fd7dc38beac0",
+            "e_9e312f2a-b138-4070-82a3-189b274b284e"
+          ],
+          "selected_observation_id": "o_1e04d3bd-53bd-4b23-bbd9-a782938a63b6",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_1e04d3bd-53bd-4b23-bbd9-a782938a63b6: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:36.462987+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_1e04d3bd-53bd-4b23-bbd9-a782938a63b6: eligible roles=unverified, authority=1; o_673e1935-ac2a-4984-b357-cdedc49426ca: eligible roles=unverified, authority=1"
+        },
+        "/gtin": {
+          "state": "unsupported",
+          "observation_ids": [
+            "o_496fc636-5076-4fe3-b4e9-a810e67aa536",
+            "o_6e7f03ea-1690-4464-a8f1-b1c04327f57e"
+          ],
+          "evidence_ids": [],
+          "selected_observation_id": null,
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "No eligible supported candidate; as_of=2026-10-16T08:05:36.462987+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_496fc636-5076-4fe3-b4e9-a810e67aa536: unsupported: No retained source mapping; compatibility/default value; o_6e7f03ea-1690-4464-a8f1-b1c04327f57e: unsupported: No retained source mapping; compatibility/default value"
+        },
+        "/in_stock": {
+          "state": "observed",
+          "observation_ids": [
+            "o_139fc8a1-635e-493e-b01c-2bead80b0272",
+            "o_302e320b-d501-4d26-84c4-2809f0de2f9d"
+          ],
+          "evidence_ids": [
+            "e_db920a10-a149-40d8-aa55-99409ce6c115"
+          ],
+          "selected_observation_id": "o_302e320b-d501-4d26-84c4-2809f0de2f9d",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_302e320b-d501-4d26-84c4-2809f0de2f9d: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:36.462987+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_139fc8a1-635e-493e-b01c-2bead80b0272: unsupported: No retained source mapping; compatibility/default value; o_302e320b-d501-4d26-84c4-2809f0de2f9d: eligible roles=unverified, authority=1"
+        },
+        "/price": {
+          "state": "observed",
+          "observation_ids": [
+            "o_71ca4b3c-eb0d-43e6-b39f-71aa6098f860",
+            "o_bba3bd22-3417-4e05-9f0c-1120e7916254"
+          ],
+          "evidence_ids": [
+            "e_5217c1eb-1814-487c-a3dd-baa61e8937d4",
+            "e_fcd99b8e-74bd-4ff8-a577-361ce9f85a24"
+          ],
+          "selected_observation_id": "o_71ca4b3c-eb0d-43e6-b39f-71aa6098f860",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_71ca4b3c-eb0d-43e6-b39f-71aa6098f860: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:36.462987+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_71ca4b3c-eb0d-43e6-b39f-71aa6098f860: eligible roles=unverified, authority=1; o_bba3bd22-3417-4e05-9f0c-1120e7916254: eligible roles=unverified, authority=1"
+        },
+        "/title": {
+          "state": "observed",
+          "observation_ids": [
+            "o_1ba16643-a9c7-4b81-9b76-f93c2207d3fd",
+            "o_87d96080-7548-49d2-a1df-55813510a371"
+          ],
+          "evidence_ids": [
+            "e_5b7c6927-a0e2-4faf-b2d4-20f410cc8e31",
+            "e_8ca364d9-443e-46d7-aa7a-a7ccfc22fb3f"
+          ],
+          "selected_observation_id": "o_1ba16643-a9c7-4b81-9b76-f93c2207d3fd",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_1ba16643-a9c7-4b81-9b76-f93c2207d3fd: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:36.462987+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_1ba16643-a9c7-4b81-9b76-f93c2207d3fd: eligible roles=unverified, authority=1; o_87d96080-7548-49d2-a1df-55813510a371: eligible roles=unverified, authority=1"
+        },
+        "/vendor": {
+          "state": "unsupported",
+          "observation_ids": [
+            "o_3b6b0696-725a-457a-b90a-8b322d25a902",
+            "o_bcfa1962-48df-4aa7-8585-2ccea42fa6c8"
+          ],
+          "evidence_ids": [],
+          "selected_observation_id": null,
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "No eligible supported candidate; as_of=2026-10-16T08:05:36.462987+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_3b6b0696-725a-457a-b90a-8b322d25a902: unsupported: Selected source has no retained capture; support unavailable; o_bcfa1962-48df-4aa7-8585-2ccea42fa6c8: unsupported: Selected source has no retained capture; support unavailable or truncated by capture byte limits"
+        }
+      },
+      "peak_rss_mib": 108.22,
+      "defects": []
+    },
+    {
+      "case": {
+        "name": "06-shopware",
+        "kind": "shopware",
+        "platform": "shopware",
+        "url": "https://frontends-demo.vercel.app",
+        "limit": 16,
+        "page_size": 3,
+        "paired_html": true
+      },
+      "status": "pass",
+      "seconds": 4.72,
+      "requests": 9,
+      "product_count": 16,
+      "variant_count": 11,
+      "paired_html_count": 1,
+      "paired_comparison": {
+        "api_title": "Digital test",
+        "html_title": "Digital test",
+        "same_currency": true,
+        "price_equal": false,
+        "aligned_by_url": true,
+        "note": "Independent live channels, not asserted equivalent product/variant pricing"
+      },
+      "paired_resolutions": {
+        "/currency": {
+          "state": "observed",
+          "observation_ids": [
+            "o_0ace4965-30e5-49c9-a95b-e8307c5329c2",
+            "o_ac61933a-07e5-4785-9cde-aeea4311a417"
+          ],
+          "evidence_ids": [
+            "e_1665cebd-697f-4b3b-b19e-6a62b1aa779f",
+            "e_3f0b5562-71f1-4cb1-b853-58610654d234"
+          ],
+          "selected_observation_id": "o_0ace4965-30e5-49c9-a95b-e8307c5329c2",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_0ace4965-30e5-49c9-a95b-e8307c5329c2: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:46.106769+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_0ace4965-30e5-49c9-a95b-e8307c5329c2: eligible roles=unverified, authority=1; o_ac61933a-07e5-4785-9cde-aeea4311a417: eligible roles=unverified, authority=1"
+        },
+        "/gtin": {
+          "state": "unknown",
+          "observation_ids": [
+            "o_337ef568-0262-4453-b4a1-71132f9ce42d",
+            "o_f9ef30e4-0008-4c3e-8b8a-a750b6cebc38"
+          ],
+          "evidence_ids": [],
+          "selected_observation_id": null,
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "No eligible supported candidate; as_of=2026-10-16T08:05:46.106769+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_337ef568-0262-4453-b4a1-71132f9ce42d: unsupported: Selected source has no retained capture; support unavailable; o_f9ef30e4-0008-4c3e-8b8a-a750b6cebc38: unknown: Source explicitly contains no value"
+        },
+        "/in_stock": {
+          "state": "observed",
+          "observation_ids": [
+            "o_e4c922ab-6120-4055-9bcb-bc32ddb7f182",
+            "o_fa470116-d316-476c-a087-bd1ff4979431"
+          ],
+          "evidence_ids": [
+            "e_c53514d5-7fdd-4cda-9a7c-53f85f43cbb4"
+          ],
+          "selected_observation_id": "o_fa470116-d316-476c-a087-bd1ff4979431",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_fa470116-d316-476c-a087-bd1ff4979431: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:46.106769+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_e4c922ab-6120-4055-9bcb-bc32ddb7f182: unsupported: Selected source has no retained capture; support unavailable; o_fa470116-d316-476c-a087-bd1ff4979431: eligible roles=unverified, authority=1"
+        },
+        "/price": {
+          "state": "observed",
+          "observation_ids": [
+            "o_48608b63-71c9-45c0-8cf6-a7863b83a163",
+            "o_bf0c6c7c-d0ee-4ab2-acc9-eca736bef796"
+          ],
+          "evidence_ids": [
+            "e_a37f97b9-d469-4232-8d56-1f6015537be4"
+          ],
+          "selected_observation_id": "o_48608b63-71c9-45c0-8cf6-a7863b83a163",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_48608b63-71c9-45c0-8cf6-a7863b83a163: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:46.106769+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_48608b63-71c9-45c0-8cf6-a7863b83a163: eligible roles=unverified, authority=1; o_bf0c6c7c-d0ee-4ab2-acc9-eca736bef796: unsupported: Selected source has no retained capture; support unavailable"
+        },
+        "/title": {
+          "state": "observed",
+          "observation_ids": [
+            "o_728982d0-cdfd-424e-b233-e9e34af28571",
+            "o_903dbb4c-18a2-4371-99e8-c2c472168cbb"
+          ],
+          "evidence_ids": [
+            "e_18101aa3-d60e-4c97-9406-a7bf876f4b2e",
+            "e_b4c2b807-2919-4341-9e2e-82510e6b76bb"
+          ],
+          "selected_observation_id": "o_728982d0-cdfd-424e-b233-e9e34af28571",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_728982d0-cdfd-424e-b233-e9e34af28571: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:46.106769+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_728982d0-cdfd-424e-b233-e9e34af28571: eligible roles=unverified, authority=1; o_903dbb4c-18a2-4371-99e8-c2c472168cbb: eligible roles=unverified, authority=1"
+        },
+        "/vendor": {
+          "state": "observed",
+          "observation_ids": [
+            "o_7a857c4d-ef4a-4e81-af52-fbd4217abf13",
+            "o_ac1ff6c9-ce05-41e6-92f1-1a69e76ac36c"
+          ],
+          "evidence_ids": [
+            "e_3cc01258-a9ff-4637-bf96-72f122bdd7ab"
+          ],
+          "selected_observation_id": "o_7a857c4d-ef4a-4e81-af52-fbd4217abf13",
+          "policy": "field-source-authority",
+          "policy_version": "1",
+          "reason": "Selected o_7a857c4d-ef4a-4e81-af52-fbd4217abf13: highest authority=1; equivalent peers use stable observation ID; as_of=2026-10-16T08:05:46.106769+00:00; offer_max_age=1 day, 0:00:00; specification_max_age=30 days, 0:00:00; o_7a857c4d-ef4a-4e81-af52-fbd4217abf13: eligible roles=unverified, authority=1; o_ac1ff6c9-ce05-41e6-92f1-1a69e76ac36c: unsupported: Selected source has no retained capture; support unavailable"
+        }
+      },
+      "peak_rss_mib": 107.3,
+      "defects": []
+    },
+    {
+      "case": {
+        "name": "07-bigcommerce",
+        "kind": "pipeline",
+        "platform": "bigcommerce",
+        "url": "https://cornerstone-light-demo.mybigcommerce.com",
+        "limit": 8,
+        "timeout": 90
+      },
+      "status": "pass",
+      "seconds": 3.56,
+      "requests": 10,
+      "product_count": 8,
+      "variant_count": 0,
+      "paired_html_count": 0,
+      "paired_comparison": null,
+      "paired_resolutions": null,
+      "peak_rss_mib": 108.6,
+      "defects": []
+    },
+    {
+      "case": {
+        "name": "08-generic-css",
+        "kind": "generic_css",
+        "platform": "generic",
+        "url": "https://books.toscrape.com",
+        "limit": 8
+      },
+      "status": "pass",
+      "seconds": 2.35,
+      "requests": 9,
+      "product_count": 8,
+      "variant_count": 0,
+      "paired_html_count": 0,
+      "paired_comparison": null,
+      "paired_resolutions": null,
+      "peak_rss_mib": 96.26,
+      "defects": []
+    },
+    {
+      "case": {
+        "name": "09-shopify-public",
+        "kind": "pipeline",
+        "platform": "shopify",
+        "url": "https://www.boardgamebliss.com",
+        "limit": 6
+      },
+      "status": "pass",
+      "seconds": 1.26,
+      "requests": 1,
+      "product_count": 6,
+      "variant_count": 6,
+      "paired_html_count": 0,
+      "paired_comparison": null,
+      "paired_resolutions": {},
+      "peak_rss_mib": 95.73,
+      "defects": []
+    },
+    {
+      "case": {
+        "name": "10-woo-public",
+        "kind": "pipeline",
+        "platform": "woocommerce",
+        "url": "https://demo.athemes.com/botiga",
+        "limit": 6
+      },
+      "status": "pass",
+      "seconds": 1.11,
+      "requests": 1,
+      "product_count": 6,
+      "variant_count": 0,
+      "paired_html_count": 0,
+      "paired_comparison": null,
+      "paired_resolutions": {},
+      "peak_rss_mib": 93.59,
+      "defects": []
+    },
+    {
+      "case": {
+        "name": "11-magento-public",
+        "kind": "pipeline",
+        "platform": "magento",
+        "url": "https://magento2-demo.magebit.com",
+        "limit": 6
+      },
+      "status": "pass",
+      "seconds": 2.53,
+      "requests": 1,
+      "product_count": 6,
+      "variant_count": 63,
+      "paired_html_count": 0,
+      "paired_comparison": null,
+      "paired_resolutions": {},
+      "peak_rss_mib": 100.73,
+      "defects": []
+    },
+    {
+      "case": {
+        "name": "12-shopware-public",
+        "kind": "pipeline",
+        "platform": "shopware",
+        "url": "https://frontends-demo.vercel.app",
+        "limit": 6
+      },
+      "status": "pass",
+      "seconds": 1.06,
+      "requests": 3,
+      "product_count": 6,
+      "variant_count": 0,
+      "paired_html_count": 0,
+      "paired_comparison": null,
+      "paired_resolutions": {},
+      "peak_rss_mib": 103.21,
+      "defects": []
+    }
+  ]
+}

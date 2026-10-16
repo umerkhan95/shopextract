@@ -58,7 +58,9 @@ explain normalization, ID-checked enrichment and opt-in GTIN restoration. The
 retained object may be a projection: `source_pointer` identifies its original item
 location, while the evidence `pointer` resolves locally against retained data.
 Raw dataclass export is not lossless contract export; serialize contracts separately
-until #38. Authority remains unverified until #36 policy.
+until #38. `resolve_fields` applies the versioned #36 authority policy to explicit
+source roles; the caller must establish verified manufacturer roles. Source domains
+never verify authority. See `docs/field-resolution.md` for freshness and equivalence.
 
 For response-cookie or API-context fields, a field observation may reference a
 separate capture with that response's URL/time; it cannot borrow the product body's

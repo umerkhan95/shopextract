@@ -13,3 +13,9 @@ summaries refer to those local files for reproducibility and diagnosis.
 
 These are successive checkpoints. The final full-suite result is 535 passing tests
 in `bigcommerce-auth/tests.log`; earlier reports retain their historical counts.
+
+Field-resolution follow-up (#36): `field-resolution-live/review.md` and `review.json`
+record the live platform matrix. The included drivers can reproduce the run; large
+compressed captures remain local. Latest full suite: 590 passed in
+`field-resolution-live/full-tests.log`. Compact Magento/Shopware captures used by
+automated tests are included under `tests/fixtures/field-resolution/`.
