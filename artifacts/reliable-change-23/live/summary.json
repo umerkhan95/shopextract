@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "requests": 2,
+  "network_retries": 0,
+  "removal_coverage": "partial; no confirmed removals allowed",
+  "commercial_change": "inconclusive until captured differences",
+  "captures": [
+    {
+      "snapshot_id": 1,
+      "response_bytes": 8048,
+      "products": 2,
+      "variants": 2,
+      "retained_evidence_checks": 103,
+      "canonical_ids": [
+        "p_fa6fe81b-5070-5d86-85cd-64520a707fa4",
+        "p_135812b4-70b7-5c5f-af2b-a56eb51f26e2"
+      ],
+      "source_url": "https://www.boardgamebliss.com/products.json?limit=2&page=1"
+    },
+    {
+      "snapshot_id": 2,
+      "response_bytes": 8048,
+      "products": 2,
+      "variants": 2,
+      "retained_evidence_checks": 103,
+      "canonical_ids": [
+        "p_fa6fe81b-5070-5d86-85cd-64520a707fa4",
+        "p_135812b4-70b7-5c5f-af2b-a56eb51f26e2"
+      ],
+      "source_url": "https://www.boardgamebliss.com/products.json?limit=2&page=1"
+    }
+  ],
+  "report_id": "e680ab27a415a5904f5e066357bf6a5fa42b3eba5f460dd2f593c1c9938a4745",
+  "candidates": 0,
+  "events": 0,
+  "replay_new_events": 0,
+  "diagnostics": {
+    "field_unverified": 4
+  }
+}

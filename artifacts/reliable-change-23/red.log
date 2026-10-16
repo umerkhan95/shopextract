@@ -1,0 +1,802 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF [ 82%]
+FFFFFFFFFFFFFFF                                                          [100%]
+=================================== FAILURES ===================================
+_________________ test_sc01_price_evidence_and_durable_reopen __________________
+tests/test_reliable_changes.py:134: in test_sc01_price_evidence_and_durable_reopen
+    first = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______________ test_sc01_title_rename_and_shared_display_title ________________
+tests/test_reliable_changes.py:158: in test_sc01_title_rename_and_shared_display_title
+    assert only(report(db, a, b))['canonical_product_id'] == 'p_b'
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________________________ test_sc02_variant_reordering _________________________
+tests/test_reliable_changes.py:164: in test_sc02_variant_reordering
+    e = only(report(db, a, b))
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________ test_sc03_tracked_leaf_changes[/in_stock-True-False] _____________
+tests/test_reliable_changes.py:175: in test_sc03_tracked_leaf_changes
+    e = only(report(db, a, b))
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+______________ test_sc03_tracked_leaf_changes[/pack_quantity-1-2] ______________
+tests/test_reliable_changes.py:175: in test_sc03_tracked_leaf_changes
+    e = only(report(db, a, b))
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+___ test_sc03_tracked_leaf_changes[/attributes/warranty-12 months-24 months] ___
+tests/test_reliable_changes.py:175: in test_sc03_tracked_leaf_changes
+    e = only(report(db, a, b))
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+______ test_sc03_tracked_leaf_changes[/attributes/pack_size-1 L-1000 ml] _______
+tests/test_reliable_changes.py:175: in test_sc03_tracked_leaf_changes
+    e = only(report(db, a, b))
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+___________ test_sc03_tracked_leaf_changes[/attributes/a~1b~0c-x-y] ____________
+tests/test_reliable_changes.py:175: in test_sc03_tracked_leaf_changes
+    e = only(report(db, a, b))
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________ test_sc04_invalid_or_missing_never_becomes_default[fields0] __________
+tests/test_reliable_changes.py:187: in test_sc04_invalid_or_missing_never_becomes_default
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________ test_sc04_invalid_or_missing_never_becomes_default[fields1] __________
+tests/test_reliable_changes.py:187: in test_sc04_invalid_or_missing_never_becomes_default
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________ test_sc04_invalid_or_missing_never_becomes_default[fields2] __________
+tests/test_reliable_changes.py:187: in test_sc04_invalid_or_missing_never_becomes_default
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________ test_sc04_invalid_or_missing_never_becomes_default[fields3] __________
+tests/test_reliable_changes.py:187: in test_sc04_invalid_or_missing_never_becomes_default
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________ test_sc04_invalid_or_missing_never_becomes_default[fields4] __________
+tests/test_reliable_changes.py:187: in test_sc04_invalid_or_missing_never_becomes_default
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________ test_sc04_invalid_or_missing_never_becomes_default[fields5] __________
+tests/test_reliable_changes.py:187: in test_sc04_invalid_or_missing_never_becomes_default
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________ test_sc04_invalid_or_missing_never_becomes_default[fields6] __________
+tests/test_reliable_changes.py:187: in test_sc04_invalid_or_missing_never_becomes_default
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+___________________ test_sc05_unavailable_support[unknown-0] ___________________
+tests/test_reliable_changes.py:195: in test_sc05_unavailable_support
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________________ test_sc05_unavailable_support[unsupported-0] _________________
+tests/test_reliable_changes.py:195: in test_sc05_unavailable_support
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________________ test_sc05_unavailable_support[conflicting-0] _________________
+tests/test_reliable_changes.py:195: in test_sc05_unavailable_support
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+________________ test_sc05_unavailable_support[observed-86401] _________________
+tests/test_reliable_changes.py:195: in test_sc05_unavailable_support
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+__________________ test_sc05_unavailable_support[observed--1] __________________
+tests/test_reliable_changes.py:195: in test_sc05_unavailable_support
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+______________ test_sc05_selected_refs_exclude_competing_evidence ______________
+tests/test_reliable_changes.py:205: in test_sc05_selected_refs_exclude_competing_evidence
+    e = only(report(db, a, b))
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+__________________ test_sc06_typed_equivalence[left0-10-True] __________________
+tests/test_reliable_changes.py:216: in test_sc06_typed_equivalence
+    assert len(report(db, a, b)['events']) == (0 if equal else 1)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________ test_sc06_typed_equivalence[ Caf\xe9 -Cafe\u0301-True] ____________
+tests/test_reliable_changes.py:216: in test_sc06_typed_equivalence
+    assert len(report(db, a, b)['events']) == (0 if equal else 1)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+________________ test_sc06_typed_equivalence[left2-right2-True] ________________
+tests/test_reliable_changes.py:216: in test_sc06_typed_equivalence
+    assert len(report(db, a, b)['events']) == (0 if equal else 1)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______________ test_sc06_typed_equivalence[left3-right3-False] ________________
+tests/test_reliable_changes.py:216: in test_sc06_typed_equivalence
+    assert len(report(db, a, b)['events']) == (0 if equal else 1)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+__________________ test_sc06_typed_equivalence[False-0-False] __________________
+tests/test_reliable_changes.py:216: in test_sc06_typed_equivalence
+    assert len(report(db, a, b)['events']) == (0 if equal else 1)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________________ test_sc07_currency_gates_price[USD] ______________________
+tests/test_reliable_changes.py:225: in test_sc07_currency_gates_price
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________________ test_sc07_currency_gates_price[None] _____________________
+tests/test_reliable_changes.py:225: in test_sc07_currency_gates_price
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+__________ test_sc08_missing_products_never_immediate_removal[False] ___________
+tests/test_reliable_changes.py:238: in test_sc08_missing_products_never_immediate_removal
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+___________ test_sc08_missing_products_never_immediate_removal[None] ___________
+tests/test_reliable_changes.py:238: in test_sc08_missing_products_never_immediate_removal
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+___________ test_sc08_missing_products_never_immediate_removal[True] ___________
+tests/test_reliable_changes.py:238: in test_sc08_missing_products_never_immediate_removal
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________ test_sc09_confirmed_removal_with_two_complete_absences ____________
+tests/test_reliable_changes.py:250: in test_sc09_confirmed_removal_with_two_complete_absences
+    e = only(report(db, a, b, c))
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________ test_sc10_removal_recheck_health[True-True-rejected] _____________
+tests/test_reliable_changes.py:262: in test_sc10_removal_recheck_health
+    r = report(db, a, b, c)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________ test_sc10_removal_recheck_health[False-False-pending] _____________
+tests/test_reliable_changes.py:262: in test_sc10_removal_recheck_health
+    r = report(db, a, b, c)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________ test_sc10_removal_recheck_health[False-None-pending] _____________
+tests/test_reliable_changes.py:262: in test_sc10_removal_recheck_health
+    r = report(db, a, b, c)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________ test_sc11_addition_requires_complete_baseline[True-1] _____________
+tests/test_reliable_changes.py:270: in test_sc11_addition_requires_complete_baseline
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________ test_sc11_addition_requires_complete_baseline[False-0] ____________
+tests/test_reliable_changes.py:270: in test_sc11_addition_requires_complete_baseline
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________ test_sc11_addition_requires_complete_baseline[None-0] _____________
+tests/test_reliable_changes.py:270: in test_sc11_addition_requires_complete_baseline
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+___________________ test_sc11_variant_absence_is_diagnostic ____________________
+tests/test_reliable_changes.py:278: in test_sc11_variant_absence_is_diagnostic
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+______________________ test_sc12_scope_suppression[None] _______________________
+tests/test_reliable_changes.py:286: in test_sc12_scope_suppression
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________________ test_sc12_scope_suppression[different] ____________________
+tests/test_reliable_changes.py:286: in test_sc12_scope_suppression
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______________________ test_sc12_invalid_pairs[missing] _______________________
+tests/test_reliable_changes.py:302: in test_sc12_invalid_pairs
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+______________________ test_sc12_invalid_pairs[reversed] _______________________
+tests/test_reliable_changes.py:302: in test_sc12_invalid_pairs
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+________________________ test_sc12_invalid_pairs[equal] ________________________
+tests/test_reliable_changes.py:302: in test_sc12_invalid_pairs
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+______________________ test_sc12_invalid_pairs[supplier] _______________________
+tests/test_reliable_changes.py:302: in test_sc12_invalid_pairs
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+___________________ test_sc13_suspicious_boundaries[50-True] ___________________
+tests/test_reliable_changes.py:309: in test_sc13_suspicious_boundaries
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+__________________ test_sc13_suspicious_boundaries[200-True] ___________________
+tests/test_reliable_changes.py:309: in test_sc13_suspicious_boundaries
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________________ test_sc13_suspicious_boundaries[50.01-False] _________________
+tests/test_reliable_changes.py:309: in test_sc13_suspicious_boundaries
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+________________ test_sc13_suspicious_boundaries[199.99-False] _________________
+tests/test_reliable_changes.py:309: in test_sc13_suspicious_boundaries
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+___________________ test_sc13_suspicious_boundaries[0-True] ____________________
+tests/test_reliable_changes.py:309: in test_sc13_suspicious_boundaries
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______ test_sc14_recheck_price_requires_same_currency[50-EUR-confirmed] _______
+tests/test_reliable_changes.py:323: in test_sc14_recheck_price_requires_same_currency
+    r = report(db, a, b, c)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______ test_sc14_recheck_price_requires_same_currency[100-EUR-rejected] _______
+tests/test_reliable_changes.py:323: in test_sc14_recheck_price_requires_same_currency
+    r = report(db, a, b, c)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______ test_sc14_recheck_price_requires_same_currency[75-EUR-rejected] ________
+tests/test_reliable_changes.py:323: in test_sc14_recheck_price_requires_same_currency
+    r = report(db, a, b, c)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+________ test_sc14_recheck_price_requires_same_currency[50-USD-pending] ________
+tests/test_reliable_changes.py:323: in test_sc14_recheck_price_requires_same_currency
+    r = report(db, a, b, c)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______ test_sc14_recheck_price_requires_same_currency[50-None-pending] ________
+tests/test_reliable_changes.py:323: in test_sc14_recheck_price_requires_same_currency
+    r = report(db, a, b, c)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________________ test_sc14_invalid_recheck_is_atomic[missing] _________________
+tests/test_reliable_changes.py:340: in test_sc14_invalid_recheck_is_atomic
+    original = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+___________________ test_sc14_invalid_recheck_is_atomic[old] ___________________
+tests/test_reliable_changes.py:340: in test_sc14_invalid_recheck_is_atomic
+    original = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+________________ test_sc14_invalid_recheck_is_atomic[supplier] _________________
+tests/test_reliable_changes.py:340: in test_sc14_invalid_recheck_is_atomic
+    original = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+__________________ test_sc14_invalid_recheck_is_atomic[scope] __________________
+tests/test_reliable_changes.py:340: in test_sc14_invalid_recheck_is_atomic
+    original = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______________ test_sc15_terminal_recheck_replay_and_reversals ________________
+tests/test_reliable_changes.py:353: in test_sc15_terminal_recheck_replay_and_reversals
+    first = report(db, a, b, c)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______________________ test_sc16_race_has_one_publisher _______________________
+tests/test_reliable_changes.py:370: in test_sc16_race_has_one_publisher
+    results = list(pool.map(run, range(2)))
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/concurrent/futures/_base.py:621: in result_iterator
+    yield _result_or_cancel(fs.pop())
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/concurrent/futures/_base.py:319: in _result_or_cancel
+    return fut.result(timeout)
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/concurrent/futures/_base.py:451: in result
+    return self.__get_result()
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/concurrent/futures/_base.py:403: in __get_result
+    raise self._exception
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+tests/test_reliable_changes.py:368: in run
+    return report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________________ test_sc16_rollback_after_ledger_write _____________________
+tests/test_reliable_changes.py:384: in test_sc16_rollback_after_ledger_write
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________ test_sc16_limits_are_atomic_errors[MAX_SNAPSHOT_BYTES] ____________
+tests/test_reliable_changes.py:394: in test_sc16_limits_are_atomic_errors
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________ test_sc16_limits_are_atomic_errors[MAX_REPORT_BYTES] _____________
+tests/test_reliable_changes.py:394: in test_sc16_limits_are_atomic_errors
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________ test_sc16_limits_are_atomic_errors[MAX_REPORT_ENTRIES] ____________
+tests/test_reliable_changes.py:394: in test_sc16_limits_are_atomic_errors
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+________ test_sc17_frozen_reports_survive_pruning_and_detached_mutation ________
+tests/test_reliable_changes.py:400: in test_sc17_frozen_reports_survive_pruning_and_detached_mutation
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____ test_sc18_unrelated_bad_legacy_history_not_migrated[unrelated.example] ____
+tests/test_reliable_changes.py:418: in test_sc18_unrelated_bad_legacy_history_not_migrated
+    assert len(report(db, a, b)['events']) == 1
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+______ test_sc18_unrelated_bad_legacy_history_not_migrated[shop.example] _______
+tests/test_reliable_changes.py:418: in test_sc18_unrelated_bad_legacy_history_not_migrated
+    assert len(report(db, a, b)['events']) == 1
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________ test_sc04_sc13_zero_and_ordinary_prices[0-0-0-False] _____________
+tests/test_reliable_changes.py:426: in test_sc04_sc13_zero_and_ordinary_prices
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________ test_sc04_sc13_zero_and_ordinary_prices[0-1-0-True] ______________
+tests/test_reliable_changes.py:426: in test_sc04_sc13_zero_and_ordinary_prices
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________ test_sc04_sc13_zero_and_ordinary_prices[11-10-1-False] ____________
+tests/test_reliable_changes.py:426: in test_sc04_sc13_zero_and_ordinary_prices
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________ test_sc05_equal_authority_conflict_and_expired_source _____________
+tests/test_reliable_changes.py:438: in test_sc05_equal_authority_conflict_and_expired_source
+    assert report(db, a, b)['events'] == []
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____________ test_sc12_duplicate_identity_and_corrupt_graph_errors _____________
+tests/test_reliable_changes.py:452: in test_sc12_duplicate_identity_and_corrupt_graph_errors
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________ test_sc14_variant_recheck_uses_parent_currency[USD] ______________
+tests/test_reliable_changes.py:466: in test_sc14_variant_recheck_uses_parent_currency
+    r = report(db, a, b, c)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________ test_sc14_variant_recheck_uses_parent_currency[None] _____________
+tests/test_reliable_changes.py:466: in test_sc14_variant_recheck_uses_parent_currency
+    r = report(db, a, b, c)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______________________ test_sc16_sqlite_lock_is_bounded _______________________
+tests/test_reliable_changes.py:481: in test_sc16_sqlite_lock_is_bounded
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+______________ test_sc18_selected_legacy_scalars_are_unsupported _______________
+tests/test_reliable_changes.py:493: in test_sc18_selected_legacy_scalars_are_unsupported
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+___________ test_sc14_currency_candidate_recheck[USD-confirmed-None] ___________
+tests/test_reliable_changes.py:504: in test_sc14_currency_candidate_recheck
+    candidate = only(report(db, a, b, c), 'candidates')
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+___________ test_sc14_currency_candidate_recheck[EUR-rejected-None] ____________
+tests/test_reliable_changes.py:504: in test_sc14_currency_candidate_recheck
+    candidate = only(report(db, a, b, c), 'candidates')
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____ test_sc14_currency_candidate_recheck[GBP-rejected-superseded_value] ______
+tests/test_reliable_changes.py:504: in test_sc14_currency_candidate_recheck
+    candidate = only(report(db, a, b, c), 'candidates')
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+____ test_sc14_currency_candidate_recheck[None-pending-unverified_recheck] _____
+tests/test_reliable_changes.py:504: in test_sc14_currency_candidate_recheck
+    candidate = only(report(db, a, b, c), 'candidates')
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________________ test_sc14_unsupported_price_recheck ______________________
+tests/test_reliable_changes.py:519: in test_sc14_unsupported_price_recheck
+    candidate = only(report(db, a, b, c), 'candidates')
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______________ test_sc11_unsupported_new_record_is_not_addition _______________
+tests/test_reliable_changes.py:526: in test_sc11_unsupported_new_record_is_not_addition
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_________ test_sc12_missing_identity_rejects_without_database_changes __________
+tests/test_reliable_changes.py:541: in test_sc12_missing_identity_rejects_without_database_changes
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_____________ test_sc12_nonfinite_stored_graph_rejected_atomically _____________
+tests/test_reliable_changes.py:554: in test_sc12_nonfinite_stored_graph_rejected_atomically
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+_______________ test_sc16_simultaneous_recheck_has_one_publisher _______________
+tests/test_reliable_changes.py:561: in test_sc16_simultaneous_recheck_has_one_publisher
+    assert only(report(db, a, b), 'candidates')['state'] == 'pending'
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+__________________ test_sc17_deterministic_entity_field_order __________________
+tests/test_reliable_changes.py:576: in test_sc17_deterministic_entity_field_order
+    r = report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:29: in reliable_changes
+    raise NotImplementedError("Reliable change reports are not implemented")
+E   NotImplementedError: Reliable change reports are not implemented
+=========================== short test summary info ============================
+FAILED tests/test_reliable_changes.py::test_sc01_price_evidence_and_durable_reopen
+FAILED tests/test_reliable_changes.py::test_sc01_title_rename_and_shared_display_title
+FAILED tests/test_reliable_changes.py::test_sc02_variant_reordering - NotImpl...
+FAILED tests/test_reliable_changes.py::test_sc03_tracked_leaf_changes[/in_stock-True-False]
+FAILED tests/test_reliable_changes.py::test_sc03_tracked_leaf_changes[/pack_quantity-1-2]
+FAILED tests/test_reliable_changes.py::test_sc03_tracked_leaf_changes[/attributes/warranty-12 months-24 months]
+FAILED tests/test_reliable_changes.py::test_sc03_tracked_leaf_changes[/attributes/pack_size-1 L-1000 ml]
+FAILED tests/test_reliable_changes.py::test_sc03_tracked_leaf_changes[/attributes/a~1b~0c-x-y]
+FAILED tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields0]
+FAILED tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields1]
+FAILED tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields2]
+FAILED tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields3]
+FAILED tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields4]
+FAILED tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields5]
+FAILED tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields6]
+FAILED tests/test_reliable_changes.py::test_sc05_unavailable_support[unknown-0]
+FAILED tests/test_reliable_changes.py::test_sc05_unavailable_support[unsupported-0]
+FAILED tests/test_reliable_changes.py::test_sc05_unavailable_support[conflicting-0]
+FAILED tests/test_reliable_changes.py::test_sc05_unavailable_support[observed-86401]
+FAILED tests/test_reliable_changes.py::test_sc05_unavailable_support[observed--1]
+FAILED tests/test_reliable_changes.py::test_sc05_selected_refs_exclude_competing_evidence
+FAILED tests/test_reliable_changes.py::test_sc06_typed_equivalence[left0-10-True]
+FAILED tests/test_reliable_changes.py::test_sc06_typed_equivalence[ Caf\xe9 -Cafe\u0301-True]
+FAILED tests/test_reliable_changes.py::test_sc06_typed_equivalence[left2-right2-True]
+FAILED tests/test_reliable_changes.py::test_sc06_typed_equivalence[left3-right3-False]
+FAILED tests/test_reliable_changes.py::test_sc06_typed_equivalence[False-0-False]
+FAILED tests/test_reliable_changes.py::test_sc07_currency_gates_price[USD] - ...
+FAILED tests/test_reliable_changes.py::test_sc07_currency_gates_price[None]
+FAILED tests/test_reliable_changes.py::test_sc08_missing_products_never_immediate_removal[False]
+FAILED tests/test_reliable_changes.py::test_sc08_missing_products_never_immediate_removal[None]
+FAILED tests/test_reliable_changes.py::test_sc08_missing_products_never_immediate_removal[True]
+FAILED tests/test_reliable_changes.py::test_sc09_confirmed_removal_with_two_complete_absences
+FAILED tests/test_reliable_changes.py::test_sc10_removal_recheck_health[True-True-rejected]
+FAILED tests/test_reliable_changes.py::test_sc10_removal_recheck_health[False-False-pending]
+FAILED tests/test_reliable_changes.py::test_sc10_removal_recheck_health[False-None-pending]
+FAILED tests/test_reliable_changes.py::test_sc11_addition_requires_complete_baseline[True-1]
+FAILED tests/test_reliable_changes.py::test_sc11_addition_requires_complete_baseline[False-0]
+FAILED tests/test_reliable_changes.py::test_sc11_addition_requires_complete_baseline[None-0]
+FAILED tests/test_reliable_changes.py::test_sc11_variant_absence_is_diagnostic
+FAILED tests/test_reliable_changes.py::test_sc12_scope_suppression[None] - No...
+FAILED tests/test_reliable_changes.py::test_sc12_scope_suppression[different]
+FAILED tests/test_reliable_changes.py::test_sc12_invalid_pairs[missing] - Not...
+FAILED tests/test_reliable_changes.py::test_sc12_invalid_pairs[reversed] - No...
+FAILED tests/test_reliable_changes.py::test_sc12_invalid_pairs[equal] - NotIm...
+FAILED tests/test_reliable_changes.py::test_sc12_invalid_pairs[supplier] - No...
+FAILED tests/test_reliable_changes.py::test_sc13_suspicious_boundaries[50-True]
+FAILED tests/test_reliable_changes.py::test_sc13_suspicious_boundaries[200-True]
+FAILED tests/test_reliable_changes.py::test_sc13_suspicious_boundaries[50.01-False]
+FAILED tests/test_reliable_changes.py::test_sc13_suspicious_boundaries[199.99-False]
+FAILED tests/test_reliable_changes.py::test_sc13_suspicious_boundaries[0-True]
+FAILED tests/test_reliable_changes.py::test_sc14_recheck_price_requires_same_currency[50-EUR-confirmed]
+FAILED tests/test_reliable_changes.py::test_sc14_recheck_price_requires_same_currency[100-EUR-rejected]
+FAILED tests/test_reliable_changes.py::test_sc14_recheck_price_requires_same_currency[75-EUR-rejected]
+FAILED tests/test_reliable_changes.py::test_sc14_recheck_price_requires_same_currency[50-USD-pending]
+FAILED tests/test_reliable_changes.py::test_sc14_recheck_price_requires_same_currency[50-None-pending]
+FAILED tests/test_reliable_changes.py::test_sc14_invalid_recheck_is_atomic[missing]
+FAILED tests/test_reliable_changes.py::test_sc14_invalid_recheck_is_atomic[old]
+FAILED tests/test_reliable_changes.py::test_sc14_invalid_recheck_is_atomic[supplier]
+FAILED tests/test_reliable_changes.py::test_sc14_invalid_recheck_is_atomic[scope]
+FAILED tests/test_reliable_changes.py::test_sc15_terminal_recheck_replay_and_reversals
+FAILED tests/test_reliable_changes.py::test_sc16_race_has_one_publisher - Not...
+FAILED tests/test_reliable_changes.py::test_sc16_rollback_after_ledger_write
+FAILED tests/test_reliable_changes.py::test_sc16_limits_are_atomic_errors[MAX_SNAPSHOT_BYTES]
+FAILED tests/test_reliable_changes.py::test_sc16_limits_are_atomic_errors[MAX_REPORT_BYTES]
+FAILED tests/test_reliable_changes.py::test_sc16_limits_are_atomic_errors[MAX_REPORT_ENTRIES]
+FAILED tests/test_reliable_changes.py::test_sc17_frozen_reports_survive_pruning_and_detached_mutation
+FAILED tests/test_reliable_changes.py::test_sc18_unrelated_bad_legacy_history_not_migrated[unrelated.example]
+FAILED tests/test_reliable_changes.py::test_sc18_unrelated_bad_legacy_history_not_migrated[shop.example]
+FAILED tests/test_reliable_changes.py::test_sc04_sc13_zero_and_ordinary_prices[0-0-0-False]
+FAILED tests/test_reliable_changes.py::test_sc04_sc13_zero_and_ordinary_prices[0-1-0-True]
+FAILED tests/test_reliable_changes.py::test_sc04_sc13_zero_and_ordinary_prices[11-10-1-False]
+FAILED tests/test_reliable_changes.py::test_sc05_equal_authority_conflict_and_expired_source
+FAILED tests/test_reliable_changes.py::test_sc12_duplicate_identity_and_corrupt_graph_errors
+FAILED tests/test_reliable_changes.py::test_sc14_variant_recheck_uses_parent_currency[USD]
+FAILED tests/test_reliable_changes.py::test_sc14_variant_recheck_uses_parent_currency[None]
+FAILED tests/test_reliable_changes.py::test_sc16_sqlite_lock_is_bounded - Not...
+FAILED tests/test_reliable_changes.py::test_sc18_selected_legacy_scalars_are_unsupported
+FAILED tests/test_reliable_changes.py::test_sc14_currency_candidate_recheck[USD-confirmed-None]
+FAILED tests/test_reliable_changes.py::test_sc14_currency_candidate_recheck[EUR-rejected-None]
+FAILED tests/test_reliable_changes.py::test_sc14_currency_candidate_recheck[GBP-rejected-superseded_value]
+FAILED tests/test_reliable_changes.py::test_sc14_currency_candidate_recheck[None-pending-unverified_recheck]
+FAILED tests/test_reliable_changes.py::test_sc14_unsupported_price_recheck - ...
+FAILED tests/test_reliable_changes.py::test_sc11_unsupported_new_record_is_not_addition
+FAILED tests/test_reliable_changes.py::test_sc12_missing_identity_rejects_without_database_changes
+FAILED tests/test_reliable_changes.py::test_sc12_nonfinite_stored_graph_rejected_atomically
+FAILED tests/test_reliable_changes.py::test_sc16_simultaneous_recheck_has_one_publisher
+FAILED tests/test_reliable_changes.py::test_sc17_deterministic_entity_field_order
+87 failed in 6.10s

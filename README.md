@@ -249,6 +249,9 @@ for decision in report:
 
 ### Monitor stores for changes
 
+For evidence-backed field reports, explicit suspicious-change rechecks and durable
+replay deduplication, see [reliable change reports](docs/reliable-changes.md).
+
 Take snapshots over time and detect price changes, new products, and removals.
 Membership alerts require complete comparable observations: budget-limited snapshots
 do not confirm missing products as removals. See [snapshot completeness](docs/product-identity.md#safe-membership-alerts-from-bounded-observations).

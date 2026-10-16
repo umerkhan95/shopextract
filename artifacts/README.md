@@ -19,3 +19,10 @@ record the live platform matrix. The included drivers can reproduce the run; lar
 compressed captures remain local. Latest full suite: 590 passed in
 `field-resolution-live/full-tests.log`. Compact Magento/Shopware captures used by
 automated tests are included under `tests/fixtures/field-resolution/`.
+
+Reliable change detection (#23): `reliable-change-23/review.md` and
+`live/summary.json` record 95 focused and 726 full-suite tests, independent review,
+and a two-request live pipeline smoke. Live source values did not change, so
+commercial-change validation remains inconclusive. The driver and compact stage
+logs are included; full storefront responses and the live SQLite database remain
+local and are not included.

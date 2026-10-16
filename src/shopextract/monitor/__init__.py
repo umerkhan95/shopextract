@@ -14,3 +14,7 @@ __all__ = [
 from .evidence import (EvidenceLookup, PruneReport, save_snapshot, load_snapshot, get_evidence, prune_evidence)
 
 __all__ += ["EvidenceLookup", "PruneReport", "save_snapshot", "load_snapshot", "get_evidence", "prune_evidence"]
+
+from .reliable import reliable_changes
+
+__all__ += ["reliable_changes"]

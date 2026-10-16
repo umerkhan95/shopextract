@@ -1,0 +1,35 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF..F                                                                    [100%]
+=================================== FAILURES ===================================
+_________ test_sc12_invalid_domain_is_value_error_without_writes[None] _________
+tests/test_reliable_changes.py:604: in test_sc12_invalid_domain_is_value_error_without_writes
+    reliable.reliable_changes(domain, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:337: in reliable_changes
+    supplier = supplier_scope(domain)
+src/shopextract/identity.py:16: in supplier_scope
+    value = value.strip()
+E   AttributeError: 'NoneType' object has no attribute 'strip'
+__________ test_sc12_invalid_domain_is_value_error_without_writes[42] __________
+tests/test_reliable_changes.py:604: in test_sc12_invalid_domain_is_value_error_without_writes
+    reliable.reliable_changes(domain, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:337: in reliable_changes
+    supplier = supplier_scope(domain)
+src/shopextract/identity.py:16: in supplier_scope
+    value = value.strip()
+E   AttributeError: 'int' object has no attribute 'strip'
+________ test_sc16_oversized_ledger_rejected_before_materializing_text _________
+tests/test_reliable_changes.py:629: in test_sc16_oversized_ledger_rejected_before_materializing_text
+    report(db, a, b)
+tests/test_reliable_changes.py:121: in report
+    r = reliable.reliable_changes(DOMAIN, previous_snapshot_id=a,
+src/shopextract/monitor/reliable.py:359: in reliable_changes
+    stored = conn.execute('SELECT payload FROM reliable_reports WHERE supplier=? AND previous_id=? AND current_id=? AND policy=?', key).fetchone()
+tests/test_reliable_changes.py:622: in bounded_text
+    raise AssertionError('Oversized report text materialized before size rejection')
+E   AssertionError: Oversized report text materialized before size rejection
+=========================== short test summary info ============================
+FAILED tests/test_reliable_changes.py::test_sc12_invalid_domain_is_value_error_without_writes[None]
+FAILED tests/test_reliable_changes.py::test_sc12_invalid_domain_is_value_error_without_writes[42]
+FAILED tests/test_reliable_changes.py::test_sc16_oversized_ledger_rejected_before_materializing_text
+3 failed, 2 passed, 90 deselected in 0.75s
