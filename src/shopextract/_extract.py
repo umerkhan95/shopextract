@@ -463,7 +463,8 @@ async def _try_llm_extraction(
 
 async def _try_api_extraction(url: str, platform: Platform, *, max_products: int = 20,
                               enrich_identifiers: bool = False,
-                              api_options: dict[str, str] | None = None) -> ExtractorResult | None:
+                              api_options: dict[str, str] | None = None,
+                              include_categories: bool = False, category_mode: bool = False) -> ExtractorResult | None:
     """Try platform-specific API extraction."""
     base_url = url.rstrip("/")
 
@@ -476,7 +477,7 @@ async def _try_api_extraction(url: str, platform: Platform, *, max_products: int
 
     elif platform == Platform.WOOCOMMERCE:
         from .extractors.woocommerce import WooCommerceExtractor
-        extractor = WooCommerceExtractor()
+        extractor = WooCommerceExtractor(max_pages=max(1, (max_products+99)//100)) if category_mode else WooCommerceExtractor()
         result = await extractor.extract(base_url)
         if result.products:
             return result
@@ -500,6 +501,8 @@ async def _try_api_extraction(url: str, platform: Platform, *, max_products: int
                    Platform.BIGCOMMERCE: BigCommerceExtractor}[platform]
             auth = {key: options[key] for key in ('token_type', 'customer_access_token', 'customer_id')
                     if platform == Platform.BIGCOMMERCE and key in options}
+            if include_categories and platform in (Platform.MAGENTO, Platform.BIGCOMMERCE):
+                auth['include_categories'] = True
             result = await cls().extract(base_url, max_products=max_products,
                                          endpoint=options.get('endpoint'),
                                          access_token=options.get('access_token'), **auth)

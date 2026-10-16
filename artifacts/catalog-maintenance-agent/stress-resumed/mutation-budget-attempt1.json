@@ -1,0 +1,11 @@
+{
+  "case": "mutation-budget",
+  "state": "passed",
+  "seconds": 1.469,
+  "rss_mib": 91.89,
+  "result": {
+    "mutation": "budget",
+    "detected": true,
+    "restored": true
+  }
+}

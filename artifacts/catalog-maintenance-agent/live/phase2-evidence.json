@@ -1,0 +1,30 @@
+{
+  "e_86f35a51-916b-407a-ab95-963c0618fff6": {
+    "evidence_id": "e_86f35a51-916b-407a-ab95-963c0618fff6",
+    "excerpt": null,
+    "method": "shopify_api",
+    "observed_at": "2026-10-16T19:06:44.185987+00:00",
+    "pointer": "/value",
+    "retained_data": {
+      "source_pointer": "/title",
+      "value": "Bliss Halloween Costume"
+    },
+    "source_role": "unverified",
+    "source_url": "https://www.blissworld.com/products.json?limit=2&page=1",
+    "truncated": false
+  },
+  "e_07457d11-fe0d-4f0a-864f-eb84d1894b15": {
+    "evidence_id": "e_07457d11-fe0d-4f0a-864f-eb84d1894b15",
+    "excerpt": null,
+    "method": "shopify_api",
+    "observed_at": "2026-10-16T19:06:44.187522+00:00",
+    "pointer": "/value",
+    "retained_data": {
+      "source_pointer": "/title",
+      "value": "Salmon DNA Duo"
+    },
+    "source_role": "unverified",
+    "source_url": "https://www.blissworld.com/products.json?limit=2&page=1",
+    "truncated": false
+  }
+}

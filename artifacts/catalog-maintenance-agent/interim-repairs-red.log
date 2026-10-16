@@ -1,0 +1,128 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+_______ test_product_cap_cannot_hide_captured_duplicate_identity[False] ________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-80/test_product_cap_cannot_hide_c0')
+reverse = False
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('reverse', [False, True])
+    async def test_product_cap_cannot_hide_captured_duplicate_identity(tmp_path, reverse):
+        h = Harness(tmp_path / 'jobs.db')
+        first = json.loads(supplier_html().split('>', 1)[1].rsplit('<', 1)[0])
+        second = dict(first, description='Different supplier specification')
+        products = [first, second]
+        if reverse:
+            products.reverse()
+        body = '<script type="application/ld+json">' + json.dumps(products) + '</script>'
+        h.engine.wire_transport = httpx.MockTransport(lambda request: httpx.Response(200, text=body))
+        _, report = await h.run(goal(budgets=Budgets(products=1)))
+>       assert not any(f['status'] == 'proposed_correction' for f in report['findings'])
+E       assert not True
+E        +  where True = any(<generator object test_product_cap_cannot_hide_captured_duplicate_identity.<locals>.<genexpr> at 0x10a3adf50>)
+
+tests/test_maintenance_review_repairs.py:23: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+________ test_product_cap_cannot_hide_captured_duplicate_identity[True] ________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-80/test_product_cap_cannot_hide_c1')
+reverse = True
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('reverse', [False, True])
+    async def test_product_cap_cannot_hide_captured_duplicate_identity(tmp_path, reverse):
+        h = Harness(tmp_path / 'jobs.db')
+        first = json.loads(supplier_html().split('>', 1)[1].rsplit('<', 1)[0])
+        second = dict(first, description='Different supplier specification')
+        products = [first, second]
+        if reverse:
+            products.reverse()
+        body = '<script type="application/ld+json">' + json.dumps(products) + '</script>'
+        h.engine.wire_transport = httpx.MockTransport(lambda request: httpx.Response(200, text=body))
+        _, report = await h.run(goal(budgets=Budgets(products=1)))
+>       assert not any(f['status'] == 'proposed_correction' for f in report['findings'])
+E       assert not True
+E        +  where True = any(<generator object test_product_cap_cannot_hide_captured_duplicate_identity.<locals>.<genexpr> at 0x10a684ac0>)
+
+tests/test_maintenance_review_repairs.py:23: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+______________ test_zero_product_budget_never_discovers_or_sends _______________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-80/test_zero_product_budget_never0')
+
+    @pytest.mark.asyncio
+    async def test_zero_product_budget_never_discovers_or_sends(tmp_path):
+        h = Harness(tmp_path / 'jobs.db')
+        _, report = await h.run(goal(product_urls=(), budgets=Budgets(products=0, requests=10)))
+>       assert h.requests == []
+E       AssertionError: assert ['https://sup.../sitemap.xml'] == []
+E         
+E         Left contains one more item: 'https://supplier.example/sitemap.xml'
+E         Use -v to get more diff
+
+tests/test_maintenance_review_repairs.py:31: AssertionError
+_ test_unknown_and_violation_remain_partial_on_repeated_reopen_resume[unknown-model_usage_unknown] _
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-80/test_unknown_and_violation_rem0')
+mode = 'unknown', expected = 'model_usage_unknown'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('mode,expected', [('unknown','model_usage_unknown'), ('overrun','budget_violation')])
+    async def test_unknown_and_violation_remain_partial_on_repeated_reopen_resume(tmp_path, mode, expected):
+        advisor = Advisor(mode)
+        h = Harness(tmp_path / 'jobs.db', investigator=advisor)
+        key, first = await h.run(ambiguous_goal())
+        original_tokens = first['usage']['tokens']
+        for _ in range(2):
+            fresh = Advisor()
+            reopened = Harness(tmp_path / 'jobs.db', investigator=fresh)
+            report = await reopened.engine.resume(key)
+>           assert report['state'] == 'partial' and report['stop_reason'] == expected
+E           AssertionError: assert ('completed' == 'partial'
+E             
+E             - partial
+E             + completed)
+
+tests/test_maintenance_review_repairs.py:47: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+_ test_unknown_and_violation_remain_partial_on_repeated_reopen_resume[overrun-budget_violation] _
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-80/test_unknown_and_violation_rem1')
+mode = 'overrun', expected = 'budget_violation'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('mode,expected', [('unknown','model_usage_unknown'), ('overrun','budget_violation')])
+    async def test_unknown_and_violation_remain_partial_on_repeated_reopen_resume(tmp_path, mode, expected):
+        advisor = Advisor(mode)
+        h = Harness(tmp_path / 'jobs.db', investigator=advisor)
+        key, first = await h.run(ambiguous_goal())
+        original_tokens = first['usage']['tokens']
+        for _ in range(2):
+            fresh = Advisor()
+            reopened = Harness(tmp_path / 'jobs.db', investigator=fresh)
+            report = await reopened.engine.resume(key)
+>           assert report['state'] == 'partial' and report['stop_reason'] == expected
+E           AssertionError: assert ('completed' == 'partial'
+E             
+E             - partial
+E             + completed)
+
+tests/test_maintenance_review_repairs.py:47: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_maintenance_review_repairs.py::test_product_cap_cannot_hide_captured_duplicate_identity[False]
+FAILED tests/test_maintenance_review_repairs.py::test_product_cap_cannot_hide_captured_duplicate_identity[True]
+FAILED tests/test_maintenance_review_repairs.py::test_zero_product_budget_never_discovers_or_sends
+FAILED tests/test_maintenance_review_repairs.py::test_unknown_and_violation_remain_partial_on_repeated_reopen_resume[unknown-model_usage_unknown]
+FAILED tests/test_maintenance_review_repairs.py::test_unknown_and_violation_remain_partial_on_repeated_reopen_resume[overrun-budget_violation]
+5 failed in 5.73s

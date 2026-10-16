@@ -1,0 +1,974 @@
+[
+  {
+    "case": "mixed-100-disabled",
+    "state": "passed",
+    "seconds": 9.52,
+    "rss_mib": 163.62,
+    "result": {
+      "counts": {
+        "unchanged": 80,
+        "proposed_correction": 15,
+        "needs_review": 5
+      },
+      "advisor_calls": 0,
+      "usage": {
+        "requests": 2,
+        "tokens": 0,
+        "cost_micros": 0,
+        "reserved_tokens": 0,
+        "reserved_cost_micros": 0,
+        "unknown_requests": 0,
+        "violations": 0
+      }
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 11.02212499298912,
+      "cleanup_seconds": 0.0,
+      "pid": 93600
+    }
+  },
+  {
+    "case": "mixed-100-enabled",
+    "state": "failed",
+    "execution": {
+      "returncode": 1,
+      "timed_out": false,
+      "seconds": 11.006843519004178,
+      "cleanup_seconds": 0.0,
+      "pid": 93614
+    }
+  },
+  {
+    "case": "mixed-100-enabled",
+    "state": "passed",
+    "seconds": 9.6,
+    "rss_mib": 165.12,
+    "result": {
+      "counts": {
+        "unchanged": 80,
+        "proposed_correction": 15,
+        "needs_review": 5
+      },
+      "advisor_calls": 5,
+      "usage": {
+        "requests": 2,
+        "tokens": 85,
+        "cost_micros": 5,
+        "reserved_tokens": 0,
+        "reserved_cost_micros": 0,
+        "unknown_requests": 0,
+        "violations": 0
+      }
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 11.063850577993435,
+      "cleanup_seconds": 0.0,
+      "pid": 93807
+    }
+  },
+  {
+    "case": "exact-100",
+    "state": "passed",
+    "seconds": 9.599,
+    "rss_mib": 170.49,
+    "result": {
+      "counts": {
+        "unchanged": 100,
+        "proposed_correction": 0,
+        "needs_review": 0
+      },
+      "advisor_calls": 0,
+      "usage": {
+        "requests": 2,
+        "tokens": 0,
+        "cost_micros": 0,
+        "reserved_tokens": 0,
+        "reserved_cost_micros": 0,
+        "unknown_requests": 0,
+        "violations": 0
+      }
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 11.095733790003578,
+      "cleanup_seconds": 0.0,
+      "pid": 93823
+    }
+  },
+  {
+    "case": "crash-intent_committed-0",
+    "state": "passed",
+    "seconds": 0.08,
+    "rss_mib": 89.4,
+    "result": {
+      "window": "intent_committed",
+      "sent": 0,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.620987852991675,
+      "cleanup_seconds": 0.0,
+      "pid": 93836
+    }
+  },
+  {
+    "case": "crash-intent_committed-1",
+    "state": "passed",
+    "seconds": 0.079,
+    "rss_mib": 89.85,
+    "result": {
+      "window": "intent_committed",
+      "sent": 0,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.603502761994605,
+      "cleanup_seconds": 0.0,
+      "pid": 93843
+    }
+  },
+  {
+    "case": "crash-intent_committed-2",
+    "state": "passed",
+    "seconds": 0.084,
+    "rss_mib": 91.39,
+    "result": {
+      "window": "intent_committed",
+      "sent": 0,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5641952760051936,
+      "cleanup_seconds": 0.0,
+      "pid": 93850
+    }
+  },
+  {
+    "case": "crash-intent_committed-3",
+    "state": "passed",
+    "seconds": 0.083,
+    "rss_mib": 91.46,
+    "result": {
+      "window": "intent_committed",
+      "sent": 0,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.6088600020011654,
+      "cleanup_seconds": 0.0,
+      "pid": 93858
+    }
+  },
+  {
+    "case": "crash-before_dispatch-0",
+    "state": "passed",
+    "seconds": 0.082,
+    "rss_mib": 89.82,
+    "result": {
+      "window": "before_dispatch",
+      "sent": 0,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.614323369009071,
+      "cleanup_seconds": 0.0,
+      "pid": 93864
+    }
+  },
+  {
+    "case": "crash-before_dispatch-1",
+    "state": "passed",
+    "seconds": 0.082,
+    "rss_mib": 89.95,
+    "result": {
+      "window": "before_dispatch",
+      "sent": 0,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5837568519928027,
+      "cleanup_seconds": 0.0,
+      "pid": 93870
+    }
+  },
+  {
+    "case": "crash-before_dispatch-2",
+    "state": "passed",
+    "seconds": 0.08,
+    "rss_mib": 90.49,
+    "result": {
+      "window": "before_dispatch",
+      "sent": 0,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.589598134989501,
+      "cleanup_seconds": 0.0,
+      "pid": 93878
+    }
+  },
+  {
+    "case": "crash-before_dispatch-3",
+    "state": "passed",
+    "seconds": 0.081,
+    "rss_mib": 92.3,
+    "result": {
+      "window": "before_dispatch",
+      "sent": 0,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.6190121909894515,
+      "cleanup_seconds": 0.0,
+      "pid": 93884
+    }
+  },
+  {
+    "case": "crash-after_dispatch-0",
+    "state": "passed",
+    "seconds": 0.084,
+    "rss_mib": 90.87,
+    "result": {
+      "window": "after_dispatch",
+      "sent": 1,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.6191702479991363,
+      "cleanup_seconds": 0.0,
+      "pid": 93893
+    }
+  },
+  {
+    "case": "crash-after_dispatch-1",
+    "state": "passed",
+    "seconds": 0.079,
+    "rss_mib": 90.5,
+    "result": {
+      "window": "after_dispatch",
+      "sent": 1,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5793876370007638,
+      "cleanup_seconds": 0.0,
+      "pid": 93900
+    }
+  },
+  {
+    "case": "crash-after_dispatch-2",
+    "state": "passed",
+    "seconds": 0.083,
+    "rss_mib": 90.27,
+    "result": {
+      "window": "after_dispatch",
+      "sent": 1,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.607917155008181,
+      "cleanup_seconds": 0.0,
+      "pid": 93906
+    }
+  },
+  {
+    "case": "crash-after_dispatch-3",
+    "state": "passed",
+    "seconds": 0.082,
+    "rss_mib": 91.36,
+    "result": {
+      "window": "after_dispatch",
+      "sent": 1,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.6119731750077335,
+      "cleanup_seconds": 0.0,
+      "pid": 93913
+    }
+  },
+  {
+    "case": "crash-before_checkpoint-0",
+    "state": "passed",
+    "seconds": 1.443,
+    "rss_mib": 92.35,
+    "result": {
+      "window": "before_checkpoint",
+      "sent": 2,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.979950084001757,
+      "cleanup_seconds": 0.0,
+      "pid": 93921
+    }
+  },
+  {
+    "case": "crash-before_checkpoint-1",
+    "state": "passed",
+    "seconds": 1.443,
+    "rss_mib": 91.63,
+    "result": {
+      "window": "before_checkpoint",
+      "sent": 2,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.9903814419958508,
+      "cleanup_seconds": 0.0,
+      "pid": 93930
+    }
+  },
+  {
+    "case": "crash-before_checkpoint-2",
+    "state": "passed",
+    "seconds": 1.616,
+    "rss_mib": 91.42,
+    "result": {
+      "window": "before_checkpoint",
+      "sent": 2,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.2012680159969022,
+      "cleanup_seconds": 0.0,
+      "pid": 93939
+    }
+  },
+  {
+    "case": "crash-before_checkpoint-3",
+    "state": "passed",
+    "seconds": 1.45,
+    "rss_mib": 93.15,
+    "result": {
+      "window": "before_checkpoint",
+      "sent": 2,
+      "state": "partial"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.969215777993668,
+      "cleanup_seconds": 0.0,
+      "pid": 93958
+    }
+  },
+  {
+    "case": "crash-after_checkpoint-0",
+    "state": "passed",
+    "seconds": 1.481,
+    "rss_mib": 93.0,
+    "result": {
+      "window": "after_checkpoint",
+      "sent": 2,
+      "state": "completed"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.0216284320049454,
+      "cleanup_seconds": 0.0,
+      "pid": 93970
+    }
+  },
+  {
+    "case": "crash-after_checkpoint-1",
+    "state": "passed",
+    "seconds": 1.472,
+    "rss_mib": 93.02,
+    "result": {
+      "window": "after_checkpoint",
+      "sent": 2,
+      "state": "completed"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.9911422290024348,
+      "cleanup_seconds": 0.0,
+      "pid": 93981
+    }
+  },
+  {
+    "case": "crash-after_checkpoint-2",
+    "state": "passed",
+    "seconds": 1.498,
+    "rss_mib": 93.05,
+    "result": {
+      "window": "after_checkpoint",
+      "sent": 2,
+      "state": "completed"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.0375133979978273,
+      "cleanup_seconds": 0.0,
+      "pid": 93989
+    }
+  },
+  {
+    "case": "crash-after_checkpoint-3",
+    "state": "passed",
+    "seconds": 1.484,
+    "rss_mib": 92.51,
+    "result": {
+      "window": "after_checkpoint",
+      "sent": 2,
+      "state": "completed"
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.0104300680104643,
+      "cleanup_seconds": 0.0,
+      "pid": 94005
+    }
+  },
+  {
+    "case": "budget-requests-0",
+    "state": "passed",
+    "seconds": 0.066,
+    "rss_mib": 90.86,
+    "result": {
+      "dimension": "requests",
+      "edge": 0,
+      "denied": false
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5612386399880052,
+      "cleanup_seconds": 0.0,
+      "pid": 94014
+    }
+  },
+  {
+    "case": "budget-requests-1",
+    "state": "passed",
+    "seconds": 0.068,
+    "rss_mib": 89.36,
+    "result": {
+      "dimension": "requests",
+      "edge": 1,
+      "denied": false
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5691450599988457,
+      "cleanup_seconds": 0.0,
+      "pid": 94021
+    }
+  },
+  {
+    "case": "budget-requests-2",
+    "state": "passed",
+    "seconds": 0.067,
+    "rss_mib": 90.03,
+    "result": {
+      "dimension": "requests",
+      "edge": 2,
+      "denied": true
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5573415760009084,
+      "cleanup_seconds": 0.0,
+      "pid": 94028
+    }
+  },
+  {
+    "case": "budget-tokens-0",
+    "state": "passed",
+    "seconds": 0.066,
+    "rss_mib": 89.84,
+    "result": {
+      "dimension": "tokens",
+      "edge": 0,
+      "denied": false
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5389663310052129,
+      "cleanup_seconds": 0.0,
+      "pid": 94036
+    }
+  },
+  {
+    "case": "budget-tokens-1",
+    "state": "passed",
+    "seconds": 0.064,
+    "rss_mib": 89.66,
+    "result": {
+      "dimension": "tokens",
+      "edge": 1,
+      "denied": false
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.559495223002159,
+      "cleanup_seconds": 0.0,
+      "pid": 94043
+    }
+  },
+  {
+    "case": "budget-tokens-2",
+    "state": "passed",
+    "seconds": 0.067,
+    "rss_mib": 90.82,
+    "result": {
+      "dimension": "tokens",
+      "edge": 2,
+      "denied": true
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5697882499953266,
+      "cleanup_seconds": 0.0,
+      "pid": 94049
+    }
+  },
+  {
+    "case": "budget-cost_micros-0",
+    "state": "passed",
+    "seconds": 0.065,
+    "rss_mib": 90.31,
+    "result": {
+      "dimension": "cost_micros",
+      "edge": 0,
+      "denied": false
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5893113619968062,
+      "cleanup_seconds": 0.0,
+      "pid": 94056
+    }
+  },
+  {
+    "case": "budget-cost_micros-1",
+    "state": "passed",
+    "seconds": 0.067,
+    "rss_mib": 90.95,
+    "result": {
+      "dimension": "cost_micros",
+      "edge": 1,
+      "denied": false
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5625252970057772,
+      "cleanup_seconds": 0.0,
+      "pid": 94063
+    }
+  },
+  {
+    "case": "budget-cost_micros-2",
+    "state": "passed",
+    "seconds": 0.063,
+    "rss_mib": 89.74,
+    "result": {
+      "dimension": "cost_micros",
+      "edge": 2,
+      "denied": true
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.538250148005318,
+      "cleanup_seconds": 0.0,
+      "pid": 94069
+    }
+  },
+  {
+    "case": "budget-evidence_bytes-0",
+    "state": "passed",
+    "seconds": 0.072,
+    "rss_mib": 91.39,
+    "result": {
+      "dimension": "evidence_bytes",
+      "edge": 0,
+      "denied": true
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5833853369986173,
+      "cleanup_seconds": 0.0,
+      "pid": 94076
+    }
+  },
+  {
+    "case": "budget-evidence_bytes-1",
+    "state": "passed",
+    "seconds": 0.074,
+    "rss_mib": 90.05,
+    "result": {
+      "dimension": "evidence_bytes",
+      "edge": 1,
+      "denied": false
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5968108020024374,
+      "cleanup_seconds": 0.0,
+      "pid": 94083
+    }
+  },
+  {
+    "case": "budget-evidence_bytes-2",
+    "state": "passed",
+    "seconds": 0.075,
+    "rss_mib": 89.7,
+    "result": {
+      "dimension": "evidence_bytes",
+      "edge": 2,
+      "denied": false
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5763596059987321,
+      "cleanup_seconds": 0.0,
+      "pid": 94090
+    }
+  },
+  {
+    "case": "budget-report_bytes-0",
+    "state": "passed",
+    "seconds": 0.072,
+    "rss_mib": 89.19,
+    "result": {
+      "dimension": "report_bytes",
+      "edge": 0,
+      "denied": true
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5805713180016028,
+      "cleanup_seconds": 0.0,
+      "pid": 94096
+    }
+  },
+  {
+    "case": "budget-report_bytes-1",
+    "state": "passed",
+    "seconds": 0.074,
+    "rss_mib": 90.41,
+    "result": {
+      "dimension": "report_bytes",
+      "edge": 1,
+      "denied": false
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5605667130002985,
+      "cleanup_seconds": 0.0,
+      "pid": 94103
+    }
+  },
+  {
+    "case": "budget-report_bytes-2",
+    "state": "passed",
+    "seconds": 0.075,
+    "rss_mib": 91.18,
+    "result": {
+      "dimension": "report_bytes",
+      "edge": 2,
+      "denied": false
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5830871729995124,
+      "cleanup_seconds": 0.0,
+      "pid": 94110
+    }
+  },
+  {
+    "case": "budget-deadline-0",
+    "state": "failed",
+    "execution": {
+      "returncode": 1,
+      "timed_out": false,
+      "seconds": 1.4963074190018233,
+      "cleanup_seconds": 0.0,
+      "pid": 94116
+    }
+  },
+  {
+    "case": "budget-deadline-0",
+    "state": "passed",
+    "seconds": 0.067,
+    "rss_mib": 88.93,
+    "result": {
+      "dimension": "deadline",
+      "edge": 0,
+      "denied": false
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.561891666991869,
+      "cleanup_seconds": 0.0,
+      "pid": 94195
+    }
+  },
+  {
+    "case": "budget-deadline-1",
+    "state": "passed",
+    "seconds": 0.065,
+    "rss_mib": 90.68,
+    "result": {
+      "dimension": "deadline",
+      "edge": 1,
+      "denied": true
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.550846290003392,
+      "cleanup_seconds": 0.0,
+      "pid": 94202
+    }
+  },
+  {
+    "case": "budget-deadline-2",
+    "state": "passed",
+    "seconds": 0.067,
+    "rss_mib": 90.77,
+    "result": {
+      "dimension": "deadline",
+      "edge": 2,
+      "denied": true
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.5638383000041358,
+      "cleanup_seconds": 0.0,
+      "pid": 94208
+    }
+  },
+  {
+    "case": "interaction-0",
+    "state": "passed",
+    "seconds": 0.091,
+    "rss_mib": 92.41,
+    "result": null,
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.6090081750007812,
+      "cleanup_seconds": 0.0,
+      "pid": 94215
+    }
+  },
+  {
+    "case": "interaction-1",
+    "state": "reused",
+    "saved_log": "../advisor-publication-policy-green.log",
+    "check": "test_retry_cancellation_before_publication_keeps_prior_advisory",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "interaction-2",
+    "state": "reused",
+    "saved_log": "../completion-retry-green.log",
+    "check": "test_advisor_retry_preserves_real_native_partial_source_coverage",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "interaction-3",
+    "state": "reused",
+    "saved_log": "../stress-prerequisites.log",
+    "check": "test_checkpoint_mutation_fixture_reaches_real_resume",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "interaction-4",
+    "state": "passed",
+    "seconds": 1.491,
+    "rss_mib": 91.56,
+    "result": null,
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.033360425994033,
+      "cleanup_seconds": 0.0,
+      "pid": 94222
+    }
+  },
+  {
+    "case": "interaction-5",
+    "state": "reused",
+    "saved_log": "../source-retry-discovery.log",
+    "check": "test_unknown_retry_is_explicit_new_charge_and_resolves_pending_comparison",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "interaction-6",
+    "state": "reused",
+    "saved_log": "../completion-retry-green.log",
+    "check": "test_retry_publication_failure_preserves_previous_composition_and_charge",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "interaction-7",
+    "state": "reused",
+    "saved_log": "../workflow-mechanisms.log",
+    "check": "test_cache_exact_expiry_misses_but_report_evidence_survives_eviction",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "category-0",
+    "state": "reused",
+    "saved_log": "../slice-b-refinements.log",
+    "check": "test_category_specs_remain_visible_without_overriding_matcher[0]",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "category-1",
+    "state": "reused",
+    "saved_log": "../slice-b-refinements.log",
+    "check": "test_category_specs_remain_visible_without_overriding_matcher[1]",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "category-2",
+    "state": "reused",
+    "saved_log": "../slice-b-refinements.log",
+    "check": "test_category_specs_remain_visible_without_overriding_matcher[2]",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "category-3",
+    "state": "reused",
+    "saved_log": "../slice-b-refinements.log",
+    "check": "test_category_specs_remain_visible_without_overriding_matcher[3]",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "category-4",
+    "state": "reused",
+    "saved_log": "../slice-b-refinements.log",
+    "check": "test_category_specs_remain_visible_without_overriding_matcher[4]",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "category-5",
+    "state": "reused",
+    "saved_log": "../slice-b-refinements.log",
+    "check": "test_category_specs_remain_visible_without_overriding_matcher[5]",
+    "reason": "Exact previously executed real-path invariant; changed matcher dictionaries independently equivalent"
+  },
+  {
+    "case": "category-6",
+    "state": "passed",
+    "seconds": 2.907,
+    "rss_mib": 92.64,
+    "result": null,
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 4.41365039399534,
+      "cleanup_seconds": 0.0,
+      "pid": 94231
+    }
+  },
+  {
+    "case": "category-7",
+    "state": "passed",
+    "seconds": 1.488,
+    "rss_mib": 90.48,
+    "result": null,
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.039026925005601,
+      "cleanup_seconds": 0.0,
+      "pid": 94244
+    }
+  },
+  {
+    "case": "mutation-budget",
+    "state": "passed",
+    "seconds": 1.469,
+    "rss_mib": 91.89,
+    "result": {
+      "mutation": "budget",
+      "detected": true,
+      "restored": true
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.0267046410008334,
+      "cleanup_seconds": 0.0,
+      "pid": 94254
+    }
+  },
+  {
+    "case": "mutation-checkpoint",
+    "state": "passed",
+    "seconds": 2.87,
+    "rss_mib": 90.68,
+    "result": {
+      "mutation": "checkpoint",
+      "detected": true,
+      "restored": true
+    },
+    "execution": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 4.388960953991045,
+      "cleanup_seconds": 0.0,
+      "pid": 94270
+    }
+  }
+]

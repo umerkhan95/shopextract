@@ -1,0 +1,64 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+{
+  "ok": true,
+  "data": {
+    "job_id": "4feee805d9324b82a819bdf669534c65",
+    "state": "completed",
+    "stop_reason": null,
+    "cancel_requested": false,
+    "goal_fingerprint": "774ebafcfbbd0473adee649e1006730576424f9bcfe664a30d5cc5c7afbfff9d",
+    "profile_definitions": {
+      "hardware-v1": {
+        "fields": {
+          "attributes/material": {
+            "kind": "text",
+            "normalization": "exact",
+            "role": "comparable"
+          },
+          "attributes/model": {
+            "kind": "text",
+            "normalization": "exact",
+            "role": "identity_variant"
+          },
+          "attributes/ram": {
+            "kind": "text",
+            "normalization": "exact",
+            "role": "identity_variant"
+          },
+          "attributes/storage": {
+            "kind": "text",
+            "normalization": "exact",
+            "role": "identity_variant"
+          },
+          "attributes/weight": {
+            "kind": "mass",
+            "normalization": "mass_kg",
+            "role": "comparable"
+          },
+          "currency": {
+            "kind": "text",
+            "normalization": "exact",
+            "role": "price_context"
+          },
+          "description": {
+            "kind": "text",
+            "normalization": "exact",
+            "role": "comparable"
+          },
+          "price": {
+            "kind": "decimal",
+            "normalization": "decimal",
+            "role": "comparable"
+          },
+          "title": {
+            "kind": "text",
+            "normalization": "exact",
+            "role": "comparable"
+          }
+        },
+        "name": "hardware-v1"
+      }
+    }
+  }
+}

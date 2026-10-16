@@ -1,0 +1,145 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFF.                                                                    [100%]
+=================================== FAILURES ===================================
+____ test_second_unknown_advisor_attempt_blocks_third_and_keeps_pagination _____
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-81/test_second_unknown_advisor_at0')
+
+    @pytest.mark.asyncio
+    async def test_second_unknown_advisor_attempt_blocks_third_and_keeps_pagination(tmp_path):
+        from shopextract.maintenance import MaintenanceError
+        h, key, step = await crashed_advisor_job(tmp_path)
+        h.engine.investigator = Advisor('unknown')
+>       report = await h.engine.retry_unknown(key, step)
+
+tests/test_maintenance_advisor.py:224: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10ac1eda0>
+job_id = '2d2cac9729684e1c912a9de4d70099c0'
+step_id = 'advisor:082889abfda39628ff0d47a2f29f74b2ff1ab361b064dc46011131e5fc599972'
+
+    async def retry_unknown(self, job_id, step_id):
+        if self._active is not None:
+            raise MaintenanceError('already_running')
+        state = self.store.status(job_id)['state']
+        if state not in {'paused', 'partial'}:
+            raise MaintenanceError('invalid_state')
+        steps = [row for row in self.store.steps(job_id) if row['id'] == step_id]
+        if not steps or steps[0]['kind'] not in {'extract', 'discover'}:
+>           raise MaintenanceError('invalid_argument')
+E           shopextract.maintenance.contracts.MaintenanceError: invalid_argument
+
+src/shopextract/maintenance/engine.py:519: MaintenanceError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+_ test_advisor_retry_rechecks_fixed_policy_before_dispatch[deadline-deadline] __
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-81/test_advisor_retry_rechecks_fi0')
+changed = 'deadline', expected = 'deadline'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('changed,expected', [('deadline','deadline'), ('budget','token_budget'),
+                                                 ('model','retry_mismatch'), ('cancel','invalid_state')])
+    async def test_advisor_retry_rechecks_fixed_policy_before_dispatch(tmp_path, changed, expected):
+        from datetime import timedelta
+        from shopextract.maintenance import MaintenanceError
+        configured = ambiguous_goal(budgets=Budgets(tokens=64 if changed == 'budget' else 128, cost_micros=100))
+        h, key, step = await crashed_advisor_job(tmp_path, configured=configured)
+        adapter = Advisor()
+        if changed == 'deadline':
+            h.engine.utc_now = lambda: NOW + timedelta(minutes=2)
+        elif changed == 'model':
+            class ChangedModel(Advisor):
+                def bound(self, payload):
+                    return replace(super().bound(payload), model='changed-model')
+            adapter = ChangedModel()
+        elif changed == 'cancel':
+            await h.engine.cancel(key)
+        h.engine.investigator = adapter
+        before = h.store.report(key)['findings']
+>       with pytest.raises(MaintenanceError, match=expected):
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'deadline'
+E         Actual message: 'invalid_argument'
+
+tests/test_maintenance_advisor.py:253: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+_ test_advisor_retry_rechecks_fixed_policy_before_dispatch[budget-token_budget] _
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-81/test_advisor_retry_rechecks_fi1')
+changed = 'budget', expected = 'token_budget'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('changed,expected', [('deadline','deadline'), ('budget','token_budget'),
+                                                 ('model','retry_mismatch'), ('cancel','invalid_state')])
+    async def test_advisor_retry_rechecks_fixed_policy_before_dispatch(tmp_path, changed, expected):
+        from datetime import timedelta
+        from shopextract.maintenance import MaintenanceError
+        configured = ambiguous_goal(budgets=Budgets(tokens=64 if changed == 'budget' else 128, cost_micros=100))
+        h, key, step = await crashed_advisor_job(tmp_path, configured=configured)
+        adapter = Advisor()
+        if changed == 'deadline':
+            h.engine.utc_now = lambda: NOW + timedelta(minutes=2)
+        elif changed == 'model':
+            class ChangedModel(Advisor):
+                def bound(self, payload):
+                    return replace(super().bound(payload), model='changed-model')
+            adapter = ChangedModel()
+        elif changed == 'cancel':
+            await h.engine.cancel(key)
+        h.engine.investigator = adapter
+        before = h.store.report(key)['findings']
+>       with pytest.raises(MaintenanceError, match=expected):
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'token_budget'
+E         Actual message: 'invalid_argument'
+
+tests/test_maintenance_advisor.py:253: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+_ test_advisor_retry_rechecks_fixed_policy_before_dispatch[model-retry_mismatch] _
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-81/test_advisor_retry_rechecks_fi2')
+changed = 'model', expected = 'retry_mismatch'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('changed,expected', [('deadline','deadline'), ('budget','token_budget'),
+                                                 ('model','retry_mismatch'), ('cancel','invalid_state')])
+    async def test_advisor_retry_rechecks_fixed_policy_before_dispatch(tmp_path, changed, expected):
+        from datetime import timedelta
+        from shopextract.maintenance import MaintenanceError
+        configured = ambiguous_goal(budgets=Budgets(tokens=64 if changed == 'budget' else 128, cost_micros=100))
+        h, key, step = await crashed_advisor_job(tmp_path, configured=configured)
+        adapter = Advisor()
+        if changed == 'deadline':
+            h.engine.utc_now = lambda: NOW + timedelta(minutes=2)
+        elif changed == 'model':
+            class ChangedModel(Advisor):
+                def bound(self, payload):
+                    return replace(super().bound(payload), model='changed-model')
+            adapter = ChangedModel()
+        elif changed == 'cancel':
+            await h.engine.cancel(key)
+        h.engine.investigator = adapter
+        before = h.store.report(key)['findings']
+>       with pytest.raises(MaintenanceError, match=expected):
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'retry_mismatch'
+E         Actual message: 'invalid_argument'
+
+tests/test_maintenance_advisor.py:253: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_maintenance_advisor.py::test_second_unknown_advisor_attempt_blocks_third_and_keeps_pagination
+FAILED tests/test_maintenance_advisor.py::test_advisor_retry_rechecks_fixed_policy_before_dispatch[deadline-deadline]
+FAILED tests/test_maintenance_advisor.py::test_advisor_retry_rechecks_fixed_policy_before_dispatch[budget-token_budget]
+FAILED tests/test_maintenance_advisor.py::test_advisor_retry_rechecks_fixed_policy_before_dispatch[model-retry_mismatch]
+4 failed, 1 passed in 7.16s

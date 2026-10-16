@@ -1,0 +1,52 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__ test_explicit_unknown_advisor_retry_preserves_base_finding_and_old_charge ___
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-78/test_explicit_unknown_advisor_0')
+
+    @pytest.mark.asyncio
+    async def test_explicit_unknown_advisor_retry_preserves_base_finding_and_old_charge(tmp_path):
+        """FR05 remaining requirement: do not hide this gap behind no-replay success."""
+        class Crash(BaseException):
+            pass
+        def crash(event, payload):
+            if event == 'advisor_after_dispatch':
+                raise Crash()
+        h = Harness(tmp_path / 'jobs.db', investigator=Advisor(), failure_hook=crash)
+        key = h.store.create(ambiguous_goal())
+        with pytest.raises(Crash):
+            await h.engine.run(key)
+        advisor = Advisor()
+        reopened = Harness(tmp_path / 'jobs.db', investigator=advisor)
+        partial = await reopened.engine.resume(key)
+        original, = partial['findings']
+        step = next(row['id'] for row in reopened.store.steps(key) if row['kind'].startswith('advisor:'))
+>       retried = await reopened.engine.retry_unknown(key, step)
+
+tests/test_maintenance_advisor.py:193: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x1102b3d90>
+job_id = 'dccda0bd2fb449768481f94b02060888'
+step_id = 'advisor:d4e7c8e786e573f60df28546cf2d7fa08fb2088247bb2ed069597e2911d75f52'
+
+    async def retry_unknown(self, job_id, step_id):
+        if self._active is not None:
+            raise MaintenanceError('already_running')
+        state = self.store.status(job_id)['state']
+        if state not in {'paused', 'partial'}:
+            raise MaintenanceError('invalid_state')
+        steps = [row for row in self.store.steps(job_id) if row['id'] == step_id]
+        if not steps or steps[0]['kind'] not in {'extract', 'discover'}:
+>           raise MaintenanceError('invalid_argument')
+E           shopextract.maintenance.contracts.MaintenanceError: invalid_argument
+
+src/shopextract/maintenance/engine.py:497: MaintenanceError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_maintenance_advisor.py::test_explicit_unknown_advisor_retry_preserves_base_finding_and_old_charge
+1 failed in 1.76s

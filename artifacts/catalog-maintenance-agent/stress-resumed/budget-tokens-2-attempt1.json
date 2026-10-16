@@ -1,0 +1,11 @@
+{
+  "case": "budget-tokens-2",
+  "state": "passed",
+  "seconds": 0.067,
+  "rss_mib": 90.82,
+  "result": {
+    "dimension": "tokens",
+    "edge": 2,
+    "denied": true
+  }
+}

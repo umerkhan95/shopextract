@@ -1,0 +1,11 @@
+{
+  "case": "budget-evidence_bytes-0",
+  "state": "passed",
+  "seconds": 0.072,
+  "rss_mib": 91.39,
+  "result": {
+    "dimension": "evidence_bytes",
+    "edge": 0,
+    "denied": true
+  }
+}

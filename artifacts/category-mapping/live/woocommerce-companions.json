@@ -1,0 +1,2402 @@
+[
+  {
+    "schema_version": 1,
+    "product": {
+      "schema_version": 1,
+      "product": {
+        "title": "Eternal Sunset Collection Lip and Cheek",
+        "price": {
+          "$type": "decimal",
+          "value": "12"
+        },
+        "currency": "USD",
+        "description": "Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.\nDuis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image_url": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg",
+        "product_url": "https://demo.athemes.com/botiga/product/eternal-sunset-collection-lip-and-cheek-set-with-jojoba-oil/",
+        "external_id": "97",
+        "sku": "",
+        "gtin": null,
+        "mpn": null,
+        "vendor": null,
+        "product_type": null,
+        "in_stock": true,
+        "condition": "NEW",
+        "compare_at_price": {
+          "$type": "decimal",
+          "value": "16"
+        },
+        "variants": [],
+        "tags": [],
+        "additional_images": [
+          "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg",
+          "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg",
+          "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg"
+        ],
+        "category_path": [
+          "Cosmetics"
+        ],
+        "platform": "woocommerce",
+        "scraped_at": {
+          "$type": "datetime",
+          "value": "2026-10-16T23:30:31.631604+00:00"
+        },
+        "raw_data": {
+          "id": 97,
+          "name": "Eternal Sunset Collection Lip and Cheek",
+          "slug": "eternal-sunset-collection-lip-and-cheek-set-with-jojoba-oil",
+          "parent": 0,
+          "type": "simple",
+          "variation": "",
+          "permalink": "https://demo.athemes.com/botiga/product/eternal-sunset-collection-lip-and-cheek-set-with-jojoba-oil/",
+          "sku": "",
+          "short_description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus congue nisi.</p>",
+          "description": "<p>Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.</p>\n<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+          "on_sale": true,
+          "prices": {
+            "price": "1200",
+            "regular_price": "1600",
+            "sale_price": "1200",
+            "price_range": null,
+            "currency_code": "USD",
+            "currency_symbol": "$",
+            "currency_minor_unit": 2,
+            "currency_decimal_separator": ".",
+            "currency_thousand_separator": ",",
+            "currency_prefix": "$",
+            "currency_suffix": ""
+          },
+          "price_html": "<del aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#036;</span>16.00</span></del> <span class=\"screen-reader-text\">Original price was: &#036;16.00.</span><ins aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#036;</span>12.00</span></ins><span class=\"screen-reader-text\">Current price is: &#036;12.00.</span>",
+          "average_rating": "0",
+          "review_count": 0,
+          "images": [
+            {
+              "id": 310,
+              "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg",
+              "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-768x922.jpg",
+              "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-800x960.jpg 800w",
+              "sizes": "(max-width: 1050px) 100vw, 1050px",
+              "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg 1050w",
+              "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+              "name": "Glamifiedpeach",
+              "alt": ""
+            },
+            {
+              "id": 171,
+              "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg",
+              "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg",
+              "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr-246x300.jpg 246w",
+              "sizes": "(max-width: 512px) 100vw, 512px",
+              "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr-246x300.jpg 246w",
+              "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+              "name": "gr",
+              "alt": ""
+            },
+            {
+              "id": 172,
+              "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg",
+              "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg",
+              "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray-246x300.jpg 246w",
+              "sizes": "(max-width: 512px) 100vw, 512px",
+              "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray-246x300.jpg 246w",
+              "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+              "name": "gray",
+              "alt": ""
+            },
+            {
+              "id": 311,
+              "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg",
+              "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-768x922.jpg",
+              "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-800x960.jpg 800w",
+              "sizes": "(max-width: 1050px) 100vw, 1050px",
+              "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg 1050w",
+              "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+              "name": "Glamifiedviola",
+              "alt": ""
+            }
+          ],
+          "categories": [
+            {
+              "id": 18,
+              "name": "Cosmetics",
+              "slug": "cosmetics",
+              "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+            }
+          ],
+          "tags": [],
+          "brands": [],
+          "attributes": [],
+          "variations": [],
+          "grouped_products": [],
+          "has_options": false,
+          "is_purchasable": true,
+          "is_in_stock": true,
+          "is_on_backorder": false,
+          "low_stock_remaining": null,
+          "stock_availability": {
+            "text": "",
+            "class": "in-stock"
+          },
+          "sold_individually": false,
+          "weight": "",
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": ""
+          },
+          "formatted_weight": "N/A",
+          "formatted_dimensions": "N/A",
+          "add_to_cart": {
+            "text": "Add to cart",
+            "description": "Add to cart: &ldquo;Eternal Sunset Collection Lip and Cheek&rdquo;",
+            "url": "/botiga/wp-json/wc/store/v1/products?per_page=100&#038;page=1&#038;add-to-cart=97",
+            "single_text": "Add to cart",
+            "minimum": 1,
+            "maximum": 9999,
+            "multiple_of": 1
+          },
+          "is_password_protected": false,
+          "extensions": {},
+          "_links": {
+            "self": [
+              {
+                "href": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products/97",
+                "targetHints": {
+                  "allow": [
+                    "GET"
+                  ]
+                }
+              }
+            ],
+            "collection": [
+              {
+                "href": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products"
+              }
+            ],
+            "related": [
+              {
+                "embeddable": true,
+                "href": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?related=97&per_page=10"
+              }
+            ]
+          },
+          "_capture": {
+            "url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "method": "woocommerce_api",
+            "at": "2026-10-16T23:30:31.614914+00:00",
+            "values": {
+              "/id": 97,
+              "/name": "Eternal Sunset Collection Lip and Cheek",
+              "/slug": "eternal-sunset-collection-lip-and-cheek-set-with-jojoba-oil",
+              "/parent": 0,
+              "/type": "simple",
+              "/variation": "",
+              "/permalink": "https://demo.athemes.com/botiga/product/eternal-sunset-collection-lip-and-cheek-set-with-jojoba-oil/",
+              "/sku": "",
+              "/short_description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus congue nisi.</p>",
+              "/description": "<p>Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.</p>\n<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+              "/on_sale": true,
+              "/prices/price": "1200",
+              "/prices/regular_price": "1600",
+              "/prices/sale_price": "1200",
+              "/prices/price_range": null,
+              "/prices/currency_code": "USD",
+              "/prices/currency_symbol": "$",
+              "/prices/currency_minor_unit": 2,
+              "/prices/currency_decimal_separator": ".",
+              "/prices/currency_thousand_separator": ",",
+              "/prices/currency_prefix": "$",
+              "/prices/currency_suffix": "",
+              "/price_html": "<del aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#036;</span>16.00</span></del> <span class=\"screen-reader-text\">Original price was: &#036;16.00.</span><ins aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#036;</span>12.00</span></ins><span class=\"screen-reader-text\">Current price is: &#036;12.00.</span>",
+              "/average_rating": "0",
+              "/review_count": 0,
+              "/images/0/id": 310,
+              "/images/0/src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg",
+              "/images/0/thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-768x922.jpg",
+              "/images/0/srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-800x960.jpg 800w",
+              "/images/0/sizes": "(max-width: 1050px) 100vw, 1050px",
+              "/images/0/thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg 1050w",
+              "/images/0/thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+              "/images/0/name": "Glamifiedpeach",
+              "/images/0/alt": "",
+              "/images/1/id": 171,
+              "/images/1/src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg",
+              "/images/1/thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg",
+              "/images/1/srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr-246x300.jpg 246w",
+              "/images/1/sizes": "(max-width: 512px) 100vw, 512px",
+              "/images/1/thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr-246x300.jpg 246w",
+              "/images/1/thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+              "/images/1/name": "gr",
+              "/images/1/alt": "",
+              "/images/2/id": 172,
+              "/images/2/src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg",
+              "/images/2/thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg",
+              "/images/2/srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray-246x300.jpg 246w",
+              "/images/2/sizes": "(max-width: 512px) 100vw, 512px",
+              "/images/2/thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray-246x300.jpg 246w",
+              "/images/2/thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+              "/images/2/name": "gray",
+              "/images/2/alt": "",
+              "/images/3/id": 311,
+              "/images/3/src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg",
+              "/images/3/thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-768x922.jpg",
+              "/images/3/srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-800x960.jpg 800w",
+              "/images/3/sizes": "(max-width: 1050px) 100vw, 1050px",
+              "/images/3/thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg 1050w",
+              "/images/3/thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+              "/images/3/name": "Glamifiedviola",
+              "/images/3/alt": "",
+              "/categories/0/id": 18,
+              "/categories/0/name": "Cosmetics",
+              "/categories/0/slug": "cosmetics",
+              "/categories/0/link": "https://demo.athemes.com/botiga/product-category/cosmetics/",
+              "/has_options": false,
+              "/is_purchasable": true,
+              "/is_in_stock": true,
+              "/is_on_backorder": false,
+              "/low_stock_remaining": null,
+              "/stock_availability/text": "",
+              "/stock_availability/class": "in-stock",
+              "/sold_individually": false,
+              "/weight": "",
+              "/dimensions/length": "",
+              "/dimensions/width": "",
+              "/dimensions/height": "",
+              "/formatted_weight": "N/A",
+              "/formatted_dimensions": "N/A",
+              "/add_to_cart/text": "Add to cart",
+              "/add_to_cart/description": "Add to cart: &ldquo;Eternal Sunset Collection Lip and Cheek&rdquo;",
+              "/add_to_cart/url": "/botiga/wp-json/wc/store/v1/products?per_page=100&#038;page=1&#038;add-to-cart=97",
+              "/add_to_cart/single_text": "Add to cart",
+              "/add_to_cart/minimum": 1,
+              "/add_to_cart/maximum": 9999,
+              "/add_to_cart/multiple_of": 1,
+              "/is_password_protected": false,
+              "/prices": {
+                "price": "1200",
+                "regular_price": "1600",
+                "sale_price": "1200",
+                "price_range": null,
+                "currency_code": "USD",
+                "currency_symbol": "$",
+                "currency_minor_unit": 2,
+                "currency_decimal_separator": ".",
+                "currency_thousand_separator": ",",
+                "currency_prefix": "$",
+                "currency_suffix": ""
+              },
+              "/images/0": {
+                "id": 310,
+                "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg",
+                "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-768x922.jpg",
+                "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-800x960.jpg 800w",
+                "sizes": "(max-width: 1050px) 100vw, 1050px",
+                "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg 1050w",
+                "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+                "name": "Glamifiedpeach",
+                "alt": ""
+              },
+              "/images/1": {
+                "id": 171,
+                "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg",
+                "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg",
+                "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr-246x300.jpg 246w",
+                "sizes": "(max-width: 512px) 100vw, 512px",
+                "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr-246x300.jpg 246w",
+                "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+                "name": "gr",
+                "alt": ""
+              },
+              "/images/2": {
+                "id": 172,
+                "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg",
+                "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg",
+                "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray-246x300.jpg 246w",
+                "sizes": "(max-width: 512px) 100vw, 512px",
+                "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg 512w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray-246x300.jpg 246w",
+                "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+                "name": "gray",
+                "alt": ""
+              },
+              "/images/3": {
+                "id": 311,
+                "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg",
+                "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-768x922.jpg",
+                "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-800x960.jpg 800w",
+                "sizes": "(max-width: 1050px) 100vw, 1050px",
+                "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg 1050w",
+                "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+                "name": "Glamifiedviola",
+                "alt": ""
+              },
+              "/categories": [
+                {
+                  "id": 18,
+                  "name": "Cosmetics",
+                  "slug": "cosmetics",
+                  "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+                }
+              ],
+              "/categories/0": {
+                "id": 18,
+                "name": "Cosmetics",
+                "slug": "cosmetics",
+                "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+              },
+              "/tags": [],
+              "/brands": [],
+              "/attributes": [],
+              "/variations": [],
+              "/grouped_products": [],
+              "/stock_availability": {
+                "text": "",
+                "class": "in-stock"
+              },
+              "/dimensions": {
+                "length": "",
+                "width": "",
+                "height": ""
+              },
+              "/add_to_cart": {
+                "text": "Add to cart",
+                "description": "Add to cart: &ldquo;Eternal Sunset Collection Lip and Cheek&rdquo;",
+                "url": "/botiga/wp-json/wc/store/v1/products?per_page=100&#038;page=1&#038;add-to-cart=97",
+                "single_text": "Add to cart",
+                "minimum": 1,
+                "maximum": 9999,
+                "multiple_of": 1
+              },
+              "/extensions": {}
+            },
+            "truncated": true
+          }
+        },
+        "canonical_product_id": "p_c4d25081-037c-5b95-b1bd-30f195420cfa",
+        "supplier_id": "demo.athemes.com",
+        "attributes": {},
+        "pack_quantity": null,
+        "bundle_components": []
+      },
+      "evidence_contract": {
+        "evidence": [
+          {
+            "evidence_id": "e_91b8546a-3c8f-4b7a-ae58-471b73a20100",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/name",
+              "value": "Eternal Sunset Collection Lip and Cheek"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_fcace770-8eac-4de7-a174-ba826e8e43e3",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/prices/price",
+              "value": "1200"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_637d40c5-a038-472a-9e7d-6622b4c97a1e",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/prices/currency_code",
+              "value": "USD"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_57832e7e-d561-4cb5-b1f3-fcba94028ed3",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/description",
+              "value": "<p>Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.</p>\n<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_2c5fc807-efcc-431d-88d1-7c37b122701a",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/images/0/src",
+              "value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_170013ac-752e-440d-a3de-759d4816e8f2",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/permalink",
+              "value": "https://demo.athemes.com/botiga/product/eternal-sunset-collection-lip-and-cheek-set-with-jojoba-oil/"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_3c279e35-91da-4fac-ba5b-49abd9c0526d",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/id",
+              "value": 97
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_e295fe3a-14ce-48d5-b3c7-60a290e041ab",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/is_in_stock",
+              "value": true
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_6034a029-43f2-49c3-85d8-32372a4666cb",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/prices/regular_price",
+              "value": "1600"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_1cb6384b-1406-47c2-af37-191996ecebbf",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/tags",
+              "value": []
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_4e948244-da9a-4e18-863d-8fc5b642ae84",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/images/1/src",
+              "value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_a81cc94c-5c8f-47ee-a5a5-61c8cb8d56a1",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/images/2/src",
+              "value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_5fd9e981-9286-4530-abe6-42a347ad276a",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/images/3/src",
+              "value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_50b31490-17dc-4876-ba48-b8c3d2b7c667",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/categories",
+              "value": [
+                {
+                  "id": 18,
+                  "name": "Cosmetics",
+                  "slug": "cosmetics",
+                  "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+                }
+              ]
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          },
+          {
+            "evidence_id": "e_72f62d65-acf7-4683-a1a3-17fdc4451654",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.614914+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/categories/0/name",
+              "value": "Cosmetics"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": true
+          }
+        ],
+        "observations": [
+          {
+            "observation_id": "o_049dc980-7777-4846-8aa4-ec0970928b80",
+            "field_path": "/title",
+            "state": "observed",
+            "raw_value": "Eternal Sunset Collection Lip and Cheek",
+            "normalized_value": "Eternal Sunset Collection Lip and Cheek",
+            "evidence_ids": [
+              "e_91b8546a-3c8f-4b7a-ae58-471b73a20100"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_ebabacd7-003d-47d9-a349-7bb2844416a4",
+            "field_path": "/price",
+            "state": "observed",
+            "raw_value": "1200",
+            "normalized_value": {
+              "$type": "decimal",
+              "value": "12"
+            },
+            "evidence_ids": [
+              "e_fcace770-8eac-4de7-a174-ba826e8e43e3"
+            ],
+            "reason": "",
+            "transformations": [
+              "Parse decimal minor-unit amount; divide by 10 ** currency_minor_unit (2)"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_0d8d4ed4-9c3e-4718-a1bb-0e53c2597e45",
+            "field_path": "/currency",
+            "state": "observed",
+            "raw_value": "USD",
+            "normalized_value": "USD",
+            "evidence_ids": [
+              "e_637d40c5-a038-472a-9e7d-6622b4c97a1e"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_6e9a2a02-534c-4991-ad2e-66aa32539704",
+            "field_path": "/description",
+            "state": "observed",
+            "raw_value": "<p>Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.</p>\n<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+            "normalized_value": "Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.\nDuis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "evidence_ids": [
+              "e_57832e7e-d561-4cb5-b1f3-fcba94028ed3"
+            ],
+            "reason": "",
+            "transformations": [
+              "Strip HTML and whitespace"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_2532d1be-62ac-423b-ae01-3fd0622771b1",
+            "field_path": "/image_url",
+            "state": "observed",
+            "raw_value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg",
+            "normalized_value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedpeach.jpg",
+            "evidence_ids": [
+              "e_2c5fc807-efcc-431d-88d1-7c37b122701a"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_126f9d38-49dc-4009-a5bb-62263f6ee7e0",
+            "field_path": "/product_url",
+            "state": "observed",
+            "raw_value": "https://demo.athemes.com/botiga/product/eternal-sunset-collection-lip-and-cheek-set-with-jojoba-oil/",
+            "normalized_value": "https://demo.athemes.com/botiga/product/eternal-sunset-collection-lip-and-cheek-set-with-jojoba-oil/",
+            "evidence_ids": [
+              "e_170013ac-752e-440d-a3de-759d4816e8f2"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_3c591892-fe1c-42f0-896b-8e7dfc7e3550",
+            "field_path": "/external_id",
+            "state": "observed",
+            "raw_value": 97,
+            "normalized_value": "97",
+            "evidence_ids": [
+              "e_3c279e35-91da-4fac-ba5b-49abd9c0526d"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_408ec7df-5086-4268-a978-1375628a0caf",
+            "field_path": "/sku",
+            "state": "unknown",
+            "raw_value": "",
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Source explicitly contains no value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_eff99591-8e50-406c-baa5-1acfae6396f8",
+            "field_path": "/gtin",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable or truncated by capture byte limits",
+            "transformations": [
+              "Validate GTIN; pad 12-digit UPC with zero"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_5a6aded2-0d4a-45f9-9ad5-765437ab44b6",
+            "field_path": "/mpn",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable or truncated by capture byte limits",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_5562b3b5-e820-4734-b187-6b617b7f6297",
+            "field_path": "/vendor",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable or truncated by capture byte limits",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_17168731-d2f5-4c85-8b56-b55f3e5bd73a",
+            "field_path": "/product_type",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_263e7751-218f-4faf-96ea-f6306a79fef5",
+            "field_path": "/in_stock",
+            "state": "observed",
+            "raw_value": true,
+            "normalized_value": true,
+            "evidence_ids": [
+              "e_e295fe3a-14ce-48d5-b3c7-60a290e041ab"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_de0127c8-08fe-4e7c-b012-c718bea16cb7",
+            "field_path": "/condition",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_fbf81f49-c536-48f9-9928-2dd99d762e69",
+            "field_path": "/compare_at_price",
+            "state": "observed",
+            "raw_value": "1600",
+            "normalized_value": {
+              "$type": "decimal",
+              "value": "16"
+            },
+            "evidence_ids": [
+              "e_6034a029-43f2-49c3-85d8-32372a4666cb"
+            ],
+            "reason": "",
+            "transformations": [
+              "Parse decimal minor-unit amount; divide by 10 ** currency_minor_unit (2)"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_3826a1d9-9e60-45d0-b3fa-b3ef69daa296",
+            "field_path": "/variants",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_634bc8db-af2c-4df6-a1d7-9fc13437cee2",
+            "field_path": "/tags",
+            "state": "observed",
+            "raw_value": [],
+            "normalized_value": [],
+            "evidence_ids": [
+              "e_1cb6384b-1406-47c2-af37-191996ecebbf"
+            ],
+            "reason": "",
+            "transformations": [
+              "Project tag names"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_09e5e86c-3d29-4d24-ab6c-6956d5cab3e7",
+            "field_path": "/additional_images",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable or truncated by capture byte limits",
+            "transformations": [
+              "Project remaining image URLs"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_908b2f18-a91e-44d9-a906-f1b907e82401",
+            "field_path": "/additional_images/0",
+            "state": "observed",
+            "raw_value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg",
+            "normalized_value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg",
+            "evidence_ids": [
+              "e_4e948244-da9a-4e18-863d-8fc5b642ae84"
+            ],
+            "reason": "",
+            "transformations": [
+              "Project remaining image URLs"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_8e774e37-223d-4452-97d6-b735e8ddd11c",
+            "field_path": "/additional_images/1",
+            "state": "observed",
+            "raw_value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg",
+            "normalized_value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg",
+            "evidence_ids": [
+              "e_a81cc94c-5c8f-47ee-a5a5-61c8cb8d56a1"
+            ],
+            "reason": "",
+            "transformations": [
+              "Project remaining image URLs"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_acf1166d-257a-4e9f-b66f-921eea42d0f8",
+            "field_path": "/additional_images/2",
+            "state": "observed",
+            "raw_value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg",
+            "normalized_value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Glamifiedviola.jpg",
+            "evidence_ids": [
+              "e_5fd9e981-9286-4530-abe6-42a347ad276a"
+            ],
+            "reason": "",
+            "transformations": [
+              "Project remaining image URLs"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_ff4a41b5-8602-4b22-a221-45ddb087a351",
+            "field_path": "/category_path",
+            "state": "observed",
+            "raw_value": [
+              {
+                "id": 18,
+                "name": "Cosmetics",
+                "slug": "cosmetics",
+                "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+              }
+            ],
+            "normalized_value": [
+              "Cosmetics"
+            ],
+            "evidence_ids": [
+              "e_50b31490-17dc-4876-ba48-b8c3d2b7c667"
+            ],
+            "reason": "",
+            "transformations": [
+              "Project category names"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_78eab3fa-27af-4adb-adfe-5c1943e18fda",
+            "field_path": "/category_path/0",
+            "state": "observed",
+            "raw_value": "Cosmetics",
+            "normalized_value": "Cosmetics",
+            "evidence_ids": [
+              "e_72f62d65-acf7-4683-a1a3-17fdc4451654"
+            ],
+            "reason": "",
+            "transformations": [
+              "Project category names"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_96edb107-d19d-4574-9a48-39c33db39b60",
+            "field_path": "/attributes",
+            "state": "unsupported",
+            "raw_value": [],
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Normalizer rejected source value; compatibility default has no support",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_e5c72103-924a-4f97-856a-9b91923c34ec",
+            "field_path": "/pack_quantity",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable or truncated by capture byte limits",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_2fbb2afa-766e-41e5-9f5a-77fb44418a50",
+            "field_path": "/bundle_components",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable or truncated by capture byte limits",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          }
+        ],
+        "resolutions": [],
+        "schema_version": 1
+      },
+      "variant_contracts": []
+    },
+    "scope": {
+      "platform": "woocommerce",
+      "store_url": "https://demo.athemes.com/botiga",
+      "catalog": null,
+      "channel": null,
+      "locale": null
+    },
+    "observations": [
+      {
+        "observation_id": "c_235db00b869f074cd2e2b9f6bfcd2cf93360c149b953e84feca98004c4bed989",
+        "scope": {
+          "platform": "woocommerce",
+          "store_url": "https://demo.athemes.com/botiga",
+          "catalog": null,
+          "channel": null,
+          "locale": null
+        },
+        "relation": "memberships",
+        "taxonomy_kind": "merchant",
+        "source_state": "present",
+        "completeness": "complete",
+        "terms": [
+          {
+            "ref": {
+              "namespace": "woocommerce:product_cat",
+              "taxonomy_version": null,
+              "native_id": "18",
+              "merchant_scope": "woocommerce:catalog:https://demo.athemes.com/botiga"
+            },
+            "label": "Cosmetics",
+            "facts": [
+              {
+                "pointer": "/categories/0/id",
+                "raw_value": 18,
+                "support": "observed",
+                "binding": {
+                  "facet": "native_id",
+                  "term": {
+                    "namespace": "woocommerce:product_cat",
+                    "taxonomy_version": null,
+                    "native_id": "18",
+                    "merchant_scope": "woocommerce:catalog:https://demo.athemes.com/botiga"
+                  },
+                  "edge": null
+                },
+                "outcome": {
+                  "source_paths": [
+                    "/categories/0/id"
+                  ],
+                  "normalized_value": "18",
+                  "accepted": true,
+                  "reason": "",
+                  "transformations": [
+                    "Retain opaque Woo category ID as text"
+                  ],
+                  "source_values": [
+                    18
+                  ]
+                },
+                "evidence": [
+                  {
+                    "evidence_id": "e_512528c7-d74a-4c3b-9e74-f50f0b7d95a4",
+                    "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+                    "observed_at": {
+                      "$type": "datetime",
+                      "value": "2026-10-16T23:30:31.614914+00:00"
+                    },
+                    "method": "woocommerce_api",
+                    "excerpt": null,
+                    "retained_data": {
+                      "source_pointer": "/categories/0/id",
+                      "value": 18
+                    },
+                    "pointer": "/value",
+                    "source_role": "unverified",
+                    "truncated": true
+                  }
+                ],
+                "reason": ""
+              },
+              {
+                "pointer": "/categories/0/name",
+                "raw_value": "Cosmetics",
+                "support": "observed",
+                "binding": {
+                  "facet": "label",
+                  "term": {
+                    "namespace": "woocommerce:product_cat",
+                    "taxonomy_version": null,
+                    "native_id": "18",
+                    "merchant_scope": "woocommerce:catalog:https://demo.athemes.com/botiga"
+                  },
+                  "edge": null
+                },
+                "outcome": {
+                  "source_paths": [
+                    "/categories/0/name"
+                  ],
+                  "normalized_value": "Cosmetics",
+                  "accepted": true,
+                  "reason": "",
+                  "transformations": [
+                    "Retain Woo category label verbatim"
+                  ],
+                  "source_values": [
+                    "Cosmetics"
+                  ]
+                },
+                "evidence": [
+                  {
+                    "evidence_id": "e_06dddb7b-66ec-4041-b062-056f53e07177",
+                    "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+                    "observed_at": {
+                      "$type": "datetime",
+                      "value": "2026-10-16T23:30:31.614914+00:00"
+                    },
+                    "method": "woocommerce_api",
+                    "excerpt": null,
+                    "retained_data": {
+                      "source_pointer": "/categories/0/name",
+                      "value": "Cosmetics"
+                    },
+                    "pointer": "/value",
+                    "source_role": "unverified",
+                    "truncated": true
+                  }
+                ],
+                "reason": ""
+              }
+            ]
+          }
+        ],
+        "parent_edges": [],
+        "facts": [
+          {
+            "pointer": "/categories",
+            "raw_value": [
+              {
+                "id": 18,
+                "name": "Cosmetics",
+                "slug": "cosmetics",
+                "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+              }
+            ],
+            "support": "observed",
+            "binding": {
+              "facet": "source_state",
+              "term": null,
+              "edge": null
+            },
+            "outcome": {
+              "source_paths": [
+                "/categories"
+              ],
+              "normalized_value": [
+                {
+                  "id": 18,
+                  "name": "Cosmetics",
+                  "slug": "cosmetics",
+                  "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+                }
+              ],
+              "accepted": true,
+              "reason": "",
+              "transformations": [],
+              "source_values": [
+                [
+                  {
+                    "id": 18,
+                    "name": "Cosmetics",
+                    "slug": "cosmetics",
+                    "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+                  }
+                ]
+              ]
+            },
+            "evidence": [
+              {
+                "evidence_id": "e_8548eb1c-fcb9-4543-bd7b-7eeb784dce5f",
+                "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-16T23:30:31.614914+00:00"
+                },
+                "method": "woocommerce_api",
+                "excerpt": null,
+                "retained_data": {
+                  "source_pointer": "/categories",
+                  "value": [
+                    {
+                      "id": 18,
+                      "name": "Cosmetics",
+                      "slug": "cosmetics",
+                      "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+                    }
+                  ]
+                },
+                "pointer": "/value",
+                "source_role": "unverified",
+                "truncated": true
+              }
+            ],
+            "reason": ""
+          }
+        ],
+        "reason": ""
+      }
+    ],
+    "mappings": [
+      {
+        "observation_id": "c_235db00b869f074cd2e2b9f6bfcd2cf93360c149b953e84feca98004c4bed989",
+        "term": {
+          "namespace": "woocommerce:product_cat",
+          "taxonomy_version": null,
+          "native_id": "18",
+          "merchant_scope": "woocommerce:catalog:https://demo.athemes.com/botiga"
+        },
+        "status": "unmapped",
+        "target_ids": [],
+        "target_namespace": "live-observation",
+        "target_version": "1",
+        "rule_versions": [],
+        "partial": false,
+        "source_pointers": [],
+        "reason": ""
+      }
+    ],
+    "config_digest": "7bc2a771a65fa9f40136e7736e58fd4bad2cb7a1b59be6006285e28b74e33cea",
+    "original_binding": "d5ae5936e6dc9a0d3ee675949d6e51a4a38b02729eb52d890f8836746dffd3ce"
+  },
+  {
+    "schema_version": 1,
+    "product": {
+      "schema_version": 1,
+      "product": {
+        "title": "Vinopure Pore Purifying Gel Cleanser",
+        "price": {
+          "$type": "decimal",
+          "value": "14"
+        },
+        "currency": "USD",
+        "description": "Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.\nDuis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "image_url": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg",
+        "product_url": "https://demo.athemes.com/botiga/product/vinopure-pore-purifying-gel-cleanser-salicylic-acid-combination/",
+        "external_id": "96",
+        "sku": "",
+        "gtin": null,
+        "mpn": null,
+        "vendor": null,
+        "product_type": null,
+        "in_stock": true,
+        "condition": "NEW",
+        "compare_at_price": null,
+        "variants": [],
+        "tags": [],
+        "additional_images": [],
+        "category_path": [
+          "Cosmetics"
+        ],
+        "platform": "woocommerce",
+        "scraped_at": {
+          "$type": "datetime",
+          "value": "2026-10-16T23:30:31.686669+00:00"
+        },
+        "raw_data": {
+          "id": 96,
+          "name": "Vinopure Pore Purifying Gel Cleanser",
+          "slug": "vinopure-pore-purifying-gel-cleanser-salicylic-acid-combination",
+          "parent": 0,
+          "type": "simple",
+          "variation": "",
+          "permalink": "https://demo.athemes.com/botiga/product/vinopure-pore-purifying-gel-cleanser-salicylic-acid-combination/",
+          "sku": "",
+          "short_description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus congue nisi.</p>",
+          "description": "<p>Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.</p>\n<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget <strong>lacinia</strong> odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+          "on_sale": false,
+          "prices": {
+            "price": "1400",
+            "regular_price": "1400",
+            "sale_price": "1400",
+            "price_range": null,
+            "currency_code": "USD",
+            "currency_symbol": "$",
+            "currency_minor_unit": 2,
+            "currency_decimal_separator": ".",
+            "currency_thousand_separator": ",",
+            "currency_prefix": "$",
+            "currency_suffix": ""
+          },
+          "price_html": "<span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#036;</span>14.00</span>",
+          "average_rating": "0",
+          "review_count": 0,
+          "images": [
+            {
+              "id": 318,
+              "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg",
+              "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg",
+              "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w",
+              "sizes": "(max-width: 1050px) 100vw, 1050px",
+              "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w",
+              "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+              "name": "Pearlville",
+              "alt": ""
+            }
+          ],
+          "categories": [
+            {
+              "id": 18,
+              "name": "Cosmetics",
+              "slug": "cosmetics",
+              "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+            }
+          ],
+          "tags": [],
+          "brands": [],
+          "attributes": [],
+          "variations": [],
+          "grouped_products": [],
+          "has_options": false,
+          "is_purchasable": true,
+          "is_in_stock": true,
+          "is_on_backorder": false,
+          "low_stock_remaining": null,
+          "stock_availability": {
+            "text": "",
+            "class": "in-stock"
+          },
+          "sold_individually": false,
+          "weight": "",
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": ""
+          },
+          "formatted_weight": "N/A",
+          "formatted_dimensions": "N/A",
+          "add_to_cart": {
+            "text": "Add to cart",
+            "description": "Add to cart: &ldquo;Vinopure Pore Purifying Gel Cleanser&rdquo;",
+            "url": "/botiga/wp-json/wc/store/v1/products?per_page=100&#038;page=1&#038;add-to-cart=96",
+            "single_text": "Add to cart",
+            "minimum": 1,
+            "maximum": 9999,
+            "multiple_of": 1
+          },
+          "is_password_protected": false,
+          "extensions": {},
+          "_links": {
+            "self": [
+              {
+                "href": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products/96",
+                "targetHints": {
+                  "allow": [
+                    "GET"
+                  ]
+                }
+              }
+            ],
+            "collection": [
+              {
+                "href": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products"
+              }
+            ],
+            "related": [
+              {
+                "embeddable": true,
+                "href": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?related=96&per_page=10"
+              }
+            ]
+          },
+          "_capture": {
+            "url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "method": "woocommerce_api",
+            "at": "2026-10-16T23:30:31.617244+00:00",
+            "values": {
+              "/id": 96,
+              "/name": "Vinopure Pore Purifying Gel Cleanser",
+              "/slug": "vinopure-pore-purifying-gel-cleanser-salicylic-acid-combination",
+              "/parent": 0,
+              "/type": "simple",
+              "/variation": "",
+              "/permalink": "https://demo.athemes.com/botiga/product/vinopure-pore-purifying-gel-cleanser-salicylic-acid-combination/",
+              "/sku": "",
+              "/short_description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus congue nisi.</p>",
+              "/description": "<p>Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.</p>\n<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget <strong>lacinia</strong> odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+              "/on_sale": false,
+              "/prices/price": "1400",
+              "/prices/regular_price": "1400",
+              "/prices/sale_price": "1400",
+              "/prices/price_range": null,
+              "/prices/currency_code": "USD",
+              "/prices/currency_symbol": "$",
+              "/prices/currency_minor_unit": 2,
+              "/prices/currency_decimal_separator": ".",
+              "/prices/currency_thousand_separator": ",",
+              "/prices/currency_prefix": "$",
+              "/prices/currency_suffix": "",
+              "/price_html": "<span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#036;</span>14.00</span>",
+              "/average_rating": "0",
+              "/review_count": 0,
+              "/images/0/id": 318,
+              "/images/0/src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg",
+              "/images/0/thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg",
+              "/images/0/srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w",
+              "/images/0/sizes": "(max-width: 1050px) 100vw, 1050px",
+              "/images/0/thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w",
+              "/images/0/thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+              "/images/0/name": "Pearlville",
+              "/images/0/alt": "",
+              "/categories/0/id": 18,
+              "/categories/0/name": "Cosmetics",
+              "/categories/0/slug": "cosmetics",
+              "/categories/0/link": "https://demo.athemes.com/botiga/product-category/cosmetics/",
+              "/has_options": false,
+              "/is_purchasable": true,
+              "/is_in_stock": true,
+              "/is_on_backorder": false,
+              "/low_stock_remaining": null,
+              "/stock_availability/text": "",
+              "/stock_availability/class": "in-stock",
+              "/sold_individually": false,
+              "/weight": "",
+              "/dimensions/length": "",
+              "/dimensions/width": "",
+              "/dimensions/height": "",
+              "/formatted_weight": "N/A",
+              "/formatted_dimensions": "N/A",
+              "/add_to_cart/text": "Add to cart",
+              "/add_to_cart/description": "Add to cart: &ldquo;Vinopure Pore Purifying Gel Cleanser&rdquo;",
+              "/add_to_cart/url": "/botiga/wp-json/wc/store/v1/products?per_page=100&#038;page=1&#038;add-to-cart=96",
+              "/add_to_cart/single_text": "Add to cart",
+              "/add_to_cart/minimum": 1,
+              "/add_to_cart/maximum": 9999,
+              "/add_to_cart/multiple_of": 1,
+              "/is_password_protected": false,
+              "/prices": {
+                "price": "1400",
+                "regular_price": "1400",
+                "sale_price": "1400",
+                "price_range": null,
+                "currency_code": "USD",
+                "currency_symbol": "$",
+                "currency_minor_unit": 2,
+                "currency_decimal_separator": ".",
+                "currency_thousand_separator": ",",
+                "currency_prefix": "$",
+                "currency_suffix": ""
+              },
+              "/images": [
+                {
+                  "id": 318,
+                  "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg",
+                  "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg",
+                  "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w",
+                  "sizes": "(max-width: 1050px) 100vw, 1050px",
+                  "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w",
+                  "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+                  "name": "Pearlville",
+                  "alt": ""
+                }
+              ],
+              "/images/0": {
+                "id": 318,
+                "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg",
+                "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg",
+                "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w",
+                "sizes": "(max-width: 1050px) 100vw, 1050px",
+                "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w",
+                "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+                "name": "Pearlville",
+                "alt": ""
+              },
+              "/categories": [
+                {
+                  "id": 18,
+                  "name": "Cosmetics",
+                  "slug": "cosmetics",
+                  "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+                }
+              ],
+              "/categories/0": {
+                "id": 18,
+                "name": "Cosmetics",
+                "slug": "cosmetics",
+                "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+              },
+              "/tags": [],
+              "/brands": [],
+              "/attributes": [],
+              "/variations": [],
+              "/grouped_products": [],
+              "/stock_availability": {
+                "text": "",
+                "class": "in-stock"
+              },
+              "/dimensions": {
+                "length": "",
+                "width": "",
+                "height": ""
+              },
+              "/add_to_cart": {
+                "text": "Add to cart",
+                "description": "Add to cart: &ldquo;Vinopure Pore Purifying Gel Cleanser&rdquo;",
+                "url": "/botiga/wp-json/wc/store/v1/products?per_page=100&#038;page=1&#038;add-to-cart=96",
+                "single_text": "Add to cart",
+                "minimum": 1,
+                "maximum": 9999,
+                "multiple_of": 1
+              },
+              "/extensions": {}
+            },
+            "truncated": false
+          }
+        },
+        "canonical_product_id": "p_e680f86b-c59d-52ff-876f-7975a25ec642",
+        "supplier_id": "demo.athemes.com",
+        "attributes": {},
+        "pack_quantity": null,
+        "bundle_components": []
+      },
+      "evidence_contract": {
+        "evidence": [
+          {
+            "evidence_id": "e_0e74f596-06f9-43c6-b778-894ea971ad76",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/name",
+              "value": "Vinopure Pore Purifying Gel Cleanser"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_fcf0b197-b906-4e88-9f94-92b1e93e36fc",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/prices/price",
+              "value": "1400"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_8bbe2443-b1d0-47ce-bdc0-f585bd0c631d",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/prices/currency_code",
+              "value": "USD"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_aa4ddb7d-16fa-46ef-8704-44a04d727781",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/description",
+              "value": "<p>Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.</p>\n<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget <strong>lacinia</strong> odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_f63f3311-9f86-4273-a943-28fe941128d6",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/images/0/src",
+              "value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_72b6202e-c8f6-4799-8ecf-78437cdc0d1b",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/permalink",
+              "value": "https://demo.athemes.com/botiga/product/vinopure-pore-purifying-gel-cleanser-salicylic-acid-combination/"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_2db429bb-54ab-4418-ab25-4da4eb2a2158",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/id",
+              "value": 96
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_3192d727-758e-499a-94b9-8a948fb2a091",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/is_in_stock",
+              "value": true
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_34ce2444-4783-4b73-82e2-fe2f78242249",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/tags",
+              "value": []
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_ef7d7fde-531d-4113-8a73-16c63082c23b",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/images",
+              "value": [
+                {
+                  "id": 318,
+                  "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg",
+                  "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg",
+                  "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w",
+                  "sizes": "(max-width: 1050px) 100vw, 1050px",
+                  "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w",
+                  "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+                  "name": "Pearlville",
+                  "alt": ""
+                }
+              ]
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_ca9ba1ea-4f86-4cd8-9255-a0e115fa525e",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/categories",
+              "value": [
+                {
+                  "id": 18,
+                  "name": "Cosmetics",
+                  "slug": "cosmetics",
+                  "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+                }
+              ]
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_db8a3e55-1dc9-482a-9d17-4bb6066c0104",
+            "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:31.617244+00:00"
+            },
+            "method": "woocommerce_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/categories/0/name",
+              "value": "Cosmetics"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          }
+        ],
+        "observations": [
+          {
+            "observation_id": "o_b86c4ec5-fe91-4082-87c1-f7e01180e2fd",
+            "field_path": "/title",
+            "state": "observed",
+            "raw_value": "Vinopure Pore Purifying Gel Cleanser",
+            "normalized_value": "Vinopure Pore Purifying Gel Cleanser",
+            "evidence_ids": [
+              "e_0e74f596-06f9-43c6-b778-894ea971ad76"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_c3303971-cc80-4932-bdf8-94a86d60ef18",
+            "field_path": "/price",
+            "state": "observed",
+            "raw_value": "1400",
+            "normalized_value": {
+              "$type": "decimal",
+              "value": "14"
+            },
+            "evidence_ids": [
+              "e_fcf0b197-b906-4e88-9f94-92b1e93e36fc"
+            ],
+            "reason": "",
+            "transformations": [
+              "Parse decimal minor-unit amount; divide by 10 ** currency_minor_unit (2)"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_94578ac5-8432-43e6-b9bc-5f079fe72dd0",
+            "field_path": "/currency",
+            "state": "observed",
+            "raw_value": "USD",
+            "normalized_value": "USD",
+            "evidence_ids": [
+              "e_8bbe2443-b1d0-47ce-bdc0-f585bd0c631d"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_9ff43807-d788-4207-9289-33c87236ad25",
+            "field_path": "/description",
+            "state": "observed",
+            "raw_value": "<p>Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.</p>\n<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget <strong>lacinia</strong> odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+            "normalized_value": "Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.\nDuis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "evidence_ids": [
+              "e_aa4ddb7d-16fa-46ef-8704-44a04d727781"
+            ],
+            "reason": "",
+            "transformations": [
+              "Strip HTML and whitespace"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_6c2e4639-ef81-43b6-8643-9fbcecb98d3d",
+            "field_path": "/image_url",
+            "state": "observed",
+            "raw_value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg",
+            "normalized_value": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg",
+            "evidence_ids": [
+              "e_f63f3311-9f86-4273-a943-28fe941128d6"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_f6790eaa-0e06-41aa-8878-4a885aff9539",
+            "field_path": "/product_url",
+            "state": "observed",
+            "raw_value": "https://demo.athemes.com/botiga/product/vinopure-pore-purifying-gel-cleanser-salicylic-acid-combination/",
+            "normalized_value": "https://demo.athemes.com/botiga/product/vinopure-pore-purifying-gel-cleanser-salicylic-acid-combination/",
+            "evidence_ids": [
+              "e_72b6202e-c8f6-4799-8ecf-78437cdc0d1b"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_cfd7a548-a925-47fa-9350-0412eed5ddfd",
+            "field_path": "/external_id",
+            "state": "observed",
+            "raw_value": 96,
+            "normalized_value": "96",
+            "evidence_ids": [
+              "e_2db429bb-54ab-4418-ab25-4da4eb2a2158"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_7aa46f57-e30e-4b52-bd04-88d642bea3e7",
+            "field_path": "/sku",
+            "state": "unknown",
+            "raw_value": "",
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Source explicitly contains no value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_45658e46-32c7-494b-bda9-c24469a25a41",
+            "field_path": "/gtin",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [
+              "Validate GTIN; pad 12-digit UPC with zero"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_564962f5-ea1a-48db-a044-902b309c52c2",
+            "field_path": "/mpn",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_6f3ea1d8-c42d-40d2-9b30-a146dff3187d",
+            "field_path": "/vendor",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_9f7d7dc7-1fd0-49a7-b2ad-083da8ed63e9",
+            "field_path": "/product_type",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_ecf5ee76-e455-4c2f-8d00-cb6dc7fb7964",
+            "field_path": "/in_stock",
+            "state": "observed",
+            "raw_value": true,
+            "normalized_value": true,
+            "evidence_ids": [
+              "e_3192d727-758e-499a-94b9-8a948fb2a091"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_eb17c3f2-9ad8-4135-96a5-41cb6e130de1",
+            "field_path": "/condition",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_439236b2-0cf9-417b-8809-9c555bd79b19",
+            "field_path": "/compare_at_price",
+            "state": "unsupported",
+            "raw_value": "1400",
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [
+              "Parse decimal minor-unit amount; divide by 10 ** currency_minor_unit (2)"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_893c1e76-0589-46c8-ba45-13b8d3ca02dc",
+            "field_path": "/variants",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_3db5445d-fd7b-4f6f-9281-2f1d8e973cb5",
+            "field_path": "/tags",
+            "state": "observed",
+            "raw_value": [],
+            "normalized_value": [],
+            "evidence_ids": [
+              "e_34ce2444-4783-4b73-82e2-fe2f78242249"
+            ],
+            "reason": "",
+            "transformations": [
+              "Project tag names"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_01f76d76-6467-4d80-8312-ec877d188b5f",
+            "field_path": "/additional_images",
+            "state": "observed",
+            "raw_value": [
+              {
+                "id": 318,
+                "src": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg",
+                "thumbnail": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg",
+                "srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w",
+                "sizes": "(max-width: 1050px) 100vw, 1050px",
+                "thumbnail_srcset": "https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-1000x1200.jpg 1000w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-250x300.jpg 250w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-853x1024.jpg 853w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-768x922.jpg 768w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1-800x960.jpg 800w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg 1050w",
+                "thumbnail_sizes": "(max-width: 420px) 100vw, 420px",
+                "name": "Pearlville",
+                "alt": ""
+              }
+            ],
+            "normalized_value": [],
+            "evidence_ids": [
+              "e_ef7d7fde-531d-4113-8a73-16c63082c23b"
+            ],
+            "reason": "",
+            "transformations": [
+              "Project remaining image URLs"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_70a9e6d5-6299-443d-9dc8-662ffa6ae24c",
+            "field_path": "/category_path",
+            "state": "observed",
+            "raw_value": [
+              {
+                "id": 18,
+                "name": "Cosmetics",
+                "slug": "cosmetics",
+                "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+              }
+            ],
+            "normalized_value": [
+              "Cosmetics"
+            ],
+            "evidence_ids": [
+              "e_ca9ba1ea-4f86-4cd8-9255-a0e115fa525e"
+            ],
+            "reason": "",
+            "transformations": [
+              "Project category names"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_c3db3d70-8b9b-4647-bc3a-6bc75bddfe2b",
+            "field_path": "/category_path/0",
+            "state": "observed",
+            "raw_value": "Cosmetics",
+            "normalized_value": "Cosmetics",
+            "evidence_ids": [
+              "e_db8a3e55-1dc9-482a-9d17-4bb6066c0104"
+            ],
+            "reason": "",
+            "transformations": [
+              "Project category names"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_a64d34b4-ee21-4813-a9e8-9de2ded48496",
+            "field_path": "/attributes",
+            "state": "unsupported",
+            "raw_value": [],
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Normalizer rejected source value; compatibility default has no support",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_5d815368-a8ae-41cf-b834-b6c33e29ebcc",
+            "field_path": "/pack_quantity",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_e790a2db-a31f-4d67-9e62-b6ee9aad6341",
+            "field_path": "/bundle_components",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          }
+        ],
+        "resolutions": [],
+        "schema_version": 1
+      },
+      "variant_contracts": []
+    },
+    "scope": {
+      "platform": "woocommerce",
+      "store_url": "https://demo.athemes.com/botiga",
+      "catalog": null,
+      "channel": null,
+      "locale": null
+    },
+    "observations": [
+      {
+        "observation_id": "c_235db00b869f074cd2e2b9f6bfcd2cf93360c149b953e84feca98004c4bed989",
+        "scope": {
+          "platform": "woocommerce",
+          "store_url": "https://demo.athemes.com/botiga",
+          "catalog": null,
+          "channel": null,
+          "locale": null
+        },
+        "relation": "memberships",
+        "taxonomy_kind": "merchant",
+        "source_state": "present",
+        "completeness": "complete",
+        "terms": [
+          {
+            "ref": {
+              "namespace": "woocommerce:product_cat",
+              "taxonomy_version": null,
+              "native_id": "18",
+              "merchant_scope": "woocommerce:catalog:https://demo.athemes.com/botiga"
+            },
+            "label": "Cosmetics",
+            "facts": [
+              {
+                "pointer": "/categories/0/id",
+                "raw_value": 18,
+                "support": "observed",
+                "binding": {
+                  "facet": "native_id",
+                  "term": {
+                    "namespace": "woocommerce:product_cat",
+                    "taxonomy_version": null,
+                    "native_id": "18",
+                    "merchant_scope": "woocommerce:catalog:https://demo.athemes.com/botiga"
+                  },
+                  "edge": null
+                },
+                "outcome": {
+                  "source_paths": [
+                    "/categories/0/id"
+                  ],
+                  "normalized_value": "18",
+                  "accepted": true,
+                  "reason": "",
+                  "transformations": [
+                    "Retain opaque Woo category ID as text"
+                  ],
+                  "source_values": [
+                    18
+                  ]
+                },
+                "evidence": [
+                  {
+                    "evidence_id": "e_5c67be81-a899-4811-9e96-adda8491f1c7",
+                    "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+                    "observed_at": {
+                      "$type": "datetime",
+                      "value": "2026-10-16T23:30:31.617244+00:00"
+                    },
+                    "method": "woocommerce_api",
+                    "excerpt": null,
+                    "retained_data": {
+                      "source_pointer": "/categories/0/id",
+                      "value": 18
+                    },
+                    "pointer": "/value",
+                    "source_role": "unverified",
+                    "truncated": false
+                  }
+                ],
+                "reason": ""
+              },
+              {
+                "pointer": "/categories/0/name",
+                "raw_value": "Cosmetics",
+                "support": "observed",
+                "binding": {
+                  "facet": "label",
+                  "term": {
+                    "namespace": "woocommerce:product_cat",
+                    "taxonomy_version": null,
+                    "native_id": "18",
+                    "merchant_scope": "woocommerce:catalog:https://demo.athemes.com/botiga"
+                  },
+                  "edge": null
+                },
+                "outcome": {
+                  "source_paths": [
+                    "/categories/0/name"
+                  ],
+                  "normalized_value": "Cosmetics",
+                  "accepted": true,
+                  "reason": "",
+                  "transformations": [
+                    "Retain Woo category label verbatim"
+                  ],
+                  "source_values": [
+                    "Cosmetics"
+                  ]
+                },
+                "evidence": [
+                  {
+                    "evidence_id": "e_4d8eed99-88fe-4bbe-95b8-218f4712d3dd",
+                    "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+                    "observed_at": {
+                      "$type": "datetime",
+                      "value": "2026-10-16T23:30:31.617244+00:00"
+                    },
+                    "method": "woocommerce_api",
+                    "excerpt": null,
+                    "retained_data": {
+                      "source_pointer": "/categories/0/name",
+                      "value": "Cosmetics"
+                    },
+                    "pointer": "/value",
+                    "source_role": "unverified",
+                    "truncated": false
+                  }
+                ],
+                "reason": ""
+              }
+            ]
+          }
+        ],
+        "parent_edges": [],
+        "facts": [
+          {
+            "pointer": "/categories",
+            "raw_value": [
+              {
+                "id": 18,
+                "name": "Cosmetics",
+                "slug": "cosmetics",
+                "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+              }
+            ],
+            "support": "observed",
+            "binding": {
+              "facet": "source_state",
+              "term": null,
+              "edge": null
+            },
+            "outcome": {
+              "source_paths": [
+                "/categories"
+              ],
+              "normalized_value": [
+                {
+                  "id": 18,
+                  "name": "Cosmetics",
+                  "slug": "cosmetics",
+                  "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+                }
+              ],
+              "accepted": true,
+              "reason": "",
+              "transformations": [],
+              "source_values": [
+                [
+                  {
+                    "id": 18,
+                    "name": "Cosmetics",
+                    "slug": "cosmetics",
+                    "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+                  }
+                ]
+              ]
+            },
+            "evidence": [
+              {
+                "evidence_id": "e_0a632989-c704-4b7b-8691-d63256d95c99",
+                "source_url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-16T23:30:31.617244+00:00"
+                },
+                "method": "woocommerce_api",
+                "excerpt": null,
+                "retained_data": {
+                  "source_pointer": "/categories",
+                  "value": [
+                    {
+                      "id": 18,
+                      "name": "Cosmetics",
+                      "slug": "cosmetics",
+                      "link": "https://demo.athemes.com/botiga/product-category/cosmetics/"
+                    }
+                  ]
+                },
+                "pointer": "/value",
+                "source_role": "unverified",
+                "truncated": false
+              }
+            ],
+            "reason": ""
+          }
+        ],
+        "reason": ""
+      }
+    ],
+    "mappings": [
+      {
+        "observation_id": "c_235db00b869f074cd2e2b9f6bfcd2cf93360c149b953e84feca98004c4bed989",
+        "term": {
+          "namespace": "woocommerce:product_cat",
+          "taxonomy_version": null,
+          "native_id": "18",
+          "merchant_scope": "woocommerce:catalog:https://demo.athemes.com/botiga"
+        },
+        "status": "unmapped",
+        "target_ids": [],
+        "target_namespace": "live-observation",
+        "target_version": "1",
+        "rule_versions": [],
+        "partial": false,
+        "source_pointers": [],
+        "reason": ""
+      }
+    ],
+    "config_digest": "7bc2a771a65fa9f40136e7736e58fd4bad2cb7a1b59be6006285e28b74e33cea",
+    "original_binding": "186f282086db013f32708f4196d7413e9f3def8611c6c8bf9b94f6dc8212d845"
+  }
+]

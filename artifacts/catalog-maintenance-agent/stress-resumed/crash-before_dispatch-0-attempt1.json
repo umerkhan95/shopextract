@@ -1,0 +1,11 @@
+{
+  "case": "crash-before_dispatch-0",
+  "state": "passed",
+  "seconds": 0.082,
+  "rss_mib": 89.82,
+  "result": {
+    "window": "before_dispatch",
+    "sent": 0,
+    "state": "partial"
+  }
+}

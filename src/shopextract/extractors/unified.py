@@ -145,17 +145,17 @@ class UnifiedCrawlExtractor:
             return None
 
     @staticmethod
-    def _extract_structured_from_html(html: str, url: str) -> list[dict]:
+    def _extract_structured_from_html(html: str, url: str, *, include_categories=False) -> list[dict]:
         products = SchemaOrgExtractor.extract_from_html(html, url)
         if products:
-            og_list = OpenGraphExtractor.extract_from_html(html, url)
+            og_list = OpenGraphExtractor.extract_from_html(html, url, include_categories=include_categories)
             if og_list:
                 og = og_list[0]
                 for product in products:
                     _fill_gaps_from_og(product, og)
             return products
 
-        og_list = OpenGraphExtractor.extract_from_html(html, url)
+        og_list = OpenGraphExtractor.extract_from_html(html, url, include_categories=include_categories)
         if og_list:
             return og_list
 

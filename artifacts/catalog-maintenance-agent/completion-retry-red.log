@@ -1,0 +1,90 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_______ test_advisor_retry_preserves_real_native_partial_source_coverage _______
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-87/test_advisor_retry_preserves_r0')
+
+    @pytest.mark.asyncio
+    async def test_advisor_retry_preserves_real_native_partial_source_coverage(tmp_path):
+        from shopextract.tools import ToolConfig, Limits
+        from tests.test_maintenance_acceptance import ORIGIN
+        advisor = Advisor('unknown')
+        h = Harness(tmp_path / 'jobs.db', investigator=advisor)
+        h.engine.tool_config = ToolConfig(allowed_origins=(ORIGIN,), limits=Limits(item_count=1))
+        key, previous = await h.run(ambiguous_goal())
+        assert previous['coverage']['source_complete'] is False
+        original_coverage = previous['coverage']
+        step = next(row['id'] for row in h.store.steps(key) if row['kind'].startswith('advisor:'))
+        h.engine.investigator = Advisor()
+        current = await h.engine.retry_unknown(key, step)
+        assert current['findings'][0]['advisory']['status'] == 'available'
+        assert current['usage']['tokens'] == 100 and current['usage']['reserved_tokens'] == 64
+>       assert current['state'] == 'partial' and current['stop_reason'] == 'source_partial'
+E       AssertionError: assert ('completed' == 'partial'
+E         
+E         - partial
+E         + completed)
+
+tests/test_maintenance_review_repairs.py:67: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+__ test_advisor_success_cannot_complete_unfinished_independent_work[extract] ___
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-87/test_advisor_success_cannot_co0')
+kind = 'extract'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('kind', ['extract', 'compare'])
+    async def test_advisor_success_cannot_complete_unfinished_independent_work(tmp_path, kind):
+        h = Harness(tmp_path / 'jobs.db', investigator=Advisor('unknown'))
+        key, previous = await h.run(ambiguous_goal())
+        h.store.acquire()
+        h.store.add_step(key, 'independent:' + kind, kind)
+        h.store.release()
+        step = next(row['id'] for row in h.store.steps(key) if row['kind'].startswith('advisor:'))
+        h.engine.investigator = Advisor()
+        current = await h.engine.retry_unknown(key, step)
+>       assert current['state'] == 'partial'
+E       AssertionError: assert 'completed' == 'partial'
+E         
+E         - partial
+E         + completed
+
+tests/test_maintenance_review_repairs.py:82: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+__ test_advisor_success_cannot_complete_unfinished_independent_work[compare] ___
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-87/test_advisor_success_cannot_co1')
+kind = 'compare'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('kind', ['extract', 'compare'])
+    async def test_advisor_success_cannot_complete_unfinished_independent_work(tmp_path, kind):
+        h = Harness(tmp_path / 'jobs.db', investigator=Advisor('unknown'))
+        key, previous = await h.run(ambiguous_goal())
+        h.store.acquire()
+        h.store.add_step(key, 'independent:' + kind, kind)
+        h.store.release()
+        step = next(row['id'] for row in h.store.steps(key) if row['kind'].startswith('advisor:'))
+        h.engine.investigator = Advisor()
+        current = await h.engine.retry_unknown(key, step)
+>       assert current['state'] == 'partial'
+E       AssertionError: assert 'completed' == 'partial'
+E         
+E         - partial
+E         + completed
+
+tests/test_maintenance_review_repairs.py:82: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_maintenance_review_repairs.py::test_advisor_retry_preserves_real_native_partial_source_coverage
+FAILED tests/test_maintenance_review_repairs.py::test_advisor_success_cannot_complete_unfinished_independent_work[extract]
+FAILED tests/test_maintenance_review_repairs.py::test_advisor_success_cannot_complete_unfinished_independent_work[compare]
+3 failed in 4.38s

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "shopify": "https://www.boardgamebliss.com",
+    "woocommerce": "https://demo.athemes.com/botiga",
+    "magento": "https://magento2-demo.magebit.com",
+    "shopware": "https://frontends-demo.vercel.app",
+    "bigcommerce": "https://cornerstone-light-demo.mybigcommerce.com",
+    "generic": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
+  },
+  "requests_total": 12,
+  "requests_per_platform": 2,
+  "products_retained": 2,
+  "request_seconds": 10,
+  "aggregate_seconds": 120,
+  "response_bytes": 2097152,
+  "workers": 1,
+  "retries": 0,
+  "browser": false,
+  "models": false,
+  "expected": "supported captured categories or explicit unavailable; never a complete taxonomy",
+  "prerequisites": "Shopware/BigCommerce only previously published saved public configuration; no new credentials",
+  "provenance": "actual live responses only; prior captures used solely for access configuration",
+  "state": "planned_independent_review_required",
+  "category_assertions": {
+    "shopify": [
+      "shopify:product_type",
+      "label"
+    ],
+    "woocommerce": [
+      "woocommerce:product_cat",
+      "memberships"
+    ],
+    "magento": [
+      "magento:category",
+      "memberships"
+    ],
+    "shopware": [
+      "shopware:category",
+      "memberships"
+    ],
+    "bigcommerce": [
+      "bigcommerce:category",
+      "memberships"
+    ],
+    "generic": [
+      null,
+      null
+    ]
+  },
+  "saved_public_api_endpoints": {
+    "shopware": "https://demo-frontends.shopware.store/store-api",
+    "bigcommerce": "https://cornerstone-light-demo.mybigcommerce.com/graphql"
+  }
+}

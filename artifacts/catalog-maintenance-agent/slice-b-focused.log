@@ -1,0 +1,84 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+...................F.................F....F...                           [100%]
+=================================== FAILURES ===================================
+____________________ test_unknown_dispatch_is_not_replayed _____________________
+
+event = 'after_dispatch'
+payload = {'job_id': '19308d6a45c1435c9e6c6179dca13c8d', 'step_id': 'extract:00fab3f56110b70ab3110d39536e52c1eb7216e000f1e19e46fb507bdfe7c184', 'status': 200}
+
+    def crash(event, payload):
+        if event == 'after_dispatch':
+>           raise SystemExit('synthetic process-loss boundary')
+E           SystemExit: synthetic process-loss boundary
+
+tests/test_maintenance_acceptance.py:130: SystemExit
+______________ test_advisory_cannot_authorize_title_only_identity ______________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-68/test_advisory_cannot_authorize0')
+
+    @pytest.mark.asyncio
+    async def test_advisory_cannot_authorize_title_only_identity(tmp_path):
+        class UntrustedAdvisor:
+            calls = 0
+            def bound(self, payload):
+                return AdvisorBound(32, 32, 10, 'synthetic', 'fixture-v1')
+            async def investigate(self, payload, *, reservation, timeout):
+                self.calls += 1
+                assert reservation.bound == AdvisorBound(32, 32, 10, 'synthetic', 'fixture-v1')
+                assert reservation.reservation_id
+                return AdvisorResult('synthetic', 'fixture-v1', {'relation': 'exact'},
+                                     ('forged',), AdvisorUsage(32, 4, 5))
+        record = baseline()
+        for key in ('external_id', 'sku', 'gtin'):
+            record.pop(key)
+        advisor = UntrustedAdvisor()
+        h = Harness(tmp_path / 'jobs.db', investigator=advisor)
+        _, report = await h.run(goal(baseline=(record,), profiles={'0': 'hardware-v1'},
+                                    budgets=Budgets(tokens=128, cost_micros=100)))
+        assert not any(f['status'] == 'proposed_correction' for f in report['findings'])
+        assert report['findings'][0]['status'] == 'needs_review'
+>       assert advisor.calls == 1
+E       assert 0 == 1
+E        +  where 0 = <tests.test_maintenance_acceptance.test_advisory_cannot_authorize_title_only_identity.<locals>.UntrustedAdvisor object at 0x1136de6e0>.calls
+
+tests/test_maintenance_acceptance.py:258: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+_______ test_unknown_advisor_usage_retains_bound_and_blocks_second_call ________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-68/test_unknown_advisor_usage_ret0')
+
+    @pytest.mark.asyncio
+    async def test_unknown_advisor_usage_retains_bound_and_blocks_second_call(tmp_path):
+        class UnknownUsage:
+            calls = 0
+            def bound(self, payload):
+                return AdvisorBound(32, 32, 10, 'synthetic', 'fixed-price-v1')
+            async def investigate(self, payload, *, reservation, timeout):
+                self.calls += 1
+                assert reservation.bound == self.bound(payload)
+                assert timeout <= 10
+                return AdvisorResult('synthetic', 'fixed-price-v1', {'reason': 'uncertain'}, (), None)
+        advisor = UnknownUsage()
+        a = baseline()
+        for name in ('external_id', 'sku', 'gtin'):
+            a.pop(name)
+        b = dict(a, description='Another supplied description')
+        h = Harness(tmp_path / 'jobs.db', investigator=advisor)
+        _, report = await h.run(goal(baseline=(a, b), profiles={'0': 'hardware-v1', '1': 'hardware-v1'},
+                                    budgets=Budgets(tokens=64, cost_micros=10)))
+>       assert advisor.calls == 1
+E       assert 0 == 1
+E        +  where 0 = <tests.test_maintenance_acceptance.test_unknown_advisor_usage_retains_bound_and_blocks_second_call.<locals>.UnknownUsage object at 0x1136da500>.calls
+
+tests/test_maintenance_acceptance.py:321: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_maintenance_acceptance.py::test_unknown_dispatch_is_not_replayed
+FAILED tests/test_maintenance_acceptance.py::test_advisory_cannot_authorize_title_only_identity
+FAILED tests/test_maintenance_acceptance.py::test_unknown_advisor_usage_retains_bound_and_blocks_second_call
+3 failed, 43 passed in 18.60s

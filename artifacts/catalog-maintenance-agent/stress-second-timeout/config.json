@@ -1,0 +1,10 @@
+{
+  "seed": 25,
+  "driver_seconds": 180,
+  "case_seconds": 5,
+  "crash_seconds": 10,
+  "rss_limit_mib": 256,
+  "workers": 1,
+  "input_bytes": 262144,
+  "evidence_bytes": 16777216
+}

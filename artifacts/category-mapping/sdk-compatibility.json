@@ -1,0 +1,6 @@
+{
+  "state": "passed",
+  "optional_sdk_absent_import": true,
+  "tool_schemas": 8,
+  "mcp_installed_version": "1.30.0"
+}

@@ -14,7 +14,7 @@ class OpenGraphExtractor:
     """Extract OpenGraph meta tags from HTML."""
 
     @staticmethod
-    def extract_from_html(html: str, url: str) -> list[dict]:
+    def extract_from_html(html: str, url: str, *, include_categories: bool = False) -> list[dict]:
         """Extract OpenGraph tags from raw HTML content.
 
         Args:
@@ -35,13 +35,18 @@ class OpenGraphExtractor:
                 return []
 
             og_data = {}
+            category_values = []
             for tag in og_tags:
                 property_name = tag.get("property", "")
                 content = tag.get("content", "")
+                if include_categories and property_name == "product:category":
+                    category_values.append(tag.get("content"))
                 if property_name and content:
                     og_data[property_name] = content
 
             if og_data:
+                if include_categories:
+                    og_data["category_declarations"] = ({"product:category": category_values} if category_values else {})
                 capture(og_data, url, "opengraph")
             return [og_data] if og_data else []
 

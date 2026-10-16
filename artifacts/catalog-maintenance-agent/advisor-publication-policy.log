@@ -1,0 +1,67 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF.                                                                      [100%]
+=================================== FAILURES ===================================
+___ test_retry_publication_failure_preserves_previous_composition_and_charge ___
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-83/test_retry_publication_failure0')
+
+    @pytest.mark.asyncio
+    async def test_retry_publication_failure_preserves_previous_composition_and_charge(tmp_path):
+        class LargeAdvice(Advisor):
+            def bound(self, payload):
+                return AdvisorBound(32, 1024, 10, 'synthetic-v1', 'price-v1')
+            async def investigate(self, payload, *, reservation, timeout):
+                self.calls += 1
+                return AdvisorResult('synthetic-v1', 'price-v1', {'explanation': 'x' * 1800}, (), AdvisorUsage(32, 900, 5))
+        configured = ambiguous_goal(budgets=Budgets(tokens=3000, cost_micros=100, report_bytes=2500))
+        h, key, step = await crashed_advisor_job(tmp_path, configured=configured, advisor=LargeAdvice())
+        previous = h.store.report(key)['findings']
+        h.engine.investigator = LargeAdvice()
+        result = await h.engine.retry_unknown(key, step)
+        assert h.engine.investigator.calls == 1
+        assert result['stop_reason'] == 'report_budget'
+        assert result['findings'] == previous
+        assert result['usage']['reserved_tokens'] == 2112
+>       assert len(h.store.advisory_history(key, step)) == 1
+E       AssertionError: assert 0 == 1
+E        +  where 0 = len([])
+E        +    where [] = advisory_history('fc72395d8ba547d49c1f00eb132661ce', 'advisor:c568c7676177c0ab8689065d73b1ba67c9deb42cf95efa13bf31ae42d4b905d5')
+E        +      where advisory_history = <shopextract.maintenance.store.MaintenanceStore object at 0x109887f40>.advisory_history
+E        +        where <shopextract.maintenance.store.MaintenanceStore object at 0x109887f40> = <tests.test_maintenance_acceptance.Harness object at 0x109756e90>.store
+
+tests/test_maintenance_advisor.py:275: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+_______ test_retry_cancellation_before_publication_keeps_prior_advisory ________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-83/test_retry_cancellation_before0')
+
+    @pytest.mark.asyncio
+    async def test_retry_cancellation_before_publication_keeps_prior_advisory(tmp_path):
+        h, key, step = await crashed_advisor_job(tmp_path)
+        previous = h.store.report(key)['findings']
+        def cancel(event, payload):
+            if event == 'advisor_before_publication':
+                h.store.request_cancel(key)
+        h.engine.failure_hook = cancel
+        result = await h.engine.retry_unknown(key, step)
+        assert result['state'] == 'cancelled'
+        assert result['findings'] == previous
+        assert result['usage']['reserved_tokens'] == 128
+>       assert len(h.store.advisory_history(key, step)) == 1
+E       AssertionError: assert 0 == 1
+E        +  where 0 = len([])
+E        +    where [] = advisory_history('9489a1436b804b8992408def507b9e99', 'advisor:32055029fecb147d5d17807cf0fd0e703a2e6267ccfaae1397aba1421fe1a33d')
+E        +      where advisory_history = <shopextract.maintenance.store.MaintenanceStore object at 0x109a7e1a0>.advisory_history
+E        +        where <shopextract.maintenance.store.MaintenanceStore object at 0x109a7e1a0> = <tests.test_maintenance_acceptance.Harness object at 0x109a7f280>.store
+
+tests/test_maintenance_advisor.py:290: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_maintenance_advisor.py::test_retry_publication_failure_preserves_previous_composition_and_charge
+FAILED tests/test_maintenance_advisor.py::test_retry_cancellation_before_publication_keeps_prior_advisory
+2 failed, 1 passed in 4.44s

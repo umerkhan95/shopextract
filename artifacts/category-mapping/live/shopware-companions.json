@@ -1,0 +1,3801 @@
+[
+  {
+    "schema_version": 1,
+    "product": {
+      "schema_version": 1,
+      "product": {
+        "title": "Digital test",
+        "price": {
+          "$type": "decimal",
+          "value": "22"
+        },
+        "currency": "EUR",
+        "description": "Link",
+        "image_url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?ts=1699369795",
+        "product_url": "https://frontends-demo.vercel.app/Digital-test/SW20010",
+        "external_id": "018ba9ddce6472c6b40010c86805d33a",
+        "sku": "SW20010",
+        "gtin": null,
+        "mpn": null,
+        "vendor": "Deutsche See",
+        "product_type": null,
+        "in_stock": true,
+        "condition": "NEW",
+        "compare_at_price": null,
+        "variants": [],
+        "tags": [],
+        "additional_images": [],
+        "category_path": [],
+        "platform": "shopware",
+        "scraped_at": {
+          "$type": "datetime",
+          "value": "2026-10-16T23:30:33.868098+00:00"
+        },
+        "raw_data": {
+          "extensions": {
+            "foreignKeys": {
+              "swagCustomizedProductsTemplateId": null,
+              "swagCustomizedProductsTemplateVersionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+              "apiAlias": "product_foreign_keys_extension"
+            },
+            "subscriptionPlans": [],
+            "search": {
+              "extensions": [],
+              "translated": [],
+              "productNumber": "SW20010",
+              "autoIncrement": 225
+            }
+          },
+          "versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+          "translated": {
+            "metaDescription": null,
+            "name": "Digital test",
+            "keywords": null,
+            "description": "<a target=\"_self\" href=\"/Digital-test/SW20010\" rel=\"noreferrer noopener\">Link</a>",
+            "descriptionTeaser": "Link",
+            "metaTitle": null,
+            "packUnit": null,
+            "packUnitPlural": null,
+            "customFields": {},
+            "slotConfig": null,
+            "customSearchKeywords": null,
+            "ogTitle": null,
+            "ogDescription": null
+          },
+          "createdAt": "2023-11-07T13:00:12.502+00:00",
+          "updatedAt": "2026-10-06T18:57:46.141+00:00",
+          "parentId": null,
+          "childCount": 0,
+          "taxId": "a5da76b447db4d0aba62e6512dadf45b",
+          "manufacturerId": "432878e43ca440aab3afb211b2b79aba",
+          "unitId": null,
+          "active": true,
+          "displayGroup": "c5943a2ae9e31b33a665151e80f4835321b2d4b31113816a99472bda9b73c086",
+          "manufacturerNumber": null,
+          "guaranteeMonths": null,
+          "guaranteeConfirmed": false,
+          "ean": null,
+          "sales": 5,
+          "productNumber": "SW20010",
+          "stock": -7,
+          "availableStock": -7,
+          "available": true,
+          "type": "digital",
+          "deliveryTimeId": null,
+          "deliveryTime": null,
+          "restockTime": null,
+          "isCloseout": false,
+          "purchaseSteps": 1,
+          "maxPurchase": 1,
+          "minPurchase": 1,
+          "purchaseUnit": null,
+          "referenceUnit": null,
+          "shippingFree": false,
+          "markAsTopseller": false,
+          "weight": null,
+          "width": null,
+          "height": null,
+          "length": null,
+          "releaseDate": null,
+          "categoryTree": null,
+          "streamIds": [
+            "1318833f46df457981763b94179d9ef0",
+            "5675448d6b3a4dd2a659d31a3dde74da"
+          ],
+          "optionIds": null,
+          "propertyIds": null,
+          "name": "Digital test",
+          "keywords": null,
+          "description": "<a target=\"_self\" href=\"/Digital-test/SW20010\" rel=\"noreferrer noopener\">Link</a>",
+          "descriptionTeaser": "Link",
+          "metaDescription": null,
+          "metaTitle": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "packUnit": null,
+          "packUnitPlural": null,
+          "tax": {
+            "translated": [],
+            "createdAt": "2020-08-06T06:23:32.053+00:00",
+            "updatedAt": "2026-02-10T11:38:56.584+00:00",
+            "taxRate": 19,
+            "name": "Standard rate",
+            "position": 1,
+            "customFields": null,
+            "id": "a5da76b447db4d0aba62e6512dadf45b",
+            "apiAlias": "tax"
+          },
+          "manufacturer": {
+            "versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+            "translated": {
+              "link": "http://www.deutschesee.de/",
+              "name": "Deutsche See",
+              "description": "<p>  You can find further information about this manufacturer <a href=\"http://www.deutschesee.de/\" target=\"_blank\">here</a>.&nbsp;</p>",
+              "customFields": {}
+            },
+            "createdAt": "2020-08-06T06:26:30.597+00:00",
+            "updatedAt": null,
+            "mediaId": "7fe01085296d4ece9d3738d781d287ca",
+            "name": "Deutsche See",
+            "link": "http://www.deutschesee.de/",
+            "description": "<p>  You can find further information about this manufacturer <a href=\"http://www.deutschesee.de/\" target=\"_blank\">here</a>.&nbsp;</p>",
+            "media": null,
+            "translations": null,
+            "customFields": null,
+            "id": "432878e43ca440aab3afb211b2b79aba",
+            "apiAlias": "product_manufacturer"
+          },
+          "unit": null,
+          "cover": {
+            "versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+            "translated": [],
+            "createdAt": "2023-11-07T15:09:59.789+00:00",
+            "updatedAt": null,
+            "productId": "018ba9ddce6472c6b40010c86805d33a",
+            "mediaId": "018baa553cf37c05b41accccf5258c1b",
+            "position": 0,
+            "media": {
+              "translated": {
+                "alt": null,
+                "title": null,
+                "customFields": {}
+              },
+              "createdAt": "2023-11-07T15:09:54.875+00:00",
+              "updatedAt": "2023-11-07T15:09:55.132+00:00",
+              "mimeType": "image/jpeg",
+              "fileExtension": "jpeg",
+              "fileSize": 87026,
+              "title": null,
+              "metaData": {
+                "hash": "9dca3d2274f93dafe0292ed12ad47907",
+                "type": 2,
+                "width": 1024,
+                "height": 1024
+              },
+              "uploadedAt": "2023-11-07T15:09:55.125+00:00",
+              "alt": null,
+              "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?ts=1699369795",
+              "fileName": "virtual-product",
+              "translations": null,
+              "thumbnails": [
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 280,
+                  "height": 280,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=280&ts=1699369795",
+                  "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                  "mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d695fe4fb927",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 400,
+                  "height": 400,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=400&ts=1699369795",
+                  "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                  "mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d695feba3e44",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 800,
+                  "height": 800,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=800&ts=1699369795",
+                  "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                  "mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d695ffa41ccd",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 1920,
+                  "height": 1920,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=1920&ts=1699369795",
+                  "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                  "mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d696000765ed",
+                  "apiAlias": "media_thumbnail"
+                }
+              ],
+              "hasFile": true,
+              "private": false,
+              "path": "media/ff/4c/f8/1699369795/virtual-product.jpeg",
+              "config": null,
+              "customFields": null,
+              "id": "018baa553cf37c05b41accccf5258c1b",
+              "apiAlias": "media"
+            },
+            "customFields": null,
+            "id": "018baa5547af7468b913f4faecee8c96",
+            "apiAlias": "product_media"
+          },
+          "parent": null,
+          "children": [],
+          "media": null,
+          "cmsPageId": "7a6d253a67204037966f42b0119704d5",
+          "cmsPage": null,
+          "translations": null,
+          "categories": null,
+          "tags": null,
+          "properties": null,
+          "options": null,
+          "configuratorSettings": null,
+          "categoriesRo": null,
+          "coverId": "018baa5547af7468b913f4faecee8c96",
+          "tagIds": null,
+          "categoryIds": null,
+          "productReviews": null,
+          "ratingAverage": null,
+          "mainCategories": null,
+          "seoUrls": [
+            {
+              "translated": [],
+              "createdAt": "2023-11-07T13:02:08.607+00:00",
+              "updatedAt": null,
+              "salesChannelId": "98432def39fc4624b33213a56b8c944d",
+              "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+              "routeName": "frontend.detail.page",
+              "foreignKey": "018ba9ddce6472c6b40010c86805d33a",
+              "pathInfo": "/detail/018ba9ddce6472c6b40010c86805d33a",
+              "seoPathInfo": "Digital-test/SW20010",
+              "isCanonical": true,
+              "isModified": false,
+              "isDeleted": false,
+              "error": null,
+              "customFields": null,
+              "id": "018ba9e042e97146b14adbc6324d1387",
+              "apiAlias": "seo_url"
+            }
+          ],
+          "crossSellings": null,
+          "canonicalProductId": null,
+          "canonicalProduct": null,
+          "streams": null,
+          "downloads": null,
+          "openGraphMediaId": null,
+          "openGraphMedia": null,
+          "states": [
+            "is-download"
+          ],
+          "customFields": {},
+          "id": "018ba9ddce6472c6b40010c86805d33a",
+          "calculatedPrices": [],
+          "calculatedPrice": {
+            "unitPrice": 22,
+            "totalPrice": 22,
+            "calculatedTaxes": [
+              {
+                "tax": 3.51,
+                "taxRate": 19,
+                "price": 22,
+                "label": null,
+                "apiAlias": "cart_tax_calculated"
+              }
+            ],
+            "taxRules": [
+              {
+                "taxRate": 19,
+                "percentage": 100,
+                "apiAlias": "cart_tax_rule"
+              }
+            ],
+            "quantity": 1,
+            "referencePrice": null,
+            "listPrice": null,
+            "regulationPrice": null,
+            "apiAlias": "calculated_price"
+          },
+          "sortedProperties": null,
+          "calculatedCheapestPrice": {
+            "unitPrice": 22,
+            "totalPrice": 22,
+            "calculatedTaxes": [
+              {
+                "tax": 3.51,
+                "taxRate": 19,
+                "price": 22,
+                "label": null,
+                "apiAlias": "cart_tax_calculated"
+              }
+            ],
+            "taxRules": [
+              {
+                "taxRate": 19,
+                "percentage": 100,
+                "apiAlias": "cart_tax_rule"
+              }
+            ],
+            "quantity": 1,
+            "referencePrice": null,
+            "listPrice": null,
+            "regulationPrice": null,
+            "hasRange": false,
+            "variantId": "018ba9ddce6472c6b40010c86805d33a",
+            "apiAlias": "calculated_cheapest_price"
+          },
+          "isNew": false,
+          "calculatedMaxPurchase": 1,
+          "seoCategory": null,
+          "measurements": {
+            "apiAlias": "converted_unit_set"
+          },
+          "apiAlias": "product",
+          "_capture": {
+            "url": "https://demo-frontends.shopware.store/store-api/product",
+            "method": "shopware_store_api",
+            "at": "2026-10-16T23:30:33.849081+00:00",
+            "values": {
+              "/extensions/foreignKeys/swagCustomizedProductsTemplateId": null,
+              "/extensions/foreignKeys/swagCustomizedProductsTemplateVersionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+              "/extensions/foreignKeys/apiAlias": "product_foreign_keys_extension",
+              "/extensions/search/productNumber": "SW20010",
+              "/extensions/search/autoIncrement": 225,
+              "/versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+              "/translated/metaDescription": null,
+              "/translated/name": "Digital test",
+              "/translated/keywords": null,
+              "/translated/description": "<a target=\"_self\" href=\"/Digital-test/SW20010\" rel=\"noreferrer noopener\">Link</a>",
+              "/translated/descriptionTeaser": "Link",
+              "/translated/metaTitle": null,
+              "/translated/packUnit": null,
+              "/translated/packUnitPlural": null,
+              "/translated/slotConfig": null,
+              "/translated/customSearchKeywords": null,
+              "/translated/ogTitle": null,
+              "/translated/ogDescription": null,
+              "/createdAt": "2023-11-07T13:00:12.502+00:00",
+              "/updatedAt": "2026-10-06T18:57:46.141+00:00",
+              "/parentId": null,
+              "/childCount": 0,
+              "/taxId": "a5da76b447db4d0aba62e6512dadf45b",
+              "/manufacturerId": "432878e43ca440aab3afb211b2b79aba",
+              "/unitId": null,
+              "/active": true,
+              "/displayGroup": "c5943a2ae9e31b33a665151e80f4835321b2d4b31113816a99472bda9b73c086",
+              "/manufacturerNumber": null,
+              "/guaranteeMonths": null,
+              "/guaranteeConfirmed": false,
+              "/ean": null,
+              "/sales": 5,
+              "/productNumber": "SW20010",
+              "/stock": -7,
+              "/availableStock": -7,
+              "/available": true,
+              "/type": "digital",
+              "/deliveryTimeId": null,
+              "/deliveryTime": null,
+              "/restockTime": null,
+              "/isCloseout": false,
+              "/purchaseSteps": 1,
+              "/maxPurchase": 1,
+              "/minPurchase": 1,
+              "/purchaseUnit": null,
+              "/referenceUnit": null,
+              "/shippingFree": false,
+              "/markAsTopseller": false,
+              "/weight": null,
+              "/width": null,
+              "/height": null,
+              "/length": null,
+              "/releaseDate": null,
+              "/categoryTree": null,
+              "/streamIds/0": "1318833f46df457981763b94179d9ef0",
+              "/streamIds/1": "5675448d6b3a4dd2a659d31a3dde74da",
+              "/optionIds": null,
+              "/propertyIds": null,
+              "/name": "Digital test",
+              "/keywords": null,
+              "/description": "<a target=\"_self\" href=\"/Digital-test/SW20010\" rel=\"noreferrer noopener\">Link</a>",
+              "/descriptionTeaser": "Link",
+              "/metaDescription": null,
+              "/metaTitle": null,
+              "/ogTitle": null,
+              "/ogDescription": null,
+              "/packUnit": null,
+              "/packUnitPlural": null,
+              "/tax/createdAt": "2020-08-06T06:23:32.053+00:00",
+              "/tax/updatedAt": "2026-02-10T11:38:56.584+00:00",
+              "/tax/taxRate": 19,
+              "/tax/name": "Standard rate",
+              "/tax/position": 1,
+              "/tax/customFields": null,
+              "/tax/id": "a5da76b447db4d0aba62e6512dadf45b",
+              "/tax/apiAlias": "tax",
+              "/manufacturer/versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+              "/manufacturer/translated/link": "http://www.deutschesee.de/",
+              "/manufacturer/translated/name": "Deutsche See",
+              "/manufacturer/translated/description": "<p>  You can find further information about this manufacturer <a href=\"http://www.deutschesee.de/\" target=\"_blank\">here</a>.&nbsp;</p>",
+              "/manufacturer/createdAt": "2020-08-06T06:26:30.597+00:00",
+              "/manufacturer/updatedAt": null,
+              "/manufacturer/mediaId": "7fe01085296d4ece9d3738d781d287ca",
+              "/manufacturer/name": "Deutsche See",
+              "/manufacturer/link": "http://www.deutschesee.de/",
+              "/manufacturer/description": "<p>  You can find further information about this manufacturer <a href=\"http://www.deutschesee.de/\" target=\"_blank\">here</a>.&nbsp;</p>",
+              "/manufacturer/media": null,
+              "/manufacturer/translations": null,
+              "/manufacturer/customFields": null,
+              "/manufacturer/id": "432878e43ca440aab3afb211b2b79aba",
+              "/manufacturer/apiAlias": "product_manufacturer",
+              "/unit": null,
+              "/cover/versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+              "/cover/createdAt": "2023-11-07T15:09:59.789+00:00",
+              "/cover/updatedAt": null,
+              "/cover/productId": "018ba9ddce6472c6b40010c86805d33a",
+              "/cover/mediaId": "018baa553cf37c05b41accccf5258c1b",
+              "/cover/position": 0,
+              "/cover/media/translated/alt": null,
+              "/cover/media/translated/title": null,
+              "/cover/media/createdAt": "2023-11-07T15:09:54.875+00:00",
+              "/cover/media/updatedAt": "2023-11-07T15:09:55.132+00:00",
+              "/cover/media/mimeType": "image/jpeg",
+              "/cover/media/fileExtension": "jpeg",
+              "/cover/media/fileSize": 87026,
+              "/cover/media/title": null,
+              "/cover/media/metaData/hash": "9dca3d2274f93dafe0292ed12ad47907",
+              "/cover/media/metaData/type": 2,
+              "/cover/media/metaData/width": 1024,
+              "/cover/media/metaData/height": 1024,
+              "/cover/media/uploadedAt": "2023-11-07T15:09:55.125+00:00",
+              "/cover/media/alt": null,
+              "/cover/media/url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?ts=1699369795",
+              "/cover/media/fileName": "virtual-product",
+              "/cover/media/translations": null,
+              "/cover/media/thumbnails/0/createdAt": null,
+              "/cover/media/thumbnails/0/updatedAt": null,
+              "/cover/media/thumbnails/0/path": null,
+              "/cover/media/thumbnails/0/width": 280,
+              "/cover/media/thumbnails/0/height": 280,
+              "/cover/media/thumbnails/0/url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=280&ts=1699369795",
+              "/cover/media/thumbnails/0/mediaId": "018baa553cf37c05b41accccf5258c1b",
+              "/cover/media/thumbnails/0/mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+              "/cover/media/thumbnails/0/customFields": null,
+              "/cover/media/thumbnails/0/id": "01a1470d911d72f491f3d695fe4fb927",
+              "/cover/media/thumbnails/0/apiAlias": "media_thumbnail",
+              "/cover/media/thumbnails/1/createdAt": null,
+              "/cover/media/thumbnails/1/updatedAt": null,
+              "/cover/media/thumbnails/1/path": null,
+              "/cover/media/thumbnails/1/width": 400,
+              "/cover/media/thumbnails/1/height": 400,
+              "/cover/media/thumbnails/1/url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=400&ts=1699369795",
+              "/cover/media/thumbnails/1/mediaId": "018baa553cf37c05b41accccf5258c1b",
+              "/cover/media/thumbnails/1/mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+              "/cover/media/thumbnails/1/customFields": null,
+              "/cover/media/thumbnails/1/id": "01a1470d911d72f491f3d695feba3e44",
+              "/cover/media/thumbnails/1/apiAlias": "media_thumbnail",
+              "/cover/media/thumbnails/2/createdAt": null,
+              "/cover/media/thumbnails/2/updatedAt": null,
+              "/cover/media/thumbnails/2/path": null,
+              "/cover/media/thumbnails/2/width": 800,
+              "/cover/media/thumbnails/2/height": 800,
+              "/cover/media/thumbnails/2/url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=800&ts=1699369795",
+              "/cover/media/thumbnails/2/mediaId": "018baa553cf37c05b41accccf5258c1b",
+              "/cover/media/thumbnails/2/mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+              "/cover/media/thumbnails/2/customFields": null,
+              "/cover/media/thumbnails/2/id": "01a1470d911d72f491f3d695ffa41ccd",
+              "/cover/media/thumbnails/2/apiAlias": "media_thumbnail",
+              "/cover/media/thumbnails/3/createdAt": null,
+              "/cover/media/thumbnails/3/updatedAt": null,
+              "/cover/media/thumbnails/3/path": null,
+              "/cover/media/thumbnails/3/width": 1920,
+              "/cover/media/thumbnails/3/height": 1920,
+              "/cover/media/thumbnails/3/url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=1920&ts=1699369795",
+              "/cover/media/thumbnails/3/mediaId": "018baa553cf37c05b41accccf5258c1b",
+              "/cover/media/thumbnails/3/mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+              "/cover/media/thumbnails/3/customFields": null,
+              "/cover/media/thumbnails/3/id": "01a1470d911d72f491f3d696000765ed",
+              "/cover/media/thumbnails/3/apiAlias": "media_thumbnail",
+              "/cover/media/hasFile": true,
+              "/cover/media/private": false,
+              "/cover/media/path": "media/ff/4c/f8/1699369795/virtual-product.jpeg",
+              "/cover/media/config": null,
+              "/cover/media/customFields": null,
+              "/cover/media/id": "018baa553cf37c05b41accccf5258c1b",
+              "/cover/media/apiAlias": "media",
+              "/cover/customFields": null,
+              "/cover/id": "018baa5547af7468b913f4faecee8c96",
+              "/cover/apiAlias": "product_media",
+              "/parent": null,
+              "/media": null,
+              "/cmsPageId": "7a6d253a67204037966f42b0119704d5",
+              "/cmsPage": null,
+              "/translations": null,
+              "/categories": null,
+              "/tags": null,
+              "/properties": null,
+              "/options": null,
+              "/configuratorSettings": null,
+              "/categoriesRo": null,
+              "/coverId": "018baa5547af7468b913f4faecee8c96",
+              "/tagIds": null,
+              "/categoryIds": null,
+              "/productReviews": null,
+              "/ratingAverage": null,
+              "/mainCategories": null,
+              "/seoUrls/0/createdAt": "2023-11-07T13:02:08.607+00:00",
+              "/seoUrls/0/updatedAt": null,
+              "/seoUrls/0/salesChannelId": "98432def39fc4624b33213a56b8c944d",
+              "/seoUrls/0/languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+              "/seoUrls/0/routeName": "frontend.detail.page",
+              "/seoUrls/0/foreignKey": "018ba9ddce6472c6b40010c86805d33a",
+              "/seoUrls/0/pathInfo": "/detail/018ba9ddce6472c6b40010c86805d33a",
+              "/seoUrls/0/seoPathInfo": "Digital-test/SW20010",
+              "/seoUrls/0/isCanonical": true,
+              "/seoUrls/0/isModified": false,
+              "/seoUrls/0/isDeleted": false,
+              "/seoUrls/0/error": null,
+              "/seoUrls/0/customFields": null,
+              "/seoUrls/0/id": "018ba9e042e97146b14adbc6324d1387",
+              "/seoUrls/0/apiAlias": "seo_url",
+              "/crossSellings": null,
+              "/canonicalProductId": null,
+              "/canonicalProduct": null,
+              "/streams": null,
+              "/downloads": null,
+              "/openGraphMediaId": null,
+              "/openGraphMedia": null,
+              "/states/0": "is-download",
+              "/id": "018ba9ddce6472c6b40010c86805d33a",
+              "/calculatedPrice/unitPrice": 22,
+              "/calculatedPrice/totalPrice": 22,
+              "/calculatedPrice/calculatedTaxes/0/tax": 3.51,
+              "/calculatedPrice/calculatedTaxes/0/taxRate": 19,
+              "/calculatedPrice/calculatedTaxes/0/price": 22,
+              "/calculatedPrice/calculatedTaxes/0/label": null,
+              "/calculatedPrice/calculatedTaxes/0/apiAlias": "cart_tax_calculated",
+              "/calculatedPrice/taxRules/0/taxRate": 19,
+              "/calculatedPrice/taxRules/0/percentage": 100,
+              "/calculatedPrice/taxRules/0/apiAlias": "cart_tax_rule",
+              "/calculatedPrice/quantity": 1,
+              "/calculatedPrice/referencePrice": null,
+              "/calculatedPrice/listPrice": null,
+              "/calculatedPrice/regulationPrice": null,
+              "/calculatedPrice/apiAlias": "calculated_price",
+              "/sortedProperties": null,
+              "/calculatedCheapestPrice/unitPrice": 22,
+              "/calculatedCheapestPrice/totalPrice": 22,
+              "/calculatedCheapestPrice/calculatedTaxes/0/tax": 3.51,
+              "/calculatedCheapestPrice/calculatedTaxes/0/taxRate": 19,
+              "/calculatedCheapestPrice/calculatedTaxes/0/price": 22,
+              "/calculatedCheapestPrice/calculatedTaxes/0/label": null,
+              "/calculatedCheapestPrice/calculatedTaxes/0/apiAlias": "cart_tax_calculated",
+              "/calculatedCheapestPrice/taxRules/0/taxRate": 19,
+              "/calculatedCheapestPrice/taxRules/0/percentage": 100,
+              "/calculatedCheapestPrice/taxRules/0/apiAlias": "cart_tax_rule",
+              "/calculatedCheapestPrice/quantity": 1,
+              "/calculatedCheapestPrice/referencePrice": null,
+              "/calculatedCheapestPrice/listPrice": null,
+              "/calculatedCheapestPrice/regulationPrice": null,
+              "/calculatedCheapestPrice/hasRange": false,
+              "/calculatedCheapestPrice/variantId": "018ba9ddce6472c6b40010c86805d33a",
+              "/calculatedCheapestPrice/apiAlias": "calculated_cheapest_price",
+              "/isNew": false,
+              "/calculatedMaxPurchase": 1,
+              "/seoCategory": null,
+              "/measurements/apiAlias": "converted_unit_set",
+              "/apiAlias": "product",
+              "/extensions": {
+                "foreignKeys": {
+                  "swagCustomizedProductsTemplateId": null,
+                  "swagCustomizedProductsTemplateVersionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+                  "apiAlias": "product_foreign_keys_extension"
+                },
+                "subscriptionPlans": [],
+                "search": {
+                  "extensions": [],
+                  "translated": [],
+                  "productNumber": "SW20010",
+                  "autoIncrement": 225
+                }
+              },
+              "/extensions/foreignKeys": {
+                "swagCustomizedProductsTemplateId": null,
+                "swagCustomizedProductsTemplateVersionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+                "apiAlias": "product_foreign_keys_extension"
+              },
+              "/extensions/subscriptionPlans": [],
+              "/extensions/search": {
+                "extensions": [],
+                "translated": [],
+                "productNumber": "SW20010",
+                "autoIncrement": 225
+              },
+              "/extensions/search/extensions": [],
+              "/extensions/search/translated": [],
+              "/translated": {
+                "metaDescription": null,
+                "name": "Digital test",
+                "keywords": null,
+                "description": "<a target=\"_self\" href=\"/Digital-test/SW20010\" rel=\"noreferrer noopener\">Link</a>",
+                "descriptionTeaser": "Link",
+                "metaTitle": null,
+                "packUnit": null,
+                "packUnitPlural": null,
+                "customFields": {},
+                "slotConfig": null,
+                "customSearchKeywords": null,
+                "ogTitle": null,
+                "ogDescription": null
+              },
+              "/translated/customFields": {},
+              "/streamIds": [
+                "1318833f46df457981763b94179d9ef0",
+                "5675448d6b3a4dd2a659d31a3dde74da"
+              ],
+              "/tax": {
+                "translated": [],
+                "createdAt": "2020-08-06T06:23:32.053+00:00",
+                "updatedAt": "2026-02-10T11:38:56.584+00:00",
+                "taxRate": 19,
+                "name": "Standard rate",
+                "position": 1,
+                "customFields": null,
+                "id": "a5da76b447db4d0aba62e6512dadf45b",
+                "apiAlias": "tax"
+              },
+              "/tax/translated": [],
+              "/manufacturer": {
+                "versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+                "translated": {
+                  "link": "http://www.deutschesee.de/",
+                  "name": "Deutsche See",
+                  "description": "<p>  You can find further information about this manufacturer <a href=\"http://www.deutschesee.de/\" target=\"_blank\">here</a>.&nbsp;</p>",
+                  "customFields": {}
+                },
+                "createdAt": "2020-08-06T06:26:30.597+00:00",
+                "updatedAt": null,
+                "mediaId": "7fe01085296d4ece9d3738d781d287ca",
+                "name": "Deutsche See",
+                "link": "http://www.deutschesee.de/",
+                "description": "<p>  You can find further information about this manufacturer <a href=\"http://www.deutschesee.de/\" target=\"_blank\">here</a>.&nbsp;</p>",
+                "media": null,
+                "translations": null,
+                "customFields": null,
+                "id": "432878e43ca440aab3afb211b2b79aba",
+                "apiAlias": "product_manufacturer"
+              },
+              "/manufacturer/translated": {
+                "link": "http://www.deutschesee.de/",
+                "name": "Deutsche See",
+                "description": "<p>  You can find further information about this manufacturer <a href=\"http://www.deutschesee.de/\" target=\"_blank\">here</a>.&nbsp;</p>",
+                "customFields": {}
+              },
+              "/manufacturer/translated/customFields": {},
+              "/cover": {
+                "versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+                "translated": [],
+                "createdAt": "2023-11-07T15:09:59.789+00:00",
+                "updatedAt": null,
+                "productId": "018ba9ddce6472c6b40010c86805d33a",
+                "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                "position": 0,
+                "media": {
+                  "translated": {
+                    "alt": null,
+                    "title": null,
+                    "customFields": {}
+                  },
+                  "createdAt": "2023-11-07T15:09:54.875+00:00",
+                  "updatedAt": "2023-11-07T15:09:55.132+00:00",
+                  "mimeType": "image/jpeg",
+                  "fileExtension": "jpeg",
+                  "fileSize": 87026,
+                  "title": null,
+                  "metaData": {
+                    "hash": "9dca3d2274f93dafe0292ed12ad47907",
+                    "type": 2,
+                    "width": 1024,
+                    "height": 1024
+                  },
+                  "uploadedAt": "2023-11-07T15:09:55.125+00:00",
+                  "alt": null,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?ts=1699369795",
+                  "fileName": "virtual-product",
+                  "translations": null,
+                  "thumbnails": [
+                    {
+                      "translated": [],
+                      "createdAt": null,
+                      "updatedAt": null,
+                      "path": null,
+                      "width": 280,
+                      "height": 280,
+                      "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=280&ts=1699369795",
+                      "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                      "mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+                      "customFields": null,
+                      "id": "01a1470d911d72f491f3d695fe4fb927",
+                      "apiAlias": "media_thumbnail"
+                    },
+                    {
+                      "translated": [],
+                      "createdAt": null,
+                      "updatedAt": null,
+                      "path": null,
+                      "width": 400,
+                      "height": 400,
+                      "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=400&ts=1699369795",
+                      "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                      "mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+                      "customFields": null,
+                      "id": "01a1470d911d72f491f3d695feba3e44",
+                      "apiAlias": "media_thumbnail"
+                    },
+                    {
+                      "translated": [],
+                      "createdAt": null,
+                      "updatedAt": null,
+                      "path": null,
+                      "width": 800,
+                      "height": 800,
+                      "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=800&ts=1699369795",
+                      "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                      "mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+                      "customFields": null,
+                      "id": "01a1470d911d72f491f3d695ffa41ccd",
+                      "apiAlias": "media_thumbnail"
+                    },
+                    {
+                      "translated": [],
+                      "createdAt": null,
+                      "updatedAt": null,
+                      "path": null,
+                      "width": 1920,
+                      "height": 1920,
+                      "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=1920&ts=1699369795",
+                      "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                      "mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+                      "customFields": null,
+                      "id": "01a1470d911d72f491f3d696000765ed",
+                      "apiAlias": "media_thumbnail"
+                    }
+                  ],
+                  "hasFile": true,
+                  "private": false,
+                  "path": "media/ff/4c/f8/1699369795/virtual-product.jpeg",
+                  "config": null,
+                  "customFields": null,
+                  "id": "018baa553cf37c05b41accccf5258c1b",
+                  "apiAlias": "media"
+                },
+                "customFields": null,
+                "id": "018baa5547af7468b913f4faecee8c96",
+                "apiAlias": "product_media"
+              },
+              "/cover/translated": [],
+              "/cover/media": {
+                "translated": {
+                  "alt": null,
+                  "title": null,
+                  "customFields": {}
+                },
+                "createdAt": "2023-11-07T15:09:54.875+00:00",
+                "updatedAt": "2023-11-07T15:09:55.132+00:00",
+                "mimeType": "image/jpeg",
+                "fileExtension": "jpeg",
+                "fileSize": 87026,
+                "title": null,
+                "metaData": {
+                  "hash": "9dca3d2274f93dafe0292ed12ad47907",
+                  "type": 2,
+                  "width": 1024,
+                  "height": 1024
+                },
+                "uploadedAt": "2023-11-07T15:09:55.125+00:00",
+                "alt": null,
+                "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?ts=1699369795",
+                "fileName": "virtual-product",
+                "translations": null,
+                "thumbnails": [
+                  {
+                    "translated": [],
+                    "createdAt": null,
+                    "updatedAt": null,
+                    "path": null,
+                    "width": 280,
+                    "height": 280,
+                    "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=280&ts=1699369795",
+                    "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                    "mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+                    "customFields": null,
+                    "id": "01a1470d911d72f491f3d695fe4fb927",
+                    "apiAlias": "media_thumbnail"
+                  },
+                  {
+                    "translated": [],
+                    "createdAt": null,
+                    "updatedAt": null,
+                    "path": null,
+                    "width": 400,
+                    "height": 400,
+                    "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=400&ts=1699369795",
+                    "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                    "mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+                    "customFields": null,
+                    "id": "01a1470d911d72f491f3d695feba3e44",
+                    "apiAlias": "media_thumbnail"
+                  },
+                  {
+                    "translated": [],
+                    "createdAt": null,
+                    "updatedAt": null,
+                    "path": null,
+                    "width": 800,
+                    "height": 800,
+                    "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=800&ts=1699369795",
+                    "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                    "mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+                    "customFields": null,
+                    "id": "01a1470d911d72f491f3d695ffa41ccd",
+                    "apiAlias": "media_thumbnail"
+                  },
+                  {
+                    "translated": [],
+                    "createdAt": null,
+                    "updatedAt": null,
+                    "path": null,
+                    "width": 1920,
+                    "height": 1920,
+                    "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=1920&ts=1699369795",
+                    "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                    "mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+                    "customFields": null,
+                    "id": "01a1470d911d72f491f3d696000765ed",
+                    "apiAlias": "media_thumbnail"
+                  }
+                ],
+                "hasFile": true,
+                "private": false,
+                "path": "media/ff/4c/f8/1699369795/virtual-product.jpeg",
+                "config": null,
+                "customFields": null,
+                "id": "018baa553cf37c05b41accccf5258c1b",
+                "apiAlias": "media"
+              },
+              "/cover/media/translated": {
+                "alt": null,
+                "title": null,
+                "customFields": {}
+              },
+              "/cover/media/translated/customFields": {},
+              "/cover/media/metaData": {
+                "hash": "9dca3d2274f93dafe0292ed12ad47907",
+                "type": 2,
+                "width": 1024,
+                "height": 1024
+              },
+              "/cover/media/thumbnails": [
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 280,
+                  "height": 280,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=280&ts=1699369795",
+                  "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                  "mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d695fe4fb927",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 400,
+                  "height": 400,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=400&ts=1699369795",
+                  "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                  "mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d695feba3e44",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 800,
+                  "height": 800,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=800&ts=1699369795",
+                  "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                  "mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d695ffa41ccd",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 1920,
+                  "height": 1920,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=1920&ts=1699369795",
+                  "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                  "mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d696000765ed",
+                  "apiAlias": "media_thumbnail"
+                }
+              ],
+              "/cover/media/thumbnails/0": {
+                "translated": [],
+                "createdAt": null,
+                "updatedAt": null,
+                "path": null,
+                "width": 280,
+                "height": 280,
+                "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=280&ts=1699369795",
+                "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                "mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+                "customFields": null,
+                "id": "01a1470d911d72f491f3d695fe4fb927",
+                "apiAlias": "media_thumbnail"
+              },
+              "/cover/media/thumbnails/0/translated": [],
+              "/cover/media/thumbnails/1": {
+                "translated": [],
+                "createdAt": null,
+                "updatedAt": null,
+                "path": null,
+                "width": 400,
+                "height": 400,
+                "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=400&ts=1699369795",
+                "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                "mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+                "customFields": null,
+                "id": "01a1470d911d72f491f3d695feba3e44",
+                "apiAlias": "media_thumbnail"
+              },
+              "/cover/media/thumbnails/1/translated": [],
+              "/cover/media/thumbnails/2": {
+                "translated": [],
+                "createdAt": null,
+                "updatedAt": null,
+                "path": null,
+                "width": 800,
+                "height": 800,
+                "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=800&ts=1699369795",
+                "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                "mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+                "customFields": null,
+                "id": "01a1470d911d72f491f3d695ffa41ccd",
+                "apiAlias": "media_thumbnail"
+              },
+              "/cover/media/thumbnails/2/translated": [],
+              "/cover/media/thumbnails/3": {
+                "translated": [],
+                "createdAt": null,
+                "updatedAt": null,
+                "path": null,
+                "width": 1920,
+                "height": 1920,
+                "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?width=1920&ts=1699369795",
+                "mediaId": "018baa553cf37c05b41accccf5258c1b",
+                "mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+                "customFields": null,
+                "id": "01a1470d911d72f491f3d696000765ed",
+                "apiAlias": "media_thumbnail"
+              },
+              "/cover/media/thumbnails/3/translated": [],
+              "/children": [],
+              "/seoUrls": [
+                {
+                  "translated": [],
+                  "createdAt": "2023-11-07T13:02:08.607+00:00",
+                  "updatedAt": null,
+                  "salesChannelId": "98432def39fc4624b33213a56b8c944d",
+                  "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+                  "routeName": "frontend.detail.page",
+                  "foreignKey": "018ba9ddce6472c6b40010c86805d33a",
+                  "pathInfo": "/detail/018ba9ddce6472c6b40010c86805d33a",
+                  "seoPathInfo": "Digital-test/SW20010",
+                  "isCanonical": true,
+                  "isModified": false,
+                  "isDeleted": false,
+                  "error": null,
+                  "customFields": null,
+                  "id": "018ba9e042e97146b14adbc6324d1387",
+                  "apiAlias": "seo_url"
+                }
+              ],
+              "/seoUrls/0": {
+                "translated": [],
+                "createdAt": "2023-11-07T13:02:08.607+00:00",
+                "updatedAt": null,
+                "salesChannelId": "98432def39fc4624b33213a56b8c944d",
+                "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+                "routeName": "frontend.detail.page",
+                "foreignKey": "018ba9ddce6472c6b40010c86805d33a",
+                "pathInfo": "/detail/018ba9ddce6472c6b40010c86805d33a",
+                "seoPathInfo": "Digital-test/SW20010",
+                "isCanonical": true,
+                "isModified": false,
+                "isDeleted": false,
+                "error": null,
+                "customFields": null,
+                "id": "018ba9e042e97146b14adbc6324d1387",
+                "apiAlias": "seo_url"
+              },
+              "/seoUrls/0/translated": [],
+              "/states": [
+                "is-download"
+              ],
+              "/customFields": {},
+              "/calculatedPrices": [],
+              "/calculatedPrice": {
+                "unitPrice": 22,
+                "totalPrice": 22,
+                "calculatedTaxes": [
+                  {
+                    "tax": 3.51,
+                    "taxRate": 19,
+                    "price": 22,
+                    "label": null,
+                    "apiAlias": "cart_tax_calculated"
+                  }
+                ],
+                "taxRules": [
+                  {
+                    "taxRate": 19,
+                    "percentage": 100,
+                    "apiAlias": "cart_tax_rule"
+                  }
+                ],
+                "quantity": 1,
+                "referencePrice": null,
+                "listPrice": null,
+                "regulationPrice": null,
+                "apiAlias": "calculated_price"
+              },
+              "/calculatedPrice/calculatedTaxes": [
+                {
+                  "tax": 3.51,
+                  "taxRate": 19,
+                  "price": 22,
+                  "label": null,
+                  "apiAlias": "cart_tax_calculated"
+                }
+              ],
+              "/calculatedPrice/calculatedTaxes/0": {
+                "tax": 3.51,
+                "taxRate": 19,
+                "price": 22,
+                "label": null,
+                "apiAlias": "cart_tax_calculated"
+              },
+              "/calculatedPrice/taxRules": [
+                {
+                  "taxRate": 19,
+                  "percentage": 100,
+                  "apiAlias": "cart_tax_rule"
+                }
+              ],
+              "/calculatedPrice/taxRules/0": {
+                "taxRate": 19,
+                "percentage": 100,
+                "apiAlias": "cart_tax_rule"
+              },
+              "/calculatedCheapestPrice": {
+                "unitPrice": 22,
+                "totalPrice": 22,
+                "calculatedTaxes": [
+                  {
+                    "tax": 3.51,
+                    "taxRate": 19,
+                    "price": 22,
+                    "label": null,
+                    "apiAlias": "cart_tax_calculated"
+                  }
+                ],
+                "taxRules": [
+                  {
+                    "taxRate": 19,
+                    "percentage": 100,
+                    "apiAlias": "cart_tax_rule"
+                  }
+                ],
+                "quantity": 1,
+                "referencePrice": null,
+                "listPrice": null,
+                "regulationPrice": null,
+                "hasRange": false,
+                "variantId": "018ba9ddce6472c6b40010c86805d33a",
+                "apiAlias": "calculated_cheapest_price"
+              },
+              "/calculatedCheapestPrice/calculatedTaxes": [
+                {
+                  "tax": 3.51,
+                  "taxRate": 19,
+                  "price": 22,
+                  "label": null,
+                  "apiAlias": "cart_tax_calculated"
+                }
+              ],
+              "/calculatedCheapestPrice/calculatedTaxes/0": {
+                "tax": 3.51,
+                "taxRate": 19,
+                "price": 22,
+                "label": null,
+                "apiAlias": "cart_tax_calculated"
+              },
+              "/calculatedCheapestPrice/taxRules": [
+                {
+                  "taxRate": 19,
+                  "percentage": 100,
+                  "apiAlias": "cart_tax_rule"
+                }
+              ],
+              "/calculatedCheapestPrice/taxRules/0": {
+                "taxRate": 19,
+                "percentage": 100,
+                "apiAlias": "cart_tax_rule"
+              },
+              "/measurements": {
+                "apiAlias": "converted_unit_set"
+              }
+            },
+            "truncated": false
+          },
+          "currency": "EUR",
+          "_field_sources": {
+            "/currency": {
+              "capture_path": "/currency/isoCode",
+              "_capture": {
+                "url": "https://demo-frontends.shopware.store/store-api/context",
+                "method": "shopware_context",
+                "at": "2026-10-16T23:30:33.637253+00:00",
+                "values": {
+                  "/currency/translated/shortName": "EUR",
+                  "/currency/translated/name": "Euro",
+                  "/currency/createdAt": "2020-08-06T06:23:31.846+00:00",
+                  "/currency/updatedAt": null,
+                  "/currency/isoCode": "EUR",
+                  "/currency/factor": 1,
+                  "/currency/symbol": "\u20ac",
+                  "/currency/shortName": "EUR",
+                  "/currency/name": "Euro",
+                  "/currency/position": 1,
+                  "/currency/isSystemDefault": true,
+                  "/currency/itemRounding/decimals": 2,
+                  "/currency/itemRounding/interval": 0.01,
+                  "/currency/itemRounding/roundForNet": true,
+                  "/currency/itemRounding/apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config",
+                  "/currency/totalRounding/decimals": 2,
+                  "/currency/totalRounding/interval": 0.01,
+                  "/currency/totalRounding/roundForNet": true,
+                  "/currency/totalRounding/apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config",
+                  "/currency/taxFreeFrom": 0,
+                  "/currency/customFields": null,
+                  "/currency/id": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
+                  "/currency/apiAlias": "currency",
+                  "/currency": {
+                    "translated": {
+                      "shortName": "EUR",
+                      "name": "Euro",
+                      "customFields": {}
+                    },
+                    "createdAt": "2020-08-06T06:23:31.846+00:00",
+                    "updatedAt": null,
+                    "isoCode": "EUR",
+                    "factor": 1,
+                    "symbol": "\u20ac",
+                    "shortName": "EUR",
+                    "name": "Euro",
+                    "position": 1,
+                    "isSystemDefault": true,
+                    "itemRounding": {
+                      "decimals": 2,
+                      "interval": 0.01,
+                      "roundForNet": true,
+                      "apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config"
+                    },
+                    "totalRounding": {
+                      "decimals": 2,
+                      "interval": 0.01,
+                      "roundForNet": true,
+                      "apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config"
+                    },
+                    "taxFreeFrom": 0,
+                    "customFields": null,
+                    "id": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
+                    "apiAlias": "currency"
+                  },
+                  "/currency/translated": {
+                    "shortName": "EUR",
+                    "name": "Euro",
+                    "customFields": {}
+                  },
+                  "/currency/translated/customFields": {},
+                  "/currency/itemRounding": {
+                    "decimals": 2,
+                    "interval": 0.01,
+                    "roundForNet": true,
+                    "apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config"
+                  },
+                  "/currency/totalRounding": {
+                    "decimals": 2,
+                    "interval": 0.01,
+                    "roundForNet": true,
+                    "apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config"
+                  }
+                },
+                "truncated": false
+              }
+            }
+          }
+        },
+        "canonical_product_id": "p_31f9315e-2b2f-5b82-b828-227fbea5ec98",
+        "supplier_id": "frontends-demo.vercel.app",
+        "attributes": {},
+        "pack_quantity": null,
+        "bundle_components": []
+      },
+      "evidence_contract": {
+        "evidence": [
+          {
+            "evidence_id": "e_570fc1a9-bb6b-494c-8cc2-0361b872c655",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/translated/name",
+              "value": "Digital test"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_027791b9-068f-4fae-9b54-b31ae29f972f",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/calculatedPrice/unitPrice",
+              "value": 22
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_1d241644-e90f-4fde-944f-f247aa33e8ab",
+            "source_url": "https://demo-frontends.shopware.store/store-api/context",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.637253+00:00"
+            },
+            "method": "shopware_context",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/currency/isoCode",
+              "value": "EUR"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_9c1a331b-3789-4593-900d-e211d99c53a0",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/translated/description",
+              "value": "<a target=\"_self\" href=\"/Digital-test/SW20010\" rel=\"noreferrer noopener\">Link</a>"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_f0db040d-fd64-4428-aff5-d7cceb877687",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/cover/media/url",
+              "value": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?ts=1699369795"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_19be2de5-ffa3-4e5f-96db-9297731e80b6",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/seoUrls/0/seoPathInfo",
+              "value": "Digital-test/SW20010"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_38625512-3069-438d-84b1-6084de0304c9",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/id",
+              "value": "018ba9ddce6472c6b40010c86805d33a"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_b515c3a3-5e1e-4695-8bf3-93fef9dfc50f",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/productNumber",
+              "value": "SW20010"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_deaceb17-faed-43c8-9750-4b1252e1e9ab",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/manufacturer/translated/name",
+              "value": "Deutsche See"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_178951a6-f0b1-45f1-9d79-f064f672296a",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/available",
+              "value": true
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          }
+        ],
+        "observations": [
+          {
+            "observation_id": "o_9183a75e-d1ed-4f45-8728-742084e1f5a6",
+            "field_path": "/title",
+            "state": "observed",
+            "raw_value": "Digital test",
+            "normalized_value": "Digital test",
+            "evidence_ids": [
+              "e_570fc1a9-bb6b-494c-8cc2-0361b872c655"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_f3652725-21c9-40c4-b95a-8a5695a06480",
+            "field_path": "/price",
+            "state": "observed",
+            "raw_value": 22,
+            "normalized_value": {
+              "$type": "decimal",
+              "value": "22"
+            },
+            "evidence_ids": [
+              "e_027791b9-068f-4fae-9b54-b31ae29f972f"
+            ],
+            "reason": "",
+            "transformations": [
+              "Parse decimal amount"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_64851d47-0135-4249-8928-edf420566d87",
+            "field_path": "/currency",
+            "state": "observed",
+            "raw_value": "EUR",
+            "normalized_value": "EUR",
+            "evidence_ids": [
+              "e_1d241644-e90f-4fde-944f-f247aa33e8ab"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_a5a880d8-9048-42e5-a4e8-d5d3f7e7951c",
+            "field_path": "/description",
+            "state": "observed",
+            "raw_value": "<a target=\"_self\" href=\"/Digital-test/SW20010\" rel=\"noreferrer noopener\">Link</a>",
+            "normalized_value": "Link",
+            "evidence_ids": [
+              "e_9c1a331b-3789-4593-900d-e211d99c53a0"
+            ],
+            "reason": "",
+            "transformations": [
+              "Strip HTML and whitespace"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_ed22a18d-d2e8-4667-bd6f-a7d13f4289a8",
+            "field_path": "/image_url",
+            "state": "observed",
+            "raw_value": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?ts=1699369795",
+            "normalized_value": "https://cdn.shopware.store/a/B/m/pPkDE/media/ff/4c/f8/1699369795/virtual-product.jpeg?ts=1699369795",
+            "evidence_ids": [
+              "e_f0db040d-fd64-4428-aff5-d7cceb877687"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_d29f3736-f04c-48fc-bb1c-d9f3f2271ab0",
+            "field_path": "/product_url",
+            "state": "observed",
+            "raw_value": "Digital-test/SW20010",
+            "normalized_value": "https://frontends-demo.vercel.app/Digital-test/SW20010",
+            "evidence_ids": [
+              "e_19be2de5-ffa3-4e5f-96db-9297731e80b6"
+            ],
+            "reason": "",
+            "transformations": [
+              "Resolve Shopware SEO path"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_93f73d6c-e552-4975-a9c1-7e7976ae0c6b",
+            "field_path": "/external_id",
+            "state": "observed",
+            "raw_value": "018ba9ddce6472c6b40010c86805d33a",
+            "normalized_value": "018ba9ddce6472c6b40010c86805d33a",
+            "evidence_ids": [
+              "e_38625512-3069-438d-84b1-6084de0304c9"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_53dbf688-3619-4f46-9dc1-183ea2af79c2",
+            "field_path": "/sku",
+            "state": "observed",
+            "raw_value": "SW20010",
+            "normalized_value": "SW20010",
+            "evidence_ids": [
+              "e_b515c3a3-5e1e-4695-8bf3-93fef9dfc50f"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_987cfa4e-f7a2-421e-98c7-bca7c4809a8c",
+            "field_path": "/gtin",
+            "state": "unknown",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Source explicitly contains no value",
+            "transformations": [
+              "Validate GTIN; pad 12-digit UPC with zero"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_4cfba237-dd2b-403d-81fd-5c056c61c9f3",
+            "field_path": "/mpn",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_58d43ac2-ee3a-4b50-8a02-8666371b3455",
+            "field_path": "/vendor",
+            "state": "observed",
+            "raw_value": "Deutsche See",
+            "normalized_value": "Deutsche See",
+            "evidence_ids": [
+              "e_deaceb17-faed-43c8-9750-4b1252e1e9ab"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_a477418e-01cf-4b3e-aec1-721f81a0514b",
+            "field_path": "/product_type",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_d364e037-2f01-461d-af0b-88aa8f374f60",
+            "field_path": "/in_stock",
+            "state": "observed",
+            "raw_value": true,
+            "normalized_value": true,
+            "evidence_ids": [
+              "e_178951a6-f0b1-45f1-9d79-f064f672296a"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_7f811a60-6c93-48f9-a38a-7354a5176e7e",
+            "field_path": "/condition",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_42ca843c-40b5-4041-9d78-bb66bc47eb63",
+            "field_path": "/compare_at_price",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [
+              "Parse decimal amount"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_b76b5b4f-ef38-45cf-95c0-08ed8d6c8590",
+            "field_path": "/variants",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_ececaba0-4628-4115-ba51-2d0947005900",
+            "field_path": "/tags",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_a712f0b8-c144-48a5-8c52-e39993ce8b42",
+            "field_path": "/additional_images",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_efe0b101-161d-4674-9ec9-fb55158d9134",
+            "field_path": "/category_path",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_0c46ea7d-d548-499d-b692-b4946cfead07",
+            "field_path": "/attributes",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_44695d27-7ef4-4b61-bf17-b6f74e51d250",
+            "field_path": "/pack_quantity",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_a2187333-ef50-4609-bbe8-5005a69a5599",
+            "field_path": "/bundle_components",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          }
+        ],
+        "resolutions": [],
+        "schema_version": 1
+      },
+      "variant_contracts": []
+    },
+    "scope": {
+      "platform": "shopware",
+      "store_url": "https://frontends-demo.vercel.app",
+      "catalog": null,
+      "channel": null,
+      "locale": null
+    },
+    "observations": [
+      {
+        "observation_id": "c_a512080e2a81e16398686b6ef09b45ff2bf1919db34d482285607cd878ef60bf",
+        "scope": {
+          "platform": "shopware",
+          "store_url": "https://frontends-demo.vercel.app",
+          "catalog": null,
+          "channel": null,
+          "locale": null
+        },
+        "relation": "memberships",
+        "taxonomy_kind": "merchant",
+        "source_state": "null",
+        "completeness": "unknown",
+        "terms": [],
+        "parent_edges": [],
+        "facts": [
+          {
+            "pointer": "/categoryIds",
+            "raw_value": null,
+            "support": "unknown",
+            "binding": {
+              "facet": "source_state",
+              "term": null,
+              "edge": null
+            },
+            "outcome": {
+              "source_paths": [
+                "/categoryIds"
+              ],
+              "normalized_value": null,
+              "accepted": false,
+              "reason": "Normalizer rejected source value; compatibility default has no support",
+              "transformations": [],
+              "source_values": [
+                null
+              ]
+            },
+            "evidence": [],
+            "reason": "Source explicitly contains no value"
+          }
+        ],
+        "reason": "category_source_null"
+      },
+      {
+        "observation_id": "c_f4953f800bf654557fa2973a60919721800db8c032480a87fbbf490efc237f71",
+        "scope": {
+          "platform": "shopware",
+          "store_url": "https://frontends-demo.vercel.app",
+          "catalog": null,
+          "channel": null,
+          "locale": null
+        },
+        "relation": "index",
+        "taxonomy_kind": "merchant",
+        "source_state": "null",
+        "completeness": "unknown",
+        "terms": [],
+        "parent_edges": [],
+        "facts": [
+          {
+            "pointer": "/categoryTree",
+            "raw_value": null,
+            "support": "unknown",
+            "binding": {
+              "facet": "source_state",
+              "term": null,
+              "edge": null
+            },
+            "outcome": {
+              "source_paths": [
+                "/categoryTree"
+              ],
+              "normalized_value": null,
+              "accepted": false,
+              "reason": "Normalizer rejected source value; compatibility default has no support",
+              "transformations": [],
+              "source_values": [
+                null
+              ]
+            },
+            "evidence": [],
+            "reason": "Source explicitly contains no value"
+          }
+        ],
+        "reason": "category_source_null"
+      },
+      {
+        "observation_id": "c_2210b1e1b2535bc9464e432610ebf1834e902b126e45f2f8fb3256257bc2cdef",
+        "scope": {
+          "platform": "shopware",
+          "store_url": "https://frontends-demo.vercel.app",
+          "catalog": null,
+          "channel": null,
+          "locale": null
+        },
+        "relation": "memberships",
+        "taxonomy_kind": "merchant",
+        "source_state": "null",
+        "completeness": "unknown",
+        "terms": [],
+        "parent_edges": [],
+        "facts": [
+          {
+            "pointer": "/categories",
+            "raw_value": null,
+            "support": "unknown",
+            "binding": {
+              "facet": "source_state",
+              "term": null,
+              "edge": null
+            },
+            "outcome": {
+              "source_paths": [
+                "/categories"
+              ],
+              "normalized_value": null,
+              "accepted": false,
+              "reason": "Normalizer rejected source value; compatibility default has no support",
+              "transformations": [],
+              "source_values": [
+                null
+              ]
+            },
+            "evidence": [],
+            "reason": "Source explicitly contains no value"
+          }
+        ],
+        "reason": "category_source_null"
+      }
+    ],
+    "mappings": [
+      {
+        "observation_id": "c_2210b1e1b2535bc9464e432610ebf1834e902b126e45f2f8fb3256257bc2cdef",
+        "term": null,
+        "status": "unavailable",
+        "target_ids": [],
+        "target_namespace": "live-observation",
+        "target_version": "1",
+        "rule_versions": [],
+        "partial": true,
+        "source_pointers": [],
+        "reason": "category_source_null"
+      },
+      {
+        "observation_id": "c_a512080e2a81e16398686b6ef09b45ff2bf1919db34d482285607cd878ef60bf",
+        "term": null,
+        "status": "unavailable",
+        "target_ids": [],
+        "target_namespace": "live-observation",
+        "target_version": "1",
+        "rule_versions": [],
+        "partial": true,
+        "source_pointers": [],
+        "reason": "category_source_null"
+      }
+    ],
+    "config_digest": "5515474255767e25eb386cfe39a3589647eeb5f0745892d80a5db23593b89eed",
+    "original_binding": "5bf52d87d4e8d4f5a8b92025505c969fe67c336b83461e7c0a82fd8083eced6b"
+  },
+  {
+    "schema_version": 1,
+    "product": {
+      "schema_version": 1,
+      "product": {
+        "title": "Amiga 500+ game",
+        "price": {
+          "$type": "decimal",
+          "value": "99"
+        },
+        "currency": "EUR",
+        "description": "Bring back your teenage fun \ud83d\ude0a",
+        "image_url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?ts=1700138720",
+        "product_url": "https://frontends-demo.vercel.app/Amiga-500-game/SW20011",
+        "external_id": "018bd828d69f72dba59567a17c432eae",
+        "sku": "SW20011",
+        "gtin": null,
+        "mpn": null,
+        "vendor": null,
+        "product_type": null,
+        "in_stock": false,
+        "condition": "NEW",
+        "compare_at_price": null,
+        "variants": [],
+        "tags": [],
+        "additional_images": [],
+        "category_path": [],
+        "platform": "shopware",
+        "scraped_at": {
+          "$type": "datetime",
+          "value": "2026-10-16T23:30:33.921024+00:00"
+        },
+        "raw_data": {
+          "extensions": {
+            "foreignKeys": {
+              "swagCustomizedProductsTemplateId": null,
+              "swagCustomizedProductsTemplateVersionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+              "apiAlias": "product_foreign_keys_extension"
+            },
+            "subscriptionPlans": [],
+            "search": {
+              "extensions": [],
+              "translated": [],
+              "productNumber": "SW20011",
+              "autoIncrement": 226
+            }
+          },
+          "versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+          "translated": {
+            "metaDescription": null,
+            "name": "Amiga 500+ game",
+            "keywords": null,
+            "description": "Bring back your teenage fun \ud83d\ude0a",
+            "descriptionTeaser": "Bring back your teenage fun \ud83d\ude0a",
+            "metaTitle": null,
+            "packUnit": null,
+            "packUnitPlural": null,
+            "customFields": {},
+            "slotConfig": [],
+            "customSearchKeywords": null,
+            "ogTitle": null,
+            "ogDescription": null
+          },
+          "createdAt": "2023-11-16T12:45:24.048+00:00",
+          "updatedAt": "2026-10-06T18:57:46.141+00:00",
+          "parentId": null,
+          "childCount": 0,
+          "taxId": "a5da76b447db4d0aba62e6512dadf45b",
+          "manufacturerId": null,
+          "unitId": null,
+          "active": true,
+          "displayGroup": "9cce480646a77968c5232ee4bada9fdc7e5fb4271e08bddedf48802273f295f6",
+          "manufacturerNumber": null,
+          "guaranteeMonths": null,
+          "guaranteeConfirmed": false,
+          "ean": null,
+          "sales": 4,
+          "productNumber": "SW20011",
+          "stock": 0,
+          "availableStock": 0,
+          "available": false,
+          "type": "physical",
+          "deliveryTimeId": null,
+          "deliveryTime": null,
+          "restockTime": null,
+          "isCloseout": true,
+          "purchaseSteps": 1,
+          "maxPurchase": null,
+          "minPurchase": 1,
+          "purchaseUnit": null,
+          "referenceUnit": null,
+          "shippingFree": false,
+          "markAsTopseller": false,
+          "weight": null,
+          "width": null,
+          "height": null,
+          "length": null,
+          "releaseDate": null,
+          "categoryTree": null,
+          "streamIds": [
+            "1318833f46df457981763b94179d9ef0",
+            "5675448d6b3a4dd2a659d31a3dde74da"
+          ],
+          "optionIds": null,
+          "propertyIds": null,
+          "name": "Amiga 500+ game",
+          "keywords": null,
+          "description": "Bring back your teenage fun \ud83d\ude0a",
+          "descriptionTeaser": "Bring back your teenage fun \ud83d\ude0a",
+          "metaDescription": null,
+          "metaTitle": null,
+          "ogTitle": null,
+          "ogDescription": null,
+          "packUnit": null,
+          "packUnitPlural": null,
+          "tax": {
+            "translated": [],
+            "createdAt": "2020-08-06T06:23:32.053+00:00",
+            "updatedAt": "2026-02-10T11:38:56.584+00:00",
+            "taxRate": 19,
+            "name": "Standard rate",
+            "position": 1,
+            "customFields": null,
+            "id": "a5da76b447db4d0aba62e6512dadf45b",
+            "apiAlias": "tax"
+          },
+          "manufacturer": null,
+          "unit": null,
+          "cover": {
+            "versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+            "translated": [],
+            "createdAt": "2023-11-16T12:45:24.048+00:00",
+            "updatedAt": null,
+            "productId": "018bd828d69f72dba59567a17c432eae",
+            "mediaId": "018bd82a1cba7872aa7733f365b98681",
+            "position": 0,
+            "media": {
+              "translated": {
+                "alt": null,
+                "title": null,
+                "customFields": {}
+              },
+              "createdAt": "2023-11-16T12:45:20.510+00:00",
+              "updatedAt": "2023-11-16T12:45:20.962+00:00",
+              "mimeType": "image/jpeg",
+              "fileExtension": "jpeg",
+              "fileSize": 175427,
+              "title": null,
+              "metaData": {
+                "hash": "324468d8b8edf9148674f1a9a645fea1",
+                "type": 2,
+                "width": 1024,
+                "height": 1024
+              },
+              "uploadedAt": "2023-11-16T12:45:20.954+00:00",
+              "alt": null,
+              "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?ts=1700138720",
+              "fileName": "OIG",
+              "translations": null,
+              "thumbnails": [
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 280,
+                  "height": 280,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=280&ts=1700138720",
+                  "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                  "mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d696005ad045",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 400,
+                  "height": 400,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=400&ts=1700138720",
+                  "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                  "mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d69601539f93",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 800,
+                  "height": 800,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=800&ts=1700138720",
+                  "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                  "mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d696015cbde8",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 1920,
+                  "height": 1920,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=1920&ts=1700138720",
+                  "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                  "mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d69601ab6dc5",
+                  "apiAlias": "media_thumbnail"
+                }
+              ],
+              "hasFile": true,
+              "private": false,
+              "path": "media/61/9e/9e/1700138720/OIG.jpeg",
+              "config": null,
+              "customFields": null,
+              "id": "018bd82a1cba7872aa7733f365b98681",
+              "apiAlias": "media"
+            },
+            "customFields": null,
+            "id": "018bd82a20af7dd5b44b2e138466446d",
+            "apiAlias": "product_media"
+          },
+          "parent": null,
+          "children": [],
+          "media": null,
+          "cmsPageId": "7a6d253a67204037966f42b0119704d5",
+          "cmsPage": null,
+          "translations": null,
+          "categories": null,
+          "tags": null,
+          "properties": null,
+          "options": null,
+          "configuratorSettings": null,
+          "categoriesRo": null,
+          "coverId": "018bd82a20af7dd5b44b2e138466446d",
+          "tagIds": null,
+          "categoryIds": null,
+          "productReviews": null,
+          "ratingAverage": null,
+          "mainCategories": null,
+          "seoUrls": [
+            {
+              "translated": [],
+              "createdAt": "2025-03-24T08:06:37.263+00:00",
+              "updatedAt": null,
+              "salesChannelId": "98432def39fc4624b33213a56b8c944d",
+              "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+              "routeName": "frontend.detail.page",
+              "foreignKey": "018bd828d69f72dba59567a17c432eae",
+              "pathInfo": "/detail/018bd828d69f72dba59567a17c432eae",
+              "seoPathInfo": "Amiga-500-game/SW20011",
+              "isCanonical": true,
+              "isModified": false,
+              "isDeleted": false,
+              "error": null,
+              "customFields": null,
+              "id": "0195c73077d771b591a2f74d3e04110a",
+              "apiAlias": "seo_url"
+            }
+          ],
+          "crossSellings": null,
+          "canonicalProductId": null,
+          "canonicalProduct": null,
+          "streams": null,
+          "downloads": null,
+          "openGraphMediaId": null,
+          "openGraphMedia": null,
+          "states": [
+            "is-physical"
+          ],
+          "customFields": {},
+          "id": "018bd828d69f72dba59567a17c432eae",
+          "calculatedPrices": [],
+          "calculatedPrice": {
+            "unitPrice": 99,
+            "totalPrice": 99,
+            "calculatedTaxes": [
+              {
+                "tax": 15.81,
+                "taxRate": 19,
+                "price": 99,
+                "label": null,
+                "apiAlias": "cart_tax_calculated"
+              }
+            ],
+            "taxRules": [
+              {
+                "taxRate": 19,
+                "percentage": 100,
+                "apiAlias": "cart_tax_rule"
+              }
+            ],
+            "quantity": 1,
+            "referencePrice": null,
+            "listPrice": null,
+            "regulationPrice": null,
+            "apiAlias": "calculated_price"
+          },
+          "sortedProperties": null,
+          "calculatedCheapestPrice": {
+            "unitPrice": 99,
+            "totalPrice": 99,
+            "calculatedTaxes": [
+              {
+                "tax": 15.81,
+                "taxRate": 19,
+                "price": 99,
+                "label": null,
+                "apiAlias": "cart_tax_calculated"
+              }
+            ],
+            "taxRules": [
+              {
+                "taxRate": 19,
+                "percentage": 100,
+                "apiAlias": "cart_tax_rule"
+              }
+            ],
+            "quantity": 1,
+            "referencePrice": null,
+            "listPrice": null,
+            "regulationPrice": null,
+            "hasRange": false,
+            "variantId": "018bd828d69f72dba59567a17c432eae",
+            "apiAlias": "calculated_cheapest_price"
+          },
+          "isNew": false,
+          "calculatedMaxPurchase": 0,
+          "seoCategory": null,
+          "measurements": {
+            "apiAlias": "converted_unit_set"
+          },
+          "apiAlias": "product",
+          "_capture": {
+            "url": "https://demo-frontends.shopware.store/store-api/product",
+            "method": "shopware_store_api",
+            "at": "2026-10-16T23:30:33.849081+00:00",
+            "values": {
+              "/extensions/foreignKeys/swagCustomizedProductsTemplateId": null,
+              "/extensions/foreignKeys/swagCustomizedProductsTemplateVersionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+              "/extensions/foreignKeys/apiAlias": "product_foreign_keys_extension",
+              "/extensions/search/productNumber": "SW20011",
+              "/extensions/search/autoIncrement": 226,
+              "/versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+              "/translated/metaDescription": null,
+              "/translated/name": "Amiga 500+ game",
+              "/translated/keywords": null,
+              "/translated/description": "Bring back your teenage fun \ud83d\ude0a",
+              "/translated/descriptionTeaser": "Bring back your teenage fun \ud83d\ude0a",
+              "/translated/metaTitle": null,
+              "/translated/packUnit": null,
+              "/translated/packUnitPlural": null,
+              "/translated/customSearchKeywords": null,
+              "/translated/ogTitle": null,
+              "/translated/ogDescription": null,
+              "/createdAt": "2023-11-16T12:45:24.048+00:00",
+              "/updatedAt": "2026-10-06T18:57:46.141+00:00",
+              "/parentId": null,
+              "/childCount": 0,
+              "/taxId": "a5da76b447db4d0aba62e6512dadf45b",
+              "/manufacturerId": null,
+              "/unitId": null,
+              "/active": true,
+              "/displayGroup": "9cce480646a77968c5232ee4bada9fdc7e5fb4271e08bddedf48802273f295f6",
+              "/manufacturerNumber": null,
+              "/guaranteeMonths": null,
+              "/guaranteeConfirmed": false,
+              "/ean": null,
+              "/sales": 4,
+              "/productNumber": "SW20011",
+              "/stock": 0,
+              "/availableStock": 0,
+              "/available": false,
+              "/type": "physical",
+              "/deliveryTimeId": null,
+              "/deliveryTime": null,
+              "/restockTime": null,
+              "/isCloseout": true,
+              "/purchaseSteps": 1,
+              "/maxPurchase": null,
+              "/minPurchase": 1,
+              "/purchaseUnit": null,
+              "/referenceUnit": null,
+              "/shippingFree": false,
+              "/markAsTopseller": false,
+              "/weight": null,
+              "/width": null,
+              "/height": null,
+              "/length": null,
+              "/releaseDate": null,
+              "/categoryTree": null,
+              "/streamIds/0": "1318833f46df457981763b94179d9ef0",
+              "/streamIds/1": "5675448d6b3a4dd2a659d31a3dde74da",
+              "/optionIds": null,
+              "/propertyIds": null,
+              "/name": "Amiga 500+ game",
+              "/keywords": null,
+              "/description": "Bring back your teenage fun \ud83d\ude0a",
+              "/descriptionTeaser": "Bring back your teenage fun \ud83d\ude0a",
+              "/metaDescription": null,
+              "/metaTitle": null,
+              "/ogTitle": null,
+              "/ogDescription": null,
+              "/packUnit": null,
+              "/packUnitPlural": null,
+              "/tax/createdAt": "2020-08-06T06:23:32.053+00:00",
+              "/tax/updatedAt": "2026-02-10T11:38:56.584+00:00",
+              "/tax/taxRate": 19,
+              "/tax/name": "Standard rate",
+              "/tax/position": 1,
+              "/tax/customFields": null,
+              "/tax/id": "a5da76b447db4d0aba62e6512dadf45b",
+              "/tax/apiAlias": "tax",
+              "/manufacturer": null,
+              "/unit": null,
+              "/cover/versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+              "/cover/createdAt": "2023-11-16T12:45:24.048+00:00",
+              "/cover/updatedAt": null,
+              "/cover/productId": "018bd828d69f72dba59567a17c432eae",
+              "/cover/mediaId": "018bd82a1cba7872aa7733f365b98681",
+              "/cover/position": 0,
+              "/cover/media/translated/alt": null,
+              "/cover/media/translated/title": null,
+              "/cover/media/createdAt": "2023-11-16T12:45:20.510+00:00",
+              "/cover/media/updatedAt": "2023-11-16T12:45:20.962+00:00",
+              "/cover/media/mimeType": "image/jpeg",
+              "/cover/media/fileExtension": "jpeg",
+              "/cover/media/fileSize": 175427,
+              "/cover/media/title": null,
+              "/cover/media/metaData/hash": "324468d8b8edf9148674f1a9a645fea1",
+              "/cover/media/metaData/type": 2,
+              "/cover/media/metaData/width": 1024,
+              "/cover/media/metaData/height": 1024,
+              "/cover/media/uploadedAt": "2023-11-16T12:45:20.954+00:00",
+              "/cover/media/alt": null,
+              "/cover/media/url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?ts=1700138720",
+              "/cover/media/fileName": "OIG",
+              "/cover/media/translations": null,
+              "/cover/media/thumbnails/0/createdAt": null,
+              "/cover/media/thumbnails/0/updatedAt": null,
+              "/cover/media/thumbnails/0/path": null,
+              "/cover/media/thumbnails/0/width": 280,
+              "/cover/media/thumbnails/0/height": 280,
+              "/cover/media/thumbnails/0/url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=280&ts=1700138720",
+              "/cover/media/thumbnails/0/mediaId": "018bd82a1cba7872aa7733f365b98681",
+              "/cover/media/thumbnails/0/mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+              "/cover/media/thumbnails/0/customFields": null,
+              "/cover/media/thumbnails/0/id": "01a1470d911d72f491f3d696005ad045",
+              "/cover/media/thumbnails/0/apiAlias": "media_thumbnail",
+              "/cover/media/thumbnails/1/createdAt": null,
+              "/cover/media/thumbnails/1/updatedAt": null,
+              "/cover/media/thumbnails/1/path": null,
+              "/cover/media/thumbnails/1/width": 400,
+              "/cover/media/thumbnails/1/height": 400,
+              "/cover/media/thumbnails/1/url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=400&ts=1700138720",
+              "/cover/media/thumbnails/1/mediaId": "018bd82a1cba7872aa7733f365b98681",
+              "/cover/media/thumbnails/1/mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+              "/cover/media/thumbnails/1/customFields": null,
+              "/cover/media/thumbnails/1/id": "01a1470d911d72f491f3d69601539f93",
+              "/cover/media/thumbnails/1/apiAlias": "media_thumbnail",
+              "/cover/media/thumbnails/2/createdAt": null,
+              "/cover/media/thumbnails/2/updatedAt": null,
+              "/cover/media/thumbnails/2/path": null,
+              "/cover/media/thumbnails/2/width": 800,
+              "/cover/media/thumbnails/2/height": 800,
+              "/cover/media/thumbnails/2/url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=800&ts=1700138720",
+              "/cover/media/thumbnails/2/mediaId": "018bd82a1cba7872aa7733f365b98681",
+              "/cover/media/thumbnails/2/mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+              "/cover/media/thumbnails/2/customFields": null,
+              "/cover/media/thumbnails/2/id": "01a1470d911d72f491f3d696015cbde8",
+              "/cover/media/thumbnails/2/apiAlias": "media_thumbnail",
+              "/cover/media/thumbnails/3/createdAt": null,
+              "/cover/media/thumbnails/3/updatedAt": null,
+              "/cover/media/thumbnails/3/path": null,
+              "/cover/media/thumbnails/3/width": 1920,
+              "/cover/media/thumbnails/3/height": 1920,
+              "/cover/media/thumbnails/3/url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=1920&ts=1700138720",
+              "/cover/media/thumbnails/3/mediaId": "018bd82a1cba7872aa7733f365b98681",
+              "/cover/media/thumbnails/3/mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+              "/cover/media/thumbnails/3/customFields": null,
+              "/cover/media/thumbnails/3/id": "01a1470d911d72f491f3d69601ab6dc5",
+              "/cover/media/thumbnails/3/apiAlias": "media_thumbnail",
+              "/cover/media/hasFile": true,
+              "/cover/media/private": false,
+              "/cover/media/path": "media/61/9e/9e/1700138720/OIG.jpeg",
+              "/cover/media/config": null,
+              "/cover/media/customFields": null,
+              "/cover/media/id": "018bd82a1cba7872aa7733f365b98681",
+              "/cover/media/apiAlias": "media",
+              "/cover/customFields": null,
+              "/cover/id": "018bd82a20af7dd5b44b2e138466446d",
+              "/cover/apiAlias": "product_media",
+              "/parent": null,
+              "/media": null,
+              "/cmsPageId": "7a6d253a67204037966f42b0119704d5",
+              "/cmsPage": null,
+              "/translations": null,
+              "/categories": null,
+              "/tags": null,
+              "/properties": null,
+              "/options": null,
+              "/configuratorSettings": null,
+              "/categoriesRo": null,
+              "/coverId": "018bd82a20af7dd5b44b2e138466446d",
+              "/tagIds": null,
+              "/categoryIds": null,
+              "/productReviews": null,
+              "/ratingAverage": null,
+              "/mainCategories": null,
+              "/seoUrls/0/createdAt": "2025-03-24T08:06:37.263+00:00",
+              "/seoUrls/0/updatedAt": null,
+              "/seoUrls/0/salesChannelId": "98432def39fc4624b33213a56b8c944d",
+              "/seoUrls/0/languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+              "/seoUrls/0/routeName": "frontend.detail.page",
+              "/seoUrls/0/foreignKey": "018bd828d69f72dba59567a17c432eae",
+              "/seoUrls/0/pathInfo": "/detail/018bd828d69f72dba59567a17c432eae",
+              "/seoUrls/0/seoPathInfo": "Amiga-500-game/SW20011",
+              "/seoUrls/0/isCanonical": true,
+              "/seoUrls/0/isModified": false,
+              "/seoUrls/0/isDeleted": false,
+              "/seoUrls/0/error": null,
+              "/seoUrls/0/customFields": null,
+              "/seoUrls/0/id": "0195c73077d771b591a2f74d3e04110a",
+              "/seoUrls/0/apiAlias": "seo_url",
+              "/crossSellings": null,
+              "/canonicalProductId": null,
+              "/canonicalProduct": null,
+              "/streams": null,
+              "/downloads": null,
+              "/openGraphMediaId": null,
+              "/openGraphMedia": null,
+              "/states/0": "is-physical",
+              "/id": "018bd828d69f72dba59567a17c432eae",
+              "/calculatedPrice/unitPrice": 99,
+              "/calculatedPrice/totalPrice": 99,
+              "/calculatedPrice/calculatedTaxes/0/tax": 15.81,
+              "/calculatedPrice/calculatedTaxes/0/taxRate": 19,
+              "/calculatedPrice/calculatedTaxes/0/price": 99,
+              "/calculatedPrice/calculatedTaxes/0/label": null,
+              "/calculatedPrice/calculatedTaxes/0/apiAlias": "cart_tax_calculated",
+              "/calculatedPrice/taxRules/0/taxRate": 19,
+              "/calculatedPrice/taxRules/0/percentage": 100,
+              "/calculatedPrice/taxRules/0/apiAlias": "cart_tax_rule",
+              "/calculatedPrice/quantity": 1,
+              "/calculatedPrice/referencePrice": null,
+              "/calculatedPrice/listPrice": null,
+              "/calculatedPrice/regulationPrice": null,
+              "/calculatedPrice/apiAlias": "calculated_price",
+              "/sortedProperties": null,
+              "/calculatedCheapestPrice/unitPrice": 99,
+              "/calculatedCheapestPrice/totalPrice": 99,
+              "/calculatedCheapestPrice/calculatedTaxes/0/tax": 15.81,
+              "/calculatedCheapestPrice/calculatedTaxes/0/taxRate": 19,
+              "/calculatedCheapestPrice/calculatedTaxes/0/price": 99,
+              "/calculatedCheapestPrice/calculatedTaxes/0/label": null,
+              "/calculatedCheapestPrice/calculatedTaxes/0/apiAlias": "cart_tax_calculated",
+              "/calculatedCheapestPrice/taxRules/0/taxRate": 19,
+              "/calculatedCheapestPrice/taxRules/0/percentage": 100,
+              "/calculatedCheapestPrice/taxRules/0/apiAlias": "cart_tax_rule",
+              "/calculatedCheapestPrice/quantity": 1,
+              "/calculatedCheapestPrice/referencePrice": null,
+              "/calculatedCheapestPrice/listPrice": null,
+              "/calculatedCheapestPrice/regulationPrice": null,
+              "/calculatedCheapestPrice/hasRange": false,
+              "/calculatedCheapestPrice/variantId": "018bd828d69f72dba59567a17c432eae",
+              "/calculatedCheapestPrice/apiAlias": "calculated_cheapest_price",
+              "/isNew": false,
+              "/calculatedMaxPurchase": 0,
+              "/seoCategory": null,
+              "/measurements/apiAlias": "converted_unit_set",
+              "/apiAlias": "product",
+              "/extensions": {
+                "foreignKeys": {
+                  "swagCustomizedProductsTemplateId": null,
+                  "swagCustomizedProductsTemplateVersionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+                  "apiAlias": "product_foreign_keys_extension"
+                },
+                "subscriptionPlans": [],
+                "search": {
+                  "extensions": [],
+                  "translated": [],
+                  "productNumber": "SW20011",
+                  "autoIncrement": 226
+                }
+              },
+              "/extensions/foreignKeys": {
+                "swagCustomizedProductsTemplateId": null,
+                "swagCustomizedProductsTemplateVersionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+                "apiAlias": "product_foreign_keys_extension"
+              },
+              "/extensions/subscriptionPlans": [],
+              "/extensions/search": {
+                "extensions": [],
+                "translated": [],
+                "productNumber": "SW20011",
+                "autoIncrement": 226
+              },
+              "/extensions/search/extensions": [],
+              "/extensions/search/translated": [],
+              "/translated": {
+                "metaDescription": null,
+                "name": "Amiga 500+ game",
+                "keywords": null,
+                "description": "Bring back your teenage fun \ud83d\ude0a",
+                "descriptionTeaser": "Bring back your teenage fun \ud83d\ude0a",
+                "metaTitle": null,
+                "packUnit": null,
+                "packUnitPlural": null,
+                "customFields": {},
+                "slotConfig": [],
+                "customSearchKeywords": null,
+                "ogTitle": null,
+                "ogDescription": null
+              },
+              "/translated/customFields": {},
+              "/translated/slotConfig": [],
+              "/streamIds": [
+                "1318833f46df457981763b94179d9ef0",
+                "5675448d6b3a4dd2a659d31a3dde74da"
+              ],
+              "/tax": {
+                "translated": [],
+                "createdAt": "2020-08-06T06:23:32.053+00:00",
+                "updatedAt": "2026-02-10T11:38:56.584+00:00",
+                "taxRate": 19,
+                "name": "Standard rate",
+                "position": 1,
+                "customFields": null,
+                "id": "a5da76b447db4d0aba62e6512dadf45b",
+                "apiAlias": "tax"
+              },
+              "/tax/translated": [],
+              "/cover": {
+                "versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
+                "translated": [],
+                "createdAt": "2023-11-16T12:45:24.048+00:00",
+                "updatedAt": null,
+                "productId": "018bd828d69f72dba59567a17c432eae",
+                "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                "position": 0,
+                "media": {
+                  "translated": {
+                    "alt": null,
+                    "title": null,
+                    "customFields": {}
+                  },
+                  "createdAt": "2023-11-16T12:45:20.510+00:00",
+                  "updatedAt": "2023-11-16T12:45:20.962+00:00",
+                  "mimeType": "image/jpeg",
+                  "fileExtension": "jpeg",
+                  "fileSize": 175427,
+                  "title": null,
+                  "metaData": {
+                    "hash": "324468d8b8edf9148674f1a9a645fea1",
+                    "type": 2,
+                    "width": 1024,
+                    "height": 1024
+                  },
+                  "uploadedAt": "2023-11-16T12:45:20.954+00:00",
+                  "alt": null,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?ts=1700138720",
+                  "fileName": "OIG",
+                  "translations": null,
+                  "thumbnails": [
+                    {
+                      "translated": [],
+                      "createdAt": null,
+                      "updatedAt": null,
+                      "path": null,
+                      "width": 280,
+                      "height": 280,
+                      "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=280&ts=1700138720",
+                      "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                      "mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+                      "customFields": null,
+                      "id": "01a1470d911d72f491f3d696005ad045",
+                      "apiAlias": "media_thumbnail"
+                    },
+                    {
+                      "translated": [],
+                      "createdAt": null,
+                      "updatedAt": null,
+                      "path": null,
+                      "width": 400,
+                      "height": 400,
+                      "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=400&ts=1700138720",
+                      "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                      "mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+                      "customFields": null,
+                      "id": "01a1470d911d72f491f3d69601539f93",
+                      "apiAlias": "media_thumbnail"
+                    },
+                    {
+                      "translated": [],
+                      "createdAt": null,
+                      "updatedAt": null,
+                      "path": null,
+                      "width": 800,
+                      "height": 800,
+                      "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=800&ts=1700138720",
+                      "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                      "mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+                      "customFields": null,
+                      "id": "01a1470d911d72f491f3d696015cbde8",
+                      "apiAlias": "media_thumbnail"
+                    },
+                    {
+                      "translated": [],
+                      "createdAt": null,
+                      "updatedAt": null,
+                      "path": null,
+                      "width": 1920,
+                      "height": 1920,
+                      "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=1920&ts=1700138720",
+                      "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                      "mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+                      "customFields": null,
+                      "id": "01a1470d911d72f491f3d69601ab6dc5",
+                      "apiAlias": "media_thumbnail"
+                    }
+                  ],
+                  "hasFile": true,
+                  "private": false,
+                  "path": "media/61/9e/9e/1700138720/OIG.jpeg",
+                  "config": null,
+                  "customFields": null,
+                  "id": "018bd82a1cba7872aa7733f365b98681",
+                  "apiAlias": "media"
+                },
+                "customFields": null,
+                "id": "018bd82a20af7dd5b44b2e138466446d",
+                "apiAlias": "product_media"
+              },
+              "/cover/translated": [],
+              "/cover/media": {
+                "translated": {
+                  "alt": null,
+                  "title": null,
+                  "customFields": {}
+                },
+                "createdAt": "2023-11-16T12:45:20.510+00:00",
+                "updatedAt": "2023-11-16T12:45:20.962+00:00",
+                "mimeType": "image/jpeg",
+                "fileExtension": "jpeg",
+                "fileSize": 175427,
+                "title": null,
+                "metaData": {
+                  "hash": "324468d8b8edf9148674f1a9a645fea1",
+                  "type": 2,
+                  "width": 1024,
+                  "height": 1024
+                },
+                "uploadedAt": "2023-11-16T12:45:20.954+00:00",
+                "alt": null,
+                "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?ts=1700138720",
+                "fileName": "OIG",
+                "translations": null,
+                "thumbnails": [
+                  {
+                    "translated": [],
+                    "createdAt": null,
+                    "updatedAt": null,
+                    "path": null,
+                    "width": 280,
+                    "height": 280,
+                    "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=280&ts=1700138720",
+                    "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                    "mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+                    "customFields": null,
+                    "id": "01a1470d911d72f491f3d696005ad045",
+                    "apiAlias": "media_thumbnail"
+                  },
+                  {
+                    "translated": [],
+                    "createdAt": null,
+                    "updatedAt": null,
+                    "path": null,
+                    "width": 400,
+                    "height": 400,
+                    "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=400&ts=1700138720",
+                    "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                    "mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+                    "customFields": null,
+                    "id": "01a1470d911d72f491f3d69601539f93",
+                    "apiAlias": "media_thumbnail"
+                  },
+                  {
+                    "translated": [],
+                    "createdAt": null,
+                    "updatedAt": null,
+                    "path": null,
+                    "width": 800,
+                    "height": 800,
+                    "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=800&ts=1700138720",
+                    "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                    "mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+                    "customFields": null,
+                    "id": "01a1470d911d72f491f3d696015cbde8",
+                    "apiAlias": "media_thumbnail"
+                  },
+                  {
+                    "translated": [],
+                    "createdAt": null,
+                    "updatedAt": null,
+                    "path": null,
+                    "width": 1920,
+                    "height": 1920,
+                    "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=1920&ts=1700138720",
+                    "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                    "mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+                    "customFields": null,
+                    "id": "01a1470d911d72f491f3d69601ab6dc5",
+                    "apiAlias": "media_thumbnail"
+                  }
+                ],
+                "hasFile": true,
+                "private": false,
+                "path": "media/61/9e/9e/1700138720/OIG.jpeg",
+                "config": null,
+                "customFields": null,
+                "id": "018bd82a1cba7872aa7733f365b98681",
+                "apiAlias": "media"
+              },
+              "/cover/media/translated": {
+                "alt": null,
+                "title": null,
+                "customFields": {}
+              },
+              "/cover/media/translated/customFields": {},
+              "/cover/media/metaData": {
+                "hash": "324468d8b8edf9148674f1a9a645fea1",
+                "type": 2,
+                "width": 1024,
+                "height": 1024
+              },
+              "/cover/media/thumbnails": [
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 280,
+                  "height": 280,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=280&ts=1700138720",
+                  "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                  "mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d696005ad045",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 400,
+                  "height": 400,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=400&ts=1700138720",
+                  "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                  "mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d69601539f93",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 800,
+                  "height": 800,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=800&ts=1700138720",
+                  "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                  "mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d696015cbde8",
+                  "apiAlias": "media_thumbnail"
+                },
+                {
+                  "translated": [],
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "path": null,
+                  "width": 1920,
+                  "height": 1920,
+                  "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=1920&ts=1700138720",
+                  "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                  "mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+                  "customFields": null,
+                  "id": "01a1470d911d72f491f3d69601ab6dc5",
+                  "apiAlias": "media_thumbnail"
+                }
+              ],
+              "/cover/media/thumbnails/0": {
+                "translated": [],
+                "createdAt": null,
+                "updatedAt": null,
+                "path": null,
+                "width": 280,
+                "height": 280,
+                "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=280&ts=1700138720",
+                "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                "mediaThumbnailSizeId": "01896813922573fbbcf80a18892295f9",
+                "customFields": null,
+                "id": "01a1470d911d72f491f3d696005ad045",
+                "apiAlias": "media_thumbnail"
+              },
+              "/cover/media/thumbnails/0/translated": [],
+              "/cover/media/thumbnails/1": {
+                "translated": [],
+                "createdAt": null,
+                "updatedAt": null,
+                "path": null,
+                "width": 400,
+                "height": 400,
+                "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=400&ts=1700138720",
+                "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                "mediaThumbnailSizeId": "89cb565bd986470bb28db5d70be3f3e3",
+                "customFields": null,
+                "id": "01a1470d911d72f491f3d69601539f93",
+                "apiAlias": "media_thumbnail"
+              },
+              "/cover/media/thumbnails/1/translated": [],
+              "/cover/media/thumbnails/2": {
+                "translated": [],
+                "createdAt": null,
+                "updatedAt": null,
+                "path": null,
+                "width": 800,
+                "height": 800,
+                "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=800&ts=1700138720",
+                "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                "mediaThumbnailSizeId": "b9506fbf763a4a5581af5ff88a4a06d3",
+                "customFields": null,
+                "id": "01a1470d911d72f491f3d696015cbde8",
+                "apiAlias": "media_thumbnail"
+              },
+              "/cover/media/thumbnails/2/translated": [],
+              "/cover/media/thumbnails/3": {
+                "translated": [],
+                "createdAt": null,
+                "updatedAt": null,
+                "path": null,
+                "width": 1920,
+                "height": 1920,
+                "url": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?width=1920&ts=1700138720",
+                "mediaId": "018bd82a1cba7872aa7733f365b98681",
+                "mediaThumbnailSizeId": "d35f8ca18eeb442ebcf5d36bd7d50f9e",
+                "customFields": null,
+                "id": "01a1470d911d72f491f3d69601ab6dc5",
+                "apiAlias": "media_thumbnail"
+              },
+              "/cover/media/thumbnails/3/translated": [],
+              "/children": [],
+              "/seoUrls": [
+                {
+                  "translated": [],
+                  "createdAt": "2025-03-24T08:06:37.263+00:00",
+                  "updatedAt": null,
+                  "salesChannelId": "98432def39fc4624b33213a56b8c944d",
+                  "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+                  "routeName": "frontend.detail.page",
+                  "foreignKey": "018bd828d69f72dba59567a17c432eae",
+                  "pathInfo": "/detail/018bd828d69f72dba59567a17c432eae",
+                  "seoPathInfo": "Amiga-500-game/SW20011",
+                  "isCanonical": true,
+                  "isModified": false,
+                  "isDeleted": false,
+                  "error": null,
+                  "customFields": null,
+                  "id": "0195c73077d771b591a2f74d3e04110a",
+                  "apiAlias": "seo_url"
+                }
+              ],
+              "/seoUrls/0": {
+                "translated": [],
+                "createdAt": "2025-03-24T08:06:37.263+00:00",
+                "updatedAt": null,
+                "salesChannelId": "98432def39fc4624b33213a56b8c944d",
+                "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+                "routeName": "frontend.detail.page",
+                "foreignKey": "018bd828d69f72dba59567a17c432eae",
+                "pathInfo": "/detail/018bd828d69f72dba59567a17c432eae",
+                "seoPathInfo": "Amiga-500-game/SW20011",
+                "isCanonical": true,
+                "isModified": false,
+                "isDeleted": false,
+                "error": null,
+                "customFields": null,
+                "id": "0195c73077d771b591a2f74d3e04110a",
+                "apiAlias": "seo_url"
+              },
+              "/seoUrls/0/translated": [],
+              "/states": [
+                "is-physical"
+              ],
+              "/customFields": {},
+              "/calculatedPrices": [],
+              "/calculatedPrice": {
+                "unitPrice": 99,
+                "totalPrice": 99,
+                "calculatedTaxes": [
+                  {
+                    "tax": 15.81,
+                    "taxRate": 19,
+                    "price": 99,
+                    "label": null,
+                    "apiAlias": "cart_tax_calculated"
+                  }
+                ],
+                "taxRules": [
+                  {
+                    "taxRate": 19,
+                    "percentage": 100,
+                    "apiAlias": "cart_tax_rule"
+                  }
+                ],
+                "quantity": 1,
+                "referencePrice": null,
+                "listPrice": null,
+                "regulationPrice": null,
+                "apiAlias": "calculated_price"
+              },
+              "/calculatedPrice/calculatedTaxes": [
+                {
+                  "tax": 15.81,
+                  "taxRate": 19,
+                  "price": 99,
+                  "label": null,
+                  "apiAlias": "cart_tax_calculated"
+                }
+              ],
+              "/calculatedPrice/calculatedTaxes/0": {
+                "tax": 15.81,
+                "taxRate": 19,
+                "price": 99,
+                "label": null,
+                "apiAlias": "cart_tax_calculated"
+              },
+              "/calculatedPrice/taxRules": [
+                {
+                  "taxRate": 19,
+                  "percentage": 100,
+                  "apiAlias": "cart_tax_rule"
+                }
+              ],
+              "/calculatedPrice/taxRules/0": {
+                "taxRate": 19,
+                "percentage": 100,
+                "apiAlias": "cart_tax_rule"
+              },
+              "/calculatedCheapestPrice": {
+                "unitPrice": 99,
+                "totalPrice": 99,
+                "calculatedTaxes": [
+                  {
+                    "tax": 15.81,
+                    "taxRate": 19,
+                    "price": 99,
+                    "label": null,
+                    "apiAlias": "cart_tax_calculated"
+                  }
+                ],
+                "taxRules": [
+                  {
+                    "taxRate": 19,
+                    "percentage": 100,
+                    "apiAlias": "cart_tax_rule"
+                  }
+                ],
+                "quantity": 1,
+                "referencePrice": null,
+                "listPrice": null,
+                "regulationPrice": null,
+                "hasRange": false,
+                "variantId": "018bd828d69f72dba59567a17c432eae",
+                "apiAlias": "calculated_cheapest_price"
+              },
+              "/calculatedCheapestPrice/calculatedTaxes": [
+                {
+                  "tax": 15.81,
+                  "taxRate": 19,
+                  "price": 99,
+                  "label": null,
+                  "apiAlias": "cart_tax_calculated"
+                }
+              ],
+              "/calculatedCheapestPrice/calculatedTaxes/0": {
+                "tax": 15.81,
+                "taxRate": 19,
+                "price": 99,
+                "label": null,
+                "apiAlias": "cart_tax_calculated"
+              },
+              "/calculatedCheapestPrice/taxRules": [
+                {
+                  "taxRate": 19,
+                  "percentage": 100,
+                  "apiAlias": "cart_tax_rule"
+                }
+              ],
+              "/calculatedCheapestPrice/taxRules/0": {
+                "taxRate": 19,
+                "percentage": 100,
+                "apiAlias": "cart_tax_rule"
+              },
+              "/measurements": {
+                "apiAlias": "converted_unit_set"
+              }
+            },
+            "truncated": false
+          },
+          "currency": "EUR",
+          "_field_sources": {
+            "/currency": {
+              "capture_path": "/currency/isoCode",
+              "_capture": {
+                "url": "https://demo-frontends.shopware.store/store-api/context",
+                "method": "shopware_context",
+                "at": "2026-10-16T23:30:33.637253+00:00",
+                "values": {
+                  "/currency/translated/shortName": "EUR",
+                  "/currency/translated/name": "Euro",
+                  "/currency/createdAt": "2020-08-06T06:23:31.846+00:00",
+                  "/currency/updatedAt": null,
+                  "/currency/isoCode": "EUR",
+                  "/currency/factor": 1,
+                  "/currency/symbol": "\u20ac",
+                  "/currency/shortName": "EUR",
+                  "/currency/name": "Euro",
+                  "/currency/position": 1,
+                  "/currency/isSystemDefault": true,
+                  "/currency/itemRounding/decimals": 2,
+                  "/currency/itemRounding/interval": 0.01,
+                  "/currency/itemRounding/roundForNet": true,
+                  "/currency/itemRounding/apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config",
+                  "/currency/totalRounding/decimals": 2,
+                  "/currency/totalRounding/interval": 0.01,
+                  "/currency/totalRounding/roundForNet": true,
+                  "/currency/totalRounding/apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config",
+                  "/currency/taxFreeFrom": 0,
+                  "/currency/customFields": null,
+                  "/currency/id": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
+                  "/currency/apiAlias": "currency",
+                  "/currency": {
+                    "translated": {
+                      "shortName": "EUR",
+                      "name": "Euro",
+                      "customFields": {}
+                    },
+                    "createdAt": "2020-08-06T06:23:31.846+00:00",
+                    "updatedAt": null,
+                    "isoCode": "EUR",
+                    "factor": 1,
+                    "symbol": "\u20ac",
+                    "shortName": "EUR",
+                    "name": "Euro",
+                    "position": 1,
+                    "isSystemDefault": true,
+                    "itemRounding": {
+                      "decimals": 2,
+                      "interval": 0.01,
+                      "roundForNet": true,
+                      "apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config"
+                    },
+                    "totalRounding": {
+                      "decimals": 2,
+                      "interval": 0.01,
+                      "roundForNet": true,
+                      "apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config"
+                    },
+                    "taxFreeFrom": 0,
+                    "customFields": null,
+                    "id": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
+                    "apiAlias": "currency"
+                  },
+                  "/currency/translated": {
+                    "shortName": "EUR",
+                    "name": "Euro",
+                    "customFields": {}
+                  },
+                  "/currency/translated/customFields": {},
+                  "/currency/itemRounding": {
+                    "decimals": 2,
+                    "interval": 0.01,
+                    "roundForNet": true,
+                    "apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config"
+                  },
+                  "/currency/totalRounding": {
+                    "decimals": 2,
+                    "interval": 0.01,
+                    "roundForNet": true,
+                    "apiAlias": "shopware_core_framework_data_abstraction_layer_pricing_cash_rounding_config"
+                  }
+                },
+                "truncated": false
+              }
+            }
+          }
+        },
+        "canonical_product_id": "p_8c92b320-a320-5dfa-8907-d1f5dc3fffa3",
+        "supplier_id": "frontends-demo.vercel.app",
+        "attributes": {},
+        "pack_quantity": null,
+        "bundle_components": []
+      },
+      "evidence_contract": {
+        "evidence": [
+          {
+            "evidence_id": "e_7085d34f-de07-4d03-92e4-39aaadd48572",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/translated/name",
+              "value": "Amiga 500+ game"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_d53243ba-223f-4eee-aab0-2516483068e1",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/calculatedPrice/unitPrice",
+              "value": 99
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_315877b5-9604-4649-b728-0604536f9c90",
+            "source_url": "https://demo-frontends.shopware.store/store-api/context",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.637253+00:00"
+            },
+            "method": "shopware_context",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/currency/isoCode",
+              "value": "EUR"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_61dc1257-2fee-4f61-9147-ac2960e68143",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/translated/description",
+              "value": "Bring back your teenage fun \ud83d\ude0a"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_369cf0c0-6897-40ae-a2e8-67bcf2051477",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/cover/media/url",
+              "value": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?ts=1700138720"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_20966107-ec65-41c0-b46a-83638d4f764e",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/seoUrls/0/seoPathInfo",
+              "value": "Amiga-500-game/SW20011"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_ad87a5c3-a0ae-43e0-b03e-3d51c78d4067",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/id",
+              "value": "018bd828d69f72dba59567a17c432eae"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_b868e7bd-807d-4096-82f4-1d3c7d120d70",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/productNumber",
+              "value": "SW20011"
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          },
+          {
+            "evidence_id": "e_ec1eb74c-a650-41f6-86bd-d0f729d07966",
+            "source_url": "https://demo-frontends.shopware.store/store-api/product",
+            "observed_at": {
+              "$type": "datetime",
+              "value": "2026-10-16T23:30:33.849081+00:00"
+            },
+            "method": "shopware_store_api",
+            "excerpt": null,
+            "retained_data": {
+              "source_pointer": "/available",
+              "value": false
+            },
+            "pointer": "/value",
+            "source_role": "unverified",
+            "truncated": false
+          }
+        ],
+        "observations": [
+          {
+            "observation_id": "o_c4009556-7648-41b5-a04d-9630f3ca9712",
+            "field_path": "/title",
+            "state": "observed",
+            "raw_value": "Amiga 500+ game",
+            "normalized_value": "Amiga 500+ game",
+            "evidence_ids": [
+              "e_7085d34f-de07-4d03-92e4-39aaadd48572"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_f2fbe8c3-edec-4f1d-8ba9-97c2df7c0d7a",
+            "field_path": "/price",
+            "state": "observed",
+            "raw_value": 99,
+            "normalized_value": {
+              "$type": "decimal",
+              "value": "99"
+            },
+            "evidence_ids": [
+              "e_d53243ba-223f-4eee-aab0-2516483068e1"
+            ],
+            "reason": "",
+            "transformations": [
+              "Parse decimal amount"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_faec9de7-81fe-495e-b819-57406fea570d",
+            "field_path": "/currency",
+            "state": "observed",
+            "raw_value": "EUR",
+            "normalized_value": "EUR",
+            "evidence_ids": [
+              "e_315877b5-9604-4649-b728-0604536f9c90"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_a4dbbf77-406d-4830-a19c-6bb576a96d7b",
+            "field_path": "/description",
+            "state": "observed",
+            "raw_value": "Bring back your teenage fun \ud83d\ude0a",
+            "normalized_value": "Bring back your teenage fun \ud83d\ude0a",
+            "evidence_ids": [
+              "e_61dc1257-2fee-4f61-9147-ac2960e68143"
+            ],
+            "reason": "",
+            "transformations": [
+              "Strip HTML and whitespace"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_20b54d7a-768d-4f93-b6a1-f6673a6fcf2f",
+            "field_path": "/image_url",
+            "state": "observed",
+            "raw_value": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?ts=1700138720",
+            "normalized_value": "https://cdn.shopware.store/a/B/m/pPkDE/media/61/9e/9e/1700138720/OIG.jpeg?ts=1700138720",
+            "evidence_ids": [
+              "e_369cf0c0-6897-40ae-a2e8-67bcf2051477"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_4cb28ca7-57fb-43e6-a78e-0aaa70a015d6",
+            "field_path": "/product_url",
+            "state": "observed",
+            "raw_value": "Amiga-500-game/SW20011",
+            "normalized_value": "https://frontends-demo.vercel.app/Amiga-500-game/SW20011",
+            "evidence_ids": [
+              "e_20966107-ec65-41c0-b46a-83638d4f764e"
+            ],
+            "reason": "",
+            "transformations": [
+              "Resolve Shopware SEO path"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_9fc14928-3bd6-43ce-a41d-809c0628014c",
+            "field_path": "/external_id",
+            "state": "observed",
+            "raw_value": "018bd828d69f72dba59567a17c432eae",
+            "normalized_value": "018bd828d69f72dba59567a17c432eae",
+            "evidence_ids": [
+              "e_ad87a5c3-a0ae-43e0-b03e-3d51c78d4067"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_5474c208-0bcc-42dc-bfa9-6262b9fd0c82",
+            "field_path": "/sku",
+            "state": "observed",
+            "raw_value": "SW20011",
+            "normalized_value": "SW20011",
+            "evidence_ids": [
+              "e_b868e7bd-807d-4096-82f4-1d3c7d120d70"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_d9df51e6-b06e-4764-9bbc-716aecf25d8c",
+            "field_path": "/gtin",
+            "state": "unknown",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Source explicitly contains no value",
+            "transformations": [
+              "Validate GTIN; pad 12-digit UPC with zero"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_6e348fa6-a6a6-441c-aaa5-7124057f435c",
+            "field_path": "/mpn",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_09d4a37d-ba17-4e41-84bb-46167f269ff4",
+            "field_path": "/vendor",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_9e0110e6-7b9b-4905-b977-b22c4ca00501",
+            "field_path": "/product_type",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_ddda48d9-2684-4dc7-8419-b1e0028c3128",
+            "field_path": "/in_stock",
+            "state": "observed",
+            "raw_value": false,
+            "normalized_value": false,
+            "evidence_ids": [
+              "e_ec1eb74c-a650-41f6-86bd-d0f729d07966"
+            ],
+            "reason": "",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_6df5ae60-099c-4670-b1a1-7f0b15f502f7",
+            "field_path": "/condition",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_2aadf755-48f5-4118-92a1-0617fd8211ee",
+            "field_path": "/compare_at_price",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [
+              "Parse decimal amount"
+            ],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_75a69cd5-d95d-4ebe-b186-73c0f3b89149",
+            "field_path": "/variants",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_3f9e3c4b-705f-4181-9ecc-007dd65c0af4",
+            "field_path": "/tags",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_5c70e13d-12c9-4c61-ac23-2a9976ed8b86",
+            "field_path": "/additional_images",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_6ec85ab0-8dbc-44dd-992f-08f25d55ea85",
+            "field_path": "/category_path",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "No retained source mapping; compatibility/default value",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_80ab0581-9a98-4ec1-8fc4-a29b626a0bb1",
+            "field_path": "/attributes",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_c7b1c3d5-e714-485e-9005-659994a45df3",
+            "field_path": "/pack_quantity",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          },
+          {
+            "observation_id": "o_e8362d96-c20d-47e7-8066-df76c3960a55",
+            "field_path": "/bundle_components",
+            "state": "unsupported",
+            "raw_value": null,
+            "normalized_value": null,
+            "evidence_ids": [],
+            "reason": "Selected source has no retained capture; support unavailable",
+            "transformations": [],
+            "score": null,
+            "score_kind": null,
+            "validated_confidence": null
+          }
+        ],
+        "resolutions": [],
+        "schema_version": 1
+      },
+      "variant_contracts": []
+    },
+    "scope": {
+      "platform": "shopware",
+      "store_url": "https://frontends-demo.vercel.app",
+      "catalog": null,
+      "channel": null,
+      "locale": null
+    },
+    "observations": [
+      {
+        "observation_id": "c_a512080e2a81e16398686b6ef09b45ff2bf1919db34d482285607cd878ef60bf",
+        "scope": {
+          "platform": "shopware",
+          "store_url": "https://frontends-demo.vercel.app",
+          "catalog": null,
+          "channel": null,
+          "locale": null
+        },
+        "relation": "memberships",
+        "taxonomy_kind": "merchant",
+        "source_state": "null",
+        "completeness": "unknown",
+        "terms": [],
+        "parent_edges": [],
+        "facts": [
+          {
+            "pointer": "/categoryIds",
+            "raw_value": null,
+            "support": "unknown",
+            "binding": {
+              "facet": "source_state",
+              "term": null,
+              "edge": null
+            },
+            "outcome": {
+              "source_paths": [
+                "/categoryIds"
+              ],
+              "normalized_value": null,
+              "accepted": false,
+              "reason": "Normalizer rejected source value; compatibility default has no support",
+              "transformations": [],
+              "source_values": [
+                null
+              ]
+            },
+            "evidence": [],
+            "reason": "Source explicitly contains no value"
+          }
+        ],
+        "reason": "category_source_null"
+      },
+      {
+        "observation_id": "c_f4953f800bf654557fa2973a60919721800db8c032480a87fbbf490efc237f71",
+        "scope": {
+          "platform": "shopware",
+          "store_url": "https://frontends-demo.vercel.app",
+          "catalog": null,
+          "channel": null,
+          "locale": null
+        },
+        "relation": "index",
+        "taxonomy_kind": "merchant",
+        "source_state": "null",
+        "completeness": "unknown",
+        "terms": [],
+        "parent_edges": [],
+        "facts": [
+          {
+            "pointer": "/categoryTree",
+            "raw_value": null,
+            "support": "unknown",
+            "binding": {
+              "facet": "source_state",
+              "term": null,
+              "edge": null
+            },
+            "outcome": {
+              "source_paths": [
+                "/categoryTree"
+              ],
+              "normalized_value": null,
+              "accepted": false,
+              "reason": "Normalizer rejected source value; compatibility default has no support",
+              "transformations": [],
+              "source_values": [
+                null
+              ]
+            },
+            "evidence": [],
+            "reason": "Source explicitly contains no value"
+          }
+        ],
+        "reason": "category_source_null"
+      },
+      {
+        "observation_id": "c_2210b1e1b2535bc9464e432610ebf1834e902b126e45f2f8fb3256257bc2cdef",
+        "scope": {
+          "platform": "shopware",
+          "store_url": "https://frontends-demo.vercel.app",
+          "catalog": null,
+          "channel": null,
+          "locale": null
+        },
+        "relation": "memberships",
+        "taxonomy_kind": "merchant",
+        "source_state": "null",
+        "completeness": "unknown",
+        "terms": [],
+        "parent_edges": [],
+        "facts": [
+          {
+            "pointer": "/categories",
+            "raw_value": null,
+            "support": "unknown",
+            "binding": {
+              "facet": "source_state",
+              "term": null,
+              "edge": null
+            },
+            "outcome": {
+              "source_paths": [
+                "/categories"
+              ],
+              "normalized_value": null,
+              "accepted": false,
+              "reason": "Normalizer rejected source value; compatibility default has no support",
+              "transformations": [],
+              "source_values": [
+                null
+              ]
+            },
+            "evidence": [],
+            "reason": "Source explicitly contains no value"
+          }
+        ],
+        "reason": "category_source_null"
+      }
+    ],
+    "mappings": [
+      {
+        "observation_id": "c_2210b1e1b2535bc9464e432610ebf1834e902b126e45f2f8fb3256257bc2cdef",
+        "term": null,
+        "status": "unavailable",
+        "target_ids": [],
+        "target_namespace": "live-observation",
+        "target_version": "1",
+        "rule_versions": [],
+        "partial": true,
+        "source_pointers": [],
+        "reason": "category_source_null"
+      },
+      {
+        "observation_id": "c_a512080e2a81e16398686b6ef09b45ff2bf1919db34d482285607cd878ef60bf",
+        "term": null,
+        "status": "unavailable",
+        "target_ids": [],
+        "target_namespace": "live-observation",
+        "target_version": "1",
+        "rule_versions": [],
+        "partial": true,
+        "source_pointers": [],
+        "reason": "category_source_null"
+      }
+    ],
+    "config_digest": "5515474255767e25eb386cfe39a3589647eeb5f0745892d80a5db23593b89eed",
+    "original_binding": "0a0889988b29da84d1cba96dc4b93ea943e41cdd51080e1c09c65d86aa3e6d94"
+  }
+]

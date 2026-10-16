@@ -1,0 +1,11 @@
+{
+  "case": "crash-after_checkpoint-3",
+  "state": "passed",
+  "seconds": 1.484,
+  "rss_mib": 92.51,
+  "result": {
+    "window": "after_checkpoint",
+    "sent": 2,
+    "state": "completed"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "case": "budget-deadline-1",
+  "state": "passed",
+  "seconds": 0.065,
+  "rss_mib": 90.68,
+  "result": {
+    "dimension": "deadline",
+    "edge": 1,
+    "denied": true
+  }
+}

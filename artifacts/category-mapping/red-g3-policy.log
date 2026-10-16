@@ -1,0 +1,148 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFFFFFFFFFFFFFFF                                                     [100%]
+=================================== FAILURES ===================================
+__________________ test_c01_normalize_preserves_custom_label ___________________
+tests/test_category_skeleton.py:38: in test_c01_normalize_preserves_custom_label
+    value = normalize_with_categories(captured({'id': 101, 'title': 'Boots',
+src/shopextract/categories/api.py:15: in normalize_with_categories
+    raise NotImplementedError('category normalization wrapper is not implemented')
+E   NotImplementedError: category normalization wrapper is not implemented
+______ test_six_adapter_translation_seams[shopify-shopify-raw0-expected0] ______
+tests/test_category_skeleton.py:63: in test_six_adapter_translation_seams
+    observations = adapter.observe_categories(captured(raw), context=AdapterContext(options(platform).scope))
+src/shopextract/categories/adapters/shopify.py:6: in observe_categories
+    raise NotImplementedError('shopify category observation adapter is not implemented')
+E   NotImplementedError: shopify category observation adapter is not implemented
+__ test_six_adapter_translation_seams[woocommerce-woocommerce-raw1-expected1] __
+tests/test_category_skeleton.py:63: in test_six_adapter_translation_seams
+    observations = adapter.observe_categories(captured(raw), context=AdapterContext(options(platform).scope))
+src/shopextract/categories/adapters/woocommerce.py:6: in observe_categories
+    raise NotImplementedError('woocommerce category observation adapter is not implemented')
+E   NotImplementedError: woocommerce category observation adapter is not implemented
+______ test_six_adapter_translation_seams[magento-magento-raw2-expected2] ______
+tests/test_category_skeleton.py:63: in test_six_adapter_translation_seams
+    observations = adapter.observe_categories(captured(raw), context=AdapterContext(options(platform).scope))
+src/shopextract/categories/adapters/magento.py:6: in observe_categories
+    raise NotImplementedError('magento category observation adapter is not implemented')
+E   NotImplementedError: magento category observation adapter is not implemented
+_____ test_six_adapter_translation_seams[shopware-shopware-raw3-expected3] _____
+tests/test_category_skeleton.py:63: in test_six_adapter_translation_seams
+    observations = adapter.observe_categories(captured(raw), context=AdapterContext(options(platform).scope))
+src/shopextract/categories/adapters/shopware.py:6: in observe_categories
+    raise NotImplementedError('shopware category observation adapter is not implemented')
+E   NotImplementedError: shopware category observation adapter is not implemented
+__ test_six_adapter_translation_seams[bigcommerce-bigcommerce-raw4-expected4] __
+tests/test_category_skeleton.py:63: in test_six_adapter_translation_seams
+    observations = adapter.observe_categories(captured(raw), context=AdapterContext(options(platform).scope))
+src/shopextract/categories/adapters/bigcommerce.py:6: in observe_categories
+    raise NotImplementedError('bigcommerce category observation adapter is not implemented')
+E   NotImplementedError: bigcommerce category observation adapter is not implemented
+______ test_six_adapter_translation_seams[generic-generic-raw5-expected5] ______
+tests/test_category_skeleton.py:63: in test_six_adapter_translation_seams
+    observations = adapter.observe_categories(captured(raw), context=AdapterContext(options(platform).scope))
+src/shopextract/categories/adapters/generic.py:6: in observe_categories
+    raise NotImplementedError('generic category observation adapter is not implemented')
+E   NotImplementedError: generic category observation adapter is not implemented
+____________________ test_c03_extract_native_category_query ____________________
+tests/test_category_skeleton.py:89: in test_c03_extract_native_category_query
+    result = await extract_with_categories(STORE, category_options=options(Platform.BIGCOMMERCE),
+src/shopextract/categories/api.py:20: in extract_with_categories
+    raise NotImplementedError('category extraction wrapper is not implemented')
+E   NotImplementedError: category extraction wrapper is not implemented
+________________ test_c15_overlapping_targets_remain_ambiguous _________________
+tests/test_category_skeleton.py:111: in test_c15_overlapping_targets_remain_ambiguous
+    result = map_categories((observation,), options=options(rules=rules))
+src/shopextract/categories/mapping.py:7: in map_categories
+    raise NotImplementedError('shared category mapping is not implemented')
+E   NotImplementedError: shared category mapping is not implemented
+_______________________ test_c16_invalid_target_rejected _______________________
+tests/test_category_skeleton.py:121: in test_c16_invalid_target_rejected
+    validate_options(bad)
+src/shopextract/categories/api.py:9: in validate_options
+    raise NotImplementedError('category configuration validation is not implemented')
+E   NotImplementedError: category configuration validation is not implemented
+_______________ test_c18_encoder_rejects_stale_original_binding ________________
+tests/test_category_skeleton.py:128: in test_c18_encoder_rejects_stale_original_binding
+    categorized_product_to_record(value)
+src/shopextract/categories/portable.py:6: in categorized_product_to_record
+    raise NotImplementedError('category companion encoder is not implemented')
+E   NotImplementedError: category companion encoder is not implemented
+______________ test_c17_decoder_rejects_unknown_envelope_version _______________
+tests/test_category_skeleton.py:133: in test_c17_decoder_rejects_unknown_envelope_version
+    categorized_product_from_record({'schema_version': 999})
+src/shopextract/categories/portable.py:10: in categorized_product_from_record
+    raise NotImplementedError('category companion decoder is not implemented')
+E   NotImplementedError: category companion decoder is not implemented
+________________ test_c20_category_mode_missing_is_review_only _________________
+tests/test_category_skeleton.py:139: in test_c20_category_mode_missing_is_review_only
+    reasons = category_review_reasons(value, selected_profile='hardware-v1',
+src/shopextract/categories/maintenance.py:11: in category_review_reasons
+    raise NotImplementedError('category maintenance review is not implemented')
+E   NotImplementedError: category maintenance review is not implemented
+__________ test_c11_source_facets_keep_id_and_label_support_separate ___________
+tests/test_category_skeleton.py:148: in test_c11_source_facets_keep_id_and_label_support_separate
+    identifier = source_fact(raw, '/entityId', binding=CategoryFactBinding('native_id', term=ref),
+src/shopextract/categories/evidence.py:8: in source_fact
+    raise NotImplementedError('category captured-source support bridge is not implemented')
+E   NotImplementedError: category captured-source support bridge is not implemented
+________________ test_c11_label_rule_cannot_borrow_supported_id ________________
+tests/test_category_skeleton.py:172: in test_c11_label_rule_cannot_borrow_supported_id
+    result = map_categories((observation,), options=options(Platform.BIGCOMMERCE,
+src/shopextract/categories/mapping.py:7: in map_categories
+    raise NotImplementedError('shared category mapping is not implemented')
+E   NotImplementedError: shared category mapping is not implemented
+_____________ test_c03_error_localization_excludes_nonzero_sibling _____________
+tests/test_category_skeleton.py:182: in test_c03_error_localization_excludes_nonzero_sibling
+    localized = localize_category_errors(errors, product_path=('site', 'products', 'edges', 1, 'node'))
+src/shopextract/categories/native.py:22: in localize_category_errors
+    raise NotImplementedError('native category error localization is not implemented')
+E   NotImplementedError: native category error localization is not implemented
+_______________ test_c19_real_source_cache_reuse_and_rule_change _______________
+tests/test_category_skeleton.py:204: in test_c19_real_source_cache_reuse_and_rule_change
+    h.engine = engine(config)
+tests/test_category_skeleton.py:199: in engine
+    h.store = MaintenanceStore(tmp_path / 'category-cache.db', category_config=config)
+src/shopextract/maintenance/store.py:71: in __init__
+    raise NotImplementedError('category store policy creation is not implemented')
+E   NotImplementedError: category store policy creation is not implemented
+______________ test_c19_store_creation_persists_canonical_policy _______________
+tests/test_category_skeleton.py:232: in test_c19_store_creation_persists_canonical_policy
+    store = MaintenanceStore(tmp_path / 'creation.db', category_config=configured)
+src/shopextract/maintenance/store.py:71: in __init__
+    raise NotImplementedError('category store policy creation is not implemented')
+E   NotImplementedError: category store policy creation is not implemented
+___ test_c19_resume_policy_mismatch_never_retroactively_enables_job[legacy] ____
+tests/test_category_skeleton.py:257: in test_c19_resume_policy_mismatch_never_retroactively_enables_job
+    configured_store = MaintenanceStore(path, category_config=expected)
+src/shopextract/maintenance/store.py:71: in __init__
+    raise NotImplementedError('category store policy creation is not implemented')
+E   NotImplementedError: category store policy creation is not implemented
+__ test_c19_resume_policy_mismatch_never_retroactively_enables_job[different] __
+tests/test_category_skeleton.py:253: in test_c19_resume_policy_mismatch_never_retroactively_enables_job
+    store = MaintenanceStore(path, category_config=maintenance_category_config('1'))
+src/shopextract/maintenance/store.py:71: in __init__
+    raise NotImplementedError('category store policy creation is not implemented')
+E   NotImplementedError: category store policy creation is not implemented
+=========================== short test summary info ============================
+FAILED tests/test_category_skeleton.py::test_c01_normalize_preserves_custom_label
+FAILED tests/test_category_skeleton.py::test_six_adapter_translation_seams[shopify-shopify-raw0-expected0]
+FAILED tests/test_category_skeleton.py::test_six_adapter_translation_seams[woocommerce-woocommerce-raw1-expected1]
+FAILED tests/test_category_skeleton.py::test_six_adapter_translation_seams[magento-magento-raw2-expected2]
+FAILED tests/test_category_skeleton.py::test_six_adapter_translation_seams[shopware-shopware-raw3-expected3]
+FAILED tests/test_category_skeleton.py::test_six_adapter_translation_seams[bigcommerce-bigcommerce-raw4-expected4]
+FAILED tests/test_category_skeleton.py::test_six_adapter_translation_seams[generic-generic-raw5-expected5]
+FAILED tests/test_category_skeleton.py::test_c03_extract_native_category_query
+FAILED tests/test_category_skeleton.py::test_c15_overlapping_targets_remain_ambiguous
+FAILED tests/test_category_skeleton.py::test_c16_invalid_target_rejected - No...
+FAILED tests/test_category_skeleton.py::test_c18_encoder_rejects_stale_original_binding
+FAILED tests/test_category_skeleton.py::test_c17_decoder_rejects_unknown_envelope_version
+FAILED tests/test_category_skeleton.py::test_c20_category_mode_missing_is_review_only
+FAILED tests/test_category_skeleton.py::test_c11_source_facets_keep_id_and_label_support_separate
+FAILED tests/test_category_skeleton.py::test_c11_label_rule_cannot_borrow_supported_id
+FAILED tests/test_category_skeleton.py::test_c03_error_localization_excludes_nonzero_sibling
+FAILED tests/test_category_skeleton.py::test_c19_real_source_cache_reuse_and_rule_change
+FAILED tests/test_category_skeleton.py::test_c19_store_creation_persists_canonical_policy
+FAILED tests/test_category_skeleton.py::test_c19_resume_policy_mismatch_never_retroactively_enables_job[legacy]
+FAILED tests/test_category_skeleton.py::test_c19_resume_policy_mismatch_never_retroactively_enables_job[different]
+20 failed in 0.76s

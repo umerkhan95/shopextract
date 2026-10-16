@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "seed": 26,
+  "mechanisms": 24,
+  "parameter_invocations_max": 100,
+  "aggregate_seconds": 120,
+  "invocation_seconds": 15,
+  "collection_seconds": 15,
+  "log_bytes_max": 65536,
+  "aggregate_logs_bytes_max": 1048576,
+  "workers": 1,
+  "fixture_bytes_max": 262144,
+  "oversize_boundary_bytes": 262145,
+  "aggregate_fixtures_bytes_max": 8388608,
+  "config_boundary_entries": 1001,
+  "stop_on_failure": true,
+  "cases": {
+    "C01": [
+      "test_category_skeleton.py::test_c01_normalize_preserves_custom_label"
+    ],
+    "C02": [
+      "test_category_woocommerce.py::test_c02_siblings_permutations_and_duplicate_source_support"
+    ],
+    "C03": [
+      "test_category_bigcommerce.py::test_c03_reviewed_query_validates_against_saved_schema",
+      "test_category_bigcommerce.py::test_c03_native_mode_default_and_partial_error_keeps_siblings",
+      "test_category_bigcommerce.py::test_c03_rejection_is_unavailable_without_retry"
+    ],
+    "C04": [
+      "test_category_bigcommerce.py::test_c04_missing_completion_or_next_page_retains_only_bounded_memberships"
+    ],
+    "C05": [
+      "test_category_shopware.py::test_c07_four_memberships_nine_index_ids_never_path"
+    ],
+    "C06": [
+      "test_category_magento.py::test_magento_native_query_opt_in_and_default_response_compatibility",
+      "test_category_magento.py::test_magento_nonzero_product_error_localization_retains_valid_siblings",
+      "test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map"
+    ],
+    "C07": [
+      "test_category_generic.py::test_c07_jsonld_memberships_and_opaque_delimiters"
+    ],
+    "C08": [
+      "test_category_generic.py::test_c08_feed_real_parser_retains_separate_namespaces",
+      "test_category_generic.py::test_c08_declared_google_path_and_one_xml_decode"
+    ],
+    "C09": [
+      "test_category_generic.py::test_c09_category_code_context_and_thing"
+    ],
+    "C10": [
+      "test_category_generic.py::test_c10_schema_raw_states",
+      "test_category_woocommerce.py::test_c10_source_states"
+    ],
+    "C11": [
+      "test_category_skeleton.py::test_c11_source_facets_keep_id_and_label_support_separate",
+      "test_category_skeleton.py::test_c11_label_rule_cannot_borrow_supported_id",
+      "test_category_generic.py::test_c11_mutation_retention_and_llm_do_not_gain_support"
+    ],
+    "C12": [
+      "test_category_woocommerce.py::test_c12_store_basepath_catalog_and_assignment_context"
+    ],
+    "C13": [
+      "test_category_shopware.py::test_c13_actual_parent_endpoints_only_and_cycle_bounded",
+      "test_category_review_repairs.py::test_c13_bound_endpoint_mismatch_rejected",
+      "test_category_review_repairs.py::test_c13_orphan_retains_declared_edge_without_root_claim"
+    ],
+    "C14": [
+      "test_category_shared_contract.py::test_c14_three_native_sources_share_one_exact_mapper"
+    ],
+    "C15": [
+      "test_category_skeleton.py::test_c15_overlapping_targets_remain_ambiguous"
+    ],
+    "C16": [
+      "test_category_skeleton.py::test_c16_invalid_target_rejected",
+      "test_category_shared_contract.py::test_c16_config_entry_boundary_is_explicit"
+    ],
+    "C17": [
+      "test_category_shared_contract.py::test_c17_real_companion_roundtrip_retains_source_and_derived_history"
+    ],
+    "C18": [
+      "test_category_shared_contract.py::test_c18_nested_mutation_cannot_be_reencoded"
+    ],
+    "C19": [
+      "test_category_skeleton.py::test_c19_real_source_cache_reuse_and_rule_change",
+      "test_category_skeleton.py::test_c19_store_creation_persists_canonical_policy",
+      "test_category_skeleton.py::test_c19_resume_policy_mismatch_never_retroactively_enables_job",
+      "test_category_shared_contract.py::test_c19_corrupt_companion_cache_is_miss_not_legacy_fallback"
+    ],
+    "C20": [
+      "test_category_review_repairs.py::test_c20_real_category_engine_preserves_matcher_safeguards"
+    ],
+    "C21": [
+      "test_category_bigcommerce.py::test_c21_guard_uses_producer_constants_only_in_enabled_mode"
+    ],
+    "C22": [
+      "test_category_shared_contract.py::test_c22_companion_bytes_below_at_above",
+      "test_category_shared_contract.py::test_c22_native_member_boundary_preserves_supported_terms",
+      "test_category_shopware.py::test_c22_shared_relation_budget_and_zero",
+      "test_category_review_repairs.py::test_c13_c22_explicit_depth_boundary"
+    ],
+    "C23": [
+      "test_category_generic.py::test_c10_opengraph_repeats_retained_unknown_and_default_unchanged"
+    ],
+    "C24": [
+      "test_category_shopware.py::test_c24_legacy_shopware_category_projection_unchanged",
+      "test_category_review_repairs.py::test_c24_encode_and_checkpoint_failure_atomic_retry"
+    ]
+  },
+  "provenance": "controlled/synthetic/derived offline, never live storefront",
+  "state": "diagnosed_single_session_repair_pending_review",
+  "execution": "one_session_remaining_only",
+  "first_attempt_invocations": 42,
+  "reused_passes": 41,
+  "remaining_invocations": 34,
+  "cumulative_invocations_max": 76,
+  "resume_manifest": "artifacts/category-mapping/mechanism-attempt1/manifest.json"
+}

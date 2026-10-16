@@ -28,6 +28,7 @@ class OperationContext:
     budget: OperationBudget
     auxiliary: AuxiliaryOwner
     observed_at: datetime  # trusted UTC source-receipt clock input
+    request_accounting: object | None = None  # optional durable parent callback
 
 
 class Resolver(Protocol):

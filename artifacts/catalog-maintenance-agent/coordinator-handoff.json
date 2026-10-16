@@ -1,0 +1,18 @@
+{
+  "state": "local_implementation_final_review_passed",
+  "reviewer": "maintenance_reviewer",
+  "post_review_metadata_only": [
+    {
+      "path": "specs/005-catalog-maintenance-agent/status.md",
+      "before": "4c4b719eec0aae9ab2ad4c4594fe4b7e086da326e871155834dc90dafde46f50",
+      "after": "7a1dc5a8e60ba145329b83e8e3cb68fd38e77c1503203f725b6961a9c51aa9ff"
+    },
+    {
+      "path": "specs/005-catalog-maintenance-agent/tasks.md",
+      "before": "6b2a3c0b7dc043cf5cbdd38e97983034cb59c35b86f98666f07d1840df9a65a5",
+      "after": "57f18e46062beb81be87c5d061f45236545036151879d30f134b40ca72d55c83"
+    }
+  ],
+  "production_test_changes_after_review": false,
+  "publication": "not_requested; issues remain open"
+}

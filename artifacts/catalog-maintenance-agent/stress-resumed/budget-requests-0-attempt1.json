@@ -1,0 +1,11 @@
+{
+  "case": "budget-requests-0",
+  "state": "passed",
+  "seconds": 0.066,
+  "rss_mib": 90.86,
+  "result": {
+    "dimension": "requests",
+    "edge": 0,
+    "denied": false
+  }
+}

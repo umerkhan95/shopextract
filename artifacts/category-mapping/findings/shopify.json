@@ -1,0 +1,222 @@
+{
+  "platform": "shopify",
+  "date": "2026-10-17",
+  "status": "adapter_implemented_verification_pending",
+  "implementation_complete": false,
+  "limits": {
+    "official_pages": 2,
+    "storefront_requests": 0,
+    "test_runs": 0,
+    "model_calls": 0,
+    "token_counters": "unavailable"
+  },
+  "facts": [
+    {
+      "meaning": "custom_product_type",
+      "observed_field": "/product_type",
+      "native_id": null,
+      "semantics": "opaque merchant label; legacy category_path one-element projection",
+      "refs": [
+        "src/shopextract/_normalize.py:269",
+        "src/shopextract/_normalize.py:283",
+        "src/shopextract/_normalize.py:288"
+      ]
+    },
+    {
+      "meaning": "standard_taxonomy",
+      "semantics": "separate opaque Shopify TaxonomyCategory identifier; not established by products.json",
+      "access": "Admin read_products or separately authorized/visible Storefront GraphQL; no connector implemented"
+    },
+    {
+      "meaning": "collections",
+      "semantics": "unordered merchandising membership; no inferred hierarchy",
+      "access": "GraphQL connection is paginated; existing extractor does not fetch it"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/Product",
+      "version": "2026-10",
+      "verified": "2026-10-17",
+      "facts": [
+        "merchant-defined productType",
+        "category is Standard Product Taxonomy",
+        "collections are memberships",
+        "read_products scope"
+      ]
+    },
+    {
+      "url": "https://shopify.dev/docs/api/storefront/latest/objects/Product",
+      "version": "2026-10",
+      "verified": "2026-10-17",
+      "facts": [
+        "category exists",
+        "collections and productType separate",
+        "unauthenticated_read_product_listings scope; token/publication access not proven"
+      ]
+    }
+  ],
+  "saved_evidence": {
+    "summary": "artifacts/field-resolution-live/09-shopify-public.json",
+    "contracts": "artifacts/field-resolution-live/09-shopify-public.evidence.json.gz",
+    "capture_date": "2026-10-16",
+    "items": 6,
+    "requests": 1,
+    "complete": false,
+    "first_label": "Board Games",
+    "proves": "merchant label only"
+  },
+  "existing_reuse": [
+    "src/shopextract/_capture.py:19",
+    "src/shopextract/_capture.py:64",
+    "src/shopextract/_normalization.py:31",
+    "src/shopextract/_evidence.py:117",
+    "src/shopextract/_portable.py:145",
+    "src/shopextract/maintenance/profiles.py:15",
+    "src/shopextract/maintenance/engine.py:554"
+  ],
+  "missing_fields": [
+    "standard taxonomy ID and source taxonomy version",
+    "collection memberships and pagination completeness",
+    "separate native observation/mapping decision opt-in contract",
+    "native category graph/ancestor evidence"
+  ],
+  "contract_needs": {
+    "payload_kind": [
+      "label",
+      "memberships",
+      "ordered_path"
+    ],
+    "taxonomy_kind": [
+      "merchant",
+      "standard",
+      "merchandising"
+    ],
+    "term_identity": [
+      "platform",
+      "store/supplier observation scope",
+      "catalog/store-view when relevant",
+      "taxonomy namespace/version",
+      "opaque native_id nullable for raw labels"
+    ],
+    "provenance": "reuse existing capture/evidence; mapping remains derived",
+    "state_distinctions": [
+      "missing/not_observed",
+      "explicit_null",
+      "explicit_empty",
+      "malformed_unsupported"
+    ],
+    "completeness": [
+      "product_memberships",
+      "taxonomy_graph"
+    ]
+  },
+  "fixtures": [
+    {
+      "case": 1,
+      "risk": "delimiter hallucination",
+      "expected": "Boots > Sale/Outdoor remains exact opaque label; legacy path one element",
+      "status": "planned_not_executed"
+    },
+    {
+      "case": 2,
+      "risk": "missing/null/empty/coercion",
+      "expected": "four raw conditions distinguishable; object unsupported; no automatic profile",
+      "status": "planned_not_executed"
+    },
+    {
+      "case": 3,
+      "risk": "taxonomy/merchandising conflation",
+      "expected": "custom Shoes, standard GID, Sale/Summer collections remain three assertion kinds",
+      "status": "planned_not_executed"
+    },
+    {
+      "case": 4,
+      "risk": "ordering/ID collision",
+      "expected": "[2,1,2] and [1,2] same scoped memberships; another store unequal; no hierarchy",
+      "status": "planned_not_executed"
+    },
+    {
+      "case": 5,
+      "risk": "partial source false removal",
+      "expected": "hasNextPage true yields completeness false; absence not proven",
+      "status": "planned_not_executed"
+    },
+    {
+      "case": 6,
+      "risk": "public/Admin capability conflation",
+      "expected": "missing standard field stays unavailable despite matching label",
+      "status": "planned_not_executed"
+    },
+    {
+      "case": 7,
+      "risk": "policy/identity bypass",
+      "expected": "mapping conflicts with explicit hardware-v1 yields review; profile unchanged",
+      "status": "planned_not_executed"
+    },
+    {
+      "case": 8,
+      "risk": "fabricated provenance",
+      "expected": "post-capture mutation/retention failure yields unsupported category source",
+      "status": "planned_not_executed"
+    },
+    {
+      "case": 9,
+      "risk": "hidden precedence",
+      "expected": "two competing targets yield deterministic ambiguity/conflict, not first-match success",
+      "status": "planned_not_executed"
+    }
+  ],
+  "peer_consultations": [
+    {
+      "peer": "/root/category_woocommerce",
+      "status": "answered_before_code",
+      "agreement": "Separate label/memberships/path; distinguish unknown/null/empty/malformed; graph completeness separate from memberships"
+    },
+    {
+      "peer": "/root/category_magento",
+      "status": "exchanged_before_code",
+      "agreement": "Opaque IDs supplier/store/catalog scoped; unordered membership vs ordered breadcrumb; Shopify global taxonomy namespace separate from observation scope"
+    }
+  ],
+  "questions_to_peers": [
+    "Coordinator: settle shared field names/version and malformed-state encoding",
+    "Coordinator: authorized GraphQL fixtures only or separately scoped extractor work?",
+    "Peers: retain taxonomy namespace/version separate from supplier/store/catalog observation scope?"
+  ],
+  "preserved": [
+    "Product and Variant constructors",
+    "legacy default feeds",
+    "existing dirty work",
+    "explicit trusted profile and identity authority"
+  ],
+  "final_contract_ack": {
+    "date": "2026-10-17",
+    "review_gates": "G1/G2/G3 pass recorded by coordinator/reviewer",
+    "read_peer_findings": [
+      "woocommerce",
+      "magento",
+      "shopware",
+      "bigcommerce",
+      "generic"
+    ],
+    "shared_owner_reply": "Use helpers.merchant_scope and observation_id; Normalizer.select + source_fact; merge exact duplicate ref/label retaining facts; conflicting same-ref labels compete",
+    "owner_files": [
+      "src/shopextract/categories/adapters/shopify.py",
+      "tests/test_category_shopify.py"
+    ],
+    "extractor_change": "none",
+    "namespace_constants": [
+      "shopify:product_type",
+      "shopify:standard_product_taxonomy",
+      "shopify:collection"
+    ]
+  },
+  "implementation_evidence": {
+    "tests": "tests/test_category_shopify.py",
+    "planned_invocations": 14,
+    "execution": "not executed; root serial test barrier",
+    "new_transport_calls": 0,
+    "shared_helper_duplicates": false
+  }
+}

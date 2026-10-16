@@ -35,27 +35,42 @@ def synchronous(payload):
         from .._models import Platform
         from .._capture import capture
         from ..identity import assign_identity
+        category_config = None
+        if payload.get('category_config') is not None:
+            from ..categories.config import runtime_from_record
+            category_config = runtime_from_record(payload['category_config'])
         raw = payload.get('raw')
         if raw is None:
             if payload['mode'] == 'html':
                 from ..extractors.unified import UnifiedCrawlExtractor
-                raw = UnifiedCrawlExtractor._extract_structured_from_html(payload['html'], payload['url'])
+                raw = UnifiedCrawlExtractor._extract_structured_from_html(payload['html'], payload['url'],include_categories=category_config is not None)
             else:
                 from ..extractors.feed import GoogleFeedExtractor
                 parser = GoogleFeedExtractor._parse_xml if payload['mode'] == 'xml' else GoogleFeedExtractor._parse_csv
-                raw = parser(payload['html'], payload['url'])
+                raw = parser(payload['html'], payload['url'],include_categories=True) if category_config is not None else parser(payload['html'],payload['url'])
             for item in raw:
                 if item.get('_capture'):
                     item['_capture']['at'] = payload['observed_at']
         products = []
         for item in raw[:payload['maximum']]:
-            product = normalize(item, Platform(payload['platform']), payload['origin'])
+            companion = None
+            if category_config is not None:
+                from ..categories.api import normalize_with_categories
+                companion = normalize_with_categories(item, Platform(payload['platform']), payload['origin'],category_options=category_config.options)
+                product = companion.product if companion else None
+            else:
+                product = normalize(item, Platform(payload['platform']), payload['origin'])
             if product:
                 assign_identity(product, payload['origin'])
-                # Source support is already captured in the trust graph; unused raw
-                # engine state must not become a second unaccounted evidence cache.
+                # The finalized portable view discards unused raw engine state.
                 product.raw_data = {}
-                products.append(product_to_record(product))
+                if companion is not None:
+                    from ..categories.portable import bind_product, categorized_product_to_record
+                    companion = bind_product(product,companion.scope,companion.observations,companion.mappings,
+                        companion.config_digest,limits=category_config.options.limits)
+                    products.append(categorized_product_to_record(companion))
+                else:
+                    products.append(product_to_record(product))
         return products
     if operation == 'match':
         from ..compare.identity_match import match_products

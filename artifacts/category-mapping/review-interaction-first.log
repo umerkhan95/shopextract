@@ -1,0 +1,22 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F.F....                                                                  [100%]
+=================================== FAILURES ===================================
+_______ test_c20_real_category_engine_preserves_matcher_safeguards[ram] ________
+tests/test_category_review_repairs.py:125: in test_c20_real_category_engine_preserves_matcher_safeguards
+    assert finding['reason'] in ('identity_unresolved','variant_specification','supplier_unsupported')
+E   AssertionError: assert 'category_mismatch' in ('identity_unresolved', 'variant_specification', 'supplier_unsupported')
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+_____ test_c20_real_category_engine_preserves_matcher_safeguards[identity] _____
+tests/test_category_review_repairs.py:125: in test_c20_real_category_engine_preserves_matcher_safeguards
+    assert finding['reason'] in ('identity_unresolved','variant_specification','supplier_unsupported')
+E   AssertionError: assert 'category_mismatch' in ('identity_unresolved', 'variant_specification', 'supplier_unsupported')
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_category_review_repairs.py::test_c20_real_category_engine_preserves_matcher_safeguards[ram]
+FAILED tests/test_category_review_repairs.py::test_c20_real_category_engine_preserves_matcher_safeguards[identity]
+2 failed, 5 passed, 10 deselected in 15.33s

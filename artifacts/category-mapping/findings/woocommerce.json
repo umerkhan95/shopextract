@@ -1,0 +1,198 @@
+{
+  "platform": "woocommerce",
+  "date": "2026-10-17",
+  "status": "discovery_only",
+  "executed": {
+    "production_edits": false,
+    "tests": false,
+    "inference": false,
+    "storefront_requests": 0,
+    "official_doc_pages": 2,
+    "token_counters": "unavailable"
+  },
+  "facts": [
+    {
+      "claim": "category_path is legacy flat category-name projection, not a breadcrumb",
+      "refs": [
+        "src/shopextract/_normalize.py:330-348"
+      ]
+    },
+    {
+      "claim": "public product extractor captures raw product before normalization; no admin credentials",
+      "refs": [
+        "src/shopextract/extractors/woocommerce.py:46-91"
+      ]
+    },
+    {
+      "claim": "saved real source categories retain ID/name/slug/link, product sample partial",
+      "refs": [
+        "artifacts/field-resolution-live/10-woo-public.evidence.json.gz#0.contract.evidence",
+        "artifacts/field-resolution-live/10-woo-public.json#metadata"
+      ]
+    },
+    {
+      "claim": "category list supplies parent IDs and root sentinel 0; hide_empty defaults true",
+      "refs": [
+        "https://developer.woocommerce.com/docs/apis/store-api/resources-endpoints/product-categories/"
+      ]
+    }
+  ],
+  "api": {
+    "public_routes": [
+      "/wp-json/wc/store/v1/products",
+      "/wp-json/wc/store/v1/products/categories",
+      "/wp-json/wc/store/v1/products/categories/:id"
+    ],
+    "auth": "existing extractor sends no API key; public Store API scope only",
+    "admin_fallback": false,
+    "hierarchy_observed_live": false,
+    "custom_taxonomy": "unstable filter is not a stable custom taxonomy export",
+    "docs": [
+      "https://developer.woocommerce.com/docs/apis/store-api/resources-endpoints/product-categories/",
+      "https://developer.woocommerce.com/docs/apis/store-api/resources-endpoints/products/"
+    ]
+  },
+  "reuse": [
+    "src/shopextract/_capture.py:capture,attach_contract,_field_sources",
+    "src/shopextract/_normalization.py:Normalizer",
+    "src/shopextract/_evidence.py:Evidence,FieldObservation,TrustContract",
+    "src/shopextract/_portable.py:product_to_record,product_from_record",
+    "src/shopextract/maintenance/engine.py:_category_conflict"
+  ],
+  "gaps": [
+    "typed native term IDs/memberships/parent edges absent",
+    "exact portable schemas require reviewed versioned opt-in seam",
+    "taxonomy endpoint paging/capture/completeness not implemented",
+    "current scalar/list compatibility data cannot prove ancestry"
+  ],
+  "proposed_shared_contract": {
+    "term_ref": [
+      "platform",
+      "store_catalog_scope",
+      "taxonomy_namespace",
+      "native_id"
+    ],
+    "woocommerce_namespace": "product_cat",
+    "native_id_semantics": "opaque, store scoped; nullable for ID-less labels only",
+    "payload_kind": [
+      "memberships",
+      "ordered_path",
+      "label"
+    ],
+    "taxonomy_kind": [
+      "merchant",
+      "standard"
+    ],
+    "source_states": [
+      "missing",
+      "null",
+      "empty",
+      "present",
+      "invalid"
+    ],
+    "evidence": "existing references plus original source pointers/time/URL; independent edge support",
+    "mapping": "separate versioned decision, never observed fact",
+    "compatibility": "preserve Product constructors, default exports, category_path and trusted maintenance profile configuration"
+  },
+  "fixtures": [
+    {
+      "id": "W1",
+      "risk": "siblings mistaken for hierarchy",
+      "input": "[7 Boots,9 Sale], reversed",
+      "expected": "two memberships, zero edges, same semantic set; legacy name order preserved"
+    },
+    {
+      "id": "W2",
+      "risk": "unproved hierarchy",
+      "input": "1 parent0,7 parent1; membership7",
+      "expected": "root1 edge1->7 derived path[1,7], membership{7}"
+    },
+    {
+      "id": "W3",
+      "risk": "ID collision",
+      "input": "A/product_cat/7,B/product_cat/7,A/product_tag/7",
+      "expected": "three distinct references"
+    },
+    {
+      "id": "W4",
+      "risk": "absence collapse",
+      "input": "missing,null,[],malformed",
+      "expected": "missing,null,explicit empty,unsupported respectively; no fabricated terms"
+    },
+    {
+      "id": "W5",
+      "risk": "partial graph",
+      "input": "7 parent99;99 unavailable",
+      "expected": "retain membership and parent ref, unresolved path, partial graph"
+    },
+    {
+      "id": "W6",
+      "risk": "name dedup/conflicts",
+      "input": "IDs7/8 same name;duplicate7;conflicting7 labels",
+      "expected": "IDs distinct; semantic membership dedup preserves observations; same-ID label conflict retained"
+    },
+    {
+      "id": "W7",
+      "risk": "cycles",
+      "input": "1->7->1 or self-parent",
+      "expected": "retain raw;invalid graph;no derived path;bounded traversal"
+    },
+    {
+      "id": "W8",
+      "risk": "unsupported enrichment",
+      "input": "truncated ID or expired parent support",
+      "expected": "block supported ref/path respectively; retain independently supported names"
+    },
+    {
+      "id": "W9",
+      "risk": "profile escalation",
+      "input": "Footwear membership and configured hardware-v1",
+      "expected": "no implicit profile switch;conservative conflict remains visible"
+    }
+  ],
+  "planned_limits": {
+    "seed": 6006,
+    "sequential": true,
+    "cases": 9,
+    "max_nodes": 100,
+    "max_memberships": 200,
+    "max_depth": 8,
+    "max_fixture_bytes": 1048576,
+    "timeout_seconds_per_case": 30,
+    "models": 0,
+    "execution": "not authorized in this discovery phase"
+  },
+  "peer_consultation": [
+    {
+      "peer": "/root/category_shopify",
+      "status": "answered",
+      "question": "Identifiers/namespaces, ordered paths versus membership, standard versus custom taxonomy?",
+      "answer": "product_type opaque merchant label; standard TaxonomyCategory GID separate namespace absent current public extractor; collections unordered store-scoped IDs. Agree term ref platform/store/taxonomy/native_id, explicit semantic kinds, missing/null/empty distinctions, mapping separate from facts."
+    },
+    {
+      "peer": "/root/category_magento",
+      "status": "asked",
+      "question": "Any conflict on scoped IDs/parent edges/taxonomy or absent hierarchy?"
+    }
+  ],
+  "open_questions": [
+    "shared store/catalog scope representation preserving subdirectory installs",
+    "versioned opt-in portable serialization seam",
+    "missing/null/empty source-state representation aligned with existing trust states"
+  ],
+  "implementation": {
+    "status": "authored_waiting_serial_test_barrier",
+    "owned_source": "src/shopextract/categories/adapters/woocommerce.py",
+    "tests": "tests/test_category_woocommerce.py",
+    "extractor_changed": false,
+    "contract_ack": "specs/006-category-mapping/platforms/woocommerce.md#final-contract-ack",
+    "shared_helpers": [
+      "merchant_scope",
+      "observation_id",
+      "source_fact",
+      "Normalizer.select"
+    ],
+    "slug_decision": "raw capture only; not misbound as code_context",
+    "tests_executed": false
+  }
+}
