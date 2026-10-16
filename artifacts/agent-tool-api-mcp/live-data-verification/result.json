@@ -1,0 +1,2008 @@
+{
+  "outcome": "passed",
+  "tools": [
+    "discover",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_result",
+    "extract",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_result",
+    "job_result",
+    "extract",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_result",
+    "job_result",
+    "match",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_result",
+    "evidence",
+    "evidence",
+    "changes",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_status",
+    "job_result"
+  ],
+  "samples": [
+    [
+      {
+        "title": "Bliss Halloween Costume",
+        "external_id": "15445253980445",
+        "price": "65.00",
+        "sku": "0585-0057003",
+        "product_url": "https://www.blissworld.com/products/bliss-halloween-costume",
+        "variant_ids": [
+          "67743111872797"
+        ],
+        "gtin": null,
+        "gtin_support": {
+          "state": "unsupported",
+          "reason": "Selected source has no retained capture; support unavailable",
+          "value": null,
+          "legacy_value": null,
+          "observation_ids": [
+            "o_2651187b-3faf-4999-944a-81ec7cc7016e"
+          ],
+          "evidence_ids": []
+        },
+        "source_file": "http-05.body",
+        "source_url": "https://www.blissworld.com/products.json?limit=2&page=1"
+      },
+      {
+        "title": "Salmon DNA Duo",
+        "external_id": "15432203174173",
+        "price": "55.00",
+        "sku": null,
+        "product_url": "https://www.blissworld.com/products/salmon-dna-duo",
+        "variant_ids": [
+          "67705008455965"
+        ],
+        "gtin": null,
+        "gtin_support": {
+          "state": "unsupported",
+          "reason": "Selected source has no retained capture; support unavailable",
+          "value": null,
+          "legacy_value": null,
+          "observation_ids": [
+            "o_7aa949bb-5f59-49e1-ae6d-a003cbed17ae"
+          ],
+          "evidence_ids": []
+        },
+        "source_file": "http-05.body",
+        "source_url": "https://www.blissworld.com/products.json?limit=2&page=1"
+      }
+    ],
+    [
+      {
+        "title": "Bliss Halloween Costume",
+        "external_id": "15445253980445",
+        "price": "65.00",
+        "sku": "0585-0057003",
+        "product_url": "https://www.blissworld.com/products/bliss-halloween-costume",
+        "variant_ids": [
+          "67743111872797"
+        ],
+        "gtin": null,
+        "gtin_support": {
+          "state": "unsupported",
+          "reason": "Selected source has no retained capture; support unavailable",
+          "value": null,
+          "legacy_value": null,
+          "observation_ids": [
+            "o_1ba38a31-ee0d-4039-bf66-e805a8bfc869"
+          ],
+          "evidence_ids": []
+        },
+        "source_file": "http-07.body",
+        "source_url": "https://www.blissworld.com/products.json?limit=2&page=1"
+      },
+      {
+        "title": "Salmon DNA Duo",
+        "external_id": "15432203174173",
+        "price": "55.00",
+        "sku": null,
+        "product_url": "https://www.blissworld.com/products/salmon-dna-duo",
+        "variant_ids": [
+          "67705008455965"
+        ],
+        "gtin": null,
+        "gtin_support": {
+          "state": "unsupported",
+          "reason": "Selected source has no retained capture; support unavailable",
+          "value": null,
+          "legacy_value": null,
+          "observation_ids": [
+            "o_fbbf89d8-05be-4b12-aca6-2c17bb819ba6"
+          ],
+          "evidence_ids": []
+        },
+        "source_file": "http-07.body",
+        "source_url": "https://www.blissworld.com/products.json?limit=2&page=1"
+      }
+    ]
+  ],
+  "peak_process_count": 4,
+  "key_read": false,
+  "discovered_source": "https://www.blissworld.com/",
+  "matches": [
+    {
+      "relation": "exact",
+      "confidence": 1.0,
+      "evidence": [
+        "supplier-scoped canonical_product_id agrees",
+        "supplier-scoped external_id agrees",
+        "supplier-scoped sku agrees"
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "index_a": 0,
+      "index_b": 0,
+      "candidate_method": "rules",
+      "field_support": {
+        "a": {
+          "/additional_images": {
+            "state": "observed",
+            "observation_ids": [
+              "o_d6315b22-7c41-491a-a3f6-376beadfd6ca"
+            ],
+            "evidence_ids": [
+              "e_0cb96be9-ef7b-4280-a678-3e95b5f7e401"
+            ],
+            "selected_observation_id": "o_d6315b22-7c41-491a-a3f6-376beadfd6ca",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/additional_images/0": {
+            "state": "observed",
+            "observation_ids": [
+              "o_50419def-13b8-4aa7-bfb7-02f003a9c7e6"
+            ],
+            "evidence_ids": [
+              "e_0e15f5b5-2c59-4d5d-b38c-6ff704de547d"
+            ],
+            "selected_observation_id": "o_50419def-13b8-4aa7-bfb7-02f003a9c7e6",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/additional_images/1": {
+            "state": "observed",
+            "observation_ids": [
+              "o_d794df31-4aeb-4a48-b5f8-0ee268b5e204"
+            ],
+            "evidence_ids": [
+              "e_25786107-4026-406e-9c3f-de78addc8a2c"
+            ],
+            "selected_observation_id": "o_d794df31-4aeb-4a48-b5f8-0ee268b5e204",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/attributes": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_db669325-7dc5-4067-8bfd-f0a3713b5c00"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/bundle_components": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_a1a4334e-83bd-46ee-b4b3-c1ce52185254"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/category_path": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_917179d8-d32a-4489-a151-4bfc2acba7c5"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/compare_at_price": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_453a52ad-26ba-48c6-875e-9b9a9982a143"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/condition": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_52e9ade9-7dff-4de0-8a4f-6107d9cd6447"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/currency": {
+            "state": "observed",
+            "observation_ids": [
+              "o_b9d5067f-db61-4255-8ba1-0ce5078718db"
+            ],
+            "evidence_ids": [
+              "e_6dbe5ad8-9123-4549-b6d9-c3316e02f3d5"
+            ],
+            "selected_observation_id": "o_b9d5067f-db61-4255-8ba1-0ce5078718db",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/description": {
+            "state": "observed",
+            "observation_ids": [
+              "o_91813845-dab8-4eb9-b719-49b74aa7d67a"
+            ],
+            "evidence_ids": [
+              "e_2a634d99-ea14-4cb0-af9b-33d5f86b4437"
+            ],
+            "selected_observation_id": "o_91813845-dab8-4eb9-b719-49b74aa7d67a",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/external_id": {
+            "state": "observed",
+            "observation_ids": [
+              "o_7752a619-97dc-47c9-a0c2-3cee230b42d0"
+            ],
+            "evidence_ids": [
+              "e_e141e49a-d621-49da-81ec-03886062e6c3"
+            ],
+            "selected_observation_id": "o_7752a619-97dc-47c9-a0c2-3cee230b42d0",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/gtin": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_2651187b-3faf-4999-944a-81ec7cc7016e"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/image_url": {
+            "state": "observed",
+            "observation_ids": [
+              "o_f4a617ba-02c8-4345-8a5f-dfe2c1cac164"
+            ],
+            "evidence_ids": [
+              "e_ddb2f6ca-48a7-4c95-98a0-a69823f49410"
+            ],
+            "selected_observation_id": "o_f4a617ba-02c8-4345-8a5f-dfe2c1cac164",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/in_stock": {
+            "state": "observed",
+            "observation_ids": [
+              "o_65462b4a-b249-4bd3-9d24-4d0f242621d1"
+            ],
+            "evidence_ids": [
+              "e_f9630cee-0cae-49af-9c1f-c423520084c3"
+            ],
+            "selected_observation_id": "o_65462b4a-b249-4bd3-9d24-4d0f242621d1",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/mpn": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_c55d9024-2ed5-480b-8d5e-24ed220461df"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/pack_quantity": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_5995e65e-9457-402c-9a96-061128b854d7"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/price": {
+            "state": "observed",
+            "observation_ids": [
+              "o_fbddb1a7-f83d-4838-a36f-4efc659eeaa1"
+            ],
+            "evidence_ids": [
+              "e_73d1fb39-c5bc-40b5-8f5d-626dc2ae8287"
+            ],
+            "selected_observation_id": "o_fbddb1a7-f83d-4838-a36f-4efc659eeaa1",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/product_type": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_28934010-559a-4257-9b7a-872f1b1e9242"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/product_url": {
+            "state": "observed",
+            "observation_ids": [
+              "o_13c11d54-168d-409c-b5e0-22326b2ac5a4"
+            ],
+            "evidence_ids": [
+              "e_e585d59d-4989-4b77-ba39-c2957eac20fa"
+            ],
+            "selected_observation_id": "o_13c11d54-168d-409c-b5e0-22326b2ac5a4",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/sku": {
+            "state": "observed",
+            "observation_ids": [
+              "o_fe02a022-47a5-4bb8-9fa4-b10123941317"
+            ],
+            "evidence_ids": [
+              "e_a56b54ba-ab27-4503-a298-eda0405b2614"
+            ],
+            "selected_observation_id": "o_fe02a022-47a5-4bb8-9fa4-b10123941317",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/tags": {
+            "state": "observed",
+            "observation_ids": [
+              "o_ca1d9265-8603-4d51-8317-10688e883c2b"
+            ],
+            "evidence_ids": [
+              "e_d771a5b2-4fa4-44b6-8cdb-306ea23ca54f"
+            ],
+            "selected_observation_id": "o_ca1d9265-8603-4d51-8317-10688e883c2b",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/tags/0": {
+            "state": "observed",
+            "observation_ids": [
+              "o_f23930e0-c8d6-4149-862e-711b411704e0"
+            ],
+            "evidence_ids": [
+              "e_01f52b36-2a87-47b6-b221-d8bf8e28923f"
+            ],
+            "selected_observation_id": "o_f23930e0-c8d6-4149-862e-711b411704e0",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/title": {
+            "state": "observed",
+            "observation_ids": [
+              "o_af7954ae-f8a2-4555-b04b-30489f3ee278"
+            ],
+            "evidence_ids": [
+              "e_0e6dcdee-ca80-4dc9-9205-11c9c8da2792"
+            ],
+            "selected_observation_id": "o_af7954ae-f8a2-4555-b04b-30489f3ee278",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants": {
+            "state": "observed",
+            "observation_ids": [
+              "o_a0444b8f-774f-4e59-82cb-b85ffb79f518"
+            ],
+            "evidence_ids": [
+              "e_05187087-5807-4413-aeca-452494753659"
+            ],
+            "selected_observation_id": "o_a0444b8f-774f-4e59-82cb-b85ffb79f518",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/attributes": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_2856a76e-d970-4dba-9874-11f0cfdf0e59"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/attributes/option1": {
+            "state": "observed",
+            "observation_ids": [
+              "o_80994a51-33d9-481f-8e71-0a92af0df238"
+            ],
+            "evidence_ids": [
+              "e_2d7341c4-e3df-4ae3-8e5f-43d21e0b1485"
+            ],
+            "selected_observation_id": "o_80994a51-33d9-481f-8e71-0a92af0df238",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/gtin": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_2ca68e2f-f4e5-436e-8397-6e2b6a5718d3"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/in_stock": {
+            "state": "observed",
+            "observation_ids": [
+              "o_65841ce7-6705-493c-93c3-38e474d94c06"
+            ],
+            "evidence_ids": [
+              "e_d3cbc252-83a7-4d06-8593-7c7244e98c2e"
+            ],
+            "selected_observation_id": "o_65841ce7-6705-493c-93c3-38e474d94c06",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/price": {
+            "state": "observed",
+            "observation_ids": [
+              "o_0bd30ea7-f604-4ecb-a235-4df385639bdf"
+            ],
+            "evidence_ids": [
+              "e_cd4f5ac6-7149-471d-b14e-3e0a21246fdf"
+            ],
+            "selected_observation_id": "o_0bd30ea7-f604-4ecb-a235-4df385639bdf",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/sku": {
+            "state": "observed",
+            "observation_ids": [
+              "o_25354b1f-074a-4ab9-8722-b436a7865f5e"
+            ],
+            "evidence_ids": [
+              "e_0ce308b9-567a-4082-a9af-e19e65da78e7"
+            ],
+            "selected_observation_id": "o_25354b1f-074a-4ab9-8722-b436a7865f5e",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/title": {
+            "state": "observed",
+            "observation_ids": [
+              "o_4589c132-aec2-476d-a43d-a94451c8cf59"
+            ],
+            "evidence_ids": [
+              "e_88a0a2a4-432b-410f-aec4-9cd3342a52d5"
+            ],
+            "selected_observation_id": "o_4589c132-aec2-476d-a43d-a94451c8cf59",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/variant_id": {
+            "state": "observed",
+            "observation_ids": [
+              "o_e90bf1c9-ac51-4916-b86b-e60cc1a7b7f0"
+            ],
+            "evidence_ids": [
+              "e_48193524-bd1b-4902-ab10-3440cb6a5e43"
+            ],
+            "selected_observation_id": "o_e90bf1c9-ac51-4916-b86b-e60cc1a7b7f0",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/vendor": {
+            "state": "observed",
+            "observation_ids": [
+              "o_664dea0c-4412-4aa2-bb79-cb41a8f4e08a"
+            ],
+            "evidence_ids": [
+              "e_1c4ab5c0-4c92-4ed3-a421-b2fb5e3a5139"
+            ],
+            "selected_observation_id": "o_664dea0c-4412-4aa2-bb79-cb41a8f4e08a",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          }
+        },
+        "b": {
+          "/additional_images": {
+            "state": "observed",
+            "observation_ids": [
+              "o_6db82065-dba7-499e-b954-72e90269f879"
+            ],
+            "evidence_ids": [
+              "e_0af28eab-38f9-47cf-8558-f9bdd97f5cf1"
+            ],
+            "selected_observation_id": "o_6db82065-dba7-499e-b954-72e90269f879",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/additional_images/0": {
+            "state": "observed",
+            "observation_ids": [
+              "o_a5cf9b81-9b93-44aa-8566-2af76aea0bad"
+            ],
+            "evidence_ids": [
+              "e_3e3fe9d2-df81-43c7-b99f-7d3e0d47e5c3"
+            ],
+            "selected_observation_id": "o_a5cf9b81-9b93-44aa-8566-2af76aea0bad",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/additional_images/1": {
+            "state": "observed",
+            "observation_ids": [
+              "o_bbd2d776-ae24-47dc-a194-1f5548a0a0d8"
+            ],
+            "evidence_ids": [
+              "e_e9d945c7-e3a4-4aa0-bce3-0610adc4bea3"
+            ],
+            "selected_observation_id": "o_bbd2d776-ae24-47dc-a194-1f5548a0a0d8",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/attributes": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_7103e1a6-3e32-4f0a-8c4a-53187ab59815"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/bundle_components": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_275d93db-3ab7-4ee5-8379-4582b531eef0"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/category_path": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_8f7fed36-fb43-4869-89ee-fdee5199d48c"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/compare_at_price": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_3a2826dd-ec3f-46d7-b8f9-e6779a030f04"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/condition": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_f9d08e8e-930e-4764-9da2-62e0238dffa6"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/currency": {
+            "state": "observed",
+            "observation_ids": [
+              "o_12d54428-b4a8-4bd8-821e-3e8974fe6c2d"
+            ],
+            "evidence_ids": [
+              "e_9fa48754-4cef-4afd-9c4d-c10cef595999"
+            ],
+            "selected_observation_id": "o_12d54428-b4a8-4bd8-821e-3e8974fe6c2d",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/description": {
+            "state": "observed",
+            "observation_ids": [
+              "o_fb4b1151-e243-40c8-abfc-983cbab26bf9"
+            ],
+            "evidence_ids": [
+              "e_494934ba-6a97-4635-99a3-e82f15c567ae"
+            ],
+            "selected_observation_id": "o_fb4b1151-e243-40c8-abfc-983cbab26bf9",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/external_id": {
+            "state": "observed",
+            "observation_ids": [
+              "o_1bc1cf0f-cd12-48a1-8b4d-98464f8b3068"
+            ],
+            "evidence_ids": [
+              "e_abd8e4d0-0c9c-4a87-a3f4-a0ffb5563e0f"
+            ],
+            "selected_observation_id": "o_1bc1cf0f-cd12-48a1-8b4d-98464f8b3068",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/gtin": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_1ba38a31-ee0d-4039-bf66-e805a8bfc869"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/image_url": {
+            "state": "observed",
+            "observation_ids": [
+              "o_daa8e8bd-d2c7-4797-abef-d67b72f45b0b"
+            ],
+            "evidence_ids": [
+              "e_c2936792-3050-468d-8f30-c311da880559"
+            ],
+            "selected_observation_id": "o_daa8e8bd-d2c7-4797-abef-d67b72f45b0b",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/in_stock": {
+            "state": "observed",
+            "observation_ids": [
+              "o_1610407f-66e4-4354-b369-dc499f8defbe"
+            ],
+            "evidence_ids": [
+              "e_adef1f17-19f4-4c60-91f6-5d668b6e5e0d"
+            ],
+            "selected_observation_id": "o_1610407f-66e4-4354-b369-dc499f8defbe",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/mpn": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_21c2b814-b7ac-45a7-8813-68dcf89b5bef"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/pack_quantity": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_42df876e-5e56-41a1-ba52-0e4ec78eac13"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/price": {
+            "state": "observed",
+            "observation_ids": [
+              "o_4169a177-fb32-470b-8da3-192446e049d7"
+            ],
+            "evidence_ids": [
+              "e_76ae8c9c-96ec-429f-a538-89b66539f04a"
+            ],
+            "selected_observation_id": "o_4169a177-fb32-470b-8da3-192446e049d7",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/product_type": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_3a43ae05-f9fe-472e-9411-7dffebd476d3"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/product_url": {
+            "state": "observed",
+            "observation_ids": [
+              "o_baaa1a4f-d21f-4404-9981-15b613e27897"
+            ],
+            "evidence_ids": [
+              "e_b73f5b0e-d22c-4376-a81e-1b081fb7bef5"
+            ],
+            "selected_observation_id": "o_baaa1a4f-d21f-4404-9981-15b613e27897",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/sku": {
+            "state": "observed",
+            "observation_ids": [
+              "o_39ec1ccd-29bb-4421-9edd-78f6f80dc7dd"
+            ],
+            "evidence_ids": [
+              "e_5567adb1-281f-400d-bf4f-427534724c4c"
+            ],
+            "selected_observation_id": "o_39ec1ccd-29bb-4421-9edd-78f6f80dc7dd",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/tags": {
+            "state": "observed",
+            "observation_ids": [
+              "o_1d69a6d5-87d9-4e2a-8d27-334f179e66f4"
+            ],
+            "evidence_ids": [
+              "e_a5bc4f33-395c-45bb-9a33-82fc6b7ba0c9"
+            ],
+            "selected_observation_id": "o_1d69a6d5-87d9-4e2a-8d27-334f179e66f4",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/tags/0": {
+            "state": "observed",
+            "observation_ids": [
+              "o_c5cfef99-ef26-4148-bf64-decc75a7bd36"
+            ],
+            "evidence_ids": [
+              "e_5ca6742f-63fe-4bba-8186-7139b715b1b3"
+            ],
+            "selected_observation_id": "o_c5cfef99-ef26-4148-bf64-decc75a7bd36",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/title": {
+            "state": "observed",
+            "observation_ids": [
+              "o_50f8ad04-224a-4cce-88f1-c0aa0bc22b0f"
+            ],
+            "evidence_ids": [
+              "e_caa69a06-34c8-4ea2-aa0c-d99e70ad0d03"
+            ],
+            "selected_observation_id": "o_50f8ad04-224a-4cce-88f1-c0aa0bc22b0f",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants": {
+            "state": "observed",
+            "observation_ids": [
+              "o_0da1c393-cb71-4033-ad7b-8698f723943e"
+            ],
+            "evidence_ids": [
+              "e_37e9c4bd-c681-43d5-b174-723e33ec5545"
+            ],
+            "selected_observation_id": "o_0da1c393-cb71-4033-ad7b-8698f723943e",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/attributes": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_4c1d9ef1-cf5a-4181-abf4-658eadd8ef94"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/attributes/option1": {
+            "state": "observed",
+            "observation_ids": [
+              "o_b58a9eaf-78d7-4ec7-b86a-0bed0666815c"
+            ],
+            "evidence_ids": [
+              "e_04b5e367-fcb0-4ea4-b3c8-a61f9f699729"
+            ],
+            "selected_observation_id": "o_b58a9eaf-78d7-4ec7-b86a-0bed0666815c",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/gtin": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_9dd30bd8-f02c-4bfb-940f-646250f72659"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/in_stock": {
+            "state": "observed",
+            "observation_ids": [
+              "o_5cee8245-f3a1-493c-8af9-db288727bb69"
+            ],
+            "evidence_ids": [
+              "e_33ec8c0b-f138-419c-8dc8-8c29cb7ddb37"
+            ],
+            "selected_observation_id": "o_5cee8245-f3a1-493c-8af9-db288727bb69",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/price": {
+            "state": "observed",
+            "observation_ids": [
+              "o_e66b2260-418d-41a3-95b3-c72c40d0b280"
+            ],
+            "evidence_ids": [
+              "e_ad28192a-f15a-4783-854e-136c820e8b1e"
+            ],
+            "selected_observation_id": "o_e66b2260-418d-41a3-95b3-c72c40d0b280",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/sku": {
+            "state": "observed",
+            "observation_ids": [
+              "o_e02ed7f9-5090-471f-bf74-5dccdc078e80"
+            ],
+            "evidence_ids": [
+              "e_ea948396-4102-4df7-b528-3ad8dcaf6934"
+            ],
+            "selected_observation_id": "o_e02ed7f9-5090-471f-bf74-5dccdc078e80",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/title": {
+            "state": "observed",
+            "observation_ids": [
+              "o_14a83cca-1e7d-49a2-b02f-c0ed5c347132"
+            ],
+            "evidence_ids": [
+              "e_a11f5361-e895-45e5-9705-8038290b22e4"
+            ],
+            "selected_observation_id": "o_14a83cca-1e7d-49a2-b02f-c0ed5c347132",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/variant_id": {
+            "state": "observed",
+            "observation_ids": [
+              "o_4c34c0d0-712e-4e15-bdd0-439127a9f233"
+            ],
+            "evidence_ids": [
+              "e_7f350336-bdf0-4e30-a0d9-59fbd5bdbf7b"
+            ],
+            "selected_observation_id": "o_4c34c0d0-712e-4e15-bdd0-439127a9f233",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/vendor": {
+            "state": "observed",
+            "observation_ids": [
+              "o_d636ddd5-a385-4337-8349-f8c9e45ab848"
+            ],
+            "evidence_ids": [
+              "e_a086f7f0-cea4-4381-bb90-3f01fcbace60"
+            ],
+            "selected_observation_id": "o_d636ddd5-a385-4337-8349-f8c9e45ab848",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          }
+        }
+      }
+    },
+    {
+      "relation": "exact",
+      "confidence": 1.0,
+      "evidence": [
+        "supplier-scoped canonical_product_id agrees",
+        "supplier-scoped external_id agrees"
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "index_a": 1,
+      "index_b": 1,
+      "candidate_method": "rules",
+      "field_support": {
+        "a": {
+          "/additional_images": {
+            "state": "observed",
+            "observation_ids": [
+              "o_230487e8-fcc9-4df3-b5d3-36ff2d07fceb"
+            ],
+            "evidence_ids": [
+              "e_59eb48af-ce5b-4f72-b6f2-138045a0374f"
+            ],
+            "selected_observation_id": "o_230487e8-fcc9-4df3-b5d3-36ff2d07fceb",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/attributes": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_ea9c31c0-152d-4c0e-86b8-b9c3427ffa40"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/bundle_components": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_517ca021-e4ac-4ce7-96db-ee6e84db3105"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/category_path": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_7003226e-88a6-4729-b0bc-dd7e36a97e38"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/compare_at_price": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_4317584e-37f8-4d98-b248-f65bdcdf4dba"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/condition": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_67548c27-7249-4c98-b273-c53816ad2821"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/currency": {
+            "state": "observed",
+            "observation_ids": [
+              "o_07be5ccc-bef4-45ee-869e-7b744aa250ef"
+            ],
+            "evidence_ids": [
+              "e_436f315b-682f-4aa2-b367-7c17f215e33c"
+            ],
+            "selected_observation_id": "o_07be5ccc-bef4-45ee-869e-7b744aa250ef",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/description": {
+            "state": "observed",
+            "observation_ids": [
+              "o_16af080e-e430-4d3f-a0bb-b9f61928e383"
+            ],
+            "evidence_ids": [
+              "e_7a7dfd01-d184-42ff-a11b-01fd2674f925"
+            ],
+            "selected_observation_id": "o_16af080e-e430-4d3f-a0bb-b9f61928e383",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/external_id": {
+            "state": "observed",
+            "observation_ids": [
+              "o_5ad1e863-2616-4d8d-bab8-5c43be45fd9f"
+            ],
+            "evidence_ids": [
+              "e_1a978963-5199-4589-8a30-0919d2ac97b5"
+            ],
+            "selected_observation_id": "o_5ad1e863-2616-4d8d-bab8-5c43be45fd9f",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/gtin": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_7aa949bb-5f59-49e1-ae6d-a003cbed17ae"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/image_url": {
+            "state": "observed",
+            "observation_ids": [
+              "o_05b1400f-b851-4313-8df8-a3dd2856e9ac"
+            ],
+            "evidence_ids": [
+              "e_76a87f0f-35ef-42c6-b961-9a6fe2a80db6"
+            ],
+            "selected_observation_id": "o_05b1400f-b851-4313-8df8-a3dd2856e9ac",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/in_stock": {
+            "state": "observed",
+            "observation_ids": [
+              "o_60c30e6f-6ff9-4bac-8f03-65f601da7652"
+            ],
+            "evidence_ids": [
+              "e_5334c690-518d-4109-b5e3-225ddf9b583b"
+            ],
+            "selected_observation_id": "o_60c30e6f-6ff9-4bac-8f03-65f601da7652",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/mpn": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_1a6cd216-9b6c-41d0-bfab-941707ae7fe9"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/pack_quantity": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_c2889805-0709-46f1-9dd1-db6dc5c01d63"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/price": {
+            "state": "observed",
+            "observation_ids": [
+              "o_ef0ad879-7058-4411-91b2-82baf759fe3c"
+            ],
+            "evidence_ids": [
+              "e_b2e62e11-bb3a-42bf-bf27-44cc62a6fde4"
+            ],
+            "selected_observation_id": "o_ef0ad879-7058-4411-91b2-82baf759fe3c",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/product_type": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_64081b0f-a3ea-4aeb-8161-47a6934fbf87"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/product_url": {
+            "state": "observed",
+            "observation_ids": [
+              "o_c02f7d1f-ca2d-4a58-bb15-83775df78c72"
+            ],
+            "evidence_ids": [
+              "e_8b0402f6-c0c4-4e39-bd93-e3b8db747718"
+            ],
+            "selected_observation_id": "o_c02f7d1f-ca2d-4a58-bb15-83775df78c72",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/sku": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_51e85720-2573-4692-a502-3eb9e7ece67a"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/tags": {
+            "state": "observed",
+            "observation_ids": [
+              "o_63b0c1cb-9422-4715-93ec-e53e30e0a0fd"
+            ],
+            "evidence_ids": [
+              "e_d4a6a83a-53cd-4bb4-9f1a-ee8f9cca352f"
+            ],
+            "selected_observation_id": "o_63b0c1cb-9422-4715-93ec-e53e30e0a0fd",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/tags/0": {
+            "state": "observed",
+            "observation_ids": [
+              "o_ca9e747f-a371-4ae4-b864-cb38a9bff749"
+            ],
+            "evidence_ids": [
+              "e_a6e36d22-d4f4-48ee-b083-8c4b0f338a9d"
+            ],
+            "selected_observation_id": "o_ca9e747f-a371-4ae4-b864-cb38a9bff749",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/title": {
+            "state": "observed",
+            "observation_ids": [
+              "o_c2866ee3-19e6-4758-9e0e-128b07db3af4"
+            ],
+            "evidence_ids": [
+              "e_689b0277-4cf2-452e-86be-d5fded55b4d3"
+            ],
+            "selected_observation_id": "o_c2866ee3-19e6-4758-9e0e-128b07db3af4",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants": {
+            "state": "observed",
+            "observation_ids": [
+              "o_fd6c964b-e785-4670-8cfe-95d66ed4e5d1"
+            ],
+            "evidence_ids": [
+              "e_fec70828-ec9b-4121-9193-d6cc4321c071"
+            ],
+            "selected_observation_id": "o_fd6c964b-e785-4670-8cfe-95d66ed4e5d1",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/attributes": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_4f15ffe3-af02-4ec9-b5a8-e28a89d4201d"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/attributes/option1": {
+            "state": "observed",
+            "observation_ids": [
+              "o_7474d6e0-80e5-4a5d-a1a0-230ef076dee0"
+            ],
+            "evidence_ids": [
+              "e_95c62b26-352c-4679-a6cb-2e0ab633b8a4"
+            ],
+            "selected_observation_id": "o_7474d6e0-80e5-4a5d-a1a0-230ef076dee0",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/gtin": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_c1cb2825-9adb-45f3-98a9-afa598fb6073"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/in_stock": {
+            "state": "observed",
+            "observation_ids": [
+              "o_6c3c7dca-f888-4260-aa36-f874ca782ea0"
+            ],
+            "evidence_ids": [
+              "e_44a4731c-fcc5-4b63-b1ff-e567e5732112"
+            ],
+            "selected_observation_id": "o_6c3c7dca-f888-4260-aa36-f874ca782ea0",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/price": {
+            "state": "observed",
+            "observation_ids": [
+              "o_7254c8b2-6116-408a-9734-6e60c8a29118"
+            ],
+            "evidence_ids": [
+              "e_ea1f5d34-81a5-4059-a683-137ca610fae5"
+            ],
+            "selected_observation_id": "o_7254c8b2-6116-408a-9734-6e60c8a29118",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/sku": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_059ce93b-fca6-42f7-b4d9-10adcd987c7d"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/title": {
+            "state": "observed",
+            "observation_ids": [
+              "o_79d2a414-3c80-41c3-b7d0-d61762fe8a1d"
+            ],
+            "evidence_ids": [
+              "e_8b93d268-f720-4469-ae1b-dce90bdba432"
+            ],
+            "selected_observation_id": "o_79d2a414-3c80-41c3-b7d0-d61762fe8a1d",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/variant_id": {
+            "state": "observed",
+            "observation_ids": [
+              "o_5082f848-600c-42e5-a0b1-1fffa94195f5"
+            ],
+            "evidence_ids": [
+              "e_557ae57a-69bf-4498-aa36-f168eeefc1f0"
+            ],
+            "selected_observation_id": "o_5082f848-600c-42e5-a0b1-1fffa94195f5",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/vendor": {
+            "state": "observed",
+            "observation_ids": [
+              "o_720281b5-a178-4657-9c1e-9753f836a7d0"
+            ],
+            "evidence_ids": [
+              "e_c33d4886-f591-4b8f-8ee0-6568319937e1"
+            ],
+            "selected_observation_id": "o_720281b5-a178-4657-9c1e-9753f836a7d0",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          }
+        },
+        "b": {
+          "/additional_images": {
+            "state": "observed",
+            "observation_ids": [
+              "o_40c0a1eb-dbea-4f91-b854-9e042fb3f3f1"
+            ],
+            "evidence_ids": [
+              "e_56d12e0b-515e-4da0-ae2d-fc9b491ffb84"
+            ],
+            "selected_observation_id": "o_40c0a1eb-dbea-4f91-b854-9e042fb3f3f1",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/attributes": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_454c6058-482e-47b8-b5ff-8ec9a8603fbf"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/bundle_components": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_a1719172-39ff-473b-9df1-e12247793c0e"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/category_path": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_3ba1479e-f0fb-483e-9425-2fa0577388fd"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/compare_at_price": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_d85c62b5-cc79-4fd9-ba3a-ff6dced02026"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/condition": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_b8a05f59-dcc5-49e7-b0d1-72e29a90b854"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/currency": {
+            "state": "observed",
+            "observation_ids": [
+              "o_c2fc50eb-cba8-4e6f-a728-3fc49210c4fa"
+            ],
+            "evidence_ids": [
+              "e_1578b823-3037-44ad-a8df-3001700905d9"
+            ],
+            "selected_observation_id": "o_c2fc50eb-cba8-4e6f-a728-3fc49210c4fa",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/description": {
+            "state": "observed",
+            "observation_ids": [
+              "o_2dfe6cda-e07a-4bbc-bd59-0b6326a17bb7"
+            ],
+            "evidence_ids": [
+              "e_af09df67-446c-44c4-8b7c-41b11be16dbd"
+            ],
+            "selected_observation_id": "o_2dfe6cda-e07a-4bbc-bd59-0b6326a17bb7",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/external_id": {
+            "state": "observed",
+            "observation_ids": [
+              "o_08fe3b85-5ee8-44ca-b78d-32a904e36d02"
+            ],
+            "evidence_ids": [
+              "e_e7510f05-030d-4665-b2c1-987dc872a21b"
+            ],
+            "selected_observation_id": "o_08fe3b85-5ee8-44ca-b78d-32a904e36d02",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/gtin": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_fbbf89d8-05be-4b12-aca6-2c17bb819ba6"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/image_url": {
+            "state": "observed",
+            "observation_ids": [
+              "o_a54a478d-8af3-4295-992a-4c81328b4fef"
+            ],
+            "evidence_ids": [
+              "e_98a7136f-b994-428d-9dea-83f081902ddf"
+            ],
+            "selected_observation_id": "o_a54a478d-8af3-4295-992a-4c81328b4fef",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/in_stock": {
+            "state": "observed",
+            "observation_ids": [
+              "o_16385bc3-d7cb-4dc5-9d9e-234272ca4e47"
+            ],
+            "evidence_ids": [
+              "e_0d41b974-3532-49a7-b578-681bc7741177"
+            ],
+            "selected_observation_id": "o_16385bc3-d7cb-4dc5-9d9e-234272ca4e47",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/mpn": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_23c48860-c26d-4f8c-9ec4-ffc95f9d9ea3"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/pack_quantity": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_4676bc66-dcae-4eef-97f0-c8c5d6e153fd"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/price": {
+            "state": "observed",
+            "observation_ids": [
+              "o_e96e28ba-2314-448d-95e8-16353e2ed226"
+            ],
+            "evidence_ids": [
+              "e_7b72e6d1-11b1-49e3-a0b2-477b113224bb"
+            ],
+            "selected_observation_id": "o_e96e28ba-2314-448d-95e8-16353e2ed226",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/product_type": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_c195ed95-d3ad-435d-91dd-d01df580e79a"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/product_url": {
+            "state": "observed",
+            "observation_ids": [
+              "o_88a84609-51bf-4c78-8bf2-2e79c595732c"
+            ],
+            "evidence_ids": [
+              "e_a552fe5e-e866-49d1-9b4e-5016acbc0752"
+            ],
+            "selected_observation_id": "o_88a84609-51bf-4c78-8bf2-2e79c595732c",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/sku": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_4015e304-c27f-4b5a-b631-4ce320b23096"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/tags": {
+            "state": "observed",
+            "observation_ids": [
+              "o_7aa46933-e772-49f5-849b-bf7ed70274a7"
+            ],
+            "evidence_ids": [
+              "e_03841066-f979-4aa0-86cc-fa640d0487c4"
+            ],
+            "selected_observation_id": "o_7aa46933-e772-49f5-849b-bf7ed70274a7",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/tags/0": {
+            "state": "observed",
+            "observation_ids": [
+              "o_1e1915d4-fac6-4316-b377-76e47f1f29d9"
+            ],
+            "evidence_ids": [
+              "e_45fe808a-1c69-4d95-a69b-963ea3b24dac"
+            ],
+            "selected_observation_id": "o_1e1915d4-fac6-4316-b377-76e47f1f29d9",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/title": {
+            "state": "observed",
+            "observation_ids": [
+              "o_9265dc9a-8e23-4f6a-9376-b304f99a7ce3"
+            ],
+            "evidence_ids": [
+              "e_1de700fd-14f4-4eda-9ca4-ff4d7a76a4b6"
+            ],
+            "selected_observation_id": "o_9265dc9a-8e23-4f6a-9376-b304f99a7ce3",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants": {
+            "state": "observed",
+            "observation_ids": [
+              "o_3612d2f0-449e-435a-8c83-c43675743823"
+            ],
+            "evidence_ids": [
+              "e_a9117692-3695-496b-8826-8dfe83a1bbe4"
+            ],
+            "selected_observation_id": "o_3612d2f0-449e-435a-8c83-c43675743823",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/attributes": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_1a932c79-ff21-41e6-9432-0c382f15d27c"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/attributes/option1": {
+            "state": "observed",
+            "observation_ids": [
+              "o_f5d6a2be-1e30-4419-b698-2f9f9deec7c1"
+            ],
+            "evidence_ids": [
+              "e_95bfaa5f-ff24-4b4f-8f19-9d1c070eddca"
+            ],
+            "selected_observation_id": "o_f5d6a2be-1e30-4419-b698-2f9f9deec7c1",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/gtin": {
+            "state": "unsupported",
+            "observation_ids": [
+              "o_23c7d447-7f3a-4c50-ad63-943cfcf09d35"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/in_stock": {
+            "state": "observed",
+            "observation_ids": [
+              "o_df23dfdd-67b6-4886-aee6-4fc74bc70e26"
+            ],
+            "evidence_ids": [
+              "e_b97f59b3-784c-433c-a9aa-a1b8bf3d4ff6"
+            ],
+            "selected_observation_id": "o_df23dfdd-67b6-4886-aee6-4fc74bc70e26",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/price": {
+            "state": "observed",
+            "observation_ids": [
+              "o_0a86369a-c02c-4356-8ce8-c5563d5ba046"
+            ],
+            "evidence_ids": [
+              "e_c059f1fe-ed9f-4a20-ac95-3d185f5a9c52"
+            ],
+            "selected_observation_id": "o_0a86369a-c02c-4356-8ce8-c5563d5ba046",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/sku": {
+            "state": "unknown",
+            "observation_ids": [
+              "o_15557fd9-c23e-4268-a46a-b54102606828"
+            ],
+            "evidence_ids": [],
+            "selected_observation_id": null,
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/title": {
+            "state": "observed",
+            "observation_ids": [
+              "o_87eaa017-73ed-4c47-b2a9-98637239ebbb"
+            ],
+            "evidence_ids": [
+              "e_c6f53cdc-1c28-411c-bd9f-939d9498067e"
+            ],
+            "selected_observation_id": "o_87eaa017-73ed-4c47-b2a9-98637239ebbb",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/variants/0/variant_id": {
+            "state": "observed",
+            "observation_ids": [
+              "o_3ad458f7-31f7-4227-8331-373166c5cca7"
+            ],
+            "evidence_ids": [
+              "e_8a5d4d77-a0db-400c-bffd-c797630ca2a7"
+            ],
+            "selected_observation_id": "o_3ad458f7-31f7-4227-8331-373166c5cca7",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          },
+          "/vendor": {
+            "state": "observed",
+            "observation_ids": [
+              "o_a6a5d4c5-515f-45d1-8261-f942df91a808"
+            ],
+            "evidence_ids": [
+              "e_4feffd8e-65d6-408a-b802-913e338c6359"
+            ],
+            "selected_observation_id": "o_a6a5d4c5-515f-45d1-8261-f942df91a808",
+            "policy": null,
+            "policy_version": null,
+            "reason": "No field policy has been applied"
+          }
+        }
+      }
+    }
+  ],
+  "evidence": {
+    "status": "available",
+    "reason": "retained_capture",
+    "evidence": {
+      "evidence_id": "e_76ae8c9c-96ec-429f-a538-89b66539f04a",
+      "source_url": "https://www.blissworld.com/products.json?limit=2&page=1",
+      "observed_at": "2026-10-16T16:41:37.164820+00:00",
+      "method": "shopify_api",
+      "excerpt": null,
+      "retained_data": {
+        "source_pointer": "/variants/0/price",
+        "value": "65.00"
+      },
+      "pointer": "/value",
+      "source_role": "unverified",
+      "truncated": false
+    }
+  },
+  "version_error": {
+    "schema_version": "1.0",
+    "request_id": "6a871f17-10b0-4ea1-ad62-91416064fc6d",
+    "ok": false,
+    "warnings": [],
+    "error": {
+      "code": "unsupported_version",
+      "message": "unsupported version",
+      "retryable": false
+    }
+  },
+  "changes": {
+    "state": "succeeded",
+    "collection": "events",
+    "items": [],
+    "next_cursor": null,
+    "total": 0,
+    "completeness": "complete",
+    "metadata": {
+      "current_snapshot_id": 2,
+      "policy_version": "reliable-change-v1",
+      "previous_snapshot_id": 1,
+      "reason": "evaluated_supported_facts",
+      "report_id": "a622ecd88d44febc43f8720a7a361650b835075e5c7d7edf775679c4129fc5d0",
+      "status": "compared",
+      "supplier": "www.blissworld.com"
+    }
+  },
+  "changes_interpretation": "Two bounded real captures; no manufactured commercial transition; incomplete catalog cannot confirm removals",
+  "execution_seconds": 41.44081752200145,
+  "request_count": 7
+}

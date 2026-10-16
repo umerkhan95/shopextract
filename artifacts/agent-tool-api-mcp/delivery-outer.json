@@ -1,0 +1,13 @@
+{
+  "exit": 0,
+  "outer_seconds": 53.752263337999466,
+  "whole_limit_seconds": 180,
+  "stop_reason": null,
+  "per_case_seconds": 15,
+  "seed": 24,
+  "numerical_thread_caps": 2,
+  "process_limit": 5,
+  "cleanup": "owned subprocess group terminated after exit/deadline",
+  "public_network": false,
+  "models": false
+}

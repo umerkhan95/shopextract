@@ -33,7 +33,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0", "pytest-asyncio>=0.24", "respx>=0.22", "build>=1.0", "graphql-core>=3.2,<3.3"]
+mcp = ["mcp>=1.30,<2"]
+dev = ["jsonschema>=4.20", "pytest>=8.0", "pytest-asyncio>=0.24", "respx>=0.22", "build>=1.0", "graphql-core>=3.2,<3.3"]
 
 [project.scripts]
 shopextract = "shopextract.cli:main"

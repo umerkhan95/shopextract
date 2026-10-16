@@ -1,0 +1,1328 @@
+[
+  {
+    "title": "Bliss Halloween Costume",
+    "price": "65.00",
+    "currency": "USD",
+    "description": "No tricks, all treats when you dress like Bliss for Halloween! Get spa-ready with this iconic costume kit featuring everything you need to channel your inner\u00a0Bliss.",
+    "image_url": "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeContents.jpg?v=1791810489",
+    "product_url": "https://www.blissworld.com/products/bliss-halloween-costume",
+    "external_id": "15445253980445",
+    "sku": "0585-0057003",
+    "gtin": null,
+    "mpn": null,
+    "vendor": "Bliss World Store",
+    "product_type": "",
+    "in_stock": true,
+    "condition": "NEW",
+    "compare_at_price": null,
+    "variants": [
+      {
+        "variant_id": "67743111872797",
+        "title": "Default Title",
+        "price": "65.00",
+        "sku": "0585-0057003",
+        "in_stock": true,
+        "canonical_variant_id": "v_0d780491-b3e6-59ce-b075-0490a6df6ad9",
+        "attributes": {
+          "option1": "Default Title"
+        },
+        "gtin": null,
+        "owner_handle": "MuMxi0cUcFuuw3cRGC7Gd-g_JaRURVym",
+        "evidence_ids": [
+          "e_48193524-bd1b-4902-ab10-3440cb6a5e43",
+          "e_88a0a2a4-432b-410f-aec4-9cd3342a52d5",
+          "e_cd4f5ac6-7149-471d-b14e-3e0a21246fdf",
+          "e_0ce308b9-567a-4082-a9af-e19e65da78e7",
+          "e_d3cbc252-83a7-4d06-8593-7c7244e98c2e",
+          "e_2d7341c4-e3df-4ae3-8e5f-43d21e0b1485"
+        ],
+        "field_evidence": {
+          "/variant_id": [
+            "e_48193524-bd1b-4902-ab10-3440cb6a5e43"
+          ],
+          "/title": [
+            "e_88a0a2a4-432b-410f-aec4-9cd3342a52d5"
+          ],
+          "/price": [
+            "e_cd4f5ac6-7149-471d-b14e-3e0a21246fdf"
+          ],
+          "/sku": [
+            "e_0ce308b9-567a-4082-a9af-e19e65da78e7"
+          ],
+          "/in_stock": [
+            "e_d3cbc252-83a7-4d06-8593-7c7244e98c2e"
+          ],
+          "/attributes": [],
+          "/attributes/option1": [
+            "e_2d7341c4-e3df-4ae3-8e5f-43d21e0b1485"
+          ],
+          "/gtin": []
+        },
+        "support": {
+          "/variant_id": {
+            "state": "observed",
+            "reason": "",
+            "value": "67743111872797",
+            "legacy_value": "67743111872797",
+            "observation_ids": [
+              "o_e90bf1c9-ac51-4916-b86b-e60cc1a7b7f0"
+            ],
+            "evidence_ids": [
+              "e_48193524-bd1b-4902-ab10-3440cb6a5e43"
+            ]
+          },
+          "/title": {
+            "state": "observed",
+            "reason": "",
+            "value": "Default Title",
+            "legacy_value": "Default Title",
+            "observation_ids": [
+              "o_4589c132-aec2-476d-a43d-a94451c8cf59"
+            ],
+            "evidence_ids": [
+              "e_88a0a2a4-432b-410f-aec4-9cd3342a52d5"
+            ]
+          },
+          "/price": {
+            "state": "observed",
+            "reason": "",
+            "value": "65.00",
+            "legacy_value": "65.00",
+            "observation_ids": [
+              "o_0bd30ea7-f604-4ecb-a235-4df385639bdf"
+            ],
+            "evidence_ids": [
+              "e_cd4f5ac6-7149-471d-b14e-3e0a21246fdf"
+            ]
+          },
+          "/sku": {
+            "state": "observed",
+            "reason": "",
+            "value": "0585-0057003",
+            "legacy_value": "0585-0057003",
+            "observation_ids": [
+              "o_25354b1f-074a-4ab9-8722-b436a7865f5e"
+            ],
+            "evidence_ids": [
+              "e_0ce308b9-567a-4082-a9af-e19e65da78e7"
+            ]
+          },
+          "/in_stock": {
+            "state": "observed",
+            "reason": "",
+            "value": true,
+            "legacy_value": true,
+            "observation_ids": [
+              "o_65841ce7-6705-493c-93c3-38e474d94c06"
+            ],
+            "evidence_ids": [
+              "e_d3cbc252-83a7-4d06-8593-7c7244e98c2e"
+            ]
+          },
+          "/attributes": {
+            "state": "unsupported",
+            "reason": "No retained source mapping; compatibility/default value",
+            "value": null,
+            "legacy_value": {
+              "option1": "Default Title"
+            },
+            "observation_ids": [
+              "o_2856a76e-d970-4dba-9874-11f0cfdf0e59"
+            ],
+            "evidence_ids": []
+          },
+          "/attributes/option1": {
+            "state": "observed",
+            "reason": "",
+            "value": "Default Title",
+            "legacy_value": "Default Title",
+            "observation_ids": [
+              "o_80994a51-33d9-481f-8e71-0a92af0df238"
+            ],
+            "evidence_ids": [
+              "e_2d7341c4-e3df-4ae3-8e5f-43d21e0b1485"
+            ]
+          },
+          "/gtin": {
+            "state": "unsupported",
+            "reason": "Selected source has no retained capture; support unavailable",
+            "value": null,
+            "legacy_value": null,
+            "observation_ids": [
+              "o_2ca68e2f-f4e5-436e-8397-6e2b6a5718d3"
+            ],
+            "evidence_ids": []
+          }
+        }
+      }
+    ],
+    "tags": [
+      "refresh"
+    ],
+    "additional_images": [
+      "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeModel.jpg?v=1791810489",
+      "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeInPackage.png?v=1791810490"
+    ],
+    "category_path": [],
+    "platform": "shopify",
+    "scraped_at": "2026-10-16T16:41:29.592849+00:00",
+    "canonical_product_id": "p_aa43b19b-909f-51b8-b8b8-7244e0598c11",
+    "supplier_id": "www.blissworld.com",
+    "attributes": {},
+    "pack_quantity": null,
+    "bundle_components": [],
+    "owner_handle": "iJekfQL9wlb4CRt6NHcDXhCz8eryIXPJ",
+    "evidence_ids": [
+      "e_0e6dcdee-ca80-4dc9-9205-11c9c8da2792",
+      "e_73d1fb39-c5bc-40b5-8f5d-626dc2ae8287",
+      "e_6dbe5ad8-9123-4549-b6d9-c3316e02f3d5",
+      "e_2a634d99-ea14-4cb0-af9b-33d5f86b4437",
+      "e_ddb2f6ca-48a7-4c95-98a0-a69823f49410",
+      "e_e585d59d-4989-4b77-ba39-c2957eac20fa",
+      "e_e141e49a-d621-49da-81ec-03886062e6c3",
+      "e_a56b54ba-ab27-4503-a298-eda0405b2614",
+      "e_1c4ab5c0-4c92-4ed3-a421-b2fb5e3a5139",
+      "e_f9630cee-0cae-49af-9c1f-c423520084c3",
+      "e_05187087-5807-4413-aeca-452494753659",
+      "e_48193524-bd1b-4902-ab10-3440cb6a5e43",
+      "e_88a0a2a4-432b-410f-aec4-9cd3342a52d5",
+      "e_cd4f5ac6-7149-471d-b14e-3e0a21246fdf",
+      "e_0ce308b9-567a-4082-a9af-e19e65da78e7",
+      "e_d3cbc252-83a7-4d06-8593-7c7244e98c2e",
+      "e_2d7341c4-e3df-4ae3-8e5f-43d21e0b1485",
+      "e_d771a5b2-4fa4-44b6-8cdb-306ea23ca54f",
+      "e_01f52b36-2a87-47b6-b221-d8bf8e28923f",
+      "e_0cb96be9-ef7b-4280-a678-3e95b5f7e401",
+      "e_0e15f5b5-2c59-4d5d-b38c-6ff704de547d",
+      "e_25786107-4026-406e-9c3f-de78addc8a2c"
+    ],
+    "field_evidence": {
+      "/title": [
+        "e_0e6dcdee-ca80-4dc9-9205-11c9c8da2792"
+      ],
+      "/price": [
+        "e_73d1fb39-c5bc-40b5-8f5d-626dc2ae8287"
+      ],
+      "/currency": [
+        "e_6dbe5ad8-9123-4549-b6d9-c3316e02f3d5"
+      ],
+      "/description": [
+        "e_2a634d99-ea14-4cb0-af9b-33d5f86b4437"
+      ],
+      "/image_url": [
+        "e_ddb2f6ca-48a7-4c95-98a0-a69823f49410"
+      ],
+      "/product_url": [
+        "e_e585d59d-4989-4b77-ba39-c2957eac20fa"
+      ],
+      "/external_id": [
+        "e_e141e49a-d621-49da-81ec-03886062e6c3"
+      ],
+      "/sku": [
+        "e_a56b54ba-ab27-4503-a298-eda0405b2614"
+      ],
+      "/gtin": [],
+      "/mpn": [],
+      "/vendor": [
+        "e_1c4ab5c0-4c92-4ed3-a421-b2fb5e3a5139"
+      ],
+      "/product_type": [],
+      "/in_stock": [
+        "e_f9630cee-0cae-49af-9c1f-c423520084c3"
+      ],
+      "/condition": [],
+      "/compare_at_price": [],
+      "/variants": [
+        "e_05187087-5807-4413-aeca-452494753659"
+      ],
+      "/variants/0/variant_id": [
+        "e_48193524-bd1b-4902-ab10-3440cb6a5e43"
+      ],
+      "/variants/0/title": [
+        "e_88a0a2a4-432b-410f-aec4-9cd3342a52d5"
+      ],
+      "/variants/0/price": [
+        "e_cd4f5ac6-7149-471d-b14e-3e0a21246fdf"
+      ],
+      "/variants/0/sku": [
+        "e_0ce308b9-567a-4082-a9af-e19e65da78e7"
+      ],
+      "/variants/0/in_stock": [
+        "e_d3cbc252-83a7-4d06-8593-7c7244e98c2e"
+      ],
+      "/variants/0/attributes": [],
+      "/variants/0/attributes/option1": [
+        "e_2d7341c4-e3df-4ae3-8e5f-43d21e0b1485"
+      ],
+      "/variants/0/gtin": [],
+      "/tags": [
+        "e_d771a5b2-4fa4-44b6-8cdb-306ea23ca54f"
+      ],
+      "/tags/0": [
+        "e_01f52b36-2a87-47b6-b221-d8bf8e28923f"
+      ],
+      "/additional_images": [
+        "e_0cb96be9-ef7b-4280-a678-3e95b5f7e401"
+      ],
+      "/additional_images/0": [
+        "e_0e15f5b5-2c59-4d5d-b38c-6ff704de547d"
+      ],
+      "/additional_images/1": [
+        "e_25786107-4026-406e-9c3f-de78addc8a2c"
+      ],
+      "/category_path": [],
+      "/attributes": [],
+      "/pack_quantity": [],
+      "/bundle_components": []
+    },
+    "support": {
+      "/title": {
+        "state": "observed",
+        "reason": "",
+        "value": "Bliss Halloween Costume",
+        "legacy_value": "Bliss Halloween Costume",
+        "observation_ids": [
+          "o_af7954ae-f8a2-4555-b04b-30489f3ee278"
+        ],
+        "evidence_ids": [
+          "e_0e6dcdee-ca80-4dc9-9205-11c9c8da2792"
+        ]
+      },
+      "/price": {
+        "state": "observed",
+        "reason": "",
+        "value": "65.00",
+        "legacy_value": "65.00",
+        "observation_ids": [
+          "o_fbddb1a7-f83d-4838-a36f-4efc659eeaa1"
+        ],
+        "evidence_ids": [
+          "e_73d1fb39-c5bc-40b5-8f5d-626dc2ae8287"
+        ]
+      },
+      "/currency": {
+        "state": "observed",
+        "reason": "",
+        "value": "USD",
+        "legacy_value": "USD",
+        "observation_ids": [
+          "o_b9d5067f-db61-4255-8ba1-0ce5078718db"
+        ],
+        "evidence_ids": [
+          "e_6dbe5ad8-9123-4549-b6d9-c3316e02f3d5"
+        ]
+      },
+      "/description": {
+        "state": "observed",
+        "reason": "",
+        "value": "No tricks, all treats when you dress like Bliss for Halloween! Get spa-ready with this iconic costume kit featuring everything you need to channel your inner\u00a0Bliss.",
+        "legacy_value": "No tricks, all treats when you dress like Bliss for Halloween! Get spa-ready with this iconic costume kit featuring everything you need to channel your inner\u00a0Bliss.",
+        "observation_ids": [
+          "o_91813845-dab8-4eb9-b719-49b74aa7d67a"
+        ],
+        "evidence_ids": [
+          "e_2a634d99-ea14-4cb0-af9b-33d5f86b4437"
+        ]
+      },
+      "/image_url": {
+        "state": "observed",
+        "reason": "",
+        "value": "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeContents.jpg?v=1791810489",
+        "legacy_value": "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeContents.jpg?v=1791810489",
+        "observation_ids": [
+          "o_f4a617ba-02c8-4345-8a5f-dfe2c1cac164"
+        ],
+        "evidence_ids": [
+          "e_ddb2f6ca-48a7-4c95-98a0-a69823f49410"
+        ]
+      },
+      "/product_url": {
+        "state": "observed",
+        "reason": "",
+        "value": "https://www.blissworld.com/products/bliss-halloween-costume",
+        "legacy_value": "https://www.blissworld.com/products/bliss-halloween-costume",
+        "observation_ids": [
+          "o_13c11d54-168d-409c-b5e0-22326b2ac5a4"
+        ],
+        "evidence_ids": [
+          "e_e585d59d-4989-4b77-ba39-c2957eac20fa"
+        ]
+      },
+      "/external_id": {
+        "state": "observed",
+        "reason": "",
+        "value": "15445253980445",
+        "legacy_value": "15445253980445",
+        "observation_ids": [
+          "o_7752a619-97dc-47c9-a0c2-3cee230b42d0"
+        ],
+        "evidence_ids": [
+          "e_e141e49a-d621-49da-81ec-03886062e6c3"
+        ]
+      },
+      "/sku": {
+        "state": "observed",
+        "reason": "",
+        "value": "0585-0057003",
+        "legacy_value": "0585-0057003",
+        "observation_ids": [
+          "o_fe02a022-47a5-4bb8-9fa4-b10123941317"
+        ],
+        "evidence_ids": [
+          "e_a56b54ba-ab27-4503-a298-eda0405b2614"
+        ]
+      },
+      "/gtin": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_2651187b-3faf-4999-944a-81ec7cc7016e"
+        ],
+        "evidence_ids": []
+      },
+      "/mpn": {
+        "state": "unsupported",
+        "reason": "No retained source mapping; compatibility/default value",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_c55d9024-2ed5-480b-8d5e-24ed220461df"
+        ],
+        "evidence_ids": []
+      },
+      "/vendor": {
+        "state": "observed",
+        "reason": "",
+        "value": "Bliss World Store",
+        "legacy_value": "Bliss World Store",
+        "observation_ids": [
+          "o_664dea0c-4412-4aa2-bb79-cb41a8f4e08a"
+        ],
+        "evidence_ids": [
+          "e_1c4ab5c0-4c92-4ed3-a421-b2fb5e3a5139"
+        ]
+      },
+      "/product_type": {
+        "state": "unknown",
+        "reason": "Source explicitly contains no value",
+        "value": null,
+        "legacy_value": "",
+        "observation_ids": [
+          "o_28934010-559a-4257-9b7a-872f1b1e9242"
+        ],
+        "evidence_ids": []
+      },
+      "/in_stock": {
+        "state": "observed",
+        "reason": "",
+        "value": true,
+        "legacy_value": true,
+        "observation_ids": [
+          "o_65462b4a-b249-4bd3-9d24-4d0f242621d1"
+        ],
+        "evidence_ids": [
+          "e_f9630cee-0cae-49af-9c1f-c423520084c3"
+        ]
+      },
+      "/condition": {
+        "state": "unsupported",
+        "reason": "No retained source mapping; compatibility/default value",
+        "value": null,
+        "legacy_value": "NEW",
+        "observation_ids": [
+          "o_52e9ade9-7dff-4de0-8a4f-6107d9cd6447"
+        ],
+        "evidence_ids": []
+      },
+      "/compare_at_price": {
+        "state": "unknown",
+        "reason": "Source explicitly contains no value",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_453a52ad-26ba-48c6-875e-9b9a9982a143"
+        ],
+        "evidence_ids": []
+      },
+      "/variants": {
+        "state": "observed",
+        "reason": "",
+        "value": [
+          {
+            "variant_id": "67743111872797",
+            "title": "Default Title",
+            "price": "65.00",
+            "sku": "0585-0057003",
+            "in_stock": true,
+            "canonical_variant_id": "v_0d780491-b3e6-59ce-b075-0490a6df6ad9",
+            "attributes": {
+              "option1": "Default Title"
+            },
+            "gtin": null
+          }
+        ],
+        "legacy_value": [
+          {
+            "variant_id": "67743111872797",
+            "title": "Default Title",
+            "price": "65.00",
+            "sku": "0585-0057003",
+            "in_stock": true,
+            "canonical_variant_id": "v_0d780491-b3e6-59ce-b075-0490a6df6ad9",
+            "attributes": {
+              "option1": "Default Title"
+            },
+            "gtin": null
+          }
+        ],
+        "observation_ids": [
+          "o_a0444b8f-774f-4e59-82cb-b85ffb79f518"
+        ],
+        "evidence_ids": [
+          "e_05187087-5807-4413-aeca-452494753659"
+        ]
+      },
+      "/variants/0/variant_id": {
+        "state": "observed",
+        "reason": "",
+        "value": "67743111872797",
+        "legacy_value": "67743111872797",
+        "observation_ids": [
+          "o_e90bf1c9-ac51-4916-b86b-e60cc1a7b7f0"
+        ],
+        "evidence_ids": [
+          "e_48193524-bd1b-4902-ab10-3440cb6a5e43"
+        ]
+      },
+      "/variants/0/title": {
+        "state": "observed",
+        "reason": "",
+        "value": "Default Title",
+        "legacy_value": "Default Title",
+        "observation_ids": [
+          "o_4589c132-aec2-476d-a43d-a94451c8cf59"
+        ],
+        "evidence_ids": [
+          "e_88a0a2a4-432b-410f-aec4-9cd3342a52d5"
+        ]
+      },
+      "/variants/0/price": {
+        "state": "observed",
+        "reason": "",
+        "value": "65.00",
+        "legacy_value": "65.00",
+        "observation_ids": [
+          "o_0bd30ea7-f604-4ecb-a235-4df385639bdf"
+        ],
+        "evidence_ids": [
+          "e_cd4f5ac6-7149-471d-b14e-3e0a21246fdf"
+        ]
+      },
+      "/variants/0/sku": {
+        "state": "observed",
+        "reason": "",
+        "value": "0585-0057003",
+        "legacy_value": "0585-0057003",
+        "observation_ids": [
+          "o_25354b1f-074a-4ab9-8722-b436a7865f5e"
+        ],
+        "evidence_ids": [
+          "e_0ce308b9-567a-4082-a9af-e19e65da78e7"
+        ]
+      },
+      "/variants/0/in_stock": {
+        "state": "observed",
+        "reason": "",
+        "value": true,
+        "legacy_value": true,
+        "observation_ids": [
+          "o_65841ce7-6705-493c-93c3-38e474d94c06"
+        ],
+        "evidence_ids": [
+          "e_d3cbc252-83a7-4d06-8593-7c7244e98c2e"
+        ]
+      },
+      "/variants/0/attributes": {
+        "state": "unsupported",
+        "reason": "No retained source mapping; compatibility/default value",
+        "value": null,
+        "legacy_value": {
+          "option1": "Default Title"
+        },
+        "observation_ids": [
+          "o_2856a76e-d970-4dba-9874-11f0cfdf0e59"
+        ],
+        "evidence_ids": []
+      },
+      "/variants/0/attributes/option1": {
+        "state": "observed",
+        "reason": "",
+        "value": "Default Title",
+        "legacy_value": "Default Title",
+        "observation_ids": [
+          "o_80994a51-33d9-481f-8e71-0a92af0df238"
+        ],
+        "evidence_ids": [
+          "e_2d7341c4-e3df-4ae3-8e5f-43d21e0b1485"
+        ]
+      },
+      "/variants/0/gtin": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_2ca68e2f-f4e5-436e-8397-6e2b6a5718d3"
+        ],
+        "evidence_ids": []
+      },
+      "/tags": {
+        "state": "observed",
+        "reason": "",
+        "value": [
+          "refresh"
+        ],
+        "legacy_value": [
+          "refresh"
+        ],
+        "observation_ids": [
+          "o_ca1d9265-8603-4d51-8317-10688e883c2b"
+        ],
+        "evidence_ids": [
+          "e_d771a5b2-4fa4-44b6-8cdb-306ea23ca54f"
+        ]
+      },
+      "/tags/0": {
+        "state": "observed",
+        "reason": "",
+        "value": "refresh",
+        "legacy_value": "refresh",
+        "observation_ids": [
+          "o_f23930e0-c8d6-4149-862e-711b411704e0"
+        ],
+        "evidence_ids": [
+          "e_01f52b36-2a87-47b6-b221-d8bf8e28923f"
+        ]
+      },
+      "/additional_images": {
+        "state": "observed",
+        "reason": "",
+        "value": [
+          "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeModel.jpg?v=1791810489",
+          "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeInPackage.png?v=1791810490"
+        ],
+        "legacy_value": [
+          "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeModel.jpg?v=1791810489",
+          "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeInPackage.png?v=1791810490"
+        ],
+        "observation_ids": [
+          "o_d6315b22-7c41-491a-a3f6-376beadfd6ca"
+        ],
+        "evidence_ids": [
+          "e_0cb96be9-ef7b-4280-a678-3e95b5f7e401"
+        ]
+      },
+      "/additional_images/0": {
+        "state": "observed",
+        "reason": "",
+        "value": "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeModel.jpg?v=1791810489",
+        "legacy_value": "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeModel.jpg?v=1791810489",
+        "observation_ids": [
+          "o_50419def-13b8-4aa7-bfb7-02f003a9c7e6"
+        ],
+        "evidence_ids": [
+          "e_0e15f5b5-2c59-4d5d-b38c-6ff704de547d"
+        ]
+      },
+      "/additional_images/1": {
+        "state": "observed",
+        "reason": "",
+        "value": "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeInPackage.png?v=1791810490",
+        "legacy_value": "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/BlissGirlCostumeInPackage.png?v=1791810490",
+        "observation_ids": [
+          "o_d794df31-4aeb-4a48-b5f8-0ee268b5e204"
+        ],
+        "evidence_ids": [
+          "e_25786107-4026-406e-9c3f-de78addc8a2c"
+        ]
+      },
+      "/category_path": {
+        "state": "unknown",
+        "reason": "Source explicitly contains no value",
+        "value": null,
+        "legacy_value": [],
+        "observation_ids": [
+          "o_917179d8-d32a-4489-a151-4bfc2acba7c5"
+        ],
+        "evidence_ids": []
+      },
+      "/attributes": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": {},
+        "observation_ids": [
+          "o_db669325-7dc5-4067-8bfd-f0a3713b5c00"
+        ],
+        "evidence_ids": []
+      },
+      "/pack_quantity": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_5995e65e-9457-402c-9a96-061128b854d7"
+        ],
+        "evidence_ids": []
+      },
+      "/bundle_components": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": [],
+        "observation_ids": [
+          "o_a1a4334e-83bd-46ee-b4b3-c1ce52185254"
+        ],
+        "evidence_ids": []
+      }
+    }
+  },
+  {
+    "title": "Salmon DNA Duo",
+    "price": "55.00",
+    "currency": "USD",
+    "description": "A barrier-boosting rejuvenating pair powered by salmon PDRN that helps support the skin\u2019s natural renewal process, delivering a smoother surface and a hydrated glow.",
+    "image_url": "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/SalmonDNADuo.jpg?v=1791459101",
+    "product_url": "https://www.blissworld.com/products/salmon-dna-duo",
+    "external_id": "15432203174173",
+    "sku": null,
+    "gtin": null,
+    "mpn": null,
+    "vendor": "Bliss World Store",
+    "product_type": "",
+    "in_stock": true,
+    "condition": "NEW",
+    "compare_at_price": null,
+    "variants": [
+      {
+        "variant_id": "67705008455965",
+        "title": "Default Title",
+        "price": "55.00",
+        "sku": null,
+        "in_stock": true,
+        "canonical_variant_id": "v_151219e5-1e52-5dcf-bfe7-f1b2f45e7e73",
+        "attributes": {
+          "option1": "Default Title"
+        },
+        "gtin": null,
+        "owner_handle": "fI9_kkngEX0t5zjBVQu_wVnoqOe83twB",
+        "evidence_ids": [
+          "e_557ae57a-69bf-4498-aa36-f168eeefc1f0",
+          "e_8b93d268-f720-4469-ae1b-dce90bdba432",
+          "e_ea1f5d34-81a5-4059-a683-137ca610fae5",
+          "e_44a4731c-fcc5-4b63-b1ff-e567e5732112",
+          "e_95c62b26-352c-4679-a6cb-2e0ab633b8a4"
+        ],
+        "field_evidence": {
+          "/variant_id": [
+            "e_557ae57a-69bf-4498-aa36-f168eeefc1f0"
+          ],
+          "/title": [
+            "e_8b93d268-f720-4469-ae1b-dce90bdba432"
+          ],
+          "/price": [
+            "e_ea1f5d34-81a5-4059-a683-137ca610fae5"
+          ],
+          "/sku": [],
+          "/in_stock": [
+            "e_44a4731c-fcc5-4b63-b1ff-e567e5732112"
+          ],
+          "/attributes": [],
+          "/attributes/option1": [
+            "e_95c62b26-352c-4679-a6cb-2e0ab633b8a4"
+          ],
+          "/gtin": []
+        },
+        "support": {
+          "/variant_id": {
+            "state": "observed",
+            "reason": "",
+            "value": "67705008455965",
+            "legacy_value": "67705008455965",
+            "observation_ids": [
+              "o_5082f848-600c-42e5-a0b1-1fffa94195f5"
+            ],
+            "evidence_ids": [
+              "e_557ae57a-69bf-4498-aa36-f168eeefc1f0"
+            ]
+          },
+          "/title": {
+            "state": "observed",
+            "reason": "",
+            "value": "Default Title",
+            "legacy_value": "Default Title",
+            "observation_ids": [
+              "o_79d2a414-3c80-41c3-b7d0-d61762fe8a1d"
+            ],
+            "evidence_ids": [
+              "e_8b93d268-f720-4469-ae1b-dce90bdba432"
+            ]
+          },
+          "/price": {
+            "state": "observed",
+            "reason": "",
+            "value": "55.00",
+            "legacy_value": "55.00",
+            "observation_ids": [
+              "o_7254c8b2-6116-408a-9734-6e60c8a29118"
+            ],
+            "evidence_ids": [
+              "e_ea1f5d34-81a5-4059-a683-137ca610fae5"
+            ]
+          },
+          "/sku": {
+            "state": "unknown",
+            "reason": "Source explicitly contains no value",
+            "value": null,
+            "legacy_value": null,
+            "observation_ids": [
+              "o_059ce93b-fca6-42f7-b4d9-10adcd987c7d"
+            ],
+            "evidence_ids": []
+          },
+          "/in_stock": {
+            "state": "observed",
+            "reason": "",
+            "value": true,
+            "legacy_value": true,
+            "observation_ids": [
+              "o_6c3c7dca-f888-4260-aa36-f874ca782ea0"
+            ],
+            "evidence_ids": [
+              "e_44a4731c-fcc5-4b63-b1ff-e567e5732112"
+            ]
+          },
+          "/attributes": {
+            "state": "unsupported",
+            "reason": "No retained source mapping; compatibility/default value",
+            "value": null,
+            "legacy_value": {
+              "option1": "Default Title"
+            },
+            "observation_ids": [
+              "o_4f15ffe3-af02-4ec9-b5a8-e28a89d4201d"
+            ],
+            "evidence_ids": []
+          },
+          "/attributes/option1": {
+            "state": "observed",
+            "reason": "",
+            "value": "Default Title",
+            "legacy_value": "Default Title",
+            "observation_ids": [
+              "o_7474d6e0-80e5-4a5d-a1a0-230ef076dee0"
+            ],
+            "evidence_ids": [
+              "e_95c62b26-352c-4679-a6cb-2e0ab633b8a4"
+            ]
+          },
+          "/gtin": {
+            "state": "unsupported",
+            "reason": "Selected source has no retained capture; support unavailable",
+            "value": null,
+            "legacy_value": null,
+            "observation_ids": [
+              "o_c1cb2825-9adb-45f3-98a9-afa598fb6073"
+            ],
+            "evidence_ids": []
+          }
+        }
+      }
+    ],
+    "tags": [
+      "refresh"
+    ],
+    "additional_images": [],
+    "category_path": [],
+    "platform": "shopify",
+    "scraped_at": "2026-10-16T16:41:29.628566+00:00",
+    "canonical_product_id": "p_e54b44db-03ac-51ca-bb79-8b4d82bd0ff4",
+    "supplier_id": "www.blissworld.com",
+    "attributes": {},
+    "pack_quantity": null,
+    "bundle_components": [],
+    "owner_handle": "g-gUrZsd7Ea-8447SSYEovmG6XNQBznl",
+    "evidence_ids": [
+      "e_689b0277-4cf2-452e-86be-d5fded55b4d3",
+      "e_b2e62e11-bb3a-42bf-bf27-44cc62a6fde4",
+      "e_436f315b-682f-4aa2-b367-7c17f215e33c",
+      "e_7a7dfd01-d184-42ff-a11b-01fd2674f925",
+      "e_76a87f0f-35ef-42c6-b961-9a6fe2a80db6",
+      "e_8b0402f6-c0c4-4e39-bd93-e3b8db747718",
+      "e_1a978963-5199-4589-8a30-0919d2ac97b5",
+      "e_c33d4886-f591-4b8f-8ee0-6568319937e1",
+      "e_5334c690-518d-4109-b5e3-225ddf9b583b",
+      "e_fec70828-ec9b-4121-9193-d6cc4321c071",
+      "e_557ae57a-69bf-4498-aa36-f168eeefc1f0",
+      "e_8b93d268-f720-4469-ae1b-dce90bdba432",
+      "e_ea1f5d34-81a5-4059-a683-137ca610fae5",
+      "e_44a4731c-fcc5-4b63-b1ff-e567e5732112",
+      "e_95c62b26-352c-4679-a6cb-2e0ab633b8a4",
+      "e_d4a6a83a-53cd-4bb4-9f1a-ee8f9cca352f",
+      "e_a6e36d22-d4f4-48ee-b083-8c4b0f338a9d",
+      "e_59eb48af-ce5b-4f72-b6f2-138045a0374f"
+    ],
+    "field_evidence": {
+      "/title": [
+        "e_689b0277-4cf2-452e-86be-d5fded55b4d3"
+      ],
+      "/price": [
+        "e_b2e62e11-bb3a-42bf-bf27-44cc62a6fde4"
+      ],
+      "/currency": [
+        "e_436f315b-682f-4aa2-b367-7c17f215e33c"
+      ],
+      "/description": [
+        "e_7a7dfd01-d184-42ff-a11b-01fd2674f925"
+      ],
+      "/image_url": [
+        "e_76a87f0f-35ef-42c6-b961-9a6fe2a80db6"
+      ],
+      "/product_url": [
+        "e_8b0402f6-c0c4-4e39-bd93-e3b8db747718"
+      ],
+      "/external_id": [
+        "e_1a978963-5199-4589-8a30-0919d2ac97b5"
+      ],
+      "/sku": [],
+      "/gtin": [],
+      "/mpn": [],
+      "/vendor": [
+        "e_c33d4886-f591-4b8f-8ee0-6568319937e1"
+      ],
+      "/product_type": [],
+      "/in_stock": [
+        "e_5334c690-518d-4109-b5e3-225ddf9b583b"
+      ],
+      "/condition": [],
+      "/compare_at_price": [],
+      "/variants": [
+        "e_fec70828-ec9b-4121-9193-d6cc4321c071"
+      ],
+      "/variants/0/variant_id": [
+        "e_557ae57a-69bf-4498-aa36-f168eeefc1f0"
+      ],
+      "/variants/0/title": [
+        "e_8b93d268-f720-4469-ae1b-dce90bdba432"
+      ],
+      "/variants/0/price": [
+        "e_ea1f5d34-81a5-4059-a683-137ca610fae5"
+      ],
+      "/variants/0/sku": [],
+      "/variants/0/in_stock": [
+        "e_44a4731c-fcc5-4b63-b1ff-e567e5732112"
+      ],
+      "/variants/0/attributes": [],
+      "/variants/0/attributes/option1": [
+        "e_95c62b26-352c-4679-a6cb-2e0ab633b8a4"
+      ],
+      "/variants/0/gtin": [],
+      "/tags": [
+        "e_d4a6a83a-53cd-4bb4-9f1a-ee8f9cca352f"
+      ],
+      "/tags/0": [
+        "e_a6e36d22-d4f4-48ee-b083-8c4b0f338a9d"
+      ],
+      "/additional_images": [
+        "e_59eb48af-ce5b-4f72-b6f2-138045a0374f"
+      ],
+      "/category_path": [],
+      "/attributes": [],
+      "/pack_quantity": [],
+      "/bundle_components": []
+    },
+    "support": {
+      "/title": {
+        "state": "observed",
+        "reason": "",
+        "value": "Salmon DNA Duo",
+        "legacy_value": "Salmon DNA Duo",
+        "observation_ids": [
+          "o_c2866ee3-19e6-4758-9e0e-128b07db3af4"
+        ],
+        "evidence_ids": [
+          "e_689b0277-4cf2-452e-86be-d5fded55b4d3"
+        ]
+      },
+      "/price": {
+        "state": "observed",
+        "reason": "",
+        "value": "55.00",
+        "legacy_value": "55.00",
+        "observation_ids": [
+          "o_ef0ad879-7058-4411-91b2-82baf759fe3c"
+        ],
+        "evidence_ids": [
+          "e_b2e62e11-bb3a-42bf-bf27-44cc62a6fde4"
+        ]
+      },
+      "/currency": {
+        "state": "observed",
+        "reason": "",
+        "value": "USD",
+        "legacy_value": "USD",
+        "observation_ids": [
+          "o_07be5ccc-bef4-45ee-869e-7b744aa250ef"
+        ],
+        "evidence_ids": [
+          "e_436f315b-682f-4aa2-b367-7c17f215e33c"
+        ]
+      },
+      "/description": {
+        "state": "observed",
+        "reason": "",
+        "value": "A barrier-boosting rejuvenating pair powered by salmon PDRN that helps support the skin\u2019s natural renewal process, delivering a smoother surface and a hydrated glow.",
+        "legacy_value": "A barrier-boosting rejuvenating pair powered by salmon PDRN that helps support the skin\u2019s natural renewal process, delivering a smoother surface and a hydrated glow.",
+        "observation_ids": [
+          "o_16af080e-e430-4d3f-a0bb-b9f61928e383"
+        ],
+        "evidence_ids": [
+          "e_7a7dfd01-d184-42ff-a11b-01fd2674f925"
+        ]
+      },
+      "/image_url": {
+        "state": "observed",
+        "reason": "",
+        "value": "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/SalmonDNADuo.jpg?v=1791459101",
+        "legacy_value": "https://cdn.shopify.com/s/files/1/0702/9017/8333/files/SalmonDNADuo.jpg?v=1791459101",
+        "observation_ids": [
+          "o_05b1400f-b851-4313-8df8-a3dd2856e9ac"
+        ],
+        "evidence_ids": [
+          "e_76a87f0f-35ef-42c6-b961-9a6fe2a80db6"
+        ]
+      },
+      "/product_url": {
+        "state": "observed",
+        "reason": "",
+        "value": "https://www.blissworld.com/products/salmon-dna-duo",
+        "legacy_value": "https://www.blissworld.com/products/salmon-dna-duo",
+        "observation_ids": [
+          "o_c02f7d1f-ca2d-4a58-bb15-83775df78c72"
+        ],
+        "evidence_ids": [
+          "e_8b0402f6-c0c4-4e39-bd93-e3b8db747718"
+        ]
+      },
+      "/external_id": {
+        "state": "observed",
+        "reason": "",
+        "value": "15432203174173",
+        "legacy_value": "15432203174173",
+        "observation_ids": [
+          "o_5ad1e863-2616-4d8d-bab8-5c43be45fd9f"
+        ],
+        "evidence_ids": [
+          "e_1a978963-5199-4589-8a30-0919d2ac97b5"
+        ]
+      },
+      "/sku": {
+        "state": "unknown",
+        "reason": "Source explicitly contains no value",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_51e85720-2573-4692-a502-3eb9e7ece67a"
+        ],
+        "evidence_ids": []
+      },
+      "/gtin": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_7aa949bb-5f59-49e1-ae6d-a003cbed17ae"
+        ],
+        "evidence_ids": []
+      },
+      "/mpn": {
+        "state": "unsupported",
+        "reason": "No retained source mapping; compatibility/default value",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_1a6cd216-9b6c-41d0-bfab-941707ae7fe9"
+        ],
+        "evidence_ids": []
+      },
+      "/vendor": {
+        "state": "observed",
+        "reason": "",
+        "value": "Bliss World Store",
+        "legacy_value": "Bliss World Store",
+        "observation_ids": [
+          "o_720281b5-a178-4657-9c1e-9753f836a7d0"
+        ],
+        "evidence_ids": [
+          "e_c33d4886-f591-4b8f-8ee0-6568319937e1"
+        ]
+      },
+      "/product_type": {
+        "state": "unknown",
+        "reason": "Source explicitly contains no value",
+        "value": null,
+        "legacy_value": "",
+        "observation_ids": [
+          "o_64081b0f-a3ea-4aeb-8161-47a6934fbf87"
+        ],
+        "evidence_ids": []
+      },
+      "/in_stock": {
+        "state": "observed",
+        "reason": "",
+        "value": true,
+        "legacy_value": true,
+        "observation_ids": [
+          "o_60c30e6f-6ff9-4bac-8f03-65f601da7652"
+        ],
+        "evidence_ids": [
+          "e_5334c690-518d-4109-b5e3-225ddf9b583b"
+        ]
+      },
+      "/condition": {
+        "state": "unsupported",
+        "reason": "No retained source mapping; compatibility/default value",
+        "value": null,
+        "legacy_value": "NEW",
+        "observation_ids": [
+          "o_67548c27-7249-4c98-b273-c53816ad2821"
+        ],
+        "evidence_ids": []
+      },
+      "/compare_at_price": {
+        "state": "unknown",
+        "reason": "Source explicitly contains no value",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_4317584e-37f8-4d98-b248-f65bdcdf4dba"
+        ],
+        "evidence_ids": []
+      },
+      "/variants": {
+        "state": "observed",
+        "reason": "",
+        "value": [
+          {
+            "variant_id": "67705008455965",
+            "title": "Default Title",
+            "price": "55.00",
+            "sku": null,
+            "in_stock": true,
+            "canonical_variant_id": "v_151219e5-1e52-5dcf-bfe7-f1b2f45e7e73",
+            "attributes": {
+              "option1": "Default Title"
+            },
+            "gtin": null
+          }
+        ],
+        "legacy_value": [
+          {
+            "variant_id": "67705008455965",
+            "title": "Default Title",
+            "price": "55.00",
+            "sku": null,
+            "in_stock": true,
+            "canonical_variant_id": "v_151219e5-1e52-5dcf-bfe7-f1b2f45e7e73",
+            "attributes": {
+              "option1": "Default Title"
+            },
+            "gtin": null
+          }
+        ],
+        "observation_ids": [
+          "o_fd6c964b-e785-4670-8cfe-95d66ed4e5d1"
+        ],
+        "evidence_ids": [
+          "e_fec70828-ec9b-4121-9193-d6cc4321c071"
+        ]
+      },
+      "/variants/0/variant_id": {
+        "state": "observed",
+        "reason": "",
+        "value": "67705008455965",
+        "legacy_value": "67705008455965",
+        "observation_ids": [
+          "o_5082f848-600c-42e5-a0b1-1fffa94195f5"
+        ],
+        "evidence_ids": [
+          "e_557ae57a-69bf-4498-aa36-f168eeefc1f0"
+        ]
+      },
+      "/variants/0/title": {
+        "state": "observed",
+        "reason": "",
+        "value": "Default Title",
+        "legacy_value": "Default Title",
+        "observation_ids": [
+          "o_79d2a414-3c80-41c3-b7d0-d61762fe8a1d"
+        ],
+        "evidence_ids": [
+          "e_8b93d268-f720-4469-ae1b-dce90bdba432"
+        ]
+      },
+      "/variants/0/price": {
+        "state": "observed",
+        "reason": "",
+        "value": "55.00",
+        "legacy_value": "55.00",
+        "observation_ids": [
+          "o_7254c8b2-6116-408a-9734-6e60c8a29118"
+        ],
+        "evidence_ids": [
+          "e_ea1f5d34-81a5-4059-a683-137ca610fae5"
+        ]
+      },
+      "/variants/0/sku": {
+        "state": "unknown",
+        "reason": "Source explicitly contains no value",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_059ce93b-fca6-42f7-b4d9-10adcd987c7d"
+        ],
+        "evidence_ids": []
+      },
+      "/variants/0/in_stock": {
+        "state": "observed",
+        "reason": "",
+        "value": true,
+        "legacy_value": true,
+        "observation_ids": [
+          "o_6c3c7dca-f888-4260-aa36-f874ca782ea0"
+        ],
+        "evidence_ids": [
+          "e_44a4731c-fcc5-4b63-b1ff-e567e5732112"
+        ]
+      },
+      "/variants/0/attributes": {
+        "state": "unsupported",
+        "reason": "No retained source mapping; compatibility/default value",
+        "value": null,
+        "legacy_value": {
+          "option1": "Default Title"
+        },
+        "observation_ids": [
+          "o_4f15ffe3-af02-4ec9-b5a8-e28a89d4201d"
+        ],
+        "evidence_ids": []
+      },
+      "/variants/0/attributes/option1": {
+        "state": "observed",
+        "reason": "",
+        "value": "Default Title",
+        "legacy_value": "Default Title",
+        "observation_ids": [
+          "o_7474d6e0-80e5-4a5d-a1a0-230ef076dee0"
+        ],
+        "evidence_ids": [
+          "e_95c62b26-352c-4679-a6cb-2e0ab633b8a4"
+        ]
+      },
+      "/variants/0/gtin": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_c1cb2825-9adb-45f3-98a9-afa598fb6073"
+        ],
+        "evidence_ids": []
+      },
+      "/tags": {
+        "state": "observed",
+        "reason": "",
+        "value": [
+          "refresh"
+        ],
+        "legacy_value": [
+          "refresh"
+        ],
+        "observation_ids": [
+          "o_63b0c1cb-9422-4715-93ec-e53e30e0a0fd"
+        ],
+        "evidence_ids": [
+          "e_d4a6a83a-53cd-4bb4-9f1a-ee8f9cca352f"
+        ]
+      },
+      "/tags/0": {
+        "state": "observed",
+        "reason": "",
+        "value": "refresh",
+        "legacy_value": "refresh",
+        "observation_ids": [
+          "o_ca9e747f-a371-4ae4-b864-cb38a9bff749"
+        ],
+        "evidence_ids": [
+          "e_a6e36d22-d4f4-48ee-b083-8c4b0f338a9d"
+        ]
+      },
+      "/additional_images": {
+        "state": "observed",
+        "reason": "",
+        "value": [],
+        "legacy_value": [],
+        "observation_ids": [
+          "o_230487e8-fcc9-4df3-b5d3-36ff2d07fceb"
+        ],
+        "evidence_ids": [
+          "e_59eb48af-ce5b-4f72-b6f2-138045a0374f"
+        ]
+      },
+      "/category_path": {
+        "state": "unknown",
+        "reason": "Source explicitly contains no value",
+        "value": null,
+        "legacy_value": [],
+        "observation_ids": [
+          "o_7003226e-88a6-4729-b0bc-dd7e36a97e38"
+        ],
+        "evidence_ids": []
+      },
+      "/attributes": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": {},
+        "observation_ids": [
+          "o_ea9c31c0-152d-4c0e-86b8-b9c3427ffa40"
+        ],
+        "evidence_ids": []
+      },
+      "/pack_quantity": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": null,
+        "observation_ids": [
+          "o_c2889805-0709-46f1-9dd1-db6dc5c01d63"
+        ],
+        "evidence_ids": []
+      },
+      "/bundle_components": {
+        "state": "unsupported",
+        "reason": "Selected source has no retained capture; support unavailable",
+        "value": null,
+        "legacy_value": [],
+        "observation_ids": [
+          "o_517ca021-e4ac-4ce7-96db-ee6e84db3105"
+        ],
+        "evidence_ids": []
+      }
+    }
+  }
+]

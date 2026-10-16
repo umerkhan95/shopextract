@@ -1,0 +1,134 @@
+{
+  "outcome": "passed",
+  "execution_seconds": 41.44081752200145,
+  "outer_seconds": 41.80737412101007,
+  "requests": 7,
+  "request_limit": 16,
+  "time_limit_seconds": 120,
+  "peak_process_count": 4,
+  "process_limit": 5,
+  "source": "https://www.blissworld.com",
+  "tools_verified": [
+    "changes",
+    "discover",
+    "evidence",
+    "extract",
+    "job_result",
+    "job_status",
+    "match"
+  ],
+  "first_extract_saved_before_expansion": "first-extract-smoke.json",
+  "data_audit": "data-audit.json",
+  "currency_proof": "currency-cookie-proof.json",
+  "fields": [
+    {
+      "sample": 2,
+      "title": "Bliss Halloween Costume",
+      "price": "65.00",
+      "currency": "USD",
+      "currency_support": "observed",
+      "currency_source": "saved actual cart_currency response cookie",
+      "sku": "0585-0057003",
+      "sku_support": "observed",
+      "stock": true,
+      "stock_support": "observed",
+      "gtin": null,
+      "gtin_support": "unsupported",
+      "variants": [
+        {
+          "variant_id": "67743111872797",
+          "price": "65.00",
+          "sku": "0585-0057003",
+          "in_stock": true
+        }
+      ],
+      "actual_source": "http-07.body",
+      "source_sha256": "8c81603d239cc9846b7a5f9fec1e85f37b4e8e32876ebf5fe018f4d334d946bd"
+    },
+    {
+      "sample": 2,
+      "title": "Salmon DNA Duo",
+      "price": "55.00",
+      "currency": "USD",
+      "currency_support": "observed",
+      "currency_source": "saved actual cart_currency response cookie",
+      "sku": null,
+      "sku_support": "unknown",
+      "stock": true,
+      "stock_support": "observed",
+      "gtin": null,
+      "gtin_support": "unsupported",
+      "variants": [
+        {
+          "variant_id": "67705008455965",
+          "price": "55.00",
+          "sku": null,
+          "in_stock": true
+        }
+      ],
+      "actual_source": "http-07.body",
+      "source_sha256": "8c81603d239cc9846b7a5f9fec1e85f37b4e8e32876ebf5fe018f4d334d946bd"
+    }
+  ],
+  "matches": [
+    {
+      "index_a": 0,
+      "index_b": 0,
+      "relation": "exact",
+      "evidence": [
+        "supplier-scoped canonical_product_id agrees",
+        "supplier-scoped external_id agrees",
+        "supplier-scoped sku agrees"
+      ]
+    },
+    {
+      "index_a": 1,
+      "index_b": 1,
+      "relation": "exact",
+      "evidence": [
+        "supplier-scoped canonical_product_id agrees",
+        "supplier-scoped external_id agrees"
+      ]
+    }
+  ],
+  "price_evidence": {
+    "source_url": "https://www.blissworld.com/products.json?limit=2&page=1",
+    "pointer": "/value",
+    "retained_data": {
+      "source_pointer": "/variants/0/price",
+      "value": "65.00"
+    }
+  },
+  "wrong_owner": "Live driver asserted not_found and completed successfully; no leaked support",
+  "version_error": "unsupported_version",
+  "changes": {
+    "events": [],
+    "metadata": {
+      "current_snapshot_id": 2,
+      "policy_version": "reliable-change-v1",
+      "previous_snapshot_id": 1,
+      "reason": "evaluated_supported_facts",
+      "report_id": "a622ecd88d44febc43f8720a7a361650b835075e5c7d7edf775679c4129fc5d0",
+      "status": "compared",
+      "supplier": "www.blissworld.com"
+    },
+    "interpretation": "Actual real captures compared,0events; incomplete2-product catalog, no commercial-transition/full-catalog unchanged claim"
+  },
+  "captured_response_bytes": 1269967,
+  "code_changed": false,
+  "key_read": false,
+  "limits": "Two products/one variant each, partial catalogs; no commercial transition verified; cancellation not repeated live",
+  "artifact_sha256": {
+    "run.py": "6dc903b334e0df629aefa1ebbd0e3ef3d18b894af1ccbc384c8b66c1d5a9ac01",
+    "receipt.json": "728e713249b586c3a05c66e870e63213502f203be4eedb6c93a21d0388a8cb66",
+    "result.json": "ddd4953f244e4ccedb205009ca98706b679767625f7e38c92da50517dc18d3cd",
+    "data-audit.json": "219623ab5b7b3aba9f84815d18fe10b82375612ded072be505ae23a595464b61",
+    "currency-cookie-proof.json": "f4fc8e60f5fc8371eab08f2aa6d628401f90a95badfcc55164107f057ee849e0",
+    "first-extract-smoke.json": "a5213f8b27d43c6145fc0d4780fb6b4e93e38bfc2ac3a721450bb3a13337d54b",
+    "portable-1.json": "a6b1ff74867565e3c18be2a476365fef9685b60c82783bcc7d0630a563d8bb31",
+    "portable-2.json": "78bce297eb88db7a8f188dd8e1e5adfb70909829e66769fda15f92a40579f284",
+    "extract-1-response.json": "fdbfde743eb8855938166d021f17ae36e7e3a78ec32c35d8a5dd7aff8fb39a38",
+    "extract-2-response.json": "be06f6e9ac8ff833d261e6c6892ad0973cc388b627e3702329e046fa1c6676a5",
+    "actual-captures.db": "867c0babdb71a2a57fff1c27224d716d1e84eb81a286fb4dd682c13f7b32aab0"
+  }
+}

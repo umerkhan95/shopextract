@@ -8,6 +8,7 @@ from typing import Any
 from urllib.parse import urlsplit
 
 import httpx
+from ._storefront import storefront_client
 
 from .._models import ExtractorResult
 from .._capture import capture
@@ -19,9 +20,10 @@ logger = logging.getLogger(__name__)
 class ShopifyExtractor:
     """Extract products from Shopify stores using the public /products.json API."""
 
-    def __init__(self, timeout: int = 30, max_pages: int = 100):
+    def __init__(self, timeout: int = 30, max_pages: int = 100, http_client=None):
         self.timeout = timeout
         self.max_pages = max_pages
+        self.http_client = http_client
 
     async def extract(self, shop_url: str, *, max_products: int | None = None,
                       enrich_identifiers: bool = False) -> ExtractorResult:
@@ -43,7 +45,7 @@ class ShopifyExtractor:
             "Accept": "application/json",
         }
 
-        async with httpx.AsyncClient(timeout=self.timeout, follow_redirects=True, headers=headers) as client:
+        async with storefront_client(self.http_client, self.timeout, headers=headers) as client:
             page = 1
 
             while page <= self.max_pages:

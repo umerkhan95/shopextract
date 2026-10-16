@@ -1,0 +1,116 @@
+{
+  "start_monotonic": 92472.064034935,
+  "start_utc": "2026-10-16T16:41:07.484238+00:00",
+  "total_limit_seconds": 120,
+  "request_limit": 16,
+  "request_count": 7,
+  "requests": [
+    {
+      "number": 1,
+      "method": "GET",
+      "url": "https://www.blissworld.com/sitemap.xml",
+      "elapsed": 5.359466120004072
+    },
+    {
+      "number": 2,
+      "method": "GET",
+      "url": "https://www.blissworld.com/sitemap_agentic_discovery.xml",
+      "elapsed": 8.130651526997099
+    },
+    {
+      "number": 3,
+      "method": "GET",
+      "url": "https://www.blissworld.com/sitemap_products_1.xml?from=8108686278941&to=15445253980445",
+      "elapsed": 10.89969679400383
+    },
+    {
+      "number": 4,
+      "method": "GET",
+      "url": "https://www.blissworld.com/",
+      "elapsed": 16.452740310996887
+    },
+    {
+      "number": 5,
+      "method": "GET",
+      "url": "https://www.blissworld.com/products.json?limit=2&page=1",
+      "elapsed": 19.346647632002714
+    },
+    {
+      "number": 6,
+      "method": "GET",
+      "url": "https://www.blissworld.com/",
+      "elapsed": 25.256428560998756
+    },
+    {
+      "number": 7,
+      "method": "GET",
+      "url": "https://www.blissworld.com/products.json?limit=2&page=1",
+      "elapsed": 28.233484212003532
+    }
+  ],
+  "responses": [
+    {
+      "file": "http-01.body",
+      "url": "https://www.blissworld.com/sitemap.xml",
+      "status": 200,
+      "bytes": 1389,
+      "sha256": "6161ef9298e0ae4524e29ee53d1cc76b1ab2a314e3d041cc94abdb43cf5c98b6",
+      "content_type": "application/xml; charset=utf-8",
+      "cart_currency": "USD"
+    },
+    {
+      "file": "http-02.body",
+      "url": "https://www.blissworld.com/sitemap_agentic_discovery.xml",
+      "status": 200,
+      "bytes": 215,
+      "sha256": "1126000794c838a7075c8288baa487104477da5cb7d3628b42165a8e5a2a2f11",
+      "content_type": "application/xml; charset=utf-8",
+      "cart_currency": "USD"
+    },
+    {
+      "file": "http-03.body",
+      "url": "https://www.blissworld.com/sitemap_products_1.xml?from=8108686278941&to=15445253980445",
+      "status": 200,
+      "bytes": 33029,
+      "sha256": "2ee50dd3e6ae33a8afbaeff24ffec4dfcf88bc39e5b377adf3887d2ba0e855ea",
+      "content_type": "application/xml; charset=utf-8",
+      "cart_currency": "USD"
+    },
+    {
+      "file": "http-04.body",
+      "url": "https://www.blissworld.com/",
+      "status": 200,
+      "bytes": 614296,
+      "sha256": "992476a81bc9d3e1e282800c144e56f85d4cbe99f4bae53f89129bd48ebbea55",
+      "content_type": "text/html; charset=utf-8",
+      "cart_currency": "USD"
+    },
+    {
+      "file": "http-05.body",
+      "url": "https://www.blissworld.com/products.json?limit=2&page=1",
+      "status": 200,
+      "bytes": 3371,
+      "sha256": "06e56c83039c441787c0f4ec6e0b26f53b28e4efda80c3f5b14051219befbbc5",
+      "content_type": "application/json; charset=utf-8",
+      "cart_currency": "USD"
+    },
+    {
+      "file": "http-06.body",
+      "url": "https://www.blissworld.com/",
+      "status": 200,
+      "bytes": 614296,
+      "sha256": "5b3ee6e2059fa5abd063458a81b7c5fba976a8b6344d82234a4098cbba2d5276",
+      "content_type": "text/html; charset=utf-8",
+      "cart_currency": "USD"
+    },
+    {
+      "file": "http-07.body",
+      "url": "https://www.blissworld.com/products.json?limit=2&page=1",
+      "status": 200,
+      "bytes": 3371,
+      "sha256": "8c81603d239cc9846b7a5f9fec1e85f37b4e8e32876ebf5fe018f4d334d946bd",
+      "content_type": "application/json; charset=utf-8",
+      "cart_currency": "USD"
+    }
+  ]
+}
