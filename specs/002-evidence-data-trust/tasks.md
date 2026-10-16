@@ -24,11 +24,11 @@
   adapter coverage fixtures including GTIN restoration, absent and zero/false values.
 - [x] #36 FR-02/03/06: authority, freshness, equivalence/ties, deterministic resolution;
   table-driven conflict/matching fixtures. Depends on #34/#35.
-- [ ] #37 FR-04/07: atomic SQLite, retrieval, idempotent migration, pruning limits;
+- [x] #37 FR-04/07: atomic SQLite, retrieval, idempotent migration, pruning limits;
   restart/rollback/retention fixtures. Depends on #34/#35.
-- [ ] #38 FR-05/06: portable Product/evidence bundle, sidecars and report references;
+- [x] #38 FR-05/06: portable Product/evidence bundle, sidecars and report references;
   lossless semantic round trips. Depends on #35/#36/#37.
-- [ ] #39 FR-01–07, SC-01–04: offline end-to-end demonstration and documented limits;
+- [x] #39 FR-01–07, SC-01–04: offline end-to-end demonstration and documented limits;
   map full factual coverage, retained conflicts, restart/export semantics and legacy
   regressions to named tests before closing #22. Depends on #36/#37/#38.
 
@@ -113,3 +113,35 @@
 - [x] Saved-live replay: `test_saved_live_api_html_observations_preserve_support_distinctions`
   (Magento equivalent prices; Shopware supported API versus unsupported HTML).
 - [x] Full suite 590 passed; save source journals, exports and coverage limits.
+
+## #37–#39 production implementation and acceptance
+
+- [x] #39 runnable offline capture/normalize → fixed-time resolve → file-backed
+  snapshot reopening/scoped retrieval → portable JSON write/read → trust report.
+- [x] #39 guide and README navigation document states, migrations, retrieval,
+  authority assertions, score semantics, companion limits and explicit retention.
+- [x] #39 actual acceptance tests and fixture coverage map below.
+- [x] Final parent integration gate: affected regression suites and full offline
+  suite; record exact results in artifacts/epic-22-production/verification.md.
+
+Actual tests in `tests/test_evidence_trust_e2e.py`:
+
+| Requirements / scenarios | Test |
+| --- | --- |
+| FR-01,04,05; SC-01,03 | `test_trust_e2e_extract_restart_bundle` — example's actual capture/parser, normalization, reopening, scoped retrieval and file bundle. Every fixture Product/Variant factual path counted with explicit state/reason or retained support. |
+| FR-01,02; SC-01,03 | `test_trust_e2e_missing_and_literal_values` — captured zero/false versus unsupported defaults. |
+| FR-01,02,04,05; SC-01,03 | `test_trust_e2e_nested_and_transformed` — variant attachments, Decimal exponent, UTC microseconds, literal tag maps, escaped pointers and restored raw GTIN history. |
+| FR-03; SC-02,03 | `test_trust_e2e_conflicts` — complete candidate/rationale dictionaries survive; manufacturer specification wins and equal-role disagreement abstains. |
+| FR-02,06; SC-04 | `test_trust_e2e_unverified_llm_score` — ungrounded model score stays unsupported; separately supplied synthetic validation metadata survives without a calibration claim. |
+| FR-04,05; SC-04 | `test_trust_e2e_legacy_and_restricted_export` — unsupported legacy constructor data, identical ordinary/companion CSV bytes, verified mappings and wrong-file rejection. Actual historical SQLite migration is separately tested by `test_legacy_migration_idempotent` in persistence suite. |
+| FR-07; SC-01,03 | `test_trust_e2e_expiry_and_pruning` — dry-run/protected/forced expiration, tombstones across bundle boundary and exact freshness limit versus one microsecond after. |
+| FR-04,05; SC-03 | `test_trust_e2e_reject_corrupt_bundle` — unsupported envelope version; strict graph/typed/size corruption cases reside in portability/persistence unit suites. |
+
+`examples/evidence_trust.py` names the synthetic fixture and fixed UTC time and
+writes `report.json` with state counts, denominator, artifact paths and explicit
+non-accuracy/non-calibration wording. A socket guard makes these E2E tests fail on
+network access. No hosted credentials, model or optional inference runtime needed.
+
+Local completion gate: the three remaining implementation tasks above passed the
+631-test offline suite on 2026-10-16. Their GitHub issues remain open for the
+normal publication/review workflow. Commands and limits: `artifacts/epic-22-production/verification.md`.

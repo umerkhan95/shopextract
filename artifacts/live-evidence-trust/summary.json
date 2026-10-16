@@ -1,0 +1,130 @@
+{
+  "date": "2026-10-16",
+  "cases": {
+    "shopify": {
+      "status": "passed",
+      "url": "https://www.boardgamebliss.com",
+      "products": 2,
+      "variants": 2,
+      "field_states": {
+        "observed": 105,
+        "unsupported": 20,
+        "unknown": 2
+      },
+      "retrieved_captures": 105,
+      "expired_captures": 105,
+      "source_complete": false,
+      "sample_only": true,
+      "checks": [
+        "live normalization/resolution",
+        "atomic typed storage",
+        "separate-process restart/retrieval",
+        "lossless bundle",
+        "CSV/Google/Idealo companions and tamper rejection",
+        "protected prune",
+        "explicit expiry",
+        "expired bundle resave",
+        "SQLite integrity/FKs"
+      ]
+    },
+    "woocommerce": {
+      "status": "passed",
+      "url": "https://demo.athemes.com/botiga",
+      "products": 2,
+      "variants": 0,
+      "field_states": {
+        "observed": 27,
+        "unknown": 2,
+        "unsupported": 20
+      },
+      "retrieved_captures": 27,
+      "expired_captures": 27,
+      "source_complete": true,
+      "sample_only": true,
+      "checks": [
+        "live normalization/resolution",
+        "atomic typed storage",
+        "separate-process restart/retrieval",
+        "lossless bundle",
+        "CSV/Google/Idealo companions and tamper rejection",
+        "protected prune",
+        "explicit expiry",
+        "expired bundle resave",
+        "SQLite integrity/FKs"
+      ]
+    },
+    "magento": {
+      "status": "passed",
+      "url": "https://magento2-demo.magebit.com",
+      "products": 2,
+      "variants": 30,
+      "field_states": {
+        "observed": 438,
+        "unsupported": 146
+      },
+      "retrieved_captures": 440,
+      "expired_captures": 440,
+      "source_complete": false,
+      "sample_only": true,
+      "checks": [
+        "live normalization/resolution",
+        "atomic typed storage",
+        "separate-process restart/retrieval",
+        "lossless bundle",
+        "CSV/Google/Idealo companions and tamper rejection",
+        "protected prune",
+        "explicit expiry",
+        "expired bundle resave",
+        "SQLite integrity/FKs"
+      ]
+    },
+    "shopware": {
+      "status": "passed",
+      "url": "https://frontends-demo.vercel.app",
+      "products": 2,
+      "variants": 0,
+      "field_states": {
+        "observed": 19,
+        "unknown": 2,
+        "unsupported": 23
+      },
+      "retrieved_captures": 19,
+      "expired_captures": 19,
+      "source_complete": false,
+      "sample_only": true,
+      "checks": [
+        "live normalization/resolution",
+        "atomic typed storage",
+        "separate-process restart/retrieval",
+        "lossless bundle",
+        "CSV/Google/Idealo companions and tamper rejection",
+        "protected prune",
+        "explicit expiry",
+        "expired bundle resave",
+        "SQLite integrity/FKs"
+      ]
+    },
+    "public-snapshot": {
+      "field_states": {
+        "observed": 105,
+        "unsupported": 20,
+        "unknown": 2
+      },
+      "retrieved_captures": 105,
+      "status": "passed",
+      "products": 2,
+      "catalog_complete": false,
+      "max_urls": 2,
+      "entry_point": "shopextract.snapshot",
+      "separate_process_reopen": true
+    }
+  },
+  "passed_cases": 5,
+  "platform_families": 4,
+  "sampled_product_observations": 10,
+  "retrieved_capture_records": 696,
+  "offline_tests": {
+    "passed": 631,
+    "seconds": 8.29
+  }
+}

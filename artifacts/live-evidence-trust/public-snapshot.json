@@ -1,0 +1,14 @@
+{
+  "field_states": {
+    "observed": 105,
+    "unsupported": 20,
+    "unknown": 2
+  },
+  "retrieved_captures": 105,
+  "status": "passed",
+  "products": 2,
+  "catalog_complete": false,
+  "max_urls": 2,
+  "entry_point": "shopextract.snapshot",
+  "separate_process_reopen": true
+}

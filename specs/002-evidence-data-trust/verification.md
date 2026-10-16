@@ -234,3 +234,31 @@ The older network-dependent notebook sections were not rerun. Colab pins the
 implementation commit containing the new public APIs. README documents the new
 walkthrough and actual live sample sites/counts without promising anti-bot immunity.
 Validation record: `artifacts/field-resolution-live/notebook-verification.json`.
+
+## #39 bounded offline verification
+
+Runnable workflow: `PYTHONPATH=src .venv/bin/python examples/evidence_trust.py`.
+Acceptance suite: `PYTHONPATH=src .venv/bin/python -m pytest -q tests/test_evidence_trust_e2e.py`.
+The compact command results and actual saved output paths are recorded in
+`artifacts/epic-22-production/verification-e2e.md`; final aggregate suite gate is
+owned by `artifacts/epic-22-production/verification.md`.
+
+Fixture counts measure explicit state/retrieval coverage only. They do not estimate
+extraction correctness, source truth or empirical score calibration. Legacy raw
+copies/backups mean pruning establishes support unavailability, not secure erasure.
+
+Final parent integration result (2026-10-16): **631 passed in 8.24s** in the full
+offline suite; saved `artifacts/epic-22-production/full-tests.log`. Parent reports
+`git diff --check` clean. #39 focused suite separately passed 8 cases; standalone
+saved demo covered 81 Product/Variant owner factual paths (25 observed with retained
+support, 9 unknown, 47 unsupported), with every observed fixture path retrievable.
+Artifact paths and actual commands are in verification-e2e.md. No GitHub closure,
+push or model execution is part of this local acceptance result.
+
+## Live follow-up before merge — 2026-10-16
+
+User-requested bounded live verification passed five cases across Shopify,
+WooCommerce, Magento and Shopware: 10 product observations, 696 scoped capture
+records retrieved, process restart, portable exports/sidecars and expiry/resave.
+The public `snapshot()` API also passed. Full local CI-equivalent rerun: 631 passed
+in 8.29s. Actual counts, commands and limits: `artifacts/live-evidence-trust/review.md`.

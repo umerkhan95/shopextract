@@ -78,6 +78,11 @@ from .analyze import (
 from .compare import compare, compare_catalogs, evaluate_matching, fuzzy_match, match_gtin
 from .export import to_csv, to_dataframe, to_feed, to_json, to_parquet
 from .monitor import changes, price_history, snapshot, watch
+from .monitor.evidence import (EvidenceLookup, PruneReport, get_evidence,
+                               load_snapshot, prune_evidence, save_snapshot)
+from .export._bundle import (create_evidence_bundle, create_evidence_sidecar,
+                             load_evidence_bundle, load_evidence_sidecar,
+                             read_evidence_bundle, write_evidence_bundle)
 from .validate import check_images, find_duplicates, validate
 
 __version__ = "0.1.2"
@@ -101,6 +106,11 @@ __all__ = [
     "compare_catalogs",
     "fuzzy_match",
     "match_gtin",
+    # Evidence persistence and portable exports
+    "EvidenceLookup", "PruneReport", "save_snapshot", "load_snapshot",
+    "get_evidence", "prune_evidence", "create_evidence_bundle",
+    "load_evidence_bundle", "write_evidence_bundle", "read_evidence_bundle",
+    "create_evidence_sidecar", "load_evidence_sidecar",
     # Monitor functions
     "snapshot",
     "changes",

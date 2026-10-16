@@ -10,3 +10,7 @@ __all__ = [
     "snapshot",
     "watch",
 ]
+
+from .evidence import (EvidenceLookup, PruneReport, save_snapshot, load_snapshot, get_evidence, prune_evidence)
+
+__all__ += ["EvidenceLookup", "PruneReport", "save_snapshot", "load_snapshot", "get_evidence", "prune_evidence"]

@@ -5,15 +5,14 @@ from __future__ import annotations
 import json
 import logging
 import sqlite3
-from dataclasses import asdict
-from datetime import datetime, timezone
+from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
 from urllib.parse import urlparse
 
 from .._extract import extract
 from .._scope import catalog_scope
-from ..identity import identify_records, migrate_snapshot_identities, supplier_scope
+from ..identity import supplier_scope
 
 logger = logging.getLogger(__name__)
 
@@ -42,14 +41,23 @@ def _domain_from_url(url: str) -> str:
     return parsed.netloc or parsed.path.split("/")[0]
 
 
-def _get_connection(db_path: str) -> sqlite3.Connection:
-    """Open SQLite connection and ensure schema exists."""
+def _get_connection(db_path: str, *, initialize: bool = True) -> sqlite3.Connection:
+    """Open bounded SQLite connection; saves initialize within their transaction."""
     path = _expand_path(db_path)
-    conn = sqlite3.connect(str(path))
-    conn.execute(_CREATE_TABLE)
-    with conn:
-        conn.execute("BEGIN IMMEDIATE")
-        _ensure_snapshot_metadata(conn)
+    conn = sqlite3.connect(str(path), timeout=5)
+    conn.execute("PRAGMA foreign_keys=ON")
+    conn.execute("PRAGMA busy_timeout=5000")
+    if initialize:
+        try:
+            with conn:
+                conn.execute("BEGIN IMMEDIATE")
+                conn.execute(_CREATE_TABLE)
+                _ensure_snapshot_metadata(conn)
+                from .evidence import _ensure_evidence_schema
+                _ensure_evidence_schema(conn)
+        except Exception:
+            conn.close()
+            raise
     return conn
 
 
@@ -89,26 +97,16 @@ async def snapshot(
     """
     result = await extract(url, max_urls=max_urls)
     domain = supplier_scope(_domain_from_url(url))
-    products_data = [asdict(p) for p in result.products]
     scope = result.observation_scope or catalog_scope(url, result.platform)
     reasons = list(result.incompleteness_reasons)
     if not reasons and result.catalog_complete is not True:
         reasons = ["source_incomplete" if result.catalog_complete is False else "catalog_coverage_unverified"]
     complete = result.catalog_complete if not reasons else (False if result.catalog_complete is not None else None)
 
-    conn = _get_connection(db_path)
-    try:
-        conn.execute("BEGIN IMMEDIATE")
-        migrate_snapshot_identities(conn, domain)
-        identify_records(conn, products_data, domain, legacy_titles=True)
-        conn.execute(
-            "INSERT INTO snapshots (domain, products_json, created_at, observation_scope, catalog_complete, incompleteness_reasons_json, max_urls) VALUES (?, ?, ?, ?, ?, ?, ?)",
-            (domain, json.dumps(products_data, cls=_DecimalEncoder), datetime.now(timezone.utc).isoformat(),
-             scope, complete, json.dumps(reasons), max_urls),
-        )
-        conn.commit()
-    finally:
-        conn.close()
-
-    logger.info("Snapshot saved: %s, %d products", domain, len(products_data))
-    return len(products_data)
+    from .evidence import save_snapshot
+    save_snapshot(result.products, domain, db_path=db_path, metadata={
+        "observation_scope": scope, "catalog_complete": complete,
+        "incompleteness_reasons": reasons, "max_urls": max_urls,
+    })
+    logger.info("Snapshot saved: %s, %d products", domain, len(result.products))
+    return len(result.products)

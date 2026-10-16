@@ -80,3 +80,23 @@ conversion history; relative CSS images resolve against the fetched page URL.
   never derived from a hostname.
 - Matching reports expose observation/evidence and resolution-policy references
   without changing identity decisions or score semantics.
+
+## Acceptance scenarios for #37–#39
+
+- Given captured Product and nested Variant contracts, when persisted, reopened and
+  loaded through an independently parsed JSON bundle, Decimal representation, UTC
+  microseconds, IDs, evidence pointers, transformations, all alternatives and policy
+  rationales survive. Every fixture factual path exposes retained support or an
+  explicit unavailable state and reason.
+- Given missing values and independently captured zero/false, when inspected after
+  both boundaries, missing/default scalars never become trusted zero/false facts.
+- Given explicit referenced-payload expiration, when reopened and exported/imported,
+  dependent effective facts remain unavailable and payload-free expiration audit
+  metadata survives. Ordinary protected pruning leaves retained references usable.
+- Given a legacy snapshot or ordinary dictionary feed, existing values/output remain
+  compatible; absent provenance is explicitly unsupported. Optional feed companions
+  bind row mapping to the actual file digest and preserve duplicate row identifiers.
+- Given malformed versions, typed values, pointer/reference graphs or oversized data,
+  import/storage raises an actionable error and no partial snapshot is committed.
+- Given a synthetic model score without grounded support, restart/export never turns
+  that score into validated confidence. Fixture retrieval coverage is not accuracy.

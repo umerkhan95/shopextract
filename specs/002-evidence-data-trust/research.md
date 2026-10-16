@@ -35,3 +35,13 @@ research/model sweep was needed for these local compatibility choices.
   interchangeable, or differently-cased identifiers as the same specification.
 - Matching integration is explanatory references only: automatic resolution must
   not silently change canonical identity or the existing matching score meanings.
+
+## Production persistence, portability and verification follow-up
+
+Saved primary-source reviews and design inferences live in
+`artifacts/epic-22-production/research-{persistence,portability,verification}.md`.
+SQLite atomicity/FK/version documentation informs additive transactional storage;
+RFC 8259/3339/6901 inform strict JSON, UTC and retained pointer handling. PROV and
+RO-Crate motivate preserving context without claiming standards conformance.
+Calibration/selective-classification papers do not establish confidence or accuracy
+from this bounded fixture suite. No model, live crawl or further source sweep ran.

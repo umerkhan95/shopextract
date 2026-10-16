@@ -887,6 +887,8 @@ offers and verified manufacturer specifications use different authority rules, a
 equal-authority disagreements remain unresolved. See [field resolution](docs/field-resolution.md)
 and the [offline example](examples/field_resolution.py). Matching reports include
 field-support references without changing matching scores. SQLite evidence retention
-and portable Product bundles remain follow-up work. Save a contract explicitly with `product.evidence_contract.to_dict()` for now.
+and portable Product bundles are described in [offline evidence and portability](docs/evidence-trust.md).
+Run `PYTHONPATH=src python examples/evidence_trust.py` for capture, fixed-time
+resolution, SQLite restart/retrieval and portable bundle inspection without a network or model.
 See [the public contract](specs/002-evidence-data-trust/contracts/evidence.md) and
 [field coverage matrix](specs/002-evidence-data-trust/data-model.md).

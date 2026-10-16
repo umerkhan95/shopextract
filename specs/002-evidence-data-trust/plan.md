@@ -15,8 +15,9 @@ contract and adds `Product.trust_view(contract=None)` and the equivalent Variant
 method. Contracts can be passed explicitly; #35 adapters carry capture context and
 normalization attaches contracts without extending dataclass constructor fields. Never infer observed support from constructor arguments.
 
-Version 1 has bundle-scoped evidence/observation UUID IDs. Importers reject duplicate
-IDs, malformed states, non-UTC timestamps and dangling/cross-field references.
+Version 1 has contract-local evidence/observation UUID IDs. Persistent lookup uses
+snapshot and owner scope. Importers reject duplicate IDs within a contract,
+malformed states, non-UTC timestamps and dangling/cross-field references.
 Resolution policy is recorded, not executed here. Multiple observations require a
 resolution even if normalized values appear equal; #36 defines equivalence.
 
@@ -128,3 +129,51 @@ are not cross-store variant identity. Automatic merging/alignment is outside #36
 Public `classify_match`/`match_products` add field-support references for attached
 contracts but keep existing relationship/confidence logic and product scalars.
 Persistence, retention deletion and full portable bundles remain #37/#38.
+
+## #37–#39 implementation plan — 2026-10-16
+
+Research and issue snapshots are saved in `artifacts/epic-22-production/`.
+Remaining scope is #37 persistence/retention, #38 portable exports, and #39
+offline acceptance/compatibility; #34–#36 remain existing foundations.
+
+Use additive SQLite tables in the same transaction as snapshots and identity
+aliases, while preserving legacy `products_json` for monitoring. Store attached
+Product/Variant contracts explicitly; never infer captured support from `asdict`
+or historical scalars. Shared typed record serialization lives in `_portable.py`
+and preserves Decimal, UTC datetime and reserved mapping keys. Migration is
+versioned/idempotent and rejects unsupported newer versions.
+
+Evidence lookup is scoped by snapshot, record owner and evidence ID. Default
+retention never automatically deletes support; explicit pruning defaults to dry
+run and protection of retained references. Expiring referenced data must create
+explicit tombstones and downgrade effective observations/resolutions so trusted
+values cannot survive deleted support. Hashes check integrity, not authenticity.
+
+Portable bundle loading validates version, references, typed values and bounds;
+legacy dict exports retain their current defaults. Opt-in CSV/feed companions
+map rows to bundle records and verify the exact exported file digest.
+
+Three research roles precede three skeleton-owner roles; each skeleton owner
+reviews against research before handoff to three separate implementation roles.
+The runtime limits concurrent workers; roles run in bounded phases. Small saved
+baseline: 74 affected tests passed. Final acceptance requires restart, rollback,
+legacy migration, reference-aware retention, lossless export and the offline
+E2E matrix. A final full offline suite must pass before completion is claimed.
+
+## #39 implemented verification architecture
+
+The offline `examples/evidence_trust.py:run_demo` is shared by the acceptance tests.
+It uses the real feed parser and capture/normalization, fixed UTC resolution,
+file-backed SQLite save/load with separate connections, scoped evidence retrieval,
+and portable file write/read. Its synthetic fixtures cover explicit zero/false,
+missing support, nested GTIN transformation and escaped attribute pointers with
+competing supplier/manufacturer observations. Inspection computes all factual paths
+for Product and standalone Variant owners; available facts require retained local
+support and stored lookups. Counts measure fixture coverage, never accuracy.
+
+Retained expiry metadata travels in optional Product/Variant
+`evidence_availability` attachments, separately from valid effective TrustContracts.
+Each list entry contains evidence_id, expired status, reason, aware UTC expired_at
+and payload-free metadata. Portable records carry product availability plus
+index-aligned variant_evidence_availability. Retention declares support unavailable;
+it is not secure erasure of raw capture copies, old bundles or backups.
