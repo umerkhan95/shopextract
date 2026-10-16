@@ -1,0 +1,12 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/Users/umerkhan/code/shopextract/tests/maintenance_stress_driver.py", line 292, in <module>
+    else:main(Path(sys.argv[1]))
+  File "/Users/umerkhan/code/shopextract/tests/maintenance_stress_driver.py", line 282, in main
+    if record['state']!='passed':raise AssertionError('first failure: '+name)
+AssertionError: first failure: budget-deadline-0

@@ -1,0 +1,33 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+......../Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+..../Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+./Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+./Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+./Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+./Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+..F
+=================================== FAILURES ===================================
+_______________ test_c22_companion_bytes_below_at_above[262143] ________________
+tests/test_category_shared_contract.py:86: in test_c22_companion_bytes_below_at_above
+    assert len(canonical(categorized_product_to_record(result)).encode()) == target_size
+E   assert 252377 == 262143
+E    +  where 252377 = len(b'{"config_digest":"e20fbb8130bf674e5b255e88113dd0253b63377ce8b74499dfadd5970c411570","mappings":[{"observation_id":"c...1,"scope":{"catalog":null,"channel":null,"locale":null,"platform":"shopify","store_url":"https://merchant.test/shop"}}')
+E    +    where b'{"config_digest":"e20fbb8130bf674e5b255e88113dd0253b63377ce8b74499dfadd5970c411570","mappings":[{"observation_id":"c...1,"scope":{"catalog":null,"channel":null,"locale":null,"platform":"shopify","store_url":"https://merchant.test/shop"}}' = <built-in method encode of str object at 0x7fea80070000>()
+E    +      where <built-in method encode of str object at 0x7fea80070000> = '{"config_digest":"e20fbb8130bf674e5b255e88113dd0253b63377ce8b74499dfadd5970c411570","mappings":[{"observation_id":"c_...1,"scope":{"catalog":null,"channel":null,"locale":null,"platform":"shopify","store_url":"https://merchant.test/shop"}}'.encode
+E    +        where '{"config_digest":"e20fbb8130bf674e5b255e88113dd0253b63377ce8b74499dfadd5970c411570","mappings":[{"observation_id":"c_...1,"scope":{"catalog":null,"channel":null,"locale":null,"platform":"shopify","store_url":"https://merchant.test/shop"}}' = canonical({'schema_version': 1, 'product': {'schema_version': 1, 'product': {'title': 'Laptop', 'price': {'$type': 'decimal', 'v...shop', 'catalog': None, 'channel': None, ...}, 'relation': 'memberships', 'taxonomy_kind': 'merchandising', ...}], ...})
+E    +          where {'schema_version': 1, 'product': {'schema_version': 1, 'product': {'title': 'Laptop', 'price': {'$type': 'decimal', 'v...shop', 'catalog': None, 'channel': None, ...}, 'relation': 'memberships', 'taxonomy_kind': 'merchandising', ...}], ...} = categorized_product_to_record(CategorizedProduct(product=Product(title='Laptop', price=Decimal('0'), currency='USD', description='xxxxxxxxxxxxxxxxxx...add5970c411570', original_binding='676fdd8e70a79308e297a58b209c928ef4c23333c52eee9fe69ed42109b9bd90', schema_version=1))
+=========================== short test summary info ============================
+FAILED tests/test_category_shared_contract.py::test_c22_companion_bytes_below_at_above[262143]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 18 passed in 18.03s

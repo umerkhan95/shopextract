@@ -1,0 +1,233 @@
+{
+  "at": "2026-10-16T23:30:18.924857+00:00",
+  "state": "completed_with_recorded_limitations",
+  "network": [
+    {
+      "platform": "shopify",
+      "method": "GET",
+      "url": "https://www.boardgamebliss.com/products.json",
+      "status": 200
+    },
+    {
+      "platform": "woocommerce",
+      "method": "GET",
+      "url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products",
+      "status": 200
+    },
+    {
+      "platform": "magento",
+      "method": "GET",
+      "url": "https://magento2-demo.magebit.com/graphql",
+      "status": 200
+    },
+    {
+      "platform": "shopware",
+      "method": "GET",
+      "url": "https://demo-frontends.shopware.store/store-api/context",
+      "status": 200
+    },
+    {
+      "platform": "shopware",
+      "method": "POST",
+      "url": "https://demo-frontends.shopware.store/store-api/product",
+      "status": 200
+    },
+    {
+      "platform": "generic",
+      "method": "GET",
+      "url": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
+      "status": 200
+    },
+    {
+      "platform": "magento",
+      "method": "GET",
+      "url": "https://magento2-demo.magebit.com/graphql",
+      "status": 200
+    }
+  ],
+  "cases": [
+    {
+      "platform": "shopify",
+      "url": "https://www.boardgamebliss.com",
+      "state": "category_observed",
+      "catalog_complete": false,
+      "source_reason": "product_budget_reached",
+      "products": 2,
+      "category_assertion": "passed",
+      "source_error": false,
+      "observations": [
+        {
+          "relation": "label",
+          "source_state": "present",
+          "completeness": "complete",
+          "terms": 1,
+          "observed_facets": 1
+        },
+        {
+          "relation": "memberships",
+          "source_state": "missing",
+          "completeness": "unknown",
+          "terms": 0,
+          "observed_facets": 0
+        },
+        {
+          "relation": "memberships",
+          "source_state": "missing",
+          "completeness": "unknown",
+          "terms": 0,
+          "observed_facets": 0
+        },
+        {
+          "relation": "label",
+          "source_state": "present",
+          "completeness": "complete",
+          "terms": 1,
+          "observed_facets": 1
+        },
+        {
+          "relation": "memberships",
+          "source_state": "missing",
+          "completeness": "unknown",
+          "terms": 0,
+          "observed_facets": 0
+        },
+        {
+          "relation": "memberships",
+          "source_state": "missing",
+          "completeness": "unknown",
+          "terms": 0,
+          "observed_facets": 0
+        }
+      ]
+    },
+    {
+      "platform": "woocommerce",
+      "url": "https://demo.athemes.com/botiga",
+      "state": "category_observed",
+      "catalog_complete": true,
+      "source_reason": null,
+      "products": 2,
+      "category_assertion": "passed",
+      "source_error": false,
+      "observations": [
+        {
+          "relation": "memberships",
+          "source_state": "present",
+          "completeness": "complete",
+          "terms": 1,
+          "observed_facets": 2
+        },
+        {
+          "relation": "memberships",
+          "source_state": "present",
+          "completeness": "complete",
+          "terms": 1,
+          "observed_facets": 2
+        }
+      ]
+    },
+    {
+      "platform": "magento",
+      "url": "https://magento2-demo.magebit.com",
+      "state": "inconclusive",
+      "catalog_complete": false,
+      "source_reason": "product_or_page_budget_reached",
+      "reason": "CategoryError"
+    },
+    {
+      "platform": "shopware",
+      "url": "https://frontends-demo.vercel.app",
+      "state": "inconclusive",
+      "native_endpoint": "https://demo-frontends.shopware.store/store-api",
+      "catalog_complete": false,
+      "source_reason": "product_or_page_budget_reached",
+      "products": 2,
+      "category_assertion": "category_support_unavailable",
+      "source_error": false,
+      "observations": [
+        {
+          "relation": "memberships",
+          "source_state": "null",
+          "completeness": "unknown",
+          "terms": 0,
+          "observed_facets": 0
+        },
+        {
+          "relation": "index",
+          "source_state": "null",
+          "completeness": "unknown",
+          "terms": 0,
+          "observed_facets": 0
+        },
+        {
+          "relation": "memberships",
+          "source_state": "null",
+          "completeness": "unknown",
+          "terms": 0,
+          "observed_facets": 0
+        },
+        {
+          "relation": "memberships",
+          "source_state": "null",
+          "completeness": "unknown",
+          "terms": 0,
+          "observed_facets": 0
+        },
+        {
+          "relation": "index",
+          "source_state": "null",
+          "completeness": "unknown",
+          "terms": 0,
+          "observed_facets": 0
+        },
+        {
+          "relation": "memberships",
+          "source_state": "null",
+          "completeness": "unknown",
+          "terms": 0,
+          "observed_facets": 0
+        }
+      ]
+    },
+    {
+      "platform": "bigcommerce",
+      "url": "https://cornerstone-light-demo.mybigcommerce.com",
+      "state": "blocked",
+      "reason": "saved_public_endpoint_access_configuration_unavailable"
+    },
+    {
+      "platform": "generic",
+      "url": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
+      "state": "inconclusive",
+      "catalog_complete": false,
+      "source_reason": "single_structured_page_only",
+      "products": 0,
+      "category_assertion": "category_support_unavailable",
+      "source_error": null,
+      "observations": []
+    }
+  ],
+  "seconds": 61.468,
+  "magento_diagnostic": {
+    "platform": "magento",
+    "state": "offline_replay_complete",
+    "provenance": "one remaining actual live request; replay separately offline",
+    "products": 2,
+    "raw_bytes": 161080,
+    "source_complete": false,
+    "source_error": false,
+    "source_reason": "product_or_page_budget_reached",
+    "offline_outcomes": [
+      {
+        "product_record_bytes": 447771,
+        "state": "rejected",
+        "reason": "Category companion byte cap exceeded"
+      },
+      {
+        "product_record_bytes": 454858,
+        "state": "rejected",
+        "reason": "Category companion byte cap exceeded"
+      }
+    ]
+  }
+}

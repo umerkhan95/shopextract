@@ -1,0 +1,22 @@
+[
+  {
+    "slice": "A",
+    "title": "Durable catalog maintenance jobs and cumulative budgets",
+    "url": "https://github.com/umerkhan95/shopextract/issues/55"
+  },
+  {
+    "slice": "B",
+    "title": "Category-aware catalog reconciliation and evidence reports",
+    "url": "https://github.com/umerkhan95/shopextract/issues/56"
+  },
+  {
+    "slice": "C",
+    "title": "Optional bounded investigation for ambiguous catalog cases",
+    "url": "https://github.com/umerkhan95/shopextract/issues/57"
+  },
+  {
+    "slice": "D",
+    "title": "Catalog maintenance mechanism verification and operating examples",
+    "url": "https://github.com/umerkhan95/shopextract/issues/58"
+  }
+]

@@ -36,7 +36,7 @@ _FEED_HEADERS = {
 class GoogleFeedExtractor:
     """Extract product data from a Google Shopping feed URL (XML or CSV/TSV)."""
 
-    async def extract(self, feed_url: str) -> ExtractorResult:
+    async def extract(self, feed_url: str, *, include_categories: bool = False) -> ExtractorResult:
         """Fetch and parse a Google Shopping feed.
 
         Args:
@@ -55,9 +55,9 @@ class GoogleFeedExtractor:
         observed_at = getattr(body, "observed_at", None)
         try:
             if self._is_xml(body, content_type):
-                products = self._parse_xml(body, fetched_url)
+                products = self._parse_xml(body, fetched_url, include_categories=include_categories)
             else:
-                products = self._parse_csv(body, fetched_url)
+                products = self._parse_csv(body, fetched_url, include_categories=include_categories)
         except Exception as e:
             logger.warning("Failed to parse feed %s: %s", feed_url, e)
             return ExtractorResult(products=[], complete=False, error=str(e))
@@ -91,7 +91,7 @@ class GoogleFeedExtractor:
         return stripped.startswith("<?xml") or stripped.startswith("<rss") or stripped.startswith("<feed")
 
     @classmethod
-    def _parse_xml(cls, body: str, feed_url: str) -> list[dict]:
+    def _parse_xml(cls, body: str, feed_url: str, *, include_categories: bool = False) -> list[dict]:
         root = ET.fromstring(body)
         products: list[dict] = []
 
@@ -100,7 +100,7 @@ class GoogleFeedExtractor:
             items = root.findall(".//{http://www.w3.org/2005/Atom}entry")
 
         for item in items:
-            product = cls._parse_xml_item(item)
+            product = cls._parse_xml_item(item, include_categories=include_categories)
             if product and product.get("title"):
                 capture(product, feed_url, "feed_xml", excerpt=ET.tostring(item, encoding="unicode"))
                 products.append(product)
@@ -108,7 +108,7 @@ class GoogleFeedExtractor:
         return products
 
     @classmethod
-    def _parse_xml_item(cls, item: Any) -> dict:
+    def _parse_xml_item(cls, item: Any, *, include_categories: bool = False) -> dict:
         def g(tag: str) -> str:
             el = item.find(f"g:{tag}", _NAMESPACES)
             if el is not None and el.text:
@@ -126,7 +126,7 @@ class GoogleFeedExtractor:
             if el is not None and el.text and el.text.strip():
                 additional_images.append(el.text.strip())
 
-        return {
+        product = {
             "_source": "google_feed",
             "id": g("id"),
             "title": g("title") or (item.findtext("title") or "").strip(),
@@ -145,8 +145,21 @@ class GoogleFeedExtractor:
             "mpn": g("mpn"),
         }
 
+        if include_categories:
+            declarations = {}
+            for field in ('google_product_category', 'product_type'):
+                elements = item.findall(f'g:{field}', _NAMESPACES)
+                if not elements:
+                    elements = item.findall(field)
+                if elements:
+                    # ElementTree already decoded XML entities exactly once.
+                    values = [element.text if element.text is not None else '' for element in elements]
+                    declarations[field] = values[0] if len(values) == 1 else values
+            product['category_declarations'] = declarations
+        return product
+
     @classmethod
-    def _parse_csv(cls, body: str, feed_url: str) -> list[dict]:
+    def _parse_csv(cls, body: str, feed_url: str, *, include_categories: bool = False) -> list[dict]:
         first_line = body.split("\n", 1)[0]
         delimiter = "\t" if "\t" in first_line else ","
 
@@ -154,7 +167,7 @@ class GoogleFeedExtractor:
         products: list[dict] = []
 
         for row in reader:
-            product = cls._parse_csv_row(row)
+            product = cls._parse_csv_row(row, include_categories=include_categories)
             if product and product.get("title"):
                 capture(product, feed_url, "feed_csv", excerpt=json.dumps(row, ensure_ascii=False))
                 products.append(product)
@@ -162,7 +175,7 @@ class GoogleFeedExtractor:
         return products
 
     @classmethod
-    def _parse_csv_row(cls, row: dict[str, str]) -> dict:
+    def _parse_csv_row(cls, row: dict[str, str], *, include_categories: bool = False) -> dict:
         def s(key: str) -> str:
             val = row.get(key)
             return val.strip() if val else ""
@@ -175,7 +188,7 @@ class GoogleFeedExtractor:
             url.strip() for url in additional_raw.split(",") if url.strip()
         ] if additional_raw else []
 
-        return {
+        product = {
             "_source": "google_feed",
             "id": s("id"),
             "title": s("title"),
@@ -193,6 +206,12 @@ class GoogleFeedExtractor:
             "product_type": s("product_type"),
             "mpn": s("mpn"),
         }
+
+        if include_categories:
+            product['category_declarations'] = {
+                field: row[field] for field in ('google_product_category', 'product_type') if field in row
+            }
+        return product
 
     @staticmethod
     def _parse_price_string(price_raw: str) -> tuple[str, str]:

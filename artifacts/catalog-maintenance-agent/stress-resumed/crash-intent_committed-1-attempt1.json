@@ -1,0 +1,11 @@
+{
+  "case": "crash-intent_committed-1",
+  "state": "passed",
+  "seconds": 0.079,
+  "rss_mib": 89.85,
+  "result": {
+    "window": "intent_committed",
+    "sent": 0,
+    "state": "partial"
+  }
+}

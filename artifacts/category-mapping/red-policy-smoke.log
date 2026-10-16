@@ -1,0 +1,13 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_c19_store_creation_persists_canonical_policy _______________
+tests/test_category_skeleton.py:232: in test_c19_store_creation_persists_canonical_policy
+    store = MaintenanceStore(tmp_path / 'creation.db', category_config=configured)
+src/shopextract/maintenance/store.py:71: in __init__
+    raise NotImplementedError('category store policy creation is not implemented')
+E   NotImplementedError: category store policy creation is not implemented
+=========================== short test summary info ============================
+FAILED tests/test_category_skeleton.py::test_c19_store_creation_persists_canonical_policy
+1 failed in 0.36s

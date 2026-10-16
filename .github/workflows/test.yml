@@ -38,5 +38,9 @@ jobs:
       - name: Require MCP extra
         run: python -c "import mcp; import importlib.metadata; print(importlib.metadata.version('mcp'))"
 
-      - name: Run tests
-        run: timeout 240s pytest
+      # Sequential caps total up to 480s per matrix job (previously 240s).
+      - name: Run existing tests
+        run: timeout 240s pytest --ignore=tests/test_maintenance_acceptance.py --ignore=tests/test_maintenance_advisor.py --ignore=tests/test_maintenance_remaining_edges.py --ignore=tests/test_maintenance_review_repairs.py --ignore=tests/test_maintenance_store.py --ignore=tests/test_maintenance_stress_prerequisites.py --ignore=tests/test_maintenance_workflow.py
+
+      - name: Run maintenance tests
+        run: timeout 240s pytest tests/test_maintenance_acceptance.py tests/test_maintenance_advisor.py tests/test_maintenance_remaining_edges.py tests/test_maintenance_review_repairs.py tests/test_maintenance_store.py tests/test_maintenance_stress_prerequisites.py tests/test_maintenance_workflow.py

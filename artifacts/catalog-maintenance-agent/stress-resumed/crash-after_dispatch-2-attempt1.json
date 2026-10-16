@@ -1,0 +1,11 @@
+{
+  "case": "crash-after_dispatch-2",
+  "state": "passed",
+  "seconds": 0.083,
+  "rss_mib": 90.27,
+  "result": {
+    "window": "after_dispatch",
+    "sent": 1,
+    "state": "partial"
+  }
+}

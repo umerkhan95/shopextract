@@ -902,3 +902,19 @@ The opt-in read-only Python tool API and self-hosted MCP stdio server cover
 discovery, extraction, matching, reliable changes and captured evidence. See
 [setup, contracts, runnable reference client and operating limits](docs/agent-tools.md).
 Install the optional `mcp` extra; existing extraction defaults stay compatible.
+
+
+### Catalog maintenance jobs
+
+The opt-in local catalog maintenance workflow adds persistent bounded jobs,
+category-specific evidence-backed correction/review reports and safe restart.
+Deterministic cases make zero LLM calls; investigation is an optional injected
+adapter. It never updates a shop. See [API, CLI, recovery and operating limits](docs/catalog-maintenance.md)
+and the runnable [offline example](examples/catalog_maintenance.py).
+
+### Category mapping
+
+The opt-in category API retains source facts from six platform families and maps
+them through a shared exact, versioned rule engine. Memberships, hierarchy and
+merchant labels stay distinct; ordinary extraction formats stay compatible.
+See [configuration, platform behavior and persistence](docs/category-mapping.md).

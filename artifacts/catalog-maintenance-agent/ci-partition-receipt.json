@@ -1,0 +1,19 @@
+{
+  "existing_nodes": 817,
+  "maintenance_nodes": 106,
+  "maintenance_files": [
+    "tests/test_maintenance_acceptance.py",
+    "tests/test_maintenance_advisor.py",
+    "tests/test_maintenance_remaining_edges.py",
+    "tests/test_maintenance_review_repairs.py",
+    "tests/test_maintenance_store.py",
+    "tests/test_maintenance_stress_prerequisites.py",
+    "tests/test_maintenance_workflow.py"
+  ],
+  "disjoint": true,
+  "complete": true,
+  "sequential_same_matrix_job": true,
+  "per_partition_seconds": 240,
+  "aggregate_max_seconds": 480,
+  "previous_aggregate_seconds": 240
+}

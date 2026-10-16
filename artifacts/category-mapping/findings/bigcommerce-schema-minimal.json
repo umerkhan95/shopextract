@@ -1,0 +1,224 @@
+{
+  "provenance": "Derived offline from saved official schema source; not storefront observation",
+  "source": "artifacts/api-integration/bigcommerce-schema-reference.source",
+  "types": {
+    "Category": {
+      "name": "Category",
+      "description": "Category",
+      "shape": {
+        "type": "object",
+        "extends": [
+          "Node"
+        ],
+        "properties": [
+          {
+            "key": "entityId",
+            "valueShape": {
+              "type": "alias",
+              "value": {
+                "type": "primitive",
+                "value": {
+                  "type": "integer"
+                }
+              }
+            },
+            "description": "Unique ID for the category.",
+            "serializedDescription": {
+              "code": "Unique ID for the category.",
+              "jsxElements": [],
+              "engine": "plaintext"
+            }
+          },
+          {
+            "key": "name",
+            "valueShape": {
+              "type": "alias",
+              "value": {
+                "type": "primitive",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Category name.",
+            "serializedDescription": {
+              "code": "Category name.",
+              "jsxElements": [],
+              "engine": "plaintext"
+            }
+          },
+          {
+            "key": "path",
+            "valueShape": {
+              "type": "alias",
+              "value": {
+                "type": "primitive",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Category path.",
+            "serializedDescription": {
+              "code": "Category path.",
+              "jsxElements": [],
+              "engine": "plaintext"
+            }
+          }
+        ]
+      },
+      "serializedDescription": {
+        "code": "Category",
+        "jsxElements": [],
+        "engine": "plaintext"
+      }
+    },
+    "CategoryConnection": {
+      "name": "CategoryConnection",
+      "description": "A connection to a list of items.",
+      "shape": {
+        "type": "object",
+        "extends": [],
+        "properties": [
+          {
+            "key": "pageInfo",
+            "valueShape": {
+              "type": "alias",
+              "value": {
+                "type": "id",
+                "id": "PageInfo"
+              }
+            },
+            "description": "Information to aid in pagination.",
+            "serializedDescription": {
+              "code": "Information to aid in pagination.",
+              "jsxElements": [],
+              "engine": "plaintext"
+            }
+          },
+          {
+            "key": "edges",
+            "valueShape": {
+              "type": "alias",
+              "value": {
+                "type": "optional",
+                "shape": {
+                  "type": "alias",
+                  "value": {
+                    "type": "list",
+                    "itemShape": {
+                      "type": "alias",
+                      "value": {
+                        "type": "id",
+                        "id": "CategoryEdge"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "A list of edges.",
+            "serializedDescription": {
+              "code": "A list of edges.",
+              "jsxElements": [],
+              "engine": "plaintext"
+            }
+          }
+        ]
+      },
+      "serializedDescription": {
+        "code": "A connection to a list of items.",
+        "jsxElements": [],
+        "engine": "plaintext"
+      }
+    },
+    "CategoryEdge": {
+      "name": "CategoryEdge",
+      "description": "An edge in a connection.",
+      "shape": {
+        "type": "object",
+        "extends": [],
+        "properties": [
+          {
+            "key": "node",
+            "valueShape": {
+              "type": "alias",
+              "value": {
+                "type": "id",
+                "id": "Category"
+              }
+            },
+            "description": "The item at the end of the edge.",
+            "serializedDescription": {
+              "code": "The item at the end of the edge.",
+              "jsxElements": [],
+              "engine": "plaintext"
+            }
+          }
+        ]
+      },
+      "serializedDescription": {
+        "code": "An edge in a connection.",
+        "jsxElements": [],
+        "engine": "plaintext"
+      }
+    },
+    "PageInfo": {
+      "name": "PageInfo",
+      "description": "Information about pagination in a connection.",
+      "shape": {
+        "type": "object",
+        "extends": [],
+        "properties": [
+          {
+            "key": "hasNextPage",
+            "valueShape": {
+              "type": "alias",
+              "value": {
+                "type": "primitive",
+                "value": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "description": "When paginating forwards, are there more items?",
+            "serializedDescription": {
+              "code": "When paginating forwards, are there more items?",
+              "jsxElements": [],
+              "engine": "plaintext"
+            }
+          },
+          {
+            "key": "endCursor",
+            "valueShape": {
+              "type": "alias",
+              "value": {
+                "type": "optional",
+                "shape": {
+                  "type": "alias",
+                  "value": {
+                    "type": "primitive",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "When paginating forwards, the cursor to continue.",
+            "serializedDescription": {
+              "code": "When paginating forwards, the cursor to continue.",
+              "jsxElements": [],
+              "engine": "plaintext"
+            }
+          }
+        ]
+      },
+      "serializedDescription": {
+        "code": "Information about pagination in a connection.",
+        "jsxElements": [],
+        "engine": "plaintext"
+      }
+    }
+  }
+}

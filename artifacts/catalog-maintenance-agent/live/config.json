@@ -1,0 +1,13 @@
+{
+  "origin": "https://www.blissworld.com",
+  "items": 2,
+  "physical_attempts_per_phase": 3,
+  "physical_attempts_total": 6,
+  "logical_source_attempts_per_phase": 2,
+  "attempt_seconds": 10,
+  "phase_seconds": 30,
+  "total_seconds": 60,
+  "llm_tokens": 0,
+  "llm_cost_micros": 0,
+  "response_bytes": 2097152
+}

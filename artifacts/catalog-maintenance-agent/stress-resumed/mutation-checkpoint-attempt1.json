@@ -1,0 +1,11 @@
+{
+  "case": "mutation-checkpoint",
+  "state": "passed",
+  "seconds": 2.87,
+  "rss_mib": 90.68,
+  "result": {
+    "mutation": "checkpoint",
+    "detected": true,
+    "restored": true
+  }
+}

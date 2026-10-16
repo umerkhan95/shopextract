@@ -1,0 +1,60 @@
+{
+  "stage": "intended_red_skeleton",
+  "date": "2026-10-17",
+  "smoke": {
+    "tests": 1,
+    "failed": 1,
+    "seconds": 0.25,
+    "log": "artifacts/category-mapping/red-smoke.log"
+  },
+  "bounded": {
+    "tests": 13,
+    "failed": 13,
+    "seconds": 0.35,
+    "log": "artifacts/category-mapping/red.log"
+  },
+  "expected_failure": "NotImplementedError from business stubs",
+  "collection_errors_final": 0,
+  "environment_repair": "Set PYTHONPATH=src once after missing shopextract import",
+  "mechanism_verification": "not_run",
+  "live_calls": 0,
+  "models": 0,
+  "gates": {
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "pending"
+  },
+  "session_token_counters": "unavailable",
+  "g2_revision": {
+    "smoke": {
+      "tests": 1,
+      "failed": 1,
+      "seconds": 0.39,
+      "log": "artifacts/category-mapping/red-cache-smoke.log"
+    },
+    "bounded": {
+      "tests": 17,
+      "failed": 17,
+      "seconds": 0.48,
+      "log": "artifacts/category-mapping/red-g2-revision.log"
+    },
+    "failure_kind": "intended NotImplementedError only",
+    "cache": "real source/cache acceptance red; no passing mechanism proof"
+  },
+  "g3_policy_revision": {
+    "smoke": {
+      "tests": 1,
+      "failed": 1,
+      "seconds": 0.36,
+      "log": "artifacts/category-mapping/red-policy-smoke.log"
+    },
+    "bounded": {
+      "tests": 20,
+      "failed": 20,
+      "seconds": 0.76,
+      "log": "artifacts/category-mapping/red-g3-policy.log"
+    },
+    "all_failures": "intended NotImplementedError",
+    "actual_lifecycle_pass": false
+  }
+}

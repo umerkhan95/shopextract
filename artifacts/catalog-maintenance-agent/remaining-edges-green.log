@@ -1,0 +1,47 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.F.....                                                                  [100%]
+=================================== FAILURES ===================================
+_ test_captured_outdated_or_unsupported_baseline_has_distinct_provenance[False] _
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-93/test_captured_outdated_or_unsu1')
+supported = False
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('supported', [True,False])
+    async def test_captured_outdated_or_unsupported_baseline_has_distinct_provenance(tmp_path,supported):
+        from tests.test_maintenance_stress_prerequisites import parsed
+        from shopextract._portable import product_to_record
+        captured=parsed('Old captured specification')
+        if not supported:captured.evidence_contract=None
+        h=Harness(tmp_path/'jobs.db')
+>       _,report=await h.run(goal(baseline=(product_to_record(captured),),baseline_mode='captured'))
+
+tests/test_maintenance_remaining_edges.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:78: in run
+    return key, await self.engine.run(key)
+src/shopextract/maintenance/engine.py:100: in run
+    await self._reconcile(job_id, goal, products)
+src/shopextract/maintenance/engine.py:332: in _reconcile
+    before, baseline_support, before_evidence = self._supported(left[index], field, goal)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10e213850>
+product = Product(title='Industrial Sensor', price=Decimal('10'), currency='EUR', description='Old captured specification', imag...-26d9-549a-8574-4a3abadf3e21', supplier_id='supplier.example', attributes={}, pack_quantity=None, bundle_components=[])
+field = 'description'
+goal = {'baseline': [{'evidence_contract': None, 'product': {'additional_images': [], 'attributes': {}, 'bundle_components': ...cost_micros': 0, 'evidence_bytes': 16777216, 'input_bytes': 262144, ...}, 'deadline': '2026-10-16T10:01:00+00:00', ...}
+
+    def _supported(self, product, field, goal):
+        from .._evidence import trust_view
+        from .._resolution import ResolutionPolicy, resolve_fields
+>       contract = product.evidence_contract
+E       AttributeError: 'Product' object has no attribute 'evidence_contract'
+
+src/shopextract/maintenance/engine.py:265: AttributeError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_maintenance_remaining_edges.py::test_captured_outdated_or_unsupported_baseline_has_distinct_provenance[False]
+1 failed, 6 passed, 5 deselected in 12.28s

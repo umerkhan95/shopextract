@@ -1,0 +1,107 @@
+{
+  "platform": "shopware",
+  "date": "2026-10-17",
+  "status": "implementation_saved_unverified",
+  "execution": "none",
+  "token_counters": "unavailable",
+  "code_refs": [
+    "src/shopextract/extractors/shopware.py:20-48",
+    "src/shopextract/_normalize.py:399-444",
+    "src/shopextract/_normalize.py:524-550",
+    "src/shopextract/tools/security.py:154-179",
+    "src/shopextract/tools/sources.py:120-136"
+  ],
+  "facts": [
+    "Store API native normalizer has no category projection; legacy copies categories to category_path",
+    "Current product query does not request categories; context capture retains currency only",
+    "Guard rejects any association change to exact fixed native read POST",
+    "Saved fourth variant sample has four categoryIds, nine categoryTree IDs and null categories; no proven chain or labels"
+  ],
+  "docs": [
+    "https://developer.shopware.com/docs/concepts/commerce/catalog/sales-channels.html",
+    "https://developer.shopware.com/frontends/frontends-recipes/context/navigation.html"
+  ],
+  "saved_source": "artifacts/api-integration/shopware-variants.json",
+  "reuse": [
+    "_capture.capture",
+    "_normalization.Normalizer",
+    "_evidence",
+    "_portable",
+    "GuardedTransport",
+    "NativeReadPolicy"
+  ],
+  "required_shared_types": [
+    "scoped opaque CategoryTermRef",
+    "captured CategoryObservation with relation kind and field state",
+    "separate membership/graph/path completeness",
+    "derived versioned MappingDecision",
+    "opt-in portable codec"
+  ],
+  "gaps": [
+    "categoryTree exact schema semantics not independently established",
+    "native category association not requested or guard permitted",
+    "channel/language source not retained in context capture",
+    "shared codec/type names and first-slice enrichment scope pending"
+  ],
+  "peer_consultation": {
+    "shopify": "saved findings read; direct send failed agent thread limit reached, reply pending",
+    "woocommerce": "saved findings read; direct send failed agent thread limit reached, reply pending",
+    "bigcommerce": "direct exchange agreement scoped IDs, memberships distinct tree/trails, captured distinct derived, independent completeness and unknown scope retained"
+  },
+  "fixture_plan_ref": "specs/006-category-mapping/platforms/shopware.md",
+  "fixture_expected_outcomes": {
+    "SW1": "two memberships, three separate index IDs, zero path/edges, legacy []",
+    "SW2": "permutation/dedup stable membership set; retained raw pointers",
+    "SW3": "missing/null/empty/malformed distinct; no profile",
+    "SW4": "explicit R->A only, localized separator label unsplit",
+    "SW5": "cross-store IDs distinct; channel/locale observations retained",
+    "SW6": "cycle invalid/no trusted path; missing parent partial/bounded",
+    "SW7": "exact existing body allowed; categories addition/page21/limit21 denied before wire",
+    "SW8": "contextual A trail does not erase B membership",
+    "SW9": "legacy category_path unchanged"
+  },
+  "planned_limits": {
+    "seed": 6007,
+    "cases": 9,
+    "nodes_per_case": 100,
+    "ids_per_case": 200,
+    "depth": 8,
+    "fixture_bytes": 262144,
+    "seconds_per_case": 30,
+    "workers": 1
+  },
+  "not_claimed": [
+    "tests passed",
+    "live category availability",
+    "complete ancestry",
+    "implementation",
+    "review gate approval"
+  ],
+  "final_contract_ack": {
+    "all_five_peer_findings_read": true,
+    "shared_gates": "root reported G1/G2/G3 passed",
+    "consulted": "category_bigcommerce",
+    "resolved": "shared scope/observation helpers and independent source_fact; bound endpoint edge facets; global caps",
+    "request_body": "unchanged",
+    "owned_files": [
+      "src/shopextract/categories/adapters/shopware.py",
+      "tests/test_category_shopware.py",
+      "specs/006-category-mapping/platforms/shopware.md",
+      "artifacts/category-mapping/findings/shopware.json"
+    ]
+  },
+  "verification": {
+    "tests": "not run; root serial barrier",
+    "compile": "not run",
+    "fixed_invocations": 14,
+    "test_families": [
+      "C07",
+      "C10",
+      "C11",
+      "C12",
+      "C13",
+      "C22",
+      "C24"
+    ]
+  }
+}

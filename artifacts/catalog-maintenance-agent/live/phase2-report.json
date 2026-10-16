@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "job_id": "f27a2aee84a94a45a6fb9efc2c4e0cd5",
+  "state": "partial",
+  "stop_reason": "source_partial",
+  "findings": [
+    {
+      "after": "Bliss Halloween Costume",
+      "baseline_support": {
+        "evidence_ids": [],
+        "kind": "supplied",
+        "observed_at": null,
+        "source_url": null,
+        "state": "asserted"
+      },
+      "before": "Bliss Halloween Costume",
+      "comparison": "equal",
+      "evidence_ids": [
+        "e_86f35a51-916b-407a-ab95-963c0618fff6"
+      ],
+      "field": "title",
+      "finding_id": "6737e268177afd4a1f8b8ca4b80242e87365b118abb46467120acfb51b0ce73b",
+      "match_reason": {
+        "conflicts": [],
+        "evidence": [
+          "supplier-scoped canonical_product_id agrees",
+          "supplier-scoped external_id agrees",
+          "supplier-scoped sku agrees"
+        ]
+      },
+      "normalized_after": "Bliss Halloween Costume",
+      "normalized_before": "Bliss Halloween Costume",
+      "ordinal": 0,
+      "product_key": "15445253980445",
+      "profile": "generic-v1",
+      "reason": null,
+      "role": "comparable",
+      "status": "unchanged",
+      "supplier_support": {
+        "evidence_ids": [
+          "e_86f35a51-916b-407a-ab95-963c0618fff6"
+        ],
+        "kind": "captured",
+        "observed_at": "2026-10-16T19:06:44.185987+00:00",
+        "source_url": "https://www.blissworld.com/products.json?limit=2&page=1",
+        "state": "observed"
+      },
+      "trace": []
+    },
+    {
+      "after": "Salmon DNA Duo",
+      "baseline_support": {
+        "evidence_ids": [],
+        "kind": "supplied",
+        "observed_at": null,
+        "source_url": null,
+        "state": "asserted"
+      },
+      "before": "Salmon DNA Duo",
+      "comparison": "equal",
+      "evidence_ids": [
+        "e_07457d11-fe0d-4f0a-864f-eb84d1894b15"
+      ],
+      "field": "title",
+      "finding_id": "b3e4ab2d9d76efe08503e36592cabde5cbe5c13fc5eaa8f5a19e852e59968841",
+      "match_reason": {
+        "conflicts": [],
+        "evidence": [
+          "supplier-scoped canonical_product_id agrees",
+          "supplier-scoped external_id agrees"
+        ]
+      },
+      "normalized_after": "Salmon DNA Duo",
+      "normalized_before": "Salmon DNA Duo",
+      "ordinal": 1,
+      "product_key": "15432203174173",
+      "profile": "generic-v1",
+      "reason": null,
+      "role": "comparable",
+      "status": "unchanged",
+      "supplier_support": {
+        "evidence_ids": [
+          "e_07457d11-fe0d-4f0a-864f-eb84d1894b15"
+        ],
+        "kind": "captured",
+        "observed_at": "2026-10-16T19:06:44.187522+00:00",
+        "source_url": "https://www.blissworld.com/products.json?limit=2&page=1",
+        "state": "observed"
+      },
+      "trace": []
+    }
+  ],
+  "usage": {
+    "requests": 2,
+    "tokens": 0,
+    "cost_micros": 0,
+    "reserved_tokens": 0,
+    "reserved_cost_micros": 0,
+    "unknown_requests": 0,
+    "violations": 0
+  },
+  "coverage": {
+    "baseline_count": 2,
+    "processed_products": 2,
+    "source_complete": false,
+    "supplier_products": 2
+  },
+  "pending_steps": []
+}

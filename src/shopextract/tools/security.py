@@ -115,6 +115,7 @@ class CoreStream(httpx.AsyncByteStream):
 @dataclass(frozen=True)
 class NativeReadPolicy:
     shopware_search_url: str | None = None
+    category_mode: bool = False
 
 
 class GuardedTransport(httpx.AsyncBaseTransport):
@@ -161,8 +162,9 @@ class GuardedTransport(httpx.AsyncBaseTransport):
                 try:
                     body = json.loads(request.content)
                     if 'query' in body:
-                        from ..extractors.bigcommerce import _QUERY
-                        if body['query'] != _QUERY or set(body) - {'query', 'variables'}:
+                        from ..extractors.bigcommerce import _QUERY, _QUERY_WITH_CATEGORIES
+                        allowed_queries = (_QUERY, _QUERY_WITH_CATEGORIES) if self.policy.category_mode else (_QUERY,)
+                        if body['query'] not in allowed_queries or set(body) - {'query', 'variables'}:
                             raise ValueError()
                     else:
                         expected = {'page': body.get('page'), 'limit': body.get('limit'),
@@ -182,8 +184,18 @@ class GuardedTransport(httpx.AsyncBaseTransport):
                 raise ToolError('resource_limit', 'Source request budget reached')
             budget.requests_used += 1
             request.headers['accept-encoding'] = 'identity'
+            accounting = self.context.request_accounting
+            if accounting is not None:
+                try:
+                    accounting.before_request(request.method, str(request.url))
+                except Exception as error:
+                    # Retain callback failures as transport errors so native
+                    # adapters cannot swallow parent budget/cancel denial.
+                    raise ToolError(getattr(error, 'code', 'internal_error')) from None
             response = await self.raw(request)
             try:
+                if accounting is not None:
+                    accounting.after_request(request.method, str(request.url), response.status_code)
                 encoding = response.headers.get('content-encoding', 'identity').lower().strip()
                 if encoding != 'identity':
                     raise ToolError('source_error', 'unsupported_content_encoding')

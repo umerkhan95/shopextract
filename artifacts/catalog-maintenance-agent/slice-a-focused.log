@@ -1,0 +1,557 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.............FFFFFFFFFF.........FFFFFFFF.F.FF                            [100%]
+=================================== FAILURES ===================================
+_____________ test_supported_spec_correction_and_durable_evidence ______________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_supported_spec_correction0')
+
+    @pytest.mark.asyncio
+    async def test_supported_spec_correction_and_durable_evidence(tmp_path):
+        assert_exact_fixture()
+        h = Harness(tmp_path / 'jobs.db')
+>       key, report = await h.run()
+
+tests/test_maintenance_acceptance.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d4e5ba0>
+job_id = '2535c405b4894c73bab7fdea2cad2f6e'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+___________________ test_deterministic_no_llm_and_unchanged ____________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_deterministic_no_llm_and_0')
+
+    @pytest.mark.asyncio
+    async def test_deterministic_no_llm_and_unchanged(tmp_path):
+        assert_exact_fixture()
+        class Forbidden:
+            def bound(self, payload):
+                pytest.fail('deterministic cases must not enter investigator')
+        h = Harness(tmp_path / 'jobs.db', investigator=Forbidden())
+>       _, report = await h.run(goal(baseline=(baseline('Operating temperature: 0–45°C'),)))
+
+tests/test_maintenance_acceptance.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d597910>
+job_id = 'dcd1b811b6c74880ab49390b35d5cdd2'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+__________________ test_resume_skips_committed_external_work ___________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_resume_skips_committed_ex0')
+
+    @pytest.mark.asyncio
+    async def test_resume_skips_committed_external_work(tmp_path):
+        h = Harness(tmp_path / 'jobs.db')
+>       key, original = await h.run()
+
+tests/test_maintenance_acceptance.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d5f62f0>
+job_id = 'fd6a5a1d33a34188a67e633d9c9a1b94'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+____________ test_missing_baseline_never_becomes_default_fact[None] ____________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_missing_baseline_never_be0')
+before = None
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('before', [None, {}])
+    async def test_missing_baseline_never_becomes_default_fact(tmp_path, before):
+        record = baseline()
+        if before is None:
+            record.pop('description')
+        else:
+            record['description'] = None
+>       _, report = await Harness(tmp_path / 'jobs.db').run(goal(baseline=(record,)))
+
+tests/test_maintenance_acceptance.py:121: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d627790>
+job_id = 'ca68a030b81549d8a365354b6362f1b7'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+__________ test_missing_baseline_never_becomes_default_fact[before1] ___________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_missing_baseline_never_be1')
+before = {}
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('before', [None, {}])
+    async def test_missing_baseline_never_becomes_default_fact(tmp_path, before):
+        record = baseline()
+        if before is None:
+            record.pop('description')
+        else:
+            record['description'] = None
+>       _, report = await Harness(tmp_path / 'jobs.db').run(goal(baseline=(record,)))
+
+tests/test_maintenance_acceptance.py:121: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d5f7460>
+job_id = 'e39defd371b04ad4b37e14aa18c599b5'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+____________________ test_unknown_dispatch_is_not_replayed _____________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_unknown_dispatch_is_not_r0')
+
+    @pytest.mark.asyncio
+    async def test_unknown_dispatch_is_not_replayed(tmp_path):
+        def crash(event, payload):
+            if event == 'after_dispatch':
+                raise SystemExit('synthetic process-loss boundary')
+        h = Harness(tmp_path / 'jobs.db', failure_hook=crash)
+        key = h.store.create(goal())
+        with pytest.raises(SystemExit):
+>           await h.engine.run(key)
+
+tests/test_maintenance_acceptance.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d532bf0>
+job_id = 'a44b11fdeb2c41028e82730022689a55'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+______________ test_zero_request_budget_preserves_partial_report _______________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_zero_request_budget_prese0')
+
+    @pytest.mark.asyncio
+    async def test_zero_request_budget_preserves_partial_report(tmp_path):
+        h = Harness(tmp_path / 'jobs.db')
+>       _, report = await h.run(goal(budgets=Budgets(requests=0)))
+
+tests/test_maintenance_acceptance.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d5f7850>
+job_id = '55419e191b5e4102b9bdd81353b14209'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+_________________ test_cancelled_job_cannot_resume_or_dispatch _________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_cancelled_job_cannot_resu0')
+
+    @pytest.mark.asyncio
+    async def test_cancelled_job_cannot_resume_or_dispatch(tmp_path):
+        h = Harness(tmp_path / 'jobs.db')
+        key = h.store.create(goal())
+>       await h.engine.cancel(key)
+
+tests/test_maintenance_acceptance.py:155: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d533670>
+job_id = 'ee283e9b0be445a584e62ce2728580b6'
+
+    async def cancel(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance acknowledged cancellation')
+E       NotImplementedError: maintenance acknowledged cancellation
+
+src/shopextract/maintenance/engine.py:28: NotImplementedError
+____________________ test_source_auth_failure_has_no_retry _____________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_source_auth_failure_has_n0')
+
+    @pytest.mark.asyncio
+    async def test_source_auth_failure_has_no_retry(tmp_path):
+        h = Harness(tmp_path / 'jobs.db', status=401)
+>       _, report = await h.run()
+
+tests/test_maintenance_acceptance.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d5f5090>
+job_id = '416cfef3b899480a944169f557075253'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+________________ test_fresh_cache_retains_original_capture_time ________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_fresh_cache_retains_origi0')
+
+    @pytest.mark.asyncio
+    async def test_fresh_cache_retains_original_capture_time(tmp_path):
+        h = Harness(tmp_path / 'jobs.db')
+>       _, first = await h.run()
+
+tests/test_maintenance_acceptance.py:173: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d625a50>
+job_id = 'ea461cd8e7934a51a062cc21b121d514'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+____________ test_exact_mass_conversion_does_not_authorize_identity ____________
+
+    def test_exact_mass_conversion_does_not_authorize_identity():
+>       result = compare_field(profile('hardware-v1').fields['attributes/weight'], '1000 g', '1 kg')
+
+tests/test_maintenance_acceptance.py:208: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rule = FieldRule(kind='mass', role='comparable', normalization='mass_kg')
+before = '1000 g', after = '1 kg'
+
+    def compare_field(rule: FieldRule, before, after) -> dict:
+        """Result includes comparison, normalized values and transform trace; no identity authorization."""
+>       raise NotImplementedError('maintenance typed category field comparison')
+E       NotImplementedError: maintenance typed category field comparison
+
+src/shopextract/maintenance/profiles.py:44: NotImplementedError
+______________ test_footwear_size_never_converts_between_systems _______________
+
+    def test_footwear_size_never_converts_between_systems():
+>       result = compare_field(profile('footwear-v1').fields['attributes/size'], 'US 9', 'UK 9')
+
+tests/test_maintenance_acceptance.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+rule = FieldRule(kind='text', role='identity_variant', normalization='exact')
+before = 'US 9', after = 'UK 9'
+
+    def compare_field(rule: FieldRule, before, after) -> dict:
+        """Result includes comparison, normalized values and transform trace; no identity authorization."""
+>       raise NotImplementedError('maintenance typed category field comparison')
+E       NotImplementedError: maintenance typed category field comparison
+
+src/shopextract/maintenance/profiles.py:44: NotImplementedError
+___________________ test_missing_category_is_visible_review ____________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_missing_category_is_visib0')
+
+    @pytest.mark.asyncio
+    async def test_missing_category_is_visible_review(tmp_path):
+>       _, report = await Harness(tmp_path / 'jobs.db').run(goal(profiles={}))
+
+tests/test_maintenance_acceptance.py:222: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d5a1e70>
+job_id = 'e9e32b7d05ee4001aa18fd19f531badb'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+________________ test_expired_deadline_resume_cannot_gain_time _________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_expired_deadline_resume_c0')
+
+    @pytest.mark.asyncio
+    async def test_expired_deadline_resume_cannot_gain_time(tmp_path):
+        h = Harness(tmp_path / 'jobs.db')
+        key = h.store.create(goal(deadline='2026-10-16T09:59:00+00:00'))
+>       report = await h.engine.resume(key)
+
+tests/test_maintenance_acceptance.py:231: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d5dd0f0>
+job_id = '18cb0a83f89843d3939da0c574687c7d'
+
+    async def resume(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance checkpoint-safe resume')
+E       NotImplementedError: maintenance checkpoint-safe resume
+
+src/shopextract/maintenance/engine.py:22: NotImplementedError
+______________ test_advisory_cannot_authorize_title_only_identity ______________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_advisory_cannot_authorize0')
+
+    @pytest.mark.asyncio
+    async def test_advisory_cannot_authorize_title_only_identity(tmp_path):
+        class UntrustedAdvisor:
+            calls = 0
+            def bound(self, payload):
+                return AdvisorBound(32, 32, 10, 'synthetic', 'fixture-v1')
+            async def investigate(self, payload, *, reservation, timeout):
+                self.calls += 1
+                assert reservation.bound == AdvisorBound(32, 32, 10, 'synthetic', 'fixture-v1')
+                assert reservation.reservation_id
+                return AdvisorResult('synthetic', 'fixture-v1', {'relation': 'exact'},
+                                     ('forged',), AdvisorUsage(32, 4, 5))
+        record = baseline()
+        for key in ('external_id', 'sku', 'gtin'):
+            record.pop(key)
+        advisor = UntrustedAdvisor()
+        h = Harness(tmp_path / 'jobs.db', investigator=advisor)
+>       _, report = await h.run(goal(baseline=(record,), profiles={'0': 'hardware-v1'},
+                                    budgets=Budgets(tokens=128, cost_micros=100)))
+
+tests/test_maintenance_acceptance.py:254: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d5a3760>
+job_id = 'd4dc6235d0704042ad314d1f97ed6603'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+_________________ test_stable_report_pagination_and_resume_ids _________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_stable_report_pagination_0')
+
+    @pytest.mark.asyncio
+    async def test_stable_report_pagination_and_resume_ids(tmp_path):
+        h = Harness(tmp_path / 'jobs.db')
+>       key, report = await h.run()
+
+tests/test_maintenance_acceptance.py:265: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d5de710>
+job_id = '4a397d1a7df64a49b3ffeefa6d877d03'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+_____________ test_missing_supplier_support_never_invents_removal ______________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_missing_supplier_support_0')
+
+    @pytest.mark.asyncio
+    async def test_missing_supplier_support_never_invents_removal(tmp_path):
+        h = Harness(tmp_path / 'jobs.db', description=None)
+>       _, report = await h.run()
+
+tests/test_maintenance_acceptance.py:275: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d5a08e0>
+job_id = 'f15b3490b3c2463c8b974a11ae6d13d6'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+________________ test_profile_identity_change_requires_new_job _________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_profile_identity_change_r0')
+
+    @pytest.mark.asyncio
+    async def test_profile_identity_change_requires_new_job(tmp_path):
+        h = Harness(tmp_path / 'jobs.db')
+        original = goal()
+>       key, _ = await h.run(original)
+
+tests/test_maintenance_acceptance.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d5dd660>
+job_id = '23bcc1812ce74c4a80a8bbc158046084'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+_______ test_unknown_advisor_usage_retains_bound_and_blocks_second_call ________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_unknown_advisor_usage_ret0')
+
+    @pytest.mark.asyncio
+    async def test_unknown_advisor_usage_retains_bound_and_blocks_second_call(tmp_path):
+        class UnknownUsage:
+            calls = 0
+            def bound(self, payload):
+                return AdvisorBound(32, 32, 10, 'synthetic', 'fixed-price-v1')
+            async def investigate(self, payload, *, reservation, timeout):
+                self.calls += 1
+                assert reservation.bound == self.bound(payload)
+                assert timeout <= 10
+                return AdvisorResult('synthetic', 'fixed-price-v1', {'reason': 'uncertain'}, (), None)
+        advisor = UnknownUsage()
+        a = baseline()
+        for name in ('external_id', 'sku', 'gtin'):
+            a.pop(name)
+        b = dict(a, description='Another supplied description')
+        h = Harness(tmp_path / 'jobs.db', investigator=advisor)
+>       _, report = await h.run(goal(baseline=(a, b), profiles={'0': 'hardware-v1', '1': 'hardware-v1'},
+                                    budgets=Budgets(tokens=64, cost_micros=10)))
+
+tests/test_maintenance_acceptance.py:319: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:74: in run
+    return key, await self.engine.run(key)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d595630>
+job_id = '426b2e82325b499e8c414cf12028256a'
+
+    async def run(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance bounded reconciliation workflow')
+E       NotImplementedError: maintenance bounded reconciliation workflow
+
+src/shopextract/maintenance/engine.py:19: NotImplementedError
+__ test_custom_profile_recovery_rejects_changed_or_missing_registry[changed] ___
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_custom_profile_recovery_r0')
+replacement = 'changed'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('replacement', ['changed', 'missing'])
+    async def test_custom_profile_recovery_rejects_changed_or_missing_registry(tmp_path, replacement):
+        original = CategoryProfile('accessory-v1', {'description': FieldRule('text', 'comparable')})
+        store = MaintenanceStore(tmp_path / 'jobs.db', custom_profiles={'accessory-v1': original})
+        key = store.create(goal(profiles={'S1': 'accessory-v1'}))
+        active = {} if replacement == 'missing' else {'accessory-v1': CategoryProfile(
+            'accessory-v1', {'description': FieldRule('text', 'identity_variant')})}
+        h = Harness(tmp_path / 'jobs.db')
+        h.store = MaintenanceStore(tmp_path / 'jobs.db', custom_profiles=active)
+        h.engine.store = h.store
+        with pytest.raises(MaintenanceError, match='profile_mismatch'):
+>           await h.engine.resume(key)
+
+tests/test_maintenance_acceptance.py:353: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d6b2d10>
+job_id = '06733ad4fcd84102b4ad4b5c62f9753e'
+
+    async def resume(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance checkpoint-safe resume')
+E       NotImplementedError: maintenance checkpoint-safe resume
+
+src/shopextract/maintenance/engine.py:22: NotImplementedError
+__ test_custom_profile_recovery_rejects_changed_or_missing_registry[missing] ___
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-65/test_custom_profile_recovery_r1')
+replacement = 'missing'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('replacement', ['changed', 'missing'])
+    async def test_custom_profile_recovery_rejects_changed_or_missing_registry(tmp_path, replacement):
+        original = CategoryProfile('accessory-v1', {'description': FieldRule('text', 'comparable')})
+        store = MaintenanceStore(tmp_path / 'jobs.db', custom_profiles={'accessory-v1': original})
+        key = store.create(goal(profiles={'S1': 'accessory-v1'}))
+        active = {} if replacement == 'missing' else {'accessory-v1': CategoryProfile(
+            'accessory-v1', {'description': FieldRule('text', 'identity_variant')})}
+        h = Harness(tmp_path / 'jobs.db')
+        h.store = MaintenanceStore(tmp_path / 'jobs.db', custom_profiles=active)
+        h.engine.store = h.store
+        with pytest.raises(MaintenanceError, match='profile_mismatch'):
+>           await h.engine.resume(key)
+
+tests/test_maintenance_acceptance.py:353: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x10d531e70>
+job_id = 'c0f46665f1444ae9b456b15e9b73767b'
+
+    async def resume(self, job_id: str) -> dict:
+>       raise NotImplementedError('maintenance checkpoint-safe resume')
+E       NotImplementedError: maintenance checkpoint-safe resume
+
+src/shopextract/maintenance/engine.py:22: NotImplementedError
+=========================== short test summary info ============================
+FAILED tests/test_maintenance_acceptance.py::test_supported_spec_correction_and_durable_evidence
+FAILED tests/test_maintenance_acceptance.py::test_deterministic_no_llm_and_unchanged
+FAILED tests/test_maintenance_acceptance.py::test_resume_skips_committed_external_work
+FAILED tests/test_maintenance_acceptance.py::test_missing_baseline_never_becomes_default_fact[None]
+FAILED tests/test_maintenance_acceptance.py::test_missing_baseline_never_becomes_default_fact[before1]
+FAILED tests/test_maintenance_acceptance.py::test_unknown_dispatch_is_not_replayed
+FAILED tests/test_maintenance_acceptance.py::test_zero_request_budget_preserves_partial_report
+FAILED tests/test_maintenance_acceptance.py::test_cancelled_job_cannot_resume_or_dispatch
+FAILED tests/test_maintenance_acceptance.py::test_source_auth_failure_has_no_retry
+FAILED tests/test_maintenance_acceptance.py::test_fresh_cache_retains_original_capture_time
+FAILED tests/test_maintenance_acceptance.py::test_exact_mass_conversion_does_not_authorize_identity
+FAILED tests/test_maintenance_acceptance.py::test_footwear_size_never_converts_between_systems
+FAILED tests/test_maintenance_acceptance.py::test_missing_category_is_visible_review
+FAILED tests/test_maintenance_acceptance.py::test_expired_deadline_resume_cannot_gain_time
+FAILED tests/test_maintenance_acceptance.py::test_advisory_cannot_authorize_title_only_identity
+FAILED tests/test_maintenance_acceptance.py::test_stable_report_pagination_and_resume_ids
+FAILED tests/test_maintenance_acceptance.py::test_missing_supplier_support_never_invents_removal
+FAILED tests/test_maintenance_acceptance.py::test_profile_identity_change_requires_new_job
+FAILED tests/test_maintenance_acceptance.py::test_unknown_advisor_usage_retains_bound_and_blocks_second_call
+FAILED tests/test_maintenance_acceptance.py::test_custom_profile_recovery_rejects_changed_or_missing_registry[changed]
+FAILED tests/test_maintenance_acceptance.py::test_custom_profile_recovery_rejects_changed_or_missing_registry[missing]
+21 failed, 24 passed in 2.52s

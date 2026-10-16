@@ -1,0 +1,253 @@
+{
+  "platform": "generic",
+  "date": "2026-10-17",
+  "status": "implementation_authored_awaiting_serial_verification",
+  "implementation_complete": false,
+  "limits": {
+    "official_pages": 2,
+    "storefront_requests": 0,
+    "test_runs": 0,
+    "model_calls": 0,
+    "token_counters": "unavailable"
+  },
+  "facts": [
+    {
+      "claim": "JSON-LD captures raw Product categories before enrichment; legacy category_path splits text on > and / and stringifies array objects, which is not proven ancestry",
+      "refs": [
+        "src/shopextract/extractors/_schema_org.py:171",
+        "src/shopextract/_normalize.py:657"
+      ]
+    },
+    {
+      "claim": "Schema category accepts Text/URL/Thing/CategoryCode; hierarchy delimiters are informal hints",
+      "refs": [
+        "https://schema.org/category"
+      ],
+      "checked": "2026-10-17",
+      "vocabulary_version": "development V30.1 2026-09-16",
+      "merchant_taxonomy_version": null
+    },
+    {
+      "claim": "Google category is predefined ID OR full path, non-repeated; product_type is merchant-defined; feed does not identify taxonomy release",
+      "refs": [
+        "https://support.google.com/merchants/answer/6324436?hl=en"
+      ],
+      "checked": "2026-10-17"
+    },
+    {
+      "claim": "XML/CSV parsers omit google_product_category before capture and collapse absent/empty product_type to empty string; excerpts may retain omitted category but do not create normalized source support",
+      "refs": [
+        "src/shopextract/extractors/feed.py:110",
+        "src/shopextract/extractors/feed.py:161"
+      ]
+    },
+    {
+      "claim": "OpenGraph product:category captured as one raw value; repeated tags overwrite, empty tags skipped; metadata fallback drops product:* and lacks capture",
+      "refs": [
+        "src/shopextract/extractors/_opengraph.py:32",
+        "src/shopextract/extractors/_opengraph.py:61",
+        "src/shopextract/_normalize.py:690"
+      ]
+    },
+    {
+      "claim": "CSS fallback has no category projection; custom unique DOM text/attribute values can have captured support. LLM asks product_type but source={} remains unsupported",
+      "refs": [
+        "src/shopextract/_normalize.py:703",
+        "src/shopextract/extractors/css.py:165",
+        "src/shopextract/extractors/llm.py:41",
+        "src/shopextract/extractors/llm.py:185",
+        "src/shopextract/_capture.py:89"
+      ]
+    },
+    {
+      "claim": "Capture retains JSON-pointer escaped leaves/containers within4096B fragment/65536B product; source mutation or missing retention prevents observed support",
+      "refs": [
+        "src/shopextract/_capture.py:12",
+        "src/shopextract/_capture.py:19",
+        "src/shopextract/_capture.py:95"
+      ]
+    }
+  ],
+  "saved_sources": {
+    "paths": [
+      "artifacts/live-provenance-35/all-domains/feed-xml.source",
+      "artifacts/live-provenance-35/all-domains/feed-csv.source"
+    ],
+    "observed_content": "GPC 166/212 etc; product_type XML &amp;gt; and CSV literal &gt;; reuse only, not new live observation; .local URLs retained",
+    "taxonomy_version": null
+  },
+  "reuse": [
+    "src/shopextract/_capture.py",
+    "src/shopextract/_normalization.py",
+    "src/shopextract/_evidence.py",
+    "src/shopextract/_portable.py",
+    "src/shopextract/maintenance/profiles.py"
+  ],
+  "contract": {
+    "kinds": [
+      "merchant_category",
+      "custom_product_type",
+      "standard_taxonomy",
+      "structured_category_code"
+    ],
+    "namespaces": [
+      "schema.org/category plus explicit CategoryCode.inCodeSet",
+      "merchant-scoped opengraph/product:category",
+      "merchant-scoped google_feed/product_type",
+      "google_product_category plus known taxonomy version"
+    ],
+    "identity": "opaque string native ID + vocabulary/code-set + known version/store/catalog scope; observation supplier/channel/language separate",
+    "relations": "unordered memberships separate from explicit ordered paths; informal text hints never proven edges",
+    "representations": [
+      "id",
+      "label",
+      "url",
+      "path",
+      "structured_code"
+    ],
+    "states": [
+      "missing",
+      "null",
+      "empty_text",
+      "empty_collection",
+      "malformed",
+      "present"
+    ],
+    "completeness": "field/association/path/graph independent; parsed feed complete does not prove complete taxonomy",
+    "mapping": "observed declarations distinct from derived target/rule/version/conflict; no model or maintenance authority",
+    "compatibility": "legacy constructors/category_path/default exports preserved; shared owner decides opt-in versioned companion codec"
+  },
+  "fixture_plan_ref": "specs/006-category-mapping/platforms/generic.md",
+  "fixtures": [
+    {
+      "id": "G1",
+      "input": {
+        "category": [
+          "Boots",
+          "Sale"
+        ]
+      },
+      "expected": "two unordered labels, zero ancestry, reorder/duplicate stable"
+    },
+    {
+      "id": "G2",
+      "inputs": [
+        "https://example.test/taxonomy/12",
+        "Boots > Sale/Outdoor"
+      ],
+      "expected": "opaque URL or raw informal text, no inferred ancestry or requests"
+    },
+    {
+      "id": "G3",
+      "input": {
+        "category": {
+          "@type": "CategoryCode",
+          "codeValue": "12",
+          "inCodeSet": {
+            "@id": "https://merchant.test/tax-v1"
+          },
+          "name": "Stiefel"
+        }
+      },
+      "expected": "code12 scoped to explicit code-set, never Google; second code-set distinct; absent set unresolved"
+    },
+    {
+      "id": "G4",
+      "inputs": {
+        "google_product_category": [
+          "2271",
+          "Apparel & Accessories > Clothing > Dresses"
+        ],
+        "product_type": "Merchant > Dresses"
+      },
+      "expected": "standard ID/path representations distinct from custom type; same target only with explicit pinned trusted mapping"
+    },
+    {
+      "id": "G5",
+      "inputs": {
+        "csv": "\"Home > Bags, wallets\"",
+        "xml": "Home &gt; Bags, wallets",
+        "double_encoded_xml": "Home &amp;gt; Bags",
+        "literal_csv": "Home &gt; Bags",
+        "jsonld": "A\\>B / C"
+      },
+      "expected": "CSV comma label preserved; XML decode once; literal entity/backslash retained; no invented escape grammar"
+    },
+    {
+      "id": "G6",
+      "inputs": [
+        "missing",
+        null,
+        "",
+        [],
+        {
+          "unexpected": true
+        }
+      ],
+      "expected": "distinct field states; no fabricated category/profile; absent XML element vs empty element and absent CSV column vs blank cell survive opt-in parser"
+    },
+    {
+      "id": "G7",
+      "input": "repeated OG product:category Boots/Sale; metadata fallback",
+      "expected": "retain raw declarations or explicitly mark old capture incomplete; metadata unavailable"
+    },
+    {
+      "id": "G8",
+      "input": "CSS unique exact DOM vs ambiguous bases vs LLM same product_type",
+      "expected": "only explicitly configured uniquely DOM-backed source declaration observed; ambiguous/LLM unsupported"
+    },
+    {
+      "id": "G9",
+      "input": "4096B/>4096B leaf, mutated capture, portable reopen",
+      "expected": "retention/mutation support limits respected; raw representation/evidence/version preserved; legacy export unchanged"
+    }
+  ],
+  "execution_plan": {
+    "state": "planned_only",
+    "smoke": "G1",
+    "families_max": 9,
+    "fixture_bytes_max": 262144,
+    "total_bytes_max": 2097152,
+    "seed": 6007,
+    "aggregate_seconds_max": 120,
+    "processes": 1,
+    "inference": false
+  },
+  "gaps": [
+    "shared exact type/codec names",
+    "informal path grammar policy",
+    "taxonomy version unknown eligibility",
+    "repeated OG raw capture",
+    "opt-in parser presence retention",
+    "no complete graph/live taxonomy proof"
+  ],
+  "consultation": [
+    {
+      "peer": "/root/category_bigcommerce",
+      "question": "membership/path, scoped IDs, observed-vs-derived and portable compatibility",
+      "answer": "Agrees unordered paginated memberships vs separate categoryTree/breadcrumb; stable configured shop/basepath distinct endpoint; unknown channel/tree/language retained; strict Product codec needs explicit opt-in companion; notified of generic gaps"
+    },
+    {
+      "peer": "/root/category_magento",
+      "question": "same shared contract and source grammar/serialization constraints",
+      "answer": "pending coordinator-routed consultation"
+    },
+    {
+      "peer": "/root/category_bigcommerce",
+      "answer": "Confirmed include_categories/carrier and real wrapper routing; shared nonblank_text, exact native_id/label/raw_path/code_context facets; no common module edits by generic"
+    },
+    {
+      "peer": "/root/category_shopware",
+      "answer": "Question routed through root/shared core; completed adapter/contracts/validation inspected; raw container state and exact bound facets align; no blocking source question"
+    }
+  ],
+  "implementation_ownership": "generic adapter/parser modules only after shared gates; no shared normalizer/codec edits",
+  "implementation_files": [
+    "src/shopextract/categories/adapters/generic.py",
+    "src/shopextract/extractors/feed.py",
+    "src/shopextract/extractors/_opengraph.py",
+    "tests/test_category_generic.py"
+  ],
+  "shared_contract_ack": "specs/006-category-mapping/platforms/generic.md:Final contract ACK",
+  "parser_flags": "include_categories=False on feed extract/_parse_xml/_parse_csv/_parse_xml_item/_parse_csv_row and OG extract_from_html; enabled carrier category_declarations captured before defaults"
+}

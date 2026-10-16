@@ -1,0 +1,200 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.FF.FFF                                                                  [100%]
+=================================== FAILURES ===================================
+_ test_captured_outdated_or_unsupported_baseline_has_distinct_provenance[False] _
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-92/test_captured_outdated_or_unsu1')
+supported = False
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('supported', [True,False])
+    async def test_captured_outdated_or_unsupported_baseline_has_distinct_provenance(tmp_path,supported):
+        from tests.test_maintenance_stress_prerequisites import parsed
+        from shopextract._portable import product_to_record
+        captured=parsed('Old captured specification')
+        if not supported:captured.evidence_contract=None
+        h=Harness(tmp_path/'jobs.db')
+>       _,report=await h.run(goal(baseline=(product_to_record(captured),),baseline_mode='captured'))
+
+tests/test_maintenance_remaining_edges.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:78: in run
+    return key, await self.engine.run(key)
+src/shopextract/maintenance/engine.py:100: in run
+    await self._reconcile(job_id, goal, products)
+src/shopextract/maintenance/engine.py:320: in _reconcile
+    before, baseline_support, before_evidence = self._supported(left[index], field, goal)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.engine.MaintenanceEngine object at 0x116529330>
+product = Product(title='Industrial Sensor', price=Decimal('10'), currency='EUR', description='Old captured specification', imag...-26d9-549a-8574-4a3abadf3e21', supplier_id='supplier.example', attributes={}, pack_quantity=None, bundle_components=[])
+field = 'description'
+goal = {'baseline': [{'evidence_contract': None, 'product': {'additional_images': [], 'attributes': {}, 'bundle_components': ...cost_micros': 0, 'evidence_bytes': 16777216, 'input_bytes': 262144, ...}, 'deadline': '2026-10-16T10:01:00+00:00', ...}
+
+    def _supported(self, product, field, goal):
+        from .._evidence import trust_view
+        from .._resolution import ResolutionPolicy, resolve_fields
+>       contract = product.evidence_contract
+E       AttributeError: 'Product' object has no attribute 'evidence_contract'
+
+src/shopextract/maintenance/engine.py:253: AttributeError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+_____ test_captured_baseline_expiry_during_pause_cannot_become_correction ______
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-92/test_captured_baseline_expiry_0')
+
+    @pytest.mark.asyncio
+    async def test_captured_baseline_expiry_during_pause_cannot_become_correction(tmp_path):
+        from tests.test_maintenance_stress_prerequisites import parsed
+        from shopextract._portable import product_to_record
+        h=Harness(tmp_path/'jobs.db');h.engine.utc_now=lambda:NOW+timedelta(seconds=2)
+        _,report=await h.run(goal(baseline=(product_to_record(parsed('Old captured specification')),),
+            baseline_mode='captured',freshness_seconds=1))
+        finding,=report['findings']
+>       assert finding['status']=='needs_review' and finding['reason']=='baseline_unsupported'
+E       AssertionError: assert ('needs_review' == 'needs_review'
+E         
+E           needs_review and 'baseline_missing' == 'baseline_unsupported'
+E         
+E         - baseline_unsupported
+E         + baseline_missing)
+
+tests/test_maintenance_remaining_edges.py:106: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+______ test_footwear_equal_numeral_with_different_size_system_is_unknown _______
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-92/test_footwear_equal_numeral_wi0')
+
+    @pytest.mark.asyncio
+    async def test_footwear_equal_numeral_with_different_size_system_is_unknown(tmp_path):
+        h=Harness(tmp_path/'jobs.db',attributes={'size':'9','size_system':'UK'})
+        _,report=await h.run(goal(baseline=(baseline(attributes={'size':'9','size_system':'US'}),),
+            profiles={'S1':'footwear-v1'},fields=('attributes/size',)))
+        finding,=report['findings']
+>       assert finding['status']=='needs_review' and finding['comparison']=='unknown'
+E       AssertionError: assert ('needs_review' == 'needs_review'
+E         
+E           needs_review and 'equal' == 'unknown'
+E         
+E         - unknown
+E         + equal)
+
+tests/test_maintenance_remaining_edges.py:129: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+_____ test_cache_corruption_is_a_miss_not_a_fact_or_silent_success[scalar] _____
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-92/test_cache_corruption_is_a_mis0')
+corruption = 'scalar'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('corruption',['scalar','version'])
+    async def test_cache_corruption_is_a_miss_not_a_fact_or_silent_success(tmp_path,corruption):
+        import json
+        h=Harness(tmp_path/'jobs.db');await h.run(goal());sent=len(h.requests)
+        h.store.acquire()
+        with h.store._transaction() as db:
+            rows=list(db.execute('SELECT key,payload FROM cache'))
+            assert rows
+            for row in rows:
+                value=json.loads(row['payload'])
+                if corruption=='scalar':value=[]
+                else:value['products'][0]['schema_version']=999
+                db.execute('UPDATE cache SET payload=? WHERE key=?',(json.dumps(value),row['key']))
+        h.store.release()
+>       _,report=await h.run(goal())
+
+tests/test_maintenance_remaining_edges.py:148: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:78: in run
+    return key, await self.engine.run(key)
+src/shopextract/maintenance/engine.py:98: in run
+    products, source_complete, reason = await self._collect(job_id, goal)
+src/shopextract/maintenance/engine.py:236: in _collect
+    result, why = await self._source(job, goal, 'extract', url, maximum)
+src/shopextract/maintenance/engine.py:166: in _source
+    cached = self.store.cache_get(cache_key, now=self.now())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shopextract.maintenance.store.MaintenanceStore object at 0x1165d1bd0>
+key = 'e1479fa6ac5b5beb7ed094c8209ed1a45379638cc5ecfd5bd1f990f7e5399870'
+now = datetime.datetime(2026, 10, 16, 10, 0, tzinfo=datetime.timezone.utc)
+
+    def cache_get(self, key, *, now):
+        row = self._connect().execute('SELECT * FROM cache WHERE key=?', (key,)).fetchone()
+        if row is None or now >= datetime.fromisoformat(row['expires']):
+            return None
+        try:
+            value = json.loads(row['payload'])
+>           return value if value.get('complete') is True else None
+E           AttributeError: 'list' object has no attribute 'get'
+
+src/shopextract/maintenance/store.py:555: AttributeError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+____ test_cache_corruption_is_a_miss_not_a_fact_or_silent_success[version] _____
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-92/test_cache_corruption_is_a_mis1')
+corruption = 'version'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('corruption',['scalar','version'])
+    async def test_cache_corruption_is_a_miss_not_a_fact_or_silent_success(tmp_path,corruption):
+        import json
+        h=Harness(tmp_path/'jobs.db');await h.run(goal());sent=len(h.requests)
+        h.store.acquire()
+        with h.store._transaction() as db:
+            rows=list(db.execute('SELECT key,payload FROM cache'))
+            assert rows
+            for row in rows:
+                value=json.loads(row['payload'])
+                if corruption=='scalar':value=[]
+                else:value['products'][0]['schema_version']=999
+                db.execute('UPDATE cache SET payload=? WHERE key=?',(json.dumps(value),row['key']))
+        h.store.release()
+>       _,report=await h.run(goal())
+
+tests/test_maintenance_remaining_edges.py:148: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_maintenance_acceptance.py:78: in run
+    return key, await self.engine.run(key)
+src/shopextract/maintenance/engine.py:100: in run
+    await self._reconcile(job_id, goal, products)
+src/shopextract/maintenance/engine.py:279: in _reconcile
+    right = [product_from_record(record) for record in records]
+src/shopextract/maintenance/engine.py:279: in <listcomp>
+    right = [product_from_record(record) for record in records]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+record = {'evidence_contract': {'evidence': [{'evidence_id': 'e_f97e5b73-d10c-4c00-9f6d-a6f8bd6051aa', 'excerpt': None, 'method...'canonical_product_id': 'p_604c7746-26d9-549a-8574-4a3abadf3e21', ...}, 'schema_version': 999, 'variant_contracts': []}
+
+    def product_from_record(record: dict) -> Product:
+        """Strictly reconstruct Product/Variant/Platform without changing history."""
+        try:
+            validate_tree(record, encoded=True)
+            required = {"schema_version", "product", "evidence_contract", "variant_contracts"}
+            optional = {"evidence_availability", "variant_evidence_availability"}
+            if not isinstance(record, dict) or not required <= record.keys() or record.keys() - required - optional:
+                raise ValueError("Malformed portable record fields")
+            if type(record["schema_version"]) is not int or record["schema_version"] != PORTABLE_RECORD_VERSION:
+>               raise ValueError("Unsupported portable record version")
+E               ValueError: Unsupported portable record version
+
+src/shopextract/_portable.py:175: ValueError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_maintenance_remaining_edges.py::test_captured_outdated_or_unsupported_baseline_has_distinct_provenance[False]
+FAILED tests/test_maintenance_remaining_edges.py::test_captured_baseline_expiry_during_pause_cannot_become_correction
+FAILED tests/test_maintenance_remaining_edges.py::test_footwear_equal_numeral_with_different_size_system_is_unknown
+FAILED tests/test_maintenance_remaining_edges.py::test_cache_corruption_is_a_miss_not_a_fact_or_silent_success[scalar]
+FAILED tests/test_maintenance_remaining_edges.py::test_cache_corruption_is_a_miss_not_a_fact_or_silent_success[version]
+5 failed, 2 passed, 5 deselected in 10.12s

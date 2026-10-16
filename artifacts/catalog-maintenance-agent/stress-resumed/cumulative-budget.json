@@ -1,0 +1,7 @@
+{
+  "first_worker_seconds": 22.0289685119933,
+  "first_parent_startup_reserved_seconds": 3,
+  "second_guarded_seconds": 92.19897535599011,
+  "charged_before_resume": 117.22794386798341,
+  "remaining": 62.77205613201659
+}

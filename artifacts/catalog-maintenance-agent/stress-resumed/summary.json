@@ -1,0 +1,24 @@
+{
+  "state": "passed",
+  "recorded_attempts": 61,
+  "executed_cases": 47,
+  "elapsed_seconds": 142.814,
+  "reused_smoke_cases": 1,
+  "reused_cases": 12,
+  "configuration": {
+    "seed": 25,
+    "driver_seconds": 180,
+    "large_batch_seconds": 15,
+    "case_seconds": 5,
+    "crash_seconds": 10,
+    "kill_reap_grace_seconds": 1,
+    "rss_limit_mib": 256,
+    "workers": 1,
+    "input_bytes": 262144,
+    "evidence_bytes": 16777216,
+    "smoke_reused": "../stress-second-timeout/smoke.json",
+    "prior_recorded_worker_seconds": 112.63591723698482,
+    "prior_parent_startup_reserve_seconds": 1,
+    "prior_charged_seconds": 117.22794386798341
+  }
+}

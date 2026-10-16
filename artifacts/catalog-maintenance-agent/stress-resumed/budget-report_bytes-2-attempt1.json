@@ -1,0 +1,11 @@
+{
+  "case": "budget-report_bytes-2",
+  "state": "passed",
+  "seconds": 0.075,
+  "rss_mib": 91.18,
+  "result": {
+    "dimension": "report_bytes",
+    "edge": 2,
+    "denied": false
+  }
+}

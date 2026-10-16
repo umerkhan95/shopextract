@@ -1,0 +1,21 @@
+{
+  "state": "passed",
+  "products": 2,
+  "complete": false,
+  "physical_requests": [
+    {
+      "method": "GET",
+      "url": "https://www.blissworld.com/",
+      "started_at": "2026-10-16T19:06:29.933677+00:00",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.blissworld.com/products.json?limit=2&page=1",
+      "started_at": "2026-10-16T19:06:33.124342+00:00",
+      "status": 200
+    }
+  ],
+  "seconds": 8.795885744999396,
+  "provenance": "actual-live"
+}

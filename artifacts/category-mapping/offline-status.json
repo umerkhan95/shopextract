@@ -1,0 +1,21 @@
+{
+  "state": "passed",
+  "command": [
+    "/Users/umerkhan/code/shopextract/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "--tb=short",
+    "--maxfail=1"
+  ],
+  "wall_seconds_cap": 480,
+  "workers": 1,
+  "log_bytes_cap": 524288,
+  "python": "3.10.11",
+  "returncode": 0,
+  "timed_out": false,
+  "timeout_reason": null,
+  "seconds": 380.575,
+  "log_bytes": 1480,
+  "log_truncated": false
+}

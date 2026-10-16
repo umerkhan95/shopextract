@@ -1,0 +1,15 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________ test_c19_real_source_cache_reuse_and_rule_change _______________
+tests/test_category_skeleton.py:203: in test_c19_real_source_cache_reuse_and_rule_change
+    h.engine = engine(config)
+tests/test_category_skeleton.py:199: in engine
+    return MaintenanceEngine(h.store, tool_config=ToolConfig(allowed_origins=(ORIGIN,)),
+src/shopextract/maintenance/engine.py:57: in __init__
+    raise NotImplementedError('category maintenance source/cache integration is not implemented')
+E   NotImplementedError: category maintenance source/cache integration is not implemented
+=========================== short test summary info ============================
+FAILED tests/test_category_skeleton.py::test_c19_real_source_cache_reuse_and_rule_change
+1 failed in 0.39s

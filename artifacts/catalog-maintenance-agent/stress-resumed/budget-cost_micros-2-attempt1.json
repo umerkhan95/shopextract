@@ -1,0 +1,11 @@
+{
+  "case": "budget-cost_micros-2",
+  "state": "passed",
+  "seconds": 0.063,
+  "rss_mib": 89.74,
+  "result": {
+    "dimension": "cost_micros",
+    "edge": 2,
+    "denied": true
+  }
+}

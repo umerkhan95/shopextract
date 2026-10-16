@@ -1,0 +1,18 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+usage: __main__.py [-h] --db DB [--profiles PROFILES]
+                   [--allow-origin ALLOW_ORIGIN]
+                   {create,run,resume,status,cancel,report,evidence,retry} ...
+
+Local read-only maintenance CLI; origins and profiles are operator
+configuration.
+
+positional arguments:
+  {create,run,resume,status,cancel,report,evidence,retry}
+
+options:
+  -h, --help            show this help message and exit
+  --db DB               Local SQLite state file
+  --profiles PROFILES   Trusted JSON custom profile definitions
+  --allow-origin ALLOW_ORIGIN
+                        Explicit trusted source origin; repeatable

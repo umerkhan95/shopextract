@@ -1,0 +1,372 @@
+{
+  "state": "failed",
+  "seed": 26,
+  "limits": {
+    "schema_version": 1,
+    "seed": 26,
+    "mechanisms": 24,
+    "parameter_invocations_max": 100,
+    "aggregate_seconds": 120,
+    "invocation_seconds": 15,
+    "collection_seconds": 15,
+    "log_bytes_max": 65536,
+    "aggregate_logs_bytes_max": 1048576,
+    "workers": 1,
+    "fixture_bytes_max": 262144,
+    "oversize_boundary_bytes": 262145,
+    "aggregate_fixtures_bytes_max": 8388608,
+    "config_boundary_entries": 1001,
+    "stop_on_failure": true,
+    "provenance": "controlled/synthetic/derived offline, never live storefront",
+    "state": "planned_independent_review_required"
+  },
+  "invocations": [
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.86,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_skeleton.py::test_c01_normalize_preserves_custom_label"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.726,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_woocommerce.py::test_c02_siblings_permutations_and_duplicate_source_support"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.938,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_bigcommerce.py::test_c03_reviewed_query_validates_against_saved_schema"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.078,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_bigcommerce.py::test_c03_native_mode_default_and_partial_error_keeps_siblings"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.923,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_bigcommerce.py::test_c03_rejection_is_unavailable_without_retry[200-body0]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.915,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_bigcommerce.py::test_c03_rejection_is_unavailable_without_retry[403-body1]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.04,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_bigcommerce.py::test_c04_missing_completion_or_next_page_retains_only_bounded_memberships[None-unknown]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.895,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_bigcommerce.py::test_c04_missing_completion_or_next_page_retains_only_bounded_memberships[page_info1-unknown]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.394,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_bigcommerce.py::test_c04_missing_completion_or_next_page_retains_only_bounded_memberships[page_info2-partial]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.113,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_shopware.py::test_c07_four_memberships_nine_index_ids_never_path"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.053,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_magento.py::test_magento_native_query_opt_in_and_default_response_compatibility"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.75,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_magento.py::test_magento_nonzero_product_error_localization_retains_valid_siblings"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.643,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[uid]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.563,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[name]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.596,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[categories]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.573,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[global]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.574,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_generic.py::test_c07_jsonld_memberships_and_opaque_delimiters"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.665,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_generic.py::test_c08_feed_real_parser_retains_separate_namespaces[xml-<rss xmlns:g=\"http://base.google.com/ns/1.0\"><channel><item><g:id>D1</g:id><title>Dress</title><g:google_product_category>2271</g:google_product_category><g:product_type>Merchant &gt; Dresses</g:product_type></item></channel></rss>]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.681,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_generic.py::test_c08_feed_real_parser_retains_separate_namespaces[csv-id,title,google_product_category,product_type\\nD1,Dress,2271,\"Merchant > Dresses\"\\n]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.68,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_generic.py::test_c08_declared_google_path_and_one_xml_decode"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.715,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_generic.py::test_c09_category_code_context_and_thing"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.63,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_generic.py::test_c10_schema_raw_states[value0-missing]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.606,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_generic.py::test_c10_schema_raw_states[None-null]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.644,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_generic.py::test_c10_schema_raw_states[-empty]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.645,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_generic.py::test_c10_schema_raw_states[value3-empty]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.658,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_generic.py::test_c10_schema_raw_states[value4-malformed]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.63,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_woocommerce.py::test_c10_source_states[fields0-missing-unknown]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.642,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_woocommerce.py::test_c10_source_states[fields1-null-unknown]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.595,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_woocommerce.py::test_c10_source_states[fields2-empty-complete]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.576,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_woocommerce.py::test_c10_source_states[fields3-malformed-unknown]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.626,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_woocommerce.py::test_c10_source_states[fields4-malformed-unknown]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 3.162,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_skeleton.py::test_c11_source_facets_keep_id_and_label_support_separate"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.512,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_skeleton.py::test_c11_label_rule_cannot_borrow_supported_id"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.564,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_generic.py::test_c11_mutation_retention_and_llm_do_not_gain_support"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.504,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_woocommerce.py::test_c12_store_basepath_catalog_and_assignment_context"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.493,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_shopware.py::test_c13_actual_parent_endpoints_only_and_cycle_bounded"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.583,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_review_repairs.py::test_c13_bound_endpoint_mismatch_rejected[parent_id]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.647,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_review_repairs.py::test_c13_bound_endpoint_mismatch_rejected[child_id]"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.577,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_review_repairs.py::test_c13_orphan_retains_declared_edge_without_root_claim"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.829,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_shared_contract.py::test_c14_three_native_sources_share_one_exact_mapper"
+    },
+    {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 2.997,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_skeleton.py::test_c15_overlapping_targets_remain_ambiguous"
+    },
+    {
+      "returncode": -9,
+      "timed_out": true,
+      "seconds": 2.4,
+      "log_bytes": 345,
+      "log_truncated": false,
+      "node": "tests/test_category_skeleton.py::test_c16_invalid_target_rejected"
+    }
+  ],
+  "retained_log_bytes": 21973,
+  "seconds": 120.019,
+  "collection": {
+    "returncode": 0,
+    "timed_out": false,
+    "seconds": 4.081,
+    "log_bytes": 7483,
+    "log_truncated": false
+  },
+  "parameter_invocations": 75,
+  "reason": "invocation_timeout"
+}

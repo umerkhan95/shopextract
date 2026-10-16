@@ -1,0 +1,37 @@
+{
+  "baseline": [
+    {
+      "description": "Operating temperature: 0\u201340 C",
+      "external_id": "S1",
+      "gtin": "4006381333931",
+      "sku": "S1",
+      "supplier_id": "https://supplier.example",
+      "title": "Industrial Sensor",
+      "vendor": "Acme"
+    }
+  ],
+  "baseline_mode": "supplied",
+  "budgets": {
+    "attempt_seconds": 10,
+    "cost_micros": 0,
+    "evidence_bytes": 16777216,
+    "input_bytes": 262144,
+    "products": 100,
+    "report_bytes": 2097152,
+    "requests": 3,
+    "tokens": 0
+  },
+  "deadline": "2026-10-16T18:57:42.165145+00:00",
+  "fields": [
+    "description"
+  ],
+  "freshness_seconds": 3600,
+  "product_urls": [
+    "https://supplier.example/products/sensor"
+  ],
+  "profiles": {
+    "S1": "hardware-v1"
+  },
+  "schema_version": "1.0",
+  "supplier_origin": "https://supplier.example"
+}

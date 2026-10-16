@@ -1,0 +1,42 @@
+{
+  "state": "passed",
+  "provenance": "actual-live",
+  "physical_requests_phase1": [
+    {
+      "method": "GET",
+      "url": "https://www.blissworld.com/",
+      "started_at": "2026-10-16T19:06:29.933677+00:00",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.blissworld.com/products.json?limit=2&page=1",
+      "started_at": "2026-10-16T19:06:33.124342+00:00",
+      "status": 200
+    }
+  ],
+  "physical_requests_phase2": [
+    {
+      "method": "GET",
+      "url": "https://www.blissworld.com/",
+      "started_at": "2026-10-16T19:06:39.939119+00:00"
+    },
+    {
+      "method": "GET",
+      "url": "https://www.blissworld.com/products.json?limit=2&page=1",
+      "started_at": "2026-10-16T19:06:42.681565+00:00"
+    }
+  ],
+  "physical_requests_total": 4,
+  "report_state": "partial",
+  "report_stop_reason": "source_partial",
+  "findings": 2,
+  "statuses": [
+    "unchanged",
+    "unchanged"
+  ],
+  "restart_extra_requests": 0,
+  "llm_tokens": 0,
+  "seconds": 18.440964378998615,
+  "commercial_specification_change": "inconclusive unless actually observed; no induced live change"
+}

@@ -1,0 +1,21 @@
+--- tests/test_category_shared_contract.py before
++++ tests/test_category_shared_contract.py after
+@@ -1,5 +1,6 @@
+ """Predesigned shared mechanisms/boundaries for independent driver review; no live access."""
+ from dataclasses import replace
++from copy import deepcopy
+ import json
+ 
+ import pytest
+@@ -77,7 +78,10 @@
+ def test_c22_companion_bytes_below_at_above(target_size):
+     value = wrapper()
+     initial = len(canonical(categorized_product_to_record(value)).encode())
+-    product = replace(value.product,description='x'*(target_size-initial))
++    # Product trust is attached dynamically; replace() would discard it and
++    # shrink the envelope relative to the measured baseline.
++    product = deepcopy(value.product)
++    product.description = 'x'*(target_size-initial)
+     if target_size > 262144:
+         with pytest.raises(CategoryError):
+             bind_product(product,value.scope,value.observations,value.mappings,value.config_digest)

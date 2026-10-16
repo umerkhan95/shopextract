@@ -8,11 +8,16 @@ from .._models import Platform
 
 
 class GuardedSources:
-    def __init__(self, config, guard, wire=None):
+    def __init__(self, config, guard, wire=None, *, category_config=None):
         self.config, self.guard, self.wire = config, guard, wire
+        self.category_config = category_config
+        if category_config is not None:
+            from ..categories.config import runtime_record
+            runtime_record(category_config)
 
     async def execute(self, name, url, maximum, context):
-        transport = GuardedTransport(self.config, context, self.guard, self.wire)
+        transport = GuardedTransport(self.config, context, self.guard, self.wire,
+            policy=NativeReadPolicy(category_mode=self.category_config is not None and self.category_config.options.limits.terms > 0))
         try:
             async with httpx.AsyncClient(transport=transport, trust_env=False,
                     follow_redirects=False, timeout=10, headers={'User-Agent': 'ShopExtract/0.1.2'}) as client:
@@ -121,6 +126,8 @@ class GuardedSources:
             if cls:
                 extractor = cls(http_client=client, max_pages=20)
                 options = {} if platform == Platform.WOOCOMMERCE else {'max_products': maximum}
+                if self.category_config is not None and platform in (Platform.BIGCOMMERCE,Platform.MAGENTO):
+                    options['include_categories'] = self.category_config.options.limits.terms > 0
                 if platform == Platform.SHOPWARE:
                     from ..extractors._storefront import resolve_config
                     base, token = await resolve_config(client, origin, 'shopware')
@@ -129,7 +136,7 @@ class GuardedSources:
                         eligible, _ = await self.guard.authorize(target, context)
                         if urlsplit(eligible).path != '/store-api/product' or urlsplit(eligible).query:
                             raise ToolError('source_error', 'Unsupported native Shopware search route')
-                        transport.policy = NativeReadPolicy(eligible)
+                        transport.policy = NativeReadPolicy(eligible,category_mode=self.category_config is not None and self.category_config.options.limits.terms > 0)
                         options.update(endpoint=base, access_token=token)
                 result = await extractor.extract(origin, **options)
                 if transport.last_error:
@@ -140,12 +147,20 @@ class GuardedSources:
                 if not raw:
                     if complete:
                         return {'products': [], 'complete': True, 'diagnostics': diagnostics}
+                    if self.category_config is not None:
+                        return {'products': [], 'complete': False, 'diagnostics': diagnostics}
                     # A static supported product can still supply truthful partial results.
                     raw = None
         payload = {'operation': 'parse', 'mode': mode, 'html': html if raw is None else None,
             'raw': raw, 'platform': platform.value, 'url': url, 'origin': origin,
             'maximum': maximum, 'observed_at': context.observed_at.isoformat()}
+        if self.category_config is not None:
+            from ..categories.config import runtime_record
+            payload['category_config'] = runtime_record(self.category_config)
         value = json.loads(await context.auxiliary.run('domain', encoded(payload), context))
+        if self.category_config is not None:
+            from ..categories.portable import validate_categorized_products
+            validate_categorized_products(value, options=self.category_config.options, maximum=maximum)
         if not value:
             raise ToolError('source_error', 'No supported native or static product data; browser/model modes unavailable')
         if raw is not None and len(raw) >= maximum:

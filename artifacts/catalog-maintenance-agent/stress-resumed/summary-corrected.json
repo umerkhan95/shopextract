@@ -1,0 +1,16 @@
+{
+  "state": "passed",
+  "new_passed_cases": 47,
+  "reused_exact_proofs": 12,
+  "historical_failed_workers": 2,
+  "pre_amendment_observed_seconds": 23.442999999999998,
+  "pre_amendment_startup_reserved_seconds": 6,
+  "first_amended_recorded_workers_seconds": 22.0289685119933,
+  "first_amended_startup_reserved_seconds": 3,
+  "second_guarded_seconds": 92.19897535599011,
+  "final_guarded_seconds": 25.75628546900407,
+  "corrected_cumulative_charged_seconds": 172.42722933698747,
+  "limit_seconds": 180,
+  "maximum_worker_rss_mib": 170.49,
+  "remaining_unexecuted_cases": []
+}

@@ -1,0 +1,21 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+......................................................FFF.............   [100%]
+=================================== FAILURES ===================================
+_ test_c08_feed_real_parser_retains_separate_namespaces[xml-<rss xmlns:g="http://base.google.com/ns/1.0"><channel><item><title>Dress</title><g:google_product_category>2271</g:google_product_category><g:product_type>Merchant &gt; Dresses</g:product_type></item></channel></rss>] _
+tests/test_category_generic.py:63: in test_c08_feed_real_parser_retains_separate_namespaces
+    assert wrapped is not None
+E   assert None is not None
+_ test_c08_feed_real_parser_retains_separate_namespaces[csv-title,google_product_category,product_type\nDress,2271,"Merchant > Dresses"\n] _
+tests/test_category_generic.py:63: in test_c08_feed_real_parser_retains_separate_namespaces
+    assert wrapped is not None
+E   assert None is not None
+_______________ test_c08_declared_google_path_and_one_xml_decode _______________
+tests/test_category_generic.py:86: in test_c08_declared_google_path_and_one_xml_decode
+    assert any(m.status == 'mapped' for m in wrapped.mappings)
+E   AttributeError: 'NoneType' object has no attribute 'mappings'
+=========================== short test summary info ============================
+FAILED tests/test_category_generic.py::test_c08_feed_real_parser_retains_separate_namespaces[xml-<rss xmlns:g="http://base.google.com/ns/1.0"><channel><item><title>Dress</title><g:google_product_category>2271</g:google_product_category><g:product_type>Merchant &gt; Dresses</g:product_type></item></channel></rss>]
+FAILED tests/test_category_generic.py::test_c08_feed_real_parser_retains_separate_namespaces[csv-title,google_product_category,product_type\nDress,2271,"Merchant > Dresses"\n]
+FAILED tests/test_category_generic.py::test_c08_declared_google_path_and_one_xml_decode
+3 failed, 67 passed in 0.97s
