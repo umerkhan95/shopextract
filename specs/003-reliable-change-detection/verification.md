@@ -111,3 +111,21 @@ New plan, driver and summaries: artifacts/reliable-change-23/additional-live/.
 Independent review PASS; no runtime source changes after final offline checks.
 Across initial Shopify and additional native platforms: 6 requests, 524 evidence
 round-trips. Raw responses/SQLite remain local and ignored.
+
+## Supplemental synthetic mechanism/stress follow-up — bounded partial result
+Applied the updated workflow to the merged PR #48 source without production
+changes. New reusable tests: tests/test_reliable_changes_stress.py.
+SM01–08 and15/16 seeded batches passed: **23/24 logical batches**,31 attempts.
+Last seed2909/index7 interrupted by timeout; do not call stress scope complete.
+Real capture/normalize/storage/rechecks, expiry, exact mixed entry/UTF-8 boundaries,
+ledger-update rollback and intentional currency-fault sensitivity exercised.
+Read-only canonical-owner audit:23 reports/196 references passed,0writes.
+Charged execution173.914/180s; original resumed phase exceeded its60s cap by~4s
+(accounting error preserved), later explicit chunks hard-stopped.
+Three diagnosed fixture repairs, two superseded boundary results and three
+interrupted attempts are retained and not counted as unique successful coverage.
+Original95/726 baseline remains saved and was not repeated; production source
+unchanged. Synthetic outcomes do not prove an actual live commercial change.
+See artifacts/reliable-change-23/mechanism-stress/final-summary.md for exact
+budgets, failures, remaining case and evidence. Final independent follow-up
+review is recorded in that directory's reviews.md.

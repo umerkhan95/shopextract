@@ -1,0 +1,8 @@
+{
+  "scenario": "SM03",
+  "seed_index": [],
+  "known_smallest_reproducer": "raw/SM03",
+  "error": "AssertionError: ",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/umerkhan/code/shopextract/artifacts/reliable-change-23/mechanism-stress/run.py\", line 47, in phase\n    item = function(folder, *args)\n  File \"/Users/umerkhan/code/shopextract/tests/test_reliable_changes_stress.py\", line 252, in terminal_expiry\n    return {'scenario': 'SM03', 'frozen_events': 4, 'expired_reference_checks': b.check_refs(replay, expired=True)}\n  File \"/Users/umerkhan/code/shopextract/tests/test_reliable_changes_stress.py\", line 158, in check_refs\n    assert result.status == 'expired'\nAssertionError\n",
+  "classification": "requires diagnosis; no production repair attempted"
+}

@@ -1,0 +1,25 @@
+{
+  "status": "timeout",
+  "invocation_id": "reviewed-continuation-1",
+  "known_spent_before_seconds": 72.586,
+  "original_phase_breach": "approximately4seconds, preserved",
+  "continuation_seconds": 60.021,
+  "cumulative_measured_driver_seconds": 132.607,
+  "completed_logical_batches": 22,
+  "attempted_batches": 29,
+  "reused_logical_batches": 13,
+  "continuation_completed": 9,
+  "remaining_allowlist": [
+    "SM09-2909-6",
+    "SM09-2909-7"
+  ],
+  "mutation_sensitivity": "currency gate detected/killed and restored; prior SM08 reused",
+  "network_requests": 0,
+  "local_inference": false,
+  "usage_counters": "unavailable",
+  "errors": null,
+  "seeds": [
+    1701,
+    2909
+  ]
+}

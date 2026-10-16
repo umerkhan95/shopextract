@@ -1,0 +1,22 @@
+[
+  {
+    "scenario": "SM05",
+    "exact_limit": 1,
+    "offsets": [
+      -1,
+      0,
+      1
+    ],
+    "utf8": false
+  },
+  {
+    "scenario": "SM06",
+    "exact_limit": 3125,
+    "offsets": [
+      -1,
+      0,
+      1
+    ],
+    "utf8": true
+  }
+]

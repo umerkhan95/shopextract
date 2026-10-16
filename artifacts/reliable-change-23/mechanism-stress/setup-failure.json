@@ -1,0 +1,8 @@
+{
+  "scenario": "SM02",
+  "seed_index": [],
+  "known_smallest_reproducer": "raw/SM02",
+  "error": "ValueError: Expected SupportState at evidence_contract/observations/1/state",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/umerkhan/code/shopextract/artifacts/reliable-change-23/mechanism-stress/run.py\", line 40, in phase\n    item = function(folder, *args)\n  File \"/Users/umerkhan/code/shopextract/tests/test_reliable_changes_stress.py\", line 215, in recheck_chain\n    missing = b.save(new, 3, unsupported_price=True)\n  File \"/Users/umerkhan/code/shopextract/tests/test_reliable_changes_stress.py\", line 91, in save\n    sid = save_snapshot(products, DOMAIN, db_path=self.db, metadata={\n  File \"/Users/umerkhan/code/shopextract/src/shopextract/monitor/evidence.py\", line 164, in save_snapshot\n    prepared = _prepare(products, metadata)\n  File \"/Users/umerkhan/code/shopextract/src/shopextract/monitor/evidence.py\", line 94, in _prepare\n    records = [product_to_record(p) for p in products]\n  File \"/Users/umerkhan/code/shopextract/src/shopextract/monitor/evidence.py\", line 94, in <listcomp>\n    records = [product_to_record(p) for p in products]\n  File \"/Users/umerkhan/code/shopextract/src/shopextract/_portable.py\", line 153, in product_to_record\n    \"evidence_contract\": _contract_to_dict(product),\n  File \"/Users/umerkhan/code/shopextract/src/shopextract/_portable.py\", line 108, in _contract_to_dict\n    _check_type(contract, TrustContract, \"evidence_contract\")\nValueError: Expected SupportState at evidence_contract/observations/1/state\n",
+  "classification": "fixture type mismatch before reliable evaluation; repaired once using SupportState enum; no production repair"
+}
