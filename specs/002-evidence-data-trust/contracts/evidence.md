@@ -57,8 +57,8 @@ values remain in `raw_value` and pointer-resolvable evidence; `transformations`
 explain normalization, ID-checked enrichment and opt-in GTIN restoration. The
 retained object may be a projection: `source_pointer` identifies its original item
 location, while the evidence `pointer` resolves locally against retained data.
-Raw dataclass export is not lossless contract export; serialize contracts separately
-until #38. `resolve_fields` applies the versioned #36 authority policy to explicit
+Raw dataclass export is not lossless contract export; use the explicit portable
+bundle APIs. `resolve_fields` applies the versioned #36 authority policy to explicit
 source roles; the caller must establish verified manufacturer roles. Source domains
 never verify authority. See `docs/field-resolution.md` for freshness and equivalence.
 
@@ -67,3 +67,28 @@ separate capture with that response's URL/time; it cannot borrow the product bod
 source. Aggregate stock retains its individual contributing input pointers. Native
 Shopware Store API children and Magento GraphQL final-price fields use their native
 nested paths. Leaf fragments are attempted before duplicate ancestor projections.
+
+## Durable and portable contracts (#37–#38)
+
+`monitor.evidence.save_snapshot(products, domain, *, db_path, metadata=None)` returns
+an integer snapshot ID. `load_snapshot(snapshot_id, *, db_path)` returns reconstructed
+Product/Variant objects with effective attached contracts. Metadata accepts existing
+observation_scope, catalog_complete, incompleteness_reasons and max_urls fields.
+`get_evidence(evidence_id, *, snapshot_id=None, record_key=None, db_path)` returns
+available/expired/missing/unsupported lookup status; corruption is an error. Owner
+record_key is `product/N` or `product/N/variant/M`; IDs alone do not identify an owner.
+`prune_evidence(*, db_path, before, protect_references=True, dry_run=True,
+batch_size=100)` is explicit and bounded. Default retained references are protected.
+
+Shared `_portable.product_to_record`/`product_from_record` preserve typed model
+values and dynamic product/aligned variant contracts. `export._bundle` supplies
+create/load_evidence_bundle and write/read_evidence_bundle. Envelope and record
+versions are separate from TrustContract schema_version. Optional product
+`evidence_availability` and index-aligned `variant_evidence_availability` contain
+payload-free expired ID/time/reason metadata and survive transport. Effective
+contracts never select facts whose required retained evidence has expired.
+
+Ordinary CSV/JSON/feed defaults remain compatible. Opt-in companions contain
+exact-byte SHA-256 and row-to-record mapping. Row positions require verified bytes;
+checksums do not authenticate the publisher. Import never refreshes policy decisions
+or recreates missing evidence. Raw copies/backups mean pruning is not secure erasure.

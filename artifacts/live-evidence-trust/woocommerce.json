@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "url": "https://demo.athemes.com/botiga",
+  "products": 2,
+  "variants": 0,
+  "field_states": {
+    "observed": 27,
+    "unknown": 2,
+    "unsupported": 20
+  },
+  "retrieved_captures": 27,
+  "expired_captures": 27,
+  "source_complete": true,
+  "sample_only": true,
+  "checks": [
+    "live normalization/resolution",
+    "atomic typed storage",
+    "separate-process restart/retrieval",
+    "lossless bundle",
+    "CSV/Google/Idealo companions and tamper rejection",
+    "protected prune",
+    "explicit expiry",
+    "expired bundle resave",
+    "SQLite integrity/FKs"
+  ]
+}

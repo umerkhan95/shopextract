@@ -34,3 +34,19 @@ Standalone Variant paths are relative to that variant (`/price`, `/attributes/co
 Container support does not automatically support children. A factual field absent
 from a contract appears unsupported, including empty collections. Unknown is explicit
 absence determined by capture, not inferred from scalar defaults.
+
+## Storage and portable availability (#37–#38)
+
+Product/Variant retain their constructor and dataclass field layouts. Dynamic
+`evidence_contract` holds a validated effective graph; optional dynamic
+`evidence_availability` is a list of payload-free expiration entries:
+`{evidence_id, status: expired, reason, expired_at: UTC datetime, metadata}`.
+Historical freshness decisions and storage payload availability are separate.
+Expired payloads cannot be reconstructed as ordinary Evidence without support.
+
+Portable record version 1 separates typed Product values, product contract and
+index-aligned variant contracts. Optional availability branches are encoded once
+independently; contract dictionaries already contain typed tags. SQLite uses this
+same representation alongside existing compatibility snapshot JSON. Bundle version
+1 wraps record_key/record entries; scoped canonical identity or documented content
+fallback identifies records, while persistence owner locations remain positional.
