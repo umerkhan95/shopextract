@@ -222,3 +222,15 @@ Latest resolver suite: **55 passed**, 0.28 seconds; full suite: **590 passed**,
 evidence and limitations: `artifacts/field-resolution-live/review.md` and `review.json`.
 BigCommerce authenticated GraphQL remains mock-tested; live BigCommerce uses HTML.
 This sample does not assert every merchant/theme or provider permission is supported.
+
+## #36 notebook and documentation handoff — 2026-10-16
+
+Both local/Colab notebooks now include the standalone offline field-resolution
+fixture, policy decisions, matching references, expiry replay and typed contract
+round trip. Eight new cells executed successfully and their saved outputs match
+re-execution. Both notebooks validate against nbformat 4.5; all 63 code cells
+passed syntax checks with IPython magic transformation/top-level await support.
+The older network-dependent notebook sections were not rerun. Colab pins the
+implementation commit containing the new public APIs. README documents the new
+walkthrough and actual live sample sites/counts without promising anti-bot immunity.
+Validation record: `artifacts/field-resolution-live/notebook-verification.json`.

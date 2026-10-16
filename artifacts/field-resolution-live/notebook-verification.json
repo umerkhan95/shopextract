@@ -1,0 +1,18 @@
+[
+  {
+    "notebook": "notebooks/demo.ipynb",
+    "schema": "valid nbformat 4.5",
+    "syntax_checked_code_cells": 32,
+    "executed_new_cells": 4,
+    "saved_outputs_match": true,
+    "full_live_notebook_executed": false
+  },
+  {
+    "notebook": "notebooks/shopextract_demo.ipynb",
+    "schema": "valid nbformat 4.5",
+    "syntax_checked_code_cells": 31,
+    "executed_new_cells": 4,
+    "saved_outputs_match": true,
+    "full_live_notebook_executed": false
+  }
+]
