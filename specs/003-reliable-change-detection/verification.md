@@ -98,3 +98,16 @@ new events; this was offline replay, **zero additional network requests**.
 Independent review PASS and artifact digests recorded in reviews.md.
 `git diff --check` passed. No remaining code/verification blockers in planned scope.
 Delivery tracking: #23 and child issues remain open until PR review/merge.
+
+## Additional live checks requested before merge
+Native Magento GraphQL and Woo Store API: **PASS**, exactly 4 additional sequential
+requests, no retries/errors/redirects, 20-second whole-request and 1 MiB caps.
+Each capture retained 2 products (Magento up to 4 variants/product). Price,
+currency and stock observed for every product; 318 qualified source URL/time/
+pointer checks passed. Shared identities stable, both live comparisons/replays
+0 events/0 new events. Labelled offline-derived partial omissions: 0 removals.
+Actual commercial change remains inconclusive because source values did not change.
+New plan, driver and summaries: artifacts/reliable-change-23/additional-live/.
+Independent review PASS; no runtime source changes after final offline checks.
+Across initial Shopify and additional native platforms: 6 requests, 524 evidence
+round-trips. Raw responses/SQLite remain local and ignored.

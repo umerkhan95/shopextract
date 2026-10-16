@@ -1,0 +1,116 @@
+{
+  "status": "passed",
+  "maximum_requests": 4,
+  "requests": 4,
+  "retries": 0,
+  "platforms": [
+    {
+      "platform": "magento",
+      "endpoint": "https://magento2-demo.magebit.com/graphql",
+      "status": "passed",
+      "requests": 2,
+      "captures": [
+        {
+          "snapshot_id": 1,
+          "response_bytes": 28843,
+          "products": 2,
+          "variants": 8,
+          "evidence_checks": 132,
+          "field_support": {
+            "/price:observed": 2,
+            "/currency:observed": 2,
+            "/in_stock:observed": 2
+          },
+          "canonical_ids": [
+            "p_5c319f57-1284-516d-b580-ecc63a2ea1dc",
+            "p_4b8f1c0a-8823-527f-97e5-1a4311d640b1"
+          ]
+        },
+        {
+          "snapshot_id": 2,
+          "response_bytes": 28843,
+          "products": 2,
+          "variants": 8,
+          "evidence_checks": 132,
+          "field_support": {
+            "/price:observed": 2,
+            "/currency:observed": 2,
+            "/in_stock:observed": 2
+          },
+          "canonical_ids": [
+            "p_5c319f57-1284-516d-b580-ecc63a2ea1dc",
+            "p_4b8f1c0a-8823-527f-97e5-1a4311d640b1"
+          ]
+        }
+      ],
+      "commercial_change": "inconclusive: repeat captures had no tracked differences",
+      "smoke": "passed",
+      "shared_anchored_ids": 2,
+      "candidates": 0,
+      "events": 0,
+      "replay_new_events": 0,
+      "diagnostics": {
+        "field_unverified": 2
+      },
+      "offline_derived_omission": {
+        "label": "offline derived; not an actual live removal",
+        "snapshot_id": 3,
+        "confirmed_removals": 0
+      }
+    },
+    {
+      "platform": "woo",
+      "endpoint": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=2&page=1",
+      "status": "passed",
+      "requests": 2,
+      "captures": [
+        {
+          "snapshot_id": 1,
+          "response_bytes": 11789,
+          "products": 2,
+          "variants": 0,
+          "evidence_checks": 27,
+          "field_support": {
+            "/price:observed": 2,
+            "/currency:observed": 2,
+            "/in_stock:observed": 2
+          },
+          "canonical_ids": [
+            "p_c4d25081-037c-5b95-b1bd-30f195420cfa",
+            "p_e680f86b-c59d-52ff-876f-7975a25ec642"
+          ]
+        },
+        {
+          "snapshot_id": 2,
+          "response_bytes": 11789,
+          "products": 2,
+          "variants": 0,
+          "evidence_checks": 27,
+          "field_support": {
+            "/price:observed": 2,
+            "/currency:observed": 2,
+            "/in_stock:observed": 2
+          },
+          "canonical_ids": [
+            "p_c4d25081-037c-5b95-b1bd-30f195420cfa",
+            "p_e680f86b-c59d-52ff-876f-7975a25ec642"
+          ]
+        }
+      ],
+      "commercial_change": "inconclusive: repeat captures had no tracked differences",
+      "smoke": "passed",
+      "shared_anchored_ids": 2,
+      "candidates": 0,
+      "events": 0,
+      "replay_new_events": 0,
+      "diagnostics": {
+        "field_unverified": 2
+      },
+      "offline_derived_omission": {
+        "label": "offline derived; not an actual live removal",
+        "snapshot_id": 3,
+        "confirmed_removals": 0
+      }
+    }
+  ]
+}

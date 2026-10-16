@@ -13,3 +13,7 @@ Delivery and merge outcomes are tracked in parent #23 and child tickets #45–47
 Resume: inspect linked tickets for delivery state; do not restart completed work.
 Actual session token counters unavailable; bounded scope and stage evidence saved.
 See verification.md for final checks and reviews.md for independent gate digests.
+
+Additional pre-merge live request completed: Magento and Woo passed (4 requests,
+318 evidence checks), independently reviewed. Total 6 live requests across three
+platforms; commercial-change result remains inconclusive. PR #48 tracks delivery.

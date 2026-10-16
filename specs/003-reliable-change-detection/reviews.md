@@ -74,3 +74,12 @@ live-capture replay passed with final code; no additional network requests.
 - `examples/reliable_changes.py` SHA-256: `dadb8e2272876660cc9b1adfdb35b471c06cf9298015cd8a305ee39e8bfe550e`
 - `artifacts/reliable-change-23/live_check.py` SHA-256: `c58cb36b5b468341a2d77cc299bb3973d2fc6db31b0981473d2f578dd74098c9`
 - `artifacts/reliable-change-23/live/summary.json` SHA-256: `08f3b679f1705c2168012fab060aabf52d68ee68720b57de8751483c276603f3`
+
+## Additional live evidence — PASS
+Reviewer: /root/workflow_review; 2026-10-16. Bounded driver and exact saved
+results reviewed; no blocking findings. No additional reviewer network requests.
+- `artifacts/reliable-change-23/additional-live/plan.md` SHA-256: `65e0025a7e36e083df188a3dee43b90c27ed228e277b47e870c8895a81d47a9d`
+- `artifacts/reliable-change-23/additional-live/run.py` SHA-256: `cb0a55ee967cc0af6b39ed2273bc3c7c39831cde81e63073f82e1855dc856d99`
+- `artifacts/reliable-change-23/additional-live/summary.json` SHA-256: `54ff16c59c6ad2b8ffd58b8843c4d65a8d892bfcfa60fa77735f18bf7afb9c32`
+- `artifacts/reliable-change-23/additional-live/summary.md` SHA-256: `cc83c6ecd3422a1b9a73e7f558ecb07fd6f44bfc276571088efa609289dc307a`
+- `artifacts/reliable-change-23/additional-live/.gitignore` SHA-256: `a2b6a2ed8e9e8d88b9705984f9d5a52c091a1f780728524442ebd4e7b76d5d60`

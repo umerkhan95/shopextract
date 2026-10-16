@@ -15,3 +15,9 @@ Feature design, gates, scenario coverage and final digests:
 specs/003-reliable-change-detection/. No dependency additions or local inference.
 An accidental uv dependency-resolution process was stopped; uv.lock removed;
 completed checks used existing .venv. Session counters unavailable.
+
+Additional live request: Magento GraphQL and Woo Store API passed, 4 requests,
+318 qualified evidence checks, observed price/currency/stock, stable identities
+and no replay duplicates. Separate offline-derived partial omissions safe.
+Independent review PASS; actual commercial changes still inconclusive.
+See additional-live/plan.md, run.py, summary.json and summary.md.
