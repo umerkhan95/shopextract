@@ -1,0 +1,65 @@
+# Frozen subset of BigCommerce's documented Storefront query types, 2026-10-04.
+# Only queried fields are represented; this is not a complete Storefront schema.
+# https://docs.bigcommerce.com/developer/api-reference/graphql/storefront/queries/site
+type Query { site: Site! }
+type Site {
+  products(first: Int, after: String): ProductConnection!
+}
+type ProductConnection {
+  pageInfo: PageInfo!
+  edges: [ProductEdge!]
+}
+type ProductEdge {
+  node: Product!
+}
+type PageInfo {
+  hasNextPage: Boolean!
+  endCursor: String
+}
+type Product {
+  entityId: Int!
+  name: String!
+  sku: String!
+  path: String!
+  description: String!
+  upc: String
+  defaultImage: Image
+  brand: Brand
+  prices: Prices
+  inventory: ProductInventory!
+  variants(first: Int, after: String): VariantConnection!
+}
+type Image {
+  urlOriginal: String!
+}
+type Brand {
+  name: String!
+}
+type Prices {
+  price: Money!
+}
+scalar BigDecimal
+type Money {
+  value: BigDecimal!
+  currencyCode: String!
+}
+type ProductInventory {
+  isInStock: Boolean!
+}
+type VariantConnection {
+  pageInfo: PageInfo!
+  edges: [VariantEdge!]
+}
+type VariantEdge {
+  node: Variant!
+}
+type Variant {
+  entityId: Int!
+  sku: String!
+  upc: String
+  prices: Prices
+  inventory: VariantInventory
+}
+type VariantInventory {
+  isInStock: Boolean!
+}

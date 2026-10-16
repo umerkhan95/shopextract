@@ -1,0 +1,668 @@
+{
+  "reviewed_at": "2026-10-04T15:06:04.067081+00:00",
+  "products": 17,
+  "variants": 9,
+  "contract_violations": [],
+  "tests": "444 passed in 2.93s",
+  "cases": [
+    {
+      "case": "01-shopify-bliss",
+      "family": "Shopify — Board Game Bliss",
+      "store_url": "https://www.boardgamebliss.com",
+      "execution": "Actual ShopifyExtractor, identifier enrichment",
+      "status": "pass",
+      "products": 1,
+      "variants": 1,
+      "results": [
+        {
+          "title": "Resafa (Box Damage)",
+          "price": {
+            "state": "observed",
+            "value": "51.47",
+            "legacy_value": "51.47",
+            "reason": "",
+            "raw_value": "51.47"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "EUR",
+            "legacy_value": "EUR",
+            "reason": "",
+            "raw_value": "EUR"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "True"
+          },
+          "states": {
+            "observed": 103,
+            "unsupported": 8,
+            "unknown": 1
+          },
+          "source_urls": [
+            "https://www.boardgamebliss.com/products.json?limit=1&page=1"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "02-shopify-401",
+      "family": "Shopify — 401 Games",
+      "store_url": "https://store.401games.ca",
+      "execution": "Actual ShopifyExtractor, identifier enrichment",
+      "status": "pass",
+      "products": 2,
+      "variants": 2,
+      "results": [
+        {
+          "title": "Eevee - SVP173 - Illustration Rare Promo - CGC MINT 9",
+          "price": {
+            "state": "observed",
+            "value": "50.00",
+            "legacy_value": "50.00",
+            "reason": "",
+            "raw_value": "50.00"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "CAD",
+            "legacy_value": "CAD",
+            "reason": "",
+            "raw_value": "CAD"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "True"
+          },
+          "states": {
+            "observed": 28,
+            "unsupported": 9,
+            "unknown": 1
+          },
+          "source_urls": [
+            "https://store.401games.ca/products.json?limit=2&page=1"
+          ]
+        },
+        {
+          "title": "Eevee - SVP173 - Illustration Rare Promo - CGC NM+ 7.5",
+          "price": {
+            "state": "observed",
+            "value": "30.00",
+            "legacy_value": "30.00",
+            "reason": "",
+            "raw_value": "30.00"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "CAD",
+            "legacy_value": "CAD",
+            "reason": "",
+            "raw_value": "CAD"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "True"
+          },
+          "states": {
+            "observed": 28,
+            "unsupported": 9,
+            "unknown": 1
+          },
+          "source_urls": [
+            "https://store.401games.ca/products.json?limit=2&page=1"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "03-woocommerce",
+      "family": "WooCommerce — Botiga",
+      "store_url": "https://demo.athemes.com/botiga/",
+      "execution": "Actual WooCommerceExtractor, one public API page, first two products audited",
+      "status": "pass",
+      "products": 2,
+      "variants": 0,
+      "results": [
+        {
+          "title": "Eternal Sunset Collection Lip and Cheek",
+          "price": {
+            "state": "observed",
+            "value": "12",
+            "legacy_value": "12",
+            "reason": "",
+            "raw_value": "1200"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "USD",
+            "legacy_value": "USD",
+            "reason": "",
+            "raw_value": "USD"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "True"
+          },
+          "states": {
+            "observed": 15,
+            "unknown": 1,
+            "unsupported": 10
+          },
+          "source_urls": [
+            "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1"
+          ]
+        },
+        {
+          "title": "Vinopure Pore Purifying Gel Cleanser",
+          "price": {
+            "state": "observed",
+            "value": "14",
+            "legacy_value": "14",
+            "reason": "",
+            "raw_value": "1400"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "USD",
+            "legacy_value": "USD",
+            "reason": "",
+            "raw_value": "USD"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "True"
+          },
+          "states": {
+            "observed": 12,
+            "unknown": 1,
+            "unsupported": 10
+          },
+          "source_urls": [
+            "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products?per_page=100&page=1"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "04-shopware",
+      "family": "Shopware — official demo",
+      "store_url": "https://frontends-demo.vercel.app",
+      "execution": "Public Store API HTTP search + native normalization",
+      "status": "pass",
+      "products": 2,
+      "variants": 6,
+      "results": [
+        {
+          "title": "Pepper white, Muntok pearl",
+          "price": {
+            "state": "observed",
+            "value": "6.5",
+            "legacy_value": "6.5",
+            "reason": "",
+            "raw_value": "6.5"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "EUR",
+            "legacy_value": "EUR",
+            "reason": "",
+            "raw_value": "EUR"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "True"
+          },
+          "states": {
+            "observed": 24,
+            "unsupported": 15,
+            "unknown": 4
+          },
+          "source_urls": [
+            "https://demo-frontends.shopware.store/store-api/context",
+            "https://demo-frontends.shopware.store/store-api/product"
+          ]
+        },
+        {
+          "title": "Curry Madras, original indian, seasoning",
+          "price": {
+            "state": "observed",
+            "value": "6.5",
+            "legacy_value": "6.5",
+            "reason": "",
+            "raw_value": "6.5"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "EUR",
+            "legacy_value": "EUR",
+            "reason": "",
+            "raw_value": "EUR"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "True"
+          },
+          "states": {
+            "observed": 24,
+            "unsupported": 15,
+            "unknown": 4
+          },
+          "source_urls": [
+            "https://demo-frontends.shopware.store/store-api/context",
+            "https://demo-frontends.shopware.store/store-api/product"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "05-magento",
+      "family": "Magento — Magebit demo",
+      "store_url": "https://magento2-demo.magebit.com",
+      "execution": "Public GraphQL HTTP fetch + native normalization",
+      "status": "pass",
+      "products": 2,
+      "variants": 0,
+      "results": [
+        {
+          "title": "Erika Running Short",
+          "price": {
+            "state": "observed",
+            "value": "45",
+            "legacy_value": "45",
+            "reason": "",
+            "raw_value": "45"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "EUR",
+            "legacy_value": "EUR",
+            "reason": "",
+            "raw_value": "EUR"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "IN_STOCK"
+          },
+          "states": {
+            "observed": 8,
+            "unsupported": 14
+          },
+          "source_urls": [
+            "https://magento2-demo.magebit.com/graphql?query=%7Bproducts%28filter%3A%7B%7D%2CpageSize%3A2%29%7Bitems%7B__typename+uid+sku+name+url_key+stock_status+image%7Burl%7D+price_range%7Bminimum_price%7Bfinal_price%7Bvalue+currency%7D%7D%7D%7D%7D%7D"
+          ]
+        },
+        {
+          "title": "Ina Compression Short",
+          "price": {
+            "state": "observed",
+            "value": "49",
+            "legacy_value": "49",
+            "reason": "",
+            "raw_value": "49"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "EUR",
+            "legacy_value": "EUR",
+            "reason": "",
+            "raw_value": "EUR"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "IN_STOCK"
+          },
+          "states": {
+            "observed": 8,
+            "unsupported": 14
+          },
+          "source_urls": [
+            "https://magento2-demo.magebit.com/graphql?query=%7Bproducts%28filter%3A%7B%7D%2CpageSize%3A2%29%7Bitems%7B__typename+uid+sku+name+url_key+stock_status+image%7Burl%7D+price_range%7Bminimum_price%7Bfinal_price%7Bvalue+currency%7D%7D%7D%7D%7D%7D"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "06-feed-xml",
+      "family": "Google Shopping XML",
+      "store_url": "https://adtribes.io/product-feed-samples-showcase-download-page/",
+      "execution": "Live archive download + existing XML parser",
+      "status": "pass",
+      "products": 2,
+      "variants": 0,
+      "results": [
+        {
+          "title": "Wallet (Orange)",
+          "price": {
+            "state": "observed",
+            "value": "110.00",
+            "legacy_value": "110.00",
+            "reason": "",
+            "raw_value": "110.00"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "USD",
+            "legacy_value": "USD",
+            "reason": "",
+            "raw_value": "USD"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "in_stock"
+          },
+          "states": {
+            "observed": 16,
+            "unsupported": 7
+          },
+          "source_urls": [
+            "https://adtribes.io/wp-content/uploads/Google-Shopping-XML-USA.zip"
+          ]
+        },
+        {
+          "title": "T-Shirt for Women (Yellow)",
+          "price": {
+            "state": "observed",
+            "value": "88.00",
+            "legacy_value": "88.00",
+            "reason": "",
+            "raw_value": "88.00"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "USD",
+            "legacy_value": "USD",
+            "reason": "",
+            "raw_value": "USD"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "in_stock"
+          },
+          "states": {
+            "observed": 16,
+            "unsupported": 7
+          },
+          "source_urls": [
+            "https://adtribes.io/wp-content/uploads/Google-Shopping-XML-USA.zip"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "07-feed-csv",
+      "family": "Google Shopping CSV",
+      "store_url": "https://adtribes.io/product-feed-samples-showcase-download-page/",
+      "execution": "Live archive download + existing CSV parser",
+      "status": "pass",
+      "products": 2,
+      "variants": 0,
+      "results": [
+        {
+          "title": "Wallet (Orange)",
+          "price": {
+            "state": "observed",
+            "value": "110.00",
+            "legacy_value": "110.00",
+            "reason": "",
+            "raw_value": "110.00"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "USD",
+            "legacy_value": "USD",
+            "reason": "",
+            "raw_value": "USD"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "in_stock"
+          },
+          "states": {
+            "observed": 16,
+            "unsupported": 7
+          },
+          "source_urls": [
+            "https://adtribes.io/wp-content/uploads/Google-Shopping-CSV-USA.zip"
+          ]
+        },
+        {
+          "title": "T-Shirt for Women (Yellow)",
+          "price": {
+            "state": "observed",
+            "value": "88.00",
+            "legacy_value": "88.00",
+            "reason": "",
+            "raw_value": "88.00"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "USD",
+            "legacy_value": "USD",
+            "reason": "",
+            "raw_value": "USD"
+          },
+          "stock": {
+            "state": "observed",
+            "value": true,
+            "legacy_value": "True",
+            "reason": "",
+            "raw_value": "in_stock"
+          },
+          "states": {
+            "observed": 16,
+            "unsupported": 7
+          },
+          "source_urls": [
+            "https://adtribes.io/wp-content/uploads/Google-Shopping-CSV-USA.zip"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "08-jsonld",
+      "family": "Generic JSON-LD",
+      "store_url": "https://www.boardgamebliss.com/products/catan-fifth-edition",
+      "execution": "Real fetched HTML + Unified structured extraction",
+      "status": "pass",
+      "products": 1,
+      "variants": 0,
+      "results": [
+        {
+          "title": "Catan (Fifth Edition)",
+          "price": {
+            "state": "observed",
+            "value": "54.95",
+            "legacy_value": "54.95",
+            "reason": "",
+            "raw_value": "54.95"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "CAD",
+            "legacy_value": "CAD",
+            "reason": "",
+            "raw_value": "CAD"
+          },
+          "stock": {
+            "state": "observed",
+            "value": false,
+            "legacy_value": "False",
+            "reason": "",
+            "raw_value": "https://schema.org/OutOfStock"
+          },
+          "states": {
+            "observed": 10,
+            "unsupported": 12
+          },
+          "source_urls": [
+            "https://www.boardgamebliss.com/products/catan-fifth-edition"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "09-opengraph",
+      "family": "Generic OpenGraph",
+      "store_url": "https://www.boardgamebliss.com/products/catan-fifth-edition",
+      "execution": "Real fetched HTML + OpenGraphExtractor",
+      "status": "pass",
+      "products": 1,
+      "variants": 0,
+      "results": [
+        {
+          "title": "Catan (Fifth Edition)",
+          "price": {
+            "state": "observed",
+            "value": "54.95",
+            "legacy_value": "54.95",
+            "reason": "",
+            "raw_value": "54.95"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "CAD",
+            "legacy_value": "CAD",
+            "reason": "",
+            "raw_value": "CAD"
+          },
+          "stock": {
+            "state": "unsupported",
+            "value": null,
+            "legacy_value": "True",
+            "reason": "No retained source mapping; compatibility/default value",
+            "raw_value": "None"
+          },
+          "states": {
+            "observed": 6,
+            "unsupported": 16
+          },
+          "source_urls": [
+            "https://www.boardgamebliss.com/products/catan-fifth-edition"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "10-css",
+      "family": "Generic CSS — Books to Scrape",
+      "store_url": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
+      "execution": "Real HTML + JsonCSS strategy + CSS adapter; no browser",
+      "status": "pass",
+      "products": 1,
+      "variants": 0,
+      "results": [
+        {
+          "title": "A Light in the Attic",
+          "price": {
+            "state": "observed",
+            "value": "51.77",
+            "legacy_value": "51.77",
+            "reason": "",
+            "raw_value": "£51.77"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "GBP",
+            "legacy_value": "GBP",
+            "reason": "",
+            "raw_value": "£51.77"
+          },
+          "stock": {
+            "state": "unsupported",
+            "value": null,
+            "legacy_value": "True",
+            "reason": "No retained source mapping; compatibility/default value",
+            "raw_value": "None"
+          },
+          "states": {
+            "observed": 6,
+            "unsupported": 16
+          },
+          "source_urls": [
+            "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "11-browser",
+      "family": "Browser structured HTML",
+      "store_url": "https://www.boardgamebliss.com/products/catan-fifth-edition",
+      "execution": "Actual crawl4ai headless browser + Unified result extraction",
+      "status": "pass",
+      "products": 1,
+      "variants": 0,
+      "results": [
+        {
+          "title": "Catan (Fifth Edition)",
+          "price": {
+            "state": "observed",
+            "value": "54.95",
+            "legacy_value": "54.95",
+            "reason": "",
+            "raw_value": "54.95"
+          },
+          "currency": {
+            "state": "observed",
+            "value": "CAD",
+            "legacy_value": "CAD",
+            "reason": "",
+            "raw_value": "CAD"
+          },
+          "stock": {
+            "state": "observed",
+            "value": false,
+            "legacy_value": "False",
+            "reason": "",
+            "raw_value": "https://schema.org/OutOfStock"
+          },
+          "states": {
+            "observed": 10,
+            "unsupported": 12
+          },
+          "source_urls": [
+            "https://www.boardgamebliss.com/products/catan-fifth-edition"
+          ]
+        }
+      ]
+    }
+  ],
+  "scope": "Every supported named platform and generic structured/CSS/feed format; sampled products, not every store on the internet.",
+  "live_llm": "Not run; no provider invoked. Mocked adapter regression verifies all unverified output remains unsupported without calibrated confidence."
+}

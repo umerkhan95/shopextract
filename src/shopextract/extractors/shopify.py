@@ -10,6 +10,7 @@ from urllib.parse import urlsplit
 import httpx
 
 from .._models import ExtractorResult
+from .._capture import capture
 from ._browser import DEFAULT_HEADERS, get_default_user_agent
 
 logger = logging.getLogger(__name__)
@@ -30,6 +31,7 @@ class ShopifyExtractor:
         all_products: list[dict[str, Any]] = []
         base_url = shop_url.rstrip("/")
         shop_currency: str | None = None
+        currency_capture = None
         complete = True
         completeness_reason: str | None = None
         error: str | None = None
@@ -88,12 +90,17 @@ class ShopifyExtractor:
                     pages_completed += 1
                     if shop_currency is None:
                         shop_currency = response.cookies.get("cart_currency")
+                        if shop_currency:
+                            currency_capture = capture({"cart_currency": shop_currency}, str(response.url), "shopify_response_cookie")["_capture"]
 
                     products = data.get("products", [])
                     if not products:
                         break
 
                     remaining = max_products - len(all_products) if max_products is not None else len(products)
+                    for product in products:
+                        capture(product, str(response.url), "shopify_api")
+
                     all_products.extend(products[:remaining])
                     if max_products is not None and len(all_products) >= max_products:
                         # A short final page proves exhaustion only if no records
@@ -138,14 +145,18 @@ class ShopifyExtractor:
                         if data.get("id") is None or product.get("id") is None or str(data["id"]) != str(product["id"]):
                             product.setdefault("_identifier_enrichment_errors", []).append("Product ID mismatch in identifier detail response")
                             continue
+                        capture(data, str(detail.url), "shopify_detail_api")
                         by_id = {str(v.get("id")): v for v in data.get("variants", []) if v.get("id") is not None}
                         for variant in variants:
                             source = by_id.get(str(variant.get("id")), {})
                             if not variant.get("barcode") and source.get("barcode"):
+                                detail_capture = capture({"barcode": source["barcode"]}, str(detail.url), "shopify_detail_api", observed_at=data["_capture"]["at"])
                                 variant["barcode"] = source["barcode"]
                                 product.setdefault("_identifier_sources", []).append({
                                     "url": str(detail.url), "variant_id": str(variant.get("id")),
                                     "field": "barcode", "value": source["barcode"],
+                                    "source_path": f"/variants/{variants.index(variant)}/barcode",
+                                    "_capture": detail_capture["_capture"],
                                 })
                     except (httpx.HTTPError, ValueError, TypeError, AttributeError) as exc:
                         logger.warning("Identifier enrichment failed for %s: %s", product.get("handle"), exc)
@@ -153,6 +164,9 @@ class ShopifyExtractor:
         if shop_currency:
             for product in all_products:
                 product["_shop_currency"] = shop_currency
+                product.setdefault("_field_sources", {})["/_shop_currency"] = {
+                    "capture_path": "/cart_currency", "_capture": currency_capture,
+                }
 
         logger.info("Extraction complete: %s total products from %s pages", len(all_products), pages_completed)
         return ExtractorResult(

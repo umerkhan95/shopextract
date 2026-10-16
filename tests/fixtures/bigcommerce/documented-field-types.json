@@ -1,0 +1,62 @@
+{
+  "Site": {
+    "products": "ProductConnection!"
+  },
+  "ProductConnection": {
+    "pageInfo": "PageInfo!",
+    "edges": "[ProductEdge!]"
+  },
+  "ProductEdge": {
+    "node": "Product!"
+  },
+  "PageInfo": {
+    "hasNextPage": "Boolean!",
+    "endCursor": "String"
+  },
+  "Product": {
+    "entityId": "Int!",
+    "name": "String!",
+    "sku": "String!",
+    "path": "String!",
+    "description": "String!",
+    "upc": "String",
+    "defaultImage": "Image",
+    "brand": "Brand",
+    "prices": "Prices",
+    "inventory": "ProductInventory!",
+    "variants": "VariantConnection!"
+  },
+  "Image": {
+    "urlOriginal": "String!"
+  },
+  "Brand": {
+    "name": "String!"
+  },
+  "Prices": {
+    "price": "Money!"
+  },
+  "Money": {
+    "value": "BigDecimal!",
+    "currencyCode": "String!"
+  },
+  "ProductInventory": {
+    "isInStock": "Boolean!"
+  },
+  "VariantConnection": {
+    "pageInfo": "PageInfo!",
+    "edges": "[VariantEdge!]"
+  },
+  "VariantEdge": {
+    "node": "Variant!"
+  },
+  "Variant": {
+    "entityId": "Int!",
+    "sku": "String!",
+    "upc": "String",
+    "prices": "Prices",
+    "inventory": "VariantInventory"
+  },
+  "VariantInventory": {
+    "isInStock": "Boolean!"
+  }
+}

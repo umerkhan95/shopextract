@@ -6,6 +6,7 @@ import json
 import logging
 
 from bs4 import BeautifulSoup
+from .._capture import capture
 
 logger = logging.getLogger(__name__)
 
@@ -165,7 +166,9 @@ class SchemaOrgExtractor:
             if not products:
                 return products
 
+            products = [SchemaOrgExtractor._strip_pii_fields(p) for p in products]
             for product in products:
+                capture(product, url, "json_ld")
                 if product.get("@type") == "ProductGroup":
                     SchemaOrgExtractor._enrich_product_group(product)
 

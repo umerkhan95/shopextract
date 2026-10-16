@@ -1,0 +1,503 @@
+{
+  "cases": [
+    {
+      "case": {
+        "name": "01-magento-smoke",
+        "kind": "magento",
+        "platform": "magento",
+        "url": "https://magento2-demo.magebit.com",
+        "page_size": 3,
+        "limit": 7
+      },
+      "status": "pass",
+      "seconds": 0.99,
+      "baseline_rss_mib": 84.82,
+      "peak_rss_mib": 99.64,
+      "requests": 3,
+      "defects": [],
+      "product_count": 7,
+      "variant_count": 63,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": []
+    },
+    {
+      "case": {
+        "name": "02-shopware-smoke",
+        "kind": "shopware",
+        "platform": "shopware",
+        "url": "https://frontends-demo.vercel.app",
+        "page_size": 3,
+        "limit": 7
+      },
+      "status": "pass",
+      "seconds": 0.89,
+      "baseline_rss_mib": 85.77,
+      "peak_rss_mib": 103.53,
+      "requests": 5,
+      "defects": [],
+      "product_count": 7,
+      "variant_count": 0,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": []
+    },
+    {
+      "case": {
+        "name": "03-magento-pagination",
+        "kind": "magento",
+        "platform": "magento",
+        "url": "https://magento2-demo.magebit.com",
+        "page_size": 5,
+        "limit": 31
+      },
+      "status": "pass",
+      "seconds": 3.25,
+      "baseline_rss_mib": 85.22,
+      "peak_rss_mib": 132.6,
+      "requests": 7,
+      "defects": [],
+      "product_count": 31,
+      "variant_count": 335,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": []
+    },
+    {
+      "case": {
+        "name": "04-shopware-pagination",
+        "kind": "shopware",
+        "platform": "shopware",
+        "url": "https://frontends-demo.vercel.app",
+        "page_size": 5,
+        "limit": 31
+      },
+      "status": "pass",
+      "seconds": 2.28,
+      "baseline_rss_mib": 84.68,
+      "peak_rss_mib": 131.34,
+      "requests": 9,
+      "defects": [],
+      "product_count": 31,
+      "variant_count": 13,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": []
+    },
+    {
+      "case": {
+        "name": "05-magento-pipeline",
+        "kind": "pipeline",
+        "platform": "magento",
+        "url": "https://magento2-demo.magebit.com",
+        "limit": 25
+      },
+      "status": "pass",
+      "seconds": 2.77,
+      "baseline_rss_mib": 85.45,
+      "peak_rss_mib": 126.29,
+      "requests": 2,
+      "defects": [],
+      "product_count": 25,
+      "variant_count": 272,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": [
+        103.1
+      ]
+    },
+    {
+      "case": {
+        "name": "06-shopware-pipeline",
+        "kind": "pipeline",
+        "platform": "shopware",
+        "url": "https://frontends-demo.vercel.app",
+        "limit": 25
+      },
+      "status": "pass",
+      "seconds": 1.51,
+      "baseline_rss_mib": 85.86,
+      "peak_rss_mib": 127.22,
+      "requests": 4,
+      "defects": [],
+      "product_count": 25,
+      "variant_count": 13,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": [
+        105.69
+      ]
+    },
+    {
+      "case": {
+        "name": "07-shopify-bliss",
+        "kind": "shopify",
+        "platform": "shopify",
+        "url": "https://www.boardgamebliss.com",
+        "limit": 20,
+        "enrich": true
+      },
+      "status": "pass",
+      "seconds": 4.76,
+      "baseline_rss_mib": 85.04,
+      "peak_rss_mib": 111.46,
+      "requests": 21,
+      "defects": [],
+      "product_count": 20,
+      "variant_count": 79,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": []
+    },
+    {
+      "case": {
+        "name": "08-shopify-401",
+        "kind": "shopify",
+        "platform": "shopify",
+        "url": "https://store.401games.ca",
+        "limit": 20,
+        "enrich": true
+      },
+      "status": "pass",
+      "seconds": 3.39,
+      "baseline_rss_mib": 85.34,
+      "peak_rss_mib": 98.22,
+      "requests": 21,
+      "defects": [],
+      "product_count": 20,
+      "variant_count": 20,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": []
+    },
+    {
+      "case": {
+        "name": "09-woocommerce",
+        "kind": "woo",
+        "platform": "woocommerce",
+        "url": "https://demo.athemes.com/botiga",
+        "limit": 100,
+        "max_pages": 2
+      },
+      "status": "pass",
+      "seconds": 0.87,
+      "baseline_rss_mib": 85.91,
+      "peak_rss_mib": 93.76,
+      "requests": 1,
+      "defects": [],
+      "product_count": 8,
+      "variant_count": 0,
+      "complete": true,
+      "errors": [],
+      "repeat_memory_mib": []
+    },
+    {
+      "case": {
+        "name": "10-bigcommerce-html",
+        "kind": "pipeline",
+        "platform": "bigcommerce",
+        "url": "https://cornerstone-light-demo.mybigcommerce.com",
+        "limit": 6,
+        "timeout": 75
+      },
+      "status": "pass",
+      "seconds": 3.11,
+      "baseline_rss_mib": 84.78,
+      "peak_rss_mib": 102.36,
+      "requests": 8,
+      "defects": [],
+      "product_count": 6,
+      "variant_count": 0,
+      "complete": null,
+      "errors": [
+        "BigCommerce public storefront token unavailable"
+      ],
+      "repeat_memory_mib": [
+        101.36
+      ]
+    },
+    {
+      "case": {
+        "name": "11-magento-repeat",
+        "repeats": 3,
+        "kind": "pipeline",
+        "platform": "magento",
+        "url": "https://magento2-demo.magebit.com",
+        "limit": 25
+      },
+      "status": "pass",
+      "seconds": 4.74,
+      "baseline_rss_mib": 85.32,
+      "peak_rss_mib": 133.47,
+      "requests": 6,
+      "defects": [],
+      "product_count": 25,
+      "variant_count": 272,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": [
+        102.81,
+        114.76,
+        116.06
+      ]
+    },
+    {
+      "case": {
+        "name": "12-shopware-repeat",
+        "repeats": 3,
+        "kind": "pipeline",
+        "platform": "shopware",
+        "url": "https://frontends-demo.vercel.app",
+        "limit": 25
+      },
+      "status": "pass",
+      "seconds": 3.94,
+      "baseline_rss_mib": 85.76,
+      "peak_rss_mib": 141.01,
+      "requests": 12,
+      "defects": [],
+      "product_count": 25,
+      "variant_count": 13,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": [
+        105.32,
+        112.73,
+        120.73
+      ]
+    },
+    {
+      "case": {
+        "name": "13-bigcommerce-repeat",
+        "repeats": 3,
+        "kind": "pipeline",
+        "platform": "bigcommerce",
+        "url": "https://cornerstone-light-demo.mybigcommerce.com",
+        "limit": 6,
+        "timeout": 75
+      },
+      "status": "pass",
+      "seconds": 8.46,
+      "baseline_rss_mib": 86.52,
+      "peak_rss_mib": 111.61,
+      "requests": 24,
+      "defects": [],
+      "product_count": 6,
+      "variant_count": 0,
+      "complete": null,
+      "errors": [
+        "BigCommerce public storefront token unavailable"
+      ],
+      "repeat_memory_mib": [
+        104.95,
+        109.25,
+        111.59
+      ]
+    },
+    {
+      "case": {
+        "name": "14-magento-boundary",
+        "kind": "magento_boundary",
+        "platform": "magento",
+        "url": "https://magento2-demo.magebit.com",
+        "page_size": 3,
+        "limit": 4,
+        "skus": [
+          "MH09",
+          "WJ08",
+          "WP07",
+          "MS01",
+          "MP11"
+        ]
+      },
+      "status": "pass",
+      "seconds": 0.58,
+      "baseline_rss_mib": 85.4,
+      "peak_rss_mib": 98.64,
+      "requests": 2,
+      "defects": [],
+      "product_count": 4,
+      "variant_count": 51,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": []
+    },
+    {
+      "case": {
+        "name": "15-magento-full-catalog",
+        "kind": "magento",
+        "platform": "magento",
+        "url": "https://magento2-demo.magebit.com",
+        "page_size": 19,
+        "limit": 220,
+        "timeout": 90
+      },
+      "status": "pass",
+      "seconds": 13.41,
+      "baseline_rss_mib": 85.76,
+      "peak_rss_mib": 167.81,
+      "requests": 10,
+      "defects": [],
+      "product_count": 181,
+      "variant_count": 1847,
+      "complete": true,
+      "errors": [],
+      "repeat_memory_mib": []
+    },
+    {
+      "case": {
+        "name": "16-shopware-page-budget",
+        "kind": "shopware",
+        "platform": "shopware",
+        "url": "https://frontends-demo.vercel.app",
+        "page_size": 5,
+        "limit": 40,
+        "max_pages": 1
+      },
+      "status": "pass",
+      "seconds": 0.58,
+      "baseline_rss_mib": 86.0,
+      "peak_rss_mib": 103.14,
+      "requests": 3,
+      "defects": [],
+      "product_count": 5,
+      "variant_count": 0,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": []
+    },
+    {
+      "case": {
+        "name": "17-magento-page-budget",
+        "kind": "magento",
+        "platform": "magento",
+        "url": "https://magento2-demo.magebit.com",
+        "page_size": 5,
+        "limit": 40,
+        "max_pages": 1
+      },
+      "status": "pass",
+      "seconds": 0.52,
+      "baseline_rss_mib": 84.91,
+      "peak_rss_mib": 98.74,
+      "requests": 1,
+      "defects": [],
+      "product_count": 5,
+      "variant_count": 63,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": []
+    },
+    {
+      "case": {
+        "name": "18-generic-css-repeat",
+        "kind": "generic_css",
+        "platform": "generic",
+        "url": "https://books.toscrape.com",
+        "limit": 6,
+        "repeats": 3,
+        "timeout": 60
+      },
+      "status": "pass",
+      "seconds": 3.75,
+      "baseline_rss_mib": 86.46,
+      "peak_rss_mib": 96.95,
+      "requests": 19,
+      "defects": [],
+      "product_count": 6,
+      "variant_count": 0,
+      "complete": false,
+      "errors": [],
+      "repeat_memory_mib": [
+        null,
+        null,
+        null
+      ]
+    }
+  ],
+  "rounds": 26,
+  "requests": 158,
+  "product_observations": 561,
+  "variant_observations": 3611,
+  "states": {
+    "observed": 31228,
+    "unsupported": 13917,
+    "unknown": 255
+  },
+  "all_pass": true,
+  "export_checks": [
+    {
+      "case": "01-magento-smoke",
+      "export_records": 7
+    },
+    {
+      "case": "02-shopware-smoke",
+      "export_records": 7
+    },
+    {
+      "case": "03-magento-pagination",
+      "export_records": 31
+    },
+    {
+      "case": "04-shopware-pagination",
+      "export_records": 31
+    },
+    {
+      "case": "05-magento-pipeline",
+      "export_records": 25
+    },
+    {
+      "case": "06-shopware-pipeline",
+      "export_records": 25
+    },
+    {
+      "case": "07-shopify-bliss",
+      "export_records": 20
+    },
+    {
+      "case": "08-shopify-401",
+      "export_records": 20
+    },
+    {
+      "case": "09-woocommerce",
+      "export_records": 8
+    },
+    {
+      "case": "10-bigcommerce-html",
+      "export_records": 6
+    },
+    {
+      "case": "11-magento-repeat",
+      "export_records": 25
+    },
+    {
+      "case": "12-shopware-repeat",
+      "export_records": 25
+    },
+    {
+      "case": "13-bigcommerce-repeat",
+      "export_records": 6
+    },
+    {
+      "case": "14-magento-boundary",
+      "export_records": 4
+    },
+    {
+      "case": "15-magento-full-catalog",
+      "export_records": 181
+    },
+    {
+      "case": "16-shopware-page-budget",
+      "export_records": 5
+    },
+    {
+      "case": "17-magento-page-budget",
+      "export_records": 5
+    },
+    {
+      "case": "18-generic-css-repeat",
+      "export_records": 6
+    }
+  ],
+  "case_count": 18
+}

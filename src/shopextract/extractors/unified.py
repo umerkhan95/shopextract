@@ -20,6 +20,7 @@ import httpx
 
 from . import _markdown_price as markdown_price_extractor
 from .._models import ExtractorResult
+from .._capture import capture
 from ._browser import (
     DEFAULT_HEADERS,
     StealthLevel,
@@ -55,7 +56,10 @@ class UnifiedCrawlExtractor:
         url = shop_url
         html = await self._fetch_html_httpx(url)
         if html:
-            products = self._extract_structured_from_html(html, url)
+            products = self._extract_structured_from_html(html, getattr(html, "source_url", url))
+            for product in products:
+                if "_capture" in product and hasattr(html, "observed_at"):
+                    product["_capture"]["at"] = html.observed_at.isoformat()
             if products and all(self._has_price_and_image(p) for p in products):
                 return ExtractorResult(products=products)
             httpx_products = products
@@ -127,7 +131,7 @@ class UnifiedCrawlExtractor:
                 if len(html) > _MAX_RESPONSE_SIZE:
                     return None
 
-                return html
+                return _CapturedHTML(html, str(response.url))
             finally:
                 if self._http_client is None:
                     await client.aclose()
@@ -185,7 +189,7 @@ class UnifiedCrawlExtractor:
                         result = await crawler.arun(url=url, config=crawl_config)
                         if not result.success:
                             continue
-                        products = self._extract_from_crawl_result(result, url)
+                        products = self._extract_from_crawl_result(result, getattr(result, "url", None) or url)
                         if products:
                             return products
                     except Exception as e:
@@ -200,6 +204,7 @@ class UnifiedCrawlExtractor:
 
     @staticmethod
     def _extract_from_crawl_result(result: Any, url: str) -> list[dict]:
+        url = getattr(result, "url", None) or url
         html = getattr(result, "html", "") or ""
         metadata = getattr(result, "metadata", {}) or {}
 
@@ -223,6 +228,8 @@ class UnifiedCrawlExtractor:
         og_from_meta = OpenGraphExtractor.from_metadata(metadata) if metadata else []
         og_from_html = OpenGraphExtractor.extract_from_html(html, url) if html else []
         og = _merge_og(og_from_meta, og_from_html)
+        if og:
+            capture(og, url, "opengraph_crawl")
 
         # Layer 3: Markdown price/title
         md_text = fit_markdown or markdown
@@ -391,3 +398,12 @@ def _merge_og(og_from_meta: list[dict], og_from_html: list[dict]) -> dict:
             if k not in merged and v:
                 merged[k] = v
     return merged
+
+
+class _CapturedHTML(str):
+    def __new__(cls, html, source_url):
+        from datetime import datetime, timezone
+        obj = super().__new__(cls, html)
+        obj.source_url = source_url
+        obj.observed_at = datetime.now(timezone.utc)
+        return obj
