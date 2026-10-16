@@ -22,7 +22,7 @@
 ## Dependent implementation
 - [x] #35 FR-01/02: capture API/feed/structured/CSS/mocked LLM evidence; normalization history;
   adapter coverage fixtures including GTIN restoration, absent and zero/false values.
-- [ ] #36 FR-02/03/06: authority, freshness, equivalence/ties, deterministic resolution;
+- [x] #36 FR-02/03/06: authority, freshness, equivalence/ties, deterministic resolution;
   table-driven conflict/matching fixtures. Depends on #34/#35.
 - [ ] #37 FR-04/07: atomic SQLite, retrieval, idempotent migration, pruning limits;
   restart/rollback/retention fixtures. Depends on #34/#35.
@@ -83,3 +83,33 @@
 - [x] Bound product/page/variant behavior and BigCommerce native card discovery.
 - [x] Correct public capability documentation and validate actual public pipeline cases.
 - [x] Record BigCommerce token-based live coverage limitation separately from fixture/schema checks.
+
+## #36 implementation sequence
+- [x] Versioned field policy, role authority, explicit UTC freshness and exclusions.
+- [x] Deterministic equivalence/ties; preserve candidates and independent contracts.
+- [x] Matching-report field references; unchanged relationship/score semantics.
+- [x] Authority/freshness/tie/permutation/nested/round-trip and matching fixtures.
+- [x] Public APIs/limits and spec/plan/tasks verification.
+
+#36 acceptance mapping (`tests/test_field_resolution.py`):
+- FR-03 authority: `test_verified_manufacturer_wins_specs_and_preserves_both_observations`,
+  `test_supplier_offer_authority_does_not_use_manufacturer_list_values`,
+  `test_hostname_and_unverified_manufacturer_never_establish_authority`.
+- FR-02/03 ties/equivalence: `test_newest_equal_authority_disagreement_is_not_an_automatic_winner`,
+  `test_typed_equivalence_is_conservative`,
+  `test_permutations_and_round_trip_have_identical_semantic_results`.
+- FR-03 freshness/support: `test_freshness_boundaries_and_future_evidence`,
+  `test_mixed_source_support_cannot_inherit_strongest_role_or_freshest_time`,
+  `test_no_supported_candidate_exposes_unavailable_state`.
+- FR-06/report compatibility: `test_matching_reports_link_all_conflicts_without_changing_decisions_or_scores`,
+  `test_validated_confidence_is_retained_but_never_used_for_authority`,
+  `test_unmatched_and_semantic_candidates_keep_field_references`.
+- Offline example: `PYTHONPATH=src python examples/field_resolution.py`.
+
+## #36 live platform verification
+- [x] Fresh sequential live matrix across all six supported families / seven sites.
+- [x] Actual API/HTML same-URL, same-currency alternative preservation.
+- [x] Explicit synthetic policy faults kept separate from captured store facts.
+- [x] Saved-live replay: `test_saved_live_api_html_observations_preserve_support_distinctions`
+  (Magento equivalent prices; Shopware supported API versus unsupported HTML).
+- [x] Full suite 590 passed; save source journals, exports and coverage limits.

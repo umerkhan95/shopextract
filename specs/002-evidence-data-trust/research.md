@@ -21,3 +21,17 @@
 Evidence used: issue #34 and parent #22; existing `_models.py`, `_normalize.py`,
 `identity.py`, snapshot `asdict` usage and existing JSON/export interfaces. No external
 research/model sweep was needed for these local compatibility choices.
+
+## #36 decisions
+- Separate supplier offers from manufacturer specifications; a manufacturer price
+  is not evidence of a supplier offer. Only explicit verified_manufacturer source
+  roles confer specification precedence; hostname matching proves nothing.
+- Freshness excludes candidates rather than making the newest conflicting peer
+  automatically correct. Use the oldest referenced evidence to reject partially
+  stale support conservatively, and require evaluation time for reproducibility.
+- Resolution retains all observations/evidence and returns a copy. Preserve input
+  unsupported states and existing validation metadata; do not manufacture scores.
+- Conservative typed equivalence avoids treating false as numeric zero, units as
+  interchangeable, or differently-cased identifiers as the same specification.
+- Matching integration is explanatory references only: automatic resolution must
+  not silently change canonical identity or the existing matching score meanings.

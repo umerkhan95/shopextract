@@ -35,6 +35,7 @@ Public API:
 from ._detect import detect
 from ._discover import discover
 from ._extract import extract, extract_one, from_feed
+from ._resolution import ResolutionPolicy, resolve_fields, resolution_references
 from ._models import (
     Evidence, FieldObservation, FieldResolution, SupportState,
     TrustContract, ValidatedConfidence, factual_paths, trust_view,
@@ -82,6 +83,7 @@ from .validate import check_images, find_duplicates, validate
 __version__ = "0.1.2"
 
 __all__ = [
+    "ResolutionPolicy", "resolve_fields", "resolution_references",
     "Evidence", "FieldObservation", "FieldResolution", "SupportState",
     "TrustContract", "ValidatedConfidence", "factual_paths", "trust_view",
     "evaluate_matching",

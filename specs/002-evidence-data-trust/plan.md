@@ -96,3 +96,35 @@ options and explicit legacy Magento REST selection are documented in
 `docs/storefront-apis.md`. This capability integration is separate from #35's
 contract-capture deliverable; the earlier live adapter limitations are historical.
 All API and fallback HTML observations still use the shared normalization outcomes.
+
+## #36 resolution policy — planned before implementation
+`_resolution.py` resolves a validated TrustContract into a deep independent copy.
+It never changes product scalars, evidence timestamps, support states or scores.
+An explicit UTC `as_of` is required. Default age windows are 24 hours for supplier
+offer fields and 30 days for specifications; configurable positive windows are
+recorded in every rationale alongside evaluation time and policy/version. All
+referenced evidence must be fresh and not future-dated. Mixed-role support takes
+the weakest authority; an unverified component cannot inherit verified authority.
+
+Offer fields at product/variant level: price, compare_at_price, currency, in_stock,
+condition, sku, external_id, variant_id and product_url. Supplier evidence outranks
+unverified evidence; manufacturer roles are not eligible offer sources. Other
+fields use verified_manufacturer > supplier > unverified/manufacturer. No domain
+inference or automatic source registration. Source-role labels are explicit caller
+assertions, not authentication or verification performed by the library.
+
+Only observed candidates compete. Stale/future/unsupported candidates stay visible
+with exclusion explanations. Authority breaks disagreements; recency only determines
+eligibility. Tied conflicting normalized values remain unresolved. Equivalent
+values choose the lexicographically smallest observation ID, never an arbitrary
+input position. Numeric normalized types compare by value with bool kept separate;
+strings use NFC and trimmed whitespace, with case folding only for title/vendor/
+condition. Identifiers remain case-sensitive and no units/GTINs are guessed. Lists
+are ordered, dictionaries order-independent. Currency/money cross-source comparisons
+require caller-aligned context; resolver does not convert currencies or join products.
+
+Inputs must describe one already-aligned product revision; indices and JSON pointers
+are not cross-store variant identity. Automatic merging/alignment is outside #36.
+Public `classify_match`/`match_products` add field-support references for attached
+contracts but keep existing relationship/confidence logic and product scalars.
+Persistence, retention deletion and full portable bundles remain #37/#38.

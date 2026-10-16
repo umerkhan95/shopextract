@@ -1,0 +1,82 @@
+{
+  "evidence": [
+    {
+      "evidence_id": "e_5217c1eb-1814-487c-a3dd-baa61e8937d4",
+      "source_url": "https://magento2-demo.magebit.com/graphql?query=query+Catalog%28%24size%3AInt%21%2C+%24page%3AInt%21%29+%7B%0A++products%28filter%3A%7B%7D%2C+pageSize%3A%24size%2C+currentPage%3A%24page%2C+sort%3A%7Bname%3AASC%7D%29+%7B%0A++++total_count+page_info+%7B+current_page+total_pages+%7D%0A++++items+%7B+__typename+sku+name+url_key+url_suffix+stock_status+description+%7B+html+%7D+image+%7B+url+%7D+price_range+%7B+minimum_price+%7B+final_price+%7B+value+currency+%7D+%7D+%7D%0A++++++...+on+ConfigurableProduct+%7B+variants+%7B+product+%7B+sku+name+url_key+url_suffix+stock_status+description+%7B+html+%7D+image+%7B+url+%7D+price_range+%7B+minimum_price+%7B+final_price+%7B+value+currency+%7D+%7D+%7D+%7D+attributes+%7B+code+value_index+%7D+%7D+%7D%0A++++%7D%0A++%7D%0A%7D&variables=%7B%22size%22%3A+3%2C+%22page%22%3A+1%7D",
+      "observed_at": {
+        "$type": "datetime",
+        "value": "2026-10-16T08:05:35.589623+00:00"
+      },
+      "method": "magento_graphql",
+      "excerpt": null,
+      "retained_data": {
+        "source_pointer": "/price_range/minimum_price/final_price/value",
+        "value": 69
+      },
+      "pointer": "/value",
+      "source_role": "unverified",
+      "truncated": true
+    },
+    {
+      "evidence_id": "e_fcd99b8e-74bd-4ff8-a577-361ce9f85a24",
+      "source_url": "https://magento2-demo.magebit.com/abominable-hoodie.html",
+      "observed_at": {
+        "$type": "datetime",
+        "value": "2026-10-16T08:05:36.377730+00:00"
+      },
+      "method": "opengraph",
+      "excerpt": null,
+      "retained_data": {
+        "source_pointer": "/product:price:amount",
+        "value": "69"
+      },
+      "pointer": "/value",
+      "source_role": "unverified",
+      "truncated": false
+    }
+  ],
+  "observations": [
+    {
+      "observation_id": "o_71ca4b3c-eb0d-43e6-b39f-71aa6098f860",
+      "field_path": "/price",
+      "state": "observed",
+      "raw_value": "69",
+      "normalized_value": {
+        "$type": "decimal",
+        "value": "69"
+      },
+      "evidence_ids": [
+        "e_fcd99b8e-74bd-4ff8-a577-361ce9f85a24"
+      ],
+      "reason": "",
+      "transformations": [
+        "Parse decimal amount"
+      ],
+      "score": null,
+      "score_kind": null,
+      "validated_confidence": null
+    },
+    {
+      "observation_id": "o_bba3bd22-3417-4e05-9f0c-1120e7916254",
+      "field_path": "/price",
+      "state": "observed",
+      "raw_value": 69,
+      "normalized_value": {
+        "$type": "decimal",
+        "value": "69"
+      },
+      "evidence_ids": [
+        "e_5217c1eb-1814-487c-a3dd-baa61e8937d4"
+      ],
+      "reason": "",
+      "transformations": [
+        "Parse decimal amount"
+      ],
+      "score": null,
+      "score_kind": null,
+      "validated_confidence": null
+    }
+  ],
+  "resolutions": [],
+  "schema_version": 1
+}

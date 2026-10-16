@@ -1,0 +1,60 @@
+{
+  "evidence": [
+    {
+      "evidence_id": "e_a37f97b9-d469-4232-8d56-1f6015537be4",
+      "source_url": "https://demo-frontends.shopware.store/store-api/product",
+      "observed_at": {
+        "$type": "datetime",
+        "value": "2026-10-16T08:05:45.195141+00:00"
+      },
+      "method": "shopware_store_api",
+      "excerpt": null,
+      "retained_data": {
+        "source_pointer": "/calculatedPrice/unitPrice",
+        "value": 22
+      },
+      "pointer": "/value",
+      "source_role": "unverified",
+      "truncated": false
+    }
+  ],
+  "observations": [
+    {
+      "observation_id": "o_48608b63-71c9-45c0-8cf6-a7863b83a163",
+      "field_path": "/price",
+      "state": "observed",
+      "raw_value": 22,
+      "normalized_value": {
+        "$type": "decimal",
+        "value": "22"
+      },
+      "evidence_ids": [
+        "e_a37f97b9-d469-4232-8d56-1f6015537be4"
+      ],
+      "reason": "",
+      "transformations": [
+        "Parse decimal amount"
+      ],
+      "score": null,
+      "score_kind": null,
+      "validated_confidence": null
+    },
+    {
+      "observation_id": "o_bf0c6c7c-d0ee-4ab2-acc9-eca736bef796",
+      "field_path": "/price",
+      "state": "unsupported",
+      "raw_value": null,
+      "normalized_value": null,
+      "evidence_ids": [],
+      "reason": "Selected source has no retained capture; support unavailable",
+      "transformations": [
+        "Parse decimal amount"
+      ],
+      "score": null,
+      "score_kind": null,
+      "validated_confidence": null
+    }
+  ],
+  "resolutions": [],
+  "schema_version": 1
+}

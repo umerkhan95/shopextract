@@ -863,7 +863,11 @@ response data, normalized values or total extraction memory. Capture times repre
 UTC observation during extraction, not merchant modification time. Reserved raw
 `_capture` metadata is internal and can change; use the public contract for inspection.
 Raw/model scores and extraction quality never create validated confidence. Source
-precedence, SQLite evidence retention and portable Product bundles remain follow-up
-work. Save a contract explicitly with `product.evidence_contract.to_dict()` for now.
+precedence is available through `resolve_fields(contract, as_of=...)`: supplier
+offers and verified manufacturer specifications use different authority rules, and
+equal-authority disagreements remain unresolved. See [field resolution](docs/field-resolution.md)
+and the [offline example](examples/field_resolution.py). Matching reports include
+field-support references without changing matching scores. SQLite evidence retention
+and portable Product bundles remain follow-up work. Save a contract explicitly with `product.evidence_contract.to_dict()` for now.
 See [the public contract](specs/002-evidence-data-trust/contracts/evidence.md) and
 [field coverage matrix](specs/002-evidence-data-trust/data-model.md).
