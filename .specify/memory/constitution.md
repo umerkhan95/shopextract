@@ -6,12 +6,18 @@
    and legacy/default values never become observed facts through scalar defaults.
 3. Preserve competing observations and transformation history. Never invent source
    URLs, observation times, manufacturer authority or calibrated probabilities.
-4. Verify behavior using meaningful bounded offline fixtures and affected regression
-   checks. Save results before expanding scope; no live crawl or model run needed.
+4. Design observable behavior and acceptance tests before task breakdown and code.
+   Follow `docs/development-workflow.md`: research/review, skeleton/review,
+   reusable components/review, implementation, offline checks, then bounded live
+   checks. Record live not-applicable or blocked honestly; never substitute mocks
+   for required live proof. Save results before expanding scope.
 5. Apply the user's bounded-usage instructions: sequential work, no parallel agents
    or inference without authorization, bounded processes, and saved progress.
 6. Keep core code and contracts MIT, self-hostable and free of paid service gates.
 
 Integration: use `.specify/templates/` as local planning templates. No CLI install,
 user configuration replacement, or generated agent commands are required. Feature
-work lives in `specs/002-evidence-data-trust/`; linked tickets update it in place.
+work lives in `specs/<number>-<feature>/`; linked tickets update the relevant spec
+in place. Completed evidence/data-trust work remains in
+`specs/002-evidence-data-trust/`. `AGENTS.md` defines persistent agent, usage and
+Git instructions; independent review gates do not require routine user approval.
