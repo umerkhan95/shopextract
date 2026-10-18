@@ -1,0 +1,18 @@
+{
+  "state": "runner_ready_not_executed",
+  "command": "PYTHONPATH=src:. OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MKL_NUM_THREADS=1 TOKENIZERS_PARALLELISM=false /Users/umerkhan/code/shopextract/.venv/bin/python tests/shopify_taxonomy_sweep.py",
+  "hard_child_seconds": 540,
+  "group_rss_bytes": 536870912,
+  "batch_seconds": 15,
+  "attempt_output": "artifacts/shopify-taxonomy/approved-sweep",
+  "auto_resume": false,
+  "tests": "4passed",
+  "files": {
+    "tests/shopify_taxonomy_sweep.py": "b293af8aba567d96f892ee45e34e73a26794078d4c303019ba578eebfb7aeff7",
+    "tests/test_shopify_taxonomy_sweep_control.py": "0e97723abb3670df41718bcf9a33317734b3fc37afc31f467dddbabca39a6651",
+    "artifacts/shopify-taxonomy/sweep-control.log": "fa1a15d30546dbdfcc5ede843d1c410379981f9722cdd5bd2a9e8aa6bac35091",
+    "specs/008-shopify-taxonomy/verification.md": "924f88186f0920162b5509e28b017bbc8bd220a7dad1bc93d12790f309cdcbf1",
+    "specs/008-shopify-taxonomy/status.md": "0237a41c845a59006bbd6f8a110fe77ddccec1e45d21674cafad291074cbf929",
+    "specs/008-shopify-taxonomy/reviews.md": "a59fac09631223eddf28d7563e0b0df0a3697dc344b8c1dbf4e43585e602c8bb"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "state": "primary_document_schema_proof_not_live_introspection",
+  "checked": "2026-10-18",
+  "api_version": "2026-10",
+  "selector_observation": "Requested2026-10 URLs redirect to latest; page version selector explicitly displays2026-10",
+  "sources": [
+    {
+      "requested_url": "https://shopify.dev/docs/api/storefront/2026-10/objects/Product",
+      "fields": {
+        "id": "ID!",
+        "title": "String!",
+        "handle": "String!",
+        "productType": "String!",
+        "category": "TaxonomyCategory"
+      },
+      "access_scope": "unauthenticated_read_product_listings"
+    },
+    {
+      "requested_url": "https://shopify.dev/docs/api/storefront/2026-10/objects/TaxonomyCategory",
+      "fields": {
+        "id": "ID!",
+        "name": "String!",
+        "ancestors": "[TaxonomyCategory!]!"
+      },
+      "semantics": "id static source taxonomy identifier; name locale dependent; ancestors immediate-parent first, not queried in minimal query"
+    },
+    {
+      "requested_url": "https://shopify.dev/docs/api/storefront/2026-10/queries/product",
+      "arguments": {
+        "handle": "String",
+        "id": "ID"
+      },
+      "returns": "Product nullable"
+    }
+  ],
+  "minimal_query": "query ShopifyTaxonomyProduct($handle: String!) {\n  product(handle: $handle) { id title handle productType category { id name } }\n}",
+  "producer_owner": "future extractors/shopify_taxonomy.py; no producer implementation at G2",
+  "guard": "producer-owned constant only+category mode+explicit authorized endpoint+one boundedhandlevariable",
+  "source_taxonomy_release": "unknown unless source supplies it; API2026-10 is not taxonomyrelease2026-08",
+  "capture": "category supplement to public captured Product with matching productID+handle, actual sourceURL/time; no price/variant overwrite",
+  "storefront_live_requests": 0,
+  "credentials": "user authorized config pending; no discovery/request performed"
+}

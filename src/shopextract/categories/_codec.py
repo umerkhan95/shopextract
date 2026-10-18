@@ -5,9 +5,10 @@ from enum import Enum
 import hashlib
 import json
 import types
-from typing import Literal, Union, get_args, get_origin, get_type_hints
+from typing import Literal, Union, get_args, get_origin
 from .._evidence import encode_value, decode_value
 from .._portable import validate_tree
+from .._schemas import schema_hints
 from .contracts import CategoryError
 
 
@@ -57,7 +58,7 @@ def typed(kind, value):
         names = {f.name for f in fields(kind)}
         if not isinstance(value, dict) or set(value) != names:
             raise CategoryError('Invalid category record fields')
-        hints = get_type_hints(kind)
+        hints = schema_hints(kind)
         return kind(**{k: typed(hints[k], v) for k, v in value.items()})
     if isinstance(kind, type) and issubclass(kind, Enum):
         return kind(value)

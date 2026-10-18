@@ -57,7 +57,8 @@ class MaintenanceEngine:
     def __init__(self, store: MaintenanceStore, *, tool_config, resolver=None,
                  wire_transport=None, utc_now=None, investigator: Investigator | None = None,
                  failure_hook: FailureHook | None = None,
-                 category_config: CategoryRuntimeConfig | None = None):
+                 category_config: CategoryRuntimeConfig | None = None,shopify_storefront=None):
+        self.shopify_storefront=shopify_storefront
         self._expected_category = None
         self._category_config = None
         if category_config is not None:
@@ -114,7 +115,7 @@ class MaintenanceEngine:
             goal = self.store.goal(job_id)
             self._model_stop = self.store.model_stop(job_id)
             self._runtime = ToolRuntime(self.tool_config, resolver=self.resolver,
-                wire_transport=self.wire_transport, utc_now=self.utc_now,category_config=self._category_config)
+                wire_transport=self.wire_transport, utc_now=self.utc_now,category_config=self._category_config,shopify_storefront=self.shopify_storefront)
             products, source_complete, reason = await self._collect(job_id, goal)
             if reason not in {'cancelled', 'deadline'}:
                 await self._reconcile(job_id, goal, products)
@@ -187,7 +188,7 @@ class MaintenanceEngine:
             scope['category_policy'] = category_policy_digest(self._category_config)
             scope['category_schema'] = 1
         cache_key = digest(scope)
-        cached = self.store.cache_get(cache_key, now=self.now())
+        cached = self.store.cache_get(cache_key, now=self.now()) if self.shopify_storefront is None else None
         if cached is not None:
             try:
                 if mode == 'extract':
@@ -224,7 +225,7 @@ class MaintenanceEngine:
                 self.hook('before_checkpoint', job_id=job, step_id=step)
                 self.store.checkpoint(job, step, result, settlements=settlements)
                 self.hook('after_checkpoint', job_id=job, step_id=step)
-                if result.get('complete'):
+                if result.get('complete') and self.shopify_storefront is None:
                     self.store.cache_put(cache_key, result,
                         expires=self.now() + timedelta(seconds=goal['freshness_seconds']))
                 return result, None

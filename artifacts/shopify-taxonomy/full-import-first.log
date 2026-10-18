@@ -1,0 +1,20 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+Traceback (most recent call last):
+  File "<stdin>", line 17, in <module>
+  File "/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/taxonomies/shopify/build.py", line 103, in build_shopify_taxonomy
+    counts=validate_catalog(data)
+  File "/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/taxonomies/shopify/validation.py", line 24, in validate_catalog
+    reasons=_index(data['return_reasons'],'TaxonomyReturnReason') if data['return_reasons'] else {}
+  File "/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/taxonomies/shopify/validation.py", line 11, in _index
+    raise TaxonomyIntegrityError('Duplicate or invalid '+kind+' ID')
+shopextract.taxonomies.shopify.contracts.TaxonomyIntegrityError: Duplicate or invalid TaxonomyReturnReason ID
+Traceback (most recent call last):
+  File "<stdin>", line 17, in <module>
+  File "/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/taxonomies/shopify/build.py", line 103, in build_shopify_taxonomy
+    counts=validate_catalog(data)
+  File "/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/taxonomies/shopify/validation.py", line 24, in validate_catalog
+    reasons=_index(data['return_reasons'],'TaxonomyReturnReason') if data['return_reasons'] else {}
+  File "/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/taxonomies/shopify/validation.py", line 11, in _index
+    raise TaxonomyIntegrityError('Duplicate or invalid '+kind+' ID')
+shopextract.taxonomies.shopify.contracts.TaxonomyIntegrityError: Duplicate or invalid TaxonomyReturnReason ID

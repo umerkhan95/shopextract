@@ -1,0 +1,15 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_________ test_metadata_build_requirements_and_real_310_toml_fallback __________
+Standalone taxonomy delivery bootstrap is missing
+_ test_standalone_namespace_uses_checkout_builders_without_application_import __
+Standalone taxonomy delivery bootstrap is missing
+__________ test_workflows_prepare_before_project_install_and_publish ___________
+Standalone taxonomy delivery bootstrap is missing
+=========================== short test summary info ============================
+FAILED tests/test_shopify_taxonomy_delivery.py::test_metadata_build_requirements_and_real_310_toml_fallback
+FAILED tests/test_shopify_taxonomy_delivery.py::test_standalone_namespace_uses_checkout_builders_without_application_import
+FAILED tests/test_shopify_taxonomy_delivery.py::test_workflows_prepare_before_project_install_and_publish
+3 failed in 0.13s

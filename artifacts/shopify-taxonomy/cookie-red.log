@@ -1,0 +1,137 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFF.                                                                     [100%]
+=================================== FAILURES ===================================
+___ test_cookie_bearing_public_pages_use_clean_same_guard_client[tokenless] ____
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+mode = 'tokenless'
+
+    @pytest.mark.parametrize('mode',['tokenless','token'])
+    async def test_cookie_bearing_public_pages_use_clean_same_guard_client(catalog,mode):
+        sent=[];base=wire(sent)
+        def response(request):
+            if request.method=='POST':
+                assert 'cookie' not in request.headers and 'authorization' not in request.headers
+                assert request.headers.get('x-shopify-storefront-access-token')==('fixture-token' if mode=='token' else None)
+            result=base(request);result.headers['set-cookie']='session=fixture; Path=/'
+            return result
+        options=shopify_taxonomy_options(CategoryScope(Platform.SHOPIFY,STORE),category_ids=['el-6-6'],taxonomy=catalog,allow_unknown_source_version=True)
+        config=ShopifyStorefrontConfig(STORE+'/api/2026-10/graphql.json','fixture-token' if mode=='token' else None,auth_mode=mode)
+        runtime=ToolRuntime(ToolConfig(allowed_origins=(STORE,)),resolver=resolver,wire_transport=httpx.MockTransport(response),category_config=CategoryRuntimeConfig(options),shopify_storefront=config)
+        try:
+            context=OperationContext('cookie-test',time.monotonic()+15,asyncio.Event(),OperationBudget(Limits()),runtime.auxiliary,datetime.now(timezone.utc))
+>           result=await runtime.sources.execute('extract',STORE,2,context)
+
+tests/test_shopify_taxonomy_dispatch.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/tools/sources.py:33: in execute
+    return await self.extract(client, transport, norm, maximum, context)
+src/shopextract/tools/sources.py:150: in extract
+    await supplement_categories(result.products,self.shopify_storefront,client=client)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+products = [{'id': 101, 'title': 'Laptop', 'handle': 'laptop', 'variants': [{'id': 201, 'price': '20', 'sku': 'SKU-1'}], ...}]
+config = ShopifyStorefrontConfig(endpoint='https://merchant.test/api/2026-10/graphql.json', api_version='2026-10', auth_mode='tokenless')
+client = <httpx.AsyncClient object at 0x1110472e0>
+
+    async def supplement_categories(products,config,*,client=None):
+        if not isinstance(config,ShopifyStorefrontConfig):raise TypeError('ShopifyStorefrontConfig required')
+        # Reject inherited auth, even token mode: supplied runtime config is sole authority.
+        if client is not None and (client.auth is not None or any(k.lower() in
+            ('authorization','cookie','x-shopify-storefront-access-token','shopify-storefront-private-token') for k in client.headers)
+>           or client.cookies):raise ValueError('Conflicting inherited Storefront credentials')
+E           ValueError: Conflicting inherited Storefront credentials
+
+src/shopextract/extractors/shopify_taxonomy.py:47: ValueError
+_____ test_cookie_bearing_public_pages_use_clean_same_guard_client[token] ______
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+mode = 'token'
+
+    @pytest.mark.parametrize('mode',['tokenless','token'])
+    async def test_cookie_bearing_public_pages_use_clean_same_guard_client(catalog,mode):
+        sent=[];base=wire(sent)
+        def response(request):
+            if request.method=='POST':
+                assert 'cookie' not in request.headers and 'authorization' not in request.headers
+                assert request.headers.get('x-shopify-storefront-access-token')==('fixture-token' if mode=='token' else None)
+            result=base(request);result.headers['set-cookie']='session=fixture; Path=/'
+            return result
+        options=shopify_taxonomy_options(CategoryScope(Platform.SHOPIFY,STORE),category_ids=['el-6-6'],taxonomy=catalog,allow_unknown_source_version=True)
+        config=ShopifyStorefrontConfig(STORE+'/api/2026-10/graphql.json','fixture-token' if mode=='token' else None,auth_mode=mode)
+        runtime=ToolRuntime(ToolConfig(allowed_origins=(STORE,)),resolver=resolver,wire_transport=httpx.MockTransport(response),category_config=CategoryRuntimeConfig(options),shopify_storefront=config)
+        try:
+            context=OperationContext('cookie-test',time.monotonic()+15,asyncio.Event(),OperationBudget(Limits()),runtime.auxiliary,datetime.now(timezone.utc))
+>           result=await runtime.sources.execute('extract',STORE,2,context)
+
+tests/test_shopify_taxonomy_dispatch.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/tools/sources.py:33: in execute
+    return await self.extract(client, transport, norm, maximum, context)
+src/shopextract/tools/sources.py:150: in extract
+    await supplement_categories(result.products,self.shopify_storefront,client=client)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+products = [{'id': 101, 'title': 'Laptop', 'handle': 'laptop', 'variants': [{'id': 201, 'price': '20', 'sku': 'SKU-1'}], ...}]
+config = ShopifyStorefrontConfig(endpoint='https://merchant.test/api/2026-10/graphql.json', api_version='2026-10', auth_mode='token')
+client = <httpx.AsyncClient object at 0x1110cdfc0>
+
+    async def supplement_categories(products,config,*,client=None):
+        if not isinstance(config,ShopifyStorefrontConfig):raise TypeError('ShopifyStorefrontConfig required')
+        # Reject inherited auth, even token mode: supplied runtime config is sole authority.
+        if client is not None and (client.auth is not None or any(k.lower() in
+            ('authorization','cookie','x-shopify-storefront-access-token','shopify-storefront-private-token') for k in client.headers)
+>           or client.cookies):raise ValueError('Conflicting inherited Storefront credentials')
+E           ValueError: Conflicting inherited Storefront credentials
+
+src/shopextract/extractors/shopify_taxonomy.py:47: ValueError
+________ test_owned_supplement_drops_response_cookies_between_products _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x111167d30>
+
+    async def test_owned_supplement_drops_response_cookies_between_products(monkeypatch):
+        from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig,supplement_categories
+        sent=[]
+        def wire(request):
+            sent.append(request);assert 'cookie' not in request.headers
+            return httpx.Response(200,headers={'set-cookie':'native=fixture; Path=/'},json={'data':{'product':{'id':'gid://shopify/Product/101','handle':'laptop','category':None}}})
+        original=httpx.AsyncClient
+        monkeypatch.setattr(httpx,'AsyncClient',lambda **kw:original(transport=httpx.MockTransport(wire),**kw))
+>       await supplement_categories([public(),public()],ShopifyStorefrontConfig(STORE+'/api/2026-10/graphql.json',auth_mode='tokenless'))
+
+tests/test_shopify_taxonomy_storefront.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/extractors/shopify_taxonomy.py:55: in supplement_categories
+    response=await request(wire,'POST',config.endpoint,headers=headers,
+src/shopextract/extractors/_storefront.py:29: in request
+    async with client.stream(method, url, follow_redirects=False, **kwargs) as response:
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/contextlib.py:199: in __aenter__
+    return await anext(self.gen)
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/httpx/_client.py:1583: in stream
+    response = await self.send(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/httpx/_client.py:1629: in send
+    response = await self._send_handling_auth(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/httpx/_client.py:1657: in _send_handling_auth
+    response = await self._send_handling_redirects(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/httpx/_client.py:1694: in _send_handling_redirects
+    response = await self._send_single_request(request)
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/httpx/_client.py:1730: in _send_single_request
+    response = await transport.handle_async_request(request)
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/httpx/_transports/mock.py:34: in handle_async_request
+    response = self.handler(request)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+request = <Request('POST', 'https://merchant.test/api/2026-10/graphql.json')>
+
+    def wire(request):
+>       sent.append(request);assert 'cookie' not in request.headers
+E       AssertionError: assert 'cookie' not in Headers({'host': 'merchant.test', 'accept': '*/*', 'accept-encoding': 'gzip, deflate, br, zstd', 'connection': 'keep-a...-agent': 'ShopExtract/0.1.2', 'cookie': 'native=fixture', 'content-length': '176', 'content-type': 'application/json'})
+E        +  where Headers({'host': 'merchant.test', 'accept': '*/*', 'accept-encoding': 'gzip, deflate, br, zstd', 'connection': 'keep-a...-agent': 'ShopExtract/0.1.2', 'cookie': 'native=fixture', 'content-length': '176', 'content-type': 'application/json'}) = <Request('POST', 'https://merchant.test/api/2026-10/graphql.json')>.headers
+
+tests/test_shopify_taxonomy_storefront.py:79: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_shopify_taxonomy_dispatch.py::test_cookie_bearing_public_pages_use_clean_same_guard_client[tokenless]
+FAILED tests/test_shopify_taxonomy_dispatch.py::test_cookie_bearing_public_pages_use_clean_same_guard_client[token]
+FAILED tests/test_shopify_taxonomy_storefront.py::test_owned_supplement_drops_response_cookies_between_products
+3 failed, 1 passed in 0.63s

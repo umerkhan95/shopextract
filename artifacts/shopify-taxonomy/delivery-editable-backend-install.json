@@ -1,0 +1,18 @@
+{
+  "stage": "editable-backend-install",
+  "state": "passed",
+  "reason": null,
+  "exit_code": 0,
+  "seconds": 2.728,
+  "peak_sampled_group_rss_bytes": 63787008,
+  "command": [
+    "/Users/umerkhan/code/shopextract/.venv/bin/python",
+    "-m",
+    "pip",
+    "install",
+    "--disable-pip-version-check",
+    "--no-input",
+    "editables~=0.3"
+  ],
+  "processgroup_cleanup": true
+}

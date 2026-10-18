@@ -918,3 +918,12 @@ The opt-in category API retains source facts from six platform families and maps
 them through a shared exact, versioned rule engine. Memberships, hierarchy and
 merchant labels stay distinct; ordinary extraction formats stay compatible.
 See [configuration, platform behavior and persistence](docs/category-mapping.md).
+
+### Full Shopify taxonomy
+
+Installed packages include all 14,606 Shopify categories, 8,240 base attributes,
+316 extensions and 74,820 values for offline lookup. The category API integrates
+captured native GIDs with bounded mapping policies and category-specific schemas;
+optional Storefront acquisition preserves existing product and variant data.
+See [lookup, extraction, packaging and measured limits](docs/shopify-taxonomy.md).
+Full source/generated data stays outside Git and is embedded in release artifacts.

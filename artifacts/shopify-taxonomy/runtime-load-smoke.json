@@ -1,0 +1,11 @@
+{
+  "state": "passed",
+  "seconds": 2.875,
+  "peak_rss_bytes": 430354432,
+  "runtime_peak_rss_limit_bytes": 536870912,
+  "fingerprint": "1ecad259cf8cc558711b472e9194af93f68d12708fa51d6350ac13febd903c17",
+  "category_count": 14606,
+  "resource_bytes": 2486600,
+  "request_count": 0,
+  "note": "cold compact runtime index load, not all-category normalization sweep or installed package proof"
+}

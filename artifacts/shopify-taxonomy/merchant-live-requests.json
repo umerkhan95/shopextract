@@ -1,0 +1,15 @@
+[
+  {
+    "method": "GET",
+    "url": "https://www.boardgamebliss.com/products/eternal-decks-french-edition-minor-damage.json",
+    "status": 200
+  },
+  {
+    "method": "POST",
+    "url": "https://www.boardgamebliss.com/api/2026-10/graphql.json",
+    "phase": "response_retained",
+    "status": 200,
+    "response_bytes": 328,
+    "response_sha256": "d347b7d41031b9708c3e21e917296a91de162feb9b05a220aa6c045f47077f9a"
+  }
+]

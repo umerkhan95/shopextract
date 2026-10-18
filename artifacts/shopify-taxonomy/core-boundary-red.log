@@ -1,0 +1,66 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF.FFFFFFFFFF                                                            [100%]
+=================================== FAILURES ===================================
+____ test_publication_rejects_staged_identity_before_filesystem[traversal] _____
+tests/test_shopify_taxonomy_data.py:106: in test_publication_rejects_staged_identity_before_filesystem
+    with pytest.raises((module.TaxonomyPublicationError,module.TaxonomyIntegrityError)):
+E   Failed: DID NOT RAISE any of (TaxonomyPublicationError, TaxonomyIntegrityError)
+_____ test_publication_rejects_staged_identity_before_filesystem[release] ______
+tests/test_shopify_taxonomy_data.py:106: in test_publication_rejects_staged_identity_before_filesystem
+    with pytest.raises((module.TaxonomyPublicationError,module.TaxonomyIntegrityError)):
+E   Failed: DID NOT RAISE any of (TaxonomyPublicationError, TaxonomyIntegrityError)
+______ test_publication_rejects_staged_identity_before_filesystem[counts] ______
+tests/test_shopify_taxonomy_data.py:106: in test_publication_rejects_staged_identity_before_filesystem
+    with pytest.raises((module.TaxonomyPublicationError,module.TaxonomyIntegrityError)):
+E   Failed: DID NOT RAISE any of (TaxonomyPublicationError, TaxonomyIntegrityError)
+___ test_publication_rejects_staged_identity_before_filesystem[source_hash] ____
+tests/test_shopify_taxonomy_data.py:106: in test_publication_rejects_staged_identity_before_filesystem
+    with pytest.raises((module.TaxonomyPublicationError,module.TaxonomyIntegrityError)):
+E   Failed: DID NOT RAISE any of (TaxonomyPublicationError, TaxonomyIntegrityError)
+________________ test_publication_rejects_changed_copied_stage _________________
+tests/test_shopify_taxonomy_data.py:124: in test_publication_rejects_changed_copied_stage
+    with pytest.raises((module.TaxonomyPublicationError,module.TaxonomyIntegrityError)):
+E   Failed: DID NOT RAISE any of (TaxonomyPublicationError, TaxonomyIntegrityError)
+_____ test_metadata_schema_rejects_mutable_or_mistyped_records[value_name] _____
+tests/test_shopify_taxonomy_data.py:146: in test_metadata_schema_rejects_mutable_or_mistyped_records
+    with pytest.raises(module.TaxonomyIntegrityError):validate_catalog(data)
+E   Failed: DID NOT RAISE TaxonomyIntegrityError
+___ test_metadata_schema_rejects_mutable_or_mistyped_records[attribute_name] ___
+tests/test_shopify_taxonomy_data.py:146: in test_metadata_schema_rejects_mutable_or_mistyped_records
+    with pytest.raises(module.TaxonomyIntegrityError):validate_catalog(data)
+E   Failed: DID NOT RAISE TaxonomyIntegrityError
+______ test_metadata_schema_rejects_mutable_or_mistyped_records[short_id] ______
+tests/test_shopify_taxonomy_data.py:146: in test_metadata_schema_rejects_mutable_or_mistyped_records
+    with pytest.raises(module.TaxonomyIntegrityError):validate_catalog(data)
+E   Failed: DID NOT RAISE TaxonomyIntegrityError
+_____ test_metadata_schema_rejects_mutable_or_mistyped_records[bool_level] _____
+tests/test_shopify_taxonomy_data.py:146: in test_metadata_schema_rejects_mutable_or_mistyped_records
+    with pytest.raises(module.TaxonomyIntegrityError):validate_catalog(data)
+E   Failed: DID NOT RAISE TaxonomyIntegrityError
+____ test_metadata_schema_rejects_mutable_or_mistyped_records[bool_schema] _____
+tests/test_shopify_taxonomy_data.py:146: in test_metadata_schema_rejects_mutable_or_mistyped_records
+    with pytest.raises(module.TaxonomyIntegrityError):validate_catalog(data)
+E   Failed: DID NOT RAISE TaxonomyIntegrityError
+_____ test_metadata_schema_rejects_mutable_or_mistyped_records[id_suffix] ______
+tests/test_shopify_taxonomy_data.py:146: in test_metadata_schema_rejects_mutable_or_mistyped_records
+    with pytest.raises(module.TaxonomyIntegrityError):validate_catalog(data)
+E   Failed: DID NOT RAISE TaxonomyIntegrityError
+____ test_metadata_schema_rejects_mutable_or_mistyped_records[extra_field] _____
+tests/test_shopify_taxonomy_data.py:146: in test_metadata_schema_rejects_mutable_or_mistyped_records
+    with pytest.raises(module.TaxonomyIntegrityError):validate_catalog(data)
+E   Failed: DID NOT RAISE TaxonomyIntegrityError
+=========================== short test summary info ============================
+FAILED tests/test_shopify_taxonomy_data.py::test_publication_rejects_staged_identity_before_filesystem[traversal]
+FAILED tests/test_shopify_taxonomy_data.py::test_publication_rejects_staged_identity_before_filesystem[release]
+FAILED tests/test_shopify_taxonomy_data.py::test_publication_rejects_staged_identity_before_filesystem[counts]
+FAILED tests/test_shopify_taxonomy_data.py::test_publication_rejects_staged_identity_before_filesystem[source_hash]
+FAILED tests/test_shopify_taxonomy_data.py::test_publication_rejects_changed_copied_stage
+FAILED tests/test_shopify_taxonomy_data.py::test_metadata_schema_rejects_mutable_or_mistyped_records[value_name]
+FAILED tests/test_shopify_taxonomy_data.py::test_metadata_schema_rejects_mutable_or_mistyped_records[attribute_name]
+FAILED tests/test_shopify_taxonomy_data.py::test_metadata_schema_rejects_mutable_or_mistyped_records[short_id]
+FAILED tests/test_shopify_taxonomy_data.py::test_metadata_schema_rejects_mutable_or_mistyped_records[bool_level]
+FAILED tests/test_shopify_taxonomy_data.py::test_metadata_schema_rejects_mutable_or_mistyped_records[bool_schema]
+FAILED tests/test_shopify_taxonomy_data.py::test_metadata_schema_rejects_mutable_or_mistyped_records[id_suffix]
+FAILED tests/test_shopify_taxonomy_data.py::test_metadata_schema_rejects_mutable_or_mistyped_records[extra_field]
+12 failed, 1 passed, 3 deselected in 0.93s

@@ -1,0 +1,12 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_full_catalog_normalization_and_context_schema_smoke ___________
+No module named 'shopextract.taxonomies'
+
+During handling of the above exception, another exception occurred:
+008 full Shopify taxonomy public API is not implemented
+=========================== short test summary info ============================
+FAILED tests/test_shopify_taxonomy_skeleton.py::test_full_catalog_normalization_and_context_schema_smoke
+1 failed in 0.05s

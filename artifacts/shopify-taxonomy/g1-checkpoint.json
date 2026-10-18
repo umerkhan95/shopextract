@@ -1,0 +1,67 @@
+{
+  "state": "G1_candidate_no_implementation",
+  "date": "2026-10-18",
+  "author": "category_generic",
+  "root": "/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract",
+  "baseline": "4d57c6b",
+  "files": {
+    "specs/008-shopify-taxonomy/status.md": {
+      "sha256": "d58c702323eb31e15faae0cb2e500ca21c8a7852d0fcc4145e05f4c855653cd2",
+      "bytes": 2669
+    },
+    "specs/008-shopify-taxonomy/test-design.md": {
+      "sha256": "d4b8af141e551097ba7f21b78af936859c6270a080993093f765eee686bca866",
+      "bytes": 7582
+    },
+    "specs/008-shopify-taxonomy/tasks.md": {
+      "sha256": "b9481c4a3efd82e21552e27344408798d460dc4ecb30ba98bd9398e83ce413be",
+      "bytes": 3947
+    },
+    "specs/008-shopify-taxonomy/verification.md": {
+      "sha256": "ca2a7142919e84bdf712060382b50c426b62e6754c7c5a76c06dac5172ee89a2",
+      "bytes": 1482
+    },
+    "specs/008-shopify-taxonomy/research.md": {
+      "sha256": "ec47a8c7fd110db43a50004aed16a20c94ecb4938571c925188dd9ea1598b18f",
+      "bytes": 8236
+    },
+    "specs/008-shopify-taxonomy/reviews.md": {
+      "sha256": "c1d7f9a7ee81cc1a1d8600d336f0f10876dee48fb385ac0280297a122fac2165",
+      "bytes": 301
+    },
+    "specs/008-shopify-taxonomy/plan.md": {
+      "sha256": "f897fdcb992a3c0d37448fdfb065d66076b1bb83093dda020800867e4fe78b55",
+      "bytes": 4186
+    },
+    "specs/008-shopify-taxonomy/spec.md": {
+      "sha256": "9bcc6aaf50636baaeac9d02e2f97d4ec4366da2d561322112574ead1e614286c",
+      "bytes": 10324
+    },
+    "artifacts/shopify-taxonomy/source-inventory.json": {
+      "sha256": "f5b9530b0b47192449296e9e7f13e329535ea38556375aaac5f04bac99bf696e",
+      "bytes": 7482
+    },
+    "artifacts/shopify-taxonomy/taxonomy.en.json.gz": {
+      "sha256": "ee77e261eba2f0ab4375a42b95e9d1bec00779e1f3311d0e9eb6d16f05cf4c09",
+      "bytes": 4164580
+    },
+    "artifacts/shopify-taxonomy/attributes.source.yml": {
+      "sha256": "91ef3829a6621fbc98b46c6447c9702e394fd7c55bfbd56fd2df0545ea9e16b6",
+      "bytes": 4769315
+    },
+    "artifacts/shopify-taxonomy/LICENSE": {
+      "sha256": "6a2261660cc6cb406ed6ef788347d8cb35e939f4537def9e699abf88ed025273",
+      "bytes": 1046
+    }
+  },
+  "requests": 2,
+  "feature_tests": 0,
+  "production_edits": 0,
+  "gates": {
+    "G1": "pending",
+    "G2": "not_reached",
+    "G3": "not_reached"
+  },
+  "merchant_access": "conditional_live_block_pending_root_user_response_not_catalog_implementation_gate",
+  "token_counters": "unavailable"
+}

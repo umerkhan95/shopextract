@@ -116,6 +116,7 @@ class CoreStream(httpx.AsyncByteStream):
 class NativeReadPolicy:
     shopware_search_url: str | None = None
     category_mode: bool = False
+    shopify_endpoint: str | None = None
 
 
 class GuardedTransport(httpx.AsyncBaseTransport):
@@ -156,6 +157,12 @@ class GuardedTransport(httpx.AsyncBaseTransport):
             canonical, _ = await self.guard.authorize(str(request.url), self.context)
             request.url = httpx.URL(canonical)
             request.headers['Host'] = request.url.netloc.decode('ascii')
+            if self.policy.shopify_endpoint is not None:
+                endpoint=urlsplit(self.policy.shopify_endpoint)
+                current=urlsplit(str(request.url))
+                if ((current.scheme,current.netloc,current.path)==(endpoint.scheme,endpoint.netloc,endpoint.path)
+                    and request.method!='POST'):
+                    raise ToolError('permission_denied','Only fixed native read queries are available')
             if request.method not in {'GET', 'HEAD', 'POST'}:
                 raise ToolError('permission_denied', 'Source write methods are unavailable')
             if request.method == 'POST':
@@ -164,7 +171,14 @@ class GuardedTransport(httpx.AsyncBaseTransport):
                     if 'query' in body:
                         from ..extractors.bigcommerce import _QUERY, _QUERY_WITH_CATEGORIES
                         allowed_queries = (_QUERY, _QUERY_WITH_CATEGORIES) if self.policy.category_mode else (_QUERY,)
-                        if body['query'] not in allowed_queries or set(body) - {'query', 'variables'}:
+                        from ..extractors.shopify_taxonomy import SHOPIFY_TAXONOMY_QUERY,valid_handle
+                        if body['query']==SHOPIFY_TAXONOMY_QUERY:
+                            variables=body.get('variables')
+                            if not (self.policy.category_mode and self.policy.shopify_endpoint==str(request.url)
+                                and request.url.path=='/api/2026-10/graphql.json' and not request.url.query
+                                and set(body)=={'query','variables'} and isinstance(variables,dict)
+                                and set(variables)=={'handle'} and valid_handle(variables['handle'])):raise ValueError()
+                        elif body['query'] not in allowed_queries or set(body) - {'query', 'variables'}:
                             raise ValueError()
                     else:
                         expected = {'page': body.get('page'), 'limit': body.get('limit'),

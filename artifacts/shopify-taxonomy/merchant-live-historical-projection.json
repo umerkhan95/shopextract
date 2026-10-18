@@ -1,0 +1,22 @@
+{
+  "raw": {
+    "id": 7720606203955,
+    "handle": "eternal-decks-french-edition-minor-damage",
+    "title": "Eternal Decks (French Edition) (Minor Damage)",
+    "_capture": {
+      "url": "https://www.boardgamebliss.com/products.json?limit=2&page=1",
+      "method": "shopify_api",
+      "at": "2026-10-16T23:30:19.213001+00:00",
+      "values": {
+        "/id": 7720606203955,
+        "/handle": "eternal-decks-french-edition-minor-damage",
+        "/title": "Eternal Decks (French Edition) (Minor Damage)"
+      },
+      "truncated": false
+    }
+  },
+  "retained_source_sha256": "f29f65dcfedac0a5c493aa6da7fd4139d90aaae506f8f8e04b840c63cf1d59cd",
+  "retained_source": "/Users/umerkhan/code/shopextract/artifacts/category-mapping/live/shopify-companions.json",
+  "original_acquired_at": "2026-10-16T23:30:19.213001+00:00",
+  "note": "Projection of exact retained006source leaves; not a new008GET ID capture"
+}
