@@ -1,5 +1,6 @@
 """Shared read-only storefront transport and public runtime configuration discovery."""
 from contextlib import asynccontextmanager
+from http.cookiejar import CookieJar,DefaultCookiePolicy
 from html import unescape
 import re
 from urllib.parse import urljoin, urlsplit
@@ -15,11 +16,11 @@ def positive_limits(*values):
 
 
 @asynccontextmanager
-async def storefront_client(client, timeout, headers=None):
+async def storefront_client(client, timeout, headers=None, *, cookies=None):
     if client is not None:
         yield client
     else:
-        async with httpx.AsyncClient(timeout=timeout, follow_redirects=True, headers=headers) as owned:
+        async with httpx.AsyncClient(timeout=timeout, follow_redirects=True, headers=headers, cookies=cookies) as owned:
             yield owned
 
 
@@ -31,7 +32,8 @@ async def request(client, method, url, **kwargs):
                 target = urljoin(str(response.url), response.headers['location'])
                 old, new = urlsplit(str(response.url)), urlsplit(target)
                 keyed = any(k.lower() in ('authorization', 'sw-access-key', 'sw-context-token',
-                                         'x-bc-customer-access-token', 'x-bc-customer-id')
+                                         'x-bc-customer-access-token', 'x-bc-customer-id',
+                                         'x-shopify-storefront-access-token', 'shopify-storefront-private-token')
                             for k in list(client.headers) + list((kwargs.get('headers') or {})))
                 if (old.scheme, old.netloc) != (new.scheme, new.netloc) and (keyed or method != 'GET'):
                     raise ValueError('API redirect changes origin; endpoint must be configured explicitly')
@@ -100,3 +102,13 @@ def json_body(response):
     if data.get('errors'):
         raise ValueError('GraphQL response reported errors; partial data is not accepted')
     return data
+
+
+class _RejectCookies(DefaultCookiePolicy):
+    def set_ok(self,cookie,request):return False
+    def return_ok(self,cookie,request):return False
+
+
+def stateless_cookies():
+    """Fresh metadata HTTP context; response cookies never become authority."""
+    return CookieJar(policy=_RejectCookies())

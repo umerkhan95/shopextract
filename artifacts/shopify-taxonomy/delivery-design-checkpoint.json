@@ -1,0 +1,15 @@
+{
+  "state": "delivery_design_candidate_no_implementation",
+  "choice": "shared action + standalone isolated build namespace, metadata-derived httpx/PyYAML only, SAME existing prepare algorithms",
+  "files": {
+    "specs/008-shopify-taxonomy/delivery.md": "b837525e16e70ccd5cd3170602f75392012f5b7bee31317e240a6db4b382035d",
+    "specs/008-shopify-taxonomy/spec.md": "ef281a1ea6a5417690a988fe047577cb7f98573623512512006420500d80f21e",
+    "specs/008-shopify-taxonomy/test-design.md": "66993d80f728476b7a96888b0c12336060a25bca8a545489c5578f20503b1dbd",
+    "specs/008-shopify-taxonomy/status.md": "aa4a9afdd310cb1b85397189722043beb19db8ef62a0ceccb41174b3227256ff",
+    ".github/workflows/test.yml": "5bd32cf2aabea92e2f186d83e50911093923840167748e7eca95c959366e0532",
+    ".github/workflows/publish.yml": "7b5ec87b29c90cab5cb181774b95f3866bd82b3861db6b978dabde88cd98c31b",
+    "pyproject.toml": "34025d5cfbec2f7812748d2d63e9551456e3e82470dd4e536e0a968597a8144e",
+    "src/shopextract/taxonomies/shopify/prepare.py": "72902ea3f5b5e309e11df6ca8bf82b5713aadff55bab94dcb13f4836c1338394",
+    "src/shopextract/__init__.py": "8808e1cbce60945fab3199ee9ff5eefe3795f7610c3a80f5dc1bc0306ebae81a"
+  }
+}

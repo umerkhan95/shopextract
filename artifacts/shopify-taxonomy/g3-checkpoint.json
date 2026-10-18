@@ -1,0 +1,55 @@
+{
+  "state": "G3_component_candidate_no_implementation",
+  "date": "2026-10-18",
+  "author": "category_generic",
+  "gates": {
+    "G1": "amended_independent_pass",
+    "G2": "independent_pass",
+    "G3": "pending"
+  },
+  "files": {
+    "specs/008-shopify-taxonomy/components.md": {
+      "sha256": "1eafcd51ce13d3814403ef4d9ad26c2ac5ef2294c49b5734f380d055dd599217",
+      "bytes": 13223
+    },
+    "specs/008-shopify-taxonomy/skeleton.md": {
+      "sha256": "be155632900d96306feea44f3c629c8881b50fed9038266573b7bfe7cbc6ae8a",
+      "bytes": 21759
+    },
+    "specs/008-shopify-taxonomy/status.md": {
+      "sha256": "f525ff0b04326e26f68fda5ffd79d100d38fd8127dc5a0cb81e1851e336068ab",
+      "bytes": 5601
+    },
+    "specs/008-shopify-taxonomy/reviews.md": {
+      "sha256": "7e1fc3876faf8c88fed95ead4b2f9e2d349592512d29575e4612f023c5e2b0ef",
+      "bytes": 10799
+    },
+    "specs/008-shopify-taxonomy/spec.md": {
+      "sha256": "09bc6c586378364c6b19752ff075b6b4702ab3b76cfdc88aa2c593f2ac943935",
+      "bytes": 12100
+    },
+    "specs/008-shopify-taxonomy/test-design.md": {
+      "sha256": "8fd05f84e5c0a1650aaa1ba66dd5206b47cba05f3aa6e78adc5f7f0e1736faec",
+      "bytes": 10464
+    },
+    "specs/008-shopify-taxonomy/plan.md": {
+      "sha256": "135f043e375f87f7cf37a3832b54501858f20361bbd5038f1dc6aaf87f962099",
+      "bytes": 5414
+    },
+    "artifacts/shopify-taxonomy/amended-checkpoint.json": {
+      "sha256": "8da95e74a4b1805bd9265511b8ea6b63c7772d8d27b55bbad966dceb68e4278b",
+      "bytes": 4081
+    },
+    "artifacts/shopify-taxonomy/source-retention.json": {
+      "sha256": "8ee5507d93e5f1e7c883ca206d258d7d61a0c9773298cb27a63650baa767101e",
+      "bytes": 935
+    },
+    "artifacts/shopify-taxonomy/g2-red-smoke.log": {
+      "sha256": "29eb397c9262bbe80ae31c77d1ad978b53c68e2f3bb2bb9da88f451025bf33a0",
+      "bytes": 859
+    }
+  },
+  "new_test_build_install_download_runs": 0,
+  "production_algorithms": 0,
+  "next": "independent_G3_then_bounded_implementation_with_reds"
+}

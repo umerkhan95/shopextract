@@ -1,0 +1,27 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+______________ test_bridge_maps_bound_schema_and_strict_roundtrip ______________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+
+    def test_bridge_maps_bound_schema_and_strict_roundtrip(catalog):
+>       value=api.normalize_with_shopify_taxonomy(raw(),platform=Platform.SHOPIFY,shop_url='https://merchant.test',
+            taxonomy=catalog,allow_unknown_source_version=True)
+E       AttributeError: module 'shopextract.taxonomies.shopify' has no attribute 'normalize_with_shopify_taxonomy'
+
+tests/test_shopify_taxonomy_pipeline.py:23: AttributeError
+_________ test_bridge_unknown_version_and_unknown_gid_are_not_guessed __________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+
+    def test_bridge_unknown_version_and_unknown_gid_are_not_guessed(catalog):
+>       value=api.normalize_with_shopify_taxonomy(raw(),platform=Platform.SHOPIFY,shop_url='https://merchant.test',taxonomy=catalog)
+E       AttributeError: module 'shopextract.taxonomies.shopify' has no attribute 'normalize_with_shopify_taxonomy'
+
+tests/test_shopify_taxonomy_pipeline.py:34: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_shopify_taxonomy_pipeline.py::test_bridge_maps_bound_schema_and_strict_roundtrip
+FAILED tests/test_shopify_taxonomy_pipeline.py::test_bridge_unknown_version_and_unknown_gid_are_not_guessed
+2 failed in 0.34s

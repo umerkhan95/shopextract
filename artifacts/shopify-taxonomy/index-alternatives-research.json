@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-18",
+  "scope": "Bounded primary-source research requested by user; no benchmark, install or runtime change yet.",
+  "sources": [
+    {"url": "https://docs.python.org/3/faq/design.html#how-are-dictionaries-implemented-in-cpython", "finding": "CPython dictionaries use resizable hash tables; replacing them does not itself establish a point-lookup speedup."},
+    {"url": "https://github.com/pytries/marisa-trie", "finding": "Static C++ trie bindings offer compact storage, prefix operations and memory mapping. Published legacy benchmark numbers are not evidence for this taxonomy workload."},
+    {"url": "https://www.sqlite.org/queryplanner.html", "finding": "Indexed and covering-index queries can avoid full table scans and unnecessary table lookups."},
+    {"url": "https://www.sqlite.org/mmap.html", "finding": "SQLite supports memory-mapped database I/O with documented constraints and tradeoffs."}
+  ],
+  "hypothesis": "A prebuilt read-only indexed SQLite catalog plus bounded hot-record cache may improve cold startup and memory by loading relevant records lazily; in-memory dict point lookups may remain faster.",
+  "current_evidence": "Saved profile attributes most repeated pipeline cost to strict codec/schema work; static metadata caching already improved 100 normalize+schema calls 6.052s to 2.890s. This is not a SQLite/trie comparison.",
+  "next": "After active repository regressions, design one small exact-result comparison using saved taxonomy records; sequential process, no additional source download, no production replacement before evidence/review. Compare startup, steady RSS, exact-ID and category-attribute retrieval, warm/batch behavior and compatibility. Preserve completed full-sweep evidence; do not restart it without material changes."
+}

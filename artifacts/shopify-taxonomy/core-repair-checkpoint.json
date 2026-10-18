@@ -1,0 +1,82 @@
+{
+  "state": "grouped_P1_P2_core_repair_ready_for_rereview",
+  "date": "2026-10-18",
+  "author": "category_generic",
+  "files": {
+    "src/shopextract/taxonomies/shopify/publish.py": {
+      "sha256": "0b77d23459c4d0dc7f88b95a3188ab66a0d38dc54ca08c43cc0b22ef7428bd8f",
+      "bytes": 2620
+    },
+    "src/shopextract/taxonomies/shopify/resource.py": {
+      "sha256": "a3c40e044c4c7b689571fcf2aa593167f29a2a6a8dc201042af4df30c07f5488",
+      "bytes": 4116
+    },
+    "src/shopextract/taxonomies/shopify/validation.py": {
+      "sha256": "d3239fa7704d6a93dd1890972a320b8ca051a08b40ba4a0417c71fcf5fab7015",
+      "bytes": 8473
+    },
+    "src/shopextract/taxonomies/shopify/loader.py": {
+      "sha256": "78ed08849ea1e6bae2272703872b78703c4fec360c396fd9785983de9c548050",
+      "bytes": 2871
+    },
+    "tests/test_shopify_taxonomy_data.py": {
+      "sha256": "d52c0262cc6601aa1ddec1ac7bbf0a149de77ef578be0490b6260eb1b9c30f71",
+      "bytes": 9230
+    },
+    "specs/008-shopify-taxonomy/test-design.md": {
+      "sha256": "0d00070698fd911516f675877f32faecacc1b19f5adfb52b71b7874bdb7d65d9",
+      "bytes": 13132
+    },
+    "specs/008-shopify-taxonomy/verification.md": {
+      "sha256": "680b0c038f40d2ab331d614762a0580a72d0978206d0caf6e2638df5a9f31d45",
+      "bytes": 8564
+    },
+    "specs/008-shopify-taxonomy/status.md": {
+      "sha256": "a7b06a778def02e324b6cabb63677dd411c75444338f207fb2151515f44a546d",
+      "bytes": 7744
+    },
+    "specs/008-shopify-taxonomy/reviews.md": {
+      "sha256": "1128233891d44e789a70ff22511aee7927d26296921c72a622a97a894ada3673",
+      "bytes": 19100
+    },
+    "artifacts/shopify-taxonomy/core-checkpoint.json": {
+      "sha256": "90fe704a207500b525d3efee652fe0d8a1aa268152c0bf236f94401e0da409ab",
+      "bytes": 5482
+    },
+    "artifacts/shopify-taxonomy/core-boundary-red.log": {
+      "sha256": "14ac6f051675f0d53c682b0b040c73c4353c64344de2587138e8d27472fe4f3d",
+      "bytes": 5797
+    },
+    "artifacts/shopify-taxonomy/core-boundary-green.log": {
+      "sha256": "8bd97da7835000940f5fe5cdf3d808c12b48fec0b73a031836db71bc0f3b1401",
+      "bytes": 346
+    },
+    "artifacts/shopify-taxonomy/core-boundary-final-green.log": {
+      "sha256": "052cf7ce3f4364d5e87592ed95b33af228ee45fc677b0ead5048e6d3abf4025d",
+      "bytes": 346
+    },
+    "artifacts/shopify-taxonomy/core-boundary-resource.json": {
+      "sha256": "fa668b9ee0f08f0d84a7aaba812e890e8970abafb7d8cd5bc4c9b8d8d52ff9c8",
+      "bytes": 292
+    },
+    "artifacts/shopify-taxonomy/core-boundary-resource.log": {
+      "sha256": "d68299752224884d480849aea415de4fd193f383f8a97cc1d5fb95ba82015935",
+      "bytes": 539
+    },
+    "artifacts/shopify-taxonomy/full-import-smoke.json": {
+      "sha256": "be2898c088316372083e3d68f70e86242796ac0d0f2ffc97c958e90b94a6c67b",
+      "bytes": 775
+    },
+    "artifacts/shopify-taxonomy/runtime-load-smoke.json": {
+      "sha256": "f088eb0fc17863a344d661377c1b09e5f2afe8fcfb203ecc031ad55e011b3a08",
+      "bytes": 393
+    }
+  },
+  "red": "12failed1passed0.93s",
+  "green": "17passed0.30s",
+  "existing_resource": "passed3.325s432939008B",
+  "preserved_fingerprint": "1ecad259cf8cc558711b472e9194af93f68d12708fa51d6350ac13febd903c17",
+  "full_source_reimport": false,
+  "new_http_requests": 0,
+  "next": "STOP independent repair rereview, pipeline not started"
+}

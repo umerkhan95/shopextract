@@ -1,0 +1,24 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_________________ test_data_smoke_build_publish_lookup_context _________________
+No module named 'shopextract.taxonomies'
+
+During handling of the above exception, another exception occurred:
+008 full catalog importer/loader is not implemented
+______________ test_invalid_source_is_rejected_before_publication ______________
+No module named 'shopextract.taxonomies'
+
+During handling of the above exception, another exception occurred:
+008 full catalog importer/loader is not implemented
+_________ test_resource_corruption_rejected_and_publication_idempotent _________
+No module named 'shopextract.taxonomies'
+
+During handling of the above exception, another exception occurred:
+008 full catalog importer/loader is not implemented
+=========================== short test summary info ============================
+FAILED tests/test_shopify_taxonomy_data.py::test_data_smoke_build_publish_lookup_context
+FAILED tests/test_shopify_taxonomy_data.py::test_invalid_source_is_rejected_before_publication
+FAILED tests/test_shopify_taxonomy_data.py::test_resource_corruption_rejected_and_publication_idempotent
+3 failed in 0.07s

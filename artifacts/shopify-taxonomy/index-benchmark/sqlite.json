@@ -1,0 +1,62 @@
+{
+  "state": "passed",
+  "candidate": "sqlite",
+  "scope": "metadata storage prototype comparison; canonical JSON bytes equally materialized inside timing; no new production backend",
+  "application_import_seconds": 1.238352965010563,
+  "pre_backend_rss_bytes": 89001984,
+  "backend_open_seconds": 0.34379235698725097,
+  "first_schema_seconds": 0.000513668026542291,
+  "backend_plus_first_seconds": 0.34430602501379326,
+  "db_file_hash_seconds": 0.34272702000453137,
+  "integrity_parity": "prototype DB file hash only; full logical/reference checks done in preparation, not runtime equivalent",
+  "steady_rss_bytes": 95490048,
+  "rss_delta_from_common_imports_bytes": 6488064,
+  "os_cache": "uncontrolled; expected warm after preparation; fresh process only",
+  "python": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "sqlite": "3.40.1",
+  "semantic_workload_sha256": "1ffa08fe7c025cbd13ed8e7d6fba1ec7cffc240a34bc737bf3e760fcb966026b",
+  "timings": {
+    "hot_repeat_100": {
+      "items": 100,
+      "total_ms": 26.418615000000003,
+      "p50_ms": 0.250316,
+      "p95_ms": 0.284095
+    },
+    "unique_128": {
+      "items": 128,
+      "total_ms": 37.86786400000002,
+      "p50_ms": 0.264801,
+      "p95_ms": 0.551217
+    },
+    "mixed_hits_misses_128": {
+      "items": 128,
+      "total_ms": 18.009052999999994,
+      "p50_ms": 0.086449,
+      "p95_ms": 0.471271
+    },
+    "valid_misses_64": {
+      "items": 64,
+      "total_ms": 0.29787700000000017,
+      "p50_ms": 0.004504,
+      "p95_ms": 0.004972
+    },
+    "batch_1": {
+      "items": 128,
+      "total_ms": 34.621219005202875,
+      "sha256": "94599bf6a5e3a71afbcbb32bb47c0be73d5a3479b68cda59f8bad4313bee8288"
+    },
+    "batch_16": {
+      "items": 128,
+      "total_ms": 38.6884170002304,
+      "sha256": "94599bf6a5e3a71afbcbb32bb47c0be73d5a3479b68cda59f8bad4313bee8288"
+    },
+    "batch_128": {
+      "items": 128,
+      "total_ms": 37.94780798489228,
+      "sha256": "94599bf6a5e3a71afbcbb32bb47c0be73d5a3479b68cda59f8bad4313bee8288"
+    }
+  },
+  "total_worker_seconds": 1.8299936180119403,
+  "fingerprint": "1ecad259cf8cc558711b472e9194af93f68d12708fa51d6350ac13febd903c17",
+  "source_record_cache": "CacheInfo(hits=3847, misses=2618, maxsize=128, currsize=128)"
+}

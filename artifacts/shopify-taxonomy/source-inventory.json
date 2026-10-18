@@ -1,0 +1,247 @@
+{
+  "state": "saved_schema_inventory",
+  "source": "https://github.com/Shopify/product-taxonomy/releases/download/v2026-08/taxonomy.en.json.gz",
+  "version": "2026-08",
+  "commit": "2e9aa2e9b882383952c63d212add13eb80f46cf9",
+  "requests": 2,
+  "limits": {
+    "requests": 8,
+    "redirects": 3,
+    "request_seconds": 10,
+    "aggregate_seconds": 60,
+    "compressed_bytes": 8388608,
+    "decoded_bytes": 134217728
+  },
+  "provenance": "actual official release download, research inventory only; no production/runtime/sweep claim",
+  "compressed_bytes": 4164580,
+  "decoded_bytes": 95139177,
+  "compressed_sha256": "ee77e261eba2f0ab4375a42b95e9d1bec00779e1f3311d0e9eb6d16f05cf4c09",
+  "decoded_sha256": "b306676ad9af75eba3d5bf6d936c5dedea81838435cae7407f58974c2ffe04da",
+  "schema": {
+    "version": {
+      "type": "str",
+      "value": "2026-08"
+    },
+    "verticals": {
+      "type": "array",
+      "count": 26,
+      "first_shape": {
+        "type": "object",
+        "keys": [
+          "name",
+          "prefix",
+          "categories"
+        ]
+      }
+    },
+    "attributes": {
+      "type": "array",
+      "count": 8240,
+      "first_shape": {
+        "type": "object",
+        "keys": [
+          "id",
+          "name",
+          "handle",
+          "description",
+          "extended_attributes",
+          "values"
+        ]
+      }
+    }
+  },
+  "license_sha256": "6a2261660cc6cb406ed6ef788347d8cb35e939f4537def9e699abf88ed025273",
+  "seconds": 2.363,
+  "records": {
+    "verticals": 26,
+    "categories": 14606,
+    "unique_category_ids": 14606,
+    "attributes": 8240,
+    "unique_attribute_ids": 8240,
+    "unique_values": 74820,
+    "attribute_value_links": 74820,
+    "repeated_value_definitions": 0,
+    "conflicting_value_definitions": 0,
+    "category_attribute_links": 93007,
+    "parent_links": 14580,
+    "root_categories": 26,
+    "child_links": 14580,
+    "ancestor_links": 53303,
+    "category_return_reason_links": 120644,
+    "attributes_with_extended_relations": 106,
+    "extended_attribute_links": 316,
+    "unknown_category_attribute_ids": 0,
+    "unknown_parent_ids": 0,
+    "max_level": 7,
+    "category_attribute_projected_fields_mismatches": 93007
+  },
+  "schema_examples": {
+    "category_keys": [
+      "id",
+      "level",
+      "name",
+      "full_name",
+      "parent_id",
+      "attributes",
+      "return_reasons",
+      "children",
+      "ancestors"
+    ],
+    "attribute_keys": [
+      "id",
+      "name",
+      "handle",
+      "description",
+      "extended_attributes",
+      "values"
+    ],
+    "value_keys": [
+      "id",
+      "name",
+      "handle"
+    ],
+    "first_category_id": "gid://shopify/TaxonomyCategory/ap",
+    "first_attribute_id": "gid://shopify/TaxonomyAttribute/5398",
+    "extended_attribute_example": [
+      "gid://shopify/TaxonomyAttribute/2972",
+      [
+        {
+          "name": "Diaper features",
+          "handle": "diaper-features"
+        },
+        {
+          "name": "Incontinence aid features",
+          "handle": "incontinence-aid-features"
+        },
+        {
+          "name": "Liner features",
+          "handle": "liner-features"
+        },
+        {
+          "name": "Pet pad features",
+          "handle": "pet-pad-features"
+        }
+      ]
+    ],
+    "category_attribute_representation": "embedded projected attribute records; preserve contextual representation separately from top-level canonical definitions",
+    "embedded_attribute_keys": [
+      "id",
+      "name",
+      "handle",
+      "description",
+      "extended"
+    ],
+    "ancestor_order": "immediate-parent first; public root-to-parent requires explicit documented reversal"
+  },
+  "selected": [
+    {
+      "id": "gid://shopify/TaxonomyCategory/aa-8-3",
+      "name": "Boots",
+      "declared_attributes": 16,
+      "ancestor_ids": [
+        "gid://shopify/TaxonomyCategory/aa-8",
+        "gid://shopify/TaxonomyCategory/aa"
+      ]
+    },
+    {
+      "id": "gid://shopify/TaxonomyCategory/el-6-6",
+      "name": "Laptops",
+      "declared_attributes": 19,
+      "ancestor_ids": [
+        "gid://shopify/TaxonomyCategory/el-6",
+        "gid://shopify/TaxonomyCategory/el"
+      ]
+    },
+    {
+      "id": "gid://shopify/TaxonomyCategory/hg-11-7-41",
+      "name": "Refrigerators",
+      "declared_attributes": 10,
+      "ancestor_ids": [
+        "gid://shopify/TaxonomyCategory/hg-11-7",
+        "gid://shopify/TaxonomyCategory/hg-11",
+        "gid://shopify/TaxonomyCategory/hg"
+      ]
+    }
+  ],
+  "inventory_seconds": 1.39,
+  "projection_analysis": {
+    "common_field_difference_counts": {
+      "name": 2891,
+      "handle": 2891,
+      "description": 2891
+    },
+    "context_extended_true_links": 2891,
+    "unique_extended_projection_handles": 314,
+    "examples": [
+      {
+        "category": "gid://shopify/TaxonomyCategory/ap-2-2-4-1",
+        "attribute": "gid://shopify/TaxonomyAttribute/2972",
+        "differences": {
+          "name": {
+            "category": "Liner features",
+            "canonical": "Absorbent hygiene product features"
+          },
+          "handle": {
+            "category": "liner-features",
+            "canonical": "absorbent-hygiene-product-features"
+          },
+          "description": {
+            "category": "Describes specific characteristics of liners, such as leakproof or biodegradable",
+            "canonical": "Identifies special characteristics of hygiene products, like leakproof or hypoallergenic"
+          }
+        }
+      },
+      {
+        "category": "gid://shopify/TaxonomyCategory/ap-2-3-1",
+        "attribute": "gid://shopify/TaxonomyAttribute/2972",
+        "differences": {
+          "name": {
+            "category": "Liner features",
+            "canonical": "Absorbent hygiene product features"
+          },
+          "handle": {
+            "category": "liner-features",
+            "canonical": "absorbent-hygiene-product-features"
+          },
+          "description": {
+            "category": "Describes specific characteristics of liners, such as leakproof or biodegradable",
+            "canonical": "Identifies special characteristics of hygiene products, like leakproof or hypoallergenic"
+          }
+        }
+      }
+    ],
+    "note": "Embedded projected attributes include contextual extended flag and override labels/descriptions; preserve context independently of canonical attribute definition and do not broaden value constraints."
+  },
+  "inventory_probe_repair": {
+    "error": "Counter.update(mapping with dict values) TypeError in additional projection research",
+    "one_diagnosed_fix": "count mapping keys; no source data modified"
+  },
+  "inventory_peak_rss_bytes": 621694976,
+  "inventory_profile_seconds": 1.604,
+  "saved_yaml_extensions": {
+    "source": "007 pinned attributes.yml (reused; no download)",
+    "sha256": "91ef3829a6621fbc98b46c6447c9702e394fd7c55bfbd56fd2df0545ea9e16b6",
+    "base_count": 8240,
+    "extension_count": 316,
+    "key_shapes": [
+      {
+        "keys": [
+          "description",
+          "friendly_id",
+          "handle",
+          "name",
+          "values_from"
+        ],
+        "count": 316
+      }
+    ],
+    "example": {
+      "name": "Shampoo/Conditioner effect",
+      "handle": "shampoo-conditioner-effect",
+      "description": "Describes the intended result of using the shampoo or conditioner, such as anti-dandruff or moisturizing",
+      "friendly_id": "shampoo/conditioner_effect",
+      "values_from": "conditioner_effect"
+    },
+    "seconds": 15.871
+  }
+}

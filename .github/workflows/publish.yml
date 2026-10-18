@@ -18,6 +18,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Prepare pinned taxonomy before checkout build
+        uses: ./.github/actions/prepare-taxonomy
+        with:
+          allow-download: "true"
+
       - name: Install build tools
         run: pip install build
 

@@ -1,0 +1,14 @@
+Collecting hatchling
+  Downloading hatchling-1.32.4-py3-none-any.whl (78 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.7/78.7 kB 1.5 MB/s eta 0:00:00
+Collecting trove-classifiers
+  Downloading trove_classifiers-2026.9.21.13-py3-none-any.whl (14 kB)
+Collecting tomlkit>=0.11.1
+  Downloading tomlkit-0.15.2-py3-none-any.whl (52 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 52.2/52.2 kB 1.8 MB/s eta 0:00:00
+Requirement already satisfied: pluggy>=1.0.0 in /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages (from hatchling) (1.6.0)
+Requirement already satisfied: tomli>=1.2.2 in /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages (from hatchling) (2.4.1)
+Requirement already satisfied: packaging>=24.2 in /Users/umerkhan/Library/Python/3.10/lib/python/site-packages (from hatchling) (24.2)
+Requirement already satisfied: pathspec>=0.10.1 in /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages (from hatchling) (1.1.1)
+Installing collected packages: trove-classifiers, tomlkit, hatchling
+Successfully installed hatchling-1.32.4 tomlkit-0.15.2 trove-classifiers-2026.9.21.13

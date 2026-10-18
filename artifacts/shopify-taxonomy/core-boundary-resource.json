@@ -1,0 +1,8 @@
+{
+  "state": "passed",
+  "scope": "existing saved compact resource strict validation/load, no source reimport or normalized change",
+  "fingerprint": "1ecad259cf8cc558711b472e9194af93f68d12708fa51d6350ac13febd903c17",
+  "seconds": 3.325,
+  "peak_rss_bytes": 432939008,
+  "request_count": 0
+}

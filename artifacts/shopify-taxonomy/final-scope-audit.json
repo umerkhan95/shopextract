@@ -1,0 +1,15 @@
+{
+  "candidate_files_over_1MiB": [],
+  "ignored_generated_roots": {
+    "downloads/shopify-taxonomy": true,
+    "build/shopify-taxonomy": true,
+    "dist": true
+  },
+  "source_changes_since_completed_sweep": [
+    "src/shopextract/extractors/_storefront.py",
+    "src/shopextract/extractors/shopify_taxonomy.py",
+    "src/shopextract/tools/sources.py"
+  ],
+  "source_change_scope": "cookie transport/acquisition only; category normalization/mapper/codec/catalog/pin unchanged",
+  "git_mutations": false
+}

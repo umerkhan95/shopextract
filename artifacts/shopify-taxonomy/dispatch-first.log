@@ -1,0 +1,22 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+E.....                                                                   [100%]
+==================================== ERRORS ====================================
+_________________ ERROR at setup of test_public_real_dispatch __________________
+file /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/tests/test_shopify_taxonomy_dispatch.py, line 27
+  async def test_public_real_dispatch(catalog,respx_mock):
+      sent=[]
+      respx_mock.route().mock(side_effect=wire(sent))
+      value=await extract_with_shopify_taxonomy(STORE,taxonomy=catalog,allow_unknown_source_version=True,
+          storefront=ShopifyStorefrontConfig(STORE+'/api/2026-10/graphql.json',auth_mode='tokenless'))
+      assert len(value.products)==1 and catalog.schema_for(value.products[0]).resolved
+      assert value.products[0].product.variants[0].sku=='SKU-1'
+      assert sum(r.method=='POST' for r in sent)==1
+E       fixture 'respx_mock' not found
+>       available fixtures: _asyncio_loop_factory, _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, catalog, complete_product, doctest_namespace, event_loop_policy, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, minimal_product, monkeypatch, product_dicts_for_export, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, sample_products_dicts, shopify_raw_products, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, woocommerce_raw_products
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/tests/test_shopify_taxonomy_dispatch.py:27
+=========================== short test summary info ============================
+ERROR tests/test_shopify_taxonomy_dispatch.py::test_public_real_dispatch
+5 passed, 1 error in 2.08s

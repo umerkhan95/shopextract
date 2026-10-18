@@ -1,0 +1,7 @@
+{
+  "checked_at": "2026-10-18",
+  "source": "https://shopify.dev/docs/api/storefront/2026-10",
+  "claim": "Official Storefront reference lists Products and Collections among tokenless capabilities with query complexity limit 1000.",
+  "limit": "Product.category success on a particular store has not been observed; explicit configured source and bounded live verification remain required.",
+  "method": "One bounded primary-document web search; no merchant request or credential lookup."
+}

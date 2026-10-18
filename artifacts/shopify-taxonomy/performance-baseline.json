@@ -1,0 +1,18 @@
+{
+  "label": "baseline",
+  "cold_load_seconds": 3.5190415929828305,
+  "steady_after_load_bytes": 435527680,
+  "warm_load_100_seconds": 0.941761910013156,
+  "warm_lookups_3000_seconds": 0.001558096002554521,
+  "context_100_seconds": 0.0003221950028091669,
+  "normalize_schema_10_seconds": 0.6280839029932395,
+  "normalize_schema_100_seconds": 6.051971576001961,
+  "codec_roundtrip_10_seconds": 0.8450049220118672,
+  "peak_rss_bytes": 436547584,
+  "steady_end_bytes": 436547584,
+  "fingerprint": "1ecad259cf8cc558711b472e9194af93f68d12708fa51d6350ac13febd903c17",
+  "semantic_sha256": "53103d254d231f5ad1b9787c1edb81f4e0701db420aee7a1f53dbd77e8296b93",
+  "http_requests": 0,
+  "forecast_14606_seconds": 883.951,
+  "state": "passed"
+}

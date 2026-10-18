@@ -21,6 +21,12 @@ def normalize_with_categories(raw: dict, platform: Platform = Platform.GENERIC,
                         restore_short_gtin=restore_short_gtin)
     if product is None:
         return None
+    observations = _observe_categories(raw, platform, category_options.scope, category_options.limits)
+    return _bind_categories(product, observations, category_options)
+
+
+def _observe_categories(raw, platform, scope, limits):
+    """Shared bounded source translation; taxonomy helpers derive finite policy from it."""
     method = (raw.get('_capture') or {}).get('method', '')
     generic = (method.startswith(('json_ld','opengraph','css','llm','feed_')) or
                raw.get('_source') == 'google_feed' or 'offers' in raw or 'og:title' in raw or
@@ -31,10 +37,10 @@ def normalize_with_categories(raw: dict, platform: Platform = Platform.GENERIC,
         path = error.get('path') if isinstance(error,dict) else None
         code = error.get('code','native_source_error') if isinstance(error,dict) else 'native_source_error'
         errors.append(NativeCategoryError(tuple(path) if isinstance(path,list) else None, str(code)[:64]))
-    context = AdapterContext(category_options.scope, category_options.limits, tuple(errors))
+    context = AdapterContext(scope, limits, tuple(errors))
     adapter = import_module('.adapters.' + name, __package__)
     observations = adapter.observe_categories(raw, context=context)
-    remaining = category_options.limits.terms
+    remaining = limits.terms
     bounded = []
     for observation in observations:
         terms = observation.terms[:remaining]
@@ -43,6 +49,11 @@ def normalize_with_categories(raw: dict, platform: Platform = Platform.GENERIC,
         bounded.append(replace(observation, terms=terms, completeness='partial' if clipped else observation.completeness,
                                reason='category_budget_reached' if clipped else observation.reason))
     observations = tuple(bounded)
+    return observations
+
+
+def _bind_categories(product, observations, category_options):
+    """Bind once using the existing mapper, digest and evidence contract."""
     mappings = map_categories(observations, options=category_options)
     return bind_product(product, category_options.scope, observations, mappings,
                         options_digest(category_options), limits=category_options.limits)

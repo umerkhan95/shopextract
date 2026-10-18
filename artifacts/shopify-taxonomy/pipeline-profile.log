@@ -1,0 +1,28 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+         3457184 function calls (3220103 primitive calls) in 2.498 seconds
+
+   Ordered by: cumulative time
+   List reduced from 442 to 18 due to restriction <18>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.002    0.002    2.526    2.526 /tmp/008_profile.py:8(run)
+       40    0.002    0.000    1.633    0.041 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/categories/portable.py:12(_payload)
+       30    0.000    0.000    1.375    0.046 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/categories/portable.py:51(categorized_product_to_record)
+     3650    0.153    0.000    1.125    0.000 /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/typing.py:1773(get_type_hints)
+       40    0.001    0.000    0.906    0.023 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/_portable.py:145(product_to_record)
+21440/520    0.082    0.000    0.884    0.002 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/categories/_codec.py:33(typed)
+       10    0.001    0.000    0.829    0.083 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/categories/portable.py:64(categorized_product_from_record)
+       10    0.000    0.000    0.775    0.078 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/taxonomies/shopify/api.py:11(normalize_with_shopify_taxonomy)
+       40    0.001    0.000    0.772    0.019 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/_portable.py:104(_contract_to_dict)
+25500/100    0.087    0.000    0.724    0.007 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/_portable.py:65(_check_type)
+       50    0.005    0.000    0.715    0.014 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/categories/validation.py:8(validate_observations)
+       10    0.000    0.000    0.692    0.069 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/categories/api.py:55(_bind_categories)
+ 2250/520    0.014    0.000    0.635    0.001 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/categories/_codec.py:61(<dictcomp>)
+       10    0.000    0.000    0.493    0.049 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/categories/portable.py:38(bind_product)
+2340/1050    0.002    0.000    0.486    0.000 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/categories/_codec.py:54(<listcomp>)
+       10    0.000    0.000    0.458    0.046 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/taxonomies/shopify/catalog.py:66(schema_for)
+       10    0.001    0.000    0.457    0.046 /Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/src/shopextract/taxonomies/shopify/schema.py:7(schema_for)
+88140/29620    0.099    0.000    0.417    0.000 /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/typing.py:320(_eval_type)
+
+

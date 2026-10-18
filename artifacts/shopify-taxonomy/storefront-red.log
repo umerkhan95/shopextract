@@ -1,0 +1,97 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFFF                                                                 [100%]
+=================================== FAILURES ===================================
+________ test_supplement_preserves_variants_and_actual_category_source _________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+
+    async def test_supplement_preserves_variants_and_actual_category_source(catalog):
+>       from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig,supplement_categories,SHOPIFY_TAXONOMY_QUERY
+E       ModuleNotFoundError: No module named 'shopextract.extractors.shopify_taxonomy'
+
+tests/test_shopify_taxonomy_storefront.py:18: ModuleNotFoundError
+___________________ test_auth_modes_fail_closed[token-None] ____________________
+
+mode = 'token', token = None
+
+    @pytest.mark.parametrize('mode,token',[('token',None),('tokenless','bad'),('other',None)])
+    def test_auth_modes_fail_closed(mode,token):
+>       from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig
+E       ModuleNotFoundError: No module named 'shopextract.extractors.shopify_taxonomy'
+
+tests/test_shopify_taxonomy_storefront.py:38: ModuleNotFoundError
+__________________ test_auth_modes_fail_closed[tokenless-bad] __________________
+
+mode = 'tokenless', token = 'bad'
+
+    @pytest.mark.parametrize('mode,token',[('token',None),('tokenless','bad'),('other',None)])
+    def test_auth_modes_fail_closed(mode,token):
+>       from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig
+E       ModuleNotFoundError: No module named 'shopextract.extractors.shopify_taxonomy'
+
+tests/test_shopify_taxonomy_storefront.py:38: ModuleNotFoundError
+___________________ test_auth_modes_fail_closed[other-None] ____________________
+
+mode = 'other', token = None
+
+    @pytest.mark.parametrize('mode,token',[('token',None),('tokenless','bad'),('other',None)])
+    def test_auth_modes_fail_closed(mode,token):
+>       from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig
+E       ModuleNotFoundError: No module named 'shopextract.extractors.shopify_taxonomy'
+
+tests/test_shopify_taxonomy_storefront.py:38: ModuleNotFoundError
+_________________ test_failed_supplement_cannot_map[mismatch] __________________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+fault = 'mismatch'
+
+    @pytest.mark.parametrize('fault',['mismatch','null','denied','failed_id'])
+    async def test_failed_supplement_cannot_map(catalog,fault):
+>       from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig,supplement_categories
+E       ModuleNotFoundError: No module named 'shopextract.extractors.shopify_taxonomy'
+
+tests/test_shopify_taxonomy_storefront.py:43: ModuleNotFoundError
+___________________ test_failed_supplement_cannot_map[null] ____________________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+fault = 'null'
+
+    @pytest.mark.parametrize('fault',['mismatch','null','denied','failed_id'])
+    async def test_failed_supplement_cannot_map(catalog,fault):
+>       from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig,supplement_categories
+E       ModuleNotFoundError: No module named 'shopextract.extractors.shopify_taxonomy'
+
+tests/test_shopify_taxonomy_storefront.py:43: ModuleNotFoundError
+__________________ test_failed_supplement_cannot_map[denied] ___________________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+fault = 'denied'
+
+    @pytest.mark.parametrize('fault',['mismatch','null','denied','failed_id'])
+    async def test_failed_supplement_cannot_map(catalog,fault):
+>       from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig,supplement_categories
+E       ModuleNotFoundError: No module named 'shopextract.extractors.shopify_taxonomy'
+
+tests/test_shopify_taxonomy_storefront.py:43: ModuleNotFoundError
+_________________ test_failed_supplement_cannot_map[failed_id] _________________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+fault = 'failed_id'
+
+    @pytest.mark.parametrize('fault',['mismatch','null','denied','failed_id'])
+    async def test_failed_supplement_cannot_map(catalog,fault):
+>       from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig,supplement_categories
+E       ModuleNotFoundError: No module named 'shopextract.extractors.shopify_taxonomy'
+
+tests/test_shopify_taxonomy_storefront.py:43: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_shopify_taxonomy_storefront.py::test_supplement_preserves_variants_and_actual_category_source
+FAILED tests/test_shopify_taxonomy_storefront.py::test_auth_modes_fail_closed[token-None]
+FAILED tests/test_shopify_taxonomy_storefront.py::test_auth_modes_fail_closed[tokenless-bad]
+FAILED tests/test_shopify_taxonomy_storefront.py::test_auth_modes_fail_closed[other-None]
+FAILED tests/test_shopify_taxonomy_storefront.py::test_failed_supplement_cannot_map[mismatch]
+FAILED tests/test_shopify_taxonomy_storefront.py::test_failed_supplement_cannot_map[null]
+FAILED tests/test_shopify_taxonomy_storefront.py::test_failed_supplement_cannot_map[denied]
+FAILED tests/test_shopify_taxonomy_storefront.py::test_failed_supplement_cannot_map[failed_id]
+8 failed in 0.42s

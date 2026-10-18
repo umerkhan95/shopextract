@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/tests/shopify_taxonomy_package_check.py", line 46, in <module>
+    built=run([python,'-c',"import socket;socket.socket.connect=lambda *a,**k:(_ for _ in ()).throw(AssertionError('offline'));from hatchling.build import build_wheel;print(build_wheel('dist'))"],cwd=source,env=env).strip()
+  File "/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/tests/shopify_taxonomy_package_check.py", line 11, in run
+    if result.returncode:raise RuntimeError((result.stdout+result.stderr)[-4000:])
+RuntimeError: Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'hatchling'
+

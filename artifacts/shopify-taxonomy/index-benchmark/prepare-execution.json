@@ -1,0 +1,8 @@
+{
+  "stage": "prepare",
+  "state": "passed",
+  "reason": null,
+  "exit_code": 0,
+  "seconds": 10.590472598996712,
+  "peak_sampled_group_rss_bytes": 388345856
+}
