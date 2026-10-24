@@ -1,0 +1,55 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFF.FFF                                                                 [100%]
+=================================== FAILURES ===================================
+E   AssertionError: assert (1 == 1 and 'linked' == 'unsupported'
+     +  where 1 = len((TreeMembershipLink(observation_id='c_7b785f698606f126039a999f447500cacba453625b0e5ad8c3e0930141c083ea', term=Category...on=None, native_id='1', merchant_scope='woocommerce:catalog:https://merchant.example'), status='linked', node_id='1'),))
+      
+      - unsupported
+      + linked)
+/Users/umerkhan/code/shopextract/tests/test_woo_tree_final_edges.py:51: AssertionError: assert (1 == 1 and 'linked' == 'unsupported'
+E   AssertionError: assert (1 == 1 and 'linked' == 'unsupported'
+     +  where 1 = len((TreeMembershipLink(observation_id='c_7b785f698606f126039a999f447500cacba453625b0e5ad8c3e0930141c083ea', term=Category...on=None, native_id='1', merchant_scope='woocommerce:catalog:https://merchant.example'), status='linked', node_id='1'),))
+      
+      - unsupported
+      + linked)
+/Users/umerkhan/code/shopextract/tests/test_woo_tree_final_edges.py:51: AssertionError: assert (1 == 1 and 'linked' == 'unsupported'
+E   AssertionError: assert (1 == 1 and 'linked' == 'unsupported'
+     +  where 1 = len((TreeMembershipLink(observation_id='c_7b785f698606f126039a999f447500cacba453625b0e5ad8c3e0930141c083ea', term=Category...on=None, native_id='1', merchant_scope='woocommerce:catalog:https://merchant.example'), status='linked', node_id='1'),))
+      
+      - unsupported
+      + linked)
+/Users/umerkhan/code/shopextract/tests/test_woo_tree_final_edges.py:51: AssertionError: assert (1 == 1 and 'linked' == 'unsupported'
+E   AssertionError: assert (1 == 1 and 'linked' == 'unsupported'
+     +  where 1 = len((TreeMembershipLink(observation_id='c_7b785f698606f126039a999f447500cacba453625b0e5ad8c3e0930141c083ea', term=Category...on=None, native_id='1', merchant_scope='woocommerce:catalog:https://merchant.example'), status='linked', node_id='1'),))
+      
+      - unsupported
+      + linked)
+/Users/umerkhan/code/shopextract/tests/test_woo_tree_final_edges.py:51: AssertionError: assert (1 == 1 and 'linked' == 'unsupported'
+E   ValueError: Invalid IPv6 URL
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/parse.py:483: ValueError: Invalid IPv6 URL
+E   asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+E   asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+E   UnicodeEncodeError: 'utf-8' codec can't encode character '\ud800' in position 17: surrogates not allowed
+/Users/umerkhan/code/shopextract/src/shopextract/categories/_codec.py:30: UnicodeEncodeError: 'utf-8' codec can't encode character '\ud800' in position 17: surrogates not allowed
+E   asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+E   asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+E   UnicodeEncodeError: 'utf-8' codec can't encode character '\ud800' in position 17: surrogates not allowed
+/Users/umerkhan/code/shopextract/src/shopextract/categories/_codec.py:30: UnicodeEncodeError: 'utf-8' codec can't encode character '\ud800' in position 17: surrogates not allowed
+=========================== short test summary info ============================
+FAILED tests/test_woo_tree_final_edges.py::test_membership_native_fact_raw_source_and_pointer_must_align[raw_value]
+FAILED tests/test_woo_tree_final_edges.py::test_membership_native_fact_raw_source_and_pointer_must_align[source_values]
+FAILED tests/test_woo_tree_final_edges.py::test_membership_native_fact_raw_source_and_pointer_must_align[retained_value]
+FAILED tests/test_woo_tree_final_edges.py::test_membership_native_fact_raw_source_and_pointer_must_align[pointer]
+FAILED tests/test_woo_tree_final_edges.py::test_malformed_ipv6_initial_store_url_is_unavailable_without_io_and_replays
+FAILED tests/test_woo_tree_final_edges.py::test_escaped_lone_surrogate_is_malformed_json_and_retains_prior_pages[False]
+FAILED tests/test_woo_tree_final_edges.py::test_escaped_lone_surrogate_is_malformed_json_and_retains_prior_pages[True]
+7 failed, 1 passed in 0.20s

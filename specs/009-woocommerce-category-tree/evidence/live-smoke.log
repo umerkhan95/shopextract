@@ -1,0 +1,7 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+{"provenance": "actual_public_store_observation", "store_url": "https://demo.athemes.com/botiga", "limits": {"requests": 3, "per_page": 2, "categories": 6, "response_bytes": 262144, "retained_bytes": 786432, "depth": 8, "seconds": 10}, "smoke_passed": true, "outcome": "complete", "reasons": [], "confirmed_empty": false, "pages": 1, "nodes": 2, "attempts": 1, "parent_edges": 0, "issue_codes": [], "assertions": {"bounded_attempts": true, "requested_empty_categories": true, "real_id_parent_facets": true, "pointers_match_receipts": true, "partial_not_empty": true, "coverage_agrees_with_headers_and_counts": true}, "status": "passed", "elapsed_seconds": 3.879}

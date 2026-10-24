@@ -90,3 +90,10 @@ The existing hardware, footwear and generic profiles remain separate domain poli
 Feature design, independent reviews and offline/live evidence are recorded in
 [`specs/006-category-mapping`](../specs/006-category-mapping/). Planned checks are
 not completed verification; consult its status and verification files for limitations.
+
+## WooCommerce category trees
+
+For opt-in public store category acquisition, actual parent relations, portable
+tree evidence and lookup of already captured memberships, see
+[WooCommerce category trees](woocommerce-category-tree.md). Tree presence does
+not assign a product membership; optional Shopify mapping remains separate.

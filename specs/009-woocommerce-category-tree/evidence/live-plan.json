@@ -1,0 +1,12 @@
+{
+  "status": "planned_not_executed",
+  "store_url": "https://demo.athemes.com/botiga",
+  "endpoint": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products/categories",
+  "access": "Public read-only Store API; no credentials or cookies",
+  "smoke_limits": {"requests": 3, "per_page": 2, "categories": 6, "response_bytes": 262144, "retained_bytes": 786432, "seconds": 10},
+  "workers": 1,
+  "retries": 0,
+  "assertions": ["hide_empty=false and numbered pages", "Each retained ID and parent facet agrees with its response pointer", "Per-page receipt evidence retained", "Coverage reflects actual total headers and limits; partial never confirms empty"],
+  "stop_conditions": ["Unsafe or cross-origin redirect", "Access denial/challenge", "Malformed response", "Any resource or deadline limit"],
+  "expansion": "Only after offline verification and saved passing smoke; at most one separately recorded 10-attempt/1000-category/30-second run"
+}

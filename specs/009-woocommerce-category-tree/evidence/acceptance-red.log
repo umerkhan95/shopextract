@@ -1,0 +1,126 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                 [100%]
+=================================== FAILURES ===================================
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo tree codec is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:117: NotImplementedError: Woo tree codec is not implemented
+E   NotImplementedError: Woo tree codec is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:122: NotImplementedError: Woo tree codec is not implemented
+E   NotImplementedError: Woo tree membership linking is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:112: NotImplementedError: Woo tree membership linking is not implemented
+=========================== short test summary info ============================
+FAILED tests/test_woo_tree_acceptance.py::test_tree_pages_preserve_scope_evidence
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses0-complete-True-1]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses1-complete-True-2]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses2-complete-False-2]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses3-partial-False-2]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses4-partial-False-1]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses5-partial-False-2]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses6-partial-False-1]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_facet_states - NotImpleme...
+FAILED tests/test_woo_tree_acceptance.py::test_tree_topology_adversaries[rows0-missing_parent]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_topology_adversaries[rows1-self_parent]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_topology_adversaries[rows2-cycle]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_topology_adversaries[rows3-depth_limit]
+FAILED tests/test_woo_tree_acceptance.py::test_pagination_mutation_and_duplicates[responses0-repeated_page]
+FAILED tests/test_woo_tree_acceptance.py::test_pagination_mutation_and_duplicates[responses1-totals_changed]
+FAILED tests/test_woo_tree_acceptance.py::test_pagination_mutation_and_duplicates[responses2-conflicting_id]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_failure_retention[responses0-unavailable-0]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_failure_retention[responses1-unavailable-0]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_failure_retention[responses2-malformed-0]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_failure_retention[responses3-malformed-0]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_failure_retention[responses4-partial-2]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[requests]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[categories]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[per_page]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[response_bytes]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[retained_bytes]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[seconds]
+FAILED tests/test_woo_tree_acceptance.py::test_invalid_budget_rejects_before_io[requests-True]
+FAILED tests/test_woo_tree_acceptance.py::test_invalid_budget_rejects_before_io[categories--1]
+FAILED tests/test_woo_tree_acceptance.py::test_invalid_budget_rejects_before_io[per_page-101]
+FAILED tests/test_woo_tree_acceptance.py::test_invalid_budget_rejects_before_io[seconds-nan]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_budget_page_atomic_and_terminal_fit
+FAILED tests/test_woo_tree_acceptance.py::test_tree_guard_and_redirect - NotI...
+FAILED tests/test_woo_tree_acceptance.py::test_tree_identity_encoding_only - ...
+FAILED tests/test_woo_tree_acceptance.py::test_tree_pre_cancelled_performs_no_io
+FAILED tests/test_woo_tree_acceptance.py::test_tree_codec_partial_replay_and_tamper
+FAILED tests/test_woo_tree_acceptance.py::test_tree_links_only_captured_memberships_without_mutation
+FAILED tests/test_woo_tree_acceptance.py::test_tree_codec_declared_empty_envelope_round_trip
+FAILED tests/test_woo_tree_acceptance.py::test_tree_codec_rejects_missing_envelope_fields
+FAILED tests/test_woo_tree_acceptance.py::test_tree_membership_link_empty_observations
+40 failed in 0.29s

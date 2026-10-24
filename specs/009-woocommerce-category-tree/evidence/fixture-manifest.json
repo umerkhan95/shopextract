@@ -1,0 +1,82 @@
+{
+  "provenance": "deterministic_synthetic_controlled_http",
+  "seed": "00920261024",
+  "author": "/root/woo_author",
+  "independent_coverage_review": "passed 2026-10-24; recorded W10 verdict in reviews.md; affected W14 repair design also passed before local repairs",
+  "sources": [
+    "tests/test_woo_tree_acceptance.py",
+    "tests/test_woo_tree_mechanisms.py",
+    "tests/woo_tree_stress_driver.py"
+  ],
+  "origins": [
+    "https://merchant.example",
+    "https://foreign.example"
+  ],
+  "clock": "2026-10-24T12:00:00+00:00",
+  "actual_entry_points": [
+    "fetch_woocommerce_category_tree",
+    "link_tree_memberships",
+    "woo_tree_to_record",
+    "woo_tree_from_record",
+    "PinnedBackend.connect_tcp"
+  ],
+  "boundary_substitutions": [
+    "httpx.MockTransport for unavailable remote HTTP",
+    "controlled resolver for DNS",
+    "controlled numeric connector for actual PinnedBackend",
+    "fixed UTC receipt clock",
+    "blocked stream and explicit cancellation events"
+  ],
+  "production_mechanisms_unmocked": [
+    "SourceGuard",
+    "GuardedTransport",
+    "page/header parsing",
+    "facet normalization",
+    "conflict grouping",
+    "topology",
+    "retention admission",
+    "strict replay",
+    "membership evidence support"
+  ],
+  "stress_plan": {
+    "count": 24,
+    "groups": {
+      "topology": 6,
+      "pagination": 6,
+      "budgets": 8,
+      "interactions": 4
+    },
+    "maximum_categories": 1000,
+    "maximum_individual_fixture_bytes": 2097153,
+    "maximum_fixture_bytes_per_case": 16777216,
+    "workers": 1,
+    "driver_seconds": 60,
+    "peak_rss_bytes": 268435456,
+    "memory_enforcement": "check observed peak RSS after each case; no claim of hard OS memory isolation",
+    "retention_boundary_note": "fit and overhead-crossing fixtures use fixed 8192-byte envelope cap; exact raw-response byte fit/one-over is separately asserted",
+    "item_boundary_note": "1000-category maximum fit uses ten pages; above-cap case lowers cap to three to isolate item exhaustion from ten-request ceiling",
+    "stop": "first failure, save status/minimal named case; one diagnosed repair per distinct blocker",
+    "post_case_deadline_check": "elapsed time checked after every case before accepting result, including synchronous work"
+  },
+  "deferred": [
+    "optional Shopify bridge SC09",
+    "optional Shopify bridge SC10"
+  ],
+  "stress_selection_note": "All original 24 stress slots are acquisition/link relevant, including two scopes with same ID. No bridge slot is counted as passing.",
+  "required_remaining": [
+    "independent W14 final repair recheck"
+  ],
+  "coverage_review_additions": [
+    "public black-box canonical retention threshold search <=17 invocations plus delta -1/0/+1 assertions included in that bound",
+    "changed path/query redirects denied before destination wire",
+    "trailing slash redirect actual-hop provenance round-trip",
+    "mixed public/private DNS answer denial"
+  ],
+  "execution_disposition": {
+    "focused_original": "77 passed; later final-repair combined run 130 passed including 85 feature/oracle and 45 affected category regressions",
+    "stress": "24/24 passed; parser-change affected rerun 8.673s peak RSS146325504 bytes; earlier run retained separately",
+    "fault_sensitivity": "live oracle partial-to-complete/confirmed-empty and totals tamper assertions passed",
+    "regressions": "general1018 and maintenance106 passed earlier; unaffected saved evidence reused",
+    "live": "actual Botiga smoke passed one attempt/two roots; unchanged saved observation reused; child edges/mutation remain synthetic-only"
+  }
+}

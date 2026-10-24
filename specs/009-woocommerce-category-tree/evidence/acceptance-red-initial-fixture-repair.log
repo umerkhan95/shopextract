@@ -1,0 +1,1351 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                    [100%]
+=================================== FAILURES ===================================
+___________________ test_tree_pages_preserve_scope_evidence ____________________
+
+    async def test_tree_pages_preserve_scope_evidence():
+>       result, requests = await acquire([page([entry(1), entry(2, 1)], 3, 2), page([entry(3, 1)], 3, 2)])
+
+tests/test_woo_tree_acceptance.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e405bd0>
+wire_transport = <httpx.MockTransport object at 0x10e459e10>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e405990>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+___________ test_empty_requires_coverage[responses0-complete-True-1] ___________
+
+responses = [<Response [200 OK]>], outcome = 'complete', empty = True, calls = 1
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'empty', 'calls'), [
+        ([page([], 0, 0)], 'complete', True, 1),
+        ([page([]), page([], 0, 0)], 'complete', True, 2),
+        ([page([entry(1)]), page([], 1, 1)], 'complete', False, 2),
+        ([page([]), page([])], 'partial', False, 2),
+        ([page([entry(1), entry(2)])], 'partial', False, 1),
+        ([page([entry(1)]), page([entry(2)], 1, 1)], 'partial', False, 2),
+        ([page([], 0, 1)], 'partial', False, 1),
+    ])
+    async def test_empty_requires_coverage(responses, outcome, empty, calls):
+>       value, requests = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e494a60>
+wire_transport = <httpx.MockTransport object at 0x10e5cb7f0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e494c10>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+___________ test_empty_requires_coverage[responses1-complete-True-2] ___________
+
+responses = [<Response [200 OK]>, <Response [200 OK]>], outcome = 'complete'
+empty = True, calls = 2
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'empty', 'calls'), [
+        ([page([], 0, 0)], 'complete', True, 1),
+        ([page([]), page([], 0, 0)], 'complete', True, 2),
+        ([page([entry(1)]), page([], 1, 1)], 'complete', False, 2),
+        ([page([]), page([])], 'partial', False, 2),
+        ([page([entry(1), entry(2)])], 'partial', False, 1),
+        ([page([entry(1)]), page([entry(2)], 1, 1)], 'partial', False, 2),
+        ([page([], 0, 1)], 'partial', False, 1),
+    ])
+    async def test_empty_requires_coverage(responses, outcome, empty, calls):
+>       value, requests = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e495000>
+wire_transport = <httpx.MockTransport object at 0x10e3c5ff0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e495240>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+__________ test_empty_requires_coverage[responses2-complete-False-2] ___________
+
+responses = [<Response [200 OK]>, <Response [200 OK]>], outcome = 'complete'
+empty = False, calls = 2
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'empty', 'calls'), [
+        ([page([], 0, 0)], 'complete', True, 1),
+        ([page([]), page([], 0, 0)], 'complete', True, 2),
+        ([page([entry(1)]), page([], 1, 1)], 'complete', False, 2),
+        ([page([]), page([])], 'partial', False, 2),
+        ([page([entry(1), entry(2)])], 'partial', False, 1),
+        ([page([entry(1)]), page([entry(2)], 1, 1)], 'partial', False, 2),
+        ([page([], 0, 1)], 'partial', False, 1),
+    ])
+    async def test_empty_requires_coverage(responses, outcome, empty, calls):
+>       value, requests = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e495510>
+wire_transport = <httpx.MockTransport object at 0x10e5ca560>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e4956c0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+___________ test_empty_requires_coverage[responses3-partial-False-2] ___________
+
+responses = [<Response [200 OK]>, <Response [200 OK]>], outcome = 'partial'
+empty = False, calls = 2
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'empty', 'calls'), [
+        ([page([], 0, 0)], 'complete', True, 1),
+        ([page([]), page([], 0, 0)], 'complete', True, 2),
+        ([page([entry(1)]), page([], 1, 1)], 'complete', False, 2),
+        ([page([]), page([])], 'partial', False, 2),
+        ([page([entry(1), entry(2)])], 'partial', False, 1),
+        ([page([entry(1)]), page([entry(2)], 1, 1)], 'partial', False, 2),
+        ([page([], 0, 1)], 'partial', False, 1),
+    ])
+    async def test_empty_requires_coverage(responses, outcome, empty, calls):
+>       value, requests = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e495ab0>
+wire_transport = <httpx.MockTransport object at 0x10e3c4580>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e494a60>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+___________ test_empty_requires_coverage[responses4-partial-False-1] ___________
+
+responses = [<Response [200 OK]>], outcome = 'partial', empty = False, calls = 1
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'empty', 'calls'), [
+        ([page([], 0, 0)], 'complete', True, 1),
+        ([page([]), page([], 0, 0)], 'complete', True, 2),
+        ([page([entry(1)]), page([], 1, 1)], 'complete', False, 2),
+        ([page([]), page([])], 'partial', False, 2),
+        ([page([entry(1), entry(2)])], 'partial', False, 1),
+        ([page([entry(1)]), page([entry(2)], 1, 1)], 'partial', False, 2),
+        ([page([], 0, 1)], 'partial', False, 1),
+    ])
+    async def test_empty_requires_coverage(responses, outcome, empty, calls):
+>       value, requests = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e495cf0>
+wire_transport = <httpx.MockTransport object at 0x10e3bfd00>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e495ea0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+___________ test_empty_requires_coverage[responses5-partial-False-2] ___________
+
+responses = [<Response [200 OK]>, <Response [200 OK]>], outcome = 'partial'
+empty = False, calls = 2
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'empty', 'calls'), [
+        ([page([], 0, 0)], 'complete', True, 1),
+        ([page([]), page([], 0, 0)], 'complete', True, 2),
+        ([page([entry(1)]), page([], 1, 1)], 'complete', False, 2),
+        ([page([]), page([])], 'partial', False, 2),
+        ([page([entry(1), entry(2)])], 'partial', False, 1),
+        ([page([entry(1)]), page([entry(2)], 1, 1)], 'partial', False, 2),
+        ([page([], 0, 1)], 'partial', False, 1),
+    ])
+    async def test_empty_requires_coverage(responses, outcome, empty, calls):
+>       value, requests = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e496290>
+wire_transport = <httpx.MockTransport object at 0x10e3cf910>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e495510>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+___________ test_empty_requires_coverage[responses6-partial-False-1] ___________
+
+responses = [<Response [200 OK]>], outcome = 'partial', empty = False, calls = 1
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'empty', 'calls'), [
+        ([page([], 0, 0)], 'complete', True, 1),
+        ([page([]), page([], 0, 0)], 'complete', True, 2),
+        ([page([entry(1)]), page([], 1, 1)], 'complete', False, 2),
+        ([page([]), page([])], 'partial', False, 2),
+        ([page([entry(1), entry(2)])], 'partial', False, 1),
+        ([page([entry(1)]), page([entry(2)], 1, 1)], 'partial', False, 2),
+        ([page([], 0, 1)], 'partial', False, 1),
+    ])
+    async def test_empty_requires_coverage(responses, outcome, empty, calls):
+>       value, requests = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e4964d0>
+wire_transport = <httpx.MockTransport object at 0x10e3bf6a0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e496680>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+____________________________ test_tree_facet_states ____________________________
+
+    async def test_tree_facet_states():
+        rows = [entry(1), entry(2, None), entry(3, False), entry(True), entry('opaque')]
+        rows[0].pop('parent')
+        rows[1]['name'] = 'Boots &amp; Été'
+>       result, _ = await acquire([page(rows, 5, 1)], limits=WooTreeLimits(per_page=5))
+
+tests/test_woo_tree_acceptance.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=5, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e4952d0>
+wire_transport = <httpx.MockTransport object at 0x10e5c9510>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e4956c0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_____________ test_tree_topology_adversaries[rows0-missing_parent] _____________
+
+rows = [{'id': 1, 'name': 'Category 1', 'slug': 'category-1', 'parent': 99}]
+code = 'missing_parent'
+
+    @pytest.mark.parametrize(('rows', 'code'), [
+        ([entry(1, 99)], 'missing_parent'),
+        ([entry(1, 1)], 'self_parent'),
+        ([entry(1, 2), entry(2, 1)], 'cycle'),
+        ([entry(1)] + [entry(i, i - 1) for i in range(2, 11)], 'depth_limit'),
+    ])
+    async def test_tree_topology_adversaries(rows, code):
+>       result, _ = await acquire([page(rows, len(rows), 1)], limits=WooTreeLimits(per_page=len(rows)))
+
+tests/test_woo_tree_acceptance.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=1, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e496f80>
+wire_transport = <httpx.MockTransport object at 0x10e54a0b0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e496290>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+______________ test_tree_topology_adversaries[rows1-self_parent] _______________
+
+rows = [{'id': 1, 'name': 'Category 1', 'slug': 'category-1', 'parent': 1}]
+code = 'self_parent'
+
+    @pytest.mark.parametrize(('rows', 'code'), [
+        ([entry(1, 99)], 'missing_parent'),
+        ([entry(1, 1)], 'self_parent'),
+        ([entry(1, 2), entry(2, 1)], 'cycle'),
+        ([entry(1)] + [entry(i, i - 1) for i in range(2, 11)], 'depth_limit'),
+    ])
+    async def test_tree_topology_adversaries(rows, code):
+>       result, _ = await acquire([page(rows, len(rows), 1)], limits=WooTreeLimits(per_page=len(rows)))
+
+tests/test_woo_tree_acceptance.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=1, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e4970a0>
+wire_transport = <httpx.MockTransport object at 0x10e3cecb0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e4972e0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_________________ test_tree_topology_adversaries[rows2-cycle] __________________
+
+rows = [{'id': 1, 'name': 'Category 1', 'slug': 'category-1', 'parent': 2}, {'id': 2, 'name': 'Category 2', 'slug': 'category-2', 'parent': 1}]
+code = 'cycle'
+
+    @pytest.mark.parametrize(('rows', 'code'), [
+        ([entry(1, 99)], 'missing_parent'),
+        ([entry(1, 1)], 'self_parent'),
+        ([entry(1, 2), entry(2, 1)], 'cycle'),
+        ([entry(1)] + [entry(i, i - 1) for i in range(2, 11)], 'depth_limit'),
+    ])
+    async def test_tree_topology_adversaries(rows, code):
+>       result, _ = await acquire([page(rows, len(rows), 1)], limits=WooTreeLimits(per_page=len(rows)))
+
+tests/test_woo_tree_acceptance.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e4976d0>
+wire_transport = <httpx.MockTransport object at 0x10e3c7ac0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e4956c0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+______________ test_tree_topology_adversaries[rows3-depth_limit] _______________
+
+rows = [{'id': 1, 'name': 'Category 1', 'slug': 'category-1', 'parent': 0}, {'id': 2, 'name': 'Category 2', 'slug': 'category...tegory 5', 'slug': 'category-5', 'parent': 4}, {'id': 6, 'name': 'Category 6', 'slug': 'category-6', 'parent': 5}, ...]
+code = 'depth_limit'
+
+    @pytest.mark.parametrize(('rows', 'code'), [
+        ([entry(1, 99)], 'missing_parent'),
+        ([entry(1, 1)], 'self_parent'),
+        ([entry(1, 2), entry(2, 1)], 'cycle'),
+        ([entry(1)] + [entry(i, i - 1) for i in range(2, 11)], 'depth_limit'),
+    ])
+    async def test_tree_topology_adversaries(rows, code):
+>       result, _ = await acquire([page(rows, len(rows), 1)], limits=WooTreeLimits(per_page=len(rows)))
+
+tests/test_woo_tree_acceptance.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=10, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e497880>
+wire_transport = <httpx.MockTransport object at 0x10e3cd6c0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e497a30>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+______ test_pagination_mutation_and_duplicates[responses0-repeated_page] _______
+
+responses = [<Response [200 OK]>, <Response [200 OK]>], reason = 'repeated_page'
+
+    @pytest.mark.parametrize(('responses', 'reason'), [
+        ([page([entry(1), entry(2)], 4, 2), page([entry(1), entry(2)], 4, 2)], 'repeated_page'),
+        ([page([entry(1), entry(2)], 3, 2), page([entry(3)], 4, 2)], 'totals_changed'),
+        ([page([entry(1), entry(1, name='Other')], 2, 1)], 'conflicting_id'),
+    ])
+    async def test_pagination_mutation_and_duplicates(responses, reason):
+>       result, requests = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e494700>
+wire_transport = <httpx.MockTransport object at 0x10e3cbca0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e497370>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+______ test_pagination_mutation_and_duplicates[responses1-totals_changed] ______
+
+responses = [<Response [200 OK]>, <Response [200 OK]>]
+reason = 'totals_changed'
+
+    @pytest.mark.parametrize(('responses', 'reason'), [
+        ([page([entry(1), entry(2)], 4, 2), page([entry(1), entry(2)], 4, 2)], 'repeated_page'),
+        ([page([entry(1), entry(2)], 3, 2), page([entry(3)], 4, 2)], 'totals_changed'),
+        ([page([entry(1), entry(1, name='Other')], 2, 1)], 'conflicting_id'),
+    ])
+    async def test_pagination_mutation_and_duplicates(responses, reason):
+>       result, requests = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e495f30>
+wire_transport = <httpx.MockTransport object at 0x10e3c6d10>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e496f80>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+______ test_pagination_mutation_and_duplicates[responses2-conflicting_id] ______
+
+responses = [<Response [200 OK]>], reason = 'conflicting_id'
+
+    @pytest.mark.parametrize(('responses', 'reason'), [
+        ([page([entry(1), entry(2)], 4, 2), page([entry(1), entry(2)], 4, 2)], 'repeated_page'),
+        ([page([entry(1), entry(2)], 3, 2), page([entry(3)], 4, 2)], 'totals_changed'),
+        ([page([entry(1), entry(1, name='Other')], 2, 1)], 'conflicting_id'),
+    ])
+    async def test_pagination_mutation_and_duplicates(responses, reason):
+>       result, requests = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e4965f0>
+wire_transport = <httpx.MockTransport object at 0x10e589930>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e496560>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+____________ test_tree_failure_retention[responses0-unavailable-0] _____________
+
+responses = [<Response [403 Forbidden]>], outcome = 'unavailable', retained = 0
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'retained'), [
+        ([page({}, status=403)], 'unavailable', 0),
+        ([page({}, status=404)], 'unavailable', 0),
+        ([httpx.Response(200, content=b'bad json')], 'malformed', 0),
+        ([page({'id': 1})], 'malformed', 0),
+        ([page([entry(1), entry(2)], 3, 2), page({}, status=503)], 'partial', 2),
+    ])
+    async def test_tree_failure_retention(responses, outcome, retained):
+>       result, _ = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e494ca0>
+wire_transport = <httpx.MockTransport object at 0x10e54bcd0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e494700>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+____________ test_tree_failure_retention[responses1-unavailable-0] _____________
+
+responses = [<Response [404 Not Found]>], outcome = 'unavailable', retained = 0
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'retained'), [
+        ([page({}, status=403)], 'unavailable', 0),
+        ([page({}, status=404)], 'unavailable', 0),
+        ([httpx.Response(200, content=b'bad json')], 'malformed', 0),
+        ([page({'id': 1})], 'malformed', 0),
+        ([page([entry(1), entry(2)], 3, 2), page({}, status=503)], 'partial', 2),
+    ])
+    async def test_tree_failure_retention(responses, outcome, retained):
+>       result, _ = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e496d40>
+wire_transport = <httpx.MockTransport object at 0x10e3e3c10>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e495000>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_____________ test_tree_failure_retention[responses2-malformed-0] ______________
+
+responses = [<Response [200 OK]>], outcome = 'malformed', retained = 0
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'retained'), [
+        ([page({}, status=403)], 'unavailable', 0),
+        ([page({}, status=404)], 'unavailable', 0),
+        ([httpx.Response(200, content=b'bad json')], 'malformed', 0),
+        ([page({'id': 1})], 'malformed', 0),
+        ([page([entry(1), entry(2)], 3, 2), page({}, status=503)], 'partial', 2),
+    ])
+    async def test_tree_failure_retention(responses, outcome, retained):
+>       result, _ = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e4965f0>
+wire_transport = <httpx.MockTransport object at 0x10e38fac0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e4964d0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_____________ test_tree_failure_retention[responses3-malformed-0] ______________
+
+responses = [<Response [200 OK]>], outcome = 'malformed', retained = 0
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'retained'), [
+        ([page({}, status=403)], 'unavailable', 0),
+        ([page({}, status=404)], 'unavailable', 0),
+        ([httpx.Response(200, content=b'bad json')], 'malformed', 0),
+        ([page({'id': 1})], 'malformed', 0),
+        ([page([entry(1), entry(2)], 3, 2), page({}, status=503)], 'partial', 2),
+    ])
+    async def test_tree_failure_retention(responses, outcome, retained):
+>       result, _ = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e4977f0>
+wire_transport = <httpx.MockTransport object at 0x10e5497e0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e497370>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+______________ test_tree_failure_retention[responses4-partial-2] _______________
+
+responses = [<Response [200 OK]>, <Response [503 Service Unavailable]>]
+outcome = 'partial', retained = 2
+
+    @pytest.mark.parametrize(('responses', 'outcome', 'retained'), [
+        ([page({}, status=403)], 'unavailable', 0),
+        ([page({}, status=404)], 'unavailable', 0),
+        ([httpx.Response(200, content=b'bad json')], 'malformed', 0),
+        ([page({'id': 1})], 'malformed', 0),
+        ([page([entry(1), entry(2)], 3, 2), page({}, status=503)], 'partial', 2),
+    ])
+    async def test_tree_failure_retention(responses, outcome, retained):
+>       result, _ = await acquire(responses)
+
+tests/test_woo_tree_acceptance.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e497f40>
+wire_transport = <httpx.MockTransport object at 0x10e3e1b40>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e405bd0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_______________ test_zero_work_budget_performs_no_call[requests] _______________
+
+field = 'requests'
+
+    @pytest.mark.parametrize('field', ['requests', 'categories', 'per_page', 'response_bytes', 'retained_bytes', 'seconds'])
+    async def test_zero_work_budget_performs_no_call(field):
+>       result, requests = await acquire([], limits=replace(WooTreeLimits(), **{field: 0}))
+
+tests/test_woo_tree_acceptance.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=0, per_page=100, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e4948b0>
+wire_transport = <httpx.MockTransport object at 0x10e3ccb50>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5cc280>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+______________ test_zero_work_budget_performs_no_call[categories] ______________
+
+field = 'categories'
+
+    @pytest.mark.parametrize('field', ['requests', 'categories', 'per_page', 'response_bytes', 'retained_bytes', 'seconds'])
+    async def test_zero_work_budget_performs_no_call(field):
+>       result, requests = await acquire([], limits=replace(WooTreeLimits(), **{field: 0}))
+
+tests/test_woo_tree_acceptance.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=100, categories=0, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5cc3a0>
+wire_transport = <httpx.MockTransport object at 0x10e5c9a50>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5cc4c0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_______________ test_zero_work_budget_performs_no_call[per_page] _______________
+
+field = 'per_page'
+
+    @pytest.mark.parametrize('field', ['requests', 'categories', 'per_page', 'response_bytes', 'retained_bytes', 'seconds'])
+    async def test_zero_work_budget_performs_no_call(field):
+>       result, requests = await acquire([], limits=replace(WooTreeLimits(), **{field: 0}))
+
+tests/test_woo_tree_acceptance.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=0, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5cc820>
+wire_transport = <httpx.MockTransport object at 0x10e5aa860>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5cca60>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+____________ test_zero_work_budget_performs_no_call[response_bytes] ____________
+
+field = 'response_bytes'
+
+    @pytest.mark.parametrize('field', ['requests', 'categories', 'per_page', 'response_bytes', 'retained_bytes', 'seconds'])
+    async def test_zero_work_budget_performs_no_call(field):
+>       result, requests = await acquire([], limits=replace(WooTreeLimits(), **{field: 0}))
+
+tests/test_woo_tree_acceptance.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=100, categories=1000, response_bytes=0, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5cce50>
+wire_transport = <httpx.MockTransport object at 0x10e5ca080>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5cd090>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+____________ test_zero_work_budget_performs_no_call[retained_bytes] ____________
+
+field = 'retained_bytes'
+
+    @pytest.mark.parametrize('field', ['requests', 'categories', 'per_page', 'response_bytes', 'retained_bytes', 'seconds'])
+    async def test_zero_work_budget_performs_no_call(field):
+>       result, requests = await acquire([], limits=replace(WooTreeLimits(), **{field: 0}))
+
+tests/test_woo_tree_acceptance.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=100, categories=1000, response_bytes=2097152, retained_bytes=0, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5cd510>
+wire_transport = <httpx.MockTransport object at 0x10e54b430>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5ccaf0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_______________ test_zero_work_budget_performs_no_call[seconds] ________________
+
+field = 'seconds'
+
+    @pytest.mark.parametrize('field', ['requests', 'categories', 'per_page', 'response_bytes', 'retained_bytes', 'seconds'])
+    async def test_zero_work_budget_performs_no_call(field):
+>       result, requests = await acquire([], limits=replace(WooTreeLimits(), **{field: 0}))
+
+tests/test_woo_tree_acceptance.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=100, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5cd120>
+wire_transport = <httpx.MockTransport object at 0x10e589d50>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5cd990>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_____________ test_invalid_budget_rejects_before_io[requests-True] _____________
+
+field = 'requests', value = True
+
+    @pytest.mark.parametrize(('field', 'value'), [('requests', True), ('categories', -1), ('per_page', 101), ('seconds', float('nan'))])
+    async def test_invalid_budget_rejects_before_io(field, value):
+        with pytest.raises(CategoryError):
+>           await acquire([], limits=replace(WooTreeLimits(), **{field: value}))
+
+tests/test_woo_tree_acceptance.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=True, per_page=100, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5cd480>
+wire_transport = <httpx.MockTransport object at 0x10e5a2620>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5ce050>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_____________ test_invalid_budget_rejects_before_io[categories--1] _____________
+
+field = 'categories', value = -1
+
+    @pytest.mark.parametrize(('field', 'value'), [('requests', True), ('categories', -1), ('per_page', 101), ('seconds', float('nan'))])
+    async def test_invalid_budget_rejects_before_io(field, value):
+        with pytest.raises(CategoryError):
+>           await acquire([], limits=replace(WooTreeLimits(), **{field: value}))
+
+tests/test_woo_tree_acceptance.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=100, categories=-1, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5cd1b0>
+wire_transport = <httpx.MockTransport object at 0x10e45a230>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5cd7e0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_____________ test_invalid_budget_rejects_before_io[per_page-101] ______________
+
+field = 'per_page', value = 101
+
+    @pytest.mark.parametrize(('field', 'value'), [('requests', True), ('categories', -1), ('per_page', 101), ('seconds', float('nan'))])
+    async def test_invalid_budget_rejects_before_io(field, value):
+        with pytest.raises(CategoryError):
+>           await acquire([], limits=replace(WooTreeLimits(), **{field: value}))
+
+tests/test_woo_tree_acceptance.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=101, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5ce8c0>
+wire_transport = <httpx.MockTransport object at 0x10e5a2200>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5cea70>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+______________ test_invalid_budget_rejects_before_io[seconds-nan] ______________
+
+field = 'seconds', value = nan
+
+    @pytest.mark.parametrize(('field', 'value'), [('requests', True), ('categories', -1), ('per_page', 101), ('seconds', float('nan'))])
+    async def test_invalid_budget_rejects_before_io(field, value):
+        with pytest.raises(CategoryError):
+>           await acquire([], limits=replace(WooTreeLimits(), **{field: value}))
+
+tests/test_woo_tree_acceptance.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=100, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=nan)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5cdf30>
+wire_transport = <httpx.MockTransport object at 0x10e3cee30>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5ccaf0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+________________ test_tree_budget_page_atomic_and_terminal_fit _________________
+
+    async def test_tree_budget_page_atomic_and_terminal_fit():
+>       exact, _ = await acquire([page([entry(1), entry(2)], 2, 1)], limits=WooTreeLimits(per_page=2, categories=2, requests=1))
+
+tests/test_woo_tree_acceptance.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=1, per_page=2, categories=2, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5ccc10>
+wire_transport = <httpx.MockTransport object at 0x10e5c8790>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5cf1c0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_________________________ test_tree_guard_and_redirect _________________________
+
+    async def test_tree_guard_and_redirect():
+        async def private(host, context):
+            return ['127.0.0.1']
+>       denied, calls = await acquire([], resolver=private)
+
+tests/test_woo_tree_acceptance.py:156: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function test_tree_guard_and_redirect.<locals>.private at 0x10e5cdd80>
+wire_transport = <httpx.MockTransport object at 0x10e3e3c40>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5ce4d0>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+_______________________ test_tree_identity_encoding_only _______________________
+
+self = <httpx._decoders.GZipDecoder object at 0x10e54a560>
+data = b'not-decoded'
+
+    def decode(self, data: bytes) -> bytes:
+        try:
+>           return self.decompressor.decompress(data)
+E           zlib.error: Error -3 while decompressing data: incorrect header check
+
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/httpx/_decoders.py:97: error
+
+The above exception was the direct cause of the following exception:
+
+    async def test_tree_identity_encoding_only():
+>       result, requests = await acquire([httpx.Response(200, content=b'not-decoded', headers={'Content-Encoding': 'gzip'})])
+
+tests/test_woo_tree_acceptance.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/httpx/_models.py:554: in __init__
+    self.read()
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/httpx/_models.py:881: in read
+    self._content = b"".join(self.iter_bytes())
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/httpx/_models.py:898: in iter_bytes
+    decoded = decoder.decode(raw_bytes)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httpx._decoders.GZipDecoder object at 0x10e54a560>
+data = b'not-decoded'
+
+    def decode(self, data: bytes) -> bytes:
+        try:
+            return self.decompressor.decompress(data)
+        except zlib.error as exc:
+>           raise DecodingError(str(exc)) from exc
+E           httpx.DecodingError: Error -3 while decompressing data: incorrect header check
+
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/httpx/_decoders.py:99: DecodingError
+____________________ test_tree_pre_cancelled_performs_no_io ____________________
+
+    async def test_tree_pre_cancelled_performs_no_io():
+        event = asyncio.Event()
+        event.set()
+>       result, requests = await acquire([], cancelled=event)
+
+tests/test_woo_tree_acceptance.py:172: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = <asyncio.locks.Event object at 0x10e45ae60 [set]>
+resolver = <function acquire.<locals>.public_resolver at 0x10e5cc430>
+wire_transport = <httpx.MockTransport object at 0x10e458190>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5cf910>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+__________________ test_tree_codec_partial_replay_and_tamper ___________________
+
+    async def test_tree_codec_partial_replay_and_tamper():
+>       result, _ = await acquire([page([entry(1), entry(2)], 3, 2)], limits=WooTreeLimits(per_page=2, requests=1))
+
+tests/test_woo_tree_acceptance.py:178: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=1, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5cd870>
+wire_transport = <httpx.MockTransport object at 0x10e3bfbb0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5cce50>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+__________ test_tree_links_only_captured_memberships_without_mutation __________
+
+    async def test_tree_links_only_captured_memberships_without_mutation():
+>       result, _ = await acquire([page([entry(1), entry(2)], 2, 1)])
+
+tests/test_woo_tree_acceptance.py:187: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_woo_tree_acceptance.py:40: in acquire
+    result = await fetch_woocommerce_category_tree(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+scope = CategoryScope(platform=<Platform.WOOCOMMERCE: 'woocommerce'>, store_url='https://merchant.example', catalog=None, channel=None, locale=None)
+limits = WooTreeLimits(requests=10, per_page=2, categories=1000, response_bytes=2097152, retained_bytes=8388608, depth=8, seconds=30.0)
+cancelled = None
+resolver = <function acquire.<locals>.public_resolver at 0x10e5ccee0>
+wire_transport = <httpx.MockTransport object at 0x10e38cfd0>
+utc_now = <function acquire.<locals>.<lambda> at 0x10e5cc160>
+
+    async def fetch_woocommerce_category_tree(
+        scope: CategoryScope, *, limits: WooTreeLimits = WooTreeLimits(),
+        cancelled: asyncio.Event | None = None, resolver: Resolver | None = None,
+        wire_transport: httpx.AsyncBaseTransport | None = None,
+        utc_now: Callable[[], datetime] | None = None,
+    ) -> WooCategoryTree:
+        """Acquire one bounded snapshot; hooks replace external boundaries only."""
+>       raise NotImplementedError('Woo category tree acquisition is not implemented')
+E       NotImplementedError: Woo category tree acquisition is not implemented
+
+src/shopextract/categories/woo_tree.py:107: NotImplementedError
+=========================== short test summary info ============================
+FAILED tests/test_woo_tree_acceptance.py::test_tree_pages_preserve_scope_evidence
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses0-complete-True-1]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses1-complete-True-2]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses2-complete-False-2]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses3-partial-False-2]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses4-partial-False-1]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses5-partial-False-2]
+FAILED tests/test_woo_tree_acceptance.py::test_empty_requires_coverage[responses6-partial-False-1]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_facet_states - NotImpleme...
+FAILED tests/test_woo_tree_acceptance.py::test_tree_topology_adversaries[rows0-missing_parent]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_topology_adversaries[rows1-self_parent]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_topology_adversaries[rows2-cycle]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_topology_adversaries[rows3-depth_limit]
+FAILED tests/test_woo_tree_acceptance.py::test_pagination_mutation_and_duplicates[responses0-repeated_page]
+FAILED tests/test_woo_tree_acceptance.py::test_pagination_mutation_and_duplicates[responses1-totals_changed]
+FAILED tests/test_woo_tree_acceptance.py::test_pagination_mutation_and_duplicates[responses2-conflicting_id]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_failure_retention[responses0-unavailable-0]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_failure_retention[responses1-unavailable-0]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_failure_retention[responses2-malformed-0]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_failure_retention[responses3-malformed-0]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_failure_retention[responses4-partial-2]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[requests]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[categories]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[per_page]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[response_bytes]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[retained_bytes]
+FAILED tests/test_woo_tree_acceptance.py::test_zero_work_budget_performs_no_call[seconds]
+FAILED tests/test_woo_tree_acceptance.py::test_invalid_budget_rejects_before_io[requests-True]
+FAILED tests/test_woo_tree_acceptance.py::test_invalid_budget_rejects_before_io[categories--1]
+FAILED tests/test_woo_tree_acceptance.py::test_invalid_budget_rejects_before_io[per_page-101]
+FAILED tests/test_woo_tree_acceptance.py::test_invalid_budget_rejects_before_io[seconds-nan]
+FAILED tests/test_woo_tree_acceptance.py::test_tree_budget_page_atomic_and_terminal_fit
+FAILED tests/test_woo_tree_acceptance.py::test_tree_guard_and_redirect - NotI...
+FAILED tests/test_woo_tree_acceptance.py::test_tree_identity_encoding_only - ...
+FAILED tests/test_woo_tree_acceptance.py::test_tree_pre_cancelled_performs_no_io
+FAILED tests/test_woo_tree_acceptance.py::test_tree_codec_partial_replay_and_tamper
+FAILED tests/test_woo_tree_acceptance.py::test_tree_links_only_captured_memberships_without_mutation
+37 failed in 1.20s
