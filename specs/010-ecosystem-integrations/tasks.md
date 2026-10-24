@@ -69,5 +69,5 @@ no installs/runtime/publication. INT-10b consumes only enabled implemented new r
 Latest expansion: INT-23..25 bounded primary research max3pages each after behavior/test
 revision; preserve51prior sources, total cap61. INT-21/22 Meta optional/deferred. Current
 scope only docs/tickets. Next-session handoff recommends single local Claude Code
-plugin+skill slice reusing#24; do not start it or require INT-01/02. Affected G1/G2 then
-G3/final must review expanded documentation; historical passes retained.
+plugin+skill slice reusing#24; do not start it or require INT-01/02. Affected G1/G2, G3 and final content review passed for expanded documentation;
+historical verdicts remain retained in reviews.md.

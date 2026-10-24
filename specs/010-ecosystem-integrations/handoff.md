@@ -64,6 +64,5 @@ checks plus required quality checks. Final independent review verifies no core/s
 scope expansion, correct lifecycle and truthful plugin compatibility. Complete only
 this one slice; return remaining ecosystem tickets as planned, not implicitly launched.
 
-Current expanded planning set:25tickets,24FR/24SC,60fetched primary sources. Historical
-baseline G1/G2 passes do not approve expanded provider scope; affected independent
-G1/G2 then G3/final review remains pending before calling this planning package complete.
+Current expanded planning set:25tickets,24FR/24SC,60fetched primary sources. Expanded-scope G1, G2, G3 and final independent content reviews passed;
+see reviews.md. Future implementation still requires its own child review gates.
