@@ -1,0 +1,13 @@
+{
+  "baseline_commit": "bce3d9b",
+  "case": "existing-success-without-after_submit-sync",
+  "seed": 24,
+  "stop": "queued",
+  "domain_calls": [
+    "discover",
+    "job_result"
+  ],
+  "records": 0,
+  "outbound_requests": 0,
+  "observation": "Immediate result is queued without test-only completion synchronization; this is not model/host evidence."
+}

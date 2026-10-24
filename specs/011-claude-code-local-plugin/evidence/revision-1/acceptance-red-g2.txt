@@ -1,0 +1,272 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                         [100%]
+=================================== FAILURES ===================================
+___ test_skill_domain_budget_excludes_schema_loading_and_explains_preflight ____
+tests/test_claude_code_revision.py:39: in test_skill_domain_budget_excludes_schema_loading_and_explains_preflight
+    assert 'six ShopExtract domain MCP' in text, 'Missing explicit domain-only budget (FR08)'
+E   AssertionError: Missing explicit domain-only budget (FR08)
+E   assert 'six ShopExtract domain MCP' in '---\nname: shopextract-review\ndescription: Discover and extract up to two products from a user-authorized shop sourc...quires resubmission/new handles. Do not promise durable job recovery or silently reuse handles from another session.\n'
+___ test_schema_preflight_preserves_exact_server_names_without_domain_probes ___
+tests/test_claude_code_revision.py:47: in test_schema_preflight_preserves_exact_server_names_without_domain_probes
+    preflight = planned_helper(recipe, 'preflight_tools', 'schema preflight (FR08)')
+tests/test_claude_code_revision.py:22: in planned_helper
+    assert callable(helper), f'Missing {requirement}: callable {module.__name__}.{name}'
+E   AssertionError: Missing schema preflight (FR08): callable tests.claude_code_recipe.preflight_tools
+E   assert False
+E    +  where False = callable(None)
+_ test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls0-https://store.example/products/widget] _
+tests/test_claude_code_revision.py:69: in test_deterministic_product_selection_excludes_articles_and_encoded_escape
+    select = planned_helper(recipe, 'select_product_url', 'deterministic product-only selection (FR09)')
+tests/test_claude_code_revision.py:22: in planned_helper
+    assert callable(helper), f'Missing {requirement}: callable {module.__name__}.{name}'
+E   AssertionError: Missing deterministic product-only selection (FR09): callable tests.claude_code_recipe.select_product_url
+E   assert False
+E    +  where False = callable(None)
+_ test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls1-https://store.example/products/a] _
+tests/test_claude_code_revision.py:69: in test_deterministic_product_selection_excludes_articles_and_encoded_escape
+    select = planned_helper(recipe, 'select_product_url', 'deterministic product-only selection (FR09)')
+tests/test_claude_code_revision.py:22: in planned_helper
+    assert callable(helper), f'Missing {requirement}: callable {module.__name__}.{name}'
+E   AssertionError: Missing deterministic product-only selection (FR09): callable tests.claude_code_recipe.select_product_url
+E   assert False
+E    +  where False = callable(None)
+_ test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls2-https://store.example/products/a] _
+tests/test_claude_code_revision.py:69: in test_deterministic_product_selection_excludes_articles_and_encoded_escape
+    select = planned_helper(recipe, 'select_product_url', 'deterministic product-only selection (FR09)')
+tests/test_claude_code_revision.py:22: in planned_helper
+    assert callable(helper), f'Missing {requirement}: callable {module.__name__}.{name}'
+E   AssertionError: Missing deterministic product-only selection (FR09): callable tests.claude_code_recipe.select_product_url
+E   assert False
+E    +  where False = callable(None)
+_ test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls3-None] _
+tests/test_claude_code_revision.py:69: in test_deterministic_product_selection_excludes_articles_and_encoded_escape
+    select = planned_helper(recipe, 'select_product_url', 'deterministic product-only selection (FR09)')
+tests/test_claude_code_revision.py:22: in planned_helper
+    assert callable(helper), f'Missing {requirement}: callable {module.__name__}.{name}'
+E   AssertionError: Missing deterministic product-only selection (FR09): callable tests.claude_code_recipe.select_product_url
+E   assert False
+E    +  where False = callable(None)
+_ test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls4-None] _
+tests/test_claude_code_revision.py:69: in test_deterministic_product_selection_excludes_articles_and_encoded_escape
+    select = planned_helper(recipe, 'select_product_url', 'deterministic product-only selection (FR09)')
+tests/test_claude_code_revision.py:22: in planned_helper
+    assert callable(helper), f'Missing {requirement}: callable {module.__name__}.{name}'
+E   AssertionError: Missing deterministic product-only selection (FR09): callable tests.claude_code_recipe.select_product_url
+E   assert False
+E    +  where False = callable(None)
+_ test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls5-None] _
+tests/test_claude_code_revision.py:69: in test_deterministic_product_selection_excludes_articles_and_encoded_escape
+    select = planned_helper(recipe, 'select_product_url', 'deterministic product-only selection (FR09)')
+tests/test_claude_code_revision.py:22: in planned_helper
+    assert callable(helper), f'Missing {requirement}: callable {module.__name__}.{name}'
+E   AssertionError: Missing deterministic product-only selection (FR09): callable tests.claude_code_recipe.select_product_url
+E   assert False
+E    +  where False = callable(None)
+_ test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls6-None] _
+tests/test_claude_code_revision.py:69: in test_deterministic_product_selection_excludes_articles_and_encoded_escape
+    select = planned_helper(recipe, 'select_product_url', 'deterministic product-only selection (FR09)')
+tests/test_claude_code_revision.py:22: in planned_helper
+    assert callable(helper), f'Missing {requirement}: callable {module.__name__}.{name}'
+E   AssertionError: Missing deterministic product-only selection (FR09): callable tests.claude_code_recipe.select_product_url
+E   assert False
+E    +  where False = callable(None)
+_ test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls7-https://store.example/p/widget] _
+tests/test_claude_code_revision.py:69: in test_deterministic_product_selection_excludes_articles_and_encoded_escape
+    select = planned_helper(recipe, 'select_product_url', 'deterministic product-only selection (FR09)')
+tests/test_claude_code_revision.py:22: in planned_helper
+    assert callable(helper), f'Missing {requirement}: callable {module.__name__}.{name}'
+E   AssertionError: Missing deterministic product-only selection (FR09): callable tests.claude_code_recipe.select_product_url
+E   assert False
+E    +  where False = callable(None)
+___ test_source_setup_and_compatibility_notes_are_actionable_and_attributed ____
+tests/test_claude_code_revision.py:75: in test_source_setup_and_compatibility_notes_are_actionable_and_attributed
+    assert 'scripts/bootstrap_taxonomy.py' in text, 'Missing source taxonomy bootstrap prerequisite (FR11)'
+E   AssertionError: Missing source taxonomy bootstrap prerequisite (FR11)
+E   assert 'scripts/bootstrap_taxonomy.py' in '# ShopExtract local plugin for Claude Code\n\nVersion 0.1.0 packages one bounded extraction/evidence skill and the ex...actual parser attempt and remaining blocker; do not infer compatibility from the CLI help or shared SKILL.md format.\n'
+______ test_realistic_source_fixture_seams_are_declared[index-blog-first] ______
+tests/test_claude_code_revision.py:86: in test_realistic_source_fixture_seams_are_declared
+    assert case in CASES, f'Missing real-runtime external source case {case} (SC10/11/15)'
+E   AssertionError: Missing real-runtime external source case index-blog-first (SC10/11/15)
+E   assert 'index-blog-first' in {'duplicates', 'failed-discover', 'failed-extract', 'feed-cap', 'pending-discover', 'pending-extract', ...}
+______ test_realistic_source_fixture_seams_are_declared[index-no-product] ______
+tests/test_claude_code_revision.py:86: in test_realistic_source_fixture_seams_are_declared
+    assert case in CASES, f'Missing real-runtime external source case {case} (SC10/11/15)'
+E   AssertionError: Missing real-runtime external source case index-no-product (SC10/11/15)
+E   assert 'index-no-product' in {'duplicates', 'failed-discover', 'failed-extract', 'feed-cap', 'pending-discover', 'pending-extract', ...}
+______ test_realistic_source_fixture_seams_are_declared[product-redirect] ______
+tests/test_claude_code_revision.py:86: in test_realistic_source_fixture_seams_are_declared
+    assert case in CASES, f'Missing real-runtime external source case {case} (SC10/11/15)'
+E   AssertionError: Missing real-runtime external source case product-redirect (SC10/11/15)
+E   assert 'product-redirect' in {'duplicates', 'failed-discover', 'failed-extract', 'feed-cap', 'pending-discover', 'pending-extract', ...}
+______ test_realistic_source_fixture_seams_are_declared[denied-redirect] _______
+tests/test_claude_code_revision.py:86: in test_realistic_source_fixture_seams_are_declared
+    assert case in CASES, f'Missing real-runtime external source case {case} (SC10/11/15)'
+E   AssertionError: Missing real-runtime external source case denied-redirect (SC10/11/15)
+E   assert 'denied-redirect' in {'duplicates', 'failed-discover', 'failed-extract', 'feed-cap', 'pending-discover', 'pending-extract', ...}
+______ test_realistic_source_fixture_seams_are_declared[delayed-discover] ______
+tests/test_claude_code_revision.py:86: in test_realistic_source_fixture_seams_are_declared
+    assert case in CASES, f'Missing real-runtime external source case {case} (SC10/11/15)'
+E   AssertionError: Missing real-runtime external source case delayed-discover (SC10/11/15)
+E   assert 'delayed-discover' in {'duplicates', 'failed-discover', 'failed-extract', 'feed-cap', 'pending-discover', 'pending-extract', ...}
+______ test_realistic_source_fixture_seams_are_declared[delayed-extract] _______
+tests/test_claude_code_revision.py:86: in test_realistic_source_fixture_seams_are_declared
+    assert case in CASES, f'Missing real-runtime external source case {case} (SC10/11/15)'
+E   AssertionError: Missing real-runtime external source case delayed-extract (SC10/11/15)
+E   assert 'delayed-extract' in {'duplicates', 'failed-discover', 'failed-extract', 'feed-cap', 'pending-discover', 'pending-extract', ...}
+_ test_native_report_accepts_nested_manifest_errors_and_retains_listing_warnings _
+tests/test_claude_code_revision.py:90: in test_native_report_accepts_nested_manifest_errors_and_retains_listing_warnings
+    parse = planned_helper(package_tests, 'parse_native_report', 'actual nested native validation report (FR12)')
+tests/test_claude_code_revision.py:22: in planned_helper
+    assert callable(helper), f'Missing {requirement}: callable {module.__name__}.{name}'
+E   AssertionError: Missing actual nested native validation report (FR12): callable tests.test_claude_code_plugin.parse_native_report
+E   assert False
+E    +  where False = callable(None)
+_ test_host_stream_counter_excludes_schema_and_checks_actual_evidence_correlation _
+tests/test_claude_code_revision.py:133: in test_host_stream_counter_excludes_schema_and_checks_actual_evidence_correlation
+    reduce = planned_helper(host_module(), 'reduce_stream', 'host/domain/evidence trace reducer (FR14)')
+tests/test_claude_code_revision.py:28: in host_module
+    assert path.is_file(), 'Missing opt-in real-host stream parser/supervisor module (FR14)'
+E   AssertionError: Missing opt-in real-host stream parser/supervisor module (FR14)
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/claude_code_host_smoke.py').is_file
+_ test_host_stream_rejects_false_completion_and_unexpected_execution[article-extract] _
+tests/test_claude_code_revision.py:145: in test_host_stream_rejects_false_completion_and_unexpected_execution
+    reduce = planned_helper(host_module(), 'reduce_stream', 'host trace adverse-case detector (FR14)')
+tests/test_claude_code_revision.py:28: in host_module
+    assert path.is_file(), 'Missing opt-in real-host stream parser/supervisor module (FR14)'
+E   AssertionError: Missing opt-in real-host stream parser/supervisor module (FR14)
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/claude_code_host_smoke.py').is_file
+_ test_host_stream_rejects_false_completion_and_unexpected_execution[seventh-domain] _
+tests/test_claude_code_revision.py:145: in test_host_stream_rejects_false_completion_and_unexpected_execution
+    reduce = planned_helper(host_module(), 'reduce_stream', 'host trace adverse-case detector (FR14)')
+tests/test_claude_code_revision.py:28: in host_module
+    assert path.is_file(), 'Missing opt-in real-host stream parser/supervisor module (FR14)'
+E   AssertionError: Missing opt-in real-host stream parser/supervisor module (FR14)
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/claude_code_host_smoke.py').is_file
+_ test_host_stream_rejects_false_completion_and_unexpected_execution[wrong-owner] _
+tests/test_claude_code_revision.py:145: in test_host_stream_rejects_false_completion_and_unexpected_execution
+    reduce = planned_helper(host_module(), 'reduce_stream', 'host trace adverse-case detector (FR14)')
+tests/test_claude_code_revision.py:28: in host_module
+    assert path.is_file(), 'Missing opt-in real-host stream parser/supervisor module (FR14)'
+E   AssertionError: Missing opt-in real-host stream parser/supervisor module (FR14)
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/claude_code_host_smoke.py').is_file
+_ test_host_stream_rejects_false_completion_and_unexpected_execution[auth-final] _
+tests/test_claude_code_revision.py:145: in test_host_stream_rejects_false_completion_and_unexpected_execution
+    reduce = planned_helper(host_module(), 'reduce_stream', 'host trace adverse-case detector (FR14)')
+tests/test_claude_code_revision.py:28: in host_module
+    assert path.is_file(), 'Missing opt-in real-host stream parser/supervisor module (FR14)'
+E   AssertionError: Missing opt-in real-host stream parser/supervisor module (FR14)
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/claude_code_host_smoke.py').is_file
+_ test_host_stream_rejects_false_completion_and_unexpected_execution[truncated] _
+tests/test_claude_code_revision.py:145: in test_host_stream_rejects_false_completion_and_unexpected_execution
+    reduce = planned_helper(host_module(), 'reduce_stream', 'host trace adverse-case detector (FR14)')
+tests/test_claude_code_revision.py:28: in host_module
+    assert path.is_file(), 'Missing opt-in real-host stream parser/supervisor module (FR14)'
+E   AssertionError: Missing opt-in real-host stream parser/supervisor module (FR14)
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/claude_code_host_smoke.py').is_file
+__ test_host_stream_rejects_false_completion_and_unexpected_execution[shell] ___
+tests/test_claude_code_revision.py:145: in test_host_stream_rejects_false_completion_and_unexpected_execution
+    reduce = planned_helper(host_module(), 'reduce_stream', 'host trace adverse-case detector (FR14)')
+tests/test_claude_code_revision.py:28: in host_module
+    assert path.is_file(), 'Missing opt-in real-host stream parser/supervisor module (FR14)'
+E   AssertionError: Missing opt-in real-host stream parser/supervisor module (FR14)
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/claude_code_host_smoke.py').is_file
+_ test_finite_delay_is_observed_before_unsynchronized_pending[delayed-discover-2] _
+tests/test_claude_code_revision.py:167: in test_finite_delay_is_observed_before_unsynchronized_pending
+    assert case in CASES, f'Missing finite response-delay fixture {case} (SC11)'
+E   AssertionError: Missing finite response-delay fixture delayed-discover (SC11)
+E   assert 'delayed-discover' in {'duplicates', 'failed-discover', 'failed-extract', 'feed-cap', 'pending-discover', 'pending-extract', ...}
+_ test_finite_delay_is_observed_before_unsynchronized_pending[delayed-extract-4] _
+tests/test_claude_code_revision.py:167: in test_finite_delay_is_observed_before_unsynchronized_pending
+    assert case in CASES, f'Missing finite response-delay fixture {case} (SC11)'
+E   AssertionError: Missing finite response-delay fixture delayed-extract (SC11)
+E   assert 'delayed-extract' in {'duplicates', 'failed-discover', 'failed-extract', 'feed-cap', 'pending-discover', 'pending-extract', ...}
+_____ test_no_product_real_recipe_stops_without_extract_or_extra_discovery _____
+tests/test_claude_code_revision.py:192: in test_no_product_real_recipe_stops_without_extract_or_extra_discovery
+    assert 'index-no-product' in CASES, 'Missing no-product real discovery fixture (SC10b)'
+E   AssertionError: Missing no-product real discovery fixture (SC10b)
+E   assert 'index-no-product' in {'duplicates', 'failed-discover', 'failed-extract', 'feed-cap', 'pending-discover', 'pending-extract', ...}
+___ test_native_host_gate_requires_opt_in_normal_access_and_known_turn_limit ___
+tests/test_claude_code_revision.py:210: in test_native_host_gate_requires_opt_in_normal_access_and_known_turn_limit
+    assess = planned_helper(host_module(), 'assess_preflight', 'non-inference host eligibility gate (FR14)')
+tests/test_claude_code_revision.py:28: in host_module
+    assert path.is_file(), 'Missing opt-in real-host stream parser/supervisor module (FR14)'
+E   AssertionError: Missing opt-in real-host stream parser/supervisor module (FR14)
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/claude_code_host_smoke.py').is_file
+______ test_disabled_preflight_and_ineligible_host_runner_launch_nothing _______
+tests/test_claude_code_revision.py:223: in test_disabled_preflight_and_ineligible_host_runner_launch_nothing
+    module = host_module()
+tests/test_claude_code_revision.py:28: in host_module
+    assert path.is_file(), 'Missing opt-in real-host stream parser/supervisor module (FR14)'
+E   AssertionError: Missing opt-in real-host stream parser/supervisor module (FR14)
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/claude_code_host_smoke.py').is_file
+_____ test_host_argv_and_runner_supervisor_wiring_are_literal_and_bounded ______
+tests/test_claude_code_revision.py:239: in test_host_argv_and_runner_supervisor_wiring_are_literal_and_bounded
+    module = host_module()
+tests/test_claude_code_revision.py:28: in host_module
+    assert path.is_file(), 'Missing opt-in real-host stream parser/supervisor module (FR14)'
+E   AssertionError: Missing opt-in real-host stream parser/supervisor module (FR14)
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/claude_code_host_smoke.py').is_file
+________ test_supervisor_really_terminates_and_reaps_controlled_process ________
+tests/test_claude_code_revision.py:281: in test_supervisor_really_terminates_and_reaps_controlled_process
+    module = host_module()
+tests/test_claude_code_revision.py:28: in host_module
+    assert path.is_file(), 'Missing opt-in real-host stream parser/supervisor module (FR14)'
+E   AssertionError: Missing opt-in real-host stream parser/supervisor module (FR14)
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/claude_code_host_smoke.py').is_file
+=========================== short test summary info ============================
+FAILED tests/test_claude_code_revision.py::test_skill_domain_budget_excludes_schema_loading_and_explains_preflight
+FAILED tests/test_claude_code_revision.py::test_schema_preflight_preserves_exact_server_names_without_domain_probes
+FAILED tests/test_claude_code_revision.py::test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls0-https://store.example/products/widget]
+FAILED tests/test_claude_code_revision.py::test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls1-https://store.example/products/a]
+FAILED tests/test_claude_code_revision.py::test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls2-https://store.example/products/a]
+FAILED tests/test_claude_code_revision.py::test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls3-None]
+FAILED tests/test_claude_code_revision.py::test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls4-None]
+FAILED tests/test_claude_code_revision.py::test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls5-None]
+FAILED tests/test_claude_code_revision.py::test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls6-None]
+FAILED tests/test_claude_code_revision.py::test_deterministic_product_selection_excludes_articles_and_encoded_escape[urls7-https://store.example/p/widget]
+FAILED tests/test_claude_code_revision.py::test_source_setup_and_compatibility_notes_are_actionable_and_attributed
+FAILED tests/test_claude_code_revision.py::test_realistic_source_fixture_seams_are_declared[index-blog-first]
+FAILED tests/test_claude_code_revision.py::test_realistic_source_fixture_seams_are_declared[index-no-product]
+FAILED tests/test_claude_code_revision.py::test_realistic_source_fixture_seams_are_declared[product-redirect]
+FAILED tests/test_claude_code_revision.py::test_realistic_source_fixture_seams_are_declared[denied-redirect]
+FAILED tests/test_claude_code_revision.py::test_realistic_source_fixture_seams_are_declared[delayed-discover]
+FAILED tests/test_claude_code_revision.py::test_realistic_source_fixture_seams_are_declared[delayed-extract]
+FAILED tests/test_claude_code_revision.py::test_native_report_accepts_nested_manifest_errors_and_retains_listing_warnings
+FAILED tests/test_claude_code_revision.py::test_host_stream_counter_excludes_schema_and_checks_actual_evidence_correlation
+FAILED tests/test_claude_code_revision.py::test_host_stream_rejects_false_completion_and_unexpected_execution[article-extract]
+FAILED tests/test_claude_code_revision.py::test_host_stream_rejects_false_completion_and_unexpected_execution[seventh-domain]
+FAILED tests/test_claude_code_revision.py::test_host_stream_rejects_false_completion_and_unexpected_execution[wrong-owner]
+FAILED tests/test_claude_code_revision.py::test_host_stream_rejects_false_completion_and_unexpected_execution[auth-final]
+FAILED tests/test_claude_code_revision.py::test_host_stream_rejects_false_completion_and_unexpected_execution[truncated]
+FAILED tests/test_claude_code_revision.py::test_host_stream_rejects_false_completion_and_unexpected_execution[shell]
+FAILED tests/test_claude_code_revision.py::test_finite_delay_is_observed_before_unsynchronized_pending[delayed-discover-2]
+FAILED tests/test_claude_code_revision.py::test_finite_delay_is_observed_before_unsynchronized_pending[delayed-extract-4]
+FAILED tests/test_claude_code_revision.py::test_no_product_real_recipe_stops_without_extract_or_extra_discovery
+FAILED tests/test_claude_code_revision.py::test_native_host_gate_requires_opt_in_normal_access_and_known_turn_limit
+FAILED tests/test_claude_code_revision.py::test_disabled_preflight_and_ineligible_host_runner_launch_nothing
+FAILED tests/test_claude_code_revision.py::test_host_argv_and_runner_supervisor_wiring_are_literal_and_bounded
+FAILED tests/test_claude_code_revision.py::test_supervisor_really_terminates_and_reaps_controlled_process
+32 failed in 0.96s

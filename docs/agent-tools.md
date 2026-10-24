@@ -3,8 +3,11 @@
 The opt-in `shopextract.tools` Python API and official MCP stdio server expose
 read-only discovery, extraction, matching, reliable changes and captured evidence.
 They run locally under MIT without a model, hosted account or paid feature gate.
-Install `pip install -e '.[dev,mcp]'` for development/verification, or
-`pip install 'shopextract[mcp]'` for the server. Python3.10 remains supported;
+Prepare the reviewed source checkout's pinned taxonomy first, then install
+`pip install -e '.[dev,mcp]'` for development/verification or
+`pip install -e '.[mcp]'` for the server. The [plugin source setup guide](../integrations/claude-code/README.md#trusted-operator-setup)
+shows bootstrap/cache prerequisites before that install. The user-reported PyPI
+0.1.2 distribution lacks this source-only MCP route; do not substitute it. Python3.10 remains supported;
 the optional MCP dependency is the supported v1 maintenance line `>=1.30,<2`.
 Existing root extraction/monitoring APIs, constructors and feed defaults retain
 their defaults. New security restrictions apply to this opt-in tool surface.
