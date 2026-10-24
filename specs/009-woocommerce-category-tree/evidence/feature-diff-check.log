@@ -1,0 +1,21 @@
+src/shopextract/categories/woo_tree.py: exit 1
+tests/test_woo_tree_acceptance.py: exit 1
+tests/test_woo_tree_mechanisms.py: exit 1
+tests/test_woo_tree_live_oracle.py: exit 1
+tests/woo_tree_stress_driver.py: exit 1
+tests/woo_tree_live_driver.py: exit 1
+docs/woocommerce-category-tree.md: exit 1
+docs/category-mapping.md: exit 1
+specs/009-woocommerce-category-tree/status.md: exit 1
+specs/009-woocommerce-category-tree/components.md: exit 1
+specs/009-woocommerce-category-tree/test-design.md: exit 1
+specs/009-woocommerce-category-tree/tasks.md: exit 1
+specs/009-woocommerce-category-tree/verification.md: exit 1
+specs/009-woocommerce-category-tree/research.md: exit 1
+specs/009-woocommerce-category-tree/reviews.md: exit 1
+specs/009-woocommerce-category-tree/plan.md: exit 1
+specs/009-woocommerce-category-tree/spec.md: exit 1
+specs/009-woocommerce-category-tree/skeleton.md: exit 1
+
+Note: no-index exit1 reflects differences from /dev/null; no whitespace diagnostics were emitted.
+Independent trailing-whitespace scan: PASS (18 files, no trailing whitespace)

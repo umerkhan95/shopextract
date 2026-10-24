@@ -1,0 +1,14 @@
+{
+  "provenance": "independent_controlled_synthetic_review_probe",
+  "reviewer": "/root/woo_reviewer",
+  "production_mutation": false,
+  "network": "mock transport and controlled public resolver; no live network",
+  "cases": [
+    {"case": "invalid_ipv6", "input": "https://[broken", "actual": "ValueError", "expected": "unavailable/unsafe_url; no network"},
+    {"case": "escaped_unpaired_surrogate", "input": "valid UTF-8 JSON category name containing escaped U+D800", "actual": "UnicodeEncodeError", "expected": "malformed result, or partial with prior valid pages; no exception"},
+    {"case": "tampered_native_raw", "input": "captured native-ID raw_value replaced with 99 while normalized ID/ref/evidence still 1", "actual": "linked", "expected": "unsupported; retained source must agree"}
+  ],
+  "count": 3,
+  "elapsed_seconds": 1.437,
+  "repeat_required": "predesign acceptance fixtures and save red before repairs"
+}

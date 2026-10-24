@@ -1,0 +1,182 @@
+{
+  "provenance": "deterministic_synthetic_controlled_http",
+  "seed": "00920261024",
+  "workers": 1,
+  "deadline_seconds": 60,
+  "rss_limit_bytes": 268435456,
+  "rss_enforcement": "observed peak check after each case; not OS memory reservation",
+  "planned_count": 24,
+  "results": [
+    {
+      "case": "topology_orphan",
+      "outcome": "complete",
+      "nodes": 1,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "topology_self",
+      "outcome": "complete",
+      "nodes": 1,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "topology_cycle",
+      "outcome": "complete",
+      "nodes": 2,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "depth_7",
+      "outcome": "complete",
+      "nodes": 8,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "depth_8",
+      "outcome": "complete",
+      "nodes": 9,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "depth_9",
+      "outcome": "complete",
+      "nodes": 10,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "pagination_repeat",
+      "outcome": "partial",
+      "nodes": 2,
+      "attempts": 2,
+      "passed": true
+    },
+    {
+      "case": "pagination_conflict",
+      "outcome": "partial",
+      "nodes": 1,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "pagination_reorder",
+      "outcome": "complete",
+      "nodes": 2,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "pagination_drift",
+      "outcome": "partial",
+      "nodes": 3,
+      "attempts": 2,
+      "passed": true
+    },
+    {
+      "case": "terminal_fit",
+      "outcome": "complete",
+      "nodes": 2,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "later_failure",
+      "outcome": "partial",
+      "nodes": 2,
+      "attempts": 2,
+      "passed": true
+    },
+    {
+      "case": "requests_fit",
+      "outcome": "complete",
+      "nodes": 3,
+      "attempts": 2,
+      "passed": true
+    },
+    {
+      "case": "requests_exhausted",
+      "outcome": "partial",
+      "nodes": 2,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "items_1000_fit",
+      "outcome": "complete",
+      "nodes": 1000,
+      "attempts": 10,
+      "passed": true
+    },
+    {
+      "case": "items_above_cap",
+      "outcome": "partial",
+      "nodes": 2,
+      "attempts": 2,
+      "passed": true
+    },
+    {
+      "case": "body_exact_fit",
+      "outcome": "complete",
+      "nodes": 1,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "body_one_over",
+      "outcome": "unavailable",
+      "nodes": 0,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "retained_fit",
+      "outcome": "complete",
+      "nodes": 1,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "retained_overhead_over",
+      "outcome": "unavailable",
+      "nodes": 0,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "duplicate_and_bytes",
+      "outcome": "unavailable",
+      "nodes": 0,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "partial_replay",
+      "outcome": "partial",
+      "nodes": 2,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "two_scopes_same_id",
+      "outcome": "complete",
+      "nodes": 1,
+      "attempts": 1,
+      "passed": true
+    },
+    {
+      "case": "cancel_after_redirect",
+      "outcome": "unavailable",
+      "nodes": 0,
+      "attempts": 2,
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "elapsed_seconds": 8.711,
+  "peak_rss_bytes": 145375232
+}
