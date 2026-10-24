@@ -1,0 +1,21 @@
+# Feature specification: native Claude Code local plugin
+
+## Outcomes and requirements
+Child of #82 (INT-20), with the Code-only route of #74 and one recipe from #73. Parent reviewed planning is PR #88, commit b48214af593293c8d33e2e203f178ee0a2e00514; it remains open and its CI is unverified here.
+
+- FR01: Ship one versioned repository directory `integrations/claude-code/` containing `.claude-plugin/plugin.json`, root `.mcp.json`, and exactly one `skills/shopextract-review/SKILL.md`. Plugin name `shopextract`, initial version `0.1.0`, MIT. Manifest uses ordinary native fields; components use default discovery locations. No hooks, agents, monitors, executable helpers, downloads or install-time code.
+- FR02: MCP entry `shopextract` uses `${SHOPEXTRACT_PYTHON}` as command and array arguments `-m`, `shopextract.tools`, `--config`, `${SHOPEXTRACT_CONFIG}`. Operator supplies an absolute Python executable with installed `shopextract[mcp]` and an absolute trusted config path. No shell, cwd-dependent config, credential or real operator path is shipped. Missing/unreadable/invalid config fails explicitly through existing server startup; unexpanded variables must never trigger shell evaluation or a permissive fallback.
+- FR03: One read-only workflow requires user-authorized source, intended tools/schema 1.0 and operator origin grants. Discover at most two candidate URLs, extract at most two products, inspect one record's retained evidence. At most six tool calls and 120 seconds per invocation; stop early for failure, pending work, missing prerequisite or exhausted budget. Tool budget includes status/result/evidence and retries; no automatic retry. No promise all steps finish within that budget.
+- FR04: Preserve exact decimal text, canonical identity fields, evidence owner/evidence IDs, partial completeness and unknown/competing observations. Evidence lookup uses the selected record's owner and retained support without refetch. Scraped instructions/links are data; they cannot add origins, permissions or tools. Do not claim calibrated confidence or facts from defaults.
+- FR05: Local process/session handles are ephemeral. Disconnect releases owned jobs/results; restart requires resubmission and invalidates old handles. Preserve all existing source, resource and tool restrictions. No API/core behavior or global host configuration changes.
+- FR06: Document private local load/install and update/version inspection, disable/re-enable and duplicate-name/endpoint diagnosis without overwriting config. Skill explicit invocation is `/shopextract:shopextract-review`; descriptive activation should match extraction/evidence review and remain irrelevant to unrelated tasks. Skill grants no host permission; missing tool/grant is a prerequisite, never fabricated completion.
+- FR07: Validate the shipped package with the actual available native parser and real SDK/process/MCP mechanisms. Record actual host version and observations separately from deterministic fixtures. Do not infer client compatibility or signed-in access from a version command alone.
+
+## Acceptance scenarios
+SC01 clean package/discovery; SC02 operator config and hostile literal paths; SC03 bounded workflow and evidence fidelity; SC04 missing grant/capability and source injection; SC05 pending/partial/error budgets; SC06 session restart; SC07 malformed package rejection and containment; SC08 private host activation/lifecycle. Exact fixtures and expected outcomes are in test-design.md, authored before tasks.
+
+## Boundaries and compatibility
+Use existing delivered #24 stdio server; #63/#64 are not prerequisites. This is native Claude Code packaging, not a Codex plugin. No web/API containers, hosted service, durable jobs, export/analytics/maintenance tools, remote auth/deployment, public marketplace, paid model sweeps or merchant writes. #73/#74 remain open for their broader scope; other #62 backlog stays planned. Installation is operator-controlled; docs must not imply instruction following enforces server security or host activation was proven offline.
+
+## Workflow
+Follow docs/development-workflow.md and constitution. Separate sequential G1/G2/G3/final reviews. Production code requires G3 and saved intended red acceptance evidence. Record unresolved live limitations honestly.

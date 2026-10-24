@@ -1,0 +1,90 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFsF                                                                    [100%]
+=================================== FAILURES ===================================
+__________________ test_native_manifest_and_component_layout ___________________
+
+    def test_native_manifest_and_component_layout():
+>       manifest = json.loads(required(PLUGIN / '.claude-plugin' / 'plugin.json'))
+
+tests/test_claude_code_plugin.py:20:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/integrations/claude-code/.claude-plugin/plugin.json')
+
+    def required(path):
+>       assert path.is_file(), f'Missing native plugin acceptance artifact: {path.relative_to(ROOT)}'
+E       AssertionError: Missing native plugin acceptance artifact: integrations/claude-code/.claude-plugin/plugin.json
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/integrations/claude-code/.claude-plugin/plugin.json').is_file
+
+tests/test_claude_code_plugin.py:15: AssertionError
+______ test_direct_mcp_declaration_has_only_trusted_operator_placeholders ______
+
+    def test_direct_mcp_declaration_has_only_trusted_operator_placeholders():
+>       mcp = json.loads(required(PLUGIN / '.mcp.json'))
+
+tests/test_claude_code_plugin.py:33:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/integrations/claude-code/.mcp.json')
+
+    def required(path):
+>       assert path.is_file(), f'Missing native plugin acceptance artifact: {path.relative_to(ROOT)}'
+E       AssertionError: Missing native plugin acceptance artifact: integrations/claude-code/.mcp.json
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/integrations/claude-code/.mcp.json').is_file
+
+tests/test_claude_code_plugin.py:15: AssertionError
+__________ test_skill_preserves_instruction_and_permission_boundaries __________
+
+    def test_skill_preserves_instruction_and_permission_boundaries():
+>       skill = required(PLUGIN / 'skills' / 'shopextract-review' / 'SKILL.md')
+
+tests/test_claude_code_plugin.py:44:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/integrations/claude-code/skills/shopextract-review/SKILL.md')
+
+    def required(path):
+>       assert path.is_file(), f'Missing native plugin acceptance artifact: {path.relative_to(ROOT)}'
+E       AssertionError: Missing native plugin acceptance artifact: integrations/claude-code/skills/shopextract-review/SKILL.md
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/integrations/claude-code/skills/shopextract-review/SKILL.md').is_file
+
+tests/test_claude_code_plugin.py:15: AssertionError
+___ test_declared_launch_initializes_real_server_with_literal_hostile_paths ____
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-147/test_declared_launch_initializ0')
+
+    @pytest.mark.asyncio
+    async def test_declared_launch_initializes_real_server_with_literal_hostile_paths(tmp_path):
+        # Fail on missing declaration before importing optional SDK: intended package red.
+        executable = tmp_path / 'python space ; $(touch SENTINEL) "é"'
+        config = tmp_path / 'config space ; $(touch SENTINEL) "é".json'
+>       command, args = declared_launch(executable, config)
+
+tests/test_claude_code_workflow.py:28:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+executable = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-147/test_declared_launch_initializ0/python space ; $(touch SENTINEL) "é"')
+config = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-147/test_declared_launch_initializ0/config space ; $(touch SENTINEL) "é".json')
+
+    def declared_launch(executable, config):
+        path = PLUGIN / '.mcp.json'
+>       assert path.is_file(), 'Missing native plugin MCP declaration for real SDK launch'
+E       AssertionError: Missing native plugin MCP declaration for real SDK launch
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/integrations/claude-code/.mcp.json').is_file
+
+tests/test_claude_code_workflow.py:16: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_claude_code_plugin.py::test_native_manifest_and_component_layout
+FAILED tests/test_claude_code_plugin.py::test_direct_mcp_declaration_has_only_trusted_operator_placeholders
+FAILED tests/test_claude_code_plugin.py::test_skill_preserves_instruction_and_permission_boundaries
+FAILED tests/test_claude_code_workflow.py::test_declared_launch_initializes_real_server_with_literal_hostile_paths
+4 failed, 1 skipped in 0.27s

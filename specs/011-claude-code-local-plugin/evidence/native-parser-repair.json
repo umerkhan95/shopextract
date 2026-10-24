@@ -1,0 +1,12 @@
+{
+  "command": [
+    "claude",
+    "plugin",
+    "validate",
+    "<plugin-directory>"
+  ],
+  "disposable_profile": true,
+  "exit_code": 1,
+  "stdout": "Invalid API key \u00b7 Please run /login\n",
+  "stderr": ""
+}
