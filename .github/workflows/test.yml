@@ -28,7 +28,7 @@ jobs:
           allow-download: "true"
 
       - name: Install dependencies
-        run: pip install -e ".[dev,mcp]"
+        run: pip install -e ".[dev,mcp]" pyarrow
 
       - name: Optional SDK import compatibility
         run: |
@@ -57,5 +57,8 @@ jobs:
           root = Path(os.environ['RUNNER_TEMP']) / 'shopextract-tests'
           for path in sorted(root.glob('*.log')):
               print(f'Failure diagnostics: {path.name}')
-              print(path.read_bytes()[-16000:].decode('utf-8', errors='replace'))
+              with path.open('rb') as log:
+                  log.seek(0, 2)
+                  log.seek(max(0, log.tell() - 16000))
+                  print(log.read(16000).decode('utf-8', errors='replace'))
           PYCODE

@@ -186,3 +186,50 @@ def test_signal_during_cleanup_is_latched(tmp_path,monkeypatch,signum,code):
     assert sent and result['status']=='interrupted' and result['exit_code']==code
     assert len(result['groups'])==1 and not marker.exists() and not result['groups'][0]['group_alive_after_cleanup']
     assert json.loads((tmp_path/'logs/report.json').read_text())['exit_code']==code
+
+
+def test_owned_group_reaping_preserves_unrelated_child():
+    """An adopted owned zombie is collected without stealing another child's status."""
+    d=driver();reader,writer=os.pipe();pid=os.fork()
+    if pid==0:
+        os.close(reader);os.setsid();os.write(writer,b'1');os._exit(0)
+    os.close(writer)
+    unrelated=subprocess.Popen(command('import time;time.sleep(.3);raise SystemExit(7)'),start_new_session=True)
+    try:
+        assert os.read(reader,1)==b'1'
+        deadline=time.monotonic()+1
+        while time.monotonic()<deadline:
+            d._reap_group(pid,deadline)
+            try:os.kill(pid,0)
+            except ProcessLookupError:break
+            time.sleep(.005)
+        else:pytest.fail('owned zombie was not reaped')
+        assert unrelated.wait(timeout=1)==7
+    finally:
+        os.close(reader)
+        try:os.kill(pid,signal.SIGKILL);os.waitpid(pid,0)
+        except (ProcessLookupError,ChildProcessError):pass
+        if unrelated.poll() is None:unrelated.kill();unrelated.wait()
+
+
+def test_group_reaping_waits_for_popen_leader_status(tmp_path,monkeypatch):
+    d=driver();owned=[];original=subprocess.Popen;reap=d._reap_group
+    def launch(*args,**kwargs):
+        process=original(*args,**kwargs);owned.append(process);return process
+    def checked_reap(pgid,deadline):
+        assert next(p for p in owned if p.pid==pgid).returncode is not None
+        return reap(pgid,deadline)
+    monkeypatch.setattr(subprocess,'Popen',launch);monkeypatch.setattr(d,'_reap_group',checked_reap)
+    result=d.run_plan((d.TestGroup('exit7',command('raise SystemExit(7)')),),tmp_path,group_seconds=1,total_seconds=2)
+    assert result['exit_code']==7 and result['groups'][0]['returncode']==7
+
+
+def test_subreaper_state_restored_and_setup_failure_stops_launch(tmp_path,monkeypatch):
+    d=driver();previous=d._subreaper()
+    result=d.run_plan((d.TestGroup('ok',command('pass')),),tmp_path/'ok',group_seconds=1,total_seconds=2)
+    assert result['status']=='passed' and d._subreaper()==previous
+    def denied(*args):raise OSError('controlled subreaper setup failure')
+    monkeypatch.setattr(d,'_subreaper',denied)
+    result=d.run_plan((d.TestGroup('never',command('pass')),),tmp_path/'denied',group_seconds=1,total_seconds=2)
+    assert result['status']=='failed' and result['groups']==[]
+    assert result['error']=='subreaper_unavailable'

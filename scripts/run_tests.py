@@ -34,6 +34,33 @@ class _Interrupted(BaseException):
     def __init__(self,signum):self.signum=signum
 
 
+def _subreaper(enabled=None):
+    """Temporarily adopt orphan descendants on Linux; retain the caller's setting."""
+    if sys.platform != 'linux':
+        return None
+    import ctypes
+    libc = ctypes.CDLL(None, use_errno=True)
+    previous = ctypes.c_int()
+    if libc.prctl(37, ctypes.byref(previous), 0, 0, 0) != 0:
+        raise OSError(ctypes.get_errno(), 'Cannot query child subreaper')
+    if enabled is not None and libc.prctl(36, int(enabled), 0, 0, 0) != 0:
+        raise OSError(ctypes.get_errno(), 'Cannot configure child subreaper')
+    return previous.value
+
+
+def _reap_group(pgid, deadline):
+    """Reap only adopted children of this group, after Popen reaped its leader."""
+    while time.monotonic() < deadline:
+        try:
+            pid, _ = os.waitpid(-pgid, os.WNOHANG)
+        except ChildProcessError:
+            break
+        except InterruptedError:
+            continue
+        if pid == 0:
+            break
+
+
 def _group_exists(pid):
     try:os.killpg(pid,0);return True
     except ProcessLookupError:return False
@@ -55,17 +82,21 @@ def _signal_group(pid,signum):
 def _cleanup(process,deadline):
     """TERM then KILL the whole owned group; reap leader and allow descendant reaping."""
     started=time.monotonic()
+    def reap():
+        if process.poll() is not None:
+            _reap_group(process.pid, deadline)
+    reap()
     if _group_exists(process.pid):
         _signal_group(process.pid,signal.SIGTERM)
         term_until=min(deadline,time.monotonic()+min(.5,max(0,deadline-time.monotonic())/2))
         while time.monotonic()<term_until:
-            process.poll()
+            reap()
             if not _group_exists(process.pid):break
             time.sleep(min(.005,max(0,term_until-time.monotonic())))
         if _group_exists(process.pid):
             _signal_group(process.pid,signal.SIGKILL)
         while time.monotonic()<deadline:
-            process.poll()
+            reap()
             if not _group_exists(process.pid):break
             time.sleep(min(.005,max(0,deadline-time.monotonic())))
     try:process.wait(timeout=max(.001,deadline-time.monotonic()))
@@ -92,6 +123,7 @@ def run_plan(plan,output_dir,*,group_seconds=240,total_seconds=480):
     def save():
         report['elapsed_seconds']=round(time.monotonic()-started,6)
         (output_dir/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+    previous_reaper=None
     previous={sig:signal.getsignal(sig) for sig in (signal.SIGINT,signal.SIGTERM)}
     requested=[None]
     def interrupted(signum,frame):requested[0]=signum
@@ -99,6 +131,12 @@ def run_plan(plan,output_dir,*,group_seconds=240,total_seconds=480):
         if requested[0] is not None:raise _Interrupted(requested[0])
     for sig in previous:signal.signal(sig,interrupted)
     try:
+        try:
+            previous_reaper=_subreaper(True)
+        except OSError:
+            report.update(status='failed',exit_code=1,error='subreaper_unavailable')
+            save()
+            return report
         for group in plan:
             checkpoint()
             current=time.monotonic();group_deadline=min(current+group_seconds,total_deadline)
@@ -149,7 +187,14 @@ def run_plan(plan,output_dir,*,group_seconds=240,total_seconds=480):
         save()
         return report
     finally:
-        for sig,handler in previous.items():signal.signal(sig,handler)
+        try:
+            if previous_reaper is not None:
+                _subreaper(previous_reaper)
+        except OSError:
+            report.update(status='failed',exit_code=1,error='subreaper_restore_failed')
+            save()
+        finally:
+            for sig,handler in previous.items():signal.signal(sig,handler)
 
 
 def _cap(maximum):
