@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShopExtract category-runtime",
+  "x-contract-version": "native",
+  "type": "object",
+  "properties": {
+    "options": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "object",
+          "properties": {
+            "platform": {
+              "enum": [
+                "shopify",
+                "woocommerce",
+                "magento",
+                "bigcommerce",
+                "shopware",
+                "generic"
+              ]
+            },
+            "store_url": {
+              "type": "string"
+            },
+            "catalog": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "channel": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "locale": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "platform",
+            "store_url"
+          ],
+          "additionalProperties": false
+        },
+        "registry": {
+          "type": "object",
+          "properties": {
+            "namespace": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "target_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "namespace",
+            "version",
+            "target_ids"
+          ],
+          "additionalProperties": false
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rule_id": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "selector": {
+                "type": "object",
+                "properties": {
+                  "namespace": {
+                    "type": "string"
+                  },
+                  "taxonomy_version": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "scope": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "platform": {
+                            "enum": [
+                              "shopify",
+                              "woocommerce",
+                              "magento",
+                              "bigcommerce",
+                              "shopware",
+                              "generic"
+                            ]
+                          },
+                          "store_url": {
+                            "type": "string"
+                          },
+                          "catalog": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "channel": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "locale": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "platform",
+                          "store_url"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "native_id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "raw_label": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "raw_path": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "allow_unknown_version": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "namespace",
+                  "taxonomy_version"
+                ],
+                "additionalProperties": false
+              },
+              "target_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "rule_id",
+              "version",
+              "selector",
+              "target_ids"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "terms": {
+              "type": "integer"
+            },
+            "relation_refs": {
+              "type": "integer"
+            },
+            "ancestry_depth": {
+              "type": "integer"
+            },
+            "record_bytes": {
+              "type": "integer"
+            },
+            "rules": {
+              "type": "integer"
+            },
+            "targets": {
+              "type": "integer"
+            },
+            "config_bytes": {
+              "type": "integer"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "scope",
+        "registry"
+      ],
+      "additionalProperties": false
+    },
+    "profile_bindings": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "options"
+  ],
+  "additionalProperties": false
+}

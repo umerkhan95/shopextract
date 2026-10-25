@@ -23,12 +23,39 @@ async def compare(
     *,
     max_per_store: int = _DEFAULT_MAX_PER_STORE,
     threshold: float = _DEFAULT_THRESHOLD,
+    currency_safe: bool = False,
 ) -> ComparisonResult:
     """Compare prices for a product query across multiple stores.
 
     Extracts products from each store, fuzzy-matches titles against
     the query, and returns matches sorted by price.
     """
+    if currency_safe:
+        from .._models import SafeComparison, SourceStatus
+        from .._analysis_safe import source_status, observed_currency
+        from .._execution import safe_error
+        report = SafeComparison(query)
+        grouped = {}
+        for store in stores:
+            try:
+                result = await extract(store, max_urls=max_per_store)
+            except (TimeoutError, asyncio.CancelledError):
+                raise
+            except Exception as exc:
+                report.sources.append(SourceStatus(store, False, False, [safe_error(str(exc))]))
+                continue
+            report.sources.append(source_status(store, result))
+            for index, product in enumerate(result.products):
+                matches = _collect_matches(query, [store], [type(result)(products=[product])], threshold)
+                currency = observed_currency(product, product.raw_data)
+                for match in matches:
+                    match.currency = currency or ""
+                    if currency:
+                        grouped.setdefault(currency, []).append(match)
+                    else:
+                        report.unranked.append(match)
+        report.currency_groups = {currency: _build_result(query, matches) for currency, matches in grouped.items()}
+        return report
     tasks = [extract(store, max_urls=max_per_store) for store in stores]
     results = await asyncio.gather(*tasks, return_exceptions=True)
 

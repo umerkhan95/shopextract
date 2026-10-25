@@ -1,0 +1,51 @@
+{
+  "state": "passed",
+  "provenance": "synthetic-controlled-http",
+  "cases": [
+    {
+      "state": "partial",
+      "usage": {
+        "requests": 2,
+        "tokens": 0,
+        "cost_micros": 0,
+        "reserved_tokens": 0,
+        "reserved_cost_micros": 0,
+        "unknown_requests": 2,
+        "violations": 0
+      },
+      "restart_requests": 0,
+      "window": "before_checkpoint",
+      "os_exit": 91,
+      "execution": {
+        "returncode": 91,
+        "timed_out": false,
+        "seconds": 2.8555353929987177,
+        "cleanup_seconds": 0.0,
+        "pid": 94933
+      }
+    },
+    {
+      "state": "completed",
+      "usage": {
+        "requests": 2,
+        "tokens": 0,
+        "cost_micros": 0,
+        "reserved_tokens": 0,
+        "reserved_cost_micros": 0,
+        "unknown_requests": 0,
+        "violations": 0
+      },
+      "restart_requests": 0,
+      "window": "after_checkpoint",
+      "os_exit": 91,
+      "execution": {
+        "returncode": 91,
+        "timed_out": false,
+        "seconds": 2.826334757002769,
+        "cleanup_seconds": 0.0,
+        "pid": 94942
+      }
+    }
+  ],
+  "seconds": 5.798033333005151
+}

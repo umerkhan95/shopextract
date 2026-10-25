@@ -1,0 +1,16 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_cli_core.py",
+    "-k",
+    "phase_gate",
+    "-q",
+    "--tb=line",
+    "--disable-warnings"
+  ],
+  "returncode": 1,
+  "elapsed_seconds": 2.537,
+  "timeout_seconds": 30
+}

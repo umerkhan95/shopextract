@@ -1,0 +1,21 @@
+{
+  "saved_paths": [
+    ".github/workflows/test.yml",
+    "README.md",
+    "specs/004-agent-tool-api-mcp/status.md",
+    "src/shopextract/_capture.py",
+    "src/shopextract/_extract.py",
+    "src/shopextract/extractors/_opengraph.py",
+    "src/shopextract/extractors/bigcommerce.py",
+    "src/shopextract/extractors/feed.py",
+    "src/shopextract/extractors/magento_graphql.py",
+    "src/shopextract/extractors/unified.py",
+    "src/shopextract/tools/context.py",
+    "src/shopextract/tools/domain.py",
+    "src/shopextract/tools/runtime.py",
+    "src/shopextract/tools/security.py",
+    "src/shopextract/tools/sources.py"
+  ],
+  "already_changed_since_baseline": [],
+  "purpose": "Preserve initial unrelated tracked edits; do not stage or overwrite them accidentally."
+}

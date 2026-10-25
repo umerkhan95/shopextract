@@ -1,0 +1,92 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.FFFFFFFFFFFFFF                                                          [100%]
+=================================== FAILURES ===================================
+E   asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+E   asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+E   asyncio.exceptions.TimeoutError
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/tasks.py:458: asyncio.exceptions.TimeoutError
+E   asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+E   asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+E   asyncio.exceptions.TimeoutError
+------------------------------ Captured log call -------------------------------
+ERROR    asyncio:base_events.py:1758 Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<run() done, defined at /Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py:29> exception=NotImplementedError('Woo category tree acquisition is not implemented')>
+Traceback (most recent call last):
+  File "/Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py", line 34, in run
+    value = await fetch_woocommerce_category_tree(scope, limits=limits, resolver=resolve,
+  File "/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py", line 107, in fetch_woocommerce_category_tree
+    raise NotImplementedError('Woo category tree acquisition is not implemented')
+NotImplementedError: Woo category tree acquisition is not implemented
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/tasks.py:458: asyncio.exceptions.TimeoutError
+E   asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+E   asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+E   asyncio.exceptions.TimeoutError
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/tasks.py:458: asyncio.exceptions.TimeoutError
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+------------------------------ Captured log setup ------------------------------
+ERROR    asyncio:base_events.py:1758 Task exception was never retrieved
+future: <Task finished name='Task-10' coro=<run() done, defined at /Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py:29> exception=NotImplementedError('Woo category tree acquisition is not implemented')>
+Traceback (most recent call last):
+  File "/Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py", line 34, in run
+    value = await fetch_woocommerce_category_tree(scope, limits=limits, resolver=resolve,
+  File "/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py", line 107, in fetch_woocommerce_category_tree
+    raise NotImplementedError('Woo category tree acquisition is not implemented')
+NotImplementedError: Woo category tree acquisition is not implemented
+ERROR    asyncio:base_events.py:1758 Task exception was never retrieved
+future: <Task finished name='Task-14' coro=<run() done, defined at /Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py:29> exception=NotImplementedError('Woo category tree acquisition is not implemented')>
+Traceback (most recent call last):
+  File "/Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py", line 34, in run
+    value = await fetch_woocommerce_category_tree(scope, limits=limits, resolver=resolve,
+  File "/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py", line 107, in fetch_woocommerce_category_tree
+    raise NotImplementedError('Woo category tree acquisition is not implemented')
+NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+E   NotImplementedError: Woo category tree acquisition is not implemented
+/Users/umerkhan/code/shopextract/src/shopextract/categories/woo_tree.py:107: NotImplementedError: Woo category tree acquisition is not implemented
+=========================== short test summary info ============================
+FAILED tests/test_woo_tree_mechanisms.py::test_blocked_body_cancel_deadline_and_external_task_cleanup[event]
+FAILED tests/test_woo_tree_mechanisms.py::test_blocked_body_cancel_deadline_and_external_task_cleanup[deadline]
+FAILED tests/test_woo_tree_mechanisms.py::test_blocked_body_cancel_deadline_and_external_task_cleanup[external_task]
+FAILED tests/test_woo_tree_mechanisms.py::test_response_bytes_below_at_above_boundary[-1]
+FAILED tests/test_woo_tree_mechanisms.py::test_response_bytes_below_at_above_boundary[0]
+FAILED tests/test_woo_tree_mechanisms.py::test_response_bytes_below_at_above_boundary[1]
+FAILED tests/test_woo_tree_mechanisms.py::test_retained_envelope_overhead_exceeds_cap_with_fitting_raw_body
+FAILED tests/test_woo_tree_mechanisms.py::test_reload_rejects_tampered_projection_even_with_recomputed_digest[parent_edges]
+FAILED tests/test_woo_tree_mechanisms.py::test_reload_rejects_tampered_projection_even_with_recomputed_digest[nodes]
+FAILED tests/test_woo_tree_mechanisms.py::test_reload_rejects_tampered_projection_even_with_recomputed_digest[outcome]
+FAILED tests/test_woo_tree_mechanisms.py::test_reload_partial_cannot_be_promoted_by_recomputed_digest
+FAILED tests/test_woo_tree_mechanisms.py::test_base_path_and_metadata_limits
+FAILED tests/test_woo_tree_mechanisms.py::test_identity_reorder_and_duplicate_accounting
+FAILED tests/test_woo_tree_mechanisms.py::test_same_origin_redirect_charges_each_wire_attempt
+14 failed, 1 passed in 1.74s

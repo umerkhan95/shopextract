@@ -1,0 +1,13 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.......F                                                                 [100%]
+=================================== FAILURES ===================================
+_________ test_c21_guard_uses_producer_constants_only_in_enabled_mode __________
+tests/test_category_bigcommerce.py:115: in test_c21_guard_uses_producer_constants_only_in_enabled_mode
+    with pytest.raises(ToolError,match='Only fixed native read queries'):
+E   AssertionError: Regex pattern did not match.
+E     Expected regex: 'Only fixed native read queries'
+E     Actual message: 'permission_denied'
+=========================== short test summary info ============================
+FAILED tests/test_category_bigcommerce.py::test_c21_guard_uses_producer_constants_only_in_enabled_mode
+1 failed, 7 passed in 0.78s

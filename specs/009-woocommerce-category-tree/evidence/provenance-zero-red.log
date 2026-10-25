@@ -1,0 +1,36 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+E   AssertionError: assert () == (('x', '0'),)
+      
+      Right contains one more item: ('x', '0')
+      Use -v to get more diff
+/Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py:188: AssertionError: assert () == (('x', '0'),)
+E   Failed: DID NOT RAISE CategoryError
+/Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py:206: Failed: DID NOT RAISE CategoryError
+E   Failed: DID NOT RAISE CategoryError
+/Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py:206: Failed: DID NOT RAISE CategoryError
+E   Failed: DID NOT RAISE CategoryError
+/Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py:206: Failed: DID NOT RAISE CategoryError
+E   Failed: DID NOT RAISE CategoryError
+/Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py:212: Failed: DID NOT RAISE CategoryError
+E   AttributeError: 'int' object has no attribute 'decode'
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/parse.py:112: AttributeError: 'int' object has no attribute 'decode'
+E   AttributeError: 'bool' object has no attribute 'decode'
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/parse.py:112: AttributeError: 'bool' object has no attribute 'decode'
+E   Failed: DID NOT RAISE CategoryError
+/Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py:212: Failed: DID NOT RAISE CategoryError
+E   Failed: DID NOT RAISE CategoryError
+/Users/umerkhan/code/shopextract/tests/test_woo_tree_mechanisms.py:212: Failed: DID NOT RAISE CategoryError
+=========================== short test summary info ============================
+FAILED tests/test_woo_tree_mechanisms.py::test_opaque_string_zero_parent_is_a_real_category_reference
+FAILED tests/test_woo_tree_mechanisms.py::test_reload_rejects_page_provenance_tamper_with_recomputed_digest[path]
+FAILED tests/test_woo_tree_mechanisms.py::test_reload_rejects_page_provenance_tamper_with_recomputed_digest[query]
+FAILED tests/test_woo_tree_mechanisms.py::test_reload_rejects_page_provenance_tamper_with_recomputed_digest[success_attempt]
+FAILED tests/test_woo_tree_mechanisms.py::test_invalid_scope_store_url_types_reject_cleanly_before_io[None]
+FAILED tests/test_woo_tree_mechanisms.py::test_invalid_scope_store_url_types_reject_cleanly_before_io[7]
+FAILED tests/test_woo_tree_mechanisms.py::test_invalid_scope_store_url_types_reject_cleanly_before_io[True]
+FAILED tests/test_woo_tree_mechanisms.py::test_invalid_scope_store_url_types_reject_cleanly_before_io[bad_url3]
+FAILED tests/test_woo_tree_mechanisms.py::test_invalid_scope_store_url_types_reject_cleanly_before_io[bad_url4]
+9 failed, 15 deselected in 0.24s

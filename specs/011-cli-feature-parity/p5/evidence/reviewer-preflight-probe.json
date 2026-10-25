@@ -1,0 +1,14 @@
+[
+  {
+    "tool": "poll",
+    "outcome": "ACCEPTED_INVALID_LITERAL"
+  },
+  {
+    "tool": "pages",
+    "outcome": "ACCEPTED_INVALID_LITERAL"
+  },
+  {
+    "tool": "extract",
+    "outcome": "ACCEPTED_INVALID_LITERAL"
+  }
+]

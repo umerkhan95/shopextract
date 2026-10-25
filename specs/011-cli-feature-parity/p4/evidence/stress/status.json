@@ -1,0 +1,230 @@
+{
+  "seed": 11025,
+  "case_timeout_seconds": 30,
+  "total_timeout_seconds": 300,
+  "rss_limit_bytes": 536870912,
+  "workers": 1,
+  "groups": [
+    {
+      "name": "01-six-native-bindings",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "six_normalize or six_extract or native_flags"
+      ],
+      "exit_code": 0,
+      "seconds": 3.993,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 14
+    },
+    {
+      "name": "02-source-states",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "survivors or nonlist or zero_terms"
+      ],
+      "exit_code": 0,
+      "seconds": 3.367,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 3
+    },
+    {
+      "name": "03-map-policy",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "mapping_roundtrip or policy_native"
+      ],
+      "exit_code": 0,
+      "seconds": 3.884,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 2
+    },
+    {
+      "name": "04-authority-scope",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "authority or scope_guard or decoded_scope or valid_nested"
+      ],
+      "exit_code": 0,
+      "seconds": 4.154,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 14
+    },
+    {
+      "name": "05-tree-states",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "tree_native_outcomes or tree_malformed"
+      ],
+      "exit_code": 0,
+      "seconds": 3.131,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 5
+    },
+    {
+      "name": "06-tree-memberships",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "tree_membership"
+      ],
+      "exit_code": 0,
+      "seconds": 3.062,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 1
+    },
+    {
+      "name": "07-export-formats",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "export_category_format or parquet_arrow"
+      ],
+      "exit_code": 0,
+      "seconds": 6.396,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 6
+    },
+    {
+      "name": "08-three-file-recovery",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "three_artifacts or recovery_failure or staged_file_size"
+      ],
+      "exit_code": 0,
+      "seconds": 4.205,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 8
+    },
+    {
+      "name": "09-alias-single-read",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "aliases_all or source_alias or storefront_config_alias"
+      ],
+      "exit_code": 0,
+      "seconds": 2.975,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 3
+    },
+    {
+      "name": "10-byte-output-bounds",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "byte_structure or output_actual or oversized_dual or companion_config"
+      ],
+      "exit_code": 0,
+      "seconds": 3.99,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 4
+    },
+    {
+      "name": "11-options-numeric",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "invalid_config or tree_seconds"
+      ],
+      "exit_code": 0,
+      "seconds": 3.038,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 11
+    },
+    {
+      "name": "12-crossphase-entrypoints",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cli_categories_mechanisms.py",
+        "-q",
+        "--tb=short",
+        "-k",
+        "category_to_p3 or module_entrypoint or parser_nested"
+      ],
+      "exit_code": 0,
+      "seconds": 6.259,
+      "stop": null,
+      "orphans": [],
+      "selected_test_executions": 3
+    }
+  ],
+  "status": "passed",
+  "max_rss_bytes": 199499776,
+  "orphans": 0,
+  "elapsed_seconds": 48.464,
+  "selected_test_executions": 74
+}

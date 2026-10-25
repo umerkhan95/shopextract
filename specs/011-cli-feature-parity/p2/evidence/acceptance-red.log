@@ -1,0 +1,549 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF....FFFFFFFFFFFFFFFFFF                                                 [100%]
+=================================== FAILURES ===================================
+___________________________ test_analyze_file_smoke ____________________________
+
+    def test_analyze_file_smoke():
+        result = invoke(['analyze-file','-'], [{'title':'A','price':'0.10','currency':'USD','vendor':'V'}]*11)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_analysis.py:13: AssertionError
+________________________ test_nested_help_skips_config _________________________
+
+    def test_nested_help_skips_config():
+        result = invoke(['--config','missing','stats','distribution','--help'])
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_analysis.py:22: AssertionError
+___________________ test_workflow_red_families[args0-value0] ___________________
+
+args = ['match', '-', 'right.json'], value = []
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1091864a0>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+___________________ test_workflow_red_families[args1-value1] ___________________
+
+args = ['match-gtin', '00012345600012', '-'], value = []
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1091b92a0>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+___________________ test_workflow_red_families[args2-value2] ___________________
+
+args = ['match-pair', '-', 'pair.json'], value = [{'title': 'A'}]
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1091cbcd0>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+___________________ test_workflow_red_families[args3-value3] ___________________
+
+args = ['match-evaluate', '-'], value = []
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10927c940>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+___________________ test_workflow_red_families[args4-value4] ___________________
+
+args = ['identity', 'assign', '-'], value = []
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg4')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109229c60>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+___________________ test_workflow_red_families[args5-value5] ___________________
+
+args = ['identity', 'inspect', '-'], value = []
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg5')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1091bb7f0>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+___________________ test_workflow_red_families[args6-value6] ___________________
+
+args = ['stats', 'distribution', '-'], value = []
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg6')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1092289a0>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+___________________ test_workflow_red_families[args7-value7] ___________________
+
+args = ['stats', 'outliers', '-'], value = []
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg7')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1091ba2f0>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+___________________ test_workflow_red_families[args8-value8] ___________________
+
+args = ['stats', 'brands', '-'], value = []
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg8')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10922bee0>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+___________________ test_workflow_red_families[args9-value9] ___________________
+
+args = ['competitive', 'brands', '-'], value = {}
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg9')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1091b8d30>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+__________________ test_workflow_red_families[args10-value10] __________________
+
+args = ['duplicates', '-'], value = []
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg10')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10922ad40>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+__________________ test_workflow_red_families[args11-value11] __________________
+
+args = ['images', 'check', '-'], value = []
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg11')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1091b9a20>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+__________________ test_workflow_red_families[args12-value12] __________________
+
+args = ['export', '-', '--format', 'json', '--output', '-'], value = []
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_workflow_red_families_arg12')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109229fc0>
+
+    @pytest.mark.parametrize('args,value', [
+        (['match','-','right.json'], []),
+        (['match-gtin','00012345600012','-'], []),
+        (['match-pair','-','pair.json'], [{'title':'A'}]),
+        (['match-evaluate','-'], []),
+        (['identity','assign','-'], []),
+        (['identity','inspect','-'], []),
+        (['stats','distribution','-'], []),
+        (['stats','outliers','-'], []),
+        (['stats','brands','-'], []),
+        (['competitive','brands','-'], {}),
+        (['duplicates','-'], []),
+        (['images','check','-'], []),
+        (['export','-','--format','json','--output','-'], []),
+    ])
+    def test_workflow_red_families(args,value,tmp_path,monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        (tmp_path/'right.json').write_text('[]')
+        (tmp_path/'pair.json').write_text('[{"title":"A"}]')
+        result = invoke(args,value)
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+/Users/umerkhan/code/shopextract/tests/test_cli_analysis.py:74: AssertionError
+_________________________ test_exact_portable_identity _________________________
+
+    def test_exact_portable_identity():
+        product = Product(title='A',price=Decimal('0.10'),gtin='00012345600012',in_stock=False)
+        result = invoke(['identity','assign','-'], [product_to_record(product)])
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_analysis.py:80: AssertionError
+______________________ test_safe_compare_native_signature ______________________
+
+    def test_safe_compare_native_signature():
+        import inspect
+        from shopextract.compare.price import compare
+>       assert 'currency_safe' in inspect.signature(compare).parameters
+E       assert 'currency_safe' in mappingproxy(OrderedDict([('query', <Parameter "query: 'str'">), ('stores', <Parameter "stores: 'list[str]'">), ('max_per_store', <Parameter "max_per_store: 'int' = 50">), ('threshold', <Parameter "threshold: 'float' = 0.6">)]))
+E        +  where mappingproxy(OrderedDict([('query', <Parameter "query: 'str'">), ('stores', <Parameter "stores: 'list[str]'">), ('max_per_store', <Parameter "max_per_store: 'int' = 50">), ('threshold', <Parameter "threshold: 'float' = 0.6">)])) = <Signature (query: 'str', stores: 'list[str]', *, max_per_store: 'int' = 50, threshold: 'float' = 0.6) -> 'ComparisonResult'>.parameters
+E        +    where <Signature (query: 'str', stores: 'list[str]', *, max_per_store: 'int' = 50, threshold: 'float' = 0.6) -> 'ComparisonResult'> = <function signature at 0x1021bc9d0>(<function compare at 0x109073130>)
+E        +      where <function signature at 0x1021bc9d0> = <module 'inspect' from '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py'>.signature
+
+tests/test_cli_analysis.py:90: AssertionError
+_____________________ test_safe_position_native_signature ______________________
+
+    def test_safe_position_native_signature():
+        import inspect
+        from shopextract.analyze.competitive import price_position
+>       assert 'currency' in inspect.signature(price_position).parameters
+E       assert 'currency' in mappingproxy(OrderedDict([('my_product', <Parameter "my_product: 'dict'">), ('competitors', <Parameter "competitors: 'list[str]'">), ('max_products', <Parameter "max_products: 'int' = 200">)]))
+E        +  where mappingproxy(OrderedDict([('my_product', <Parameter "my_product: 'dict'">), ('competitors', <Parameter "competitors: 'list[str]'">), ('max_products', <Parameter "max_products: 'int' = 200">)])) = <Signature (my_product: 'dict', competitors: 'list[str]', *, max_products: 'int' = 200) -> 'PricePosition'>.parameters
+E        +    where <Signature (my_product: 'dict', competitors: 'list[str]', *, max_products: 'int' = 200) -> 'PricePosition'> = <function signature at 0x1021bc9d0>(<function price_position at 0x109073490>)
+E        +      where <function signature at 0x1021bc9d0> = <module 'inspect' from '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/inspect.py'>.signature
+
+tests/test_cli_analysis.py:96: AssertionError
+_________________________ test_machine_validate_stdin __________________________
+
+    def test_machine_validate_stdin():
+        result = invoke(['--output-format','json','validate','-'], [{'title':'A'}])
+>       assert result.exit_code == 4, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Invalid command arguments; consult command --help.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 4
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_analysis.py:101: AssertionError
+_________________________ test_export_replace_rollback _________________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-200/test_export_replace_rollback0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1092b1360>
+
+    def test_export_replace_rollback(tmp_path,monkeypatch):
+        import os
+        source = tmp_path/'source.json'
+        source.write_text(json.dumps([product_to_record(Product(title='A',price=Decimal('0.10')))]))
+        output = tmp_path/'out.csv'; side = tmp_path/'side.json'
+        side.write_text('old side')
+        original = os.replace
+        attempts = []
+        def fail_second(src,dst):
+            attempts.append(str(dst))
+            if str(dst) == str(side):
+                raise OSError('injected second replacement')
+            original(src,dst)
+        monkeypatch.setattr(os,'replace',fail_second)
+        result = invoke(['export',str(source),'--format','csv','--output',str(output),'--evidence-output',str(side)])
+>       assert result.exit_code == 1
+E       assert 2 == 1
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_analysis.py:120: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_analysis.py::test_analyze_file_smoke - AssertionError: ...
+FAILED tests/test_cli_analysis.py::test_nested_help_skips_config - AssertionE...
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args0-value0]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args1-value1]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args2-value2]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args3-value3]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args4-value4]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args5-value5]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args6-value6]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args7-value7]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args8-value8]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args9-value9]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args10-value10]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args11-value11]
+FAILED tests/test_cli_analysis.py::test_workflow_red_families[args12-value12]
+FAILED tests/test_cli_analysis.py::test_exact_portable_identity - AssertionEr...
+FAILED tests/test_cli_analysis.py::test_safe_compare_native_signature - asser...
+FAILED tests/test_cli_analysis.py::test_safe_position_native_signature - asse...
+FAILED tests/test_cli_analysis.py::test_machine_validate_stdin - AssertionErr...
+FAILED tests/test_cli_analysis.py::test_export_replace_rollback - assert 2 == 1
+20 failed, 4 passed in 0.45s

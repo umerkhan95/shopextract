@@ -32,6 +32,7 @@ except ImportError:
 
 from ._filters import PLATFORM_PRODUCT_SITEMAPS, is_non_product_url
 from ._models import Platform
+from ._execution import browser_allowed
 from .extractors._browser import (
     StealthLevel,
     get_browser_config,
@@ -344,6 +345,8 @@ def _filter_woocommerce_urls(urls: list[str]) -> list[str]:
 # -- Browser-based discovery -------------------------------------------------
 
 async def _discover_via_crawl4ai(base_url: str, max_pages: int = 100) -> list[str]:
+    if not browser_allowed():
+        return []
     parsed = urlparse(base_url)
     domain = parsed.netloc
 

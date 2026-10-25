@@ -1,0 +1,38 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_________________________ test_snapshot_roundtrip_red __________________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-216/test_snapshot_roundtrip_red0')
+
+    def test_snapshot_roundtrip_red(tmp_path):
+        source=tmp_path/'products.json'; db=tmp_path/'snap.db'
+        source.write_text(json.dumps([product_to_record(Product(title='synthetic',price=Decimal('10.010000000000000001'),external_id='a'))]))
+        saved=invoke('snapshot-save',source,'--domain','shop.example','--db',db)
+>       assert saved.exit_code==0,saved.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:19: AssertionError
+______________________ test_resolve_missing_contract_red _______________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-216/test_resolve_missing_contract_0')
+
+    def test_resolve_missing_contract_red(tmp_path):
+        source=tmp_path/'products.json'
+        source.write_text(json.dumps([product_to_record(Product(title='synthetic'))]))
+        result=invoke('resolve',source,'--as-of','2026-10-16T10:00:00Z')
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:30: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_monitor.py::test_snapshot_roundtrip_red - AssertionErro...
+FAILED tests/test_cli_monitor.py::test_resolve_missing_contract_red - Asserti...
+2 failed in 0.22s

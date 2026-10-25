@@ -1,0 +1,32 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+________ test_session_real_bootstrap_match_poll_pages_stale_and_cleanup ________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-292/test_session_real_bootstrap_ma0')
+
+    def test_session_real_bootstrap_match_poll_pages_stale_and_cleanup(tmp_path):
+        import multiprocessing
+        config,request=session_fixture(tmp_path)
+>       data=payload(invoke('tools','call','--config',write(tmp_path,'op.json',config),'--request',write(tmp_path,'r.json',request),'--timeout','20'))
+
+tests/test_cli_operations.py:144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>, exit_code = 0
+
+    def payload(result, exit_code=0):
+>       assert result.exit_code == exit_code, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Session reference target is unavailable.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_operations.py:14: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_cli_operations.py::test_session_real_bootstrap_match_poll_pages_stale_and_cleanup
+1 failed in 1.88s

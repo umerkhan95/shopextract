@@ -1,0 +1,12 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_scope_guard_before_output_even_forged_digest _______________
+tests/test_cli_categories_mechanisms.py:131: in test_scope_guard_before_output_even_forged_digest
+    assert result.exit_code==2 and out.read_text()=='old'
+E   assert (0 == 2)
+E    +  where 0 = <Result okay>.exit_code
+=========================== short test summary info ============================
+FAILED tests/test_cli_categories_mechanisms.py::test_scope_guard_before_output_even_forged_digest
+1 failed, 73 deselected in 0.52s
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(

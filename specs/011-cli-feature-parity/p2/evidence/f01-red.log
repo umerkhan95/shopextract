@@ -1,0 +1,36 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_____________ test_nested_parser_resets_terminator_for_help[path0] _____________
+
+path = ['--', 'stats', 'distribution', '--help']
+
+    @pytest.mark.parametrize('path',[['--','stats','distribution','--help'],['stats','--','distribution','--help']])
+    def test_nested_parser_resets_terminator_for_help(path):
+        result=invoke(['--config','missing',*path])
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_CONFIG", "message": "Cannot read a valid CLI config; use schema_version 1 and documented settings.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_analysis.py:130: AssertionError
+_____________ test_nested_parser_resets_terminator_for_help[path1] _____________
+
+path = ['stats', '--', 'distribution', '--help']
+
+    @pytest.mark.parametrize('path',[['--','stats','distribution','--help'],['stats','--','distribution','--help']])
+    def test_nested_parser_resets_terminator_for_help(path):
+        result=invoke(['--config','missing',*path])
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_CONFIG", "message": "Cannot read a valid CLI config; use schema_version 1 and documented settings.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_analysis.py:130: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_analysis.py::test_nested_parser_resets_terminator_for_help[path0]
+FAILED tests/test_cli_analysis.py::test_nested_parser_resets_terminator_for_help[path1]
+2 failed, 24 deselected in 0.25s

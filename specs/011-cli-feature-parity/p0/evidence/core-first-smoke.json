@@ -1,0 +1,14 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_cli_core.py",
+    "-q",
+    "--tb=short",
+    "--disable-warnings"
+  ],
+  "returncode": 0,
+  "timeout_seconds": 30,
+  "elapsed_seconds": 2.561
+}

@@ -328,7 +328,10 @@ def _normalize_woocommerce(raw: dict, shop_url: str) -> dict | None:
     else:
         tags, paths = tags_raw, [f'/tags/{i}' for i in range(len(tags_raw))]
     categories = raw.get('categories', [])
-    if categories and isinstance(categories[0], dict):
+    invalid_categories = not isinstance(categories, list)
+    if invalid_categories:
+        category, cat_paths = [], []
+    elif categories and isinstance(categories[0], dict):
         positions = [i for i,v in enumerate(categories) if isinstance(v, dict) and v.get('name')]
         category = [categories[i]['name'] for i in positions]
         cat_paths = [f'/categories/{i}/name' for i in positions]
@@ -345,7 +348,9 @@ def _normalize_woocommerce(raw: dict, shop_url: str) -> dict | None:
         'in_stock': t.emit('in_stock', '/is_in_stock', default=True, convert=lambda v: v if isinstance(v, bool) else None),
         'tags': _record_items(t, 'tags', '/tags', tags, paths, 'Project tag names'),
         'additional_images':additional,
-        'category_path': _record_items(t, 'category_path', '/categories', category, cat_paths, 'Project category names'),
+        'category_path': (t.record('category_path', '/categories', [], accepted=False,
+            reason='Invalid category collection; compatibility default has no support') if invalid_categories else
+            _record_items(t, 'category_path', '/categories', category, cat_paths, 'Project category names')),
     })
 
 

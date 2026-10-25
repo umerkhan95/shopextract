@@ -1,0 +1,29 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_____________________ test_tools_call_real_empty_bootstrap _____________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-299/test_tools_call_real_empty_boo0')
+
+    def test_tools_call_real_empty_bootstrap(tmp_path):
+        config=write(tmp_path,'operator.json',{'limits':{'cleanup_seconds':1e-15}})
+        request=write(tmp_path,'session.json',{'schema_version':'1.0','steps':[{'id':'boot','tool':'bootstrap','arguments':{}}]})
+>       data=payload(invoke('tools','call','--config',config,'--request',request))
+
+tests/test_cli_operations.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>, exit_code = 0
+
+    def payload(result, exit_code=0):
+>       assert result.exit_code == exit_code, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Numeric value is outside the supported finite range.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_operations.py:14: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_operations.py::test_tools_call_real_empty_bootstrap - A...
+1 failed, 61 deselected in 0.37s

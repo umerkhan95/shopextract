@@ -1,0 +1,66 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+________ test_artifact_load_file_portable_pipeline_single_read[bundle] _________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-248/test_artifact_load_file_portab0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10b5093c0>
+family = 'bundle'
+
+    @pytest.mark.parametrize('family',['bundle','sidecar'])
+    def test_artifact_load_file_portable_pipeline_single_read(tmp_path,monkeypatch,family):
+        from shopextract.export import to_csv
+        from shopextract.export._bundle import create_evidence_bundle,create_evidence_sidecar
+        module=importlib.import_module('shopextract.export._bundle');projection=tmp_path/'p.csv';to_csv([product()],str(projection))
+        value=create_evidence_bundle([product()]) if family=='bundle' else create_evidence_sidecar([product()],projection.read_bytes(),format='csv')
+        source=tmp_path/'bundle.json';source.write_text(json.dumps(value));target=tmp_path/'portable.json'
+        def no_reread(path):raise AssertionError('original input must not be read after bounded validation')
+        monkeypatch.setattr(module,'read_evidence_bundle',no_reread)
+        args=['evidence',family,'load',source,'-o',target]
+        if family=='sidecar':args+=['--payload',projection]
+>       payload(invoke(*args));assert isinstance(json.loads(target.read_text()),list)
+
+tests/test_cli_monitor_mechanisms.py:410: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(1)>
+
+    def payload(result):
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_INTERNAL", "message": "Command failed unexpectedly.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 1 == 0
+E        +  where 1 = <Result SystemExit(1)>.exit_code
+
+tests/test_cli_monitor.py:57: AssertionError
+________ test_artifact_load_file_portable_pipeline_single_read[sidecar] ________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-248/test_artifact_load_file_portab1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10b4e2b00>
+family = 'sidecar'
+
+    @pytest.mark.parametrize('family',['bundle','sidecar'])
+    def test_artifact_load_file_portable_pipeline_single_read(tmp_path,monkeypatch,family):
+        from shopextract.export import to_csv
+        from shopextract.export._bundle import create_evidence_bundle,create_evidence_sidecar
+        module=importlib.import_module('shopextract.export._bundle');projection=tmp_path/'p.csv';to_csv([product()],str(projection))
+        value=create_evidence_bundle([product()]) if family=='bundle' else create_evidence_sidecar([product()],projection.read_bytes(),format='csv')
+        source=tmp_path/'bundle.json';source.write_text(json.dumps(value));target=tmp_path/'portable.json'
+        def no_reread(path):raise AssertionError('original input must not be read after bounded validation')
+        monkeypatch.setattr(module,'read_evidence_bundle',no_reread)
+        args=['evidence',family,'load',source,'-o',target]
+        if family=='sidecar':args+=['--payload',projection]
+>       payload(invoke(*args));assert isinstance(json.loads(target.read_text()),list)
+E       assert False
+E        +  where False = isinstance({'products': [{'schema_version': 1, 'product': {'title': 'Widget', 'price': {'$type': 'decimal', 'value': '10'}, 'curr...y', 'state': 'observed', 'raw_value': 'EUR', ...}], 'resolutions': [], 'schema_version': 1}, 'variant_contracts': []}]}, list)
+E        +    where {'products': [{'schema_version': 1, 'product': {'title': 'Widget', 'price': {'$type': 'decimal', 'value': '10'}, 'curr...y', 'state': 'observed', 'raw_value': 'EUR', ...}], 'resolutions': [], 'schema_version': 1}, 'variant_contracts': []}]} = <function loads at 0x1050fc940>('{"products": [{"schema_version": 1, "product": {"title": "Widget", "price": {"$type": "decimal", "value": "10"}, "cur...score_kind": null, "validated_confidence": null}], "resolutions": [], "schema_version": 1}, "variant_contracts": []}]}')
+E        +      where <function loads at 0x1050fc940> = json.loads
+E        +      and   '{"products": [{"schema_version": 1, "product": {"title": "Widget", "price": {"$type": "decimal", "value": "10"}, "cur...score_kind": null, "validated_confidence": null}], "resolutions": [], "schema_version": 1}, "variant_contracts": []}]}' = read_text()
+E        +        where read_text = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-248/test_artifact_load_file_portab1/portable.json').read_text
+
+tests/test_cli_monitor_mechanisms.py:410: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_monitor_mechanisms.py::test_artifact_load_file_portable_pipeline_single_read[bundle]
+FAILED tests/test_cli_monitor_mechanisms.py::test_artifact_load_file_portable_pipeline_single_read[sidecar]
+2 failed, 60 deselected in 0.52s

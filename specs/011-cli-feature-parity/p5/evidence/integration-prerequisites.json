@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "name": "collection",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "--collect-only",
+        "-q"
+      ],
+      "returncode": 0,
+      "seconds": 4.662,
+      "stop": null,
+      "max_group_rss_bytes": 135438336,
+      "orphans": [],
+      "summary": ""
+    },
+    {
+      "name": "optional-mcp-absent",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-c",
+        "import sys,asyncio;sys.modules['mcp']=None;from shopextract.tools import ToolRuntime,ToolConfig;r=ToolRuntime(ToolConfig());assert len(r.tool_schemas())==8;asyncio.run(r.aclose());print('8 native schemas without SDK; closed')"
+      ],
+      "returncode": 0,
+      "seconds": 1.755,
+      "stop": null,
+      "max_group_rss_bytes": 91516928,
+      "orphans": [],
+      "summary": ""
+    },
+    {
+      "name": "require-mcp",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-c",
+        "import mcp,importlib.metadata;print(importlib.metadata.version('mcp'))"
+      ],
+      "returncode": 0,
+      "seconds": 1.201,
+      "stop": null,
+      "max_group_rss_bytes": 49917952,
+      "orphans": [],
+      "summary": ""
+    }
+  ],
+  "hazard_inspection": "Collection only; live-named tests use savedfixtures/controlledHTTP; LLM tests use provider_stub/monkeypatched litellm; no model download or paid inference. HF offline flags set.",
+  "python": "3.10.11",
+  "matrix_limitation": "No local3.11/3.12 claim"
+}

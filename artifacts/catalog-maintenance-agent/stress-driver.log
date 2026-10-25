@@ -1,0 +1,46 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+Traceback (most recent call last):
+  File "/Users/umerkhan/code/shopextract/tests/maintenance_stress_driver.py", line 71, in batch
+    _, report = await h.run(configured)
+  File "/Users/umerkhan/code/shopextract/tests/test_maintenance_acceptance.py", line 78, in run
+    return key, await self.engine.run(key)
+  File "/Users/umerkhan/code/shopextract/src/shopextract/maintenance/engine.py", line 124, in run
+    await self._runtime.aclose()
+  File "/Users/umerkhan/code/shopextract/src/shopextract/tools/runtime.py", line 210, in aclose
+    await self.auxiliary.cancel_and_reap()
+  File "/Users/umerkhan/code/shopextract/src/shopextract/tools/execution.py", line 101, in cancel_and_reap
+    raise asyncio.CancelledError()
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/Users/umerkhan/code/shopextract/tests/maintenance_stress_driver.py", line 249, in <module>
+    asyncio.run(main(Path(sys.argv[1])))
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/umerkhan/code/shopextract/tests/maintenance_stress_driver.py", line 210, in main
+    await run('mixed-100-disabled',lambda:batch(directory('mixed-off'),100,True,False))
+  File "/Users/umerkhan/code/shopextract/tests/maintenance_stress_driver.py", line 193, in run
+    value=await asyncio.wait_for(operation(), min(timeout,180-(before-started)))
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError

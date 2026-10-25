@@ -1,0 +1,36 @@
+[
+  {
+    "argv": [
+      "--output-format",
+      "json",
+      "extract"
+    ],
+    "exit": 1,
+    "stdout": "{\"schema_version\": \"1.0\", \"ok\": false, \"data\": null, \"warnings\": [], \"error\": {\"code\": \"E_OPERATION\", \"message\": \"Machine result support for this command requires its domain CLI phase.\", \"retryable\": false}, \"completeness\": \"unavailable\"}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "--output-format",
+      "json",
+      "discover",
+      "https://fixture.invalid",
+      "--max",
+      "bad"
+    ],
+    "exit": 1,
+    "stdout": "{\"schema_version\": \"1.0\", \"ok\": false, \"data\": null, \"warnings\": [], \"error\": {\"code\": \"E_OPERATION\", \"message\": \"Machine result support for this command requires its domain CLI phase.\", \"retryable\": false}, \"completeness\": \"unavailable\"}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "--output-format",
+      "json",
+      "validate",
+      "/definitely/missing.json"
+    ],
+    "exit": 1,
+    "stdout": "{\"schema_version\": \"1.0\", \"ok\": false, \"data\": null, \"warnings\": [], \"error\": {\"code\": \"E_OPERATION\", \"message\": \"Machine result support for this command requires its domain CLI phase.\", \"retryable\": false}, \"completeness\": \"unavailable\"}\n",
+    "stderr": ""
+  }
+]

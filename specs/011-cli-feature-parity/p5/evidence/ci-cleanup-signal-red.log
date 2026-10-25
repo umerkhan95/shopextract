@@ -1,0 +1,58 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+__________ test_signal_during_cleanup_is_latched[Signals.SIGINT-130] ___________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-310/test_signal_during_cleanup_is_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109ac68f0>
+signum = <Signals.SIGINT: 2>, code = 130
+
+    @pytest.mark.parametrize('signum,code',[(signal.SIGINT,130),(signal.SIGTERM,143)])
+    def test_signal_during_cleanup_is_latched(tmp_path,monkeypatch,signum,code):
+        d=driver();original=d._signal_group;sent=False;marker=tmp_path/'later'
+        def cleanup_boundary(pid,operation):
+            nonlocal sent
+            if operation==signal.SIGTERM and not sent:
+                sent=True;os.kill(os.getpid(),signum)
+            return original(pid,operation)
+        monkeypatch.setattr(d,'_signal_group',cleanup_boundary)
+        groups=(d.TestGroup('active',command('import time;time.sleep(3)')),
+                d.TestGroup('later',command(f'from pathlib import Path;Path({str(marker)!r}).touch()')))
+        result=d.run_plan(groups,tmp_path/'logs',group_seconds=.3,total_seconds=2)
+>       assert sent and result['status']=='interrupted' and result['exit_code']==code
+E       AssertionError: assert (True and 'timeout' == 'interrupted'
+E         
+E         - interrupted
+E         + timeout)
+
+tests/test_ci_driver.py:186: AssertionError
+__________ test_signal_during_cleanup_is_latched[Signals.SIGTERM-143] __________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-310/test_signal_during_cleanup_is_1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109ae7d30>
+signum = <Signals.SIGTERM: 15>, code = 143
+
+    @pytest.mark.parametrize('signum,code',[(signal.SIGINT,130),(signal.SIGTERM,143)])
+    def test_signal_during_cleanup_is_latched(tmp_path,monkeypatch,signum,code):
+        d=driver();original=d._signal_group;sent=False;marker=tmp_path/'later'
+        def cleanup_boundary(pid,operation):
+            nonlocal sent
+            if operation==signal.SIGTERM and not sent:
+                sent=True;os.kill(os.getpid(),signum)
+            return original(pid,operation)
+        monkeypatch.setattr(d,'_signal_group',cleanup_boundary)
+        groups=(d.TestGroup('active',command('import time;time.sleep(3)')),
+                d.TestGroup('later',command(f'from pathlib import Path;Path({str(marker)!r}).touch()')))
+        result=d.run_plan(groups,tmp_path/'logs',group_seconds=.3,total_seconds=2)
+>       assert sent and result['status']=='interrupted' and result['exit_code']==code
+E       AssertionError: assert (True and 'timeout' == 'interrupted'
+E         
+E         - interrupted
+E         + timeout)
+
+tests/test_ci_driver.py:186: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_ci_driver.py::test_signal_during_cleanup_is_latched[Signals.SIGINT-130]
+FAILED tests/test_ci_driver.py::test_signal_during_cleanup_is_latched[Signals.SIGTERM-143]
+2 failed, 13 deselected in 1.04s

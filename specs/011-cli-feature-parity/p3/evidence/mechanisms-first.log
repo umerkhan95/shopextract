@@ -1,0 +1,33 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+....................................................F........            [100%]
+=================================== FAILURES ===================================
+________________ test_resolve_conflict_variant_refs_and_inspect ________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-226/test_resolve_conflict_variant_0')
+
+    def test_resolve_conflict_variant_refs_and_inspect(tmp_path):
+        p=product(variants=[variant('x','3')]);p.evidence_contract=graph({'/price':Decimal('10')})
+        competing=graph({'/price':Decimal('11')},start=10);p.evidence_contract.evidence+=competing.evidence;p.evidence_contract.observations+=competing.observations
+        source=write_products(tmp_path,[p]);result=payload(invoke('resolve',source,'--as-of',T0.isoformat()))
+        assert result['references'][0]['product']['/price']['state']=='conflicting'
+        assert result['references'][0]['variants'][0]['/price']['state']=='observed'
+        for view in ('trust','paths'):
+>           data=payload(invoke('evidence','inspect',source,'--view',view));assert len(data['views'][0]['variants'])==1
+
+tests/test_cli_monitor_mechanisms.py:149: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(1)>
+
+    def payload(result):
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_INTERNAL", "message": "Command failed unexpectedly.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 1 == 0
+E        +  where 1 = <Result SystemExit(1)>.exit_code
+
+tests/test_cli_monitor.py:57: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_monitor_mechanisms.py::test_resolve_conflict_variant_refs_and_inspect
+1 failed, 60 passed in 1.54s

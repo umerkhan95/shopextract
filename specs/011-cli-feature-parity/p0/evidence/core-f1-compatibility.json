@@ -1,0 +1,11 @@
+{
+  "core_sha256": "d75847c2f52e850eee588e43809a9dd52617362440a03707c36b1f05e137c0db",
+  "cli_sha256": "3da88320db5086f8f99db47a1d8354ecd4f8818163989a2383f31e144597116b",
+  "new_symbol": "CoreCommand.invoke",
+  "classification": "implementation_helper",
+  "phase": "P0",
+  "target": "post-Click-validation native availability boundary",
+  "rationale": "Moves deferred-machine guard after command parsing and before native execution, no standalone workflow.",
+  "existing_legacy_declarations_evidence": "core-compatibility.json; cli.py unchanged in focused F1 repair",
+  "git_diff_check_returncode": 0
+}

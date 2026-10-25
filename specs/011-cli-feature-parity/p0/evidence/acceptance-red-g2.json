@@ -1,0 +1,19 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_cli_core.py",
+    "-q",
+    "--tb=line",
+    "--disable-warnings"
+  ],
+  "timeout_seconds": 30,
+  "elapsed_seconds": 3.172,
+  "returncode": 1,
+  "output_bytes": 18072,
+  "reason": "Missing root --output-format/--config and bootstrap contracts; see assertions, no import/dependency failures claimed",
+  "scope": "Actual real-CLI acceptance red before production changes",
+  "native_boundary": "deterministic async detect fixture; no network/models",
+  "token_counters": "unavailable"
+}

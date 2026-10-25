@@ -25,6 +25,8 @@ async def compare_catalogs(
     publisher_aliases: dict[str, list[str]] | None = None,
     enrich_identifiers: bool = False,
     restore_short_gtin: bool = False,
+    source_report: bool = False,
+    semantic_candidate_indices: list[list[int]] | None = None,
 ) -> CatalogDiff:
     """Compare two store catalogs and report differences.
 
@@ -32,6 +34,28 @@ async def compare_catalogs(
     and categorizes into only_in_a, only_in_b, in_both,
     cheaper_in_a, cheaper_in_b.
     """
+    if source_report:
+        from .._models import ExtractionResult, SourceStatus
+        from .._analysis_safe import source_status, observed_currency
+        from .._execution import safe_error
+        results, sources, currencies = [], [], []
+        for store in (store_a, store_b):
+            try:
+                result = await extract(store, max_urls=max_products, enrich_identifiers=enrich_identifiers, restore_short_gtin=restore_short_gtin)
+                sources.append(source_status(store, result))
+                currencies.append([observed_currency(product, product.raw_data) for i, product in enumerate(result.products)])
+            except (TimeoutError, asyncio.CancelledError):
+                raise
+            except Exception as exc:
+                result = ExtractionResult()
+                currencies.append([])
+                sources.append(SourceStatus(store, False, False, [safe_error(str(exc))]))
+            results.append(result)
+        diff = _diff_catalogs(store_a, store_b, results[0].products, results[1].products, threshold,
+                             semantic_candidates=semantic_candidates, publisher_aliases=publisher_aliases,
+                             semantic_candidate_indices=semantic_candidate_indices, observed_currencies=currencies)
+        diff.sources = sources
+        return diff
     result_a, result_b = await asyncio.gather(
         extract(store_a, max_urls=max_products, enrich_identifiers=enrich_identifiers, restore_short_gtin=restore_short_gtin),
         extract(store_b, max_urls=max_products, enrich_identifiers=enrich_identifiers, restore_short_gtin=restore_short_gtin),
@@ -40,6 +64,7 @@ async def compare_catalogs(
         store_a, store_b,
         result_a.products, result_b.products,
         threshold, semantic_candidates=semantic_candidates, publisher_aliases=publisher_aliases,
+        semantic_candidate_indices=semantic_candidate_indices,
     )
 
 
@@ -52,10 +77,12 @@ def _diff_catalogs(
     *,
     semantic_candidates: SemanticCandidates | None = None,
     publisher_aliases: dict[str, list[str]] | None = None,
+    semantic_candidate_indices: list[list[int]] | None = None,
+    observed_currencies: list[list[str | None]] | None = None,
 ) -> CatalogDiff:
     """Build catalog diff from two product lists."""
     diff = CatalogDiff(store_a=store_a, store_b=store_b)
-    diff.match_report = match_products(products_a, products_b, threshold=threshold, semantic_candidates=semantic_candidates, publisher_aliases=publisher_aliases)
+    diff.match_report = match_products(products_a, products_b, threshold=threshold, semantic_candidates=semantic_candidates, publisher_aliases=publisher_aliases, semantic_candidate_indices=semantic_candidate_indices)
     matched_a, matched_b = set(), set()
     for decision in diff.match_report:
         if decision.relation != MatchRelation.EXACT or decision.needs_review:
@@ -65,7 +92,9 @@ def _diff_catalogs(
         matched_a.add(i)
         matched_b.add(j)
         diff.in_both.append((prod_a, prod_b))
-        if prod_a.currency == prod_b.currency:
+        currency_a = observed_currencies[0][i] if observed_currencies is not None else prod_a.currency
+        currency_b = observed_currencies[1][j] if observed_currencies is not None else prod_b.currency
+        if currency_a and currency_a == currency_b:
             _classify_price(diff, prod_a, prod_b)
     diff.only_in_a = [p for i, p in enumerate(products_a) if i not in matched_a]
     diff.only_in_b = [p for j, p in enumerate(products_b) if j not in matched_b]

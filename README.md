@@ -450,7 +450,10 @@ shopextract.to_parquet(products, "products.parquet")
 
 ### CLI
 
-Every feature is available from the command line.
+Supported extraction, analysis, monitoring, evidence, category, maintenance and
+read-only tool workflows are available from the command line. See the complete
+[automation guide](docs/cli.md) and [offline examples](examples/cli/README.md).
+Python callback/extension interfaces remain Python APIs.
 
 ```bash
 # Extract products from a store
@@ -589,7 +592,20 @@ Any model supported by [LiteLLM](https://docs.litellm.ai/docs/providers) works.
 | `shopextract analyze <url>` | Catalog statistics | `-n` max products |
 | `shopextract validate <file>` | Validate products against marketplace | `-m` marketplace |
 
-All commands output JSON by default.
+New data commands emit versioned JSON envelopes. The nine original commands
+retain legacy output; opt in with `shopextract --output-format json COMMAND ...`.
+Use `shopextract capabilities` for the actual nested grammar and
+`shopextract schema list` for packaged file contracts. Root flags precede commands.
+`tools serve` uses MCP protocol-only stdio; watch uses JSONL. See [CLI contracts,
+limits, exits and migration](docs/cli.md).
+
+Additional families include `extract-one`, `feed`, `normalize`, `quality`,
+`match`, `match-gtin`, `match-pair`, `match-evaluate`, `compare-catalogs`,
+`analyze-file`, `stats`, `competitive`, `identity`, `images`, `duplicates`,
+`export`, `watch`, `snapshot-save`, `snapshot-load`, `resolve`, `evidence`,
+`categories`, `maintenance`, `tools`, `capabilities` and `schema`.
+Use `COMMAND --help` and nested `GROUP COMMAND --help` for exact options.
+The module entry point is `python -m shopextract.cli`.
 
 ---
 
@@ -902,3 +918,19 @@ The opt-in read-only Python tool API and self-hosted MCP stdio server cover
 discovery, extraction, matching, reliable changes and captured evidence. See
 [setup, contracts, runnable reference client and operating limits](docs/agent-tools.md).
 Install the optional `mcp` extra; existing extraction defaults stay compatible.
+
+
+### Catalog maintenance jobs
+
+The opt-in local catalog maintenance workflow adds persistent bounded jobs,
+category-specific evidence-backed correction/review reports and safe restart.
+Deterministic cases make zero LLM calls; investigation is an optional injected
+adapter. It never updates a shop. See [API, CLI, recovery and operating limits](docs/catalog-maintenance.md)
+and the runnable [offline example](examples/catalog_maintenance.py).
+
+### Category mapping
+
+The opt-in category API retains source facts from six platform families and maps
+them through a shared exact, versioned rule engine. Memberships, hierarchy and
+merchant labels stay distinct; ordinary extraction formats stay compatible.
+See [configuration, platform behavior and persistence](docs/category-mapping.md).

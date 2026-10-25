@@ -1,0 +1,27 @@
+{
+  "matches_pre_suite": true,
+  "changed": [],
+  "sha256": {
+    "README.md": "f5934d94087650b0200a9600575719d39327850f9aa6b3a4e5f66454bbb31c5d",
+    "docs/catalog-maintenance.md": "c6523a24c03eb1683cdfe9c0e18982644af7ce78702cb0aa9e258a63fb61e5b6",
+    "examples/catalog_maintenance.py": "9ff49d6d049bdc35e0c8efb4f10c85ec07e684fe2e6497ba47192bbb52893d5c",
+    "src/shopextract/maintenance/__init__.py": "fbbb0e323569a1c392501ae18d5451f69feb54cbf89822e8a4215890d3aa5a44",
+    "src/shopextract/maintenance/__main__.py": "d496f1e7e0cd421a18b8795f27d9145f633288e090c5923e29b59e53ea2b542d",
+    "src/shopextract/maintenance/contracts.py": "9ce97d048715c5e8ab74a75cd92df89353fe638f5663eb667f6206391f2ac3d6",
+    "src/shopextract/maintenance/engine.py": "17b994ba1b8eb2b4dee47f2b9c82fa17c53881d90ceec11c91461a5fc7a40d3a",
+    "src/shopextract/maintenance/profiles.py": "0612d0476b2a12a716701d6da948747bae9adea08e9eea4657651542177d4528",
+    "src/shopextract/maintenance/store.py": "12df64016b08d6e8a0ff885447f5f86f6edc1be6e0954f7a91ccc74ec6da7251",
+    "src/shopextract/tools/context.py": "27c76cd0584c12e50716ec37e982fd7db515566c3650d239c38d3662999597de",
+    "src/shopextract/tools/security.py": "d994e062ba53dcd1fbbed4e5fb5a66bdc5aeea2ec9cbcf084eaf0803a27a96be",
+    "tests/maintenance_process_guard.py": "627a9742afd22019e087c19987930c31d6663f1136fbed37975e7cfdb5a1c95d",
+    "tests/maintenance_stress_driver.py": "9abc3aa677d89bd0f258748e685f6dbabb9c44198c7936cf75fc948bcef8153a",
+    "tests/test_maintenance_acceptance.py": "a032f1a83296b8fa12d0b028cefb2df3272f30fbead1c26c28fafe21ab4d31fc",
+    "tests/test_maintenance_advisor.py": "efedf135614edb1237e3a6e7e12e4962bb80b716f396c35cb2eb0236eae4205a",
+    "tests/test_maintenance_remaining_edges.py": "f921a78aac60e1759832923065b9004631f2c7d7c3e9d64b48b905be3c95054a",
+    "tests/test_maintenance_review_repairs.py": "24b1a82156acb69a0b63a5ee0df7a47d44e7162307e473674ebba99bef941322",
+    "tests/test_maintenance_store.py": "e14d00d497a5ebdfc28280d6795d83ae80e53b40ea450b2ab01d95562498a0dd",
+    "tests/test_maintenance_stress_prerequisites.py": "e26b8d2e9f766d78edbfed053053983e36bf4310e3b5231763321d13cfa666e2",
+    "tests/test_maintenance_workflow.py": "b6edf7cef5236b39aaee2cd73be7b31d92da453a3c7cd0ed065524d9604d2e4f"
+  },
+  "scope": "exact original manifest; excludes unrelated specs004 and runtime artifacts"
+}

@@ -1,0 +1,11 @@
+# P1 reusable component ownership
+
+Reuse P0 CoreGroup/CoreCommand/settings/make_response/emit_response/CliFailure, with only genuine implemented paths added to _MACHINE_COMMANDS; no secondary scanner or config. Reuse native Product portable codec and evidence typed-value codec, native normalization and QualityScorer, public extraction/discovery/detect/feed functions. Browser/LLM boundaries stay native, policy adds limits without rewriting parsers/fallback selection.
+
+New `_execution.py` owns context-local activation and bounded LLM transport. Concrete consumers P1 extract/extract-one; later P2 URL compare/analyze and P3 snapshots must explicitly enter non-LLM policy, nested calls inherit it. Absent policy preserves legacy env behavior. No environment modification. Browser gate shared `_browser.get_browser_config` prevents any nested launch; native unified/discovery skip optional branch when policy disables. Policy state resets in contextmanager finally, cancellation propagates.
+
+New `_cli_data.py` owns strict bounded JSON and product transport; concrete P1 normalize/quality/extract/feed and P2 offline analysis/export/P3 snapshot-save consume it. No arbitrary object/dataclass serializer. Input and errors validated before source I/O; portable codec handles exact fields/variant evidence. Atomic JSON only, existing legacy CSV exporter remains untouched.
+
+New `_cli_extract.py` owns P1-specific named API binding, Click option validation and payload composition, not extraction algorithms. Native function imports explicit. Async deadline wrapper owns context lifetime. LLM boundary catches provider exceptions without logging raw content; extraction errors replace known credential values before emitting; source facts are never arbitrarily scrubbed. New safety test provider error contains secret and must appear nowhere. Browser preflight existing executable only; never install/launch during tests. Native partial result includes explicit completeness; unknown catalog coverage remains explicitly unknown.
+
+No command registry/dynamic execution framework, new public library API, model service, or model installation. Error messages are static/sanitized; private helpers not exported by __init__.

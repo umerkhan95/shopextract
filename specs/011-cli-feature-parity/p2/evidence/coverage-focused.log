@@ -1,0 +1,48 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+..F......                                                                [100%]
+=================================== FAILURES ===================================
+_________ test_nonempty_product_and_variant_evidence_export_roundtrip __________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-207/test_nonempty_product_and_vari0')
+
+    def test_nonempty_product_and_variant_evidence_export_roundtrip(tmp_path):
+        from datetime import datetime,timezone
+        from shopextract._evidence import Evidence,FieldObservation,TrustContract,FieldResolution
+        from shopextract.export import load_evidence_sidecar
+        now=datetime(2026,10,25,tzinfo=timezone.utc)
+        eid='e_00000000-0000-0000-0000-000000000001'
+        oid='o_00000000-0000-0000-0000-000000000001'
+        other='o_00000000-0000-0000-0000-000000000002'
+>       evidence=Evidence(eid,'https://synthetic.test/product',now,'api',retained_data={'price':'0.10'})
+
+tests/test_cli_analysis_mechanisms.py:338: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<string>:12: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Evidence(evidence_id='e_00000000-0000-0000-0000-000000000001', source_url='https://synthetic.test/product', observed_a..., method='api', excerpt=None, retained_data={'price': '0.10'}, pointer=None, source_role='unverified', truncated=False)
+
+    def __post_init__(self):
+        _id(self.evidence_id, "e_")
+        parts = urlsplit(self.source_url)
+        if parts.scheme not in ("http", "https") or not parts.netloc:
+            raise ValueError("Absolute HTTP(S) source URL required")
+        _utc(self.observed_at)
+        _text(self.method)
+        _text(self.source_role)
+        if self.excerpt is not None:
+            _text(self.excerpt)
+        if self.pointer is not None:
+            if self.retained_data is None:
+                raise ValueError("Pointer requires retained source data")
+            self.resolve_pointer()
+        if self.excerpt is None and self.pointer is None:
+>           raise ValueError("Evidence requires an excerpt or retained-data pointer")
+E           ValueError: Evidence requires an excerpt or retained-data pointer
+
+src/shopextract/_evidence.py:90: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_cli_analysis_mechanisms.py::test_nonempty_product_and_variant_evidence_export_roundtrip
+1 failed, 8 passed, 38 deselected in 0.44s

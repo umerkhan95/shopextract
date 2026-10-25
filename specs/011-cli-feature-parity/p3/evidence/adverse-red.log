@@ -1,0 +1,40 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF.                                                                      [100%]
+=================================== FAILURES ===================================
+__________________ test_watch_empty_failed_result_no_baseline __________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-228/test_watch_empty_failed_result0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109e72020>
+
+    def test_watch_empty_failed_result_no_baseline(tmp_path,monkeypatch):
+        module=importlib.import_module('shopextract.monitor.snapshot')
+        async def extraction(*args,**kwargs):
+            return ExtractionResult(products=[],errors=['synthetic transport failure'],platform=Platform.SHOPIFY,tier=ExtractionTier.API)
+        monkeypatch.setattr(module,'extract',extraction)
+        db=tmp_path/'no.db';result=invoke('watch','https://shop.example','--interval','0.001','--max-events','1','--timeout','0.03','--db',db)
+>       assert result.exit_code==1,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": {"events": 0, "reason": "timeout", "initialized": true}, "warnings": [], "error": {"code": "E_PARTIAL", "message": "Some sources returned incomplete results; inspect sources.", "retryable": false}, "completeness": "partial"}
+E         
+E       assert 3 == 1
+E        +  where 3 = <Result SystemExit(3)>.exit_code
+
+tests/test_cli_monitor_mechanisms.py:201: AssertionError
+___________________ test_artifact_same_input_output_rejected ___________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-228/test_artifact_same_input_outpu0')
+
+    def test_artifact_same_input_output_rejected(tmp_path):
+        source=write_products(tmp_path,[product()]);before=source.read_bytes()
+        result=invoke('evidence','bundle','create',source,'-o',source)
+>       assert result.exit_code==2,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": true, "data": {"output": "/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-228/test_artifact_same_input_outpu0/products.json"}, "warnings": [], "error": null, "completeness": "complete"}
+E         
+E       assert 0 == 2
+E        +  where 0 = <Result okay>.exit_code
+
+tests/test_cli_monitor_mechanisms.py:208: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_monitor_mechanisms.py::test_watch_empty_failed_result_no_baseline
+FAILED tests/test_cli_monitor_mechanisms.py::test_artifact_same_input_output_rejected
+2 failed, 1 passed, 38 deselected in 5.25s

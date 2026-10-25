@@ -1,0 +1,7 @@
+{
+  "command": "PYTHONPATH=src .venv/bin/python -m shopextract.cli --help",
+  "timeout_seconds": 20,
+  "returncode": 0,
+  "stdout_bytes": 727,
+  "stderr_bytes": 247
+}

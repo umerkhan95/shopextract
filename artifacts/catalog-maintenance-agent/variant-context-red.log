@@ -1,0 +1,36 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______ test_unique_identifier_candidate_keeps_ambiguous_variant_context _______
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-90/test_unique_identifier_candida0')
+
+    @pytest.mark.asyncio
+    async def test_unique_identifier_candidate_keeps_ambiguous_variant_context(tmp_path):
+        import json
+        from tests.maintenance_stress_driver import products,Spy
+        from shopextract.maintenance import Budgets
+        left,right=products(3,False)
+        left[-1]['attributes']={'ram':'8 GB'};right[-1]['attributes']={'ram':'16 GB'}
+        body='<script type="application/ld+json">'+json.dumps(right)+'</script>'
+        spy=Spy();h=Harness(tmp_path/'jobs.db',investigator=spy)
+        h.engine.wire_transport=httpx.MockTransport(lambda request:httpx.Response(200,text=body))
+        _,report=await h.run(goal(baseline=(left[-1],),profiles={'S2':'hardware-v1'},
+            budgets=Budgets(tokens=32,cost_micros=1)))
+        finding,=report['findings']
+>       assert finding['status']=='needs_review' and finding['reason']=='identity_unresolved'
+E       AssertionError: assert ('needs_review' == 'needs_review'
+E         
+E           needs_review and 'supplier_unsupported' == 'identity_unresolved'
+E         
+E         - identity_unresolved
+E         + supplier_unsupported)
+
+tests/test_maintenance_remaining_edges.py:75: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_maintenance_remaining_edges.py::test_unique_identifier_candidate_keeps_ambiguous_variant_context
+1 failed in 1.68s

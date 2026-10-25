@@ -24,6 +24,9 @@ async def watch(
     *,
     interval: int = _DEFAULT_INTERVAL,
     db_path: str = _DEFAULT_DB_PATH,
+    max_urls: int = 200,
+    retain_limit: int | None = None,
+    on_initialized: Callable[[], None] | None = None,
 ) -> AsyncGenerator[Change, None]:
     """Continuously monitor a store for changes.
 
@@ -33,12 +36,14 @@ async def watch(
     domain = _domain_from_url(url)
 
     # Take initial snapshot
-    await take_snapshot(url, db_path=db_path)
+    await take_snapshot(url, db_path=db_path, max_urls=max_urls, retain_limit=retain_limit)
+    if on_initialized is not None:
+        on_initialized()
     logger.info("Watch started for %s (interval=%ds)", domain, interval)
 
     while True:
         await asyncio.sleep(interval)
-        await take_snapshot(url, db_path=db_path)
+        await take_snapshot(url, db_path=db_path, max_urls=max_urls, retain_limit=retain_limit)
         detected = detect_changes(domain, db_path=db_path)
 
         for change in detected:

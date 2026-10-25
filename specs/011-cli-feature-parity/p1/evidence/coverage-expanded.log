@@ -1,0 +1,30 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+............................................F........................... [ 73%]
+..........................                                               [100%]
+=================================== FAILURES ===================================
+____________________ test_actual_discover_shopify_transport ____________________
+
+transport = ({'/sitemap_products_1.xml': <function test_actual_discover_shopify_transport.<locals>.<lambda> at 0x10cc81f30>}, [<Re...fixture.invalid/products.json?limit=250&page=1')>, <Request('GET', 'https://fixture.invalid/sitemap_products_1.xml')>])
+
+    def test_actual_discover_shopify_transport(transport):
+        import httpx
+        routes,calls=transport
+        routes['/sitemap_products_1.xml']=lambda r:httpx.Response(200,text='<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://fixture.invalid/products/a</loc></url><url><loc>https://fixture.invalid/products/b</loc></url></urlset>')
+        result=invoke('discover','https://fixture.invalid','--platform','shopify','--max','1')
+        assert result.exit_code==0, result.output[:800]
+        assert value(result)['data']=={'urls':['https://fixture.invalid/products/a'],'count':1}
+>       assert len(calls)==1
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len([<Request('GET', 'https://fixture.invalid/products.json?limit=250&page=1')>, <Request('GET', 'https://fixture.invalid/sitemap_products_1.xml')>])
+
+tests/test_cli_extract.py:362: AssertionError
+=============================== warnings summary ===============================
+tests/test_cli_extract.py: 12 warnings
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli_extract.py::test_actual_discover_shopify_transport - As...
+1 failed, 97 passed, 12 warnings in 1.45s

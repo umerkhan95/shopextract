@@ -1,0 +1,78 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+____ test_inter_group_signal_report_and_no_later_launch[Signals.SIGINT-130] ____
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-305/test_inter_group_signal_report0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10c6257b0>
+signum = <Signals.SIGINT: 2>, code = 130
+
+    @pytest.mark.parametrize('signum,code',[(signal.SIGINT,130),(signal.SIGTERM,143)])
+    def test_inter_group_signal_report_and_no_later_launch(tmp_path,monkeypatch,signum,code):
+        d=driver();marker=tmp_path/'later';original=Path.write_text;sent=False
+        def report_boundary(path,text,*args,**kwargs):
+            nonlocal sent
+            if path.name=='report.json' and not sent:
+                sent=True;os.kill(os.getpid(),signum)
+            return original(path,text,*args,**kwargs)
+        monkeypatch.setattr(Path,'write_text',report_boundary)
+        groups=(d.TestGroup('first',command('pass')),d.TestGroup('later',command(f'from pathlib import Path;Path({str(marker)!r}).touch()')))
+>       result=d.run_plan(groups,tmp_path/'logs',group_seconds=2,total_seconds=5)
+
+tests/test_ci_driver.py:144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/run_tests.py:125: in run_plan
+    save()
+scripts/run_tests.py:88: in save
+    (output_dir/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+tests/test_ci_driver.py:140: in report_boundary
+    sent=True;os.kill(os.getpid(),signum)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+signum = 2
+frame = <frame at 0x7fc81cf7acd0, file '/Users/umerkhan/code/shopextract/tests/test_ci_driver.py', line 140, code report_boundary>
+
+>   def interrupted(signum,frame):raise _Interrupted(signum)
+E   shopextract_ci_driver._Interrupted: 2
+
+scripts/run_tests.py:90: _Interrupted
+___ test_inter_group_signal_report_and_no_later_launch[Signals.SIGTERM-143] ____
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-305/test_inter_group_signal_report1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10c509210>
+signum = <Signals.SIGTERM: 15>, code = 143
+
+    @pytest.mark.parametrize('signum,code',[(signal.SIGINT,130),(signal.SIGTERM,143)])
+    def test_inter_group_signal_report_and_no_later_launch(tmp_path,monkeypatch,signum,code):
+        d=driver();marker=tmp_path/'later';original=Path.write_text;sent=False
+        def report_boundary(path,text,*args,**kwargs):
+            nonlocal sent
+            if path.name=='report.json' and not sent:
+                sent=True;os.kill(os.getpid(),signum)
+            return original(path,text,*args,**kwargs)
+        monkeypatch.setattr(Path,'write_text',report_boundary)
+        groups=(d.TestGroup('first',command('pass')),d.TestGroup('later',command(f'from pathlib import Path;Path({str(marker)!r}).touch()')))
+>       result=d.run_plan(groups,tmp_path/'logs',group_seconds=2,total_seconds=5)
+
+tests/test_ci_driver.py:144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/run_tests.py:125: in run_plan
+    save()
+scripts/run_tests.py:88: in save
+    (output_dir/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+tests/test_ci_driver.py:140: in report_boundary
+    sent=True;os.kill(os.getpid(),signum)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+signum = 15
+frame = <frame at 0x7fc81cf7af70, file '/Users/umerkhan/code/shopextract/tests/test_ci_driver.py', line 140, code report_boundary>
+
+>   def interrupted(signum,frame):raise _Interrupted(signum)
+E   shopextract_ci_driver._Interrupted: 15
+
+scripts/run_tests.py:90: _Interrupted
+=========================== short test summary info ============================
+FAILED tests/test_ci_driver.py::test_inter_group_signal_report_and_no_later_launch[Signals.SIGINT-130]
+FAILED tests/test_ci_driver.py::test_inter_group_signal_report_and_no_later_launch[Signals.SIGTERM-143]
+2 failed, 10 deselected in 0.45s

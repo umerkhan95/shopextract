@@ -1,0 +1,110 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFFFFFFFF                                                            [100%]
+=================================== FAILURES ===================================
+_______________________ test_p4_family_binding[extract] ________________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('extract', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+______________________ test_p4_family_binding[normalize] _______________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('normalize', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+_________________________ test_p4_family_binding[map] __________________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('map', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+_______________________ test_p4_family_binding[validate] _______________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('validate', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+____________________ test_p4_family_binding[record-create] _____________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('record-create', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+_____________________ test_p4_family_binding[record-load] ______________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('record-load', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+______________________ test_p4_family_binding[tree-fetch] ______________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('tree-fetch', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+______________________ test_p4_family_binding[tree-link] _______________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('tree-link', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+______________________ test_p4_family_binding[tree-load] _______________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('tree-load', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+_____________________ test_p4_family_binding[tree-export] ______________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('tree-export', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+____________________ test_p4_family_binding[policy-inspect] ____________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('policy-inspect', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+____________________ test_p4_family_binding[policy-review] _____________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('policy-review', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+___________________ test_p4_family_binding[export-companion] ___________________
+tests/test_cli_categories.py:82: in test_p4_family_binding
+    assert result.exit_code in (0,3,4), (family,result.output,result.exception)
+E   AssertionError: ('export-companion', '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 in (0, 3, 4)
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+=========================== short test summary info ============================
+FAILED tests/test_cli_categories.py::test_p4_family_binding[extract] - Assert...
+FAILED tests/test_cli_categories.py::test_p4_family_binding[normalize] - Asse...
+FAILED tests/test_cli_categories.py::test_p4_family_binding[map] - AssertionE...
+FAILED tests/test_cli_categories.py::test_p4_family_binding[validate] - Asser...
+FAILED tests/test_cli_categories.py::test_p4_family_binding[record-create] - ...
+FAILED tests/test_cli_categories.py::test_p4_family_binding[record-load] - As...
+FAILED tests/test_cli_categories.py::test_p4_family_binding[tree-fetch] - Ass...
+FAILED tests/test_cli_categories.py::test_p4_family_binding[tree-link] - Asse...
+FAILED tests/test_cli_categories.py::test_p4_family_binding[tree-load] - Asse...
+FAILED tests/test_cli_categories.py::test_p4_family_binding[tree-export] - As...
+FAILED tests/test_cli_categories.py::test_p4_family_binding[policy-inspect]
+FAILED tests/test_cli_categories.py::test_p4_family_binding[policy-review] - ...
+FAILED tests/test_cli_categories.py::test_p4_family_binding[export-companion]
+13 failed in 1.22s

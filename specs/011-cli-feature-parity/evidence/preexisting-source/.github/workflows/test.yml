@@ -1,0 +1,46 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: pip install -e ".[dev,mcp]"
+
+      - name: Optional SDK import compatibility
+        run: |
+          python - <<'PYCODE'
+          import sys
+          sys.modules["mcp"] = None
+          from shopextract.tools import ToolRuntime, ToolConfig
+          runtime = ToolRuntime(ToolConfig())
+          assert len(runtime.tool_schemas()) == 8
+          PYCODE
+
+      - name: Require MCP extra
+        run: python -c "import mcp; import importlib.metadata; print(importlib.metadata.version('mcp'))"
+
+      # Sequential caps total up to 480s per matrix job (previously 240s).
+      - name: Run existing tests
+        run: timeout 240s pytest --ignore=tests/test_maintenance_acceptance.py --ignore=tests/test_maintenance_advisor.py --ignore=tests/test_maintenance_remaining_edges.py --ignore=tests/test_maintenance_review_repairs.py --ignore=tests/test_maintenance_store.py --ignore=tests/test_maintenance_stress_prerequisites.py --ignore=tests/test_maintenance_workflow.py
+
+      - name: Run maintenance tests
+        run: timeout 240s pytest tests/test_maintenance_acceptance.py tests/test_maintenance_advisor.py tests/test_maintenance_remaining_edges.py tests/test_maintenance_review_repairs.py tests/test_maintenance_store.py tests/test_maintenance_stress_prerequisites.py tests/test_maintenance_workflow.py

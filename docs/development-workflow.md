@@ -173,3 +173,17 @@ Create `specs/<number>-<feature>/` with `spec.md`, `test-design.md`, `tasks.md`,
 and `verification.md` as their stages are reached. Do not fill future verdicts
 with assumed success. Existing completed specs stay historical; apply this flow
 to new slices and material follow-up changes.
+
+## Complete repository check command
+
+Run `python scripts/run_tests.py` in the configured development environment. CI
+uses this same driver. It runs every test sequentially in three stable file
+families: ordinary tests, the native `test_reliable_changes_stress.py` oracle,
+and the seven maintenance files. No assertions or test cases are skipped. Each
+family has a 240-second ceiling and all three share a 480-second ceiling,
+including reserved cleanup time; these preserve the prior two-group maximum.
+The driver terminates/reaps owned process groups on timeout, failure or interrupt
+and stops before launching another group. Its JSON report and per-family logs
+are saved in the printed output directory; `--output-dir PATH` selects one.
+Limits can be narrowed, never increased. Use the full configured driver for final
+gate evidence; partial saved coverage is diagnostic evidence, not a passing gate.

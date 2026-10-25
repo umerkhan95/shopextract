@@ -1,0 +1,22 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+............F.......                                                     [100%]
+=================================== FAILURES ===================================
+________________ test_c20_category_mode_missing_is_review_only _________________
+src/shopextract/categories/portable.py:53: in categorized_product_to_record
+    payload = _payload(value)
+src/shopextract/categories/portable.py:29: in _payload
+    raise CategoryError('Category Product platform mismatch')
+E   shopextract.categories.contracts.CategoryError: Category Product platform mismatch
+
+The above exception was the direct cause of the following exception:
+tests/test_category_skeleton.py:139: in test_c20_category_mode_missing_is_review_only
+    reasons = category_review_reasons(value, selected_profile='hardware-v1',
+src/shopextract/categories/maintenance.py:14: in category_review_reasons
+    categorized_product_to_record(value)
+src/shopextract/categories/portable.py:61: in categorized_product_to_record
+    raise CategoryError(str(error)) from error
+E   shopextract.categories.contracts.CategoryError: Category Product platform mismatch
+=========================== short test summary info ============================
+FAILED tests/test_category_skeleton.py::test_c20_category_mode_missing_is_review_only
+1 failed, 19 passed in 4.62s

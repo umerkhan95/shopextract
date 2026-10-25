@@ -1,0 +1,44 @@
+{
+  "normal": {
+    "name": "timeout-diagnosis-normal",
+    "command": [
+      "/Users/umerkhan/code/shopextract/.venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[2909-6]"
+    ],
+    "returncode": 0,
+    "seconds": 15.838,
+    "stop": null,
+    "max_group_rss_bytes": 128806912,
+    "orphans": [],
+    "summary": "1 passed in 12.63s"
+  },
+  "required_plugins_only": {
+    "name": "timeout-diagnosis-required-plugins",
+    "command": [
+      "/Users/umerkhan/code/shopextract/.venv/bin/python",
+      "-m",
+      "pytest",
+      "-p",
+      "pytest_asyncio.plugin",
+      "-p",
+      "anyio.pytest_plugin",
+      "-q",
+      "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[2909-6]"
+    ],
+    "returncode": 0,
+    "seconds": 14.938,
+    "stop": null,
+    "max_group_rss_bytes": 117985280,
+    "orphans": [],
+    "summary": "1 passed, 1 warning in 12.85s"
+  },
+  "actual_plugins": [
+    "asyncio",
+    "anyio",
+    "unrelated langsmith_plugin"
+  ],
+  "hypothesis": "User-system unrelated pytest LangSmith plugin may add overhead; comparing same preexisting slow oracle with identical assertions/native mechanisms."
+}

@@ -1,0 +1,29 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+...................F....                                                 [100%]
+=================================== FAILURES ===================================
+_________________________ test_exact_portable_identity _________________________
+
+    def test_exact_portable_identity():
+        product = Product(title='A',price=Decimal('0.10'),gtin='00012345600012',in_stock=False)
+        result = invoke(['identity','assign','-'], [product_to_record(product)])
+>       assert result.exit_code == 0, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_INTERNAL", "message": "Command failed unexpectedly.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 1 == 0
+E        +  where 1 = <Result SystemExit(1)>.exit_code
+
+tests/test_cli_analysis.py:80: AssertionError
+=============================== warnings summary ===============================
+tests/test_cli_analysis.py: 16 warnings
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+tests/test_cli_analysis.py::test_workflow_red_families[args12-value12]
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_analysis.py:191: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    click.get_binary_stream('stdout').write(Path(payload).read_bytes())
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli_analysis.py::test_exact_portable_identity - AssertionEr...
+1 failed, 23 passed, 17 warnings in 0.47s

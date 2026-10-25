@@ -1,0 +1,3292 @@
+{
+  "state": "timed_out_no_assertion_failure_observed",
+  "collection_count": 923,
+  "completed_count": 783,
+  "completed": [
+    {
+      "node": "tests/test_agent_tool_api.py::test_unknown_version_rejected_before_work",
+      "result": "."
+    },
+    {
+      "node": "tests/test_agent_tool_api.py::test_denied_source_is_structured_error_without_network",
+      "result": "."
+    },
+    {
+      "node": "tests/test_agent_tool_api.py::test_existing_evidence_denied_through_other_valid_owner",
+      "result": "."
+    },
+    {
+      "node": "tests/test_agent_tool_api.py::test_invalid_page_size_rejected",
+      "result": "."
+    },
+    {
+      "node": "tests/test_agent_tool_api.py::test_guard_refuses_nonpublic_dns_before_connect",
+      "result": "."
+    },
+    {
+      "node": "tests/test_agent_tool_api.py::test_complete_domain_flow_uses_native_code_paths",
+      "result": "."
+    },
+    {
+      "node": "tests/test_agent_tool_api.py::test_cancel_running_resolution_publishes_no_catalog",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestGetPrice::test_string_price",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestGetPrice::test_float_price",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestGetPrice::test_int_price",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestGetPrice::test_zero_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestGetPrice::test_negative_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestGetPrice::test_missing_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestGetPrice::test_none_value_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestGetPrice::test_invalid_string_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestAnalyzeProducts::test_empty_list",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestAnalyzeProducts::test_single_product",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestAnalyzeProducts::test_multiple_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestAnalyzeProducts::test_currencies_counted",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestAnalyzeProducts::test_categories_counted",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestAnalyzeProducts::test_completeness_score_range",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestPriceDistribution::test_default_buckets",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestPriceDistribution::test_custom_buckets",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestPriceDistribution::test_empty_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestPriceDistribution::test_last_bucket_is_plus",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestOutliers::test_finds_outliers",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestOutliers::test_no_outliers_when_uniform",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestOutliers::test_too_few_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestOutliers::test_empty_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestBrandBreakdown::test_basic",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestBrandBreakdown::test_no_vendors",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestBrandBreakdown::test_empty_list",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestBrandBreakdown::test_single_brand",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestCountField::test_counts_values",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestCountField::test_skips_none_and_empty",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestCountCategories::test_from_category_path",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestCountCategories::test_from_product_type",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestBuildPricePosition::test_no_competitors",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestBuildPricePosition::test_cheapest",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestBuildPricePosition::test_most_expensive",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestBuildPricePosition::test_middle",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestBrandCoverage::test_basic",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestBrandCoverage::test_empty_catalogs",
+      "result": "."
+    },
+    {
+      "node": "tests/test_analyze.py::TestBrandCoverage::test_no_vendors",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_documented_auth_modes_execute_actual_query_and_paginate[storefront-None-None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_documented_auth_modes_execute_actual_query_and_paginate[private-None-None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_documented_auth_modes_execute_actual_query_and_paginate[private-customer-secret-None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_documented_auth_modes_execute_actual_query_and_paginate[impersonation-None-42]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[401-expired credential-storefront]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[401-expired credential-private]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[401-expired credential-impersonation]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[401-revoked credential-storefront]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[401-revoked credential-private]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[401-revoked credential-impersonation]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[403-origin denied credential-storefront]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[403-origin denied credential-private]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[403-origin denied credential-impersonation]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[403-channel denied credential-storefront]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[403-channel denied credential-private]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[403-channel denied credential-impersonation]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[200-unauthorized credential-storefront]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[200-unauthorized credential-private]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[200-unauthorized credential-impersonation]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[429-rate limit credential-storefront]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[429-rate limit credential-private]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[429-rate limit credential-impersonation]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[500-server credential-storefront]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[500-server credential-private]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_rejections_are_incomplete_redacted_and_do_not_retry[500-server credential-impersonation]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_invalid_config_is_rejected_before_network[options0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_invalid_config_is_rejected_before_network[options1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_invalid_config_is_rejected_before_network[options2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_invalid_config_is_rejected_before_network[options3]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_invalid_config_is_rejected_before_network[options4]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_invalid_config_is_rejected_before_network[options5]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_invalid_config_is_rejected_before_network[options6]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_invalid_config_is_rejected_before_network[options7]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_invalid_config_is_rejected_before_network[options8]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_invalid_config_is_rejected_before_network[options9]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_invalid_config_is_rejected_before_network[options10]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_private_token_infers_graphql_endpoint_without_public_html_discovery",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_cross_origin_redirect_cannot_replay_any_auth_context[Authorization]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_cross_origin_redirect_cannot_replay_any_auth_context[X-Bc-Customer-Access-Token]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_cross_origin_redirect_cannot_replay_any_auth_context[X-Bc-Customer-Id]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_customer_failure_never_falls_back_to_anonymous_html_and_scope_is_isolated",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_optional_product_prices_preserve_native_identifiers_image_path_and_stock[None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_optional_product_prices_preserve_native_identifiers_image_path_and_stock[prices1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_query_is_validated_against_frozen_documented_catalog_subset",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_public_pipeline_dispatch_keeps_customer_context_and_support[options0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_public_pipeline_dispatch_keeps_customer_context_and_support[options1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_anonymous_auth_failure_continues_html_and_retains_redacted_status",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_failure_after_first_page_retains_only_successful_captured_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_explicit_tokens_and_context_never_enter_urls_or_request_body",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_network_timeout_is_redacted_and_incomplete",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_bigcommerce_graphql_partial_data_is_never_accepted",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_frozen_schema_matches_saved_official_field_types_and_nullability",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_bigcommerce_auth_options_cannot_be_silently_used_on_other_platforms",
+      "result": "."
+    },
+    {
+      "node": "tests/test_bigcommerce_auth.py::test_published_stencil_token_is_rediscovered_after_rotation",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_api_response_redirect_and_zero_false[shopify]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_api_response_redirect_and_zero_false[woocommerce]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_api_response_redirect_and_zero_false[magento]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_variant_enrichment_and_gtin_history",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_feed_retains_source_and_transformations[csv]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_feed_retains_source_and_transformations[xml]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_structured_http_redirect_distinct_items_and_defaults",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_css_matching_nodes_and_ambiguous_items",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_mocked_llm_cannot_assert_support_or_confidence",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_truncation_defaults_original_values_and_nested_escaping",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_feed_redirect_and_extraction_error",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_product_budget_and_standalone_variant_view",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_layered_fallback_cannot_borrow_jsonld_or_parent_support",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_filtered_nested_images_retain_correct_source_item",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_rejected_price_conversion_never_supports_default[shopify-raw0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_rejected_price_conversion_never_supports_default[woocommerce-raw1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_rejected_price_conversion_never_supports_default[magento-raw2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_rejected_price_conversion_never_supports_default[generic-raw3]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_rejected_price_conversion_never_supports_default[generic-raw4]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_image_fallback_tracks_actual_successful_selection",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_unrecognized_condition_never_supports_default[raw0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_unrecognized_condition_never_supports_default[raw1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_shopware_variant_uses_its_own_stock_id_and_title_inputs",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_browser_redirect_capture_uses_final_url[json_ld]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_browser_redirect_capture_uses_final_url[opengraph]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_capture_budget_cannot_change_normalizer_source_selection",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_platform_fallback_consumes_outcomes_from_actual_normalizer",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_rejected_conversion_retains_original_input_and_reason[price-1,20]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_rejected_conversion_retains_original_input_and_reason[condition-UnrecognizedCondition]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_changed_captured_input_cannot_support_later_enrichment",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_barcode_enrichment_preserves_aggregate_stock_support",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_response_cookie_currency_retains_actual_response_evidence",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_native_shopware_sources_and_child_availability",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_native_magento_graphql_conversion_outcomes[45-OUT_OF_STOCK-observed]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_native_magento_graphql_conversion_outcomes[bad-UNKNOWN-unsupported]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_css_currency_and_relative_image_keep_exact_source",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_currency_prefixed_feed_price_is_not_a_default_zero[xml]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_currency_prefixed_feed_price_is_not_a_default_zero[csv]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_capture_provenance.py::test_capture_prioritizes_leaves_over_duplicate_parent_objects",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestTitleSimilarity::test_identical",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestTitleSimilarity::test_case_insensitive",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestTitleSimilarity::test_similar",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestTitleSimilarity::test_completely_different",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestFuzzyMatch::test_exact_matches",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestFuzzyMatch::test_partial_matches",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestFuzzyMatch::test_no_matches",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestFuzzyMatch::test_empty_lists",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestFuzzyMatch::test_no_reuse_of_b",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestFuzzyMatch::test_custom_threshold",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestMatchGtin::test_exact_gtin_match",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestMatchGtin::test_sku_match",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestMatchGtin::test_ean_match",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestMatchGtin::test_upc_match",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestMatchGtin::test_no_match",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestMatchGtin::test_empty_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestMatchGtin::test_whitespace_handling",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestDiffCatalogs::test_identical_catalogs",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestDiffCatalogs::test_disjoint_catalogs",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestDiffCatalogs::test_price_classification",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestDiffCatalogs::test_mixed_catalog",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestBuildResult::test_empty_matches",
+      "result": "."
+    },
+    {
+      "node": "tests/test_compare.py::TestBuildResult::test_sorted_by_price",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestAnalyzeMetaTags::test_shopify_generator",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestAnalyzeMetaTags::test_wordpress_generator",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestAnalyzeMetaTags::test_bigcommerce_platform",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestAnalyzeMetaTags::test_shopware_generator",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestAnalyzeMetaTags::test_no_match",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestAnalyzeCdnSources::test_shopify_cdn",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestAnalyzeCdnSources::test_bigcommerce_cdn",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestAnalyzeCdnSources::test_woocommerce_plugin",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestAnalyzeCdnSources::test_shopware_storefront",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestDeterminePlatform::test_shopify_wins_by_count",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestDeterminePlatform::test_generic_fallback",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::TestDeterminePlatform::test_single_signal_wins",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::test_detect_shopify",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::test_detect_woocommerce",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::test_detect_magento",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::test_detect_bigcommerce",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::test_detect_shopware",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::test_detect_generic_fallback",
+      "result": "."
+    },
+    {
+      "node": "tests/test_detect.py::test_detect_handles_connection_errors",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::TestParseSitemapXml::test_valid_sitemap",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::TestParseSitemapXml::test_sitemap_without_namespace",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::TestParseSitemapXml::test_sitemap_index_returns_empty",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::TestParseSitemapXml::test_invalid_xml",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::TestParseSitemapXml::test_empty_loc_elements",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::TestFilterWoocommerceUrls::test_filters_when_enough_product_urls",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::TestFilterWoocommerceUrls::test_returns_all_when_few_product_urls",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::test_discover_shopify_api",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::test_discover_shopify_api_paginated",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::test_discover_woocommerce_api",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::test_discover_magento_api",
+      "result": "."
+    },
+    {
+      "node": "tests/test_discover.py::test_discover_max_urls_limit",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_semantic_roundtrip_and_file",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_missing_and_expired_availability",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>3]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>4]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>5]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>6]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>7]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>8]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>9]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>10]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>11]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>12]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>13]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_reject_corruption[<lambda>14]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_limits_invalid_values_and_duplicate_json",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_bundle_duplicate_keys_and_versions",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_sidecar_all_rows_and_duplicate_ids[csv]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_sidecar_all_rows_and_duplicate_ids[google_shopping]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_sidecar_all_rows_and_duplicate_ids[idealo]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_same_path_rejected_before_write",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_bundle.py::test_mapping_literal_keys_and_projection_mismatch",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_missing_normalized_and_literal_zero_false_are_distinct",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_nested_coverage_and_derived_fields",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_typed_round_trip_and_uncalibrated_scores",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_conflicts_preserved_and_explicit_selection",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_evidence_rejected[overrides0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_evidence_rejected[overrides1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_evidence_rejected[overrides2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_evidence_rejected[overrides3]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_evidence_rejected[overrides4]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_evidence_rejected[overrides5]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_evidence_rejected[overrides6]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_evidence_rejected[overrides7]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_observation_rejected[overrides0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_observation_rejected[overrides1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_observation_rejected[overrides2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_observation_rejected[overrides3]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_observation_rejected[overrides4]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_observation_rejected[overrides5]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_malformed_observation_rejected[overrides6]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_references_versions_and_confidence_validation",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_legacy_constructors_identity_and_serialization_unchanged",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_expired_unknown_and_unsupported_reasons_survive",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_no_silent_candidate_loss_or_mutation",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_retained_pointer_escaping_and_collection_semantics",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_enum_values_use_recursive_codec[value0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_enum_values_use_recursive_codec[value1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_enum_values_use_recursive_codec[value2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_enum_values_use_recursive_codec[value3]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_enum_values_cannot_bypass_validation[nan]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_enum_values_cannot_bypass_validation[value1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_enum_values_cannot_bypass_validation[value2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_enum_values_cannot_bypass_validation[value3]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_only_observed_state_accepts_validated_confidence[unknown]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_only_observed_state_accepts_validated_confidence[unsupported]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_only_observed_state_accepts_validated_confidence[expired]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_contracts.py::test_only_observed_state_accepts_validated_confidence[conflicting]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_persistence.py::test_tiny_restart",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_persistence.py::test_retention_shared_payload_and_portable_tombstones",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_persistence.py::test_strict_microsecond_cutoff[0-0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_persistence.py::test_strict_microsecond_cutoff[1-2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_persistence.py::test_legacy_migration_idempotent",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_persistence.py::test_transaction_failure_rolls_back_every_write[snapshots]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_persistence.py::test_transaction_failure_rolls_back_every_write[evidence_references]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_persistence.py::test_corruption_and_unsupported_version",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_persistence.py::test_bounds_are_pretransaction",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_trust_e2e.py::test_trust_e2e_extract_restart_bundle",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_trust_e2e.py::test_trust_e2e_missing_and_literal_values",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_trust_e2e.py::test_trust_e2e_nested_and_transformed",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_trust_e2e.py::test_trust_e2e_conflicts",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_trust_e2e.py::test_trust_e2e_unverified_llm_score",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_trust_e2e.py::test_trust_e2e_legacy_and_restricted_export",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_trust_e2e.py::test_trust_e2e_expiry_and_pruning",
+      "result": "."
+    },
+    {
+      "node": "tests/test_evidence_trust_e2e.py::test_trust_e2e_reject_corrupt_bundle",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToCsv::test_basic_export",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToCsv::test_csv_headers",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToCsv::test_list_fields_flattened",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToCsv::test_none_values",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToCsv::test_empty_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToJson::test_basic_export",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToJson::test_valid_json",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToJson::test_custom_indent",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToJson::test_empty_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToFeedGoogleShopping::test_basic_xml",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToFeedGoogleShopping::test_xml_items",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToFeedGoogleShopping::test_xml_has_title",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToFeedGoogleShopping::test_xml_availability",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToFeedGoogleShopping::test_xml_price_format",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToFeedIdealo::test_basic_tsv",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToFeedIdealo::test_tsv_headers",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToFeedIdealo::test_sku_fallback_to_external_id",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToFeedEdgeCases::test_unsupported_format",
+      "result": "."
+    },
+    {
+      "node": "tests/test_export.py::TestToFeedEdgeCases::test_empty_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::TestNormalizeBatch::test_normalizes_valid_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::TestNormalizeBatch::test_skips_invalid_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::TestNormalizeBatch::test_empty_list",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::TestGetGenericCssSchema::test_has_required_keys",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::TestChunks::test_even_split",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::TestChunks::test_uneven_split",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::TestChunks::test_empty_list",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::test_extract_api_tier",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::test_extract_unified_crawl_fallback",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::test_extract_no_urls_discovered",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::test_extract_with_pre_detected_platform",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::test_extract_one",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::test_extract_one_empty",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::test_from_feed_success",
+      "result": "."
+    },
+    {
+      "node": "tests/test_extract.py::test_from_feed_empty",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_verified_manufacturer_wins_specs_and_preserves_both_observations[/title]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_verified_manufacturer_wins_specs_and_preserves_both_observations[/gtin]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_verified_manufacturer_wins_specs_and_preserves_both_observations[/mpn]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_verified_manufacturer_wins_specs_and_preserves_both_observations[/vendor]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_verified_manufacturer_wins_specs_and_preserves_both_observations[/attributes/color]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_verified_manufacturer_wins_specs_and_preserves_both_observations[/variants/0/attributes/size]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_supplier_offer_authority_does_not_use_manufacturer_list_values[/price]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_supplier_offer_authority_does_not_use_manufacturer_list_values[/compare_at_price]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_supplier_offer_authority_does_not_use_manufacturer_list_values[/in_stock]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_supplier_offer_authority_does_not_use_manufacturer_list_values[/currency]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_supplier_offer_authority_does_not_use_manufacturer_list_values[/condition]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_supplier_offer_authority_does_not_use_manufacturer_list_values[/variants/0/price]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_hostname_and_unverified_manufacturer_never_establish_authority",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_supplier_beats_unverified_specification",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_newest_equal_authority_disagreement_is_not_an_automatic_winner",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_typed_equivalence_is_conservative[left0-10-/price-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_typed_equivalence_is_conservative[0-False-/in_stock-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_typed_equivalence_is_conservative[10-10-/price-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_typed_equivalence_is_conservative[ Product  Name -product name-/title-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_typed_equivalence_is_conservative[ Caf\\xe9 -Cafe\\u0301-/vendor-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_typed_equivalence_is_conservative[NEW-new-/condition-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_typed_equivalence_is_conservative[aB-ab-/mpn-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_typed_equivalence_is_conservative[1 L-1000 ml-/attributes/size-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_typed_equivalence_is_conservative[left8-right8-/attributes-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_typed_equivalence_is_conservative[left9-right9-/tags-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_typed_equivalence_is_conservative[left10-right10-/tags-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_freshness_boundaries_and_future_evidence[/price-age0-observed]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_freshness_boundaries_and_future_evidence[/price-age1-expired]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_freshness_boundaries_and_future_evidence[/mpn-age2-observed]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_freshness_boundaries_and_future_evidence[/mpn-age3-expired]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_freshness_boundaries_and_future_evidence[/price-age4-unknown]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_stale_high_authority_does_not_hide_fresh_lower_authority",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_mixed_source_support_cannot_inherit_strongest_role_or_freshest_time",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_no_supported_candidate_exposes_unavailable_state[states0-unsupported]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_no_supported_candidate_exposes_unavailable_state[states1-unknown]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_no_supported_candidate_exposes_unavailable_state[states2-expired]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_no_supported_candidate_exposes_unavailable_state[states3-unknown]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_policy_configuration_and_score_cannot_change_authority",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_invalid_policy_windows_rejected[age0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_invalid_policy_windows_rejected[age1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_invalid_policy_windows_rejected[1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_evaluation_requires_explicit_utc[clock0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_evaluation_requires_explicit_utc[clock1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_permutations_and_round_trip_have_identical_semantic_results",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_nested_escaped_paths_trust_view_and_original_values_survive",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_dangling_support_is_rejected_instead_of_resolved",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_matching_reports_link_all_conflicts_without_changing_decisions_or_scores",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_unmatched_and_semantic_candidates_keep_field_references",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_invalid_policy_argument_is_not_silently_replaced[False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_invalid_policy_argument_is_not_silently_replaced[invalid1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_invalid_policy_argument_is_not_silently_replaced[latest]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_validated_confidence_is_retained_but_never_used_for_authority",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_empty_contract_and_unresolved_single_references_remain_explicit",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_saved_live_api_html_observations_preserve_support_distinctions[magento]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_field_resolution.py::test_saved_live_api_html_observations_preserve_support_distinctions[shopware]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/about]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/about-us]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/contact]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/blog]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/cart]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/checkout]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/account]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/login]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/search]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/faq]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/privacy]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/privacy-policy]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/terms]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/sitemap]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/wishlist]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_exact_paths_filtered[https://example.com/help]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_segment_paths_filtered[https://example.com/blog/my-post]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_segment_paths_filtered[https://example.com/checkout/step1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_segment_paths_filtered[https://example.com/account/orders]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_segment_paths_filtered[https://example.com/help/shipping]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_segment_paths_filtered[https://example.com/support/tickets]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_segment_paths_filtered[https://example.com/careers/engineering]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_segment_paths_filtered[https://example.com/wp-admin/dashboard]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_segment_paths_filtered[https://example.com/category/shoes]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_segment_paths_filtered[https://example.com/tag/sale]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_date_paths_filtered[https://example.com/2024/03/15/blog-post-title]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_date_paths_filtered[https://example.com/2023/01/01/new-year-sale]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_file_extensions_filtered[https://example.com/sitemap.xml]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_file_extensions_filtered[https://example.com/products.json]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_file_extensions_filtered[https://example.com/image.jpg]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_file_extensions_filtered[https://example.com/style.css]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_file_extensions_filtered[https://example.com/script.js]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_file_extensions_filtered[https://example.com/file.pdf]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_file_extensions_filtered[https://example.com/icon.svg]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_product_urls_not_filtered[https://example.com/products/blue-widget]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_product_urls_not_filtered[https://example.com/product/organic-tea]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_product_urls_not_filtered[https://example.com/collections/summer-sale]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_product_urls_not_filtered[https://example.com/shop/item/123]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_product_urls_not_filtered[https://example.com/p/fancy-shoes]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_product_urls_not_filtered[https://example.com/items/leather-jacket]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_empty_path_filtered",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestIsNonProductUrl::test_trailing_slash_handled",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestPlatformProductSitemaps::test_shopify_sitemaps",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestPlatformProductSitemaps::test_woocommerce_sitemaps",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestPlatformProductSitemaps::test_generic_empty",
+      "result": "."
+    },
+    {
+      "node": "tests/test_filters.py::TestPlatformProductSitemaps::test_all_platforms_present",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_ids_survive_rename_and_scope_skus",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_identifier_free_records_are_not_hashed_by_title",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_variant_source_ids_are_scoped_by_parent",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_url_identity_preserves_variant_query_ignores_tracking",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_normalize_assigns_identity_and_attributes",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_classification_guards[a0-b0-variant]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_classification_guards[a1-b1-bundle]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_classification_guards[a2-b2-bundle]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_classification_guards[a3-b3-uncertain]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_classification_guards[a4-b4-exact]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_classification_guards[a5-b5-uncertain]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_classification_guards[a6-b6-uncertain]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_classification_guards[a7-b7-unmatched]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_classification_guards[a8-b8-substitute]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_parent_variant_sets_prevent_false_exact",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_exact_before_semantics_and_ambiguity_review",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_catalog_only_prices_exact_and_same_currency",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_legacy_rename_migration_is_idempotent_and_history_uses_both_titles",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_ambiguous_title_requires_id_and_duplicates_rollback",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_conflicting_aliases_stop_migration",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_end_to_end_normalize_snapshot_rename_and_history",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_labeled_evaluation_acceptance",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_legacy_candidates_do_not_match_conflicting_variants_or_packs",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_exact_targets_are_ambiguous_and_invalid_semantic_indices_rejected",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_legacy_title_bridge_only_for_identifier_free_records",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_platform_enum_and_serialized_record_share_identity",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_capacity_roles_are_not_interchangeable",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_same_title_different_products_do_not_collapse_in_monitoring",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_semantic_callback_not_called_for_attribute_candidates",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_generic_title_search_still_returns_variant_candidates",
+      "result": "."
+    },
+    {
+      "node": "tests/test_identity_matching.py::test_promoted_legacy_title_cannot_attach_a_new_source_record",
+      "result": "."
+    },
+    {
+      "node": "tests/test_live_regressions.py::test_explicit_availability_and_observed_currency",
+      "result": "."
+    },
+    {
+      "node": "tests/test_live_regressions.py::test_restored_upc_is_explicit_and_checksum_validated",
+      "result": "."
+    },
+    {
+      "node": "tests/test_live_regressions.py::test_live_corresponding_pairs_and_catalog_with_explicit_policy",
+      "result": "."
+    },
+    {
+      "node": "tests/test_live_regressions.py::test_shopify_budget_and_id_checked_enrichment",
+      "result": "."
+    },
+    {
+      "node": "tests/test_live_regressions.py::test_public_api_budget_and_invalid_budgets",
+      "result": "."
+    },
+    {
+      "node": "tests/test_live_regressions.py::test_category_alone_does_not_emit_substitute_candidates",
+      "result": "."
+    },
+    {
+      "node": "tests/test_live_regressions.py::test_enrichment_failure_retains_products_and_surfaces_error",
+      "result": "."
+    },
+    {
+      "node": "tests/test_live_regressions.py::test_budget_across_pages_keeps_constant_page_size",
+      "result": "."
+    },
+    {
+      "node": "tests/test_live_regressions.py::test_numeric_supplier_upc_repair_is_still_explicit",
+      "result": "."
+    },
+    {
+      "node": "tests/test_live_regressions.py::test_labeled_selected_live_matrix_with_same_explicit_policy",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_supported_spec_correction_and_durable_evidence",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_deterministic_no_llm_and_unchanged",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_resume_skips_committed_external_work",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_missing_baseline_never_becomes_default_fact[None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_missing_baseline_never_becomes_default_fact[before1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_unknown_dispatch_is_not_replayed",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_zero_request_budget_preserves_partial_report",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_cancelled_job_cannot_resume_or_dispatch",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_source_auth_failure_has_no_retry",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_fresh_cache_retains_original_capture_time",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_invalid_goals_rejected_before_dispatch[changed0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_invalid_goals_rejected_before_dispatch[changed1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_invalid_goals_rejected_before_dispatch[changed2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_invalid_goals_rejected_before_dispatch[changed3]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_exclusive_store_ownership",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_category_profile_field_roles[hardware-v1-attributes/ram-identity_variant]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_category_profile_field_roles[hardware-v1-attributes/material-comparable]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_category_profile_field_roles[footwear-v1-attributes/size-identity_variant]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_category_profile_field_roles[footwear-v1-attributes/construction-comparable]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_exact_mass_conversion_does_not_authorize_identity",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_footwear_size_never_converts_between_systems",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_missing_category_is_visible_review",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_expired_deadline_resume_cannot_gain_time",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_advisory_cannot_authorize_title_only_identity",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_stable_report_pagination_and_resume_ids",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_missing_supplier_support_never_invents_removal",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_profile_identity_change_requires_new_job",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_fixture_real_parser_and_matcher_positive_and_source_id_conflict",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_unknown_advisor_usage_retains_bound_and_blocks_second_call",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_custom_profile_is_frozen_with_goal_before_execution",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_custom_profile_recovery_rejects_changed_or_missing_registry[changed]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_acceptance.py::test_custom_profile_recovery_rejects_changed_or_missing_registry[missing]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_known_usage_settles_actual_cost_and_caches_exact_advisory",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_invalid_advice_never_changes_authority_or_refunds_unknown_usage[model_change]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_invalid_advice_never_changes_authority_or_refunds_unknown_usage[injection]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_invalid_advice_never_changes_authority_or_refunds_unknown_usage[forged_evidence]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_overrun_records_actual_violation_and_stops_second_model_dispatch",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_cost_reservation_denies_before_model_dispatch",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_timeout_retains_full_reservation_with_bounded_call",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_payload_is_selected_structured_evidence_without_raw_catalog",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_model_crash_resumes_without_replay_or_refunding_unknown_spend",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_advisor_price_identity_change_invalidates_cached_advice",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_missing_trustworthy_bound_never_dispatches_model",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_explicit_unknown_advisor_retry_preserves_base_finding_and_old_charge",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_second_unknown_advisor_attempt_blocks_third_and_keeps_pagination",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_advisor_retry_rechecks_fixed_policy_before_dispatch[deadline-deadline]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_advisor_retry_rechecks_fixed_policy_before_dispatch[budget-token_budget]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_advisor_retry_rechecks_fixed_policy_before_dispatch[model-retry_mismatch]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_advisor_retry_rechecks_fixed_policy_before_dispatch[cancel-invalid_state]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_retry_publication_failure_preserves_previous_composition_and_charge",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_retry_cancellation_before_publication_keeps_prior_advisory",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_advisor.py::test_retry_missing_profile_definition_refuses_before_model_call",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_cancel_during_known_retry_delay_prevents_second_wire",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_cache_hit_revalidates_policy_without_touching_saved_report",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_custom_color_role_and_footwear_role_remain_distinct",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_missing_footwear_size_system_is_unknown_even_equal_sizes",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_unique_identifier_candidate_keeps_ambiguous_variant_context",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_captured_outdated_or_unsupported_baseline_has_distinct_provenance[True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_captured_outdated_or_unsupported_baseline_has_distinct_provenance[False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_captured_baseline_expiry_during_pause_cannot_become_correction",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_escaped_attribute_path_is_literal_and_observed",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_footwear_equal_numeral_with_different_size_system_is_unknown",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_cache_corruption_is_a_miss_not_a_fact_or_silent_success[scalar]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_cache_corruption_is_a_miss_not_a_fact_or_silent_success[version]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_explicit_zero_price_is_not_missing_or_boolean[0-unchanged]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_remaining_edges.py::test_explicit_zero_price_is_not_missing_or_boolean[False-needs_review]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_review_repairs.py::test_product_cap_cannot_hide_captured_duplicate_identity[False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_review_repairs.py::test_product_cap_cannot_hide_captured_duplicate_identity[True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_review_repairs.py::test_zero_product_budget_never_discovers_or_sends",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_review_repairs.py::test_unknown_and_violation_remain_partial_on_repeated_reopen_resume[unknown-model_usage_unknown]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_review_repairs.py::test_unknown_and_violation_remain_partial_on_repeated_reopen_resume[overrun-budget_violation]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_review_repairs.py::test_advisor_retry_preserves_real_native_partial_source_coverage",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_review_repairs.py::test_advisor_success_cannot_complete_unfinished_independent_work[extract]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_review_repairs.py::test_advisor_success_cannot_complete_unfinished_independent_work[compare]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_store_smoke_atomic_checkpoint_and_reopen",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_recovery_keeps_unknown_intent_charged_and_blocks_implicit_retry",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_cumulative_exact_reservation_edges[requests-request_budget]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_cumulative_exact_reservation_edges[tokens-token_budget]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_cumulative_exact_reservation_edges[cost_micros-cost_budget]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_transaction_failure_rolls_back_evidence_findings_and_settlement",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_control_cancel_while_execution_owner_is_active",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_terminal_winner_and_resume_rules[completed]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_terminal_winner_and_resume_rules[cancelled]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_terminal_winner_and_resume_rules[failed]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_retry_delay_attempt_count_and_policy_failure_survive_reopen",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_deadline_is_fixed_and_expired_resume_is_partial",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_kernel_owner_death_releases_lock_and_recovers_unknown_intent",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_store.py::test_discovered_request_steps_append_stably_without_resetting_attempts",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_stress_prerequisites.py::test_full_dictionary_matching_equivalence_and_actual_report_evidence",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_stress_prerequisites.py::test_hung_worker_and_descendant_are_terminated_and_reaped",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_stress_prerequisites.py::test_checkpoint_mutation_fixture_reaches_real_resume",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_category_specs_remain_visible_without_overriding_matcher[hardware-v1-attributes/ram-8 GB-16 GB-different]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_category_specs_remain_visible_without_overriding_matcher[hardware-v1-attributes/material-steel-aluminium-different]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_category_specs_remain_visible_without_overriding_matcher[footwear-v1-attributes/size-9-10-different]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_category_specs_remain_visible_without_overriding_matcher[footwear-v1-attributes/material-leather-textile-different]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_category_specs_remain_visible_without_overriding_matcher[hardware-v1-attributes/weight-1000 g-1 kg-equal]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_category_specs_remain_visible_without_overriding_matcher[footwear-v1-attributes/weight-1000 g-1 kg-equal]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_captured_baseline_preserves_evidence_instead_of_defaults",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_real_source_category_conflict_vetoes_identifier_match",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_cancel_active_wire_releases_owner_before_ack",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_same_store_second_engine_cannot_release_active_owner",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_redirect_requests_cannot_escape_cumulative_budget",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_cache_exact_expiry_misses_but_report_evidence_survives_eviction",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_known_transient_transport_failure_retries_once_with_charged_attempts",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_unknown_retry_is_explicit_new_charge_and_resolves_pending_comparison",
+      "result": "."
+    },
+    {
+      "node": "tests/test_maintenance_workflow.py::test_native_sitemap_discovery_then_guarded_extraction",
+      "result": "."
+    },
+    {
+      "node": "tests/test_mcp_reference_client.py::test_reference_mcp_client_complete_flow",
+      "result": "."
+    },
+    {
+      "node": "tests/test_mechanism_driver_state.py::test_final_overflow_persisted_before_success_or_resume[101-5-rss_limit]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_mechanism_driver_state.py::test_final_overflow_persisted_before_success_or_resume[100-6-process_limit]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_mechanism_driver_state.py::test_legacy_violating_passes_block_without_resetting_budget",
+      "result": "."
+    },
+    {
+      "node": "tests/test_mechanism_driver_state.py::test_success_requires_all_exact_nodes_and_zero_resource_history",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestPlatformEnum::test_all_values",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestPlatformEnum::test_string_comparison",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestExtractionTierEnum::test_all_values",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestVariant::test_defaults",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestVariant::test_custom_values",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestProduct::test_defaults",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestProduct::test_custom_values",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestProduct::test_variant_list_isolation",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestPlatformResult::test_creation",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestExtractorResult::test_empty",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestExtractorResult::test_with_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestExtractionResult::test_defaults",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestExtractionResult::test_with_products",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestMatch::test_creation",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestComparisonResult::test_empty",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestCatalogDiff::test_creation",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestChangeModels::test_price_change_post_init",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestChangeModels::test_new_product_post_init",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestChangeModels::test_removed_product_post_init",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestCatalogStats::test_defaults",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestPricePosition::test_defaults",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestAssortmentGaps::test_defaults",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestValidationModels::test_issue",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestValidationModels::test_report_pass_rate_empty",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestValidationModels::test_report_pass_rate",
+      "result": "."
+    },
+    {
+      "node": "tests/test_models.py::TestValidationModels::test_image_issue",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestDomainFromUrl::test_full_url",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestDomainFromUrl::test_bare_domain",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestDomainFromUrl::test_with_www",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestDecimalEncoder::test_decimal",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestDecimalEncoder::test_datetime",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestGetConnection::test_creates_db",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestProductsByTitle::test_indexes_by_title",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestProductsByTitle::test_skips_empty_titles",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestDetectChanges::test_price_change",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestDetectChanges::test_new_product",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestDetectChanges::test_removed_product",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestDetectChanges::test_no_changes",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestDetectChanges::test_mixed_changes",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestChangesFromDb::test_changes_with_two_snapshots",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestChangesFromDb::test_changes_with_one_snapshot",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestChangesFromDb::test_changes_db_not_found",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestPriceHistory::test_price_history_multiple_snapshots",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestPriceHistory::test_price_history_product_not_found",
+      "result": "."
+    },
+    {
+      "node": "tests/test_monitor.py::TestPriceHistory::test_price_history_case_insensitive",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestStripHtml::test_strips_tags",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestStripHtml::test_strips_script",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestStripHtml::test_strips_style",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestStripHtml::test_empty_string",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestStripHtml::test_none_returns_empty",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestValidateGtin::test_valid_ean13",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestValidateGtin::test_valid_upc12_padded",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestValidateGtin::test_valid_gtin8",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestValidateGtin::test_valid_gtin14",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestValidateGtin::test_strips_whitespace_and_dashes",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestValidateGtin::test_none_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestValidateGtin::test_empty_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestValidateGtin::test_all_zeros_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestValidateGtin::test_non_digit_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestValidateGtin::test_wrong_length_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestParseAdditionalProperties::test_extracts_gtin",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestParseAdditionalProperties::test_extracts_mpn",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestParseAdditionalProperties::test_ignores_unknown",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestParseAdditionalProperties::test_handles_non_dict",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeShopify::test_basic_normalization",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeShopify::test_out_of_stock",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeShopify::test_tags_parsed",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeShopify::test_variants_created",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeShopify::test_no_title_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeWoocommerce::test_store_api_format",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeWoocommerce::test_admin_api_format",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeWoocommerce::test_no_name_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeMagento::test_basic",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeMagento::test_media_gallery",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeShopware::test_basic",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeShopware::test_with_variants",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeGeneric::test_schema_org",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeGeneric::test_schema_org_offers_list",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeGeneric::test_schema_org_out_of_stock",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeGeneric::test_opengraph",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeGeneric::test_css_generic",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeGeneric::test_css_european_price",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeGeneric::test_css_comma_decimal",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeGeneric::test_google_feed",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeEdgeCases::test_insufficient_data_returns_none",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeEdgeCases::test_default_condition_is_new",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeEdgeCases::test_schema_org_condition_parsing",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeEdgeCases::test_schema_org_image_dict",
+      "result": "."
+    },
+    {
+      "node": "tests/test_normalize.py::TestNormalizeEdgeCases::test_schema_org_image_list",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_no_title_returns_zero",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_title_only",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_title_via_name_field",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_title_via_og_title",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_title_plus_price",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_title_plus_image",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_title_plus_description",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_title_plus_sku",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_full_product_perfect_score",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_alternative_field_names",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_empty_string_fields_ignored",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_zero_price_ignored",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_empty_list_images_ignored",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_nonempty_list_images_counted",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_dict_offers_counted",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_empty_dict_offers_ignored",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_batch_empty",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_batch_single",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_batch_average",
+      "result": "."
+    },
+    {
+      "node": "tests/test_quality.py::TestQualityScorer::test_batch_all_complete",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc01_price_evidence_and_durable_reopen",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc01_title_rename_and_shared_display_title",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc02_variant_reordering",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc03_tracked_leaf_changes[/in_stock-True-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc03_tracked_leaf_changes[/pack_quantity-1-2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc03_tracked_leaf_changes[/attributes/warranty-12 months-24 months]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc03_tracked_leaf_changes[/attributes/pack_size-1 L-1000 ml]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc03_tracked_leaf_changes[/attributes/a~1b~0c-x-y]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields3]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields4]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields5]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc04_invalid_or_missing_never_becomes_default[fields6]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc05_unavailable_support[unknown-0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc05_unavailable_support[unsupported-0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc05_unavailable_support[conflicting-0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc05_unavailable_support[observed-86401]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc05_unavailable_support[observed--1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc05_selected_refs_exclude_competing_evidence",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc06_typed_equivalence[left0-10-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc06_typed_equivalence[ Caf\\xe9 -Cafe\\u0301-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc06_typed_equivalence[left2-right2-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc06_typed_equivalence[left3-right3-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc06_typed_equivalence[False-0-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc07_currency_gates_price[USD]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc07_currency_gates_price[None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc08_missing_products_never_immediate_removal[False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc08_missing_products_never_immediate_removal[None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc08_missing_products_never_immediate_removal[True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc09_confirmed_removal_with_two_complete_absences",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc10_removal_recheck_health[True-True-rejected]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc10_removal_recheck_health[False-False-pending]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc10_removal_recheck_health[False-None-pending]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc11_addition_requires_complete_baseline[True-1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc11_addition_requires_complete_baseline[False-0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc11_addition_requires_complete_baseline[None-0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc11_variant_absence_is_diagnostic",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_scope_suppression[None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_scope_suppression[different]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_invalid_pairs[missing]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_invalid_pairs[reversed]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_invalid_pairs[equal]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_invalid_pairs[supplier]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc13_suspicious_boundaries[50-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc13_suspicious_boundaries[200-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc13_suspicious_boundaries[50.01-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc13_suspicious_boundaries[199.99-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc13_suspicious_boundaries[0-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_recheck_price_requires_same_currency[50-EUR-confirmed]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_recheck_price_requires_same_currency[100-EUR-rejected]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_recheck_price_requires_same_currency[75-EUR-rejected]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_recheck_price_requires_same_currency[50-USD-pending]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_recheck_price_requires_same_currency[50-None-pending]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_invalid_recheck_is_atomic[missing]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_invalid_recheck_is_atomic[old]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_invalid_recheck_is_atomic[supplier]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_invalid_recheck_is_atomic[scope]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc15_terminal_recheck_replay_and_reversals",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc16_race_has_one_publisher",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc16_rollback_after_ledger_write",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc16_limits_are_atomic_errors[MAX_SNAPSHOT_BYTES]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc16_limits_are_atomic_errors[MAX_REPORT_BYTES]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc16_limits_are_atomic_errors[MAX_REPORT_ENTRIES]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc17_frozen_reports_survive_pruning_and_detached_mutation",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc18_unrelated_bad_legacy_history_not_migrated[unrelated.example]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc18_unrelated_bad_legacy_history_not_migrated[shop.example]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc04_sc13_zero_and_ordinary_prices[0-0-0-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc04_sc13_zero_and_ordinary_prices[0-1-0-True]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc04_sc13_zero_and_ordinary_prices[11-10-1-False]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc05_equal_authority_conflict_and_expired_source",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_duplicate_identity_and_corrupt_graph_errors",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_variant_recheck_uses_parent_currency[USD]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_variant_recheck_uses_parent_currency[None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc16_sqlite_lock_is_bounded",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc18_selected_legacy_scalars_are_unsupported",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_currency_candidate_recheck[USD-confirmed-None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_currency_candidate_recheck[EUR-rejected-None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_currency_candidate_recheck[GBP-rejected-superseded_value]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_currency_candidate_recheck[None-pending-unverified_recheck]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc14_unsupported_price_recheck",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc11_unsupported_new_record_is_not_addition",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_missing_identity_rejects_without_database_changes",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_nonfinite_stored_graph_rejected_atomically",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc16_simultaneous_recheck_has_one_publisher",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc17_deterministic_entity_field_order",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc08_failure_reasons_override_complete_flag[previous]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc08_failure_reasons_override_complete_flag[current]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc08_failure_reasons_override_complete_flag[recheck]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_invalid_domain_is_value_error_without_writes[None]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_invalid_domain_is_value_error_without_writes[42]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_invalid_domain_is_value_error_without_writes[   ]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc12_invalid_domain_is_value_error_without_writes[http://]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes.py::test_sc16_oversized_ledger_rejected_before_materializing_text",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm01_native_mixed_smoke",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_targeted_interactions[SM02]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_targeted_interactions[SM03]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_targeted_interactions[SM04]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_targeted_interactions[SM05]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_targeted_interactions[SM06]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_targeted_interactions[SM07]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_targeted_interactions[SM08]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[1701-0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[1701-1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[1701-2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[1701-3]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[1701-4]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[1701-5]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[1701-6]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[1701-7]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[2909-0]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[2909-1]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[2909-2]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[2909-3]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[2909-4]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[2909-5]",
+      "result": "."
+    },
+    {
+      "node": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[2909-6]",
+      "result": "."
+    }
+  ],
+  "next_node_at_termination": "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[2909-7]",
+  "next_node_status": "inflight or not yet started; quiet log has no start event so cannot distinguish",
+  "unconfirmed_nodes": [
+    "tests/test_reliable_changes_stress.py::test_sm09_seeded_event_oracle[2909-7]",
+    "tests/test_snapshot_completeness.py::test_full_to_bounded_snapshot_consumes_real_pipeline_completeness",
+    "tests/test_snapshot_completeness.py::test_existing_legacy_full_snapshot_followed_by_partial_is_safe",
+    "tests/test_snapshot_completeness.py::test_partial_membership_rotation_suppresses_additions_and_removals_but_keeps_prices",
+    "tests/test_snapshot_completeness.py::test_failed_or_unknown_empty_snapshot_cannot_remove_products[False]",
+    "tests/test_snapshot_completeness.py::test_failed_or_unknown_empty_snapshot_cannot_remove_products[None]",
+    "tests/test_snapshot_completeness.py::test_complete_same_scope_observations_still_confirm_real_membership_changes",
+    "tests/test_snapshot_completeness.py::test_complete_empty_shopify_catalog_is_preserved_in_public_result",
+    "tests/test_snapshot_completeness.py::test_complete_empty_snapshot_can_confirm_removals",
+    "tests/test_snapshot_completeness.py::test_different_collection_scopes_do_not_compare_even_when_complete",
+    "tests/test_snapshot_completeness.py::test_short_page_or_budget_boundary_completeness[5-5-False]",
+    "tests/test_snapshot_completeness.py::test_short_page_or_budget_boundary_completeness[18-5-False]",
+    "tests/test_snapshot_completeness.py::test_short_page_or_budget_boundary_completeness[4-5-True]",
+    "tests/test_snapshot_completeness.py::test_failed_later_page_cannot_certify_completeness[404]",
+    "tests/test_snapshot_completeness.py::test_failed_later_page_cannot_certify_completeness[503]",
+    "tests/test_snapshot_completeness.py::test_page_budget_is_incomplete",
+    "tests/test_snapshot_completeness.py::test_normalization_drops_and_api_truncation_carry_reasons",
+    "tests/test_snapshot_completeness.py::test_scope_keeps_query_and_collection_context",
+    "tests/test_snapshot_completeness.py::test_legacy_unknown_scope_still_blocks_membership_with_complete_current",
+    "tests/test_snapshot_completeness.py::test_short_final_page_at_budget_can_prove_exhaustion",
+    "tests/test_snapshot_completeness.py::test_read_time_upgrade_of_existing_full_and_bounded_history_is_safe",
+    "tests/test_storefront_apis.py::test_magento_fixed_offset_pagination_and_configurable_variant_sources",
+    "tests/test_storefront_apis.py::test_graphql_error_does_not_accept_partial_data",
+    "tests/test_storefront_apis.py::test_shopware_runtime_configuration_context_and_false_variant_stock",
+    "tests/test_storefront_apis.py::test_bigcommerce_token_cursor_and_nested_zero_false",
+    "tests/test_storefront_apis.py::test_repeated_bigcommerce_cursor_is_incomplete",
+    "tests/test_storefront_apis.py::test_missing_public_config_never_probes_admin_keys[shopware]",
+    "tests/test_storefront_apis.py::test_missing_public_config_never_probes_admin_keys[bigcommerce]",
+    "tests/test_storefront_apis.py::test_published_token_is_not_reused_for_an_unrelated_endpoint_override",
+    "tests/test_storefront_apis.py::test_transport_handles_compressed_body_without_double_decoding",
+    "tests/test_storefront_apis.py::test_keyed_api_redirect_cannot_replay_key_to_other_origin",
+    "tests/test_storefront_apis.py::test_html_source_uses_generic_normalizer_even_when_platform_is_detected[shopify]",
+    "tests/test_storefront_apis.py::test_html_source_uses_generic_normalizer_even_when_platform_is_detected[woocommerce]",
+    "tests/test_storefront_apis.py::test_html_source_uses_generic_normalizer_even_when_platform_is_detected[magento]",
+    "tests/test_storefront_apis.py::test_html_source_uses_generic_normalizer_even_when_platform_is_detected[shopware]",
+    "tests/test_storefront_apis.py::test_html_source_uses_generic_normalizer_even_when_platform_is_detected[bigcommerce]",
+    "tests/test_storefront_apis.py::test_graphql_only_magento_detection",
+    "tests/test_storefront_apis.py::test_public_extract_dispatches_native_adapter_with_budget[magento-MagentoGraphQLExtractor]",
+    "tests/test_storefront_apis.py::test_public_extract_dispatches_native_adapter_with_budget[shopware-ShopwareExtractor]",
+    "tests/test_storefront_apis.py::test_public_extract_dispatches_native_adapter_with_budget[bigcommerce-BigCommerceExtractor]",
+    "tests/test_storefront_apis.py::test_unavailable_api_falls_through_public_pipeline_with_inspectable_reason",
+    "tests/test_storefront_apis.py::test_empty_known_graphql_catalog_does_not_trigger_crawling",
+    "tests/test_storefront_apis.py::test_explicit_legacy_rest_mode_preserves_endpoint_and_authentication",
+    "tests/test_storefront_apis.py::test_incomplete_variant_connection_cannot_report_complete_catalog",
+    "tests/test_storefront_apis.py::test_anonymous_page_redirect_retains_final_response_url",
+    "tests/test_storefront_apis.py::test_bigcommerce_missing_token_uses_bounded_native_card_discovery",
+    "tests/test_storefront_apis.py::test_invalid_direct_adapter_budget_fails_before_any_requests[0-ShopwareExtractor]",
+    "tests/test_storefront_apis.py::test_invalid_direct_adapter_budget_fails_before_any_requests[0-BigCommerceExtractor]",
+    "tests/test_storefront_apis.py::test_invalid_direct_adapter_budget_fails_before_any_requests[0-MagentoGraphQLExtractor]",
+    "tests/test_storefront_apis.py::test_invalid_direct_adapter_budget_fails_before_any_requests[-1-ShopwareExtractor]",
+    "tests/test_storefront_apis.py::test_invalid_direct_adapter_budget_fails_before_any_requests[-1-BigCommerceExtractor]",
+    "tests/test_storefront_apis.py::test_invalid_direct_adapter_budget_fails_before_any_requests[-1-MagentoGraphQLExtractor]",
+    "tests/test_storefront_apis.py::test_invalid_direct_adapter_budget_fails_before_any_requests[True-ShopwareExtractor]",
+    "tests/test_storefront_apis.py::test_invalid_direct_adapter_budget_fails_before_any_requests[True-BigCommerceExtractor]",
+    "tests/test_storefront_apis.py::test_invalid_direct_adapter_budget_fails_before_any_requests[True-MagentoGraphQLExtractor]",
+    "tests/test_storefront_apis.py::test_bigcommerce_published_token_uses_canonical_storefront_origin_after_redirect",
+    "tests/test_storefront_apis.py::test_last_graphql_page_clipped_by_budget_cannot_report_complete[5]",
+    "tests/test_storefront_apis.py::test_last_graphql_page_clipped_by_budget_cannot_report_complete[None]",
+    "tests/test_tool_bootstrap.py::test_B01_normal_grants_preserve_product_variant_evidence",
+    "tests/test_tool_bootstrap.py::test_B02_all_stored_payload_preflight_before_decode",
+    "tests/test_tool_bootstrap.py::test_B03_item_preflight_before_decode",
+    "tests/test_tool_bootstrap.py::test_B04_atomic_failure_never_evicts_unrelated_results",
+    "tests/test_tool_bootstrap.py::test_B05_busy_database_deadline_keeps_event_loop_responsive",
+    "tests/test_tool_bootstrap.py::test_B06_cancel_and_close_reap_private_materialization",
+    "tests/test_tool_bootstrap.py::test_B07_shared_admission_and_waiter_cancellation",
+    "tests/test_tool_bootstrap.py::test_B08_legacy_and_consistent_transaction",
+    "tests/test_tool_discovery_lazy.py::test_D01_cap_avoids_later_failing_sibling",
+    "tests/test_tool_discovery_lazy.py::test_D02_empty_denied_duplicate_and_cycle_stay_bounded",
+    "tests/test_tool_discovery_lazy.py::test_E01_agent_files_skipped_before_product_map",
+    "tests/test_tool_discovery_lazy.py::test_E02_case_query_and_supported_source_modes_preserved",
+    "tests/test_tool_lifecycle.py::test_immutable_pages_cursor_binding_expiry_and_release",
+    "tests/test_tool_lifecycle.py::test_aggregate_rejection_and_eviction_releases_graph",
+    "tests/test_tool_lifecycle.py::test_cancel_queue_and_completed_cancel_winner",
+    "tests/test_tool_lifecycle.py::test_retained_charge_includes_products_and_each_real_payload_copy",
+    "tests/test_tool_lifecycle.py::test_running_graph_reservation_counts_and_cancel_releases",
+    "tests/test_tool_mechanisms.py::test_contract_missing_null_false_and_nonfinite",
+    "tests/test_tool_mechanisms.py::test_input_byte_limit_edges",
+    "tests/test_tool_mechanisms.py::test_cursor_tamper_collection_and_session",
+    "tests/test_tool_mechanisms.py::test_empty_page_and_zero_total",
+    "tests/test_tool_mechanisms.py::test_queue_limit_and_waiting_deadline",
+    "tests/test_tool_mechanisms.py::test_resolver_process_stall_is_reaped",
+    "tests/test_tool_mechanisms.py::test_repeated_process_cancel_no_accumulation",
+    "tests/test_tool_mechanisms.py::test_domain_process_deadline_no_success",
+    "tests/test_tool_mechanisms.py::test_reaper_failure_stops_replacement",
+    "tests/test_tool_mechanisms.py::test_graph_default_byte_cap_and_shared_copies",
+    "tests/test_tool_mechanisms.py::test_identity_encoding_rejected_before_stream_read",
+    "tests/test_tool_mechanisms.py::test_raw_body_multichunk_cap_and_false_length",
+    "tests/test_tool_mechanisms.py::test_shared_request_and_redirect_budget",
+    "tests/test_tool_mechanisms.py::test_redirect_count_cap",
+    "tests/test_tool_mechanisms.py::test_nonpublic_address_family_vectors",
+    "tests/test_tool_mechanisms.py::test_mixed_public_private_dns_denied",
+    "tests/test_tool_mechanisms.py::test_origin_idna_trailing_dot_port_and_bypass_syntax",
+    "tests/test_tool_mechanisms.py::test_discovered_denied_link_is_diagnostic_only",
+    "tests/test_tool_mechanisms.py::test_dns_change_after_discovery_denies_extraction",
+    "tests/test_tool_mechanisms.py::test_cross_origin_redirect_no_target_bytes",
+    "tests/test_tool_mechanisms.py::test_pinned_numeric_tcp_preserves_host_and_tls",
+    "tests/test_tool_mechanisms.py::test_evidence_response_cap_metadata",
+    "tests/test_tool_mechanisms.py::test_incomplete_capture_replay_never_confirms_removal",
+    "tests/test_tool_mechanisms.py::test_real_changes_replay_and_capture_grants",
+    "tests/test_tool_mechanisms.py::test_supported_empty_distinct_from_backend_failure",
+    "tests/test_tool_mechanisms.py::test_publication_fault_releases_reservation",
+    "tests/test_tool_mechanisms.py::test_real_evidence_expiry_and_disconnect",
+    "tests/test_tool_mechanisms.py::test_feed_static_real_parser_and_evidence",
+    "tests/test_tool_mechanisms.py::test_late_cancelled_domain_cannot_publish",
+    "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[shopify]",
+    "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[woocommerce]",
+    "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[magento]",
+    "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[shopware]",
+    "tests/test_tool_native_modes.py::test_native_mode_guarded_parser_and_retained_evidence[bigcommerce]",
+    "tests/test_tool_redirect_credentials.py::test_native_context_redirect_credentials[True]",
+    "tests/test_tool_redirect_credentials.py::test_native_context_redirect_credentials[False]",
+    "tests/test_tool_shopware_policy.py::test_fixed_native_search_and_denied_redirect_target",
+    "tests/test_tool_shopware_policy.py::test_denied_policy_route_and_body_never_send",
+    "tests/test_validate.py::TestValidateGoogleShopping::test_valid_product",
+    "tests/test_validate.py::TestValidateGoogleShopping::test_missing_required_fields",
+    "tests/test_validate.py::TestValidateGoogleShopping::test_title_too_long",
+    "tests/test_validate.py::TestValidateGoogleShopping::test_missing_gtin_is_warning",
+    "tests/test_validate.py::TestValidateIdealo::test_valid_product",
+    "tests/test_validate.py::TestValidateIdealo::test_missing_delivery",
+    "tests/test_validate.py::TestValidateIdealo::test_sku_or_external_id",
+    "tests/test_validate.py::TestValidateAmazon::test_valid_product",
+    "tests/test_validate.py::TestValidateAmazon::test_missing_gtin_is_error",
+    "tests/test_validate.py::TestValidateEbay::test_valid_product",
+    "tests/test_validate.py::TestValidateEbay::test_title_too_long",
+    "tests/test_validate.py::TestValidateEdgeCases::test_unsupported_marketplace",
+    "tests/test_validate.py::TestValidateEdgeCases::test_empty_products",
+    "tests/test_validate.py::TestValidateEdgeCases::test_negative_price",
+    "tests/test_validate.py::TestValidateEdgeCases::test_multiple_products",
+    "tests/test_validate.py::TestFindDuplicates::test_title_duplicates",
+    "tests/test_validate.py::TestFindDuplicates::test_fuzzy_title_duplicates",
+    "tests/test_validate.py::TestFindDuplicates::test_no_duplicates",
+    "tests/test_validate.py::TestFindDuplicates::test_gtin_duplicates",
+    "tests/test_validate.py::TestFindDuplicates::test_sku_duplicates",
+    "tests/test_validate.py::TestFindDuplicates::test_empty_gtin_not_matched",
+    "tests/test_validate.py::TestFindDuplicates::test_unsupported_method",
+    "tests/test_validate.py::TestFindDuplicates::test_empty_products",
+    "tests/test_validate.py::test_check_images_valid",
+    "tests/test_validate.py::test_check_images_missing_url",
+    "tests/test_validate.py::test_check_images_404",
+    "tests/test_validate.py::test_check_images_wrong_content_type"
+  ],
+  "unconfirmed_count": 140,
+  "inflight_exactly_observed": false,
+  "mapping_assumptions": [
+    "same unchanged source manifest",
+    "standard pytest collection order; no observed reorder plugin",
+    "strict full-line progress chars only; ignores warnings/percentages"
+  ],
+  "maintenance_count": 106,
+  "existing_count": 817
+}

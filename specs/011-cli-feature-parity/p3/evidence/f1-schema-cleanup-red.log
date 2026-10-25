@@ -1,0 +1,30 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________ test_prune_preview_schema_fault_closes_copy __________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-246/test_prune_preview_schema_faul0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10b682e00>
+
+    def test_prune_preview_schema_fault_closes_copy(tmp_path,monkeypatch):
+        db=str(tmp_path/'s.db');save(db,[product()],0)
+        with sqlite3.connect(db) as conn:conn.execute('UPDATE evidence_schema SET version=999')
+        before=Path(db).read_bytes();connect=sqlite3.connect;opened=[];closed=[]
+        class Tracked(sqlite3.Connection):
+            def close(self):closed.append(id(self));return super().close()
+        def tracked(*args,**kwargs):
+            kwargs['factory']=Tracked;conn=connect(*args,**kwargs);opened.append(id(conn));return conn
+        monkeypatch.setattr(sqlite3,'connect',tracked)
+        result=invoke('evidence','prune','--before','2026-10-17T00:00:00Z','--db',db)
+        assert result.exit_code==1 and json.loads(result.output)['error']['code']=='E_OPERATION'
+>       assert sorted(opened)==sorted(closed) and Path(db).read_bytes()==before
+E       assert ([4481056496, ...6, 4490264640] == [4481056496, 4481056496]
+E         
+E         Left contains one more item: 4490264640
+E         Use -v to get more diff)
+
+tests/test_cli_monitor_mechanisms.py:396: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_monitor_mechanisms.py::test_prune_preview_schema_fault_closes_copy
+1 failed, 59 deselected in 0.51s

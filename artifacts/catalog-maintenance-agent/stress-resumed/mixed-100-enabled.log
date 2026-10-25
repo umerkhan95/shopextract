@@ -1,0 +1,22 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/Users/umerkhan/code/shopextract/tests/maintenance_stress_driver.py", line 280, in <module>
+    if len(sys.argv)>1 and sys.argv[1]=='--case':worker(sys.argv[2],Path(sys.argv[3]))
+  File "/Users/umerkhan/code/shopextract/tests/maintenance_stress_driver.py", line 243, in worker
+    value=asyncio.run(execute_case(name,Path(temporary)))
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/umerkhan/code/shopextract/tests/maintenance_stress_driver.py", line 211, in execute_case
+    return await batch(path,100,name!='exact-100',name!='mixed-100-disabled')
+  File "/Users/umerkhan/code/shopextract/tests/maintenance_stress_driver.py", line 78, in batch
+    assert spy.calls == ([f'S{i}' for i in range(95,100)] if enabled and mixed else [])
+AssertionError

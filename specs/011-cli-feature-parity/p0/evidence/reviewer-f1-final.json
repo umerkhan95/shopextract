@@ -1,0 +1,43 @@
+{
+  "cases": [
+    {
+      "args": [
+        "extract"
+      ],
+      "exit": 2,
+      "code": "E_USAGE",
+      "passed": true
+    },
+    {
+      "args": [
+        "discover",
+        "https://fixture.invalid",
+        "--max",
+        "bad"
+      ],
+      "exit": 2,
+      "code": "E_USAGE",
+      "passed": true
+    },
+    {
+      "args": [
+        "validate",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/tmpk_f39z5r/missing.json"
+      ],
+      "exit": 2,
+      "code": "E_USAGE",
+      "passed": true
+    },
+    {
+      "args": [
+        "discover",
+        "https://fixture.invalid"
+      ],
+      "exit": 1,
+      "code": "E_OPERATION",
+      "passed": true
+    }
+  ],
+  "native_dispatch": false,
+  "scope": "Independent4caseF1recheck;no network"
+}

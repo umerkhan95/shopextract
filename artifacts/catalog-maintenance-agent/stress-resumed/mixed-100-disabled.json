@@ -1,0 +1,23 @@
+{
+  "case": "mixed-100-disabled",
+  "state": "passed",
+  "seconds": 9.52,
+  "rss_mib": 163.62,
+  "result": {
+    "counts": {
+      "unchanged": 80,
+      "proposed_correction": 15,
+      "needs_review": 5
+    },
+    "advisor_calls": 0,
+    "usage": {
+      "requests": 2,
+      "tokens": 0,
+      "cost_micros": 0,
+      "reserved_tokens": 0,
+      "reserved_cost_micros": 0,
+      "unknown_requests": 0,
+      "violations": 0
+    }
+  }
+}

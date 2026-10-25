@@ -1,0 +1,2028 @@
+{
+  "head": "8081f9d8dc17c9b63aa30ecf0f8e295366f4eee2",
+  "branch": "cli-feature-parity",
+  "dirty": [
+    {
+      "status": " M",
+      "path": ".github/workflows/test.yml",
+      "sha256": "5bd32cf2aabea92e2f186d83e50911093923840167748e7eca95c959366e0532"
+    },
+    {
+      "status": " M",
+      "path": "README.md",
+      "sha256": "16b52698159b18aa28a97e3b715ccee8f30490f37af2e5aaadf46d26f8a137c5"
+    },
+    {
+      "status": " M",
+      "path": "specs/004-agent-tool-api-mcp/status.md",
+      "sha256": "5cfbaa8e5e0ddcc99d3c3e086dd3d1ed37d825722252d407436a049b6e788dfb"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/_capture.py",
+      "sha256": "97c9e18ccb714378a0c2cbdb772eb355c28117ac3bb6954164b3c4a475ae1dc0"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/_extract.py",
+      "sha256": "064f98087bbdc42bd8bf276113418d6837c17d5f4a15fdc429d6206ef604aacc"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/extractors/_opengraph.py",
+      "sha256": "ede58ff40924513ddd49260725638bd9339fb3e2f3a34d013fc07bce0a66d9e5"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/extractors/bigcommerce.py",
+      "sha256": "31d183d5914da50b14c0524717955e79deb6aa4f51a4dd8fdd8c3b06ab3706b4"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/extractors/feed.py",
+      "sha256": "c2b3847b33a7ea7b8b3220b6fd43b2980ab5e0d1dd5cd61d36e733584c2fc44c"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/extractors/magento_graphql.py",
+      "sha256": "49bfa18b3b0806c3fdbb85c3628839ab9785423884e7ac25994d6844bd3aa825"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/extractors/unified.py",
+      "sha256": "aee4a6ea53f2837c33e3d3710d3cce6540c10572b0c4eca44c553873c1b9a0e2"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/tools/context.py",
+      "sha256": "27c76cd0584c12e50716ec37e982fd7db515566c3650d239c38d3662999597de"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/tools/domain.py",
+      "sha256": "dc9549258fe6a61dcb9e9a780c5a1ecee3cffb15b39d05f766b0868184e3d549"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/tools/runtime.py",
+      "sha256": "2a142d425b72cc5b37f2780b81003aa03a309eb44b810c7b4dbac8aaa148d511"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/tools/security.py",
+      "sha256": "f8d84b3febf83633f66123c96d63abd872fb293d5b151f2d130c9a50583964c0"
+    },
+    {
+      "status": " M",
+      "path": "src/shopextract/tools/sources.py",
+      "sha256": "64b0f0c3c1896102a11e9355694ce12780c81bd25525a8045983886823bd99aa"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/acceptance-red-g2-revision.log",
+      "sha256": "fde44462ede8fd04c5233869c439079c4a70f5e0991b75b8e5353bbbd576d788"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/acceptance-red.log",
+      "sha256": "0829aa818bbd14a16c279aa8a00a50fd09d9567c89a9d9fea99e93632415dad0"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/affected-regressions.log",
+      "sha256": "3f715a636fc05c004bf7cc320f2d9e3275d3031863f6647dc3518c071ad2dc83"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/baseline-smoke.log",
+      "sha256": "d5116f098c64fb160356afd0753a17ca98b6c3ad44859ea31cfb740e8cb91760"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-eligibility-green.log",
+      "sha256": "8045cb9cdb38e21e32407053a02696341f949d1f1eccc55be676f40af6e8cf35"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-eligibility-red.json",
+      "sha256": "20df00670269c9690e1dd6ee623b781b30047535b57c412c0a2ea35493a725ee"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-eligibility-red.log",
+      "sha256": "9bc009206a194dee0ee76cded1e180135bbd48576ca649e8d6dfc394b204d61d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-eligibility-repair.json",
+      "sha256": "f50e88be15b3cc3b519184b6f0996cc30ef43a7dff66abc2ffc5ae13b6963154"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-eligibility.before.source",
+      "sha256": "d7230d58615a31c6a5104f14d6c8a9131cc13b3cf532927ae0a8b4ff494bbd9a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-eligibility.diff",
+      "sha256": "36c0b420ceee339dd5f9d93c888fe73c012e201bc45909c2a477462a8c73d1c6"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-lazy-green.log",
+      "sha256": "f797b2f759a260a5a36452a726eb251f51ef94c834ecdab96bd742c88c014a9c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-lazy-red.json",
+      "sha256": "ef2c1fbcfb0c5782ead1e86e905a37a51040d467f136a11c63c3b5d78afce7b6"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-lazy-red.log",
+      "sha256": "cbfc5893413cbc751c5b52fad0a9c89428c949fc068de034a39d21bb9488b268"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-lazy-repair.json",
+      "sha256": "4e6e76cc4342e3aa691904d12f8dc85093c1c3c46436522ebe1eaed24f9bf3e8"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-lazy.before.source",
+      "sha256": "06c6621938da885fb4affa8e2b768abec63dd812887e9806102aaf0c4b533b67"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/discovery-lazy.diff",
+      "sha256": "50425c4ac1fd412e8c9fe853f67b2066d132e7c0f25dd8ad4bd20125fa329c6d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/domain-smoke-repair.log",
+      "sha256": "2c4f1c8749bc873740b845b1c3d228317fca9ac1453b0d45ba916d72a221a46d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/domain.py.before-offline-three.source",
+      "sha256": "8452322f101f262d665f25ccdc872508f4f48d285856d31784f8e91060957333"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/driver-state-regression.log",
+      "sha256": "020312481c03f9e92ba5820c1caeeb7919027c5a2849fbbcb3a4192c77bf403c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f01-green.log",
+      "sha256": "01c081b93c168d11ea4abe004be37ae842973308e592b42e7c5999e6b2d91da0"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f01-red.log",
+      "sha256": "190fa5cab4f1da5f6b3cf76a8c270304a5e420d3a8adad2e76d30d100ea3c008"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f01-security.before.source",
+      "sha256": "7222d74661a3238384f48a4142c250ee8035ac197ad27376f169473b37cb85e2"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f01-security.diff",
+      "sha256": "45de6cba6340854ee924ed6bc3e93f3bb751f2863d4215dc1cf091c430e4d538"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-domain.py.before.source",
+      "sha256": "395a97df76f8d4f76233e5bd2a902db712b27b7873c23caed9c8cc19e85d44de"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-evidence.py.before.source",
+      "sha256": "2418dd0124c455bf628ec057ef85d3daa2106646c3508f01bb852e9681be16b4"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-final-full-suite.log",
+      "sha256": "e8b40b464dd3f8dd9235745ddc53b7f91ed4a1612591ec8c6ad78b98ed8535cb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-focused-final-caps.json",
+      "sha256": "7c492663860a4a98b955e34c3d5e3a3bbfe4eb361f8987f7173203ac199f6f06"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-focused-final.json",
+      "sha256": "0b11386620476fa47859db33af6ca91df6e2d4e9b13193cb46fbb52b2899d6ce"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-focused-final.log",
+      "sha256": "fd1fd8475f5c4965e238de4f68acaf71ad38b00d2820a2939d565dcb7b8f0d05"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-focused-initial.json",
+      "sha256": "4728449f06e94cc445e76cf7e7916d1aa77343f4531a81bad3a2d9acdcd9b775"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-focused-initial.log",
+      "sha256": "769807461e8514465e69cfba0e34ef42224f50ab539e5b49426eef0516c3b20e"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-focused.json",
+      "sha256": "4728449f06e94cc445e76cf7e7916d1aa77343f4531a81bad3a2d9acdcd9b775"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-focused.log",
+      "sha256": "769807461e8514465e69cfba0e34ef42224f50ab539e5b49426eef0516c3b20e"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-jobs.py.before.source",
+      "sha256": "2d41456d84939957f499dd1513deff678694a6440b156d2e50b9a25cd53c0502"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-mcp_server.py.before.source",
+      "sha256": "122b5db77abee480fff744e3eb66cc5f10449e38052aadd4211d399dc60a9a50"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-ownership-affected.json",
+      "sha256": "d07c34edd560cc36fb447b67036a6946db30dfefd6864d89fcc1929ff7a5601d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-ownership-affected.log",
+      "sha256": "4ded96a74521101ec7c8e7b7f3af25526e4aa28e2e9812ef533bda573e5e2630"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-red.json",
+      "sha256": "ce9e13e2f30fff4177e0a1e9db1c4d74f4ea313107bb29a12c636cb63ad1d5ff"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-red.log",
+      "sha256": "cf85082ef34834cd45eb91f22b3840743a3c6f4313db3826de0f3774840fc2e9"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-repair.diff",
+      "sha256": "f95fc44140c25c8609f2c050cf2e20ea4b55960e8fd237465064a20fff3a7a59"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-repair.json",
+      "sha256": "8c26c6627785bac853eb00e044ddacc194831fdf6eada3e9354d14b4fba94326"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-runtime.py.before.source",
+      "sha256": "0d317b9f8fe22124854fea1fd5bfab701e536c52ef006daec8585fadbc026af7"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/f02-state.py.before.source",
+      "sha256": "837b2f0607c8a0ce838717964899078f791a3d64d5762474c76025ce61c69c2b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/final-diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/final-full-repository-suite.json",
+      "sha256": "c3f8847a87006aa2e21f9b9b0e85e43de91385398632d9962a4df5bd47551ac3"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/final-full-repository-suite.log",
+      "sha256": "d86605a9bb996da334876ebdf23f759896d77c9f7c89cc2d96e4875cf9ede468"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/first-domain-smoke.log",
+      "sha256": "f2738b085e0d34ab5eaa507bc5c4f67f2df19ee72ad9766681fa990cf80fd4c8"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/focused-contract-stability.log",
+      "sha256": "c7768e8861254bafef44150d8f160344cf51ab026783af72d9d78ae7a02bfe54"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/focused-stability.log",
+      "sha256": "9b1bc1d7b950782c09210aa2fb49a0e83cf33374d835507668266ed9d1db01fb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/full-repository-suite.json",
+      "sha256": "4697b22ba20cb8fda40d569ba93d2fdbc827c50d8e415a28aa1b682ad8bdaabb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/full-repository-suite.log",
+      "sha256": "287686e69c5894ad07ea1975ca6b9367a015b2e80e0ee8a44b497ccc2ddd1b7c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/github-delivery.json",
+      "sha256": "90b4aca592488b7b5669c503f6bedb107caf3966b63209c2da1dcc03b334450d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/graph-charge-red.log",
+      "sha256": "1b585151ed17910379c9a337bc266c56a596281a528a9f45ecb5788d83d2e927"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/guard-normalization-repair.json",
+      "sha256": "51618349d21215055fa260fc4811d45fb07fd359e4ab312158a882b5ae758363"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/guard-normalization.diff",
+      "sha256": "5c554737da7644b1d69311baab9ed3ffea1240e17f78e856df1cbfe7d3be0649"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/issues",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/actual-captures.db",
+      "sha256": "867c0babdb71a2a57fff1c27224d716d1e84eb81a286fb4dd682c13f7b32aab0"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/captures-config.json",
+      "sha256": "b8747cdd123f2dc2ca1369cef9beb029ad1de4b7dc2fffa92b673e878d8c5713"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/config.json",
+      "sha256": "03fcd9248d1a859dcea921d25bf259b9b4dbf314e87fc28c965debb7d9c43c38"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/http-01.body",
+      "sha256": "6161ef9298e0ae4524e29ee53d1cc76b1ab2a314e3d041cc94abdb43cf5c98b6"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/http-02.body",
+      "sha256": "1126000794c838a7075c8288baa487104477da5cb7d3628b42165a8e5a2a2f11"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/http-03.body",
+      "sha256": "2ee50dd3e6ae33a8afbaeff24ffec4dfcf88bc39e5b377adf3887d2ba0e855ea"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/http-04.body",
+      "sha256": "992476a81bc9d3e1e282800c144e56f85d4cbe99f4bae53f89129bd48ebbea55"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/http-06.body",
+      "sha256": "5b3ee6e2059fa5abd063458a81b7c5fba976a8b6344d82234a4098cbba2d5276"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live-data-verification/run.log",
+      "sha256": "d3ff4ec56d58c1677de3cb98b80acb669b2ebb7299a93f7ad1eceb920ac43c6c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live-timeout-fix-postrepair",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live-timeout-fix",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/live",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/m11-cache-affected.json",
+      "sha256": "ed7a95aeb0f5aac37839a80712f28110ec8aa035f284b70b42c7f1c0550abf00"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/m11-cache-affected.log",
+      "sha256": "c6845e37b6f6f5b325692bec180a91e071bdeecce9f71288988181efcb3d7f08"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/m39-normalization-affected.json",
+      "sha256": "68078533b3d9026095eb9ca29880dbc5b0c5a99338da98f667e2d4e0c234c3e0"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/m39-normalization-affected.log",
+      "sha256": "df55c164e055369abc9267516388bbd26ae11d5fd682f98b8049f44bb3dbfee8"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/mcp-full-flow-smoke.log",
+      "sha256": "14ef3db9aaca2a05f1f839e30e9cdcf4663597fc13db18127157a9c76e0aa872"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/mcp-install.log",
+      "sha256": "84e0e8d7de50e546d3b0744647469bb2626b6b1896ae318be17a05ee44165de4"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/mechanism-collection.log",
+      "sha256": "4450470abea33eceaaaf4e944ca7b02f53a458e250359e001e737c183bd2739f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/mechanism-continuation.json",
+      "sha256": "61338ea0110e91076e80da0983a03c8949a8b3bde678d7033e333367edc466ce"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/mechanism-continuation.log",
+      "sha256": "53908321bdcb6138c34d49472ca5728fed4a3256aec9d2c45978fa9fae8f1b1a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/mechanism-corrected-collection.log",
+      "sha256": "b3d8d22a384769e3bc71f61d53bb5524c1f5d095f681b97c95521c68ea25f49f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/mechanism-progress.json",
+      "sha256": "59163f1839c85f22cdf12ff558fca0a3a9fa2acab2304f42027392eb9c943453"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/mechanism-run.log",
+      "sha256": "f08efbdd9a8374191165229472e4931ef0d601fc6d26fc25ac8c555fea142160"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/native-diagnosis.log",
+      "sha256": "d597faca271e8a81eb558778ba52f58427a2d215d837bab53615d66a45b70119"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/native-five-repair.log",
+      "sha256": "9ebb4ddfad8e531218c3b103cfe5d7eebe7906a5c0d6181986de3ea7be9d5115"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/native-five-smoke.log",
+      "sha256": "4c4af507210820bb54b0a6aa0575079a42f3627aea133587bf8b647721e93a11"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/package-metadata-sanity.json",
+      "sha256": "9ee6e455d0a769aec3ee6c7dc3d90426c7329d610b448f30cccb0f2519c3e3cb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/process-inventory-probe.log",
+      "sha256": "fdebbbd44c9949f08e6eba002d5eae233ecb3e9cea9fcc722a4b6e29854fc531"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/sdk-probe.log",
+      "sha256": "30a4137218da9b182dc8a54776a961786b9b4882a5ba326c41260cffcb47eb4d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/security-before-canonical.source",
+      "sha256": "1513fb03d129efd97a9d5f90c9c724900aae1f9282c51347da68c050db1f777b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/shopware-graph-green.log",
+      "sha256": "c3c54a09ccc9f46d0a5d473a53694b6627c2a5c2b2e52293cdc10273f0f1b20a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/shopware-policy-red.log",
+      "sha256": "79497d6370233d21ca10f50e303a29ccf86d61b58e8942ac92116f64868edc01"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/slice-a-focused.log",
+      "sha256": "77453cfc6bc8bf9ee5d1db8726e55a8421beda16c6e3119a9dd8057fc5cb9471"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/slice-a-red.log",
+      "sha256": "153ec485ec89e07dd60ab4b5f92fb45949366b3a3213f97c032ad4ddac96f96a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/test_tool_mechanisms.py.before-offline-three.source",
+      "sha256": "e138a9ce5520c756a53bee2e23e1bc4b35c22aca49fa85230b833a518540e984"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/three-offline-affected.json",
+      "sha256": "99bace59b66c33570e2e27491e48608e936988bae28ca2a60cf75a1a373f2757"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/three-offline-affected.log",
+      "sha256": "0d94e3882710c8546cfa0d9b533d842feeaf14fa26b6effeb59b7261e11d3322"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/three-offline-diagnosis.json",
+      "sha256": "ed747fa058c23b316f09478ea9ca10b73782581730b2324437df4ec03ad6a907"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/three-offline-original-failures.log",
+      "sha256": "b2dbc613edb4b389c32589cbdcf8ac4fb9c83ac3206aeb30dd11085d3a48062f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/three-offline-outer.json",
+      "sha256": "12829abfc2016e44197f33394e2c835cd3570996d7f9718623ce852c7b6ad64e"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/three-offline-repair.diff",
+      "sha256": "ce61506c4b0eb936b6e61be40e17dfcfeebb0edfa537879a6832cfdf49526df0"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/three-offline-repair.json",
+      "sha256": "ac6f4c44a18c713dca75c3150c2df758e08de8ee3017abf37c2ee8cae71756c0"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/validator-cache-before.source",
+      "sha256": "e8da2e55f1bd5598e12f191ac10febd03b56cb8d21fa130e3c3fb022408145d5"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/agent-tool-api-mcp/validator-cache-repair.json",
+      "sha256": "e5674dc84254d546dd0089e7cc357e7f04b294d47dcfa0a1cfac45bf643d586d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/baseline-tests.log",
+      "sha256": "b3370e7c4cf9dd598465a847210d620b02bc6c883651451c5f85a7fd3366de01"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/bigcommerce-graphql-reference.ts",
+      "sha256": "e735ddbc18a3c5692711cf515b54b06ebbb71cda43320a054d21c2dc5dedc090"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/bigcommerce-home.source",
+      "sha256": "618d5072a9b5324866f3f00c7994fb47064f37448fb41850827e9060652b1c2c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/bigcommerce-pipeline.before-card-discovery.json",
+      "sha256": "64946326ec85cb8fac71d6bb5ab235a3167c6b22fb7b8e42936032aeda435ac3"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/bigcommerce-pipeline.json",
+      "sha256": "33a65c83f3788a77243d91b96fe55d16f53134ceeafbf423ee106359c38ff745"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/bigcommerce-schema-reference.source",
+      "sha256": "961b52a10f89b2ac32d1688de316a532e2ac68ce0040de7fd0e335ce97d4df16"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/bigcommerce-schema-reference.txt",
+      "sha256": "a5d5e1a335b07398ff00d9de276f04dfba8e538feaab541141a2b71d57ad7b2d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/bigcommerce-schema-types.json",
+      "sha256": "79209088d663b323e688a52a30916624a1d8350bebd3da8da941c9d8523055ea"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/bigcommerce-variant-reference.json",
+      "sha256": "48ad53e778b569b002bb0d93aaed0bd31a0484755561af2f0028ff20366e27a2"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/bigcommerce.before-repair.json",
+      "sha256": "5f453ed95eff741df6d15a2e4d6f708f61bf93b7c7313f45ff3f61179f855b2a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/bigcommerce.json",
+      "sha256": "cc9ef23220d12f36518ab4c4ab3e82ea2c7a0feb426ee7c0df5e0994b685902f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/focused-tests.log",
+      "sha256": "148d21ec693d4d930cb165f673448743f503c480032aec68eebc1601b9d691a4"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/full-tests.log",
+      "sha256": "155c013ffe73cd67fcdd8e16ebd3636ce106201298e8759f356f1eb166f93c6a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/live.log",
+      "sha256": "1c22209cecc26f6a9c77d262e98628e7531d8a618d39402fcd9f4aac02696b58"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/live.py",
+      "sha256": "0a3212d6cef3d80126367a69d652eb31b2875da420262420061b3aa2fbdc5616"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/magento-probe.response",
+      "sha256": "e308f10fb99b6b568f045525a8609da03194fc5707a15602c2dc474c2eccbe55"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/magento.before-repair.json",
+      "sha256": "6158be95095c926b531301d4660daa40eb740f8e10176bc18813eaf901459537"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/magento.json",
+      "sha256": "81d11a23def1655bc27a8f53b06e21ef3509f5221f8a906a62e7c06798226eb6"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/recheck.log",
+      "sha256": "37b70c4168340cd890b639082346fa6f742ebcc708f5311b53d57dba9f9f9357"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/report.py",
+      "sha256": "00617bbe67585143d4e5137f8c0de1d2cbdd0bb59cdb177f7144215c325aa6df"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/review.json",
+      "sha256": "f924c9cb90a5fe1e310c2206d02acd5ce5889db0664d4c75bc731525e05317ab"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/shopware-variants.json",
+      "sha256": "bc513919c90eb73d159bcebf2e1dc54092a5f1b8cd304cdefab667b698031c06"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/shopware.before-repair.json",
+      "sha256": "ce696831c8a3e7cd122414b394e34de5ea51735c01c4fd035a53b59496a5a120"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/shopware.json",
+      "sha256": "55f6833a91a78d04e42897e3d795ff4465c7a7ee25d19bf1d03ec4d1eeebcdc4"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/api-integration/token-usage.json",
+      "sha256": "a6710a1b42baf300cc11d8c3ce4b5f13f68a2e5182fbaaea22d151206aed2d3d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/bigcommerce-auth/install.log",
+      "sha256": "0b6c0d49d8b0ee915ee10f477d9c1d1e25f955889ee34110604ace654362810a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/bigcommerce-auth/schema-sources.json",
+      "sha256": "eb73a3e0d35f5251e254ec8d700126ac431733fe1aa1a40a41df6ae245d293d4"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/catalog-maintenance-agent",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/category-mapping",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/claude-cli-architecture-20261025",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/code-quality-review-33",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/command-experience-audit-2026-10-18",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/completeness-fix-33",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/ecosystem-integrations",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/epic-22-production/status.json",
+      "sha256": "1fe6e356d0eb6246f2bbe8bafea5c43ee14e08de1d565f086f04e6ca3efae650"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/epic-22-production/token-usage-final.json",
+      "sha256": "121662156d7412b786505f0cacf58931de72ecc2d169b3514953976034e55e71"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/epic-22-production/token-usage-initial.json",
+      "sha256": "cd16e51775ef7371861e7fd6305aa4f1b394367803b63fc40c65f34c43b15c31"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/epic-22-production/token-usage-milestone.json",
+      "sha256": "fc15416b30ea2ca6a816142404d9b8df27bdb47b21b2e35948a2d611ed431167"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/01-shopify-smoke.evidence.json.gz",
+      "sha256": "6284a0b672cbdb302ad2016dd5cd5f33e636f7696ecc71209cba3b32f303447b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/01-shopify-smoke.json",
+      "sha256": "3274ac4066e93f8c9f1d8d653a5f1e30d0e5429772ba3c4b755fb813ed4045be"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/01-shopify-smoke.log",
+      "sha256": "7bbd4c947d2dc47ad7841e568642533144db210f34b4c52f4a23a5689d3cd4db"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/02-shopify-bliss.evidence.json.gz",
+      "sha256": "8fe966931e736c27b3d3fb8449c0f7c3a2981556f5987d4e9dfcbe37a5c379dc"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/02-shopify-bliss.json",
+      "sha256": "8ead78b504509e3ae3fdb33447792d3f9c715c578703d9f7492a9dede83038ad"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/02-shopify-bliss.log",
+      "sha256": "446c773532d85988e2e056f82f15033c8abc360f5e370833e9b9d2d28415c699"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/02-shopify-bliss.paired.json",
+      "sha256": "96295ac6f87365e078431806a88e8b587d60b377485f773943cec0513ed4ac8b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/03-shopify-401.evidence.json.gz",
+      "sha256": "bbc8cc0fe2c86e23b9a9b5e0bf63c8cf59b0752c18d0388e9ac011ca48963cd8"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/03-shopify-401.json",
+      "sha256": "e4123445cd43ef361241c0943179a6ada3586739c7b8464eb4adbf4a5df4e945"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/03-shopify-401.log",
+      "sha256": "2eda727da7cb7af7a247584f7ecafa224195a2f6e256c9b1c98e1f240c03af2c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/03-shopify-401.paired.json",
+      "sha256": "0be5d4d907636c98669243ad993cbef4e4281ebe28a4b8805e450c53918ad091"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/04-woocommerce.evidence.json.gz",
+      "sha256": "af0d4d4af6dd5228dc1a09cf568673c5afa0cb0244742b0aaf405f47d8e531a7"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/04-woocommerce.json",
+      "sha256": "c2a17ae493bb6088768054a4548756aa7ea2aa81ea348e2abbab1673c189069d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/04-woocommerce.log",
+      "sha256": "7d77ad975334614acb8c7c880e1ba52dc0f816fa32d6039568fbcdf467fd2b49"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/04-woocommerce.paired.json",
+      "sha256": "69783c5cf05ec4bc09f415bbf7f9a424a83554f2f2f5a0415b647b0ed262d480"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/05-magento.evidence.json.gz",
+      "sha256": "bb5f16033739a1c98756eb5a36c472a463d1fd92cee21da87188f58e6c577b34"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/05-magento.json",
+      "sha256": "90c195dac6d3a3ebadb45773c4e3ab6b0f0dce93f59c4371eab18c088767ec0f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/05-magento.log",
+      "sha256": "f4f4d568a5db593cd740eb86a5191515f6661e1e220cc980a045f1d1c7df8109"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/05-magento.paired.json",
+      "sha256": "dc820d3725afbac57711df7231e5e9c61c17d76877f827052923e1dd8da43565"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/06-shopware.evidence.json.gz",
+      "sha256": "8f61b6c39173e695f4eb6bc65aa6f6ee1c9ee4575c3c4d9e620f4908bfb1300a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/06-shopware.json",
+      "sha256": "da4cf5bd85c3c3d7a1407dd6b7e84e1f38dca7ceb142db92266f6d303bc85d45"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/06-shopware.log",
+      "sha256": "e4dfd51fcde0f6b6f058c64bdac0eebfe0f43b9b1da8a68769082ff003acb3d3"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/06-shopware.paired.json",
+      "sha256": "d16a11ab8299246d19e885ebe27570de4a5b2c09e71649c837d1ed402220af99"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/07-bigcommerce.evidence.json.gz",
+      "sha256": "29681c802a768f1da2f183b2a3424e5e1af469d1faf619f1031e7a1b023422b4"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/07-bigcommerce.json",
+      "sha256": "3e05d1c2eb17a33af9a7d2a40d5ce2e804d1a68b91bc8cc9cd8eb358405307d4"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/07-bigcommerce.log",
+      "sha256": "b0fb2a9dc5ba1dfde33dbc3d0877b51cb3d80a2af863c88594c9183e1ca547e2"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/08-generic-css.evidence.json.gz",
+      "sha256": "04c54fa24774fe9ad65ef77c4d7f4662297a72840e272422e892b6ec8e781705"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/08-generic-css.json",
+      "sha256": "793735ad48ee2477d0181730adb6c44ce22ac442b592ee310482749f09bbfc73"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/08-generic-css.log",
+      "sha256": "2586fff33376422b8e0a0418d02d6fae7487bb5052f226c93ad40b656b48e72e"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/09-shopify-public.evidence.json.gz",
+      "sha256": "e76de82ea9baa3d68a8058a03ef192ea400bb96bd00916d8c9c26c2db1ea7bb3"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/09-shopify-public.json",
+      "sha256": "7b2704be47bd5da50e10f70590260b1cf3d6a1d6c1c157834104e89d7bc39365"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/09-shopify-public.log",
+      "sha256": "723f311b32ec4ae5bad82bcb361ce6cfd16fe882b85bca707d7cea929393c8c5"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/10-woo-public.evidence.json.gz",
+      "sha256": "911c29e830b1fa32bed6c3302286bf7e6739526492f7e7a1f747033a4d7c3f24"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/10-woo-public.json",
+      "sha256": "f1ab852f7667992e739eb2781548539035131632be003af1da4fc10924e2fd5a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/10-woo-public.log",
+      "sha256": "17c84db9b3cdd2c2af6ff75f1423da24399dceb1e4143d51f59deaa33dda3f76"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/11-magento-public.evidence.json.gz",
+      "sha256": "8b8410904ea4688bad046ba2448abe76ca5ac08a1bb166f78ce17fda9ed6bcaa"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/11-magento-public.json",
+      "sha256": "3d09896968e1d659d8cb7c98435ab894346557dbdaf6f8ca364fc1287885a8bb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/11-magento-public.log",
+      "sha256": "d063e23bfebe73836bf74f3cfd5384438bcb4d2974048f1c089d2af01fa0d7a3"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/12-shopware-public.evidence.json.gz",
+      "sha256": "8ec96769e7800741bc4d4c7adfadee41888b347e49676742f5c001d446bfe8f9"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/12-shopware-public.json",
+      "sha256": "4bbea7a87df6016e98e0a783fe948991d9bcd28ef5647cf1fc2e5bd8ca668c09"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/12-shopware-public.log",
+      "sha256": "ccd7d8259f38ee459edba86812d9ca54c58a243484b75ea4c02387dfba94d123"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/initial-capture",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/paired-recheck.log",
+      "sha256": "0d54cc8eb6c223ee1052a86bcb7458e5a342a49d57c0784afc558c976d9985e6"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/public-pipeline.log",
+      "sha256": "a1ca3b86e23ff29e063e1c99a67cf2f7a3cdf3dedbd5c58896866ad57167e12a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/run.log",
+      "sha256": "fa6d3e3a87d592056201633b9c53dcb00554c507c4482782ce857d7097a4fb2c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution-live/smoke.log",
+      "sha256": "8022aa018bb8550d415ca3ff3cac277a282517c9ce2f9ee01812fcd2efe50eaa"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/field-resolution/example.json",
+      "sha256": "34ce778104596548be4c87ae3eef5461aefadf644cc91e038ef79d9220fe3aa7"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/forum-discovery-20261025",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/independent-completeness-33",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/independent-review-33",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-e2e-followup",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-e2e",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/driver.log",
+      "sha256": "b0ae3baf30d773b671d82567649d16a0f6dfd09edcbb5981e0272f7277d278f4"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/magento.log",
+      "sha256": "a1b14674f136687a421ecd8aede606b99d727bc7108d86d6a07667a140a9f551"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/magento",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/merge-receipt.json",
+      "sha256": "68a757369e4448bfc7c295172f11db7cd8a5c9549744b85dc4a77b4840eb5f6f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/public-snapshot.db",
+      "sha256": "cc81fbfd41395d923fdfeff9898582e07965cffe923319a1209f263a412b15fb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/public-snapshot.log",
+      "sha256": "130f46740e4e04232d6b9e6c41355a6102ee41f1e290d6053bb7e9f0c3138208"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/shopify.log",
+      "sha256": "a1b14674f136687a421ecd8aede606b99d727bc7108d86d6a07667a140a9f551"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/shopify",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/shopware.log",
+      "sha256": "a1b14674f136687a421ecd8aede606b99d727bc7108d86d6a07667a140a9f551"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/shopware",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/woocommerce.log",
+      "sha256": "a1b14674f136687a421ecd8aede606b99d727bc7108d86d6a07667a140a9f551"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-evidence-trust/woocommerce",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/01-bliss-api.json",
+      "sha256": "d6fa05e3b14c95c19eb4c07f60c150bcbb11165a760e810d9202a0a56f986f08"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/02-401-api.json",
+      "sha256": "f2c89d7a7dd63d36c68006bb645f691578236ed2269f88171eca0f3b9db51311"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/03-bliss-html.http.json",
+      "sha256": "b87fdecbbf6fe302804919d8ba93402e8c350a38407fc86a16e9516b6581b235"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/03-bliss-html.json",
+      "sha256": "899b25ee0be773fa2117ed4942f368b2fb8c5e123b6ab181da1a18fd93713d7f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/03-bliss-html.source",
+      "sha256": "34a39ebe1d5f913b0139d0a76e46e7d55be343a08bbe22fbc21beb7160be842c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/04-woo-api.json",
+      "sha256": "0610b59a2f238e5330d620be0a6935152d9588ac3f8e4e92a4a59503fba21ea6"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/05-magento-api.json",
+      "sha256": "02894695d8f6d858c0dd7b391e975e3e3cf6a86c1c42a77831c6549eb65a6cdb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/06-shopware-html.http.json",
+      "sha256": "71dac34bdf5152b3cffb00d7e9fe844b2ff957543f6d20e42b56fc62b1d8da2b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/06-shopware-html.json",
+      "sha256": "560c921e834b6f84c5970921a382332c29eadaae46c90c2fd7f521a90f48d94b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/06-shopware-html.links.json",
+      "sha256": "3ce2488978a633bda47ae14040f41c5c3ea38b7f122a369515e7bd696cb40ac6"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/06-shopware-html.source",
+      "sha256": "d09dd6be9a530ece4348a43320e24dd6ff845105056c2c85a65123816b79a42d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/07-css-books.http.json",
+      "sha256": "3f901b3cdd1fddc38700f9b2dde13903c6f8109c4d3f5fbc04b4a95bcad27a52"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/07-css-books.json",
+      "sha256": "ba91c429614c446330e3bf5e75d13a0f7806d8fcdf26028147a2f1d4703be8dc"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/07-css-books.source",
+      "sha256": "a6e572bec156bf80ff3149b89b6d218cdcf8866ccc26ccf69a5431db8e142c6a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/08-woo-demo-repair.json",
+      "sha256": "d8a84fb2cf8f7c85af0a997d1b76dee453d59295778b923fc304750ee47ad7a7"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/01-shopify-bliss.json",
+      "sha256": "7aaa943a8d26bfdedef1ee1783b1b4a5480213c8364927bca705319644ce48a2"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/02-shopify-401.json",
+      "sha256": "df5a1ce217aef49f59331abfb6589fc30e1fb0daeb34f15eefe6a85cb548e597"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/03-woocommerce.before-repair.json",
+      "sha256": "d3d7a7becdbc346d0f8887d89eaab84365c9a52bfcee269dc85927e2a898341c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/03-woocommerce.http-normalization.json",
+      "sha256": "1e091a260ef1307c0a7db4f168e59a9dd59852538ce4c3d082d2bd1dde13d502"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/03-woocommerce.json",
+      "sha256": "4a2c1cd378ebd0f884b0918a8991c276bf0f626c71f8787a724576cd8ccd6a0b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/04-shopware.before-repair.json",
+      "sha256": "da913e634c872d7856542572d69627b74dffa0be84cb2dafc088434834d8997e"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/04-shopware.json",
+      "sha256": "10529666cc38357ed3a4a660496b9b5d40a7686c31c127943284faf3ef3d89d6"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/05-magento.json",
+      "sha256": "7a4ff3bca4026bc261ec1ba96f6955fbf9e19ed40ea3c527ec73402819c6e45f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/06-feed-xml.before-repair.json",
+      "sha256": "68ee09a1e35da2bbc7662711284e0314a1d89abcf11331eca67b771ecba850fe"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/06-feed-xml.json",
+      "sha256": "3a47554ff8b253be883c3303b9e1db8c6f0263677df6bdfc6bb59272411e2aa6"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/07-css-books.http.json",
+      "sha256": "f129bf5b3b7ef35b64bbe7fc97e9fa8c2d24a25ff2bd29b488c3b2ab4f48b8ac"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/07-css-books.source",
+      "sha256": "a6e572bec156bf80ff3149b89b6d218cdcf8866ccc26ccf69a5431db8e142c6a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/07-feed-csv.before-repair.json",
+      "sha256": "e4cf0f066f0bf1bcb2a2c7d1bab379545a392e554b07dd994f9bec480c9bcc17"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/07-feed-csv.json",
+      "sha256": "88ed9ed9d66421d84d62861b38b937993b0e9b2871716f4d3fce849e9da52a33"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/08-jsonld.before-repair.json",
+      "sha256": "fbaafeea1e91d3047669fab2d7b3e8f85236480984b24aa2fd0242d891ecda73"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/08-jsonld.json",
+      "sha256": "61ff73bf51149ca83ae1321da428b950f5d1e1d0fa5a8b2816cda1daa2eadef8"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/09-opengraph.json",
+      "sha256": "399fef04d0a4d248b9b16f9d7d46ad1c96c3b609131f9450ecee228061181526"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/10-css.json",
+      "sha256": "ec8e07c3746dd4e00dda60ac0ba9b2d7b09c3f2ad874120a16fdd502018630dd"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/11-browser.before-repair.json",
+      "sha256": "bb4c7a5de9213782c61e2167f45ab39037848c3d9f90dbf811596e0f7a203f2d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/11-browser.json",
+      "sha256": "9fc53b059a3b94bbbef0309be11c09710ee509409994a9e35c21a5503a65c695"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/browser.source",
+      "sha256": "7286cf6c09ea1264ff2acc956333c67eae3c68e4b3a8c021d1fcfd518cfb9a88"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/currency-probe-ajax.json",
+      "sha256": "4976165c2fd2d2093db123e4c2c68b1de273535ef1be15c336ad196470a4d97e"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/currency-probe-html.source",
+      "sha256": "38ed943da5fb8a37fcffd8351ced18d37e94ff5755908b45990927440c10b611"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/feed-csv.source",
+      "sha256": "ec23a041076e84449646cae53e79842e8bfc39bff47ca8a2a6f6af6613a11d30"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/feed-csv.zip",
+      "sha256": "f44dbd5cb5287a0d6377e3b472bb6049ec8b419c4e9f732289608cf557c95e84"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/feed-xml.source",
+      "sha256": "590ae005b3dda1d3b39535fff819164ec836834be1d1088c31dfc1bff114c9fa"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/feed-xml.zip",
+      "sha256": "4b4a1d02c83b3e9917cf505f0c2a240032c4b09b96eb33f539b01a6fde88bbea"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/final-recheck.log",
+      "sha256": "48331fe7be95cb8759670ce911dfdd1dbdfb8bebf784c211f7f5660103f9ec3c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/jsonld.http.json",
+      "sha256": "3e28650745dad3cae5c8ae6cc03b3621b8da12bd727fa6899fd4a99068214fcd"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/jsonld.source",
+      "sha256": "607643a66fe00410bddf85762696cd936f6563bd408cf5f516b38a3606e3d5fb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/magento-graphql.http.json",
+      "sha256": "79062a500f2548f6f5cd697a8433c88f7f8aa186f92ec3128cd3d9f4c29525ca"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/magento-graphql.source",
+      "sha256": "6461f8c5dddacb3e404715b80d7fb13adf61b15d34015c5bfa5944b2e28baf62"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/opengraph.http.json",
+      "sha256": "77ab7892bb7cc6978efc382c54ad342fb4fa87964a1fb061f2c214813346f0df"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/opengraph.source",
+      "sha256": "d5247b1fbaec085b89e7864ffa930e95d9e50acbee5d9355a1b4b2936e404cf9"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/recheck.log",
+      "sha256": "ef18b95bd874198ea90c039a1c40fe82ac16a4ab624dde83939362fa48699831"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/report.py",
+      "sha256": "27368d6dc6d4572ddd84adc6cdb7578c31221dffbd94a0f659921e020c6df68f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/run.log",
+      "sha256": "1ec0b2e3ddbfa87da28aee80a4fd1c44f218097ae8981ef1dbdd86b3c15c238e"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/run.py",
+      "sha256": "31eb809efbeda58c0a671d8275bdeafd8baaa248c49cfc581fad197197e2507f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/shopware.source",
+      "sha256": "4c5db87aec58599b3f5056b5b5ef5a850812781984e28a11519bf537fee79f2b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/tests.log",
+      "sha256": "8fecec5d3cd9e1b7a6f69340100aaf313df3fbc8c4bc7d418d266c061341a676"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/token-usage.json",
+      "sha256": "255ce292834ebfa4162b8c6861faeaf487c654c77c2877ac737cdf29bfa65e0a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/woocommerce.http.json",
+      "sha256": "889e094cb05514a063a786fd15a89acda531c4bf28cc6218c20043124dd40257"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/all-domains/woocommerce.source",
+      "sha256": "5d4aaaf00773de4abff26a849a0b08d9ab11e90b966da40952497364aa9409b0"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/platform-vision-review",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/review.json",
+      "sha256": "052049595c0e5ad9a20ae76aa7a0eb854c13b354dca05dc9522c0fbefb6ddffe"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/review.txt",
+      "sha256": "f9ff5f6c8ec949a087cf8e8370bb05134a773ee638d01b6489d8bcdf5d0532b9"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/run.log",
+      "sha256": "3375af81f035a51ff375722fb7c95a44494b2f37ae6be243b7ca9ebb600d5fb2"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/run.py",
+      "sha256": "37a24ca7cbd185d6fff750bdfc43c5edf9cd0910767067d16ed84f8a355a6e02"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/store-discovery",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-provenance-35/token-usage.json",
+      "sha256": "42c47bbcf49085ec83a7036e39a03a21a10e09ac24d981fa81d04a2f50715598"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/01-magento-smoke.evidence.json",
+      "sha256": "9b41ed23f88af680de76fee2527a3db494d3dd4f446e6d5c62142f3d43127f5b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/01-magento-smoke.json",
+      "sha256": "cd6578a879165a590bca1445a37f8e8bdfc59ff6d852cafe2de7f67bca6a7f45"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/01-magento-smoke.log",
+      "sha256": "9075ee6fee41c84cc20590eeca8f36a1e3eaee74eaf6909d425c100cd26326b1"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/02-shopware-smoke.evidence.json",
+      "sha256": "91504d7df98a57fc6f2b144142bbda82237542bcc0c14a92b9257940ba3ec7ea"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/02-shopware-smoke.json",
+      "sha256": "2899c2028fab771e01954b52022460ef8fc4ff0bb6364904ceb8d98eee0ffeeb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/02-shopware-smoke.log",
+      "sha256": "327028f1ca942578527fd66f58f0b284c9f6e7e3d246e46b8e88e1466953dab1"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/03-magento-pagination.evidence.json",
+      "sha256": "7311a56706ef1196e3f736cd83e50165491e6b5734be10af8266d575d00e2400"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/03-magento-pagination.json",
+      "sha256": "eeaba6b2f6a8cd9fedb56030f13fd02b9cc1beaee034c96f9d4bba6f93cad73f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/03-magento-pagination.log",
+      "sha256": "5736b4aa32831bef028e15215b16c3a64b497084ec2931c60e79de69ad1196ff"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/04-shopware-pagination.evidence.json",
+      "sha256": "f8b28c6cba35c93fcbf0ac8b46ccd6d39d01767e3d689b64403fd5b22d1b9c38"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/04-shopware-pagination.json",
+      "sha256": "635df47e34049e48a08860dbf08b88cecfc0111a9d68159a54b0a6409088d7b8"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/04-shopware-pagination.log",
+      "sha256": "6221bf45d5c342e37cb151683fe74a5682dbad476a20166547e652754abed59e"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/05-magento-pipeline.evidence.json",
+      "sha256": "104b7fb3d5ab8c321c898d3b8ab25b9b2cd93677254314bbb744f927425d22ce"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/05-magento-pipeline.json",
+      "sha256": "baf342970f7a5857536fe7a455380002e7ee24c74e8e61987e397708a3021cd2"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/05-magento-pipeline.log",
+      "sha256": "79dcb9205d83182193fb0cf349d0cc48a6fd24322627808bfc2f540037d26207"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/06-shopware-pipeline.evidence.json",
+      "sha256": "781ced35a75db271a3535d5be1ebd1492caf4b9abf6164f6b95189ddcb57a8cd"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/06-shopware-pipeline.json",
+      "sha256": "7d3b73ff6e557b9e6743e06952e2927f501ecd8eefe52c7f6e1785137a410fa9"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/06-shopware-pipeline.log",
+      "sha256": "5f8f01e9cb2b7aea8b7329c2fecdfa24fd338123e0e76fafb490fe8879f09f72"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/07-shopify-bliss.evidence.json",
+      "sha256": "34d36365c3b1cec98ffdce2c452af377996773f4d1e6e66635ee2fd37323d76d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/07-shopify-bliss.json",
+      "sha256": "f88e8c2479426342bc7b0b20aaa85a90587638c218e3247703fb97176fb33e35"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/07-shopify-bliss.log",
+      "sha256": "5e61979d013457d4892ffa7a937a963d9ef92fa5760ceb0c14d127d10001030d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/08-shopify-401.evidence.json",
+      "sha256": "1364381798bf5e5f0bd589d935bbfc7f1a5d0968296e576c780d7fc58acf4e12"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/08-shopify-401.json",
+      "sha256": "5d68b1d4ac0d5b495eaf5ed72c466eb0e5181e4f0fc6005f2a3db24dbdcacedc"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/08-shopify-401.log",
+      "sha256": "4f77fa4839afee95cdb430c46afcde6501de0afee5f7455fad8e4b5f9a03d3b4"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/09-woocommerce.evidence.json",
+      "sha256": "70555a7c6820a27cef75ca61b6a49e977ab15b64ed31d44f525dfdf9f8753944"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/09-woocommerce.json",
+      "sha256": "d88c838b30c9e3135c0568d51df4d2057ae4fcb20bf42f2a24293721fa670984"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/09-woocommerce.log",
+      "sha256": "6a4cef3eeba33a9534f99fa8088c6d63de2abcbb775ea017d504cbaaf12b7bc4"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/10-bigcommerce-html.before-harness-fix.evidence.json",
+      "sha256": "54999f075597417d8aa9f2773336faf0551fd1dba10961a914a7dec7562e7438"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/10-bigcommerce-html.before-harness-fix.json",
+      "sha256": "cc2f22e9d14fcbb7e454471e7290a81ed5f3e7640c701161549a2cf1738ec7bd"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/10-bigcommerce-html.evidence.json.gz",
+      "sha256": "5b22614bffa8ea2a5e467de259c31fbf77800a6be5cab78a868900cdc98a02d9"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/10-bigcommerce-html.json",
+      "sha256": "8ad5c60150ea82a7e1d7dc167770275c8010ac1c59bc6d0c9c1c379293cb3632"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/10-bigcommerce-html.log",
+      "sha256": "932aeac8092e48128dde49f599b17145d30e71861676766de793215bc390b603"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/11-magento-repeat.evidence.json",
+      "sha256": "4ed6e06e9d339f932a2f48b7d47e5d7d1f9ffade3eb590133b95aa899e54493b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/11-magento-repeat.json",
+      "sha256": "cdf021d125ee05adc510ccc9cd1550ec580a55d08bc60e35383bff919a7757a3"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/11-magento-repeat.log",
+      "sha256": "d8b720b95f9e3a5613c9dab7976337274af68182ccfb38d450011809f03b3ebd"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/12-shopware-repeat.evidence.json",
+      "sha256": "70722bbdb0f7f666c55009b670a3e869b3717c3f2f0a990d6a8defcf6025c26e"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/12-shopware-repeat.json",
+      "sha256": "a19dc574a24198d16a9fcfd8e62a635179bbd1ba98dcff1751213d4c891b7e4a"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/12-shopware-repeat.log",
+      "sha256": "0eaf9e98015f847262d494e2ec1afd15d651ae45354fb3258b1ebd2bdc93a16b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/13-bigcommerce-repeat.before-harness-fix.evidence.json",
+      "sha256": "eeb27e47b7083ed8cbc6d50fdd47b5d326b62dedc07e0a8420f40ddf8efe7455"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/13-bigcommerce-repeat.before-harness-fix.json",
+      "sha256": "a41d7ae4d3ce8638459da4b81c6ec1d2563f25e1e5593ea34c8e9c6d9c838afe"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/13-bigcommerce-repeat.evidence.json.gz",
+      "sha256": "e006d2f99ee76c7f1f15f4e8eb201b9fd07d0c4ede5adefc5de48d5a8fe1b706"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/13-bigcommerce-repeat.json",
+      "sha256": "8638c5583a4822a2bb8a30028071ea748a1c0bcbc98f3a32cbb122f80a3a9621"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/13-bigcommerce-repeat.log",
+      "sha256": "92cd7ec92b51ee73cdf4665495bd7e16db8676090452501f7c1b073b40133f04"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/14-magento-boundary.before-fix.evidence.json",
+      "sha256": "068893160da41e40a02c086ef5c39893fb0ca3de9580f0b9d0c2455d65a328eb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/14-magento-boundary.before-fix.json",
+      "sha256": "284c762f23f22fcf93121d221a556408e73b55e86659e011e41eebc735eb0c4b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/14-magento-boundary.evidence.json",
+      "sha256": "9e3168c219394f61aa048c6fc175e52833b3eb0d59a085d846f31395a49c0878"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/14-magento-boundary.json",
+      "sha256": "a78ff2be089adb9af5417715e7c5894341aff2bafaf7fd1499a4ea10a7347dfa"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/14-magento-boundary.log",
+      "sha256": "33065e033358a42cdbbc9f631508ca781d3922b62cc296e1524779ee2d049bfb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/15-magento-full-catalog.before-harness-fix.json",
+      "sha256": "251982dd5bfa02930f57acbd74bcd1b9ba4720d895cfe222eb24bc1916fed0c8"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/15-magento-full-catalog.evidence.json.gz",
+      "sha256": "995e402c4ebc794e146204d0239382cbb743b04c6076ef20530461fe1b98c77e"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/15-magento-full-catalog.json",
+      "sha256": "1d551601d7e9dc86c6fb00d85f12a5e065675f2010452ccfb7fd17e7a4ace69f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/15-magento-full-catalog.log",
+      "sha256": "b96291cb4ba0260d61c8cace4eac3f598d7e60934a066000f0fce6949a8ce55b"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/16-shopware-page-budget.evidence.json",
+      "sha256": "1f469ec96220536a0bdf2ff1fbeec20894a1b8317d2512b5d26153f20d71b3f2"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/16-shopware-page-budget.json",
+      "sha256": "9f8e2f7f81dd1dc82f9846c7545c539b5f1f9fa8f943028e1941d08110d31833"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/16-shopware-page-budget.log",
+      "sha256": "a8b04d756f46ffcc5f24112537c991f445bb006bcb0caa5df9c91ceac541f1a0"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/17-magento-page-budget.evidence.json",
+      "sha256": "8bf4d1cc32d702bb7f0da8a4b46eb493ad25841413f11525178922f1c33ad8ac"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/17-magento-page-budget.json",
+      "sha256": "a26b23040c99b82c0cc110b16072ca6587e4e8be9450d27a2eb9f40a144d5093"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/17-magento-page-budget.log",
+      "sha256": "475e7bb75406c732acd32359c57cdc91752abf5f3dd16a68fb16b09f7487054d"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/18-generic-css-repeat.evidence.json.gz",
+      "sha256": "d131343aaf20aacdb51a36314a62955a85b82d01d755ca7406cea267167d6246"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/18-generic-css-repeat.json",
+      "sha256": "0443d85b91e6e0d4d5bc55c718ddc7d0d18a65af6eb848b27b65f3825e80a16c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/18-generic-css-repeat.log",
+      "sha256": "823f37ad8b55b04de018bea257842d5a862e9ad673bd1580d99767e411a3a955"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/boundary-recheck.log",
+      "sha256": "611b7902fae50a8d2ddd8b7a94796f911f1ca41ba7259d79adc2aa303ec17587"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/boundary.log",
+      "sha256": "6a3b0d686b1679b2bf03793776c436072a01261a910f66c9e197954d8a9bfe75"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/focused-tests.log",
+      "sha256": "5a9e334a8276e5f7e30fa33c7d939b9788173bba8399433870f4ca56f4a831fc"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/generic-recheck.log",
+      "sha256": "7a434a5d9b70b4145588955f0550b1bc7cd7127078cc13f5badac4b31cdbf553"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/recheck.log",
+      "sha256": "3c58b8a8dc10ad6354e5a39bb2d611169477e01d8062079ccf1e33d44c9ea2eb"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/review.json",
+      "sha256": "7c42c7a228450c7fa62dc8b96ebc539e0227dd8923252dc5b3786e82657f3302"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/run.log",
+      "sha256": "05be3327a66c364c0f5ad1d68457a016a6e3d890e0664266b82435555064ee2f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/live-stress/smoke.log",
+      "sha256": "828addfa2b1ed1325f9c72ec9565b7844f5b76e96a9e9eaa80c05e204d506b9c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/market-research-2026-10-16",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/open-taxonomy-evaluation",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/planning",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/reliable-change-23/ci-checks.log",
+      "sha256": "9c00f6a832dda5a4f48f3cab0293e0b09b7596aa5bb7702b0e2b53c515c3073f"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/reliable-change-23/delivery-tickets",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/reliable-change-23/issues",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "artifacts/reliable-change-23/live/capture-1.json",
+      "sha256": "467e85ecf46b3ad1fbfc7c82ed947182c20c0470e95420d958821b35d94d35fc"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/reliable-change-23/live/capture-2.json",
+      "sha256": "467e85ecf46b3ad1fbfc7c82ed947182c20c0470e95420d958821b35d94d35fc"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/reliable-change-23/live/report.txt",
+      "sha256": "73ae146372de625dde5a70ed1f6e4d68658a2fc79d1c4d8ba70a1661cb6ab4f3"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/reliable-change-23/live/snapshots.db",
+      "sha256": "ad4b063cc504b5b67effbe9d32f875848c9b4a25754a8cf8b729dfa6608c6805"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/reliable-change-23/pr-body.md",
+      "sha256": "16d138251320bf4f7b4bf055aaea2a43317a3254d313f77a27ef9e5ef48d8e7c"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/woocommerce-category-tree",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "docs/catalog-maintenance.md",
+      "sha256": "c6523a24c03eb1683cdfe9c0e18982644af7ce78702cb0aa9e258a63fb61e5b6"
+    },
+    {
+      "status": "??",
+      "path": "docs/category-mapping.md",
+      "sha256": "3ac693386403bd8bd0e80c4a6b91dfecd8bb6ab0d0f456d06782619c42d14cf5"
+    },
+    {
+      "status": "??",
+      "path": "docs/woocommerce-category-tree.md",
+      "sha256": "ba4817b9c7ec1d1c933cae59c92a08e3556db0a470aa19a0a49806b39d845952"
+    },
+    {
+      "status": "??",
+      "path": "examples/catalog_maintenance.py",
+      "sha256": "9ff49d6d049bdc35e0c8efb4f10c85ec07e684fe2e6497ba47192bbb52893d5c"
+    },
+    {
+      "status": "??",
+      "path": "specs/005-catalog-maintenance-agent",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "specs/006-category-mapping",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "specs/007-open-taxonomy-evaluation",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "specs/009-woocommerce-category-tree",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "specs/010-ecosystem-integrations",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "specs/011-cli-feature-parity",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "src/shopextract/categories",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "src/shopextract/maintenance",
+      "sha256": null
+    },
+    {
+      "status": "??",
+      "path": "tests/category_live_driver.py",
+      "sha256": "33c99f5bcc226ed663168d4f7a3e8e36fbfddd11cbbfacc1012521c6265f253f"
+    },
+    {
+      "status": "??",
+      "path": "tests/category_magento_live_diagnostic.py",
+      "sha256": "5c285543c9dea6997ab3ebc69fd8a74fe394cf176a71945e514e42330ddae1ca"
+    },
+    {
+      "status": "??",
+      "path": "tests/category_mechanism_driver.py",
+      "sha256": "dd404cd86082ef68b9e15d60beebd8b6d0667ca7ff7b2dfb0e835143573713c9"
+    },
+    {
+      "status": "??",
+      "path": "tests/category_mechanism_plugin.py",
+      "sha256": "544abc25f091a5dae0e5c4a3a7c55d3effcca0aa19130fd8de07a25f9e891308"
+    },
+    {
+      "status": "??",
+      "path": "tests/maintenance_process_guard.py",
+      "sha256": "627a9742afd22019e087c19987930c31d6663f1136fbed37975e7cfdb5a1c95d"
+    },
+    {
+      "status": "??",
+      "path": "tests/maintenance_stress_driver.py",
+      "sha256": "9abc3aa677d89bd0f258748e685f6dbabb9c44198c7936cf75fc948bcef8153a"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_category_bigcommerce.py",
+      "sha256": "7aaaa864cfd791c27e8633c995af8682a8fc452e686786f436375a4de6e3bdfb"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_category_generic.py",
+      "sha256": "bbcaa7fac1d10f195e0901a838aaa4271d13bf9b4a2adb06496ba07dabe40985"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_category_magento.py",
+      "sha256": "bf76370f7ffb21aa0ef7fdf330a710ab6dae50cd7be1018bd17ef7d9c575781d"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_category_review_repairs.py",
+      "sha256": "07b54a1ca9d3ee901c66e480ef8e4db28741dfbc51810f134d44cca0a074c179"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_category_shared_contract.py",
+      "sha256": "af6ea53fc450a02baf74e8e0d26007e7c7297dd8cd51eaaff0af866548387ca9"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_category_shopify.py",
+      "sha256": "90fd9b49ce25ce9458de08860cda1d7c81d88aeed11b55100c7079846808ec79"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_category_shopware.py",
+      "sha256": "f8d24966484e11f8411d495a391a8cb8ed9e367d53fdbf6a28c7dd38ebd05170"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_category_skeleton.py",
+      "sha256": "219d45a12f09681e997c03932d723fd4b97ddb4e8e85454392a8e3b6dd6b9980"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_category_woocommerce.py",
+      "sha256": "1466a2d354ec0a0eb769b6e5a479ea2e27fc2a8aae990457d0a796d4d31e90e2"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_maintenance_acceptance.py",
+      "sha256": "a032f1a83296b8fa12d0b028cefb2df3272f30fbead1c26c28fafe21ab4d31fc"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_maintenance_advisor.py",
+      "sha256": "efedf135614edb1237e3a6e7e12e4962bb80b716f396c35cb2eb0236eae4205a"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_maintenance_remaining_edges.py",
+      "sha256": "f921a78aac60e1759832923065b9004631f2c7d7c3e9d64b48b905be3c95054a"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_maintenance_review_repairs.py",
+      "sha256": "24b1a82156acb69a0b63a5ee0df7a47d44e7162307e473674ebba99bef941322"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_maintenance_store.py",
+      "sha256": "e14d00d497a5ebdfc28280d6795d83ae80e53b40ea450b2ab01d95562498a0dd"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_maintenance_stress_prerequisites.py",
+      "sha256": "e26b8d2e9f766d78edbfed053053983e36bf4310e3b5231763321d13cfa666e2"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_maintenance_workflow.py",
+      "sha256": "b6edf7cef5236b39aaee2cd73be7b31d92da453a3c7cd0ed065524d9604d2e4f"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_woo_tree_acceptance.py",
+      "sha256": "4748e7e066979aaa32f387ff4d49b6aab8d792048d7f68caf5079e2f386ce985"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_woo_tree_final_edges.py",
+      "sha256": "956ab5dddc144eaf8354172dd3ee7bc3e9ebd015afeb78d73cd271c6c2567f1b"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_woo_tree_live_oracle.py",
+      "sha256": "391f1e5849c0b0ab2f895de2bf19462378984a82176433382c279f68bfcc914c"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_woo_tree_mechanisms.py",
+      "sha256": "55e76b02abb95728718ab46f2a51685baf499374e4cad11ae008709dbaaebd58"
+    },
+    {
+      "status": "??",
+      "path": "tests/woo_tree_live_driver.py",
+      "sha256": "93ca9ce3502ee8988f06eb96173e2e8fa4622f976f4b696adb318d9872d53e8b"
+    },
+    {
+      "status": "??",
+      "path": "tests/woo_tree_stress_driver.py",
+      "sha256": "4efe27dd0f7cd963ca1ec968641f6f318614a7bc759a3710a7ff559ffeaef841"
+    }
+  ],
+  "scope": "Existing dirty files preserved; CLI feature implementation starts here.",
+  "actual_session_token_counters": "unavailable"
+}

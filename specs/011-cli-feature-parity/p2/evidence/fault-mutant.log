@@ -1,0 +1,29 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________________ test_exact_portable_identity _________________________
+
+    def test_exact_portable_identity():
+        product = Product(title='A',product_url='https://synthetic.example/a',price=Decimal('0.10'),gtin='00012345600012',in_stock=False)
+        result = invoke(['identity','assign','-'], [product_to_record(product)])
+        assert result.exit_code == 0, result.output
+        record = json.loads(result.output)['data']['products'][0]
+>       assert record['product']['price'] == {'$type':'decimal','value':'0.10'}
+E       AssertionError: assert {'$type': 'de...value': '0.1'} == {'$type': 'de...alue': '0.10'}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'value': '0.1'} != {'value': '0.10'}
+E         Use -v to get more diff
+
+tests/test_cli_analysis.py:82: AssertionError
+=============================== warnings summary ===============================
+tests/test_cli_analysis.py::test_exact_portable_identity
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli_analysis.py::test_exact_portable_identity - AssertionEr...
+1 failed, 1 warning in 0.23s
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(

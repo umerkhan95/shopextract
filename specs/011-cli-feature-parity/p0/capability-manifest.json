@@ -1,0 +1,4551 @@
+{
+  "state": "classification_complete_pending_G1",
+  "scope": "All local public top-level definitions, public class methods, __all__ exports and saved AST inventory entries. Private-module definitions included conservatively; imported third-party names excluded. AST snapshot is current dirty working tree, not release API claim.",
+  "classification_rules": {
+    "workflow": "Native entry point represented by target family; exact flags/domain schema reserved",
+    "data_schema": "Model/enum/contract/config shape consumed by parent workflow; no constructor command",
+    "composed_helper": "Named helper consumed by parent target; no standalone command",
+    "implementation_helper": "Adapter/parser/security/lifecycle detail exercised through parent workflow; no standalone command",
+    "python_only": "Object/callback injection or in-memory result, cannot encode as portable CLI invocation",
+    "entrypoint": "Existing CLI/module invocation retained"
+  },
+  "workflow_targets": {
+    "analyze": {
+      "phase": "P2",
+      "target": "analysis/stats/competitive",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "analyze_products": {
+      "phase": "P2",
+      "target": "analysis/stats/competitive",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "assign_identity": {
+      "phase": "P2",
+      "target": "comparison/match/identity",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "assortment_gaps": {
+      "phase": "P2",
+      "target": "analysis/stats/competitive",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "bind_product": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "brand_breakdown": {
+      "phase": "P2",
+      "target": "analysis/stats/competitive",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "brand_coverage": {
+      "phase": "P2",
+      "target": "analysis/stats/competitive",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "categorized_product_from_record": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "categorized_product_to_record": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "category_policy_digest": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "category_review_reasons": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "changes": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "check_images": {
+      "phase": "P2",
+      "target": "validate/images/duplicates",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "classify_match": {
+      "phase": "P2",
+      "target": "comparison/match/identity",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "compare": {
+      "phase": "P2",
+      "target": "comparison/match/identity",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "compare_catalogs": {
+      "phase": "P2",
+      "target": "comparison/match/identity",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "create_evidence_bundle": {
+      "phase": "P3",
+      "target": "evidence bundle/sidecar",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "create_evidence_sidecar": {
+      "phase": "P3",
+      "target": "evidence bundle/sidecar",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "detect": {
+      "phase": "P1",
+      "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "discover": {
+      "phase": "P1",
+      "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "evaluate_matching": {
+      "phase": "P2",
+      "target": "comparison/match/identity",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "extract": {
+      "phase": "P1",
+      "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "extract_one": {
+      "phase": "P1",
+      "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "extract_with_categories": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "factual_paths": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "fetch_woocommerce_category_tree": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "find_duplicates": {
+      "phase": "P2",
+      "target": "validate/images/duplicates",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "from_feed": {
+      "phase": "P1",
+      "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "fuzzy_match": {
+      "phase": "P2",
+      "target": "comparison/match/identity",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "get_evidence": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "link_tree_memberships": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "load_evidence_bundle": {
+      "phase": "P3",
+      "target": "evidence bundle/sidecar",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "load_evidence_sidecar": {
+      "phase": "P3",
+      "target": "evidence bundle/sidecar",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "load_snapshot": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "map_categories": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "match_gtin": {
+      "phase": "P2",
+      "target": "comparison/match/identity",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "match_products": {
+      "phase": "P2",
+      "target": "comparison/match/identity",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "migrate_snapshot_identities": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "normalize": {
+      "phase": "P1",
+      "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "normalize_with_categories": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "normalized_attributes": {
+      "phase": "P2",
+      "target": "comparison/match/identity",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "options_digest": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "outliers": {
+      "phase": "P2",
+      "target": "analysis/stats/competitive",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "price_distribution": {
+      "phase": "P2",
+      "target": "analysis/stats/competitive",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "price_history": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "price_position": {
+      "phase": "P2",
+      "target": "analysis/stats/competitive",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "prune_evidence": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "read_evidence_bundle": {
+      "phase": "P3",
+      "target": "evidence bundle/sidecar",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "reliable_changes": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "resolution_references": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "resolve_fields": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "runtime_from_record": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "runtime_record": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "save_snapshot": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "score_batch": {
+      "phase": "P1",
+      "target": "quality",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "score_product": {
+      "phase": "P1",
+      "target": "quality",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "snapshot": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "to_csv": {
+      "phase": "P2",
+      "target": "export",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "to_feed": {
+      "phase": "P2",
+      "target": "export",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "to_json": {
+      "phase": "P2",
+      "target": "export",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "to_parquet": {
+      "phase": "P2",
+      "target": "export",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "trust_view": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "validate": {
+      "phase": "P2",
+      "target": "validate/images/duplicates",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "validate_categorized_products": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "validate_observations": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "validate_options": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "watch": {
+      "phase": "P3",
+      "target": "monitor/history/evidence/identity migrate/resolve",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    },
+    "woo_tree_from_record": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "woo_tree_to_record": {
+      "phase": "P4",
+      "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+      "grammar_state": "reserved",
+      "classification": "composed_helper",
+      "rationale": "Portable config/codec/policy helper composed by categories parent."
+    },
+    "write_evidence_bundle": {
+      "phase": "P3",
+      "target": "evidence bundle/sidecar",
+      "grammar_state": "reserved",
+      "classification": "workflow",
+      "rationale": "Native operator entry point; affected-phase domain grammar reserved."
+    }
+  },
+  "modules": [
+    {
+      "path": "src/shopextract/__init__.py",
+      "sha256": "8808e1cbce60945fab3199ee9ff5eefe3795f7610c3a80f5dc1bc0306ebae81a",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {},
+      "definition_links": {},
+      "grouped_classification_links": {},
+      "exports": {
+        "ResolutionPolicy": "data_schema",
+        "resolve_fields": "workflow",
+        "resolution_references": "workflow",
+        "Evidence": "data_schema",
+        "FieldObservation": "data_schema",
+        "FieldResolution": "data_schema",
+        "SupportState": "data_schema",
+        "TrustContract": "data_schema",
+        "ValidatedConfidence": "data_schema",
+        "factual_paths": "workflow",
+        "trust_view": "workflow",
+        "evaluate_matching": "workflow",
+        "assign_identity": "workflow",
+        "migrate_snapshot_identities": "workflow",
+        "MatchDecision": "data_schema",
+        "MatchRelation": "data_schema",
+        "classify_match": "workflow",
+        "match_products": "workflow",
+        "normalized_attributes": "workflow",
+        "detect": "workflow",
+        "discover": "workflow",
+        "extract": "workflow",
+        "extract_one": "workflow",
+        "from_feed": "workflow",
+        "normalize": "workflow",
+        "compare": "workflow",
+        "compare_catalogs": "workflow",
+        "fuzzy_match": "workflow",
+        "match_gtin": "workflow",
+        "EvidenceLookup": "data_schema",
+        "PruneReport": "data_schema",
+        "save_snapshot": "workflow",
+        "load_snapshot": "workflow",
+        "get_evidence": "workflow",
+        "prune_evidence": "workflow",
+        "create_evidence_bundle": "workflow",
+        "load_evidence_bundle": "workflow",
+        "write_evidence_bundle": "workflow",
+        "read_evidence_bundle": "workflow",
+        "create_evidence_sidecar": "workflow",
+        "load_evidence_sidecar": "workflow",
+        "snapshot": "workflow",
+        "changes": "workflow",
+        "price_history": "workflow",
+        "watch": "workflow",
+        "analyze": "workflow",
+        "analyze_products": "workflow",
+        "price_distribution": "workflow",
+        "outliers": "workflow",
+        "brand_breakdown": "workflow",
+        "price_position": "workflow",
+        "assortment_gaps": "workflow",
+        "brand_coverage": "workflow",
+        "validate": "workflow",
+        "check_images": "workflow",
+        "find_duplicates": "workflow",
+        "to_csv": "workflow",
+        "to_json": "workflow",
+        "to_feed": "workflow",
+        "to_dataframe": "python_only",
+        "to_parquet": "workflow",
+        "AssortmentGaps": "data_schema",
+        "CatalogStats": "data_schema",
+        "CatalogDiff": "data_schema",
+        "Change": "data_schema",
+        "ChangeType": "data_schema",
+        "ComparisonResult": "data_schema",
+        "ExtractionResult": "data_schema",
+        "ExtractionTier": "data_schema",
+        "ExtractorResult": "data_schema",
+        "ImageIssue": "data_schema",
+        "Match": "data_schema",
+        "NewProduct": "data_schema",
+        "Platform": "data_schema",
+        "PlatformResult": "data_schema",
+        "PriceChange": "data_schema",
+        "PricePosition": "data_schema",
+        "Product": "data_schema",
+        "RemovedProduct": "data_schema",
+        "ValidationIssue": "data_schema",
+        "ValidationReport": "data_schema",
+        "Variant": "data_schema",
+        "QualityScorer": "composed_helper"
+      },
+      "export_workflow_links": {
+        "resolve_fields": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "resolution_references": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "factual_paths": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "trust_view": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "evaluate_matching": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "assign_identity": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "migrate_snapshot_identities": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "classify_match": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "match_products": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "normalized_attributes": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "detect": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "discover": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "extract": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "extract_one": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "from_feed": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "normalize": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "compare": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "compare_catalogs": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "fuzzy_match": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "match_gtin": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "save_snapshot": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "load_snapshot": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "get_evidence": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "prune_evidence": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "create_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "load_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "write_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "read_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "create_evidence_sidecar": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "load_evidence_sidecar": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "snapshot": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "changes": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "price_history": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "watch": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "analyze": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "analyze_products": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "price_distribution": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "outliers": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "brand_breakdown": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "price_position": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "assortment_gaps": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "brand_coverage": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "validate": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "validate/images/duplicates",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "check_images": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "validate/images/duplicates",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "find_duplicates": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "validate/images/duplicates",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "to_csv": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "to_json": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "to_feed": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "to_parquet": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        }
+      }
+    },
+    {
+      "path": "src/shopextract/_capture.py",
+      "sha256": "97c9e18ccb714378a0c2cbdb772eb355c28117ac3bb6954164b3c4a475ae1dc0",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "capture",
+          "attach_contract"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_detect.py",
+      "sha256": "fe4d19f4d5ea26ef32dad2dc1d723d5be73e495e032e4c9ae3effa37e7f30bf2",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "detect"
+        ]
+      },
+      "definition_links": {
+        "detect": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_discover.py",
+      "sha256": "79379e5f16fac68905f2c55f8f4b2a7d66cbe63f0108bc6745c2cbb46c66f70a",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "discover"
+        ]
+      },
+      "definition_links": {
+        "discover": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_evidence.py",
+      "sha256": "368cad9ae37c289951f1bbeec2562f28f419d2c9f9dd8adf0bf63d8f5427859f",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "data_schema": [
+          "SupportState",
+          "ValidatedConfidence",
+          "Evidence",
+          "FieldObservation",
+          "FieldResolution",
+          "TrustContract"
+        ],
+        "composed_helper": [
+          "Evidence.resolve_pointer",
+          "TrustContract.validate",
+          "TrustContract.to_dict",
+          "TrustContract.from_dict"
+        ],
+        "implementation_helper": [
+          "encode_value",
+          "decode_value"
+        ],
+        "workflow": [
+          "factual_paths",
+          "trust_view"
+        ]
+      },
+      "definition_links": {
+        "factual_paths": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "trust_view": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        },
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        },
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_extract.py",
+      "sha256": "064f98087bbdc42bd8bf276113418d6837c17d5f4a15fdc429d6206ef604aacc",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "extract",
+          "extract_one",
+          "from_feed"
+        ]
+      },
+      "definition_links": {
+        "extract": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "extract_one": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "from_feed": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_filters.py",
+      "sha256": "39f0e609476d60cd850364bd142815472a3bdc98b4d07e17bffa60c1f04156bf",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "is_non_product_url"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_models.py",
+      "sha256": "93e4e4e4a2137daf27931657ff5f0d6724fb307429561d4609fe35067afa3c76",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "data_schema": [
+          "Platform",
+          "ExtractionTier",
+          "Variant",
+          "Product",
+          "PlatformResult",
+          "ExtractorResult",
+          "ExtractionResult",
+          "Match",
+          "ComparisonResult",
+          "CatalogDiff",
+          "ChangeType",
+          "Change",
+          "PriceChange",
+          "NewProduct",
+          "RemovedProduct",
+          "CatalogStats",
+          "PricePosition",
+          "AssortmentGaps",
+          "ValidationIssue",
+          "ValidationReport",
+          "ImageIssue"
+        ],
+        "composed_helper": [
+          "Variant.trust_view",
+          "Product.trust_view",
+          "ExtractorResult.product_count",
+          "ExtractorResult.is_empty",
+          "ExtractionResult.product_count",
+          "ValidationReport.pass_rate"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        },
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_normalization.py",
+      "sha256": "d989ba3163da04ac7e5ae5c4be8b5101da082fcecb1898d451133ac7efa40672",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "data_schema": [
+          "Selection",
+          "ConversionOutcome"
+        ],
+        "implementation_helper": [
+          "NormalizedData",
+          "Normalizer",
+          "Normalizer.select",
+          "Normalizer.record",
+          "Normalizer.record_inputs",
+          "Normalizer.emit",
+          "Normalizer.money",
+          "Normalizer.inherit",
+          "Normalizer.record_nested",
+          "Normalizer.result"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        },
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_normalize.py",
+      "sha256": "a17358cf615b22d2a0a945f256c14ac51d4bee9afe39d4bde7956f973fa1ee35",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "normalize"
+        ]
+      },
+      "definition_links": {
+        "normalize": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "extraction (detect/discover/extract/extract-one/feed/normalize)",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_portable.py",
+      "sha256": "98ef432e6b51bd61ffec3f734ea3b5531fb90ea1e7eb1893e657a824c0a71320",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "validate_tree",
+          "product_to_record",
+          "product_from_record"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_quality.py",
+      "sha256": "ce019f2db1c4ef9e43b1d533eca0c27fdc5016b026891eeccd300a9fad0fc3dc",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "composed_helper": [
+          "QualityScorer"
+        ],
+        "workflow": [
+          "QualityScorer.score_product",
+          "QualityScorer.score_batch"
+        ]
+      },
+      "definition_links": {
+        "QualityScorer.score_product": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "quality",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        },
+        "QualityScorer.score_batch": {
+          "classification": "workflow",
+          "phase": "P1",
+          "target": "quality",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        }
+      },
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_resolution.py",
+      "sha256": "1c466e922fe4b2e677389ed68b1a5bc924741a5f7164ced672c8177dd5f7d22a",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "data_schema": [
+          "ResolutionPolicy"
+        ],
+        "composed_helper": [
+          "ResolutionPolicy.max_age",
+          "ResolutionPolicy.authority"
+        ],
+        "workflow": [
+          "resolve_fields",
+          "resolution_references"
+        ]
+      },
+      "definition_links": {
+        "resolve_fields": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "resolution_references": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        },
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/_scope.py",
+      "sha256": "39f2172dcedb70b251db43abe5bf6c2fac06a2fb3a55f0356336f4240413422a",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "catalog_scope"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/analyze/__init__.py",
+      "sha256": "1b342b49f474e51bd30e9e213ff09a517d2d15620c75476e304eed05a44439c4",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {},
+      "definition_links": {},
+      "grouped_classification_links": {},
+      "exports": {
+        "analyze": "workflow",
+        "analyze_products": "workflow",
+        "price_distribution": "workflow",
+        "outliers": "workflow",
+        "brand_breakdown": "workflow",
+        "price_position": "workflow",
+        "assortment_gaps": "workflow",
+        "brand_coverage": "workflow"
+      },
+      "export_workflow_links": {
+        "analyze": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "analyze_products": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "price_distribution": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "outliers": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "brand_breakdown": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "price_position": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "assortment_gaps": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "brand_coverage": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        }
+      }
+    },
+    {
+      "path": "src/shopextract/analyze/competitive.py",
+      "sha256": "ccec8995f0abab41bdbe3a1b0737b685dc8209bbb45088bda0f5769698fd7bc6",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "price_position",
+          "assortment_gaps",
+          "brand_coverage"
+        ]
+      },
+      "definition_links": {
+        "price_position": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "assortment_gaps": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "brand_coverage": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/analyze/stats.py",
+      "sha256": "04fcf40a81da58c5902ef30331bdaf0a9cda214cfcdc2075bd09fbe5bfc2c9af",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "analyze_products",
+          "price_distribution",
+          "outliers",
+          "brand_breakdown",
+          "analyze"
+        ],
+        "implementation_helper": [
+          "get_price",
+          "count_field",
+          "count_categories"
+        ]
+      },
+      "definition_links": {
+        "analyze_products": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "price_distribution": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "outliers": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "brand_breakdown": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "analyze": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "analysis/stats/competitive",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/_codec.py",
+      "sha256": "7076d4fc2db09220d859a50131bc00c6a0804ba2d3294bf6d17a1960754fb081",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "wire",
+          "canonical",
+          "digest",
+          "typed"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/adapters/bigcommerce.py",
+      "sha256": "6e32f7e50b2322fc3f416eed7a562b2c7d3bfd64104df7f0cce4077e08ba06ba",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "observe_categories"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/adapters/generic.py",
+      "sha256": "2cb3df6d21d9cee9eb744a4f8577e9f79e83227f3c437a04bae1e2487fd15e38",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "observe_categories"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/adapters/magento.py",
+      "sha256": "0fb92acd81971297ab5e6978d3d3cc61e157ec891f24f3485d8958e7d5299b36",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "observe_categories"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/adapters/shopify.py",
+      "sha256": "3c005420b9fb5b63d617bcd4312b4aece1f37e183e5b5a4f187005dfd128c9f1",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "observe_categories"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/adapters/shopware.py",
+      "sha256": "58040b766bbb09222f13298bc06f37a64df674c4d2c1da425f2aa77d84aa1ded",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "observe_categories"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/adapters/woocommerce.py",
+      "sha256": "23a54d1643311c371e56edc435f21f3569ba1a764382a4c7ce0f9fabd5c82097",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "observe_categories"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/api.py",
+      "sha256": "627a9df2d643c8042e8ff678a7eb01dd6468be7b163e845430c2d4afa4da443b",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "workflow": [
+          "normalize_with_categories",
+          "extract_with_categories"
+        ]
+      },
+      "definition_links": {
+        "normalize_with_categories": {
+          "classification": "workflow",
+          "phase": "P4",
+          "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "extract_with_categories": {
+          "classification": "workflow",
+          "phase": "P4",
+          "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/config.py",
+      "sha256": "ffc2976bec98e45ecfd83e953e140e2faec4a4e358eeee14642f0bf6551f8396",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "validate_options",
+          "runtime_record",
+          "runtime_from_record",
+          "options_digest"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/contracts.py",
+      "sha256": "67ff20be078bb986038f120f43be58815e2542a59bc05fce305e1abc943b49d2",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "data_schema": [
+          "CategoryError",
+          "CategoryScope",
+          "CategoryLimits",
+          "CategoryTermRef",
+          "CategoryFactBinding",
+          "CategoryFact",
+          "CategoryTerm",
+          "CategoryObservation",
+          "CategorySelector",
+          "MappingRule",
+          "TargetRegistry",
+          "CategoryOptions",
+          "MappingDecision",
+          "CategorizedProduct",
+          "CategorizedExtractionResult",
+          "NativeCategoryError",
+          "AdapterContext",
+          "CategoryRuntimeConfig",
+          "CategoryPolicySnapshot"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/evidence.py",
+      "sha256": "401c71253805abff9e0c32d6cc97c4bd9a99e7a038b8d4d245b1965f80281969",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "source_fact"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/helpers.py",
+      "sha256": "ae4baba491f13928f9a7e1e679904c8640e6e01ca9dc0b61b5f0037da8381031",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "merchant_scope",
+          "observation_id",
+          "nonblank_text",
+          "native_id"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/maintenance.py",
+      "sha256": "3c7937e32436168cf92aff019b3bcfe006f6a2568c929bf60fae39b4793ce398",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "category_policy_digest",
+          "category_review_reasons"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/mapping.py",
+      "sha256": "29c4492d95a02dde719fe8334766d8eb9abd8d128984662b953efc1041e9e877",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "workflow": [
+          "map_categories"
+        ]
+      },
+      "definition_links": {
+        "map_categories": {
+          "classification": "workflow",
+          "phase": "P4",
+          "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/native.py",
+      "sha256": "49f7b45abc0f965c9454d66a1f5f0a5eab52d01e0d7c57562f95dc1deda546e7",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "localize_category_errors",
+          "native_body",
+          "attach_category_diagnostics",
+          "native_source_fact"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/portable.py",
+      "sha256": "2e3a0bbcf9e1214e09fff008ed7168320b9af99e0a6614481c74293c261e93fa",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "composed_helper": [
+          "bind_product",
+          "categorized_product_to_record",
+          "categorized_product_from_record",
+          "validate_categorized_products"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/validation.py",
+      "sha256": "092199930af26416640444ebc7457df060a07b376c1c2bb464a7f2f08f7cd9b0",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "workflow": [
+          "validate_observations"
+        ]
+      },
+      "definition_links": {
+        "validate_observations": {
+          "classification": "workflow",
+          "phase": "P4",
+          "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/categories/woo_tree.py",
+      "sha256": "56b63c46043c070d7412da5a6bc9a2d519da3da44891b34edd931d8dc62f6ecf",
+      "parent_target": {
+        "phase": "P4",
+        "target": "categories extraction/mapping/config/records/tree"
+      },
+      "definitions": {
+        "data_schema": [
+          "WooTreeLimits",
+          "TreeFact",
+          "TreeDeclaration",
+          "TreeNode",
+          "TreeIssue",
+          "TreePage",
+          "TreeAttempt",
+          "WooCategoryTree",
+          "TreeMembershipLink"
+        ],
+        "workflow": [
+          "fetch_woocommerce_category_tree",
+          "link_tree_memberships"
+        ],
+        "composed_helper": [
+          "woo_tree_to_record",
+          "woo_tree_from_record"
+        ]
+      },
+      "definition_links": {
+        "fetch_woocommerce_category_tree": {
+          "classification": "workflow",
+          "phase": "P4",
+          "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "link_tree_memberships": {
+          "classification": "workflow",
+          "phase": "P4",
+          "target": "categories extract/normalize/map/validate/record/tree/policy/config",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        },
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P4",
+          "target": "categories extraction/mapping/config/records/tree",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/cli.py",
+      "sha256": "39e99388bd641556613cca1f873ff2ec4e65ab1140b1e706dcabc9964cdad37d",
+      "parent_target": {
+        "phase": "P0",
+        "target": "nine legacy root commands"
+      },
+      "definitions": {
+        "entrypoint": [
+          "main",
+          "extract",
+          "detect",
+          "discover",
+          "compare",
+          "snapshot",
+          "changes",
+          "history",
+          "analyze",
+          "validate_cmd"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "entrypoint": {
+          "classification": "entrypoint",
+          "phase": "P0",
+          "target": "nine legacy root commands",
+          "grammar_state": "legacy_frozen",
+          "rationale": "Retained module/root registration invocation; domain expansion reserved."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/compare/__init__.py",
+      "sha256": "97aa3ad49093f5a5171d55ba1321825a372ff56a4d6c55969251cb0460eb78f1",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {},
+      "definition_links": {},
+      "grouped_classification_links": {},
+      "exports": {
+        "MatchDecision": "data_schema",
+        "MatchRelation": "data_schema",
+        "classify_match": "workflow",
+        "match_products": "workflow",
+        "normalized_attributes": "workflow",
+        "evaluate_matching": "workflow",
+        "compare": "workflow",
+        "compare_catalogs": "workflow",
+        "fuzzy_match": "workflow",
+        "match_gtin": "workflow"
+      },
+      "export_workflow_links": {
+        "classify_match": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "match_products": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "normalized_attributes": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "evaluate_matching": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "compare": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "compare_catalogs": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "fuzzy_match": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "match_gtin": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        }
+      }
+    },
+    {
+      "path": "src/shopextract/compare/catalog.py",
+      "sha256": "4e65139d14d216e2b63bf16439e45b4216f5153a9dbc2f09c93549f526d57b25",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "compare_catalogs"
+        ]
+      },
+      "definition_links": {
+        "compare_catalogs": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/compare/evaluation.py",
+      "sha256": "e01c7ff552754a118f2d3d08bcbc65d86cc6d492e7eb1559725e6ded1d7a840b",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "evaluate_matching"
+        ]
+      },
+      "definition_links": {
+        "evaluate_matching": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/compare/identity_match.py",
+      "sha256": "0931100a27c53cd6773a78917b66a2893f1f8d288bff815ffccb6b88202e2a53",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "data_schema": [
+          "MatchRelation",
+          "MatchDecision"
+        ],
+        "workflow": [
+          "normalized_attributes",
+          "classify_match",
+          "match_products"
+        ]
+      },
+      "definition_links": {
+        "normalized_attributes": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "classify_match": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "match_products": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/compare/match.py",
+      "sha256": "3c25f85a8ca37367143c58f72d0bbb079273aa89cfd54b7203d9c7a729fbd2e8",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "title_similarity"
+        ],
+        "workflow": [
+          "fuzzy_match",
+          "match_gtin"
+        ]
+      },
+      "definition_links": {
+        "fuzzy_match": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "match_gtin": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/compare/price.py",
+      "sha256": "ac9d55e8b65c5a35b6711433bdddc145c8944ba4a9369e7c73b0dbe0ae9cd48a",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "compare"
+        ]
+      },
+      "definition_links": {
+        "compare": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/export/__init__.py",
+      "sha256": "0c6a995bfd80117a2e7b6d9ce913ffdfb423b578f642f7a233337c65672f2c7f",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "to_csv",
+          "to_json",
+          "to_feed",
+          "to_parquet"
+        ],
+        "python_only": [
+          "to_dataframe"
+        ]
+      },
+      "definition_links": {
+        "to_csv": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "to_json": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "to_feed": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "to_parquet": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {
+        "python_only": {
+          "classification": "python_only",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Python callback/protocol/in-memory extension; no executable CLI input."
+        }
+      },
+      "exports": {
+        "create_evidence_bundle": "workflow",
+        "load_evidence_bundle": "workflow",
+        "write_evidence_bundle": "workflow",
+        "read_evidence_bundle": "workflow",
+        "create_evidence_sidecar": "workflow",
+        "load_evidence_sidecar": "workflow",
+        "to_csv": "workflow",
+        "to_dataframe": "python_only",
+        "to_feed": "workflow",
+        "to_json": "workflow",
+        "to_parquet": "workflow"
+      },
+      "export_workflow_links": {
+        "create_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "load_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "write_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "read_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "create_evidence_sidecar": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "load_evidence_sidecar": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "to_csv": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "to_feed": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "to_json": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "to_parquet": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "export",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        }
+      }
+    },
+    {
+      "path": "src/shopextract/export/_bundle.py",
+      "sha256": "0afc254ee7b3e68fb3167d25a2d663968832bc20ad962b15ba7383848e97a381",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "create_evidence_bundle",
+          "load_evidence_bundle",
+          "write_evidence_bundle",
+          "read_evidence_bundle",
+          "create_evidence_sidecar",
+          "load_evidence_sidecar"
+        ]
+      },
+      "definition_links": {
+        "create_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "load_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "write_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "read_evidence_bundle": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "create_evidence_sidecar": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "load_evidence_sidecar": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "evidence bundle/sidecar",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/__init__.py",
+      "sha256": "3b5e8cf86ffb5e68219ed32002f4ad00ea372a6f8cfca1c1c0268dae1750492b",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {},
+      "definition_links": {},
+      "grouped_classification_links": {},
+      "exports": {
+        "ShopifyExtractor": "data_schema",
+        "WooCommerceExtractor": "data_schema",
+        "MagentoExtractor": "data_schema",
+        "MagentoGraphQLExtractor": "data_schema",
+        "ShopwareExtractor": "data_schema",
+        "BigCommerceExtractor": "data_schema",
+        "UnifiedCrawlExtractor": "data_schema",
+        "CSSExtractor": "data_schema",
+        "GoogleFeedExtractor": "data_schema",
+        "LLMExtractor": "data_schema"
+      },
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/_bigcommerce_auth.py",
+      "sha256": "3f6f274c322f43b2dc55cbc4f766cd996f729edf8a491bf5980d187554d3aa2f",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "validate_auth",
+          "auth_headers"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/_browser.py",
+      "sha256": "be669f0a6100fbd78f8e9b9e859bff7ac4a3e743e248ce0720188bad59aa0eeb",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "get_default_user_agent",
+          "StealthLevel",
+          "get_browser_config",
+          "get_crawler_strategy",
+          "get_crawl_config",
+          "fetch_html_with_browser"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/_markdown_price.py",
+      "sha256": "dc66427bd925064e8015a8b400fe831f5d2071557e5cba2f03c4988591f8ab41",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "extract_price",
+          "extract_title",
+          "extract"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/_opengraph.py",
+      "sha256": "ede58ff40924513ddd49260725638bd9339fb3e2f3a34d013fc07bce0a66d9e5",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "OpenGraphExtractor",
+          "OpenGraphExtractor.extract_from_html",
+          "OpenGraphExtractor.from_metadata"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/_schema_org.py",
+      "sha256": "cb1c6570c80d0c3752eca20f990a1df605eff62febb2879100c4c3adea74baac",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "SchemaOrgExtractor",
+          "SchemaOrgExtractor.extract_from_html"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/_storefront.py",
+      "sha256": "dbe3e09f20dac8ee9a36e5e45b60a7389baaf78668a4f52958ea92e7449fc2c0",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "positive_limits",
+          "storefront_client",
+          "request",
+          "endpoint_url",
+          "public_config",
+          "resolve_config",
+          "json_body"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/bigcommerce.py",
+      "sha256": "31d183d5914da50b14c0524717955e79deb6aa4f51a4dd8fdd8c3b06ab3706b4",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "BigCommerceExtractor",
+          "BigCommerceExtractor.extract"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/css.py",
+      "sha256": "5505f75f39934057a5a893d43afd6c7bc83f3003cabca177ee5ca1e58edfe4de",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "CSSExtractor",
+          "CSSExtractor.extract",
+          "CSSExtractor.extract_batch"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/feed.py",
+      "sha256": "c2b3847b33a7ea7b8b3220b6fd43b2980ab5e0d1dd5cd61d36e733584c2fc44c",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "GoogleFeedExtractor",
+          "GoogleFeedExtractor.extract"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/llm.py",
+      "sha256": "d2a28ea164e3c53a80dbc0f90aa0d214c3949d7aefadb6b014608a1a054b83ff",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "LLMExtractor",
+          "LLMExtractor.extract",
+          "LLMExtractor.extract_batch"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/magento.py",
+      "sha256": "c84958ae7bebac714d513f4bf3ed16c850a59b28cf3dddccc2006c93a88113ba",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "MagentoExtractor",
+          "MagentoExtractor.extract"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/magento_graphql.py",
+      "sha256": "49bfa18b3b0806c3fdbb85c3628839ab9785423884e7ac25994d6844bd3aa825",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "MagentoGraphQLExtractor",
+          "MagentoGraphQLExtractor.extract"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/shopify.py",
+      "sha256": "9eb2081e148f693b18d4ff0c3856cb12f8d867b892a1439fb6be0f8df3d41dff",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "ShopifyExtractor",
+          "ShopifyExtractor.extract"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/shopware.py",
+      "sha256": "7b4397851fae3d428519a8ed7e8143d68e9fee9f3aa253aa03be57eeccc22422",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "ShopwareExtractor",
+          "ShopwareExtractor.extract"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/unified.py",
+      "sha256": "aee4a6ea53f2837c33e3d3710d3cce6540c10572b0c4eca44c553873c1b9a0e2",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "UnifiedCrawlExtractor",
+          "UnifiedCrawlExtractor.extract",
+          "UnifiedCrawlExtractor.extract_batch"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/extractors/woocommerce.py",
+      "sha256": "66f72e317fff6757d4c7ad1bdcc4414261f3033d2b6779aa77a152a271a338cf",
+      "parent_target": {
+        "phase": "P1",
+        "target": "extract/extract-one/feed through native adapters"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "WooCommerceExtractor",
+          "WooCommerceExtractor.extract"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P1",
+          "target": "extract/extract-one/feed through native adapters",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/identity.py",
+      "sha256": "cc9b63aa42d470f22eec6364430c2818a6e189f05d1040d7ef0f386396c37ab4",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "supplier_scope",
+          "identify_records"
+        ],
+        "workflow": [
+          "assign_identity",
+          "migrate_snapshot_identities"
+        ]
+      },
+      "definition_links": {
+        "assign_identity": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "comparison/match/identity",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "migrate_snapshot_identities": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P0–P5",
+          "target": "typed domain reports; concrete workflows linked individually",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/maintenance/__init__.py",
+      "sha256": "fbbb0e323569a1c392501ae18d5451f69feb54cbf89822e8a4215890d3aa5a44",
+      "parent_target": {
+        "phase": "P5",
+        "target": "maintenance lifecycle/job reporting"
+      },
+      "definitions": {},
+      "definition_links": {},
+      "grouped_classification_links": {},
+      "exports": {
+        "AdvisorReservation": "data_schema",
+        "AdvisorResult": "data_schema",
+        "AdvisorUsage": "data_schema",
+        "AdvisorBound": "data_schema",
+        "Budgets": "data_schema",
+        "Goal": "data_schema",
+        "Investigator": "python_only",
+        "MaintenanceError": "data_schema",
+        "MaintenanceEngine": "composed_helper",
+        "MaintenanceStore": "composed_helper"
+      },
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/maintenance/__main__.py",
+      "sha256": "d496f1e7e0cd421a18b8795f27d9145f633288e090c5923e29b59e53ea2b542d",
+      "parent_target": {
+        "phase": "P5",
+        "target": "maintenance lifecycle/job reporting"
+      },
+      "definitions": {
+        "composed_helper": [
+          "load_profiles"
+        ],
+        "entrypoint": [
+          "execute",
+          "main"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P5",
+          "target": "maintenance lifecycle/job reporting",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        },
+        "entrypoint": {
+          "classification": "entrypoint",
+          "phase": "P5",
+          "target": "maintenance lifecycle/job reporting",
+          "grammar_state": "reserved",
+          "rationale": "Retained module/root registration invocation; domain expansion reserved."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/maintenance/contracts.py",
+      "sha256": "9ce97d048715c5e8ab74a75cd92df89353fe638f5663eb667f6206391f2ac3d6",
+      "parent_target": {
+        "phase": "P5",
+        "target": "maintenance lifecycle/job reporting"
+      },
+      "definitions": {
+        "data_schema": [
+          "MaintenanceError",
+          "Budgets",
+          "Goal",
+          "AdvisorBound",
+          "AdvisorReservation",
+          "AdvisorUsage",
+          "AdvisorResult"
+        ],
+        "python_only": [
+          "Investigator",
+          "Investigator.bound",
+          "Investigator.investigate",
+          "RequestAccounting",
+          "RequestAccounting.before_request",
+          "RequestAccounting.after_request"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P5",
+          "target": "maintenance lifecycle/job reporting",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        },
+        "python_only": {
+          "classification": "python_only",
+          "phase": "P5",
+          "target": "maintenance lifecycle/job reporting",
+          "grammar_state": "reserved",
+          "rationale": "Python callback/protocol/in-memory extension; no executable CLI input."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/maintenance/engine.py",
+      "sha256": "7ff9befb3991442030106c837448d83e81fa643a419536963183b1ce6d32e1e4",
+      "parent_target": {
+        "phase": "P5",
+        "target": "maintenance lifecycle/job reporting"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "json_value",
+          "pointer"
+        ],
+        "composed_helper": [
+          "MaintenanceEngine",
+          "MaintenanceEngine.close"
+        ],
+        "python_only": [
+          "MaintenanceEngine.now",
+          "MaintenanceEngine.hook"
+        ],
+        "workflow": [
+          "MaintenanceEngine.run",
+          "MaintenanceEngine.resume",
+          "MaintenanceEngine.retry_unknown",
+          "MaintenanceEngine.cancel"
+        ]
+      },
+      "definition_links": {
+        "MaintenanceEngine.run": {
+          "classification": "workflow",
+          "phase": "P5",
+          "target": "maintenance run",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        },
+        "MaintenanceEngine.resume": {
+          "classification": "workflow",
+          "phase": "P5",
+          "target": "maintenance resume",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        },
+        "MaintenanceEngine.retry_unknown": {
+          "classification": "workflow",
+          "phase": "P5",
+          "target": "maintenance retry",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        },
+        "MaintenanceEngine.cancel": {
+          "classification": "workflow",
+          "phase": "P5",
+          "target": "maintenance cancel",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        }
+      },
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "maintenance lifecycle/job reporting",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        },
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P5",
+          "target": "maintenance lifecycle/job reporting",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        },
+        "python_only": {
+          "classification": "python_only",
+          "phase": "P5",
+          "target": "maintenance lifecycle/job reporting",
+          "grammar_state": "reserved",
+          "rationale": "Injected clock/callback hook used by engine; no operator workflow."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/maintenance/profiles.py",
+      "sha256": "0612d0476b2a12a716701d6da948747bae9adea08e9eea4657651542177d4528",
+      "parent_target": {
+        "phase": "P5",
+        "target": "maintenance lifecycle/job reporting"
+      },
+      "definitions": {
+        "data_schema": [
+          "FieldRule",
+          "CategoryProfile"
+        ],
+        "implementation_helper": [
+          "profile",
+          "compare_field"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P5",
+          "target": "maintenance lifecycle/job reporting",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        },
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "maintenance lifecycle/job reporting",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/maintenance/store.py",
+      "sha256": "e94662e41545d8b3862b1769551edd899f0bccae988cf02f9c14c443f2e04e15",
+      "parent_target": {
+        "phase": "P5",
+        "target": "maintenance lifecycle/job reporting"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "packed",
+          "digest"
+        ],
+        "composed_helper": [
+          "MaintenanceStore",
+          "MaintenanceStore.acquire",
+          "MaintenanceStore.release",
+          "MaintenanceStore.close",
+          "MaintenanceStore.category_policy",
+          "MaintenanceStore.goal",
+          "MaintenanceStore.validate_profiles",
+          "MaintenanceStore.usage",
+          "MaintenanceStore.steps",
+          "MaintenanceStore.add_steps",
+          "MaintenanceStore.add_step",
+          "MaintenanceStore.begin",
+          "MaintenanceStore.request_cancel",
+          "MaintenanceStore.check_cancel",
+          "MaintenanceStore.finish",
+          "MaintenanceStore.reserve",
+          "MaintenanceStore.checkpoint",
+          "MaintenanceStore.fail_attempt",
+          "MaintenanceStore.attempts",
+          "MaintenanceStore.cache_get",
+          "MaintenanceStore.cache_put",
+          "MaintenanceStore.prepare_step",
+          "MaintenanceStore.advisory_history",
+          "MaintenanceStore.model_stop",
+          "MaintenanceStore.completion"
+        ],
+        "workflow": [
+          "MaintenanceStore.create",
+          "MaintenanceStore.status",
+          "MaintenanceStore.report",
+          "MaintenanceStore.evidence"
+        ]
+      },
+      "definition_links": {
+        "MaintenanceStore.create": {
+          "classification": "workflow",
+          "phase": "P5",
+          "target": "maintenance create",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        },
+        "MaintenanceStore.status": {
+          "classification": "workflow",
+          "phase": "P5",
+          "target": "maintenance status",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        },
+        "MaintenanceStore.report": {
+          "classification": "workflow",
+          "phase": "P5",
+          "target": "maintenance report",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        },
+        "MaintenanceStore.evidence": {
+          "classification": "workflow",
+          "phase": "P5",
+          "target": "maintenance evidence",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        }
+      },
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "maintenance lifecycle/job reporting",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        },
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P5",
+          "target": "maintenance lifecycle/job reporting",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/monitor/__init__.py",
+      "sha256": "d6468963316bec1d3c48ad182525bbaf816311d0c65bd950fb054ff8583a5f92",
+      "parent_target": {
+        "phase": "P3",
+        "target": "snapshot/changes/history/evidence/watch"
+      },
+      "definitions": {},
+      "definition_links": {},
+      "grouped_classification_links": {},
+      "exports": {
+        "changes": "workflow",
+        "price_history": "workflow",
+        "snapshot": "workflow",
+        "watch": "workflow",
+        "EvidenceLookup": "data_schema",
+        "PruneReport": "data_schema",
+        "save_snapshot": "workflow",
+        "load_snapshot": "workflow",
+        "get_evidence": "workflow",
+        "prune_evidence": "workflow",
+        "reliable_changes": "workflow"
+      },
+      "export_workflow_links": {
+        "changes": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "price_history": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "snapshot": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "watch": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "save_snapshot": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "load_snapshot": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "get_evidence": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "prune_evidence": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "reliable_changes": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        }
+      }
+    },
+    {
+      "path": "src/shopextract/monitor/changes.py",
+      "sha256": "ac9b5d56c09a14c12f23b80db3f0c2c1ccacae659d6ac58d8b86fad0a60f5b84",
+      "parent_target": {
+        "phase": "P3",
+        "target": "snapshot/changes/history/evidence/watch"
+      },
+      "definitions": {
+        "workflow": [
+          "changes",
+          "price_history"
+        ]
+      },
+      "definition_links": {
+        "changes": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "price_history": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/monitor/evidence.py",
+      "sha256": "f79c8682912ab94bd7d1869eaba01ac06f4336d75ec482d11d5dc3081256eccf",
+      "parent_target": {
+        "phase": "P3",
+        "target": "snapshot/changes/history/evidence/watch"
+      },
+      "definitions": {
+        "data_schema": [
+          "EvidenceLookup",
+          "PruneReport"
+        ],
+        "workflow": [
+          "save_snapshot",
+          "load_snapshot",
+          "get_evidence",
+          "prune_evidence"
+        ]
+      },
+      "definition_links": {
+        "save_snapshot": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "load_snapshot": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "get_evidence": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        },
+        "prune_evidence": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P3",
+          "target": "snapshot/changes/history/evidence/watch",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/monitor/reliable.py",
+      "sha256": "0e7294faf303ee4052de77ec385b0be8fb0cf7a4014df9885a7c1deab2d63139",
+      "parent_target": {
+        "phase": "P3",
+        "target": "snapshot/changes/history/evidence/watch"
+      },
+      "definitions": {
+        "workflow": [
+          "reliable_changes"
+        ]
+      },
+      "definition_links": {
+        "reliable_changes": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/monitor/snapshot.py",
+      "sha256": "4429303a02af7be36a5aee8960afc6e626f44a769814930b11db7a2ae7f1ea12",
+      "parent_target": {
+        "phase": "P3",
+        "target": "snapshot/changes/history/evidence/watch"
+      },
+      "definitions": {
+        "workflow": [
+          "snapshot"
+        ]
+      },
+      "definition_links": {
+        "snapshot": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/monitor/watch.py",
+      "sha256": "2c5c6391671e726cc0e0ef8a1a6b2b9a1a37c34f31a43640d72d30b2cdcc8a46",
+      "parent_target": {
+        "phase": "P3",
+        "target": "snapshot/changes/history/evidence/watch"
+      },
+      "definitions": {
+        "workflow": [
+          "watch"
+        ],
+        "python_only": [
+          "alert"
+        ]
+      },
+      "definition_links": {
+        "watch": {
+          "classification": "workflow",
+          "phase": "P3",
+          "target": "monitor/history/evidence/identity migrate/resolve",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {
+        "python_only": {
+          "classification": "python_only",
+          "phase": "P3",
+          "target": "snapshot/changes/history/evidence/watch",
+          "grammar_state": "reserved",
+          "rationale": "Python callback/protocol/in-memory extension; no executable CLI input."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/__init__.py",
+      "sha256": "96a1d67c55da5d7bf565c2a0f89f5ad2bdc3e115ffd25224e2d31222cb6ddea8",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {},
+      "definition_links": {},
+      "grouped_classification_links": {},
+      "exports": {
+        "ToolRuntime": "composed_helper",
+        "ToolConfig": "data_schema",
+        "Limits": "data_schema"
+      },
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/__main__.py",
+      "sha256": "244e047f6a964a39db76a36b7d60d5fb055604376751569a6bbe82c04a70ea1e",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "composed_helper": [
+          "load_config"
+        ],
+        "entrypoint": [
+          "main"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        },
+        "entrypoint": {
+          "classification": "entrypoint",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Retained module/root registration invocation; domain expansion reserved."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/captures.py",
+      "sha256": "d19a89547aacebf0b0e4021d28d2e5def8b196e98da685f4a862881255e16fd6",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "load_capture"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/context.py",
+      "sha256": "27c76cd0584c12e50716ec37e982fd7db515566c3650d239c38d3662999597de",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "python_only": [
+          "AuxiliaryOwner",
+          "AuxiliaryOwner.run",
+          "AuxiliaryOwner.cancel_and_reap",
+          "Resolver"
+        ],
+        "data_schema": [
+          "OperationBudget",
+          "OperationContext"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "python_only": {
+          "classification": "python_only",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Python callback/protocol/in-memory extension; no executable CLI input."
+        },
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/contracts.py",
+      "sha256": "0bd9814b31d635fa645938b7ba7de9c9b6fe6d8dec3699bd26c1dfb7cd278cd5",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "data_schema": [
+          "ToolError"
+        ],
+        "implementation_helper": [
+          "encoded",
+          "envelope",
+          "schema"
+        ],
+        "composed_helper": [
+          "validate"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        },
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        },
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/domain.py",
+      "sha256": "dc9549258fe6a61dcb9e9a780c5a1ecee3cffb15b39d05f766b0868184e3d549",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "json_value",
+          "synchronous",
+          "catalog_graph",
+          "DomainAdapter",
+          "DomainAdapter.execute"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/execution.py",
+      "sha256": "ba460813e9e9fda2535629333b00488b915081e2b9504a8bc64faca0d65d42d1",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "OwnedProcess",
+          "OwnedProcess.run",
+          "OwnedProcess.cancel_and_reap"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/jobs.py",
+      "sha256": "a4b6e3931037d7a5bd0ccf9817ed202c2929879208080e66f659da1625186423",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "JobManager",
+          "JobManager.trim",
+          "JobManager.submit",
+          "JobManager.run",
+          "JobManager.find",
+          "JobManager.status",
+          "JobManager.result",
+          "JobManager.cancel",
+          "JobManager.discard_private",
+          "JobManager.close"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/mcp_server.py",
+      "sha256": "582af2d04c55f97fe861728070d6b6f938c77bc320e009a33c4ab027e7fef302",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "serve"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/runtime.py",
+      "sha256": "2a142d425b72cc5b37f2780b81003aa03a309eb44b810c7b4dbac8aaa148d511",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "data_schema": [
+          "Limits",
+          "CaptureGrant",
+          "ToolConfig"
+        ],
+        "composed_helper": [
+          "ToolRuntime",
+          "ToolRuntime.bootstrap",
+          "ToolRuntime.aclose"
+        ],
+        "workflow": [
+          "ToolRuntime.call",
+          "ToolRuntime.tool_schemas"
+        ]
+      },
+      "definition_links": {
+        "ToolRuntime.call": {
+          "classification": "workflow",
+          "phase": "P5",
+          "target": "tools call",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        },
+        "ToolRuntime.tool_schemas": {
+          "classification": "workflow",
+          "phase": "P5",
+          "target": "tools schemas",
+          "grammar_state": "reserved",
+          "rationale": "Explicit operator action composed by the mapped command, unlike storage or lifecycle internals."
+        }
+      },
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        },
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/schemas.py",
+      "sha256": "9bb44bd403dbe547d139d085d9ac5abff7f873811fe904450ca4a2c5f51edeb0",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "output_schema"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/security.py",
+      "sha256": "f8d84b3febf83633f66123c96d63abd872fb293d5b151f2d130c9a50583964c0",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "normalized",
+          "public",
+          "SourceGuard",
+          "SourceGuard.authorize",
+          "PinnedBackend",
+          "PinnedBackend.connect_tcp",
+          "PinnedBackend.connect_unix_socket",
+          "PinnedBackend.sleep",
+          "CoreStream",
+          "CoreStream.aclose",
+          "GuardedTransport",
+          "GuardedTransport.raw",
+          "GuardedTransport.handle_async_request",
+          "GuardedTransport.guarded",
+          "GuardedTransport.aclose"
+        ],
+        "data_schema": [
+          "NativeReadPolicy"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        },
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/sources.py",
+      "sha256": "64b0f0c3c1896102a11e9355694ce12780c81bd25525a8045983886823bd99aa",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "implementation_helper": [
+          "GuardedSources",
+          "GuardedSources.execute",
+          "GuardedSources.discover",
+          "GuardedSources.extract"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/tools/state.py",
+      "sha256": "9c0aa94727cddbe6932887684464fffd45d25c1aa4bce6a1fbff818dc1510a4b",
+      "parent_target": {
+        "phase": "P5",
+        "target": "tools call/schemas/serve"
+      },
+      "definitions": {
+        "data_schema": [
+          "RetainedGraph"
+        ],
+        "composed_helper": [
+          "RetainedGraph.size"
+        ],
+        "implementation_helper": [
+          "SessionStore",
+          "SessionStore.reserve",
+          "SessionStore.unreserve",
+          "SessionStore.mint",
+          "SessionStore.sweep",
+          "SessionStore.release",
+          "SessionStore.publish",
+          "SessionStore.publish_batch",
+          "SessionStore.get",
+          "SessionStore.lookup",
+          "SessionStore.page",
+          "SessionStore.close"
+        ]
+      },
+      "definition_links": {},
+      "grouped_classification_links": {
+        "data_schema": {
+          "classification": "data_schema",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Typed data/config/result contract of parent workflow; no constructor command."
+        },
+        "composed_helper": {
+          "classification": "composed_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Parent workflow owns validation, serialization, persistence or resource lifecycle; no independent operator action."
+        },
+        "implementation_helper": {
+          "classification": "implementation_helper",
+          "phase": "P5",
+          "target": "tools call/schemas/serve",
+          "grammar_state": "reserved",
+          "rationale": "Library adapter/parser/security mechanism exercised through parent; no standalone command."
+        }
+      },
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/validate/__init__.py",
+      "sha256": "ded2942e818e31ef9e836f9992c108acb9a3ed61d6d076dd5e5621880dcd1ede",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {},
+      "definition_links": {},
+      "grouped_classification_links": {},
+      "exports": {
+        "check_images": "workflow",
+        "find_duplicates": "workflow",
+        "validate": "workflow"
+      },
+      "export_workflow_links": {
+        "check_images": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "validate/images/duplicates",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "find_duplicates": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "validate/images/duplicates",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        },
+        "validate": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "validate/images/duplicates",
+          "grammar_state": "reserved",
+          "rationale": "Re-export of native operator entry point; implementation definition classified in its source module."
+        }
+      }
+    },
+    {
+      "path": "src/shopextract/validate/duplicates.py",
+      "sha256": "f51950ca6c34cbe47239fcce3a42d8fc8a0047c3780b0a7d79b55a8674915ac1",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "find_duplicates"
+        ]
+      },
+      "definition_links": {
+        "find_duplicates": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "validate/images/duplicates",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/validate/images.py",
+      "sha256": "e993aa115c55eff96931a0732cda47ecd3765ce67c08f0c1e4b5504743e109df",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "check_images"
+        ]
+      },
+      "definition_links": {
+        "check_images": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "validate/images/duplicates",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    },
+    {
+      "path": "src/shopextract/validate/marketplace.py",
+      "sha256": "273df782b57e31113318ef744e312766eb802e86b65044a3946ce5638ed82333",
+      "parent_target": {
+        "phase": "P0–P5",
+        "target": "typed domain reports; concrete workflows linked individually"
+      },
+      "definitions": {
+        "workflow": [
+          "validate"
+        ]
+      },
+      "definition_links": {
+        "validate": {
+          "classification": "workflow",
+          "phase": "P2",
+          "target": "validate/images/duplicates",
+          "grammar_state": "reserved",
+          "rationale": "Native operator entry point; target family only, domain grammar requires phase freeze."
+        }
+      },
+      "grouped_classification_links": {},
+      "exports": {},
+      "export_workflow_links": {}
+    }
+  ],
+  "saved_inventory_reconciliation": {
+    "src/shopextract/__init__.py": {
+      "functions": [],
+      "imports": {
+        "detect": "workflow",
+        "discover": "workflow",
+        "extract": "workflow",
+        "extract_one": "workflow",
+        "from_feed": "workflow",
+        "ResolutionPolicy": "data_schema",
+        "resolve_fields": "workflow",
+        "resolution_references": "workflow",
+        "Evidence": "data_schema",
+        "FieldObservation": "data_schema",
+        "FieldResolution": "data_schema",
+        "SupportState": "data_schema",
+        "TrustContract": "data_schema",
+        "ValidatedConfidence": "data_schema",
+        "factual_paths": "workflow",
+        "trust_view": "workflow",
+        "AssortmentGaps": "data_schema",
+        "CatalogDiff": "data_schema",
+        "CatalogStats": "data_schema",
+        "Change": "data_schema",
+        "ChangeType": "data_schema",
+        "ComparisonResult": "data_schema",
+        "ExtractionResult": "data_schema",
+        "ExtractionTier": "data_schema",
+        "ExtractorResult": "data_schema",
+        "ImageIssue": "data_schema",
+        "Match": "data_schema",
+        "NewProduct": "data_schema",
+        "Platform": "data_schema",
+        "PlatformResult": "data_schema",
+        "PriceChange": "data_schema",
+        "PricePosition": "data_schema",
+        "Product": "data_schema",
+        "RemovedProduct": "data_schema",
+        "ValidationIssue": "data_schema",
+        "ValidationReport": "data_schema",
+        "Variant": "data_schema",
+        "assign_identity": "workflow",
+        "migrate_snapshot_identities": "workflow",
+        "MatchDecision": "data_schema",
+        "MatchRelation": "data_schema",
+        "classify_match": "workflow",
+        "match_products": "workflow",
+        "normalized_attributes": "workflow",
+        "normalize": "workflow",
+        "QualityScorer": "composed_helper",
+        "analyze": "workflow",
+        "analyze_products": "workflow",
+        "assortment_gaps": "workflow",
+        "brand_breakdown": "workflow",
+        "brand_coverage": "workflow",
+        "outliers": "workflow",
+        "price_distribution": "workflow",
+        "price_position": "workflow",
+        "compare": "workflow",
+        "compare_catalogs": "workflow",
+        "evaluate_matching": "workflow",
+        "fuzzy_match": "workflow",
+        "match_gtin": "workflow",
+        "to_csv": "workflow",
+        "to_dataframe": "implementation_helper",
+        "to_feed": "workflow",
+        "to_json": "workflow",
+        "to_parquet": "workflow",
+        "changes": "workflow",
+        "price_history": "workflow",
+        "snapshot": "workflow",
+        "watch": "workflow",
+        "EvidenceLookup": "data_schema",
+        "PruneReport": "data_schema",
+        "get_evidence": "workflow",
+        "load_snapshot": "workflow",
+        "prune_evidence": "workflow",
+        "save_snapshot": "workflow",
+        "create_evidence_bundle": "workflow",
+        "create_evidence_sidecar": "workflow",
+        "load_evidence_bundle": "workflow",
+        "load_evidence_sidecar": "workflow",
+        "read_evidence_bundle": "workflow",
+        "write_evidence_bundle": "workflow",
+        "check_images": "workflow",
+        "find_duplicates": "workflow",
+        "validate": "workflow"
+      }
+    },
+    "src/shopextract/cli.py": {
+      "functions": [
+        "main",
+        "extract",
+        "detect",
+        "discover",
+        "compare",
+        "snapshot",
+        "changes",
+        "history",
+        "analyze",
+        "validate_cmd"
+      ],
+      "imports": {
+        "annotations": "entrypoint"
+      }
+    },
+    "src/shopextract/categories/__init__.py": {
+      "functions": [],
+      "imports": {
+        "extract_with_categories": "workflow",
+        "normalize_with_categories": "workflow",
+        "validate_options": "composed_helper",
+        "AdapterContext": "data_schema",
+        "CategorizedExtractionResult": "data_schema",
+        "CategorizedProduct": "data_schema",
+        "CategoryError": "data_schema",
+        "CategoryFact": "data_schema",
+        "CategoryFactBinding": "data_schema",
+        "CategoryLimits": "data_schema",
+        "CategoryObservation": "data_schema",
+        "CategoryOptions": "data_schema",
+        "CategoryRuntimeConfig": "data_schema",
+        "CategoryPolicySnapshot": "data_schema",
+        "CategoryScope": "data_schema",
+        "CategorySelector": "data_schema",
+        "CategoryTerm": "data_schema",
+        "CategoryTermRef": "data_schema",
+        "MappingDecision": "data_schema",
+        "MappingRule": "data_schema",
+        "NativeCategoryError": "data_schema",
+        "TargetRegistry": "data_schema",
+        "map_categories": "workflow",
+        "categorized_product_from_record": "composed_helper",
+        "categorized_product_to_record": "composed_helper"
+      }
+    },
+    "src/shopextract/monitor/__init__.py": {
+      "functions": [],
+      "imports": {
+        "changes": "workflow",
+        "price_history": "workflow",
+        "snapshot": "workflow",
+        "watch": "workflow",
+        "EvidenceLookup": "data_schema",
+        "PruneReport": "data_schema",
+        "save_snapshot": "workflow",
+        "load_snapshot": "workflow",
+        "get_evidence": "workflow",
+        "prune_evidence": "workflow",
+        "reliable_changes": "workflow"
+      }
+    },
+    "src/shopextract/maintenance/__main__.py": {
+      "functions": [
+        "load_profiles",
+        "execute",
+        "main"
+      ],
+      "imports": {
+        "Path": "data_schema",
+        "Budgets": "data_schema",
+        "Goal": "data_schema",
+        "MaintenanceEngine": "composed_helper",
+        "MaintenanceError": "data_schema",
+        "MaintenanceStore": "composed_helper",
+        "CategoryProfile": "data_schema",
+        "FieldRule": "data_schema",
+        "ToolConfig": "data_schema"
+      }
+    },
+    "src/shopextract/tools/__main__.py": {
+      "functions": [
+        "load_config",
+        "main"
+      ],
+      "imports": {
+        "ToolConfig": "data_schema",
+        "ToolRuntime": "composed_helper",
+        "Limits": "data_schema",
+        "CaptureGrant": "data_schema"
+      }
+    }
+  },
+  "callback_policy": {
+    "monitor.watch.alert": "Python-only when/callback registry. No declarative alert feature promised; watch event consumers reserved P3.",
+    "maintenance.Investigator/FailureHook": "Python-only callback/investigator injection; trusted declarative goals/profiles remain P5 input schema work.",
+    "native context callbacks/transport/resolver/clock": "Python-only test/integration seams; CLI does not import executable user config.",
+    "category helpers": "Composed config/portable/native adapter mechanics under categories parent; no helper-per-command requirement.",
+    "to_dataframe": "Python-only object; CSV/Parquet export covers portable tabular workflows."
+  },
+  "audit": {
+    "every_workflow_resolves": true,
+    "local_workflow_links": 68,
+    "method_inference": "explicit class+method allowlist; never bare method name",
+    "signature_scope": "Reserved: inspect native signatures at affected phase G1; no saved signature claim."
+  }
+}

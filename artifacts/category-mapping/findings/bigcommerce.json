@@ -1,0 +1,322 @@
+{
+  "platform": "bigcommerce",
+  "date": "2026-10-17",
+  "stage": "discovery_only",
+  "executed": {
+    "tests": false,
+    "storefront_calls": 0,
+    "model_calls": 0,
+    "external_schema_pages_attempted": 2,
+    "external_schema_pages_read": 0
+  },
+  "references": {
+    "extractor": "src/shopextract/extractors/bigcommerce.py:_QUERY,BigCommerceExtractor.extract",
+    "normalizer": "src/shopextract/_normalize.py:_normalize_bigcommerce",
+    "guard": "src/shopextract/tools/security.py:GuardedTransport.guarded",
+    "auth": "src/shopextract/extractors/_bigcommerce_auth.py:validate_auth,auth_headers",
+    "transport": "src/shopextract/extractors/_storefront.py:request,resolve_config",
+    "schema_product": "artifacts/api-integration/bigcommerce-schema-types.json:Product.categories",
+    "schema_site": "artifacts/api-integration/bigcommerce-schema-reference.source:Site.categoryTree/category example and return documentation",
+    "fixture": "tests/fixtures/bigcommerce/documented-field-types.json",
+    "live_saved": [
+      "artifacts/api-integration/bigcommerce.json",
+      "artifacts/field-resolution-live/07-bigcommerce.json"
+    ],
+    "official_attempted": [
+      "https://developer.bigcommerce.com/graphql-storefront/reference/category",
+      "https://developer.bigcommerce.com/graphql-storefront/reference/site"
+    ],
+    "schema_minimal": "artifacts/category-mapping/findings/bigcommerce-schema-minimal.json"
+  },
+  "facts": [
+    {
+      "fact": "Fixed query has no category fields; normalization has no category projection. Default [] is not observed empty.",
+      "refs": [
+        "extractor",
+        "normalizer"
+      ]
+    },
+    {
+      "fact": "Product.categories is CategoryConnection membership list; arguments sortBy,before,after,first,last.",
+      "refs": [
+        "schema_product"
+      ]
+    },
+    {
+      "fact": "Saved Site example lists categoryTree(entityId,name,path,hasChildren,children), category.breadcrumbs(pageInfo,edges). Example is not executable/schema-complete proof.",
+      "refs": [
+        "schema_site"
+      ]
+    },
+    {
+      "fact": "GraphQL POST exact query pinned to _QUERY; arbitrary query forbidden.",
+      "refs": [
+        "guard"
+      ]
+    },
+    {
+      "fact": "Explicit token families storefront/private/impersonation, no inferred JWT family or admin token acquisition.",
+      "refs": [
+        "auth"
+      ]
+    },
+    {
+      "fact": "Saved live samples demonstrate HTML fallback/public API token unavailable, not GraphQL category observation.",
+      "refs": [
+        "live_saved"
+      ]
+    },
+    {
+      "fact": "Saved official HTML embedded RSC types verify minimal Category entityId/name/path, CategoryConnection pageInfo/edges, CategoryEdge node and PageInfo hasNextPage/endCursor. Opt-in bounded memberships query now design-supported.",
+      "refs": [
+        "schema_minimal",
+        "schema_product"
+      ]
+    }
+  ],
+  "category_semantics": {
+    "memberships": "unordered multi-membership connection; deduplicate semantic refs, retain source evidence",
+    "ancestry": "requires explicit tree edge or ordered breadcrumb support",
+    "url_path": "URL only; never ancestry",
+    "tree": "separate optional relation; no crawl/default fetch",
+    "completeness": {
+      "per_relation": [
+        "product_memberships",
+        "breadcrumb_path",
+        "tree_graph"
+      ],
+      "values": [
+        "complete",
+        "partial",
+        "unknown"
+      ],
+      "source_states": [
+        "missing",
+        "null",
+        "observed_empty",
+        "malformed",
+        "present"
+      ],
+      "boundary": "hasNextPage true => partial membership; hasChildren true at depth boundary => partial tree; missing pageInfo => unknown"
+    }
+  },
+  "scope": {
+    "term_key": [
+      "platform",
+      "configured_store_catalog",
+      "taxonomy_namespace",
+      "native_id"
+    ],
+    "context": [
+      "channel_if_known",
+      "tree_if_known",
+      "language_if_known"
+    ],
+    "unknown": "never invent default channel/tree/locale; unknown does not satisfy explicit scoped mapping",
+    "endpoint": "preserve endpoint origin separately from configured source identity; meaningful store base path retained"
+  },
+  "reuse": [
+    "src/shopextract/_capture.py:capture,attach_contract",
+    "src/shopextract/_normalization.py:Normalizer",
+    "src/shopextract/_evidence.py",
+    "src/shopextract/_portable.py",
+    "existing tool request budgets and guarded transport"
+  ],
+  "gaps": [
+    "categoryTree argument/depth behavior unverified",
+    "No verified vendor query cost ceiling",
+    "Shared optional codec and observation types pending",
+    "New opt-in query must preserve current default, common guard pin and actual request accounting",
+    "Live GraphQL category access unavailable in saved observations",
+    "Breadcrumb/tree remain out of native acquisition scope; no schema completeness claim"
+  ],
+  "limits": {
+    "existing_response_bytes": 10485760,
+    "existing_default_product_page_size": 20,
+    "existing_default_max_pages": 100,
+    "existing_default_timeout_seconds": 30,
+    "proposed_category_first": 20,
+    "proposed_initial_memberships_per_product": 20,
+    "follow_up_category_requests": 0,
+    "tree_fetch_default": false,
+    "vendor_cost_limit": "unverified"
+  },
+  "shared_type_needs": [
+    "scoped opaque term reference",
+    "distinct memberships/path/edges",
+    "per-relation source state/completeness/reason",
+    "evidence pointers for identity/labels/pageInfo/edges",
+    "separate versioned canonical mapping decisions with conflict state",
+    "explicit trusted profile unchanged"
+  ],
+  "fixtures": [
+    {
+      "id": "B1",
+      "input": {
+        "product": 101,
+        "memberships": [
+          [
+            7,
+            "Boots"
+          ],
+          [
+            9,
+            "Sale"
+          ]
+        ],
+        "hasNextPage": false
+      },
+      "expected": {
+        "memberships": 2,
+        "completeness": "complete",
+        "hierarchy_edges": 0,
+        "ordered_paths": 0,
+        "legacy_output": "unchanged"
+      },
+      "risk": "false hierarchy/order dependence"
+    },
+    {
+      "id": "B2",
+      "input": {
+        "memberships": [
+          [
+            7,
+            "Boots"
+          ]
+        ],
+        "hasNextPage": true,
+        "endCursor": "c1"
+      },
+      "expected": {
+        "memberships": 1,
+        "completeness": "partial",
+        "reason": "category_budget_reached",
+        "optional_followup_requests": 0,
+        "missing_other_categories": "not inferred"
+      },
+      "risk": "false absence/N+1"
+    },
+    {
+      "id": "B3",
+      "input_variants": [
+        "missing",
+        "null",
+        "empty_connection_false",
+        "edges_string",
+        "valid_edges_missing_pageInfo"
+      ],
+      "expected_states": [
+        "missing",
+        "null",
+        "observed_empty_complete",
+        "malformed_unsupported",
+        "memberships_retained_completeness_unknown"
+      ],
+      "risk": "defaults promoted into source facts"
+    },
+    {
+      "id": "B4",
+      "input": "entityId7 in stores A/B and known channel1 vs unknown",
+      "expected": "stores unequal; context-distinct channels; unknown fails explicitly channel1-scoped rule",
+      "risk": "scope collision"
+    },
+    {
+      "id": "B5",
+      "input": "tree 1 Clothing -> 7 Boots; memberships7,9; URL /boots/",
+      "expected": "only edge1->7; no7->9; URL alone gives zero edges",
+      "risk": "path hallucination"
+    },
+    {
+      "id": "B6",
+      "input_variants": [
+        "hasChildren=true at unselected children boundary",
+        "cycle",
+        "self-child"
+      ],
+      "expected": [
+        "tree partial, child set unknown",
+        "invalid ancestry, no trusted path, bounded traversal",
+        "invalid ancestry, no trusted path, bounded traversal"
+      ],
+      "risk": "unbounded/false complete traversal"
+    },
+    {
+      "id": "B7",
+      "input": "ID7 label Boots > Sale / Été; optional explicit locale; conflicting same scopedID label",
+      "expected": "one exact label no splitting; locale retained if supplied; conflicting labels preserved",
+      "risk": "delimiter/language conflation"
+    },
+    {
+      "id": "B8",
+      "input_variants": [
+        "fixed default query",
+        "reviewed opt-in query",
+        "arbitrary query/mutation",
+        "zero optional request cap"
+      ],
+      "expected": [
+        "allowed",
+        "allowed only opt-in after shared guard work",
+        "denied before network",
+        "zero optional requests"
+      ],
+      "risk": "query capability or budget bypass"
+    },
+    {
+      "id": "B9",
+      "input_variants": [
+        "retained exact membership",
+        "modified/unretained ID",
+        "two conflicting trusted mapping targets",
+        "portable reopen"
+      ],
+      "expected": [
+        "supported source fact",
+        "unsupported exact-ID mapping",
+        "ambiguous with both rule versions and unchanged profile",
+        "source and derived provenance remain separate"
+      ],
+      "risk": "fabricated provenance/conflict loss"
+    }
+  ],
+  "future_verification": {
+    "state": "planned_not_executed",
+    "smoke": "B1",
+    "case_families_max": 9,
+    "seed": 6006,
+    "nodes_max": 100,
+    "memberships_max": 200,
+    "depth_max": 8,
+    "fixture_bytes_max": 262144,
+    "aggregate_seconds_max": 120,
+    "processes": 1,
+    "first_failure": "save and stop; one diagnosed repair",
+    "schema_fixture_generation": "minimal membership signatures verified; tree cases explicitly synthetic/malformed"
+  },
+  "consultation": {
+    "direct_peer": "/root/category_shopware",
+    "status": "answered_agreement",
+    "decision": "Opaque scoped ref + separate channel/language; membership vs index/path; per-relation completeness; captured facts separate from mapping provenance",
+    "saved_peers": [
+      "specs/006-category-mapping/platforms/shopify.md",
+      "specs/006-category-mapping/platforms/woocommerce.md"
+    ],
+    "pending": [
+      "shared field names",
+      "opt-in transport/query pin",
+      "versioned codec"
+    ]
+  },
+  "ownership": {
+    "future_platform": "BigCommerce extractor/adapter only",
+    "shared_owner": [
+      "normalizer",
+      "security",
+      "evidence",
+      "portable",
+      "canonical mapper"
+    ],
+    "gates": "G1/G2/G3 pending"
+  },
+  "usage": "Actual session token counters unavailable; no quota estimate."
+}

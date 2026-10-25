@@ -38,5 +38,6 @@ jobs:
       - name: Require MCP extra
         run: python -c "import mcp; import importlib.metadata; print(importlib.metadata.version('mcp'))"
 
-      - name: Run tests
-        run: timeout 240s pytest
+      # All assertions retained: each file family <=240s, shared total <=480s.
+      - name: Run complete bounded test gate
+        run: python scripts/run_tests.py --output-dir "${RUNNER_TEMP}/shopextract-tests"

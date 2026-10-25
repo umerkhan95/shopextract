@@ -1,0 +1,113 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.....................................................................FFF [ 20%]
+F....................................................................... [ 41%]
+........................................................................ [ 62%]
+........................................................................ [ 82%]
+...........................................................              [100%]
+=================================== FAILURES ===================================
+________ test_phase_gate_follows_click_argument_validation[missing-url] ________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-223/test_phase_gate_follows_click_0')
+native = []
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x110518490>
+case = 'missing-url'
+
+    @pytest.mark.parametrize("case", ["missing-url", "bad-integer", "missing-path", "valid-deferred"])
+    def test_phase_gate_follows_click_argument_validation(tmp_path, native, monkeypatch, case):
+        attempts = []
+        def prohibited(*args, **kwargs):
+            attempts.append(args)
+            raise AssertionError("native adapter must not run")
+        monkeypatch.setattr(cli, "_extract", prohibited)
+        monkeypatch.setattr(cli, "_discover", prohibited)
+        monkeypatch.setattr(cli, "_validate_file", prohibited)
+        # Controlled unimplemented child exercises the phase guard until P5 removes it.
+        from shopextract._cli_core import CoreCommand
+>       temporary = CoreCommand('deferred-test', callback=prohibited, params=[click.Argument(['url'])])
+E       NameError: name 'click' is not defined
+
+tests/test_cli_core.py:379: NameError
+________ test_phase_gate_follows_click_argument_validation[bad-integer] ________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-223/test_phase_gate_follows_click_1')
+native = []
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11048bcd0>
+case = 'bad-integer'
+
+    @pytest.mark.parametrize("case", ["missing-url", "bad-integer", "missing-path", "valid-deferred"])
+    def test_phase_gate_follows_click_argument_validation(tmp_path, native, monkeypatch, case):
+        attempts = []
+        def prohibited(*args, **kwargs):
+            attempts.append(args)
+            raise AssertionError("native adapter must not run")
+        monkeypatch.setattr(cli, "_extract", prohibited)
+        monkeypatch.setattr(cli, "_discover", prohibited)
+        monkeypatch.setattr(cli, "_validate_file", prohibited)
+        # Controlled unimplemented child exercises the phase guard until P5 removes it.
+        from shopextract._cli_core import CoreCommand
+>       temporary = CoreCommand('deferred-test', callback=prohibited, params=[click.Argument(['url'])])
+E       NameError: name 'click' is not defined
+
+tests/test_cli_core.py:379: NameError
+_______ test_phase_gate_follows_click_argument_validation[missing-path] ________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-223/test_phase_gate_follows_click_2')
+native = []
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11048cc10>
+case = 'missing-path'
+
+    @pytest.mark.parametrize("case", ["missing-url", "bad-integer", "missing-path", "valid-deferred"])
+    def test_phase_gate_follows_click_argument_validation(tmp_path, native, monkeypatch, case):
+        attempts = []
+        def prohibited(*args, **kwargs):
+            attempts.append(args)
+            raise AssertionError("native adapter must not run")
+        monkeypatch.setattr(cli, "_extract", prohibited)
+        monkeypatch.setattr(cli, "_discover", prohibited)
+        monkeypatch.setattr(cli, "_validate_file", prohibited)
+        # Controlled unimplemented child exercises the phase guard until P5 removes it.
+        from shopextract._cli_core import CoreCommand
+>       temporary = CoreCommand('deferred-test', callback=prohibited, params=[click.Argument(['url'])])
+E       NameError: name 'click' is not defined
+
+tests/test_cli_core.py:379: NameError
+______ test_phase_gate_follows_click_argument_validation[valid-deferred] _______
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-223/test_phase_gate_follows_click_3')
+native = []
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11038a770>
+case = 'valid-deferred'
+
+    @pytest.mark.parametrize("case", ["missing-url", "bad-integer", "missing-path", "valid-deferred"])
+    def test_phase_gate_follows_click_argument_validation(tmp_path, native, monkeypatch, case):
+        attempts = []
+        def prohibited(*args, **kwargs):
+            attempts.append(args)
+            raise AssertionError("native adapter must not run")
+        monkeypatch.setattr(cli, "_extract", prohibited)
+        monkeypatch.setattr(cli, "_discover", prohibited)
+        monkeypatch.setattr(cli, "_validate_file", prohibited)
+        # Controlled unimplemented child exercises the phase guard until P5 removes it.
+        from shopextract._cli_core import CoreCommand
+>       temporary = CoreCommand('deferred-test', callback=prohibited, params=[click.Argument(['url'])])
+E       NameError: name 'click' is not defined
+
+tests/test_cli_core.py:379: NameError
+=============================== warnings summary ===============================
+tests/test_cli_extract.py: 12 warnings
+tests/test_cli_analysis.py: 16 warnings
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+tests/test_cli_analysis.py::test_workflow_red_families[args12-value12]
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_analysis.py:199: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    click.get_binary_stream('stdout').write(Path(payload).read_bytes())
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli_core.py::test_phase_gate_follows_click_argument_validation[missing-url]
+FAILED tests/test_cli_core.py::test_phase_gate_follows_click_argument_validation[bad-integer]
+FAILED tests/test_cli_core.py::test_phase_gate_follows_click_argument_validation[missing-path]
+FAILED tests/test_cli_core.py::test_phase_gate_follows_click_argument_validation[valid-deferred]
+4 failed, 343 passed, 29 warnings in 11.87s

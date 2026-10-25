@@ -1,0 +1,20 @@
+Usage: python -m shopextract.cli [OPTIONS] COMMAND [ARGS]...
+
+  Extract, compare, and monitor product data from any e-commerce store.
+
+Options:
+  --version  Show the version and exit.
+  --help     Show this message and exit.
+
+Commands:
+  analyze   Analyze a store's catalog statistics.
+  changes   Show changes between snapshots for a domain.
+  compare   Compare prices for a product across stores.
+  detect    Detect the e-commerce platform of a store.
+  discover  Discover product URLs from a store.
+  extract   Extract products from an e-commerce store.
+  history   Show price history for a product.
+  snapshot  Take a snapshot of a store's catalog.
+  validate  Validate products from a JSON file against marketplace rules.
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(

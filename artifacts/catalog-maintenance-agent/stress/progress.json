@@ -1,0 +1,32 @@
+[
+  {
+    "case": "smoke-3",
+    "state": "passed",
+    "seconds": 1.606,
+    "rss_mib": 93.74,
+    "result": {
+      "counts": {
+        "unchanged": 2,
+        "proposed_correction": 1,
+        "needs_review": 0
+      },
+      "advisor_calls": 0,
+      "usage": {
+        "requests": 2,
+        "tokens": 0,
+        "cost_micros": 0,
+        "reserved_tokens": 0,
+        "reserved_cost_micros": 0,
+        "unknown_requests": 0,
+        "violations": 0
+      }
+    }
+  },
+  {
+    "case": "mixed-100-disabled",
+    "state": "failed",
+    "type": "TimeoutError",
+    "error": "",
+    "seconds": 9.516
+  }
+]

@@ -1,0 +1,57 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+........................F....................F.........                  [100%]
+=================================== FAILURES ===================================
+_____________ test_compare_groups_provenance_partial_and_controls ______________
+
+transport = ([('https://usd.test', {'max_urls': 2}), ('https://eur.test', {'max_urls': 2}), ('https://unknown.test', {'max_urls': ...og_complete=True, observation_scope='', incompleteness_reasons=[]), 'https://bad.test': OSError('source unavailable')})
+
+    def test_compare_groups_provenance_partial_and_controls(transport):
+        calls,responses=transport
+        responses.update({'https://usd.test':extracted([record()]),'https://eur.test':extracted([dict(title='Widget',price='0.05',currency='EUR')]),'https://unknown.test':extracted([dict(title='Widget',price='0.01')]),'https://bad.test':OSError('source unavailable')})
+        args=['--output-format','json','compare','Widget','--max-per-store','2','--threshold','0.6']
+        for url in responses:args+=['--stores',url]
+>       report=data(call(args),3)
+
+tests/test_cli_analysis_mechanisms.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(1)>, exit = 3
+
+    def data(result,exit=0):
+>       assert result.exit_code==exit,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_INTERNAL", "message": "Command failed unexpectedly.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 1 == 3
+E        +  where 1 = <Result SystemExit(1)>.exit_code
+
+tests/test_cli_analysis_mechanisms.py:24: AssertionError
+______________ test_stats_distribution_outliers_brands_and_empty _______________
+
+    def test_stats_distribution_outliers_brands_and_empty():
+        rows=[dict(title=str(i),price=str(price),vendor='A') for i,price in enumerate([0,10,100])]
+>       assert data(call(['stats','distribution','-','--buckets','0,10,100'],rows))['distribution']=={'0.0-10.0':1,'10.0-100.0':1,'100.0+':1}
+E       AssertionError: assert {'0.0-10.0': ..., '100.0+': 1} == {'0.0-10.0': ..., '100.0+': 1}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'0.0-10.0': 0} != {'0.0-10.0': 1}
+E         Use -v to get more diff
+
+tests/test_cli_analysis_mechanisms.py:181: AssertionError
+=============================== warnings summary ===============================
+tests/test_cli_analysis.py: 16 warnings
+tests/test_cli_analysis_mechanisms.py: 29 warnings
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+tests/test_cli_analysis.py::test_workflow_red_families[args12-value12]
+tests/test_cli_analysis_mechanisms.py::test_export_stdout_and_optional_engine
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_analysis.py:199: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    click.get_binary_stream('stdout').write(Path(payload).read_bytes())
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli_analysis_mechanisms.py::test_compare_groups_provenance_partial_and_controls
+FAILED tests/test_cli_analysis_mechanisms.py::test_stats_distribution_outliers_brands_and_empty
+2 failed, 53 passed, 47 warnings in 2.99s

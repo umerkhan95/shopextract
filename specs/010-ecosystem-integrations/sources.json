@@ -1,0 +1,521 @@
+{
+  "checked_date": "2026-10-24",
+  "scope": "60distinct fetched primary pages:40retained baseline+11Grok/Anthropic/Meta+9Mistral/GLM/Hermes; user-authorized expansion, no exhaustive sweep",
+  "reuse": "Prior40saved source entries preserved and reused;20additional pages actually fetched. Search snippets/failed guessed URLs not counted.",
+  "sources": [
+    {
+      "id": "N1",
+      "title": "Using the n8n-node tool",
+      "url": "https://docs.n8n.io/connect/create-nodes/build-your-node/using-the-n8n-node-tool.md",
+      "findings_and_read_scope": "CLI/scaffolding/styles; declarative actions versus programmatic triggers",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "N2",
+      "title": "Credentials files",
+      "url": "https://docs.n8n.io/connect/create-nodes/build-your-node/reference/credentials-files.md",
+      "findings_and_read_scope": "Credential class, authenticate/test structure",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "N3",
+      "title": "Submit community nodes",
+      "url": "https://docs.n8n.io/connect/create-nodes/deploy-your-node/submit-community-nodes.md",
+      "findings_and_read_scope": "npm metadata and submission separate from private tests",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "N4",
+      "title": "Verification guidelines",
+      "url": "https://docs.n8n.io/connect/create-nodes/build-your-node/reference/verification-guidelines.md",
+      "findings_and_read_scope": "No external dependencies/env/filesystem; MIT/English/provenance",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "C1",
+      "title": "Claude Code MCP",
+      "url": "https://code.claude.com/docs/en/mcp",
+      "findings_and_read_scope": "stdio/HTTP/OAuth setup and process shutdown",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "C2",
+      "title": "Claude remote connectors",
+      "url": "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp",
+      "findings_and_read_scope": "Remote requests originate from Anthropic cloud; account roles apply",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "C3",
+      "title": "Connect local MCP servers",
+      "url": "https://modelcontextprotocol.io/docs/2026-07-28/develop/connect-local-servers",
+      "findings_and_read_scope": "Desktop local command/args configuration",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "MC1",
+      "title": "MCP authorization2025-11-25",
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
+      "findings_and_read_scope": "HTTP OAuth distinct from stdio credentials; discovery/security",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "MC2",
+      "title": "MCP transports2025-11-25",
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports",
+      "findings_and_read_scope": "Streamable HTTP/origin checks/stdout framing",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "MC3",
+      "title": "MCP authorization2026-07-28",
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization",
+      "findings_and_read_scope": "Resource server validates tokens; issuer/audience/discovery",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "MC4",
+      "title": "MCP transport overview2026-07-28",
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports",
+      "findings_and_read_scope": "Per-request metadata and stream-cancellation semantics differ",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "O1",
+      "title": "Build MCP server",
+      "url": "https://developers.openai.com/plugins/build/mcp-server",
+      "findings_and_read_scope": "Tool annotations reflect actual state changes and open-world access",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "O2",
+      "title": "Authentication",
+      "url": "https://developers.openai.com/plugins/build/auth",
+      "findings_and_read_scope": "End-user OAuth/discovery/client registration; custom API-key route not equivalent",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "O3",
+      "title": "Connect and test plugin",
+      "url": "https://developers.openai.com/plugins/deploy/connect-chatgpt",
+      "findings_and_read_scope": "Private custom MCP installation and prompt/tool testing",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "O4",
+      "title": "Submit plugin",
+      "url": "https://developers.openai.com/plugins/deploy/submission",
+      "findings_and_read_scope": "Package/checks/review/publish separate; review credentials private",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "O5",
+      "title": "Responses MCP servers",
+      "url": "https://developers.openai.com/api/docs/guides/tools-connectors-mcp",
+      "findings_and_read_scope": "server_url/auth/allowlist/approval flows",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "O6",
+      "title": "Function calling",
+      "url": "https://developers.openai.com/api/docs/guides/function-calling",
+      "findings_and_read_scope": "Application execution and matching call_id output continuation",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "O7",
+      "title": "Package plugin",
+      "url": "https://developers.openai.com/plugins/build/plugins",
+      "findings_and_read_scope": "Plugin can bundle skills and MCP; current manifest validation needed",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "O8",
+      "title": "Build skills",
+      "url": "https://learn.chatgpt.com/docs/build-skills",
+      "findings_and_read_scope": "Codex repo/user .agents/skills, metadata/discovery; duplicates both visible",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "O9",
+      "title": "Skills concepts",
+      "url": "https://developers.openai.com/plugins/concepts/skills",
+      "findings_and_read_scope": "Instructions/resources complement MCP for ChatGPT/Codex",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "O10",
+      "title": "Skills and Plugins",
+      "url": "https://learn.chatgpt.com/docs/skills-and-plugins",
+      "findings_and_read_scope": "Installable bundles distribute workflows/connected tools",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "Z1",
+      "title": "Platform CLI overview",
+      "url": "https://docs.zapier.com/integrations/build-cli/overview",
+      "findings_and_read_scope": "Integration structure/auth/versions; recommends zapier-platform binary",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "Z2",
+      "title": "Authentication",
+      "url": "https://docs.zapier.com/integrations/build/auth",
+      "findings_and_read_scope": "OAuth preferred; public keys require self-service provisioning",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "Z3",
+      "title": "Polling deduplication",
+      "url": "https://docs.zapier.com/integrations/build/deduplication",
+      "findings_and_read_scope": "Stable id/newest-first arrays; no automatic full paging; poll frequency plan-specific",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "Z4",
+      "title": "Operating constraints",
+      "url": "https://docs.zapier.com/integrations/build/operating-constraints",
+      "findings_and_read_scope": "30s action/poll including requests+scripting",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "Z5",
+      "title": "Private versus public integrations",
+      "url": "https://docs.zapier.com/integrations/quickstart/private-vs-public-integrations",
+      "findings_and_read_scope": "Private invitation distinct from approved public integration",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "M1",
+      "title": "Connections",
+      "url": "https://developers.make.com/custom-apps-documentation/app-components/connections",
+      "findings_and_read_scope": "Connection auth/common secret data",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "M2",
+      "title": "Pagination",
+      "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/pagination",
+      "findings_and_read_scope": "Request pagination block maps service cursor explicitly",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "M3",
+      "title": "Polling triggers",
+      "url": "https://developers.make.com/custom-apps-documentation/best-practices/trigger-modules",
+      "findings_and_read_scope": "Scheduled polling bundles need compatible identity/order/start point",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "M4",
+      "title": "App visibility",
+      "url": "https://developers.make.com/custom-apps-documentation/create-your-first-app/app-visibility",
+      "findings_and_read_scope": "Private/published invite/approved separate; reversal restricted",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "P1",
+      "title": "Action quickstart",
+      "url": "https://pipedream.com/docs/components/contributing/actions-quickstart",
+      "findings_and_read_scope": "key/version/props/run; pd publish account-private",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "P2",
+      "title": "Source quickstart",
+      "url": "https://pipedream.com/docs/components/contributing/sources-quickstart",
+      "findings_and_read_scope": "dev/deploy/timers/service db state",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "P3",
+      "title": "Component API",
+      "url": "https://pipedream.com/docs/components/contributing/api",
+      "findings_and_read_scope": "Metadata ID required; unique cache100; lifecycle semantics",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "CS1",
+      "title": "Use skills in Claude",
+      "url": "https://support.claude.com/en/articles/12512180-use-skills-in-claude",
+      "findings_and_read_scope": "ZIP upload/toggle/team policy; personal not automatic organization provision",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "CS2",
+      "title": "Claude Code skills",
+      "url": "https://code.claude.com/docs/en/skills",
+      "findings_and_read_scope": "Personal/project directories, format/activation/resources",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "CS3",
+      "title": "Managed Agents skills",
+      "url": "https://platform.claude.com/docs/en/managed-agents/skills",
+      "findings_and_read_scope": "Upload bundles, attach workspace skill_id/version; no product-upload sync",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "CU1",
+      "title": "Cursor Agent Skills",
+      "url": "https://cursor.com/docs/skills",
+      "findings_and_read_scope": "Startup discovery/manual slash; project/user dirs differ from cloud sync",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "GH1",
+      "title": "Copilot agent skills",
+      "url": "https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills",
+      "findings_and_read_scope": "Repo/personal paths, metadata and supported surfaces",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "G1",
+      "title": "Manage Gemini skills",
+      "url": "https://geminicli.com/docs/cli/using-agent-skills/",
+      "findings_and_read_scope": "Workspace/user precedence and management/reload",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "G2",
+      "title": "Gemini skills getting started",
+      "url": "https://geminicli.com/docs/cli/tutorials/skills-getting-started/",
+      "findings_and_read_scope": "Exact filename/frontmatter/trust affect discovery/activation",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections"
+    },
+    {
+      "id": "X1",
+      "title": "Grok connectors",
+      "url": "https://docs.x.ai/grok/connectors",
+      "findings_and_read_scope": "Consumer custom MCP URL/auth/public reachability; distinct from Build plugin",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "X2",
+      "title": "Remote MCP Tools",
+      "url": "https://docs.x.ai/developers/tools/remote-mcp",
+      "findings_and_read_scope": "API allowlist/auth fields; require_approval and connector_id unsupported",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "X3",
+      "title": "Grok Build Skills Plugins Marketplaces",
+      "url": "https://docs.x.ai/build/features/skills-plugins-marketplaces",
+      "findings_and_read_scope": "Native skill/plugin roots, slash invocation, tool metadata not authority",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "X4",
+      "title": "Grok Build CLI reference",
+      "url": "https://docs.x.ai/build/cli/reference",
+      "findings_and_read_scope": "inspect/plugin validate install update; actual native package lifecycle",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "A1",
+      "title": "Claude Code plugins",
+      "url": "https://code.claude.com/docs/en/plugins",
+      "findings_and_read_scope": "Native bundle skills/MCP versus product/IDE/API; marketplaces separate",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "A2",
+      "title": "Claude Code plugin manifest",
+      "url": "https://code.claude.com/docs/en/plugins-reference",
+      "findings_and_read_scope": ".claude-plugin/plugin.json, root skills/.mcp.json, validation/containment",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "A3",
+      "title": "Messages API skills",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/skills-guide",
+      "findings_and_read_scope": "container.skills/code execution; no container network/runtime package install",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "ME1",
+      "title": "Meta Model API and Muse Code overview",
+      "url": "https://dev.meta.ai/docs/overview",
+      "findings_and_read_scope": "Inference API and coding agent are distinct",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "ME2",
+      "title": "Muse Code extending",
+      "url": "https://dev.meta.ai/docs/muse-code/extending",
+      "findings_and_read_scope": "Native skill roots/CLI and MCP stdio/streamable_http; plugin-provided skills mentioned",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "ME3",
+      "title": "Introducing personal Muse",
+      "url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "findings_and_read_scope": "Separate consumer personal-agent product; announcement not third-party manifest contract",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "ME4",
+      "title": "Muse Code configuration",
+      "url": "https://dev.meta.ai/docs/muse-code/configuration",
+      "findings_and_read_scope": "Host config/rollout settings; no exact plugin manifest resolved in selected page",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "MI1",
+      "title": "Vibe Code skills",
+      "url": "https://docs.mistral.ai/vibe/code/cli/skills",
+      "findings_and_read_scope": "Native SKILL.md roots, trust, invocation; allowed-tools not security permission",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "MI2",
+      "title": "Vibe Code plugins",
+      "url": "https://docs.mistral.ai/vibe/code/cli/plugins",
+      "findings_and_read_scope": "Experimental Agent Plugins1.0 manifest/skills/mcp.json, trust/reload/pinned lifecycle",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "MI3",
+      "title": "Vibe overview",
+      "url": "https://docs.mistral.ai/vibe",
+      "findings_and_read_scope": "Work/Code surfaces, legacy Chat identity; don't propagate Code package to all surfaces",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "ZA1",
+      "title": "Z.ai MCP calling",
+      "url": "https://docs.z.ai/guides/capabilities/mcp-call",
+      "findings_and_read_scope": "Chat completions nested mcp schema with custom server_url/headers/allowed_tools",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "ZA2",
+      "title": "Z.ai Claude Code setup",
+      "url": "https://docs.z.ai/devpack/tool/claude",
+      "findings_and_read_scope": "Coding Plan model configuration inside external Claude Code host; no automatic skill authority",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "ZA3",
+      "title": "GLM Coding Plan overview",
+      "url": "https://docs.z.ai/devpack/overview",
+      "findings_and_read_scope": "Entitlement spans coding hosts incl ZCode; model subscription distinct from loader",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "H1",
+      "title": "Hermes working with skills",
+      "url": "https://hermes-agent.nousresearch.com/docs/guides/work-with-skills",
+      "findings_and_read_scope": "Native skills install/discovery/session lifecycle; namespaced plugin skills differ",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "H2",
+      "title": "Build Hermes plugin",
+      "url": "https://hermes-agent.nousresearch.com/docs/developer-guide/plugins",
+      "findings_and_read_scope": "Native plugin.yaml/register(ctx) versus portable v1 skills/mcp.json; validate paths/secrets",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    },
+    {
+      "id": "H3",
+      "title": "Hermes MCP",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp",
+      "findings_and_read_scope": "Agent native config-driven external tools stdio/remote; not model-only access",
+      "checked_date": "2026-10-24",
+      "evidence_kind": "fetched_now_primary_selected_sections",
+      "scope_wave": "user-expanded provider/agent mapping"
+    }
+  ],
+  "fetch_limitations": [
+    "Old n8n/Zapier paths redirected to canonical paths.",
+    "Old Pipedream quickstart paths404; followed canonical links from Component API.",
+    "Guessed Make review URL unavailable; actual app visibility used.",
+    "Guessed Zapier sharing/publish paths unavailable; followed private/public guide from auth.",
+    "Guessed Meta Muse Code plugin URL inaccessible; exact native bundle manifest remains unresolved; verified Code skill/MCP retained."
+  ],
+  "unverified": [
+    "All actual runtime/private compatibility/public review outcomes",
+    "Muse personal consumer third-party loader/plugin contract; Muse Code exact plugin manifest/install schema",
+    "Grok consumer arbitrary skill package route distinct from verified Build skills",
+    "ZCode native skill/plugin manifest; external Claude Code host route researched",
+    "Exact latest host/account/model quotas and version pins"
+  ]
+}

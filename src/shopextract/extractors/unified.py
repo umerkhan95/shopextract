@@ -20,6 +20,7 @@ import httpx
 
 from . import _markdown_price as markdown_price_extractor
 from .._models import ExtractorResult
+from .._execution import browser_allowed
 from .._capture import capture
 from ._browser import (
     DEFAULT_HEADERS,
@@ -65,6 +66,9 @@ class UnifiedCrawlExtractor:
             httpx_products = products
         else:
             httpx_products = []
+
+        if not browser_allowed():
+            return ExtractorResult(products=httpx_products)
 
         browser_products = await self._extract_with_browser(url)
         if browser_products:
@@ -145,17 +149,17 @@ class UnifiedCrawlExtractor:
             return None
 
     @staticmethod
-    def _extract_structured_from_html(html: str, url: str) -> list[dict]:
+    def _extract_structured_from_html(html: str, url: str, *, include_categories=False) -> list[dict]:
         products = SchemaOrgExtractor.extract_from_html(html, url)
         if products:
-            og_list = OpenGraphExtractor.extract_from_html(html, url)
+            og_list = OpenGraphExtractor.extract_from_html(html, url, include_categories=include_categories)
             if og_list:
                 og = og_list[0]
                 for product in products:
                     _fill_gaps_from_og(product, og)
             return products
 
-        og_list = OpenGraphExtractor.extract_from_html(html, url)
+        og_list = OpenGraphExtractor.extract_from_html(html, url, include_categories=include_categories)
         if og_list:
             return og_list
 

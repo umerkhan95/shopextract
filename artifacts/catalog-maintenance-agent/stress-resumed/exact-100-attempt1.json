@@ -1,0 +1,23 @@
+{
+  "case": "exact-100",
+  "state": "passed",
+  "seconds": 9.599,
+  "rss_mib": 170.49,
+  "result": {
+    "counts": {
+      "unchanged": 100,
+      "proposed_correction": 0,
+      "needs_review": 0
+    },
+    "advisor_calls": 0,
+    "usage": {
+      "requests": 2,
+      "tokens": 0,
+      "cost_micros": 0,
+      "reserved_tokens": 0,
+      "reserved_cost_micros": 0,
+      "unknown_requests": 0,
+      "violations": 0
+    }
+  }
+}

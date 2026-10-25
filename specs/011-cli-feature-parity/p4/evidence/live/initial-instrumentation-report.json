@@ -1,0 +1,28 @@
+{
+  "target": "https://demo.athemes.com/botiga",
+  "command": [
+    "--output-format",
+    "json",
+    "categories",
+    "tree",
+    "fetch",
+    "--options",
+    "/Users/umerkhan/code/shopextract/specs/011-cli-feature-parity/p4/evidence/live/options.json",
+    "--limits",
+    "/Users/umerkhan/code/shopextract/specs/011-cli-feature-parity/p4/evidence/live/limits.json",
+    "--timeout",
+    "30"
+  ],
+  "actual_http_attempts": 0,
+  "http_sends": [],
+  "retained_products": 0,
+  "retained_category_nodes": 2,
+  "retained_items": 2,
+  "live_wall_seconds": 3.954,
+  "cli_exit": 0,
+  "outcome": "complete",
+  "reasons": [],
+  "status": "observed_bounded_tree",
+  "record_sha256": "7f24d9ed5665ced21f2cc14cdfc9b581f48d8289d3c2aa5cdd9b09cb69f77666",
+  "notes": "One saved read-only smoke; no retries/expansion/browser/model. Synthetic mechanism coverage separate; unavailable is not category availability success."
+}

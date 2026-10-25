@@ -27,6 +27,20 @@ def _open_db(db_path: str) -> sqlite3.Connection:
     return sqlite3.connect(str(path))
 
 
+def _open_read_db(db_path: str) -> sqlite3.Connection:
+    """Open an existing database without initialization or migration."""
+    path = Path(db_path).expanduser().resolve()
+    if not path.is_file():
+        raise FileNotFoundError(path)
+    return sqlite3.connect(path.as_uri() + '?mode=ro', uri=True, timeout=5)
+
+
+def _require_identities(conn, domain):
+    for payload, in conn.execute('SELECT products_json FROM snapshots WHERE domain=?', (domain,)):
+        if any(not p.get('canonical_product_id') for p in json.loads(payload)):
+            raise ValueError('Identity migration required; run identity migrate --db DB --apply')
+
+
 def _load_latest_snapshots(
     conn: sqlite3.Connection,
     domain: str,
@@ -55,6 +69,7 @@ def changes(
     domain: str,
     *,
     db_path: str = _DEFAULT_DB_PATH,
+    read_only: bool = False,
 ) -> list[Change]:
     """Compare latest two snapshots and return detected changes.
 
@@ -64,12 +79,15 @@ def changes(
     Returns PriceChange, NewProduct, and RemovedProduct objects.
     """
     domain = supplier_scope(domain)
-    conn = _open_db(db_path)
+    conn = _open_read_db(db_path) if read_only else _open_db(db_path)
     try:
         with conn:
-            conn.execute("BEGIN IMMEDIATE")
-            _ensure_snapshot_metadata(conn)
-            migrate_snapshot_identities(conn, domain)
+            if read_only:
+                _require_identities(conn, domain)
+            else:
+                conn.execute("BEGIN IMMEDIATE")
+                _ensure_snapshot_metadata(conn)
+                migrate_snapshot_identities(conn, domain)
             snapshots = _load_latest_snapshots(conn, domain, count=2)
     finally:
         conn.close()
@@ -161,17 +179,23 @@ def price_history(
     *,
     db_path: str = _DEFAULT_DB_PATH,
     canonical_product_id: str | None = None,
-) -> list[tuple[datetime, float]]:
+    exact: bool = False,
+    read_only: bool = False,
+) -> list[tuple[datetime, float | Decimal]]:
     """Get identity-based history, resolving any historical display title.
 
     Ambiguous titles raise ValueError; pass canonical_product_id instead.
-    Returns list of (timestamp, price) tuples in chronological order.
+    Returns chronological (timestamp, price) tuples. exact=True retains Decimal;
+    read_only=True requires previously migrated identities and performs no writes.
     """
     domain = supplier_scope(domain)
-    conn = _open_db(db_path)
+    conn = _open_read_db(db_path) if read_only else _open_db(db_path)
     try:
         with conn:
-            migrate_snapshot_identities(conn, domain)
+            if read_only:
+                _require_identities(conn, domain)
+            else:
+                migrate_snapshot_identities(conn, domain)
         rows = conn.execute(
             "SELECT products_json, created_at FROM snapshots WHERE domain = ? ORDER BY created_at ASC, id ASC",
             (domain,),
@@ -191,5 +215,5 @@ def price_history(
     for products, created_at in decoded:
         for p in products:
             if p["canonical_product_id"] == canonical_product_id:
-                history.append((datetime.fromisoformat(created_at), float(_safe_decimal(p.get("price", 0)))))
+                history.append((datetime.fromisoformat(created_at), (_safe_decimal(p.get("price", 0)) if exact else float(_safe_decimal(p.get("price", 0))))))
     return history

@@ -1,0 +1,12 @@
+# Resume point — 2026-10-24
+
+- Stage: selected acquisition/membership-lookup delivery complete. G1/G2/G3, W10 coverage and independent W14 final repair review passed; all three reproduced blockers repaired with intended red/green and affected stress evidence.
+- Ownership: author `/root/woo_author`, coordinator execution evidence, independent final reviewer `/root/woo_reviewer`; final verdict recorded in reviews.md.
+- Scope: opt-in per-store Woo index acquisition, actual-parent graph validation, strict portable tree envelope, supported captured-membership lookup. Optional exact Shopify bridge W09/SC09–10 deferred.
+- Delivered: `src/shopextract/categories/woo_tree.py`; acceptance/mechanism/oracle tests, stress/live drivers, `docs/woocommerce-category-tree.md` linked from category-mapping docs. Product/default extraction/feed/maintenance contracts unchanged.
+- Gates: all selected-slice gates passed and recorded with digests in reviews.md, including supported evidence alignment and malformed URL/Unicode repairs. Reviewed intended red retained.
+- Evidence: first three-node smoke saved before expansion; revised focused77 passed/.89s; final repaired feature85 + affected45 combined130 passed/20.94s; affected parser stress24/24, 8.673s, peakRSS146325504 bytes (earlier result preserved); general regressions1018 passed/232.83s; maintenance106 passed/106.23s. General suite predates seven focused additions; overlapping counts are not a unique sum. See verification.md and evidence/.
+- Actual live: Botiga public smoke passed, 1 attempt/1 page/2 root categories/3.879s, all6 independent assertions; observed complete traversal so unchanged optional expansion skipped. No live child edge/natural mutation observed; synthetic mechanisms cover those cases separately.
+- Limits: 10 HTTP attempts, page100, 1000 raw retained entries, identity2MiB/page, canonical8MiB retention, depth8, 30s; one sequential worker, no retries/inference. Same-origin redirects preserve fixed route/query; only integer parent0 is root.
+- Handoff: W14 complete; opt-in acquisition, portable tree and supported captured-membership lookup ready. Optional Shopify bridge W09 remains deferred. Pushed and merged into main via PR #61 on 2026-10-24 (merge 5f7a25b); Python 3.10/3.11/3.12 CI passed. Receipt: artifacts/woocommerce-category-tree/github-delivery.json. Unrelated dirty files preserved.
+- Usage: actual session token counters unavailable; no quota estimate. Saved sources/results reused; no parallel agents or local inference launched by author.

@@ -1,0 +1,236 @@
+{
+  "repository": "umerkhan95/shopextract",
+  "date": "2026-10-24",
+  "epic": {
+    "number": 62,
+    "url": "https://github.com/umerkhan95/shopextract/issues/62"
+  },
+  "children": [
+    {
+      "key": "INT-01",
+      "number": 63,
+      "url": "https://github.com/umerkhan95/shopextract/issues/63",
+      "file": "INT-01-http-jobs.md",
+      "title": "Shared HTTP API and durable bounded jobs",
+      "id": 6016492440,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-02",
+      "number": 64,
+      "url": "https://github.com/umerkhan95/shopextract/issues/64",
+      "file": "INT-02-remote-mcp.md",
+      "title": "Remote MCP transport, OAuth and principal isolation",
+      "id": 6016492607,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-03",
+      "number": 65,
+      "url": "https://github.com/umerkhan95/shopextract/issues/65",
+      "file": "INT-03-n8n.md",
+      "title": "Native n8n node and completed-job trigger",
+      "id": 6016492793,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-04",
+      "number": 66,
+      "url": "https://github.com/umerkhan95/shopextract/issues/66",
+      "file": "INT-04-claude.md",
+      "title": "Claude local and remote MCP compatibility",
+      "id": 6016492925,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-05",
+      "number": 67,
+      "url": "https://github.com/umerkhan95/shopextract/issues/67",
+      "file": "INT-05-chatgpt.md",
+      "title": "ChatGPT MCP app/private plugin compatibility",
+      "id": 6016493077,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-06",
+      "number": 68,
+      "url": "https://github.com/umerkhan95/shopextract/issues/68",
+      "file": "INT-06-openai-api.md",
+      "title": "OpenAI Responses API integration routes",
+      "id": 6016493216,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-07",
+      "number": 69,
+      "url": "https://github.com/umerkhan95/shopextract/issues/69",
+      "file": "INT-07-zapier.md",
+      "title": "Zapier actions and completed-job polling trigger",
+      "id": 6016493341,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-08",
+      "number": 70,
+      "url": "https://github.com/umerkhan95/shopextract/issues/70",
+      "file": "INT-08-make.md",
+      "title": "Make custom app connections and modules",
+      "id": 6016493473,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-09",
+      "number": 71,
+      "url": "https://github.com/umerkhan95/shopextract/issues/71",
+      "file": "INT-09-pipedream.md",
+      "title": "Pipedream actions and completed-job source",
+      "id": 6016493601,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-10",
+      "number": 72,
+      "url": "https://github.com/umerkhan95/shopextract/issues/72",
+      "file": "INT-10-recipes-release.md",
+      "title": "Workflow recipes, compatibility matrix and release verification",
+      "id": 6016493746,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-11",
+      "number": 73,
+      "url": "https://github.com/umerkhan95/shopextract/issues/73",
+      "file": "INT-11-portable-skills.md",
+      "title": "Portable ShopExtract workflow skill pack",
+      "id": 6016493902,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-12",
+      "number": 74,
+      "url": "https://github.com/umerkhan95/shopextract/issues/74",
+      "file": "INT-12-claude-skills.md",
+      "title": "Claude skill installation and workflow integration",
+      "id": 6016494126,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-13",
+      "number": 75,
+      "url": "https://github.com/umerkhan95/shopextract/issues/75",
+      "file": "INT-13-chatgpt-skills.md",
+      "title": "ChatGPT skill packaging through supported plugin routes",
+      "id": 6016494271,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-14",
+      "number": 76,
+      "url": "https://github.com/umerkhan95/shopextract/issues/76",
+      "file": "INT-14-codex-skills.md",
+      "title": "Codex skill discovery and MCP workflow setup",
+      "id": 6016494395,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-15",
+      "number": 77,
+      "url": "https://github.com/umerkhan95/shopextract/issues/77",
+      "file": "INT-15-cursor-skills.md",
+      "title": "Cursor Agent skill installation (deferred implementation wave)",
+      "id": 6016494510,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-16",
+      "number": 78,
+      "url": "https://github.com/umerkhan95/shopextract/issues/78",
+      "file": "INT-16-copilot-skills.md",
+      "title": "GitHub Copilot Agent skill setup (deferred implementation wave)",
+      "id": 6016494658,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-17",
+      "number": 79,
+      "url": "https://github.com/umerkhan95/shopextract/issues/79",
+      "file": "INT-17-gemini-skills.md",
+      "title": "Gemini CLI Agent skills (deferred implementation wave)",
+      "id": 6016494776,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-18",
+      "number": 80,
+      "url": "https://github.com/umerkhan95/shopextract/issues/80",
+      "file": "INT-18-grok-plugin-tools.md",
+      "title": "Grok Build plugin and Grok/xAI tool integration",
+      "id": 6016494954,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-19",
+      "number": 81,
+      "url": "https://github.com/umerkhan95/shopextract/issues/81",
+      "file": "INT-19-grok-skills.md",
+      "title": "Grok Build native skill pack and other Grok skill compatibility",
+      "id": 6016495085,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-20",
+      "number": 82,
+      "url": "https://github.com/umerkhan95/shopextract/issues/82",
+      "file": "INT-20-anthropic-plugin.md",
+      "title": "Anthropic Claude Code plugin distribution",
+      "id": 6016495194,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-21",
+      "number": 83,
+      "url": "https://github.com/umerkhan95/shopextract/issues/83",
+      "file": "INT-21-meta-muse-plugin.md",
+      "title": "Meta Muse Code plugin/tool integration and consumer/API mapping",
+      "id": 6016495359,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-22",
+      "number": 84,
+      "url": "https://github.com/umerkhan95/shopextract/issues/84",
+      "file": "INT-22-meta-muse-skills.md",
+      "title": "Meta Muse Code native skills and other Muse host compatibility",
+      "id": 6016495554,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-23",
+      "number": 85,
+      "url": "https://github.com/umerkhan95/shopextract/issues/85",
+      "file": "INT-23-mistral.md",
+      "title": "Mistral Vibe skill/plugin and tool integration",
+      "id": 6016495720,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-24",
+      "number": 86,
+      "url": "https://github.com/umerkhan95/shopextract/issues/86",
+      "file": "INT-24-glm-zai.md",
+      "title": "GLM/Z.ai API and coding-host skill/plugin integration",
+      "id": 6016495866,
+      "native_parent": 62
+    },
+    {
+      "key": "INT-25",
+      "number": 87,
+      "url": "https://github.com/umerkhan95/shopextract/issues/87",
+      "file": "INT-25-hermes-agent.md",
+      "title": "NousResearch Hermes Agent skill/plugin and MCP integration",
+      "id": 6016496022,
+      "native_parent": 62
+    }
+  ],
+  "hierarchy": "verified25native_subissues"
+}

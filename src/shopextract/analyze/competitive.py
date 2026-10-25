@@ -17,6 +17,7 @@ async def price_position(
     competitors: list[str],
     *,
     max_products: int = 200,
+    currency: str | None = None,
 ) -> PricePosition:
     """Find where your product's price ranks among competitor stores.
 
@@ -36,6 +37,33 @@ async def price_position(
     if not my_title or my_price is None:
         return PricePosition(product_title=my_title, my_price=my_price or 0.0)
 
+    if currency is not None:
+        from .._extract import extract
+        from .._models import SafePosition, SourceStatus
+        from .._analysis_safe import source_status
+        from .._execution import safe_error
+        import asyncio
+        prices, excluded, sources = {}, [], []
+        for url in competitors:
+            try:
+                result = await extract(url, max_urls=max_products)
+            except (TimeoutError, asyncio.CancelledError):
+                raise
+            except Exception as exc:
+                sources.append(SourceStatus(url, False, False, [safe_error(str(exc))]))
+                continue
+            sources.append(source_status(url, result))
+            match = _find_best_match(my_title, result.raw_products or [])
+            if match:
+                observed = match.get('currency')
+                observed = observed.strip().upper() if isinstance(observed, str) and observed.strip() else None
+                if observed != currency:
+                    excluded.append({'store': url, 'currency': observed})
+                    continue
+                price = get_price(match)
+                if price is not None:
+                    prices[url] = price
+        return SafePosition(_build_price_position(my_title, my_price, prices), currency, excluded, sources)
     competitor_prices = await _find_competitor_prices(
         my_title, competitors, max_products
     )
@@ -47,6 +75,7 @@ async def assortment_gaps(
     competitors: list[str],
     *,
     max_products: int = 200,
+    source_report: bool = False,
 ) -> AssortmentGaps:
     """Find categories and brands competitors have that you don't.
 
@@ -60,7 +89,24 @@ async def assortment_gaps(
     """
     from .._extract import extract
 
-    my_result = await extract(my_store, max_urls=max_products)
+    from .._analysis_safe import source_status
+    from .._models import ExtractionResult, SourceStatus
+    from .._execution import safe_error
+    import asyncio
+    sources = []
+    async def fetch(store):
+        if not source_report:
+            return await extract(store, max_urls=max_products)
+        try:
+            result = await extract(store, max_urls=max_products)
+            sources.append(source_status(store, result))
+            return result
+        except (TimeoutError, asyncio.CancelledError):
+            raise
+        except Exception as exc:
+            sources.append(SourceStatus(store, False, False, [safe_error(str(exc))]))
+            return ExtractionResult()
+    my_result = await fetch(my_store)
     my_products = my_result.raw_products or []
 
     my_cats = set(count_categories(my_products).keys())
@@ -72,7 +118,7 @@ async def assortment_gaps(
     all_comp_brands: set[str] = set()
 
     for url in competitors:
-        result = await extract(url, max_urls=max_products)
+        result = await fetch(url)
         raw = result.raw_products or []
         cats = count_categories(raw)
         brands = count_field(raw, "vendor")
@@ -88,6 +134,7 @@ async def assortment_gaps(
         competitor_brand_counts=comp_brand_counts,
         my_categories=sorted(my_cats),
         my_brands=sorted(my_brands),
+        sources=sources,
     )
 
 

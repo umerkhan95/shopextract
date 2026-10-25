@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShopExtract publisher-aliases",
+  "x-contract-version": "1",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "publisher_aliases": {
+      "type": "object",
+      "maxProperties": 1000,
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1,
+        "maxItems": 100
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "publisher_aliases"
+  ],
+  "additionalProperties": false
+}

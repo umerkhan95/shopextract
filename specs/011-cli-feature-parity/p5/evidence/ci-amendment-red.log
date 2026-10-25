@@ -1,0 +1,126 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+_________________ test_configured_ci_uses_shared_budget_driver _________________
+
+    def test_configured_ci_uses_shared_budget_driver():
+>       assert 'python scripts/run_tests.py' in (ROOT/'.github/workflows/test.yml').read_text()
+E       AssertionError: assert 'python scripts/run_tests.py' in 'name: Tests\n\non:\n  push:\n    branches: [main]\n  pull_request:\n    branches: [main]\n\njobs:\n  test:\n    runs-...py tests/test_maintenance_store.py tests/test_maintenance_stress_prerequisites.py tests/test_maintenance_workflow.py\n'
+E        +  where 'name: Tests\n\non:\n  push:\n    branches: [main]\n  pull_request:\n    branches: [main]\n\njobs:\n  test:\n    runs-...py tests/test_maintenance_store.py tests/test_maintenance_stress_prerequisites.py tests/test_maintenance_workflow.py\n' = read_text()
+E        +    where read_text = (PosixPath('/Users/umerkhan/code/shopextract') / '.github/workflows/test.yml').read_text
+
+tests/test_ci_driver.py:32: AssertionError
+_____________________ test_plan_semantic_family_partition ______________________
+
+    def test_plan_semantic_family_partition():
+>       d=driver();plan=d.build_plan(ROOT,sys.executable)
+
+tests/test_ci_driver.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def driver():
+>       assert SCRIPT.is_file(),'Bounded shared-budget CI driver is not implemented'
+E       AssertionError: Bounded shared-budget CI driver is not implemented
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/Users/umerkhan/code/shopextract/scripts/run_tests.py').is_file
+
+tests/test_ci_driver.py:17: AssertionError
+______________ test_sequential_real_children_and_stop_on_failure _______________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-302/test_sequential_real_children_0')
+
+    def test_sequential_real_children_and_stop_on_failure(tmp_path):
+>       d=driver();marker=tmp_path/'order'
+
+tests/test_ci_driver.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def driver():
+>       assert SCRIPT.is_file(),'Bounded shared-budget CI driver is not implemented'
+E       AssertionError: Bounded shared-budget CI driver is not implemented
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/Users/umerkhan/code/shopextract/scripts/run_tests.py').is_file
+
+tests/test_ci_driver.py:17: AssertionError
+____________________ test_per_group_timeout_kills_and_reaps ____________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-302/test_per_group_timeout_kills_a0')
+
+    def test_per_group_timeout_kills_and_reaps(tmp_path):
+>       d=driver()
+
+tests/test_ci_driver.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def driver():
+>       assert SCRIPT.is_file(),'Bounded shared-budget CI driver is not implemented'
+E       AssertionError: Bounded shared-budget CI driver is not implemented
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/Users/umerkhan/code/shopextract/scripts/run_tests.py').is_file
+
+tests/test_ci_driver.py:17: AssertionError
+____________________ test_shared_budget_stops_later_groups _____________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-302/test_shared_budget_stops_later0')
+
+    def test_shared_budget_stops_later_groups(tmp_path):
+>       d=driver();marker=tmp_path/'not-run'
+
+tests/test_ci_driver.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def driver():
+>       assert SCRIPT.is_file(),'Bounded shared-budget CI driver is not implemented'
+E       AssertionError: Bounded shared-budget CI driver is not implemented
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/Users/umerkhan/code/shopextract/scripts/run_tests.py').is_file
+
+tests/test_ci_driver.py:17: AssertionError
+_______________________ test_sigint_cleans_active_group ________________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-302/test_sigint_cleans_active_grou0')
+
+    def test_sigint_cleans_active_group(tmp_path):
+>       d=driver();ready=tmp_path/'ready';out=tmp_path/'out';runner=tmp_path/'runner.py'
+
+tests/test_ci_driver.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def driver():
+>       assert SCRIPT.is_file(),'Bounded shared-budget CI driver is not implemented'
+E       AssertionError: Bounded shared-budget CI driver is not implemented
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/Users/umerkhan/code/shopextract/scripts/run_tests.py').is_file
+
+tests/test_ci_driver.py:17: AssertionError
+_________________ test_driver_rejects_raised_or_nonfinite_caps _________________
+
+    def test_driver_rejects_raised_or_nonfinite_caps():
+>       d=driver()
+
+tests/test_ci_driver.py:99: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def driver():
+>       assert SCRIPT.is_file(),'Bounded shared-budget CI driver is not implemented'
+E       AssertionError: Bounded shared-budget CI driver is not implemented
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/Users/umerkhan/code/shopextract/scripts/run_tests.py').is_file
+
+tests/test_ci_driver.py:17: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_ci_driver.py::test_configured_ci_uses_shared_budget_driver
+FAILED tests/test_ci_driver.py::test_plan_semantic_family_partition - Asserti...
+FAILED tests/test_ci_driver.py::test_sequential_real_children_and_stop_on_failure
+FAILED tests/test_ci_driver.py::test_per_group_timeout_kills_and_reaps - Asse...
+FAILED tests/test_ci_driver.py::test_shared_budget_stops_later_groups - Asser...
+FAILED tests/test_ci_driver.py::test_sigint_cleans_active_group - AssertionEr...
+FAILED tests/test_ci_driver.py::test_driver_rejects_raised_or_nonfinite_caps
+7 failed in 0.30s

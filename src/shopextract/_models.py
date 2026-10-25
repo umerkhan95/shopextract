@@ -180,6 +180,7 @@ class CatalogDiff:
     cheaper_in_a: list[tuple[Product, Product]] = field(default_factory=list)
     cheaper_in_b: list[tuple[Product, Product]] = field(default_factory=list)
     match_report: list[MatchDecision] = field(default_factory=list)
+    sources: list[SourceStatus] = field(default_factory=list)
 
 
 # --- Monitor models (#11, #12, #13) ---
@@ -282,6 +283,7 @@ class AssortmentGaps:
     competitor_brand_counts: dict[str, dict[str, int]] = field(default_factory=dict)
     my_categories: list[str] = field(default_factory=list)
     my_brands: list[str] = field(default_factory=list)
+    sources: list[SourceStatus] = field(default_factory=list)
 
 
 # --- Validate models (#16) ---
@@ -327,3 +329,27 @@ class ImageIssue:
     status_code: int | None = None
     content_type: str | None = None
     error: str = ""
+
+
+@dataclass
+class SourceStatus:
+    store: str
+    usable: bool
+    catalog_complete: bool | None = None
+    errors: list[str] = field(default_factory=list)
+
+
+@dataclass
+class SafeComparison:
+    query: str
+    currency_groups: dict[str, ComparisonResult] = field(default_factory=dict)
+    unranked: list[Match] = field(default_factory=list)
+    sources: list[SourceStatus] = field(default_factory=list)
+
+
+@dataclass
+class SafePosition:
+    position: PricePosition
+    currency: str
+    excluded: list[dict] = field(default_factory=list)
+    sources: list[SourceStatus] = field(default_factory=list)

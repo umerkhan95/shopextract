@@ -1,0 +1,44 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFF....                                                               [100%]
+=================================== FAILURES ===================================
+__________ test_c06_c11_magento_nonnull_failed_facets_cannot_map[uid] __________
+tests/test_category_review_repairs.py:26: in test_c06_c11_magento_nonnull_failed_facets_cannot_map
+    assert (fact.support != SupportState.OBSERVED) == (facet in rejected)
+E   AssertionError: assert (<SupportState.OBSERVED: 'observed'> != <SupportState.OBSERVED: 'observed'>) == ('native_id' in {'native_id'})
+E    +  where <SupportState.OBSERVED: 'observed'> = CategoryFact(pointer='/categories/0/uid', raw_value='MTI=', support=<SupportState.OBSERVED: 'observed'>, binding=Categ...ter': '/categories/0/uid', 'value': 'MTI='}, pointer='/value', source_role='unverified', truncated=False),), reason='').support
+E    +  and   <SupportState.OBSERVED: 'observed'> = SupportState.OBSERVED
+_________ test_c06_c11_magento_nonnull_failed_facets_cannot_map[name] __________
+tests/test_category_review_repairs.py:26: in test_c06_c11_magento_nonnull_failed_facets_cannot_map
+    assert (fact.support != SupportState.OBSERVED) == (facet in rejected)
+E   AssertionError: assert (<SupportState.OBSERVED: 'observed'> != <SupportState.OBSERVED: 'observed'>) == ('label' in {'label'})
+E    +  where <SupportState.OBSERVED: 'observed'> = CategoryFact(pointer='/categories/0/name', raw_value='Boots', support=<SupportState.OBSERVED: 'observed'>, binding=Cat...r': '/categories/0/name', 'value': 'Boots'}, pointer='/value', source_role='unverified', truncated=False),), reason='').support
+E    +  and   <SupportState.OBSERVED: 'observed'> = SupportState.OBSERVED
+______ test_c06_c11_magento_nonnull_failed_facets_cannot_map[categories] _______
+tests/test_category_review_repairs.py:26: in test_c06_c11_magento_nonnull_failed_facets_cannot_map
+    assert (fact.support != SupportState.OBSERVED) == (facet in rejected)
+E   AssertionError: assert (<SupportState.OBSERVED: 'observed'> != <SupportState.OBSERVED: 'observed'>) == ('native_id' in {'label', 'native_id'})
+E    +  where <SupportState.OBSERVED: 'observed'> = CategoryFact(pointer='/categories/0/uid', raw_value='MTI=', support=<SupportState.OBSERVED: 'observed'>, binding=Categ...ter': '/categories/0/uid', 'value': 'MTI='}, pointer='/value', source_role='unverified', truncated=False),), reason='').support
+E    +  and   <SupportState.OBSERVED: 'observed'> = SupportState.OBSERVED
+________ test_c06_c11_magento_nonnull_failed_facets_cannot_map[global] _________
+tests/test_category_review_repairs.py:26: in test_c06_c11_magento_nonnull_failed_facets_cannot_map
+    assert (fact.support != SupportState.OBSERVED) == (facet in rejected)
+E   AssertionError: assert (<SupportState.OBSERVED: 'observed'> != <SupportState.OBSERVED: 'observed'>) == ('native_id' in {'label', 'native_id'})
+E    +  where <SupportState.OBSERVED: 'observed'> = CategoryFact(pointer='/categories/0/uid', raw_value='MTI=', support=<SupportState.OBSERVED: 'observed'>, binding=Categ...ter': '/categories/0/uid', 'value': 'MTI='}, pointer='/value', source_role='unverified', truncated=False),), reason='').support
+E    +  and   <SupportState.OBSERVED: 'observed'> = SupportState.OBSERVED
+_____________ test_c13_bound_endpoint_mismatch_rejected[parent_id] _____________
+tests/test_category_review_repairs.py:52: in test_c13_bound_endpoint_mismatch_rejected
+    with pytest.raises(CategoryError,match='endpoint'):
+E   Failed: DID NOT RAISE CategoryError
+_____________ test_c13_bound_endpoint_mismatch_rejected[child_id] ______________
+tests/test_category_review_repairs.py:52: in test_c13_bound_endpoint_mismatch_rejected
+    with pytest.raises(CategoryError,match='endpoint'):
+E   Failed: DID NOT RAISE CategoryError
+=========================== short test summary info ============================
+FAILED tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[uid]
+FAILED tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[name]
+FAILED tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[categories]
+FAILED tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[global]
+FAILED tests/test_category_review_repairs.py::test_c13_bound_endpoint_mismatch_rejected[parent_id]
+FAILED tests/test_category_review_repairs.py::test_c13_bound_endpoint_mismatch_rejected[child_id]
+6 failed, 4 passed in 0.51s

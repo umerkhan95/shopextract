@@ -1,0 +1,122 @@
+{
+  "schema_examples": [
+    {
+      "name": "success",
+      "expected_valid": true,
+      "actual_valid": true
+    },
+    {
+      "name": "E_OPERATION positive",
+      "expected_valid": true,
+      "actual_valid": true
+    },
+    {
+      "name": "E_OPERATION retryability inverse",
+      "expected_valid": false,
+      "actual_valid": false
+    },
+    {
+      "name": "E_INTERNAL positive",
+      "expected_valid": true,
+      "actual_valid": true
+    },
+    {
+      "name": "E_INTERNAL retryability inverse",
+      "expected_valid": false,
+      "actual_valid": false
+    },
+    {
+      "name": "E_DEPENDENCY positive",
+      "expected_valid": true,
+      "actual_valid": true
+    },
+    {
+      "name": "E_DEPENDENCY retryability inverse",
+      "expected_valid": false,
+      "actual_valid": false
+    },
+    {
+      "name": "E_TIMEOUT positive",
+      "expected_valid": true,
+      "actual_valid": true
+    },
+    {
+      "name": "E_TIMEOUT retryability inverse",
+      "expected_valid": false,
+      "actual_valid": false
+    },
+    {
+      "name": "E_USAGE positive",
+      "expected_valid": true,
+      "actual_valid": true
+    },
+    {
+      "name": "E_USAGE retryability inverse",
+      "expected_valid": false,
+      "actual_valid": false
+    },
+    {
+      "name": "E_CONFIG positive",
+      "expected_valid": true,
+      "actual_valid": true
+    },
+    {
+      "name": "E_CONFIG retryability inverse",
+      "expected_valid": false,
+      "actual_valid": false
+    },
+    {
+      "name": "E_PARTIAL positive",
+      "expected_valid": true,
+      "actual_valid": true
+    },
+    {
+      "name": "E_PARTIAL retryability inverse",
+      "expected_valid": false,
+      "actual_valid": false
+    },
+    {
+      "name": "E_VALIDATION positive",
+      "expected_valid": true,
+      "actual_valid": true
+    },
+    {
+      "name": "E_VALIDATION retryability inverse",
+      "expected_valid": false,
+      "actual_valid": false
+    },
+    {
+      "name": "E_CANCELLED positive",
+      "expected_valid": true,
+      "actual_valid": true
+    },
+    {
+      "name": "E_CANCELLED retryability inverse",
+      "expected_valid": false,
+      "actual_valid": false
+    },
+    {
+      "name": "reviewer witness: unavailable partial error",
+      "expected_valid": false,
+      "actual_valid": false
+    },
+    {
+      "name": "reviewer witness: retryable usage error",
+      "expected_valid": false,
+      "actual_valid": false
+    },
+    {
+      "name": "reviewer witness: nonretryable timeout",
+      "expected_valid": false,
+      "actual_valid": false
+    }
+  ],
+  "schema_examples_passed": 22,
+  "classified_workflow_links": 68,
+  "named_classification_checks": 16,
+  "bootstrap_cases_designed": 15,
+  "bootstrap_runtime_cases_executed": 0,
+  "runtime_acceptance": "not_run",
+  "scope": "Design schema/classification checks only; no production runtime mechanism exercised.",
+  "actual_session_token_counters": "unavailable"
+}

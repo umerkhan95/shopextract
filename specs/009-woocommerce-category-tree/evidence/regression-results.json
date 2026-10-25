@@ -1,0 +1,12 @@
+[
+  {
+    "suite": "repository-regressions",
+    "returncode": 0,
+    "elapsed_seconds": 236.24
+  },
+  {
+    "suite": "maintenance-regressions",
+    "returncode": 0,
+    "elapsed_seconds": 108.81
+  }
+]

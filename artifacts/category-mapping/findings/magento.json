@@ -1,0 +1,137 @@
+{
+  "platform": "magento",
+  "status": "discovery_only",
+  "as_of": "2026-10-17",
+  "scope": "No production/test changes, tests, storefront requests, inference, installs or Git operations.",
+  "facts": [
+    {
+      "fact": "Current GraphQL _FIELDS selects sku/name/url_key/url_suffix/stock/description/image/price, not categories. Configurable children reuse same fields.",
+      "ref": "src/shopextract/extractors/magento_graphql.py:9"
+    },
+    {
+      "fact": "Current extraction GET query is fixed; variables size/page bound product pagination; repeated/missing SKU fails, budget clipping stays incomplete. Captures source response URL/time.",
+      "ref": "src/shopextract/extractors/magento_graphql.py"
+    },
+    {
+      "fact": "Legacy REST explicitly selected /rest/V1/products path captures raw items; does not issue category lookup.",
+      "ref": "src/shopextract/extractors/magento.py"
+    },
+    {
+      "fact": "Magento normalization has dedicated GraphQL helper dispatched by Magento normalizer; Product construction includes existing category_path projection.",
+      "ref": "src/shopextract/_normalize.py:352"
+    },
+    {
+      "fact": "Guarded native maintenance reuses extractor/normalizer; preserve source policy and fixed-query authorization.",
+      "ref": "src/shopextract/tools/sources.py"
+    },
+    {
+      "fact": "Official PaaS categories query returns CategoryResult items plus pagination, supports category/parent IDs and name/path filters; omitted filters return store default root. Children are immediate subcategories, breadcrumbs describe parents.",
+      "ref": "https://developer.adobe.com/commerce/webapi/graphql/schema/products/queries/categories/"
+    },
+    {
+      "fact": "Official example selects uid, level, name, path and children_count; nested children depth is explicit; default queryDepth is 20. SaaS does not support this PaaS categories query.",
+      "ref": "https://developer.adobe.com/commerce/webapi/graphql/schema/products/queries/categories/"
+    }
+  ],
+  "existing_reuse": [
+    "MagentoGraphQLExtractor bounded fixed GET, response capture and pagination",
+    "_normalize_magento_graphql / _normalize_magento integration seam; shared normalizer remains central owner",
+    "tools.sources guarded native extraction; security policy owned centrally",
+    "Product.category_path stays legacy projection; no Product/Variant constructor or default portable contract change"
+  ],
+  "proposal": {
+    "term_ref": "platform + taxonomy_namespace + opaque native_id with separate observation scope (supplier origin, shop/base path, optional store-view/catalog/locale)",
+    "native_id": "Prefer opaque uid when explicitly observed. Retain legacy id as separately namespaced opaque string; do not base64-decode uid or equate uid/id absent explicit evidence.",
+    "membership": "Unordered product memberships; never manufacture a breadcrumb by category-list order or choose deepest member as canonical.",
+    "hierarchy": "Explicit parent edges or ordered ancestor paths only. Preserve level/path as supporting facts; root/store boundaries and incomplete hierarchy remain explicit.",
+    "source_state": "missing/null/explicit empty/malformed distinct; graph coverage independent of product membership coverage.",
+    "mapping": "Separate canonical mapping decision, rule/version and evidence refs from observed source term.",
+    "codec": "Opt-in companion record, preserve strict existing portable Product format.",
+    "query": "No category query implementation authorized by this artifact. Minimal product category membership field signature remains unresolved; verify before selecting fields. Shared guard owner must authorize any new fixed query and scope headers."
+  },
+  "fixtures": [
+    {
+      "id": "MG01",
+      "input": "SKU A categories [uid X name Tops, uid Y name Sale] then reversed",
+      "risk": "Membership order mistaken for hierarchy",
+      "expected": "Same two memberships; no ordered path or canonical choice."
+    },
+    {
+      "id": "MG02",
+      "input": "Same uid X on origin/store-view A and B, different localized name",
+      "risk": "Cross-scope merge",
+      "expected": "Observation scope retained separately; no implicit equivalence across stores; labels never replace ID."
+    },
+    {
+      "id": "MG03",
+      "input": "Category field omitted, null, [], malformed scalar in four records",
+      "risk": "Unknown coverage mistaken for explicit deletion",
+      "expected": "Four distinct states; only [] is observed empty; no default manufactures fact."
+    },
+    {
+      "id": "MG04",
+      "input": "Explicit ancestor A level2, B level3, member C level4; separate membership D without ancestors",
+      "risk": "Fabricated ancestry/completeness",
+      "expected": "Only documented A/B/C ordered chain; D ancestry unknown; membership and graph coverage separate."
+    },
+    {
+      "id": "MG05",
+      "input": "Legacy id 7 and uid Nw==, then uid malformed/empty and repeated member IDs",
+      "risk": "Invented ID conversions or inconsistent duplicates",
+      "expected": "No uid decode/equality inference; invalid IDs unsupported; exact duplicates stable, conflicting labels retained for review."
+    },
+    {
+      "id": "MG06",
+      "input": "Two catalog pages with product budget clipped on page2, partial category evidence and replay",
+      "risk": "Product pagination falsely proves taxonomy completeness or duplicated evidence",
+      "expected": "Existing extraction incomplete remains; category graph completeness unknown; replay deterministic and evidence retained."
+    }
+  ],
+  "peer_consultation": {
+    "questions_sent": [
+      "Shopify: opaque ID namespace, store scope and unordered membership vs ordered hierarchy",
+      "WooCommerce: IDs, parent links, taxonomy scope, missing hierarchy"
+    ],
+    "shopify_reply": "Agrees scoped opaque refs; Shopify standard taxonomy global GID namespace/version separate from observation scope; custom product_type raw label has no native ID; collections unordered. Current Storefront Product category availability requires separate verified authorization.",
+    "woocommerce_reply": "Agrees platform/store/catalog/taxonomy namespace; product_cat numeric IDs store-scoped; parent=0 explicit root, missing parent unknown; graph and membership completeness distinct.",
+    "generic_received": "Requests same source-term/canonical split and explicit path/scoped ID treatment; no conflicting constraint.",
+    "bigcommerce_received": "Shared synthesis proposes companion codec, independent shop/basepath/channel/locale/catalog observation scope and taxonomy namespace/version. No query without verified signature/shared guard owner.",
+    "decision": "Adopt shared scope/taxonomy separation and membership/path distinction. Exact Magento Store header/store-view handling and breadcrumb schema remain unresolved; do not infer defaults."
+  },
+  "limitations": [
+    "No new Magento live category capture; saved prior capture queries omit category fields.",
+    "Exact ProductInterface categories field signature, category ID deprecation, breadcrumb field/type schema and Store header authorization not verified within bounded discovery.",
+    "Current native guard exact Magento query matching not inspected; central security owner must verify before implementation.",
+    "Session token counters unavailable to this agent; no quota percentage inferred."
+  ],
+  "external_sources": [
+    {
+      "url": "https://developer.adobe.com/commerce/webapi/graphql/schema/products/interfaces/",
+      "use": "Navigation only; no category field signature established."
+    },
+    {
+      "url": "https://developer.adobe.com/commerce/webapi/graphql/schema/products/queries/categories/",
+      "use": "Category query pagination/root/depth/uid example and SaaS limitation."
+    }
+  ],
+  "implementation": {
+    "status": "authored_waiting_serial_test_barrier",
+    "owned_files": [
+      "src/shopextract/categories/adapters/magento.py",
+      "src/shopextract/extractors/magento_graphql.py",
+      "tests/test_category_magento.py"
+    ],
+    "tests_executed": false,
+    "query_flag": "include_categories=False",
+    "query_constant": "_QUERY_WITH_CATEGORIES",
+    "schema_ref": "artifacts/category-mapping/findings/magento-schema-minimal.json",
+    "shared_helpers": [
+      "merchant_scope",
+      "observation_id",
+      "source_fact",
+      "native_body",
+      "attach_category_diagnostics"
+    ],
+    "peer_ack": "Shopify confirmed converter/helper/dedup contract; shared core confirmed response helper and flag signatures."
+  }
+}

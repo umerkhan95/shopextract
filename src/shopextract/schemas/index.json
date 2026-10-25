@@ -1,0 +1,82 @@
+[
+  {
+    "name": "response",
+    "version": "1.0",
+    "kind": "file"
+  },
+  {
+    "name": "config",
+    "version": "1",
+    "kind": "file"
+  },
+  {
+    "name": "maintenance-goal",
+    "version": "1.0",
+    "kind": "file"
+  },
+  {
+    "name": "maintenance-profiles",
+    "version": "1",
+    "kind": "file"
+  },
+  {
+    "name": "tool-operator",
+    "version": "native-unversioned",
+    "kind": "file"
+  },
+  {
+    "name": "tool-session",
+    "version": "1.0",
+    "kind": "file"
+  },
+  {
+    "name": "category-options",
+    "version": "native",
+    "kind": "file"
+  },
+  {
+    "name": "category-runtime",
+    "version": "native",
+    "kind": "file"
+  },
+  {
+    "name": "portable-product",
+    "version": "1",
+    "kind": "file"
+  },
+  {
+    "name": "catalog",
+    "version": "1.0",
+    "kind": "file"
+  },
+  {
+    "name": "storefront",
+    "version": "native",
+    "kind": "file"
+  },
+  {
+    "name": "publisher-aliases",
+    "version": "1",
+    "kind": "file"
+  },
+  {
+    "name": "semantic-candidates",
+    "version": "1",
+    "kind": "file"
+  },
+  {
+    "name": "resolution-policy",
+    "version": "1",
+    "kind": "file"
+  },
+  {
+    "name": "matching-evaluation",
+    "version": "1.0",
+    "kind": "file"
+  },
+  {
+    "name": "tree-limits",
+    "version": "native",
+    "kind": "file"
+  }
+]

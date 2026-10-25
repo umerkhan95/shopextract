@@ -1,0 +1,29 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+................................................................F......  [100%]
+=================================== FAILURES ===================================
+_________ test_nonempty_product_and_variant_evidence_export_roundtrip __________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-206/test_nonempty_product_and_vari0')
+
+    def test_nonempty_product_and_variant_evidence_export_roundtrip(tmp_path):
+>       from test_evidence_bundle import fixture_product
+E       ModuleNotFoundError: No module named 'test_evidence_bundle'
+
+tests/test_cli_analysis_mechanisms.py:331: ModuleNotFoundError
+=============================== warnings summary ===============================
+tests/test_cli_analysis.py: 16 warnings
+tests/test_cli_analysis_mechanisms.py: 41 warnings
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+tests/test_cli_analysis.py::test_workflow_red_families[args12-value12]
+tests/test_cli_analysis_mechanisms.py::test_export_stdout_and_optional_engine
+tests/test_cli_analysis_mechanisms.py::test_zero_false_null_and_extension_preserved
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_analysis.py:199: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    click.get_binary_stream('stdout').write(Path(payload).read_bytes())
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli_analysis_mechanisms.py::test_nonempty_product_and_variant_evidence_export_roundtrip
+1 failed, 70 passed, 60 warnings in 3.43s

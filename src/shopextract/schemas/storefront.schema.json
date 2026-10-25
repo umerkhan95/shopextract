@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShopExtract storefront",
+  "x-contract-version": "native",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string"
+    },
+    "access_token": {
+      "type": "string"
+    },
+    "protocol": {
+      "type": "string"
+    },
+    "token_type": {
+      "type": "string"
+    },
+    "customer_access_token": {
+      "type": "string"
+    },
+    "customer_id": {
+      "type": "string"
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

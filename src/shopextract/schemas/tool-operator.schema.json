@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShopExtract tool-operator",
+  "x-contract-version": "native-unversioned",
+  "type": "object",
+  "properties": {
+    "allowed_origins": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "allowed_tools": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "discover",
+          "extract",
+          "match",
+          "changes",
+          "evidence",
+          "job_status",
+          "job_result",
+          "job_cancel"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "captures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "alias": {
+            "type": "string",
+            "minLength": 1
+          },
+          "db_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "snapshot_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "supplier": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "alias",
+          "db_path",
+          "snapshot_id",
+          "supplier"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "active_jobs": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "default": 1,
+          "const": 1
+        },
+        "queued_jobs": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 8,
+          "default": 8
+        },
+        "terminal_jobs": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 32,
+          "default": 32
+        },
+        "retention_seconds": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 600,
+          "default": 600
+        },
+        "timeout_seconds": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 30,
+          "default": 30
+        },
+        "max_timeout_seconds": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 120,
+          "default": 120
+        },
+        "item_count": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 1000,
+          "default": 1000
+        },
+        "input_bytes": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 262144,
+          "default": 262144
+        },
+        "graph_bytes": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 4194304,
+          "default": 4194304
+        },
+        "session_graph_bytes": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 33554432,
+          "default": 33554432
+        },
+        "evidence_bytes": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 1048576,
+          "default": 1048576
+        },
+        "response_bytes": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 2097152,
+          "default": 2097152
+        },
+        "requests": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 20,
+          "default": 20
+        },
+        "redirects": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 5,
+          "default": 5
+        },
+        "resolver_seconds": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 2,
+          "default": 2
+        },
+        "cleanup_seconds": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "default": 1
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

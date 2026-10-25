@@ -89,13 +89,25 @@ async def snapshot(
     *,
     db_path: str = _DEFAULT_DB_PATH,
     max_urls: int = 200,
+    retain_limit: int | None = None,
 ) -> int:
     """Take a snapshot of a store's products and save to SQLite.
 
     Stores nullable completeness, catalog scope, budget and incompleteness reasons.
     Returns the number of observed products stored, not a full catalog guarantee.
     """
+    if retain_limit is not None and (type(retain_limit) is not int or retain_limit < 1):
+        raise ValueError('retain_limit must be positive')
     result = await extract(url, max_urls=max_urls)
+    if retain_limit is not None and result.errors:
+        if not result.products:
+            raise ValueError('No usable products from failed source')
+        result.catalog_complete = False
+        result.incompleteness_reasons = list(result.incompleteness_reasons) + ['source_errors']
+    if retain_limit is not None and len(result.products) > retain_limit:
+        result.products = result.products[:retain_limit]
+        result.catalog_complete = False
+        result.incompleteness_reasons = list(result.incompleteness_reasons) + ['product_budget_exhausted']
     domain = supplier_scope(_domain_from_url(url))
     scope = result.observation_scope or catalog_scope(url, result.platform)
     reasons = list(result.incompleteness_reasons)

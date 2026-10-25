@@ -1,0 +1,28 @@
+{
+  "provenance": "planned_actual_public_read_only",
+  "targets": [
+    {
+      "name": "botiga-pagination",
+      "url": "https://demo.athemes.com/botiga",
+      "per_page": 1,
+      "requests": 3,
+      "categories": 3
+    },
+    {
+      "name": "b2b-smoke",
+      "url": "https://demo.woocommerce-b2b.com/sales-agents",
+      "per_page": 3,
+      "requests": 4,
+      "categories": 12
+    }
+  ],
+  "seconds_per_run": 15,
+  "outer_seconds_per_run": 19,
+  "response_bytes": 262144,
+  "retained_bytes": 1048576,
+  "workers": 1,
+  "retries": 0,
+  "stop_on_access_denial": true,
+  "no_product_membership_or_shopify_mapping_claim": true,
+  "expected": "Counts agree with receipts; actual parent edges only; strict codec round trip. Expansion only after saved passing small observation."
+}

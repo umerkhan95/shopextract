@@ -1,0 +1,16 @@
+{
+  "scope": "Independent design follow-up; no runtime execution",
+  "schema_combinations_checked": 108,
+  "schema_mismatches": [],
+  "workflow_links_checked": 69,
+  "source_digest_mismatches": [],
+  "remaining_collision": {
+    "source": "src/shopextract/tools/contracts.py",
+    "name": "validate",
+    "actual": "workflow P2 validate/images/duplicates",
+    "required": "composed/implementation helper P5 tools request-schema validation"
+  },
+  "bootstrap_cases_manually_reviewed": 15,
+  "runtime_cases_executed": 0,
+  "token_counters": "unavailable"
+}

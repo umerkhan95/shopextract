@@ -1,0 +1,62 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+......................F.....F................FF.......F..........F.      [100%]
+=================================== FAILURES ===================================
+_________________ test_six_extract_real_wire_parsers[shopify] __________________
+tests/test_cli_categories_mechanisms.py:63: in test_six_extract_real_wire_parsers
+    assert result.exit_code==(3 if platform==Platform.GENERIC else 0),(platform,result.output,result.exception,requests)
+E   AssertionError: (<Platform.SHOPIFY: 'shopify'>, '{"schema_version":"1.0","ok":false,"data":{"products":[{"schema_version":1,"product":...yable":false},"completeness":"partial"}
+E     ', SystemExit(3), ['https://supplier.test/shop/products.json?limit=1&page=1'])
+E   assert 3 == 0
+E    +  where 3 = <Result SystemExit(3)>.exit_code
+____________________ test_survivors_order_and_source_states ____________________
+tests/test_cli_categories_mechanisms.py:82: in test_survivors_order_and_source_states
+    assert result.exit_code==0,result.output
+E   AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Invalid category config, scope, record or native limits; consult category schema.", "retryable": false}, "completeness": "unavailable"}
+E     
+E   assert 2 == 0
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+______________ test_tree_native_outcomes_and_codec_reload[cycle] _______________
+tests/test_cli_categories_mechanisms.py:175: in test_tree_native_outcomes_and_codec_reload
+    assert result.exit_code==expected,(case,result.output,result.exception)
+E   AssertionError: ('cycle', '{"schema_version":"1.0","ok":true,"data":{"output":"/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/...e","reasons":[],"node_count":2,"confirmed_empty":false},"warnings":[],"error":null,"completeness":"complete"}
+E     ', None)
+E   assert 0 == 3
+E    +  where 0 = <Result okay>.exit_code
+_____________ test_tree_native_outcomes_and_codec_reload[partial] ______________
+tests/test_cli_categories_mechanisms.py:175: in test_tree_native_outcomes_and_codec_reload
+    assert result.exit_code==expected,(case,result.output,result.exception)
+E   AssertionError: ('partial', '{"schema_version":"1.0","ok":true,"data":{"output":"/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000g...e","reasons":[],"node_count":1,"confirmed_empty":false},"warnings":[],"error":null,"completeness":"complete"}
+E     ', None)
+E   assert 0 == 3
+E    +  where 0 = <Result okay>.exit_code
+_________________ test_export_category_format_matrix[parquet] __________________
+tests/test_cli_categories_mechanisms.py:231: in test_export_category_format_matrix
+    assert fmt=='parquet' and body(result)['error']['code']=='E_DEPENDENCY' and not out.exists() and not cat.exists()
+E   AssertionError: assert ('parquet' == 'parquet'
+E     
+E       parquet and 'E_INTERNAL' == 'E_DEPENDENCY'
+E     
+E     - E_DEPENDENCY
+E     + E_INTERNAL)
+___________________ test_category_to_p3_snapshot_projection ____________________
+tests/test_cli_categories_mechanisms.py:370: in test_category_to_p3_snapshot_projection
+    assert result.exit_code==0,result.output
+E   AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Invalid command arguments; consult command --help.", "retryable": false}, "completeness": "unavailable"}
+E     
+E   assert 2 == 0
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+=============================== warnings summary ===============================
+tests/test_cli_categories_mechanisms.py::test_native_mapping_roundtrip_and_ambiguity
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli_categories_mechanisms.py::test_six_extract_real_wire_parsers[shopify]
+FAILED tests/test_cli_categories_mechanisms.py::test_survivors_order_and_source_states
+FAILED tests/test_cli_categories_mechanisms.py::test_tree_native_outcomes_and_codec_reload[cycle]
+FAILED tests/test_cli_categories_mechanisms.py::test_tree_native_outcomes_and_codec_reload[partial]
+FAILED tests/test_cli_categories_mechanisms.py::test_export_category_format_matrix[parquet]
+FAILED tests/test_cli_categories_mechanisms.py::test_category_to_p3_snapshot_projection
+6 failed, 61 passed, 1 warning in 16.60s

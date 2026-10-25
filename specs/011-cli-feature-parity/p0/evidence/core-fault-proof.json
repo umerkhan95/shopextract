@@ -1,0 +1,10 @@
+{
+  "mechanism": "actual JSON object_pairs_hook duplicate rejection",
+  "mutation": "scoped _reject_pairs=dict; restored by patch context",
+  "baseline_exit": 2,
+  "mutated_exit": 0,
+  "critical_assertion_detected_fault": true,
+  "restored_exit": 2,
+  "invocations": 3,
+  "network_models": false
+}

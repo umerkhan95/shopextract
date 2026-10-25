@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShopExtract matching-evaluation",
+  "x-contract-version": "1.0",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "a": {
+        "type": "object"
+      },
+      "b": {
+        "type": "object"
+      },
+      "label": {
+        "enum": [
+          "exact",
+          "variant",
+          "bundle",
+          "substitute",
+          "unmatched",
+          "uncertain"
+        ]
+      }
+    },
+    "required": [
+      "id",
+      "a",
+      "b",
+      "label"
+    ],
+    "additionalProperties": false
+  },
+  "maxItems": 1000
+}

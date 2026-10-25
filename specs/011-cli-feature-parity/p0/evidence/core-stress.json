@@ -1,0 +1,86 @@
+{
+  "seed": 11025,
+  "limits": {
+    "cases": 12,
+    "max_input_bytes": 65537,
+    "per_run_seconds": 30,
+    "total_seconds": 120,
+    "workers": 1
+  },
+  "cases": [
+    {
+      "case": "boolean-version",
+      "input_bytes": 23,
+      "exit": 2,
+      "passed": true
+    },
+    {
+      "case": "duplicate-key",
+      "input_bytes": 39,
+      "exit": 2,
+      "passed": true
+    },
+    {
+      "case": "unknown-key",
+      "input_bytes": 32,
+      "exit": 2,
+      "passed": true
+    },
+    {
+      "case": "nonfinite",
+      "input_bytes": 38,
+      "exit": 2,
+      "passed": true
+    },
+    {
+      "case": "invalid-utf8",
+      "input_bytes": 1,
+      "exit": 2,
+      "passed": true
+    },
+    {
+      "case": "cap-below",
+      "input_bytes": 65535,
+      "exit": 0,
+      "passed": true
+    },
+    {
+      "case": "cap-at",
+      "input_bytes": 65536,
+      "exit": 0,
+      "passed": true
+    },
+    {
+      "case": "cap-above",
+      "input_bytes": 65537,
+      "exit": 2,
+      "passed": true
+    },
+    {
+      "case": "file-over-env",
+      "input_bytes": 43,
+      "exit": 0,
+      "passed": true
+    },
+    {
+      "case": "invalid-overridden-env",
+      "input_bytes": 20,
+      "exit": 2,
+      "passed": true
+    },
+    {
+      "case": "invalid-format-env-json",
+      "input_bytes": 20,
+      "exit": 2,
+      "passed": true
+    },
+    {
+      "case": "bootstrap-no-config",
+      "input_bytes": 7,
+      "exit": 0,
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "provenance": "synthetic controlled CLI/native boundary; actual production config/bootstrap/emitter"
+}

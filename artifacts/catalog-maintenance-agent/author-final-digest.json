@@ -1,0 +1,92 @@
+{
+  "state": "ready_for_independent_final_review",
+  "tests": {
+    "distinct_collected": 923,
+    "prefix_confirmed": 783,
+    "suffix_confirmed": 140,
+    "suffix_outer_seconds": 64.7776064619975,
+    "original_whole_suite": "timed_out_at240.032077s; retained",
+    "repeated_completed_nodes": 0
+  },
+  "stress": {
+    "new_passes": 47,
+    "reused_proofs": 12,
+    "charged_seconds": 172.42722933698747,
+    "limit_seconds": 180,
+    "max_rss_mib": 170.49
+  },
+  "os_death": {
+    "separate_cases": 2,
+    "seconds": 5.798033333005151
+  },
+  "live": {
+    "state": "passed",
+    "provenance": "actual-live",
+    "physical_requests_phase1": [
+      {
+        "method": "GET",
+        "url": "https://www.blissworld.com/",
+        "started_at": "2026-10-16T19:06:29.933677+00:00",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "https://www.blissworld.com/products.json?limit=2&page=1",
+        "started_at": "2026-10-16T19:06:33.124342+00:00",
+        "status": 200
+      }
+    ],
+    "physical_requests_phase2": [
+      {
+        "method": "GET",
+        "url": "https://www.blissworld.com/",
+        "started_at": "2026-10-16T19:06:39.939119+00:00"
+      },
+      {
+        "method": "GET",
+        "url": "https://www.blissworld.com/products.json?limit=2&page=1",
+        "started_at": "2026-10-16T19:06:42.681565+00:00"
+      }
+    ],
+    "physical_requests_total": 4,
+    "report_state": "partial",
+    "report_stop_reason": "source_partial",
+    "findings": 2,
+    "statuses": [
+      "unchanged",
+      "unchanged"
+    ],
+    "restart_extra_requests": 0,
+    "llm_tokens": 0,
+    "seconds": 18.440964378998615,
+    "commercial_specification_change": "inconclusive unless actually observed; no induced live change"
+  },
+  "ci": {
+    "existing_nodes": 817,
+    "maintenance_nodes": 106,
+    "maintenance_files": [
+      "tests/test_maintenance_acceptance.py",
+      "tests/test_maintenance_advisor.py",
+      "tests/test_maintenance_remaining_edges.py",
+      "tests/test_maintenance_review_repairs.py",
+      "tests/test_maintenance_store.py",
+      "tests/test_maintenance_stress_prerequisites.py",
+      "tests/test_maintenance_workflow.py"
+    ],
+    "disjoint": true,
+    "complete": true,
+    "sequential_same_matrix_job": true,
+    "per_partition_seconds": 240,
+    "aggregate_max_seconds": 480,
+    "previous_aggregate_seconds": 240
+  },
+  "coverage": "specs/005-catalog-maintenance-agent/coverage.md",
+  "limitations": [
+    "wheel unavailable: build/hatchling missing",
+    "actual commercial specification change unobserved",
+    "injected advisor contract has no concrete provider SDK",
+    "actual session counters unavailable"
+  ],
+  "original20sourceentries_unchanged": true,
+  "git_commits_pushes_external_issue_writes": false
+}

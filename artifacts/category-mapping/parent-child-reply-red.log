@@ -1,0 +1,15 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________ test_c24_encode_and_checkpoint_failure_atomic_retry[encode] __________
+tests/test_category_review_repairs.py:176: in test_c24_encode_and_checkpoint_failure_atomic_retry
+    assert len(sources) == 1 and sources[0]['state'] != 'committed'
+E   AssertionError: assert (1 == 1 and 'committed' != 'committed')
+E    +  where 1 = len([{'job': '086143c31f4e429382bd55d6da24115c', 'id': 'extract:00fab3f56110b70ab3110d39536e52c1eb7216e000f1e19e46fb507bdfe7c184', 'ordinal': 0, 'kind': 'extract', ...}])
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_category_review_repairs.py::test_c24_encode_and_checkpoint_failure_atomic_retry[encode]
+1 failed in 2.30s

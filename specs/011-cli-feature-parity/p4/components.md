@@ -1,0 +1,21 @@
+# P4 concrete reusable components
+
+_cli_categories owns grammar/strict option/runtime decoding, native error translation, same-scope checks, category response/artifact byte checks. It never parses native category business fields itself: native normalize/extract/map/validation/bind_product/portable/policy functions own facts/mappings/digests. Native woo_tree fetch/link/codecs own security, graph projection, provenance, scopes and availability. Native private _codec is an existing package-internal strict wire helper, reused without introducing public constructors.
+
+_cli_data owns bounded read/tree/record caps; add categorized_from_value decoder here (returns native values, strict key precedence/projection equality), shared by category commands and load_catalog (analysis/monitor). products_from_value remains portable-only. CatalogInput adds categorized_records preserving exact original category records; product projection derived from validated native values.
+
+_cli_analysis export_artifact extends existing concrete stage/backup/replace/recover lifecycle for optional third category file. All inputs/outputs alias-checked before exporters, category presence requires explicit companion path, native evidence bundle prevalidation preserved. No second publisher/framework. _cli_monitor check_destination reused by category commands, atomic_json reused after compact byte-bound validation. Output compact encoding uses existing emit_response contract; measured actual encoding must match emitted bytes (current default separators measured if unchanged emitter).
+
+_cli_core owns canonical machine/error paths; register full category group tuples/parent tuples, no root-scanner changes. cli.py registers lazy command declarations before module entrypoint. ExecutionPolicy()/run_operation disables ambient inference/browser for network work. Scope/URL/basepath before calls; timeout hard async boundary plus tree native limits. Runtime policy is separate input from category options, no advisor injection.
+
+Dependencies flow CLI->shared transport/codecs->native category/business libraries, not native->CLI. No extracted framework or speculative consumer. CLI category output1MiB narrower than native tree8MiB, strict native config256KiB retained. Resource checks precede output replacement. Fixtures preserve GuardedTransport and only substitute wire transport/resolver/clock; independent G2 proof saved.
+
+Runtime metadata: shared _cli_data.category_policy_from_value validates native runtime codec/digest/scope independent of options digest, CatalogInput retains category_policy; publisher preserves this in category companion envelope. Category record transforms reject policy-bearing inputs to avoid silent/stale policy discard. This is concrete SC05b policy-review->export consumer, no generic metadata framework.
+
+Reuse P1 storefront_options for native extraction config; no duplicate auth/protocol validation. P4 supplies category scope platform plus native max/enrich/restore/API config only; no LLM knobs.
+
+Diagnosed repairs: one narrow native Woo category_path projection type guard supports original C11 states, no category adapter rewrite; _cli_analysis translates native Parquet NotImplementedError into E_OPERATION without flattening; _cli_data.load_products dispatches categorized values via same strict decoder then projects products for P3. Existing products_from_value stays portable-only. Graph integrity stays native issues independent of traversal outcome.
+
+Final narrow repair uses native Normalizer.record accepted=False for non-list Woo collection, not _record_items accepted fallback. Categorized Parquet alone adds concrete evidence JSON top-level structured-column projection, reuses encode_value and native to_parquet; preserves full native category records in required staged companion, reports codec/columns. No dummy/null substitution or native exporter rewrite.
+
+Coverage refinements: CLI owns URL store-scope precondition independently of native endpoint construction; bounded safe path decoding avoids normalization escape. Existing stage publisher owns actual payload/sidecar/category byte cap before backup/replace. Stress driver owns cleanup of orphaned process group on failure. These are concrete missing invariant checks, no domain algorithm duplication.

@@ -1,0 +1,460 @@
+{
+  "schema_version": 1,
+  "state": "archived_aggregate_limited_attempt",
+  "original_reason": "invocation_timeout",
+  "corrected_reason": "aggregate_timeout",
+  "seconds": 120.019,
+  "invocations_started": 42,
+  "passed_nodes": [
+    "tests/test_category_skeleton.py::test_c01_normalize_preserves_custom_label",
+    "tests/test_category_woocommerce.py::test_c02_siblings_permutations_and_duplicate_source_support",
+    "tests/test_category_bigcommerce.py::test_c03_reviewed_query_validates_against_saved_schema",
+    "tests/test_category_bigcommerce.py::test_c03_native_mode_default_and_partial_error_keeps_siblings",
+    "tests/test_category_bigcommerce.py::test_c03_rejection_is_unavailable_without_retry[200-body0]",
+    "tests/test_category_bigcommerce.py::test_c03_rejection_is_unavailable_without_retry[403-body1]",
+    "tests/test_category_bigcommerce.py::test_c04_missing_completion_or_next_page_retains_only_bounded_memberships[None-unknown]",
+    "tests/test_category_bigcommerce.py::test_c04_missing_completion_or_next_page_retains_only_bounded_memberships[page_info1-unknown]",
+    "tests/test_category_bigcommerce.py::test_c04_missing_completion_or_next_page_retains_only_bounded_memberships[page_info2-partial]",
+    "tests/test_category_shopware.py::test_c07_four_memberships_nine_index_ids_never_path",
+    "tests/test_category_magento.py::test_magento_native_query_opt_in_and_default_response_compatibility",
+    "tests/test_category_magento.py::test_magento_nonzero_product_error_localization_retains_valid_siblings",
+    "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[uid]",
+    "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[name]",
+    "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[categories]",
+    "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[global]",
+    "tests/test_category_generic.py::test_c07_jsonld_memberships_and_opaque_delimiters",
+    "tests/test_category_generic.py::test_c08_feed_real_parser_retains_separate_namespaces[xml-<rss xmlns:g=\"http://base.google.com/ns/1.0\"><channel><item><g:id>D1</g:id><title>Dress</title><g:google_product_category>2271</g:google_product_category><g:product_type>Merchant &gt; Dresses</g:product_type></item></channel></rss>]",
+    "tests/test_category_generic.py::test_c08_feed_real_parser_retains_separate_namespaces[csv-id,title,google_product_category,product_type\\nD1,Dress,2271,\"Merchant > Dresses\"\\n]",
+    "tests/test_category_generic.py::test_c08_declared_google_path_and_one_xml_decode",
+    "tests/test_category_generic.py::test_c09_category_code_context_and_thing",
+    "tests/test_category_generic.py::test_c10_schema_raw_states[value0-missing]",
+    "tests/test_category_generic.py::test_c10_schema_raw_states[None-null]",
+    "tests/test_category_generic.py::test_c10_schema_raw_states[-empty]",
+    "tests/test_category_generic.py::test_c10_schema_raw_states[value3-empty]",
+    "tests/test_category_generic.py::test_c10_schema_raw_states[value4-malformed]",
+    "tests/test_category_woocommerce.py::test_c10_source_states[fields0-missing-unknown]",
+    "tests/test_category_woocommerce.py::test_c10_source_states[fields1-null-unknown]",
+    "tests/test_category_woocommerce.py::test_c10_source_states[fields2-empty-complete]",
+    "tests/test_category_woocommerce.py::test_c10_source_states[fields3-malformed-unknown]",
+    "tests/test_category_woocommerce.py::test_c10_source_states[fields4-malformed-unknown]",
+    "tests/test_category_skeleton.py::test_c11_source_facets_keep_id_and_label_support_separate",
+    "tests/test_category_skeleton.py::test_c11_label_rule_cannot_borrow_supported_id",
+    "tests/test_category_generic.py::test_c11_mutation_retention_and_llm_do_not_gain_support",
+    "tests/test_category_woocommerce.py::test_c12_store_basepath_catalog_and_assignment_context",
+    "tests/test_category_shopware.py::test_c13_actual_parent_endpoints_only_and_cycle_bounded",
+    "tests/test_category_review_repairs.py::test_c13_bound_endpoint_mismatch_rejected[parent_id]",
+    "tests/test_category_review_repairs.py::test_c13_bound_endpoint_mismatch_rejected[child_id]",
+    "tests/test_category_review_repairs.py::test_c13_orphan_retains_declared_edge_without_root_claim",
+    "tests/test_category_shared_contract.py::test_c14_three_native_sources_share_one_exact_mapper",
+    "tests/test_category_skeleton.py::test_c15_overlapping_targets_remain_ambiguous"
+  ],
+  "all_nodes": [
+    "tests/test_category_skeleton.py::test_c01_normalize_preserves_custom_label",
+    "tests/test_category_woocommerce.py::test_c02_siblings_permutations_and_duplicate_source_support",
+    "tests/test_category_bigcommerce.py::test_c03_reviewed_query_validates_against_saved_schema",
+    "tests/test_category_bigcommerce.py::test_c03_native_mode_default_and_partial_error_keeps_siblings",
+    "tests/test_category_bigcommerce.py::test_c03_rejection_is_unavailable_without_retry[200-body0]",
+    "tests/test_category_bigcommerce.py::test_c03_rejection_is_unavailable_without_retry[403-body1]",
+    "tests/test_category_bigcommerce.py::test_c04_missing_completion_or_next_page_retains_only_bounded_memberships[None-unknown]",
+    "tests/test_category_bigcommerce.py::test_c04_missing_completion_or_next_page_retains_only_bounded_memberships[page_info1-unknown]",
+    "tests/test_category_bigcommerce.py::test_c04_missing_completion_or_next_page_retains_only_bounded_memberships[page_info2-partial]",
+    "tests/test_category_shopware.py::test_c07_four_memberships_nine_index_ids_never_path",
+    "tests/test_category_magento.py::test_magento_native_query_opt_in_and_default_response_compatibility",
+    "tests/test_category_magento.py::test_magento_nonzero_product_error_localization_retains_valid_siblings",
+    "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[uid]",
+    "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[name]",
+    "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[categories]",
+    "tests/test_category_review_repairs.py::test_c06_c11_magento_nonnull_failed_facets_cannot_map[global]",
+    "tests/test_category_generic.py::test_c07_jsonld_memberships_and_opaque_delimiters",
+    "tests/test_category_generic.py::test_c08_feed_real_parser_retains_separate_namespaces[xml-<rss xmlns:g=\"http://base.google.com/ns/1.0\"><channel><item><g:id>D1</g:id><title>Dress</title><g:google_product_category>2271</g:google_product_category><g:product_type>Merchant &gt; Dresses</g:product_type></item></channel></rss>]",
+    "tests/test_category_generic.py::test_c08_feed_real_parser_retains_separate_namespaces[csv-id,title,google_product_category,product_type\\nD1,Dress,2271,\"Merchant > Dresses\"\\n]",
+    "tests/test_category_generic.py::test_c08_declared_google_path_and_one_xml_decode",
+    "tests/test_category_generic.py::test_c09_category_code_context_and_thing",
+    "tests/test_category_generic.py::test_c10_schema_raw_states[value0-missing]",
+    "tests/test_category_generic.py::test_c10_schema_raw_states[None-null]",
+    "tests/test_category_generic.py::test_c10_schema_raw_states[-empty]",
+    "tests/test_category_generic.py::test_c10_schema_raw_states[value3-empty]",
+    "tests/test_category_generic.py::test_c10_schema_raw_states[value4-malformed]",
+    "tests/test_category_woocommerce.py::test_c10_source_states[fields0-missing-unknown]",
+    "tests/test_category_woocommerce.py::test_c10_source_states[fields1-null-unknown]",
+    "tests/test_category_woocommerce.py::test_c10_source_states[fields2-empty-complete]",
+    "tests/test_category_woocommerce.py::test_c10_source_states[fields3-malformed-unknown]",
+    "tests/test_category_woocommerce.py::test_c10_source_states[fields4-malformed-unknown]",
+    "tests/test_category_skeleton.py::test_c11_source_facets_keep_id_and_label_support_separate",
+    "tests/test_category_skeleton.py::test_c11_label_rule_cannot_borrow_supported_id",
+    "tests/test_category_generic.py::test_c11_mutation_retention_and_llm_do_not_gain_support",
+    "tests/test_category_woocommerce.py::test_c12_store_basepath_catalog_and_assignment_context",
+    "tests/test_category_shopware.py::test_c13_actual_parent_endpoints_only_and_cycle_bounded",
+    "tests/test_category_review_repairs.py::test_c13_bound_endpoint_mismatch_rejected[parent_id]",
+    "tests/test_category_review_repairs.py::test_c13_bound_endpoint_mismatch_rejected[child_id]",
+    "tests/test_category_review_repairs.py::test_c13_orphan_retains_declared_edge_without_root_claim",
+    "tests/test_category_shared_contract.py::test_c14_three_native_sources_share_one_exact_mapper",
+    "tests/test_category_skeleton.py::test_c15_overlapping_targets_remain_ambiguous",
+    "tests/test_category_skeleton.py::test_c16_invalid_target_rejected",
+    "tests/test_category_shared_contract.py::test_c16_config_entry_boundary_is_explicit[999]",
+    "tests/test_category_shared_contract.py::test_c16_config_entry_boundary_is_explicit[1000]",
+    "tests/test_category_shared_contract.py::test_c16_config_entry_boundary_is_explicit[1001]",
+    "tests/test_category_shared_contract.py::test_c17_real_companion_roundtrip_retains_source_and_derived_history",
+    "tests/test_category_shared_contract.py::test_c18_nested_mutation_cannot_be_reencoded[evidence]",
+    "tests/test_category_shared_contract.py::test_c18_nested_mutation_cannot_be_reencoded[history]",
+    "tests/test_category_shared_contract.py::test_c18_nested_mutation_cannot_be_reencoded[product]",
+    "tests/test_category_skeleton.py::test_c19_real_source_cache_reuse_and_rule_change",
+    "tests/test_category_skeleton.py::test_c19_store_creation_persists_canonical_policy",
+    "tests/test_category_skeleton.py::test_c19_resume_policy_mismatch_never_retroactively_enables_job[legacy]",
+    "tests/test_category_skeleton.py::test_c19_resume_policy_mismatch_never_retroactively_enables_job[different]",
+    "tests/test_category_shared_contract.py::test_c19_corrupt_companion_cache_is_miss_not_legacy_fallback",
+    "tests/test_category_review_repairs.py::test_c20_real_category_engine_preserves_matcher_safeguards[ram]",
+    "tests/test_category_review_repairs.py::test_c20_real_category_engine_preserves_matcher_safeguards[boot]",
+    "tests/test_category_review_repairs.py::test_c20_real_category_engine_preserves_matcher_safeguards[identity]",
+    "tests/test_category_review_repairs.py::test_c20_real_category_engine_preserves_matcher_safeguards[binding_conflict]",
+    "tests/test_category_bigcommerce.py::test_c21_guard_uses_producer_constants_only_in_enabled_mode",
+    "tests/test_category_shared_contract.py::test_c22_companion_bytes_below_at_above[262143]",
+    "tests/test_category_shared_contract.py::test_c22_companion_bytes_below_at_above[262144]",
+    "tests/test_category_shared_contract.py::test_c22_companion_bytes_below_at_above[262145]",
+    "tests/test_category_shared_contract.py::test_c22_native_member_boundary_preserves_supported_terms[99]",
+    "tests/test_category_shared_contract.py::test_c22_native_member_boundary_preserves_supported_terms[100]",
+    "tests/test_category_shared_contract.py::test_c22_native_member_boundary_preserves_supported_terms[101]",
+    "tests/test_category_shopware.py::test_c22_shared_relation_budget_and_zero[limits0]",
+    "tests/test_category_shopware.py::test_c22_shared_relation_budget_and_zero[limits1]",
+    "tests/test_category_shopware.py::test_c22_shared_relation_budget_and_zero[limits2]",
+    "tests/test_category_review_repairs.py::test_c13_c22_explicit_depth_boundary[7]",
+    "tests/test_category_review_repairs.py::test_c13_c22_explicit_depth_boundary[8]",
+    "tests/test_category_review_repairs.py::test_c13_c22_explicit_depth_boundary[9]",
+    "tests/test_category_generic.py::test_c10_opengraph_repeats_retained_unknown_and_default_unchanged",
+    "tests/test_category_shopware.py::test_c24_legacy_shopware_category_projection_unchanged",
+    "tests/test_category_review_repairs.py::test_c24_encode_and_checkpoint_failure_atomic_retry[encode]",
+    "tests/test_category_review_repairs.py::test_c24_encode_and_checkpoint_failure_atomic_retry[checkpoint]"
+  ],
+  "remaining_nodes": [
+    "tests/test_category_skeleton.py::test_c16_invalid_target_rejected",
+    "tests/test_category_shared_contract.py::test_c16_config_entry_boundary_is_explicit[999]",
+    "tests/test_category_shared_contract.py::test_c16_config_entry_boundary_is_explicit[1000]",
+    "tests/test_category_shared_contract.py::test_c16_config_entry_boundary_is_explicit[1001]",
+    "tests/test_category_shared_contract.py::test_c17_real_companion_roundtrip_retains_source_and_derived_history",
+    "tests/test_category_shared_contract.py::test_c18_nested_mutation_cannot_be_reencoded[evidence]",
+    "tests/test_category_shared_contract.py::test_c18_nested_mutation_cannot_be_reencoded[history]",
+    "tests/test_category_shared_contract.py::test_c18_nested_mutation_cannot_be_reencoded[product]",
+    "tests/test_category_skeleton.py::test_c19_real_source_cache_reuse_and_rule_change",
+    "tests/test_category_skeleton.py::test_c19_store_creation_persists_canonical_policy",
+    "tests/test_category_skeleton.py::test_c19_resume_policy_mismatch_never_retroactively_enables_job[legacy]",
+    "tests/test_category_skeleton.py::test_c19_resume_policy_mismatch_never_retroactively_enables_job[different]",
+    "tests/test_category_shared_contract.py::test_c19_corrupt_companion_cache_is_miss_not_legacy_fallback",
+    "tests/test_category_review_repairs.py::test_c20_real_category_engine_preserves_matcher_safeguards[ram]",
+    "tests/test_category_review_repairs.py::test_c20_real_category_engine_preserves_matcher_safeguards[boot]",
+    "tests/test_category_review_repairs.py::test_c20_real_category_engine_preserves_matcher_safeguards[identity]",
+    "tests/test_category_review_repairs.py::test_c20_real_category_engine_preserves_matcher_safeguards[binding_conflict]",
+    "tests/test_category_bigcommerce.py::test_c21_guard_uses_producer_constants_only_in_enabled_mode",
+    "tests/test_category_shared_contract.py::test_c22_companion_bytes_below_at_above[262143]",
+    "tests/test_category_shared_contract.py::test_c22_companion_bytes_below_at_above[262144]",
+    "tests/test_category_shared_contract.py::test_c22_companion_bytes_below_at_above[262145]",
+    "tests/test_category_shared_contract.py::test_c22_native_member_boundary_preserves_supported_terms[99]",
+    "tests/test_category_shared_contract.py::test_c22_native_member_boundary_preserves_supported_terms[100]",
+    "tests/test_category_shared_contract.py::test_c22_native_member_boundary_preserves_supported_terms[101]",
+    "tests/test_category_shopware.py::test_c22_shared_relation_budget_and_zero[limits0]",
+    "tests/test_category_shopware.py::test_c22_shared_relation_budget_and_zero[limits1]",
+    "tests/test_category_shopware.py::test_c22_shared_relation_budget_and_zero[limits2]",
+    "tests/test_category_review_repairs.py::test_c13_c22_explicit_depth_boundary[7]",
+    "tests/test_category_review_repairs.py::test_c13_c22_explicit_depth_boundary[8]",
+    "tests/test_category_review_repairs.py::test_c13_c22_explicit_depth_boundary[9]",
+    "tests/test_category_generic.py::test_c10_opengraph_repeats_retained_unknown_and_default_unchanged",
+    "tests/test_category_shopware.py::test_c24_legacy_shopware_category_projection_unchanged",
+    "tests/test_category_review_repairs.py::test_c24_encode_and_checkpoint_failure_atomic_retry[encode]",
+    "tests/test_category_review_repairs.py::test_c24_encode_and_checkpoint_failure_atomic_retry[checkpoint]"
+  ],
+  "cumulative_invocations_max": 76,
+  "archive_files": {
+    "mechanism-status.json": {
+      "sha256": "96500e0b3640f45b8d1e4ae22e080e8f38555882b70066b2ad3170bba25298f1",
+      "bytes": 11578
+    },
+    "mechanism-plan.json": {
+      "sha256": "368a1d3fe627d8aff33d82782836c56a7091cd89cc8c9fbcdf9e5e3fe6bb7b01",
+      "bytes": 4830
+    },
+    "mechanism-collection.log": {
+      "sha256": "7a0d03e08638212e32cd35a766bd692f35b27bb2208432ac31bc7ff43539f6be",
+      "bytes": 7483
+    },
+    "source-checkpoint.json": {
+      "sha256": "fd416592c0127e2d6361ed323d746abb34806b8d1bcd482e3fc6d95c409f3d35",
+      "bytes": 5698
+    }
+  },
+  "original_logs_unchanged": {
+    "artifacts/category-mapping/mechanism-node-000.log": {
+      "sha256": "4dbec4b9b1234fb6ee24b9541c5d57bc894b5d44132114f09f1d6a6e1cd54f7f",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-001.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-002.log": {
+      "sha256": "38de66ad8cc03a488f8186df737c1432f5cf7acd82f195bcbe8d9bdc71e1d878",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-003.log": {
+      "sha256": "d4c6919dc50cbbc48f25fd67b904885ada4bc62b119508dc0b59aad91d4feae6",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-004.log": {
+      "sha256": "e3084625ae01ddb166fe60111bcb06859d09fb5c69a33b836b2991f2769d6a2f",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-005.log": {
+      "sha256": "0f4eb0aa4af04187602963cb994428da4f50c7d7fa26b4ffc5a04c75f15354fc",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-006.log": {
+      "sha256": "fb5d7bb7d0b82e968665721c212253f326212450f667e54f675c9dbeb3565b92",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-007.log": {
+      "sha256": "14e46ba71d22547857bea4083d7eff31a8b31176eb4367c0815766e9ced1dcb1",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-008.log": {
+      "sha256": "36280698bc55483cf9848eee957c3ffefedcf5e65d7b46f5fac7b860b757ad00",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-009.log": {
+      "sha256": "ebbf4fc8d8579dcbd89a59cfdb8f90cbf99917b1ec20255eda3f7c5fa4b2014f",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-010.log": {
+      "sha256": "ebbf4fc8d8579dcbd89a59cfdb8f90cbf99917b1ec20255eda3f7c5fa4b2014f",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-011.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-012.log": {
+      "sha256": "6b08a75833188e66bd13416e0515ccdc23b5f3f1eb1cf6e6c4ea699cb90ad253",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-013.log": {
+      "sha256": "6b08a75833188e66bd13416e0515ccdc23b5f3f1eb1cf6e6c4ea699cb90ad253",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-014.log": {
+      "sha256": "ebbf4fc8d8579dcbd89a59cfdb8f90cbf99917b1ec20255eda3f7c5fa4b2014f",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-015.log": {
+      "sha256": "ebbf4fc8d8579dcbd89a59cfdb8f90cbf99917b1ec20255eda3f7c5fa4b2014f",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-016.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-017.log": {
+      "sha256": "4dbec4b9b1234fb6ee24b9541c5d57bc894b5d44132114f09f1d6a6e1cd54f7f",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-018.log": {
+      "sha256": "c6b9fe6ca99c68aa596ac1bfc06b8b5625331c3b37e9b53d81dfab2687fcd2e7",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-019.log": {
+      "sha256": "4dbec4b9b1234fb6ee24b9541c5d57bc894b5d44132114f09f1d6a6e1cd54f7f",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-020.log": {
+      "sha256": "c6b9fe6ca99c68aa596ac1bfc06b8b5625331c3b37e9b53d81dfab2687fcd2e7",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-021.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-022.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-023.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-024.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-025.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-026.log": {
+      "sha256": "38cc69f05f4b388cbac0b2bf6f0a09c6d7ee2f2ff460575edd23224cc870d23d",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-027.log": {
+      "sha256": "38cc69f05f4b388cbac0b2bf6f0a09c6d7ee2f2ff460575edd23224cc870d23d",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-028.log": {
+      "sha256": "38cc69f05f4b388cbac0b2bf6f0a09c6d7ee2f2ff460575edd23224cc870d23d",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-029.log": {
+      "sha256": "38cc69f05f4b388cbac0b2bf6f0a09c6d7ee2f2ff460575edd23224cc870d23d",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-030.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-031.log": {
+      "sha256": "768033c3dff06e3ad3a77346835e408b2ec589b79f37d2b99167216c18ec6963",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-032.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-033.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-034.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-035.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-036.log": {
+      "sha256": "415df36e0d7ac58b9eec8a310b63e94f4b0786c4796abaaa84d6207b5b617d56",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-037.log": {
+      "sha256": "e35eb47ac3c69da7675baf9ab0be72662ce84abe7072e5005b38387e8f432a5f",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-038.log": {
+      "sha256": "ebbf4fc8d8579dcbd89a59cfdb8f90cbf99917b1ec20255eda3f7c5fa4b2014f",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-039.log": {
+      "sha256": "ac8aebfdcaa5f4843f3903c0d603e5d834e1570ca3b3d276180f514aa1abea07",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-040.log": {
+      "sha256": "ebbf4fc8d8579dcbd89a59cfdb8f90cbf99917b1ec20255eda3f7c5fa4b2014f",
+      "bytes": 345
+    },
+    "artifacts/category-mapping/mechanism-node-041.log": {
+      "sha256": "8572c9a9b958dc7e2d758c8dccacbc6dbbb76a6094433a7f15a0adcaf61d4fcd",
+      "bytes": 345
+    }
+  },
+  "source_hashes": {
+    "src/shopextract/__init__.py": "8808e1cbce60945fab3199ee9ff5eefe3795f7610c3a80f5dc1bc0306ebae81a",
+    "src/shopextract/_capture.py": "97c9e18ccb714378a0c2cbdb772eb355c28117ac3bb6954164b3c4a475ae1dc0",
+    "src/shopextract/_detect.py": "fe4d19f4d5ea26ef32dad2dc1d723d5be73e495e032e4c9ae3effa37e7f30bf2",
+    "src/shopextract/_discover.py": "79379e5f16fac68905f2c55f8f4b2a7d66cbe63f0108bc6745c2cbb46c66f70a",
+    "src/shopextract/_evidence.py": "368cad9ae37c289951f1bbeec2562f28f419d2c9f9dd8adf0bf63d8f5427859f",
+    "src/shopextract/_extract.py": "064f98087bbdc42bd8bf276113418d6837c17d5f4a15fdc429d6206ef604aacc",
+    "src/shopextract/_filters.py": "39f0e609476d60cd850364bd142815472a3bdc98b4d07e17bffa60c1f04156bf",
+    "src/shopextract/_models.py": "93e4e4e4a2137daf27931657ff5f0d6724fb307429561d4609fe35067afa3c76",
+    "src/shopextract/_normalization.py": "d989ba3163da04ac7e5ae5c4be8b5101da082fcecb1898d451133ac7efa40672",
+    "src/shopextract/_normalize.py": "a17358cf615b22d2a0a945f256c14ac51d4bee9afe39d4bde7956f973fa1ee35",
+    "src/shopextract/_portable.py": "98ef432e6b51bd61ffec3f734ea3b5531fb90ea1e7eb1893e657a824c0a71320",
+    "src/shopextract/_quality.py": "ce019f2db1c4ef9e43b1d533eca0c27fdc5016b026891eeccd300a9fad0fc3dc",
+    "src/shopextract/_resolution.py": "1c466e922fe4b2e677389ed68b1a5bc924741a5f7164ced672c8177dd5f7d22a",
+    "src/shopextract/_scope.py": "39f2172dcedb70b251db43abe5bf6c2fac06a2fb3a55f0356336f4240413422a",
+    "src/shopextract/analyze/__init__.py": "1b342b49f474e51bd30e9e213ff09a517d2d15620c75476e304eed05a44439c4",
+    "src/shopextract/analyze/competitive.py": "ccec8995f0abab41bdbe3a1b0737b685dc8209bbb45088bda0f5769698fd7bc6",
+    "src/shopextract/analyze/stats.py": "04fcf40a81da58c5902ef30331bdaf0a9cda214cfcdc2075bd09fbe5bfc2c9af",
+    "src/shopextract/categories/__init__.py": "2bba2514122751515f9f2f6230e8a3bc76c50664e5704698beb4ff15ad7d2d94",
+    "src/shopextract/categories/_codec.py": "7076d4fc2db09220d859a50131bc00c6a0804ba2d3294bf6d17a1960754fb081",
+    "src/shopextract/categories/adapters/__init__.py": "fe8da6c48dff75ade2dd6458b1391074aa2505a53d46928b70b31cbe2e65cabb",
+    "src/shopextract/categories/adapters/bigcommerce.py": "6e32f7e50b2322fc3f416eed7a562b2c7d3bfd64104df7f0cce4077e08ba06ba",
+    "src/shopextract/categories/adapters/generic.py": "2cb3df6d21d9cee9eb744a4f8577e9f79e83227f3c437a04bae1e2487fd15e38",
+    "src/shopextract/categories/adapters/magento.py": "0fb92acd81971297ab5e6978d3d3cc61e157ec891f24f3485d8958e7d5299b36",
+    "src/shopextract/categories/adapters/shopify.py": "3c005420b9fb5b63d617bcd4312b4aece1f37e183e5b5a4f187005dfd128c9f1",
+    "src/shopextract/categories/adapters/shopware.py": "58040b766bbb09222f13298bc06f37a64df674c4d2c1da425f2aa77d84aa1ded",
+    "src/shopextract/categories/adapters/woocommerce.py": "23a54d1643311c371e56edc435f21f3569ba1a764382a4c7ce0f9fabd5c82097",
+    "src/shopextract/categories/api.py": "627a9df2d643c8042e8ff678a7eb01dd6468be7b163e845430c2d4afa4da443b",
+    "src/shopextract/categories/config.py": "ffc2976bec98e45ecfd83e953e140e2faec4a4e358eeee14642f0bf6551f8396",
+    "src/shopextract/categories/contracts.py": "67ff20be078bb986038f120f43be58815e2542a59bc05fce305e1abc943b49d2",
+    "src/shopextract/categories/evidence.py": "401c71253805abff9e0c32d6cc97c4bd9a99e7a038b8d4d245b1965f80281969",
+    "src/shopextract/categories/helpers.py": "ae4baba491f13928f9a7e1e679904c8640e6e01ca9dc0b61b5f0037da8381031",
+    "src/shopextract/categories/maintenance.py": "3c7937e32436168cf92aff019b3bcfe006f6a2568c929bf60fae39b4793ce398",
+    "src/shopextract/categories/mapping.py": "29c4492d95a02dde719fe8334766d8eb9abd8d128984662b953efc1041e9e877",
+    "src/shopextract/categories/native.py": "49f7b45abc0f965c9454d66a1f5f0a5eab52d01e0d7c57562f95dc1deda546e7",
+    "src/shopextract/categories/portable.py": "2e3a0bbcf9e1214e09fff008ed7168320b9af99e0a6614481c74293c261e93fa",
+    "src/shopextract/categories/validation.py": "092199930af26416640444ebc7457df060a07b376c1c2bb464a7f2f08f7cd9b0",
+    "src/shopextract/cli.py": "39e99388bd641556613cca1f873ff2ec4e65ab1140b1e706dcabc9964cdad37d",
+    "src/shopextract/compare/__init__.py": "97aa3ad49093f5a5171d55ba1321825a372ff56a4d6c55969251cb0460eb78f1",
+    "src/shopextract/compare/catalog.py": "4e65139d14d216e2b63bf16439e45b4216f5153a9dbc2f09c93549f526d57b25",
+    "src/shopextract/compare/evaluation.py": "e01c7ff552754a118f2d3d08bcbc65d86cc6d492e7eb1559725e6ded1d7a840b",
+    "src/shopextract/compare/identity_match.py": "0931100a27c53cd6773a78917b66a2893f1f8d288bff815ffccb6b88202e2a53",
+    "src/shopextract/compare/match.py": "3c25f85a8ca37367143c58f72d0bbb079273aa89cfd54b7203d9c7a729fbd2e8",
+    "src/shopextract/compare/price.py": "ac9d55e8b65c5a35b6711433bdddc145c8944ba4a9369e7c73b0dbe0ae9cd48a",
+    "src/shopextract/export/__init__.py": "0c6a995bfd80117a2e7b6d9ce913ffdfb423b578f642f7a233337c65672f2c7f",
+    "src/shopextract/export/_bundle.py": "0afc254ee7b3e68fb3167d25a2d663968832bc20ad962b15ba7383848e97a381",
+    "src/shopextract/export/_csv.py": "ea0864f967eaa0647ab4666cbede840f297065c6eb94c313e4ef887da9601717",
+    "src/shopextract/export/_feed.py": "1d6d2548b579b3b2cc7905cc3466db2e75202cd5475dac753c9a9851fd1a7b7a",
+    "src/shopextract/export/_json.py": "fa11bea8e008e4844bc2bc58b5e44d568460c330d3b16511ec7ab50d96f17c86",
+    "src/shopextract/extractors/__init__.py": "3b5e8cf86ffb5e68219ed32002f4ad00ea372a6f8cfca1c1c0268dae1750492b",
+    "src/shopextract/extractors/_bigcommerce_auth.py": "3f6f274c322f43b2dc55cbc4f766cd996f729edf8a491bf5980d187554d3aa2f",
+    "src/shopextract/extractors/_browser.py": "be669f0a6100fbd78f8e9b9e859bff7ac4a3e743e248ce0720188bad59aa0eeb",
+    "src/shopextract/extractors/_markdown_price.py": "dc66427bd925064e8015a8b400fe831f5d2071557e5cba2f03c4988591f8ab41",
+    "src/shopextract/extractors/_opengraph.py": "ede58ff40924513ddd49260725638bd9339fb3e2f3a34d013fc07bce0a66d9e5",
+    "src/shopextract/extractors/_schema_org.py": "cb1c6570c80d0c3752eca20f990a1df605eff62febb2879100c4c3adea74baac",
+    "src/shopextract/extractors/_storefront.py": "dbe3e09f20dac8ee9a36e5e45b60a7389baaf78668a4f52958ea92e7449fc2c0",
+    "src/shopextract/extractors/bigcommerce.py": "31d183d5914da50b14c0524717955e79deb6aa4f51a4dd8fdd8c3b06ab3706b4",
+    "src/shopextract/extractors/css.py": "5505f75f39934057a5a893d43afd6c7bc83f3003cabca177ee5ca1e58edfe4de",
+    "src/shopextract/extractors/feed.py": "c2b3847b33a7ea7b8b3220b6fd43b2980ab5e0d1dd5cd61d36e733584c2fc44c",
+    "src/shopextract/extractors/llm.py": "d2a28ea164e3c53a80dbc0f90aa0d214c3949d7aefadb6b014608a1a054b83ff",
+    "src/shopextract/extractors/magento.py": "c84958ae7bebac714d513f4bf3ed16c850a59b28cf3dddccc2006c93a88113ba",
+    "src/shopextract/extractors/magento_graphql.py": "49bfa18b3b0806c3fdbb85c3628839ab9785423884e7ac25994d6844bd3aa825",
+    "src/shopextract/extractors/shopify.py": "9eb2081e148f693b18d4ff0c3856cb12f8d867b892a1439fb6be0f8df3d41dff",
+    "src/shopextract/extractors/shopware.py": "7b4397851fae3d428519a8ed7e8143d68e9fee9f3aa253aa03be57eeccc22422",
+    "src/shopextract/extractors/unified.py": "aee4a6ea53f2837c33e3d3710d3cce6540c10572b0c4eca44c553873c1b9a0e2",
+    "src/shopextract/extractors/woocommerce.py": "66f72e317fff6757d4c7ad1bdcc4414261f3033d2b6779aa77a152a271a338cf",
+    "src/shopextract/identity.py": "cc9b63aa42d470f22eec6364430c2818a6e189f05d1040d7ef0f386396c37ab4",
+    "src/shopextract/maintenance/__init__.py": "fbbb0e323569a1c392501ae18d5451f69feb54cbf89822e8a4215890d3aa5a44",
+    "src/shopextract/maintenance/__main__.py": "d496f1e7e0cd421a18b8795f27d9145f633288e090c5923e29b59e53ea2b542d",
+    "src/shopextract/maintenance/contracts.py": "9ce97d048715c5e8ab74a75cd92df89353fe638f5663eb667f6206391f2ac3d6",
+    "src/shopextract/maintenance/engine.py": "7ff9befb3991442030106c837448d83e81fa643a419536963183b1ce6d32e1e4",
+    "src/shopextract/maintenance/profiles.py": "0612d0476b2a12a716701d6da948747bae9adea08e9eea4657651542177d4528",
+    "src/shopextract/maintenance/store.py": "e94662e41545d8b3862b1769551edd899f0bccae988cf02f9c14c443f2e04e15",
+    "src/shopextract/monitor/__init__.py": "d6468963316bec1d3c48ad182525bbaf816311d0c65bd950fb054ff8583a5f92",
+    "src/shopextract/monitor/changes.py": "ac9b5d56c09a14c12f23b80db3f0c2c1ccacae659d6ac58d8b86fad0a60f5b84",
+    "src/shopextract/monitor/evidence.py": "f79c8682912ab94bd7d1869eaba01ac06f4336d75ec482d11d5dc3081256eccf",
+    "src/shopextract/monitor/reliable.py": "0e7294faf303ee4052de77ec385b0be8fb0cf7a4014df9885a7c1deab2d63139",
+    "src/shopextract/monitor/snapshot.py": "4429303a02af7be36a5aee8960afc6e626f44a769814930b11db7a2ae7f1ea12",
+    "src/shopextract/monitor/watch.py": "2c5c6391671e726cc0e0ef8a1a6b2b9a1a37c34f31a43640d72d30b2cdcc8a46",
+    "src/shopextract/tools/__init__.py": "96a1d67c55da5d7bf565c2a0f89f5ad2bdc3e115ffd25224e2d31222cb6ddea8",
+    "src/shopextract/tools/__main__.py": "244e047f6a964a39db76a36b7d60d5fb055604376751569a6bbe82c04a70ea1e",
+    "src/shopextract/tools/captures.py": "d19a89547aacebf0b0e4021d28d2e5def8b196e98da685f4a862881255e16fd6",
+    "src/shopextract/tools/context.py": "27c76cd0584c12e50716ec37e982fd7db515566c3650d239c38d3662999597de",
+    "src/shopextract/tools/contracts.py": "0bd9814b31d635fa645938b7ba7de9c9b6fe6d8dec3699bd26c1dfb7cd278cd5",
+    "src/shopextract/tools/domain.py": "dc9549258fe6a61dcb9e9a780c5a1ecee3cffb15b39d05f766b0868184e3d549",
+    "src/shopextract/tools/execution.py": "ba460813e9e9fda2535629333b00488b915081e2b9504a8bc64faca0d65d42d1",
+    "src/shopextract/tools/jobs.py": "a4b6e3931037d7a5bd0ccf9817ed202c2929879208080e66f659da1625186423",
+    "src/shopextract/tools/mcp_server.py": "582af2d04c55f97fe861728070d6b6f938c77bc320e009a33c4ab027e7fef302",
+    "src/shopextract/tools/runtime.py": "2a142d425b72cc5b37f2780b81003aa03a309eb44b810c7b4dbac8aaa148d511",
+    "src/shopextract/tools/schemas.py": "9bb44bd403dbe547d139d085d9ac5abff7f873811fe904450ca4a2c5f51edeb0",
+    "src/shopextract/tools/security.py": "f8d84b3febf83633f66123c96d63abd872fb293d5b151f2d130c9a50583964c0",
+    "src/shopextract/tools/sources.py": "64b0f0c3c1896102a11e9355694ce12780c81bd25525a8045983886823bd99aa",
+    "src/shopextract/tools/state.py": "9c0aa94727cddbe6932887684464fffd45d25c1aa4bce6a1fbff818dc1510a4b",
+    "src/shopextract/validate/__init__.py": "ded2942e818e31ef9e836f9992c108acb9a3ed61d6d076dd5e5621880dcd1ede",
+    "src/shopextract/validate/duplicates.py": "f51950ca6c34cbe47239fcce3a42d8fc8a0047c3780b0a7d79b55a8674915ac1",
+    "src/shopextract/validate/images.py": "e993aa115c55eff96931a0732cda47ecd3765ce67c08f0c1e4b5504743e109df",
+    "src/shopextract/validate/marketplace.py": "273df782b57e31113318ef744e312766eb802e86b65044a3946ce5638ed82333",
+    "tests/test_category_bigcommerce.py": "7aaaa864cfd791c27e8633c995af8682a8fc452e686786f436375a4de6e3bdfb",
+    "tests/test_category_generic.py": "bbcaa7fac1d10f195e0901a838aaa4271d13bf9b4a2adb06496ba07dabe40985",
+    "tests/test_category_magento.py": "bf76370f7ffb21aa0ef7fdf330a710ab6dae50cd7be1018bd17ef7d9c575781d",
+    "tests/test_category_review_repairs.py": "07b54a1ca9d3ee901c66e480ef8e4db28741dfbc51810f134d44cca0a074c179",
+    "tests/test_category_shared_contract.py": "7e45cbd7e662c2dd6906f73d9103473ebc6ab94c7584e50fdeb4b24cb67c8372",
+    "tests/test_category_shopware.py": "f8d24966484e11f8411d495a391a8cb8ed9e367d53fdbf6a28c7dd38ebd05170",
+    "tests/test_category_skeleton.py": "219d45a12f09681e997c03932d723fd4b97ddb4e8e85454392a8e3b6dd6b9980",
+    "tests/test_category_woocommerce.py": "1466a2d354ec0a0eb769b6e5a479ea2e27fc2a8aae990457d0a796d4d31e90e2"
+  },
+  "source_checkpoint_matched": true
+}

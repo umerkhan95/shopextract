@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "phase": "P3",
+  "rows": [
+    {
+      "callable": "monitor.snapshot",
+      "grammar": "snapshot URL --db --max --timeout",
+      "requirement": "P3-1",
+      "tests": "T1/T2/T7"
+    },
+    {
+      "callable": "monitor.changes",
+      "grammar": "changes DOMAIN --db",
+      "requirement": "P3-1",
+      "tests": "T1"
+    },
+    {
+      "callable": "monitor.price_history",
+      "grammar": "history DOMAIN PRODUCT --db --canonical-id",
+      "requirement": "P3-1",
+      "tests": "T1"
+    },
+    {
+      "callable": "monitor.watch",
+      "grammar": "watch URL --db --interval --max-events --timeout --max",
+      "requirement": "P3-2",
+      "tests": "T7"
+    },
+    {
+      "callable": "monitor.reliable_changes",
+      "grammar": "changes DOMAIN --reliable --previous --current --recheck --db",
+      "requirement": "P3-3",
+      "tests": "T3"
+    },
+    {
+      "callable": "monitor.save_snapshot",
+      "grammar": "snapshot-save FILE --domain --metadata --db",
+      "requirement": "P3-3",
+      "tests": "T2"
+    },
+    {
+      "callable": "monitor.load_snapshot",
+      "grammar": "snapshot-load ID --db",
+      "requirement": "P3-3",
+      "tests": "T2"
+    },
+    {
+      "callable": "resolve_fields/resolution_references/ResolutionPolicy",
+      "grammar": "resolve FILE --as-of --policy",
+      "requirement": "P3-4",
+      "tests": "T4"
+    },
+    {
+      "callable": "factual_paths/trust_view",
+      "grammar": "evidence inspect FILE --view trust|paths",
+      "requirement": "P3-4",
+      "tests": "T4"
+    },
+    {
+      "callable": "monitor.get_evidence",
+      "grammar": "evidence get ID --snapshot --record-key --db",
+      "requirement": "P3-5",
+      "tests": "T5"
+    },
+    {
+      "callable": "monitor.prune_evidence",
+      "grammar": "evidence prune --before --db --apply --unprotect-references --batch-size",
+      "requirement": "P3-5",
+      "tests": "T5"
+    },
+    {
+      "callable": "export.create/load/read/write_evidence_bundle",
+      "grammar": "evidence bundle create/load FILE -o FILE",
+      "requirement": "P3-6",
+      "tests": "T6"
+    },
+    {
+      "callable": "export.create/load_evidence_sidecar",
+      "grammar": "evidence sidecar create/load FILE --payload --format -o FILE",
+      "requirement": "P3-6",
+      "tests": "T6"
+    },
+    {
+      "callable": "identity.migrate_snapshot_identities",
+      "grammar": "identity migrate --db --apply",
+      "requirement": "P3-1",
+      "tests": "T1"
+    }
+  ],
+  "python_only": [
+    "monitor.alert callback/predicate registration; CLI watch emits explicit unverified scalar diagnostic candidates"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "botiga-pagination",
+  "url": "https://demo.athemes.com/botiga",
+  "error": "AssertionError",
+  "detail": "can only join a started process",
+  "elapsed_seconds": 0.005
+}

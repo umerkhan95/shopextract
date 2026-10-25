@@ -1,0 +1,35 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+...................................................................FF... [ 98%]
+.                                                                        [100%]
+=================================== FAILURES ===================================
+_______________ test_categorized_parquet_arrow_readback_lossless _______________
+tests/test_cli_categories_mechanisms.py:392: in test_categorized_parquet_arrow_readback_lossless
+    first=bind_product(product,value.scope,value.observations,value.mappings,value.config_digest)
+src/shopextract/categories/portable.py:43: in bind_product
+    payload = _payload(value)
+src/shopextract/categories/portable.py:34: in _payload
+    return dict(schema_version=1, product=product_to_record(value.product), scope=wire(value.scope),
+src/shopextract/_portable.py:148: in product_to_record
+    _check_type(product, Product, "product")
+src/shopextract/_portable.py:96: in _check_type
+    _check_type(getattr(value, name), kind, f"{path}/{name}")
+src/shopextract/_portable.py:86: in _check_type
+    _check_type(child, args[1], f"{path}/{key}")
+src/shopextract/_portable.py:101: in _check_type
+    raise ValueError(f"Invalid type at {path}")
+E   ValueError: Invalid type at product/attributes/money
+_____________ test_woo_nonlist_rejected_support_vs_explicit_empty ______________
+tests/test_cli_categories_mechanisms.py:421: in test_woo_nonlist_rejected_support_vs_explicit_empty
+    outcome=wrapped.product.normalization_outcomes['/category_path']
+E   AttributeError: 'Product' object has no attribute 'normalization_outcomes'
+=============================== warnings summary ===============================
+tests/test_cli_categories_mechanisms.py::test_native_mapping_roundtrip_and_ambiguity
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli_categories_mechanisms.py::test_categorized_parquet_arrow_readback_lossless
+FAILED tests/test_cli_categories_mechanisms.py::test_woo_nonlist_rejected_support_vs_explicit_empty
+2 failed, 71 passed, 1 warning in 15.86s

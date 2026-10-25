@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "target": "same-session reference resolution, real native bootstrap/match acceptance",
+  "before_sha256": "8c8f278a595c89179401426c722ffbf235f42262ffefc33f97b75028ba6c22ce",
+  "after_sha256": "8c8f278a595c89179401426c722ffbf235f42262ffefc33f97b75028ba6c22ce",
+  "restored_byteidentical": true,
+  "mutant": {
+    "name": "mutation-mutant",
+    "command": [
+      "/Users/umerkhan/code/shopextract/.venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_cli_operations.py::test_session_real_bootstrap_match_poll_pages_stale_and_cleanup"
+    ],
+    "returncode": 1,
+    "seconds": 4.532,
+    "stop": null,
+    "max_group_rss_bytes": 209764352,
+    "orphans": [],
+    "summary": "1 failed in 1.88s"
+  },
+  "restored": {
+    "name": "mutation-restored",
+    "command": [
+      "/Users/umerkhan/code/shopextract/.venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_cli_operations.py::test_session_real_bootstrap_match_poll_pages_stale_and_cleanup"
+    ],
+    "returncode": 0,
+    "seconds": 5.921,
+    "stop": null,
+    "max_group_rss_bytes": 212520960,
+    "orphans": [],
+    "summary": "1 passed in 3.32s"
+  }
+}

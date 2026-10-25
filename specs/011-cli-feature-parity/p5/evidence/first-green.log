@@ -1,0 +1,44 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+...FF.                                                                   [100%]
+=================================== FAILURES ===================================
+_______________ test_tools_serve_protocol_errors_never_enveloped _______________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-280/test_tools_serve_protocol_erro0')
+
+    def test_tools_serve_protocol_errors_never_enveloped(tmp_path):
+        result=invoke('tools','serve','--config',str(tmp_path/'missing'),env={'SHOPEXTRACT_OUTPUT_FORMAT':'json'})
+>       assert result.exit_code==2 and not result.stdout and 'config' in result.stderr.lower()
+E       assert (1 == 2)
+E        +  where 1 = <Result SystemExit(1)>.exit_code
+
+tests/test_cli_operations.py:55: AssertionError
+_______________________ test_capabilities_actual_grammar _______________________
+
+    def test_capabilities_actual_grammar():
+>       data=payload(invoke('capabilities'))
+
+tests/test_cli_operations.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(1)>, exit_code = 0
+
+    def payload(result, exit_code=0):
+>       assert result.exit_code == exit_code, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_INTERNAL", "message": "Command failed unexpectedly.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 1 == 0
+E        +  where 1 = <Result SystemExit(1)>.exit_code
+
+tests/test_cli_operations.py:14: AssertionError
+=============================== warnings summary ===============================
+../../../../Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/_pytest/config/__init__.py:1464
+  /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli_operations.py::test_tools_serve_protocol_errors_never_enveloped
+FAILED tests/test_cli_operations.py::test_capabilities_actual_grammar - Asser...
+2 failed, 4 passed, 1 warning in 0.44s

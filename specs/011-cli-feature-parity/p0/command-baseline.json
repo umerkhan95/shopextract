@@ -1,0 +1,107 @@
+{
+  "source": "src/shopextract/cli.py",
+  "sha256": "39e99388bd641556613cca1f873ff2ec4e65ab1140b1e706dcabc9964cdad37d",
+  "commands": [
+    {
+      "command": "extract",
+      "callback": "extract",
+      "declarations": [
+        "main.command()",
+        "click.argument('url')",
+        "click.option('--max', '-n', 'max_urls', default=20, help='Max product URLs to process.')",
+        "click.option('--format', '-f', 'fmt', type=click.Choice(['csv', 'json']), default='json', help='Output format.')",
+        "click.option('-o', '--output', 'output_path', default=None, help='Output file path.')"
+      ],
+      "dispatch": "asyncio.run(_extract(url, max_urls, fmt, output_path))"
+    },
+    {
+      "command": "detect",
+      "callback": "detect",
+      "declarations": [
+        "main.command()",
+        "click.argument('url')"
+      ],
+      "dispatch": "asyncio.run(_detect(url))"
+    },
+    {
+      "command": "discover",
+      "callback": "discover",
+      "declarations": [
+        "main.command()",
+        "click.argument('url')",
+        "click.option('--max', '-n', 'max_urls', default=100, help='Max URLs to discover.')"
+      ],
+      "dispatch": "asyncio.run(_discover(url, max_urls))"
+    },
+    {
+      "command": "compare",
+      "callback": "compare",
+      "declarations": [
+        "main.command()",
+        "click.argument('query')",
+        "click.option('--stores', '-s', multiple=True, required=True, help='Store URLs to compare.')"
+      ],
+      "dispatch": "asyncio.run(_compare(query, list(stores)))"
+    },
+    {
+      "command": "snapshot",
+      "callback": "snapshot",
+      "declarations": [
+        "main.command()",
+        "click.argument('url')"
+      ],
+      "dispatch": "asyncio.run(_snapshot(url))"
+    },
+    {
+      "command": "changes",
+      "callback": "changes",
+      "declarations": [
+        "main.command()",
+        "click.argument('domain')"
+      ],
+      "dispatch": "asyncio.run(_changes(domain))"
+    },
+    {
+      "command": "history",
+      "callback": "history",
+      "declarations": [
+        "main.command()",
+        "click.argument('domain')",
+        "click.argument('product')"
+      ],
+      "dispatch": "asyncio.run(_history(domain, product))"
+    },
+    {
+      "command": "analyze",
+      "callback": "analyze",
+      "declarations": [
+        "main.command()",
+        "click.argument('url')",
+        "click.option('--max', '-n', 'max_urls', default=20, help='Max product URLs to analyze.')"
+      ],
+      "dispatch": "asyncio.run(_analyze(url, max_urls))"
+    },
+    {
+      "command": "validate",
+      "callback": "validate_cmd",
+      "declarations": [
+        "main.command(name='validate')",
+        "click.argument('file', type=click.Path(exists=True))",
+        "click.option('--marketplace', '-m', default='google_shopping', type=click.Choice(['google_shopping', 'idealo', 'amazon', 'ebay']), help='Target marketplace for validation.')"
+      ],
+      "dispatch": "_validate_file(file, marketplace)"
+    }
+  ],
+  "count": 9,
+  "legacy_output_notes": {
+    "extract": "stderr summary; stdout first 10 product records; -o writes all and stdout confirmation",
+    "detect": "platform/confidence/signals JSON",
+    "discover": "one URL per line; stderr count",
+    "compare": "query/matches/cheapest/most_expensive/avg_price/results JSON",
+    "snapshot": "url/product_count JSON",
+    "changes": "per-change pretty JSON or no changes text",
+    "history": "timestamp/price array JSON",
+    "analyze": "summary JSON; first 20 brands",
+    "validate": "text report; issues alone do not set failure exit"
+  }
+}
