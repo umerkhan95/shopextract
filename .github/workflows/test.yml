@@ -46,3 +46,16 @@ jobs:
       # All assertions retained: each file family <=240s, shared total <=480s.
       - name: Run complete bounded test gate
         run: python scripts/run_tests.py --output-dir "${RUNNER_TEMP}/shopextract-tests"
+
+      - name: Show bounded failure diagnostics
+        if: failure()
+        shell: bash
+        run: |
+          python - <<'PYCODE'
+          import os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP']) / 'shopextract-tests'
+          for path in sorted(root.glob('*.log')):
+              print(f'Failure diagnostics: {path.name}')
+              print(path.read_bytes()[-16000:].decode('utf-8', errors='replace'))
+          PYCODE
