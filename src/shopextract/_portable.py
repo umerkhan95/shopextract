@@ -15,7 +15,7 @@ import types
 from typing import get_args, get_origin, Union
 
 from ._evidence import TrustContract, decode_value, encode_value, trust_view, _id, _utc
-from ._models import Product, Variant, Platform
+from ._models import Product, Variant, Platform, QuantityValue
 from ._schemas import schema_hints
 
 PORTABLE_RECORD_VERSION = 1
@@ -65,6 +65,14 @@ def validate_tree(value, *, encoded=False):
 
 def _check_type(value, annotation, path):
     origin, args = get_origin(annotation), get_args(annotation)
+    if annotation is QuantityValue:
+        if (not isinstance(value, dict) or set(value) != {'value', 'semantic'}
+                or not isinstance(value['semantic'], str) or len(value['semantic']) > 32
+                or type(value['value']) not in (str, int, float, bool, type(None))
+                or isinstance(value['value'], str) and len(value['value']) > 128
+                or isinstance(value['value'], float) and not math.isfinite(value['value'])):
+            raise ValueError(f'Invalid quantity carrier at {path}')
+        return
     if origin in (Union, types.UnionType):
         for choice in args:
             try:

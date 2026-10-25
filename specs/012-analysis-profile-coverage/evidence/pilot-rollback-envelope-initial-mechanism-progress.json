@@ -1,0 +1,260 @@
+{
+  "phase": "invocation",
+  "phase_started": 664673.861182683,
+  "cases": [
+    {
+      "id": "valid-01",
+      "status": "passed",
+      "seconds": 1.331,
+      "result": null
+    },
+    {
+      "id": "valid-02",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-03",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-04",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-05",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-06",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-07",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-08",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-09",
+      "status": "passed",
+      "seconds": 0.171,
+      "result": null
+    },
+    {
+      "id": "valid-10",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-11",
+      "status": "passed",
+      "seconds": 0.125,
+      "result": null
+    },
+    {
+      "id": "valid-12",
+      "status": "passed",
+      "seconds": 0.235,
+      "result": null
+    },
+    {
+      "id": "invalid-01",
+      "status": "passed",
+      "seconds": 0.172,
+      "result": null
+    },
+    {
+      "id": "invalid-02",
+      "status": "passed",
+      "seconds": 0.196,
+      "result": null
+    },
+    {
+      "id": "invalid-03",
+      "status": "passed",
+      "seconds": 0.094,
+      "result": null
+    },
+    {
+      "id": "invalid-04",
+      "status": "passed",
+      "seconds": 0.139,
+      "result": null
+    },
+    {
+      "id": "invalid-05",
+      "status": "passed",
+      "seconds": 0.183,
+      "result": null
+    },
+    {
+      "id": "invalid-06",
+      "status": "passed",
+      "seconds": 0.089,
+      "result": null
+    },
+    {
+      "id": "invalid-07",
+      "status": "passed",
+      "seconds": 0.09,
+      "result": null
+    },
+    {
+      "id": "invalid-08",
+      "status": "passed",
+      "seconds": 0.221,
+      "result": null
+    },
+    {
+      "id": "invalid-09",
+      "status": "passed",
+      "seconds": 0.269,
+      "result": null
+    },
+    {
+      "id": "invalid-10",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "invalid-11",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "invalid-12",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "adapters-01",
+      "status": "passed",
+      "seconds": 0.441,
+      "result": null
+    },
+    {
+      "id": "adapters-02",
+      "status": "passed",
+      "seconds": 0.054,
+      "result": null
+    },
+    {
+      "id": "adapters-03",
+      "status": "passed",
+      "seconds": 0.055,
+      "result": null
+    },
+    {
+      "id": "adapters-04",
+      "status": "passed",
+      "seconds": 0.053,
+      "result": null
+    },
+    {
+      "id": "adapters-05",
+      "status": "passed",
+      "seconds": 0.057,
+      "result": null
+    },
+    {
+      "id": "adapters-06",
+      "status": "passed",
+      "seconds": 0.125,
+      "result": null
+    },
+    {
+      "id": "interactions-01",
+      "status": "passed",
+      "seconds": 0.053,
+      "result": null
+    },
+    {
+      "id": "interactions-02",
+      "status": "passed",
+      "seconds": 0.123,
+      "result": null
+    },
+    {
+      "id": "interactions-03",
+      "status": "passed",
+      "seconds": 0.121,
+      "result": null
+    },
+    {
+      "id": "interactions-04",
+      "status": "passed",
+      "seconds": 0.125,
+      "result": null
+    },
+    {
+      "id": "interactions-05",
+      "status": "passed",
+      "seconds": 0.124,
+      "result": null
+    },
+    {
+      "id": "interactions-06",
+      "status": "passed",
+      "seconds": 0.119,
+      "result": null
+    },
+    {
+      "id": "interactions-07",
+      "status": "passed",
+      "seconds": 0.14,
+      "result": null
+    },
+    {
+      "id": "interactions-08",
+      "status": "passed",
+      "seconds": 0.127,
+      "result": null
+    },
+    {
+      "id": "replay-01",
+      "status": "passed",
+      "seconds": 0.008,
+      "result": null
+    },
+    {
+      "id": "replay-02",
+      "status": "passed",
+      "seconds": 0.032,
+      "result": null
+    },
+    {
+      "id": "replay-03",
+      "status": "passed",
+      "seconds": 0.033,
+      "result": null
+    }
+  ],
+  "seed": 26,
+  "status": "failed",
+  "peak_rss_bytes": 107114496,
+  "input_bytes": 42888,
+  "elapsed_seconds": 5.249,
+  "active": "replay-04",
+  "error_type": "MaintenanceError",
+  "error": "storage_error"
+}

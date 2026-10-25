@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .contracts import (AdvisorBound, AdvisorReservation, AdvisorResult, AdvisorUsage,
                         FailureHook, Investigator, MaintenanceError)
 from .store import MaintenanceStore, digest, packed
-from .profiles import FieldRule, compare_field
+from .profiles import FieldRule, compare_field, MISSING_QUANTITY
 
 
 def json_value(value):
@@ -88,6 +88,10 @@ class MaintenanceEngine:
             raise MaintenanceError('invalid_state')
         if self._active is not None:
             raise MaintenanceError('already_running')
+        # Ownership recovery can mutate outstanding attempts; reject changed
+        # selected policy before acquiring ownership or recovering those rows.
+        if self.store.status(job_id)['state'] not in {'cancelled', 'failed'}:
+            self.store.validate_profiles(job_id)
         policy = self.store.category_policy(job_id)
         from ..categories.maintenance import category_policy_digest
         if self._expected_category is not None and (policy.mode != 'enabled' or
@@ -115,7 +119,8 @@ class MaintenanceEngine:
             goal = self.store.goal(job_id)
             self._model_stop = self.store.model_stop(job_id)
             self._runtime = ToolRuntime(self.tool_config, resolver=self.resolver,
-                wire_transport=self.wire_transport, utc_now=self.utc_now,category_config=self._category_config,shopify_storefront=self.shopify_storefront)
+                wire_transport=self.wire_transport, utc_now=self.utc_now,category_config=self._category_config,shopify_storefront=self.shopify_storefront,
+                include_refrigerator_attributes='refrigerator-v1' in self.store.validate_profiles(job_id))
             products, source_complete, reason = await self._collect(job_id, goal)
             if reason not in {'cancelled', 'deadline'}:
                 await self._reconcile(job_id, goal, products)
@@ -183,6 +188,8 @@ class MaintenanceEngine:
         scope = {'url': url, 'mode': mode, 'maximum': maximum, 'profiles': self.store.status(job)['profile_definitions'],
                  'fields': goal['fields'], 'freshness_seconds': goal['freshness_seconds'],
                  'policy': asdict(self.tool_config), 'native_version': 1}
+        if 'refrigerator-v1' in scope['profiles']:
+            scope['refrigerator_attributes_version'] = 1
         if self._category_config is not None:
             from ..categories.maintenance import category_policy_digest
             scope['category_policy'] = category_policy_digest(self._category_config)
@@ -375,8 +382,16 @@ class MaintenanceEngine:
                                         'evidence_ids': [], 'state': 'asserted' if before is not None else 'unknown'}
                 definition = definitions.get(category, {})
                 rule_value = definition.get('fields', {}).get(field)
-                comparison = compare_field(FieldRule(**rule_value), before, after) if rule_value else {
-                    'comparison': 'unknown', 'normalized_before': before, 'normalized_after': after, 'trace': []}
+                if rule_value:
+                    rule = FieldRule(**rule_value)
+                    raw_args = {}
+                    if rule.kind in {'volume', 'length'}:
+                        raw_args = {'raw_before': self._quantity_candidate(plain, field),
+                                    'raw_after': self._quantity_candidate(supplier, field)}
+                    comparison = compare_field(rule, before, after, **raw_args)
+                else:
+                    comparison = {'comparison': 'unknown', 'normalized_before': before,
+                                  'normalized_after': after, 'trace': []}
                 missing_size_system = (category == 'footwear-v1' and field == 'attributes/size'
                     and (not pointer(plain, 'attributes/size_system') or supplier is None
                          or not supplier.attributes.get('size_system')))
@@ -392,11 +407,23 @@ class MaintenanceEngine:
                         from ..categories.maintenance import category_review_reasons
                         category_reasons = category_review_reasons(companions[candidate.index_b],
                             selected_profile=category,config=self._category_config)
+                if category == 'refrigerator-v1':
+                    if self._category_config is None:
+                        category_reasons = ('category_policy_missing',)
+                    elif not category_reasons:
+                        registry = self._category_config.options.registry
+                        targets = {target for decision in companions[candidate.index_b].mappings
+                                   if decision.term is not None for target in decision.target_ids}
+                        if (registry.namespace != 'shopify:product-taxonomy' or registry.version != '2026-08'
+                                or targets != {'hg-11-7-41'}):
+                            category_reasons = ('category_mismatch',)
                 reason = None
                 if category_reasons:
                     reason = category_reasons[0]
                 elif category is None:
                     reason = 'category_missing'
+                elif rule_value is None:
+                    reason = 'unsupported_field'
                 elif supplier is not None and self._category_conflict(category, plain, supplier):
                     reason = 'category_mismatch'
                 elif goal['baseline_mode'] == 'captured' and baseline_support.get('state') in {'unsupported', 'expired', 'conflicting'}:
@@ -601,6 +628,18 @@ class MaintenanceEngine:
                 return True
         return False
 
+    @staticmethod
+    def _quantity_candidate(value, field):
+        if value is None:
+            return MISSING_QUANTITY
+        current = value if isinstance(value, dict) else {'attributes': value.attributes}
+        for token in field.split('/'):
+            token = token.replace('~1', '/').replace('~0', '~')
+            if not isinstance(current, dict) or token not in current:
+                return MISSING_QUANTITY
+            current = current[token]
+        return current
+
     def _category_conflict(self, category, baseline, supplier):
         # This is only a conflict veto for explicit category labels, not an
         # automatic profile selector. Unknown labels do not grant a profile.
@@ -608,7 +647,7 @@ class MaintenanceEngine:
                    'footwear': 'footwear-v1', 'boots': 'footwear-v1', 'shoes': 'footwear-v1'}
         labels = [baseline.get('product_type')] + list(getattr(supplier, 'category_path', []) or [])
         declared = {aliases.get(str(value).casefold()) for value in labels if value is not None}
-        return any(value is not None and value != category for value in declared) if category in {'hardware-v1', 'footwear-v1'} else False
+        return any(value is not None and value != category for value in declared) if category in {'hardware-v1', 'footwear-v1', 'refrigerator-v1'} else False
 
     async def retry_unknown(self, job_id, step_id):
         if self._active is not None:

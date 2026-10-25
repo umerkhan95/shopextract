@@ -1,0 +1,164 @@
+{
+  "provenance": "synthetic-controlled-offline",
+  "rows": [
+    {
+      "platform": "generic",
+      "provenance": "synthetic-controlled-offline",
+      "method": "json_ld",
+      "source_quantity_pointers": [
+        "/model",
+        "/additionalProperty/0/@type",
+        "/additionalProperty/0/name",
+        "/additionalProperty/0/value",
+        "/additionalProperty/1/@type",
+        "/additionalProperty/1/name",
+        "/additionalProperty/1/value",
+        "/additionalProperty",
+        "/additionalProperty/0",
+        "/additionalProperty/1"
+      ],
+      "attributes": {},
+      "field_support": {
+        "capacity": "unsupported",
+        "width": "unsupported",
+        "height": "unsupported",
+        "depth": "unsupported",
+        "model": "unsupported"
+      },
+      "title_support": "observed",
+      "portable_roundtrip": true,
+      "sqlite_checkpoint_reopen": true,
+      "retained_total_capacity": "250 L",
+      "retained_model": "FX-250"
+    },
+    {
+      "platform": "shopify",
+      "provenance": "synthetic-controlled-offline",
+      "method": "shopify_api",
+      "source_quantity_pointers": [],
+      "attributes": {},
+      "field_support": {
+        "capacity": "unsupported",
+        "width": "unsupported",
+        "height": "unsupported",
+        "depth": "unsupported",
+        "model": "unsupported"
+      },
+      "title_support": "observed",
+      "portable_roundtrip": true,
+      "sqlite_checkpoint_reopen": true,
+      "extractor_complete": false
+    },
+    {
+      "platform": "woocommerce",
+      "provenance": "synthetic-controlled-offline",
+      "method": "woocommerce_api",
+      "source_quantity_pointers": [],
+      "attributes": {},
+      "field_support": {
+        "capacity": "unsupported",
+        "width": "unsupported",
+        "height": "unsupported",
+        "depth": "unsupported",
+        "model": "unsupported"
+      },
+      "title_support": "observed",
+      "portable_roundtrip": true,
+      "sqlite_checkpoint_reopen": true,
+      "extractor_complete": true
+    },
+    {
+      "platform": "magento",
+      "provenance": "synthetic-controlled-offline",
+      "method": "magento_graphql",
+      "source_quantity_pointers": [],
+      "attributes": {},
+      "field_support": {
+        "capacity": "unsupported",
+        "width": "unsupported",
+        "height": "unsupported",
+        "depth": "unsupported",
+        "model": "unsupported"
+      },
+      "title_support": "observed",
+      "portable_roundtrip": true,
+      "sqlite_checkpoint_reopen": true,
+      "extractor_complete": true
+    },
+    {
+      "platform": "shopware",
+      "provenance": "synthetic-controlled-offline",
+      "method": "shopware_store_api",
+      "source_quantity_pointers": [
+        "/width",
+        "/height",
+        "/customFields/total_capacity"
+      ],
+      "attributes": {},
+      "field_support": {
+        "capacity": "unsupported",
+        "width": "unsupported",
+        "height": "unsupported",
+        "depth": "unsupported",
+        "model": "unsupported"
+      },
+      "title_support": "observed",
+      "portable_roundtrip": true,
+      "sqlite_checkpoint_reopen": true,
+      "extractor_complete": true
+    },
+    {
+      "platform": "bigcommerce",
+      "provenance": "synthetic-controlled-offline",
+      "method": "bigcommerce_graphql",
+      "source_quantity_pointers": [],
+      "attributes": {},
+      "field_support": {
+        "capacity": "unsupported",
+        "width": "unsupported",
+        "height": "unsupported",
+        "depth": "unsupported",
+        "model": "unsupported"
+      },
+      "title_support": "observed",
+      "portable_roundtrip": true,
+      "sqlite_checkpoint_reopen": true,
+      "extractor_complete": true
+    }
+  ],
+  "controlled_requests": [
+    {
+      "platform": "shopify",
+      "method": "GET",
+      "path": "/products.json"
+    },
+    {
+      "platform": "woocommerce",
+      "method": "GET",
+      "path": "/wp-json/wc/store/v1/products"
+    },
+    {
+      "platform": "magento",
+      "method": "GET",
+      "path": "/graphql"
+    },
+    {
+      "platform": "shopware",
+      "method": "GET",
+      "path": "/store-api/context"
+    },
+    {
+      "platform": "shopware",
+      "method": "POST",
+      "path": "/store-api/product"
+    },
+    {
+      "platform": "bigcommerce",
+      "method": "POST",
+      "path": "/graphql"
+    }
+  ],
+  "real_network_requests": 0,
+  "model_calls": 0,
+  "elapsed_seconds": 0.477
+}

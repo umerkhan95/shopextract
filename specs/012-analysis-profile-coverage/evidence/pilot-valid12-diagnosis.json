@@ -1,0 +1,24 @@
+{
+  "reason": "identity_unresolved",
+  "comparison": "different",
+  "match_reason": {
+    "conflicts": [
+      "missing attributes: depth, height, width"
+    ],
+    "evidence": [
+      "validated GTIN agrees",
+      "supplier-scoped external_id agrees",
+      "supplier-scoped sku agrees"
+    ]
+  },
+  "supplier_support": {
+    "evidence_ids": [
+      "e_96e61b00-23da-45ea-a9e3-21d0a17a44fa"
+    ],
+    "kind": "captured",
+    "observed_at": "2026-10-25T12:00:00+00:00",
+    "source_url": "https://synthetic-profile.invalid/products/S1",
+    "state": "observed"
+  },
+  "category_review_reasons": []
+}

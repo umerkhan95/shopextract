@@ -1,0 +1,334 @@
+{
+  "denominator": {
+    "branch_nodes": {
+      "aa_apparel_accessories.yml": 663,
+      "el_electronics.yml": 1176,
+      "hg_home_garden.yml": 2286
+    },
+    "category_nodes": 4125,
+    "selected_rows": 3,
+    "selection": "explicit_ids"
+  },
+  "rows": [
+    {
+      "backlog_kind": "existing_extension",
+      "binding_status": "not_configured",
+      "candidate_fields": [
+        "attributes/color",
+        "attributes/construction",
+        "attributes/fit",
+        "attributes/material",
+        "attributes/size",
+        "attributes/size_system",
+        "attributes/weight"
+      ],
+      "category_id": "aa-8-3",
+      "checked_fields": [],
+      "children": [],
+      "declared_attributes": [
+        "age_group",
+        "boot_style",
+        "care_instructions",
+        "closure_type",
+        "color",
+        "footwear_material",
+        "heel_height_type",
+        "lining_material",
+        "occasion_style",
+        "outsole_material",
+        "pattern",
+        "shoe_features",
+        "shoe_fit",
+        "shoe_size",
+        "target_gender",
+        "toe_style"
+      ],
+      "excluded_attributes": {},
+      "extraction_availability": {
+        "bigcommerce": "not_audited",
+        "generic": "not_audited",
+        "magento": "not_audited",
+        "shopify": "not_audited",
+        "shopware": "not_audited",
+        "woocommerce": "not_audited"
+      },
+      "family": "footwear",
+      "field_gaps": {
+        "attributes/size": "size_system_semantics_require_explicit_input"
+      },
+      "live_observation": "not_run",
+      "name": "Boots",
+      "parent_id": "aa-8",
+      "policy_coverage": "partial",
+      "profile": "footwear-v1",
+      "reviewed_rules": {
+        "attributes/color": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "identity_variant"
+        },
+        "attributes/construction": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "comparable"
+        },
+        "attributes/fit": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "identity_variant"
+        },
+        "attributes/material": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "comparable"
+        },
+        "attributes/size": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "identity_variant"
+        },
+        "attributes/size_system": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "identity_variant"
+        },
+        "attributes/weight": {
+          "kind": "mass",
+          "normalization": "mass_kg",
+          "role": "comparable"
+        },
+        "currency": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "price_context"
+        },
+        "description": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "comparable"
+        },
+        "price": {
+          "kind": "decimal",
+          "normalization": "decimal",
+          "role": "comparable"
+        },
+        "title": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "comparable"
+        }
+      },
+      "semantic_review": "pending",
+      "source_file": "aa_apparel_accessories.yml",
+      "source_locator": "aa_apparel_accessories.yml#id=aa-8-3"
+    },
+    {
+      "backlog_kind": "existing_extension",
+      "binding_status": "not_configured",
+      "candidate_fields": [
+        "attributes/material",
+        "attributes/model",
+        "attributes/ram",
+        "attributes/storage",
+        "attributes/weight"
+      ],
+      "category_id": "el-6-6",
+      "checked_fields": [],
+      "children": [],
+      "declared_attributes": [
+        "color",
+        "computer_form",
+        "computer_specialized_features",
+        "cosmetic_condition",
+        "display_resolution",
+        "display_technology",
+        "graphics_card_type",
+        "keyboard_layout",
+        "keyboard_type",
+        "memory_technology",
+        "operating_system",
+        "optical_drive_type",
+        "pattern",
+        "power_source",
+        "processor_cores",
+        "processor_family",
+        "removable_storage_formats_supported",
+        "storage_drive_type_installed",
+        "storage_types_supported"
+      ],
+      "excluded_attributes": {},
+      "extraction_availability": {
+        "bigcommerce": "not_audited",
+        "generic": "not_audited",
+        "magento": "not_audited",
+        "shopify": "not_audited",
+        "shopware": "not_audited",
+        "woocommerce": "not_audited"
+      },
+      "family": "hardware",
+      "field_gaps": {
+        "attributes/ram": "numeric_capacity_policy_missing"
+      },
+      "live_observation": "not_run",
+      "name": "Laptops",
+      "parent_id": "el-6",
+      "policy_coverage": "partial",
+      "profile": "hardware-v1",
+      "reviewed_rules": {
+        "attributes/material": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "comparable"
+        },
+        "attributes/model": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "identity_variant"
+        },
+        "attributes/ram": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "identity_variant"
+        },
+        "attributes/storage": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "identity_variant"
+        },
+        "attributes/weight": {
+          "kind": "mass",
+          "normalization": "mass_kg",
+          "role": "comparable"
+        },
+        "currency": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "price_context"
+        },
+        "description": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "comparable"
+        },
+        "price": {
+          "kind": "decimal",
+          "normalization": "decimal",
+          "role": "comparable"
+        },
+        "title": {
+          "kind": "text",
+          "normalization": "exact",
+          "role": "comparable"
+        }
+      },
+      "semantic_review": "pending",
+      "source_file": "el_electronics.yml",
+      "source_locator": "el_electronics.yml#id=el-6-6"
+    },
+    {
+      "backlog_kind": "new_profile",
+      "binding_status": "not_configured",
+      "candidate_fields": [
+        "attributes/capacity",
+        "attributes/depth",
+        "attributes/height",
+        "attributes/model",
+        "attributes/width"
+      ],
+      "category_id": "hg-11-7-41",
+      "checked_fields": [],
+      "children": [
+        "hg-11-7-41-1",
+        "hg-11-7-41-2"
+      ],
+      "declared_attributes": [
+        "color",
+        "energy_efficiency_class",
+        "finish",
+        "material",
+        "mounting_type",
+        "pattern",
+        "power_source",
+        "refrigerator_configuration",
+        "star_rating",
+        "umbrella_opening_mechanism"
+      ],
+      "excluded_attributes": {
+        "umbrella_opening_mechanism": "irrelevant_to_refrigerator_policy"
+      },
+      "extraction_availability": {
+        "bigcommerce": "not_audited",
+        "generic": "not_audited",
+        "magento": "not_audited",
+        "shopify": "not_audited",
+        "shopware": "not_audited",
+        "woocommerce": "not_audited"
+      },
+      "family": "refrigeration",
+      "field_gaps": {
+        "attributes/capacity": "profile_missing",
+        "attributes/depth": "profile_missing",
+        "attributes/height": "profile_missing",
+        "attributes/model": "profile_missing",
+        "attributes/width": "profile_missing"
+      },
+      "live_observation": "not_run",
+      "name": "Refrigerators",
+      "parent_id": "hg-11-7",
+      "policy_coverage": "missing",
+      "profile": null,
+      "reviewed_rules": {},
+      "semantic_review": "pending",
+      "source_file": "hg_home_garden.yml",
+      "source_locator": "hg_home_garden.yml#id=hg-11-7-41"
+    }
+  ],
+  "schema_version": 1,
+  "source": {
+    "commit": "2e9aa2e9b882383952c63d212add13eb80f46cf9",
+    "files": [
+      {
+        "bytes": 1046,
+        "name": "LICENSE",
+        "sha256": "6a2261660cc6cb406ed6ef788347d8cb35e939f4537def9e699abf88ed025273"
+      },
+      {
+        "bytes": 285314,
+        "name": "aa_apparel_accessories.yml",
+        "sha256": "3746bf9fab3920b9f529caef076f91225b4f954e6f7e238668aaf49ed90419a6"
+      },
+      {
+        "bytes": 4769315,
+        "name": "attributes.yml",
+        "sha256": "91ef3829a6621fbc98b46c6447c9702e394fd7c55bfbd56fd2df0545ea9e16b6"
+      },
+      {
+        "bytes": 555297,
+        "name": "el_electronics.yml",
+        "sha256": "08f92912aac14164afbd7704067c586499da9f5591df96def1a25adda908469f"
+      },
+      {
+        "bytes": 877783,
+        "name": "hg_home_garden.yml",
+        "sha256": "355d32fbc787812c83ff5446dbe7d964d798f8508ec95ee5306f07da8e907a35"
+      }
+    ],
+    "namespace": "shopify:product-taxonomy",
+    "version": "2026-08"
+  },
+  "summary": {
+    "backlog_counts": {
+      "binding_only": 0,
+      "existing_extension": 2,
+      "new_profile": 1,
+      "review_pending": 0
+    },
+    "generic_coverage": "common_fields_only",
+    "remaining_profile_count": null,
+    "reviewed_policy_family_count": 0
+  },
+  "unassessed": {
+    "category_count": null,
+    "scope": "all_other_taxonomy_branches"
+  }
+}

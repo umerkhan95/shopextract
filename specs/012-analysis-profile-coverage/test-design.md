@@ -41,3 +41,188 @@ First smoke: one complete synthetic refrigerator job; save before expansion. The
 ## Bounded live plan
 
 Only after offline success and before each slice's final verification: choose explicit publicly readable product URLs from existing saved domain discovery, log them and expected supported fields before requests. No invented or assumed accessible targets. Begin with one refrigerator capture; at most 3 product URLs total across platforms with affected extraction seams, 2 requests/URL, 6 requests total including redirects/retries, one worker, 15 seconds/request, 90 seconds driver including cleanup; zero automatic retries, stop on access denial or first unexpected behavior. Each redirected request consumes budget. Record source data/support and actual profile comparison; retain missing attributes and unchanged products honestly. If more than three adapter extraction seams change, split implementation slices and run a separate bounded plan per slice. Unchanged adapters use real-path synthetic parity, not fabricated live claims. No live product change is required or induced. Required live attribute evidence blocked by access remains blocked; complete synthetic mechanism/stress checks separately, and do not declare that slice fully verified. Planning/docs-only work: live N/A.
+
+## Inventory fresh-checkout and retained-source test distinction (G2 repair)
+
+SC01/02: default tests use7 deterministic synthetic source-shaped nodes across
+three branch files; known IDs exercise3 reference assessments and4 unreviewed
+nodes remain pending. Fixture attribute counts are2 each, not actual19/16/10.
+Test-only SOURCE_PINS replacement supplies size/hash authority; real parser,
+hash integrity, graph validation and report assembly stay untouched. Default
+immutable production pins are independently asserted. No network, raw corpus
+checkout requirement or skip is introduced.
+
+SC01/11 adverse cases: empty selection, duplicate branch, unknown/repeated IDs,
+missing/changed unselected source must fail closed. Re-pinned malformed YAML,
+duplicate category IDs and dangling child exercise structural rejection after
+hash success. These target admission, integrity and graph risks separately.
+Existing real runtime999/1000/1001 cap tests remain independent of report size.
+
+Actual retained-corpus acceptance is separately executed with
+ evidence/retained_inventory_acceptance.py; absent/changed inputs fail, not skip.
+Exact4125 node/4122 pending counts and actual19/16/10 declared attributes belong
+to that gate, not synthetic expected outputs. Raw sources remain local. Driver
+first saves actual smoke before expansion once production logic is reviewed and
+implemented. Current declaration must fail intentionally after hash verification.
+
+## Inventory additional distinct parser/resource risks (before implementation)
+
+A disconnected self-cycle plus one valid branch root must reject invalid_source;
+existing dangling-child tests cannot reach parent-walk cycle detection. Build it
+by appending one self-parent node with a valid declared attribute. A category
+that declares an unknown attribute must reject invalid_source after source pins
+are valid; taxonomy definition links must not silently disappear in reporting.
+These2 synthetic fixtures are re-pinned only at the authority boundary.
+
+Iterable admission must materialize no more than4 branch names or5001 selected
+IDs; more than3 branches or5000 IDs rejects invalid_selection before parsing.
+A sentinel generator yields5001 IDs then raises if read further; expected result
+is invalid_selection with exactly5001 consumed, proving bounded materialization
+rather than merely testing unknown names. No large corpus/generator sweep.
+
+## APC07 pilot refinements for independent refreshed G1
+
+Candidate exact contract: pilot-contracts.md. Quantity equality examples now use
+explicit semantic wrappers; bare500ml string cannot establish total-volume meaning.
+Distinct per-axis normalization IDs reject width/height substitution in compare_field
+itself;128-character input boundary and long coefficient under lowDecimal precision
+must prove context-independent exactness. Product annotation widens additively.
+
+One demonstrated generic extraction gap is opted-in only for persisted selected
+refrigerator jobs; same raw input with defaultFalse must preserve old3 results and
+hardware model outcomes. Tests follow real parser→normalize(record_inputs label+
+value)→support→portable→Store→comparison. Add ambiguous propertyID/name, duplicate
+conflicting declarations, raw-attribute conflict and model-source conflict tests;
+none may silently pick an interpretation. Native5 paths intentionally report
+selected quantity support unavailable, not parity fabricated from source shape.
+
+New fridge without category config/binding is review-only; exact mapping alone
+never selects it. Anchored wrong-Boots and capacity equal plus GTIN/MPN conflict
+retain veto. Goal unknown rule still invalid_argument; legacy/corrupt engine path
+returns unknown/unsupported_field without dereferencing absent role.
+
+Report classifications derive only from retained snapshots/findings; unknown
+legacy input states stay unknown. Requested fields include persisted goal while
+page_fields identify which outcomes can count in this page. Page0/1/999/1000/1001,
+nonzero offsets over101 findings and UTF8 exact1MiB−1/at/+1 envelopes prove bounded
+materialization and atomic stdout. Existing report APIs have no file destination;
+no new report export API is invented. Existing atomic artifact helper regressions
+remain applicable; diagnostics preflight must precede any future artifact replace.
+
+48-case design manifest: evidence/pilot-case-manifest.json, seed26, each case
+names risk/input/expected outcome/real seam and is designed_not_executed. Separate
+focused old-profile/customschema/reportbudget/mutation checks remain required;
+48-case count is not a substitute. Source audit receipts are synthetic mechanism
+research, not future full engine/stress/live passes. Concrete live target missing:
+follow bounded search+predeclaration in pilot-contracts.md, or report required
+seam blocked without waiving it. No pilot fixture generator or tests added yet.
+
+Observed carrier portability blocker: explicit wrapper control fails strict
+product_to_record annotation guard before Store. New acceptance must prove old
+string attributes unchanged, valid closed QuantityValue wrapper portable/Store
+roundtrip, invalid-source wrapper preservation through real engine, and malformed transport
+(nested/list value,extra keys,nonstring/overlong semantic) rejection. Finite scalar
+value0/False/None and semantic strings net_volume/gross_volume/package_width MUST
+roundtrip into source-supported unknown/review-only findings. Inner null/empty
+states are preserved; finite0 is unit_missing,False invalid_type,wrong semantic
+semantic_mismatch,never whole-job portable type failure. Numeric NaN/Infinity stay
+globally rejected at transport; their string representations reach comparator. Candidate narrow
+TypedDict check is in pilot-contracts.md; generic nested primitive support alone
+is not portability evidence. No production repair attempted at APC07.
+
+### Refreshed G1 carrier repair
+
+Transport QuantityValue is a closed value/semantic object: value JSON-finite scalar
+str|int|float|bool|None,semantic string<=32; transport never imposes the four-domain
+semantic enum. Comparison alone validates approved semantic meaning and units.
+Required real captured→portable→Store→engine cases: wrapped0→unit_missing with
+input state value;wrappedFalse→invalid_type/value;wrappedNone→null/null;
+wrappedempty→empty/empty;gross/net/packaging semantic→semantic_mismatch/value.
+All are unknown/review-only, source input retained, no proposed correction and no
+whole-job rejection. Bool branch precedes finite numeric branch. Missing attribute
+state remains distinct. Existing legacy string attribute admission unchanged.
+Nested/list values,unknown wrapper keys,nonstring/overlong semantic and numeric
+nonfinite remain malformed transport tests. Separate direct-comparator overlong
+and nonfinite controls exercise defensive reasons without claiming portable entry.
+
+## APC09 executable acceptance and raw-state authority refinement
+
+Tests added before business code: test_profile_quantities.py,
+test_profile_coverage_integration.py,test_profile_coverage_cli.py,small overlay
+addition to inventory tests; shared synthetic factories profile_coverage_helpers.py.
+Exact callable/ownership declarations in skeleton.md. No48-case generator yet.
+
+Distinct support risk: selected source None/empty is UNKNOWN, so _supported None
+must not erase raw empty→null or fabricate missing. Quantity comparison now has
+optional raw_before/raw_after metadata inputs, still compares ONLY supported
+before/after. Direct cases prove raw250L with supportedNone remains unknown and
+normalized_afterNone; source-path cases prove projected None/empty/whitespace
+states and unavailable diagnostics through real parser/portable/Store/engine.
+Actual missing path alone uses missing sentinel. This does not upgrade expired,
+LLM or truncated raw candidates to checked facts.
+
+Report budget tests serialize actual multibyte envelopes at1MiB−1/at/+1 including
+newline; separate injected resource-admission failure exercises existing root and
+module single error envelopes (allowed), forbidding success payload. Report
+fixture outcomes are committed legacy-shaped unavailable facts, not fake matcher
+outputs. Opt-in SQL page test forbids _findings to catch whole-job materialization.
+Existing valid create guard remains baseline; labelled corrupt persisted goal
+reaches real missing-rule dereference and must fail safely after repair.
+
+## Independent review refinements before corrective implementation
+
+Long precision coefficient fixture ending890 expected a noncanonical fractional
+trailingzero. Root independently approved ending891 so exact60-digit/precision6
+assertion remains strong; original failure retained. Matcher priority clarification
+approved: existing capacity conflict means identity_unresolved,not rewritten to
+variant_specification; test must require conflict+different+review-only.
+
+New wrapper ordering risk: same transport-valid QuantityValue with reversed dict
+insertion order must produce identical matcher attributes; actual differing raw
+quantities must still veto. Canonicalize only closed finite wrapper maps, preserve
+old string and malformed-map behavior. Design/execute intended reorder red first.
+Captured baseline metadata state observed without retained evidence_ids must be
+not_recorded,never checked. Current overlay must include actual canonical profile
+record digest; default baseline bytes unchanged.
+
+Additional narrow ordering/error boundary cases before repair: Variant.attributes
+contains the same admitted carrier,so variant_options must ignore wrapper key
+insertion order while preserving old string normalization. Current overlay with
+missing refrigerator profile must reject InventoryError(invalid_selection),
+not leak runtime MaintenanceError; baseline inventory remains independent.
+
+
+### APC14 additional source-boundary checks (designed before execution)
+
+Beyond the fixed48cases, five bounded checks target distinct interactions:
+(1) equivalent duplicate declarations must preserve BOTH label/value evidence
+pairs; risk is incomplete provenance despite correct values. (2) competing raw
+attribute vs projected capacity and top-level vs property Model must reject the
+field rather than pick a winner; risk is source conflict hidden by projection.
+(3) a native Shopify object carrying SchemaOrg-looking properties must serialize
+identically with capability on/off; risk is expanding the five unaudited lanes.
+(4) subprocesses with hash seeds1and26 must yield byte-identical portable records;
+risk is set iteration affecting support/attribute ordering across cache/replay.
+(5) controlled temporary ml exponent fault must break the exact500ml=0.5L
+assertion, then restore policy; risk is an insensitive conversion assertion.
+No persistent mutation or production file edit; bound each subprocess10s,one
+worker,<=64KiB output. These checks are prepared,not yet executed/reviewed.
+
+
+Completed replay amendment (root approved): a completed refrigerator job reopened
+with changed selected normalization must reject actual engine.resume with
+profile_mismatch before source work and preserve job,findings and snapshot.
+Existing cancelled/failed invalid_state precedence remains. Unrelated registry
+addition must still allow exact read-only completed replay. This closes the
+completed Store.begin early-return bypass; no recheck API is introduced.
+
+
+Full-gate readiness synchronization repair (existing case only): repeated process
+cancellation fixture currently polls300x5ms,an independent1.5s window inside the
+unchanged3s OperationContext. macOS spawned module imports can exceed that window
+before controlled resolver readiness. Replace only readiness polling bound with
+context.deadline minus existing0.3s cleanup reserve and stop if task.done. Retain
+existing5ms cooperative poll,3iterations,3s operation,0.3s cleanup and all barrier,
+CancelledError,late-reply and zero-process assertions. Expected: fixture reaches
+real child readiness within existing budget or fails with bounded diagnostic;no
+production timeout or safety threshold extension. Run this isolatedcaseonce.
