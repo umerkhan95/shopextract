@@ -1,0 +1,28 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_________ test_quantity_wrapper_order_does_not_create_matcher_conflict _________
+tests/test_profile_coverage_integration.py:167: in test_quantity_wrapper_order_does_not_create_matcher_conflict
+    assert normalized_attributes(one)==normalized_attributes(two)
+E   assert {'capacity': ...tal_volume'}"} == {'capacity': ...lue':'250l'}"}
+E
+E     Differing items:
+E     {'capacity': "{'value':'250l','semantic':'total_volume'}"} != {'capacity': "{'semantic':'total_volume','value':'250l'}"}
+E     Use -v to get more diff
+________ test_legacy_captured_baseline_without_evidence_is_not_checked _________
+tests/test_profile_coverage_cli.py:126: in test_legacy_captured_baseline_without_evidence_is_not_checked
+    assert row['checked_fields']==[] and row['not_recorded_fields']==['title']
+E   AssertionError: assert (['title'] == []
+E
+E     Left contains one more item: 'title'
+E     Use -v to get more diff)
+__ test_current_policy_overlay_preserves_baseline_and_never_claims_job_checks __
+tests/test_profile_coverage_inventory.py:148: in test_current_policy_overlay_preserves_baseline_and_never_claims_job_checks
+    assert fridge['profile_definition_digest']==digest(_profile_record(profile('refrigerator-v1')))
+E   KeyError: 'profile_definition_digest'
+=========================== short test summary info ============================
+FAILED tests/test_profile_coverage_integration.py::test_quantity_wrapper_order_does_not_create_matcher_conflict
+FAILED tests/test_profile_coverage_cli.py::test_legacy_captured_baseline_without_evidence_is_not_checked
+FAILED tests/test_profile_coverage_inventory.py::test_current_policy_overlay_preserves_baseline_and_never_claims_job_checks
+3 failed in 0.46s

@@ -1,0 +1,24 @@
+{
+  "phase": "finished",
+  "phase_started": 664433.513165637,
+  "cases": [
+    {
+      "id": "smoke",
+      "status": "passed",
+      "seconds": 3.262,
+      "result": {
+        "requests": 2,
+        "checked_fields": [
+          "attributes/capacity"
+        ],
+        "replay_requests": 0
+      }
+    }
+  ],
+  "seed": 26,
+  "status": "passed",
+  "peak_rss_bytes": 95944704,
+  "input_bytes": 1734,
+  "elapsed_seconds": 3.266,
+  "active": null
+}

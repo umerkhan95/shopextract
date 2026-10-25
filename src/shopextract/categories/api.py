@@ -13,12 +13,12 @@ from .portable import bind_product
 
 def normalize_with_categories(raw: dict, platform: Platform = Platform.GENERIC,
                               shop_url: str = '', *, category_options: CategoryOptions,
-                              restore_short_gtin: bool = False) -> CategorizedProduct | None:
+                              restore_short_gtin: bool = False, include_refrigerator_attributes: bool = False) -> CategorizedProduct | None:
     validate_options(category_options)
     if platform != category_options.scope.platform:
         raise CategoryError('Category platform differs from source scope')
     product = normalize(raw, platform, shop_url or category_options.scope.store_url,
-                        restore_short_gtin=restore_short_gtin)
+                        restore_short_gtin=restore_short_gtin, include_refrigerator_attributes=include_refrigerator_attributes)
     if product is None:
         return None
     observations = _observe_categories(raw, platform, category_options.scope, category_options.limits)

@@ -1,0 +1,10 @@
+{
+  "returncode": 1,
+  "timed_out": false,
+  "timeout_reason": null,
+  "seconds": 5.878,
+  "log_bytes": 1429,
+  "log_truncated": false,
+  "cleanup_reservation_seconds": 5,
+  "total_ceiling_seconds": 120
+}

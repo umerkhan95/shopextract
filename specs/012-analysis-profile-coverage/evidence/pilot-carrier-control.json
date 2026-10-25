@@ -1,0 +1,9 @@
+{
+  "provenance": "synthetic-carrier-control-not-extraction-availability",
+  "status": "blocked",
+  "stage": "product_to_record",
+  "observed_error": "ValueError: Invalid type at product/attributes/capacity",
+  "cause": "Product.attributes dict[str,str] strict portable type guard rejects wrapper dict",
+  "production_repair_attempted": false,
+  "next": "Review additive closed QuantityValue typing/portable validation/schema before implementation"
+}

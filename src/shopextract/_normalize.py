@@ -63,6 +63,7 @@ def normalize(
     shop_url: str = "",
     *,
     restore_short_gtin: bool = False,
+    include_refrigerator_attributes: bool = False,
 ) -> Product | None:
     """Normalize raw product dict from ANY extractor to unified Product model.
 
@@ -74,6 +75,8 @@ def normalize(
     Returns:
         Product instance or None if data insufficient.
     """
+    if type(include_refrigerator_attributes) is not bool:
+        raise ValueError('Refrigerator attribute opt-in must be boolean')
     normalizers = {
         Platform.SHOPIFY: _normalize_shopify,
         Platform.WOOCOMMERCE: _normalize_woocommerce,
@@ -152,6 +155,8 @@ def normalize(
         return None
     product.attributes = trace.emit('attributes', '/attributes', default={},
                                     convert=lambda v: dict(v) if isinstance(v, dict) else None)
+    if include_refrigerator_attributes and platform == Platform.GENERIC and ('additionalProperty' in raw or '@type' in raw):
+        product.attributes = _project_refrigerator_attributes(raw, trace, product.attributes)
     product.pack_quantity = trace.emit('pack_quantity', '/pack_quantity')
     product.bundle_components = trace.emit('bundle_components', '/bundle_components',
                                           default=[], convert=lambda v: list(v or []))
@@ -730,3 +735,81 @@ def _normalize_css_generic(raw: dict, shop_url: str) -> dict | None:
         'gtin':t.emit('gtin','/gtin','/ean','/barcode',truthy=True,convert=_validate_gtin,operation='Validate GTIN; pad 12-digit UPC with zero'),
         'mpn':t.emit('mpn','/mpn',truthy=True),
     })
+
+
+def _project_refrigerator_attributes(raw, trace, attributes):
+    """Opt-in exact source labels; retain every contributing/conflicting input."""
+    aliases = {'total capacity': ('capacity', 'total_volume'),
+               'total volume': ('capacity', 'total_volume'),
+               'total refrigerator capacity': ('capacity', 'total_volume'),
+               'product width': ('width', 'product_width'),
+               'product height': ('height', 'product_height'),
+               'product depth': ('depth', 'product_depth'), 'model': ('model', None)}
+    declarations, blocked = {}, set()
+    all_inputs = []
+    def label(value):
+        return re.sub(r'[ \t\r\n\v\f]+', ' ', value.strip(' \t\r\n\v\f')).casefold() if isinstance(value, str) else ''
+    properties = raw.get('additionalProperty', [])
+    for index, item in enumerate(properties if isinstance(properties, list) else []):
+        if not isinstance(item, dict):
+            continue
+        labels = [(key, aliases.get(label(item[key]))) for key in ('name', 'propertyID')
+                  if key in item and label(item[key])]
+        known = [meaning for _, meaning in labels if meaning is not None]
+        if not known:
+            continue
+        selections = [trace.select(f'/additionalProperty/{index}/{key}') for key, _ in labels]
+        selections.append(trace.select(f'/additionalProperty/{index}/value'))
+        all_inputs.extend(selections)
+        if len(known) != len(labels) or len(set(known)) != 1:
+            blocked.update(meaning[0] for meaning in known)
+            continue
+        field, semantic = known[0]
+        selected = selections[-1]
+        candidate = {'value': selected.value, 'semantic': semantic} if semantic else selected.value
+        if not selected.present or (field == 'model' and not isinstance(candidate, str)):
+            blocked.add(field)
+            continue
+        declarations.setdefault(field, []).append((candidate, selections))
+    if 'model' in raw:
+        selected = trace.select('/model');all_inputs.append(selected)
+        if isinstance(selected.value, str):
+            declarations.setdefault('model', []).append((selected.value, [selected]))
+        else:
+            blocked.add('model')
+    result = dict(attributes)
+    for field in sorted(set(declarations) | blocked):
+        entries = declarations.get(field, [])
+        path = 'attributes/' + field
+        if field in attributes:
+            entries = [(attributes[field], [trace.select('/' + path)])] + entries
+        inputs = [selection for _, selections in entries for selection in selections]
+        if field in blocked or not entries or any(value != entries[0][0] for value, _ in entries):
+            result.pop(field, None)
+            trace.record_inputs(path, inputs, None, accepted=False,
+                                operation='Reject conflicting refrigerator declarations')
+            blocked.add(field)
+            continue
+        result[field] = trace.record_inputs(path, inputs, entries[0][0],
+            operation='Project explicit refrigerator meaning from retained label and value')
+    # Give untouched raw fields their own source mapping; the aggregate may have
+    # multiple source inputs, so same-shape record_nested cannot fill these later.
+    for field, value in result.items():
+        if not isinstance(field, str):
+            continue
+        path = 'attributes/' + field.replace('~', '~0').replace('/', '~1')
+        if '/' + path not in trace.outcomes:
+            trace.record(path, '/' + path, value)
+    parent_inputs = []
+    for field in result:
+        if not isinstance(field, str):
+            continue
+        path = '/attributes/' + field.replace('~', '~0').replace('/', '~1')
+        parent_inputs.extend(trace.select(pointer) for pointer in trace.outcomes[path].source_paths)
+    if blocked:
+        parent_inputs.extend(all_inputs)
+    trace.record_inputs('attributes', parent_inputs, result, accepted=not blocked,
+        operation='Aggregate refrigerator attributes from exact retained inputs')
+    if blocked:
+        trace.outcomes['/attributes'].reason = 'Conflicting or ambiguous refrigerator source declarations'
+    return result

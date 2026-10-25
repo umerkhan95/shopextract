@@ -58,7 +58,7 @@ class ToolConfig:
 class ToolRuntime:
     def __init__(self, config: ToolConfig, *, resolver: Resolver | None = None,
                  wire_transport: httpx.AsyncBaseTransport | None = None, clock=None,
-                 utc_now: Callable[[], datetime] | None = None, category_config=None,shopify_storefront=None):
+                 utc_now: Callable[[], datetime] | None = None, category_config=None,shopify_storefront=None,include_refrigerator_attributes=False):
         import time
         from dataclasses import fields
         from .contracts import ToolError
@@ -84,7 +84,7 @@ class ToolRuntime:
         self.store = SessionStore(config.limits, clock=clock or time.monotonic)
         self.auxiliary = OwnedProcess(config.limits)
         self.guard = SourceGuard(config, resolver=resolver)
-        self.sources = GuardedSources(config, self.guard, wire_transport, category_config=category_config,shopify_storefront=shopify_storefront)
+        self.sources = GuardedSources(config, self.guard, wire_transport, category_config=category_config,shopify_storefront=shopify_storefront,include_refrigerator_attributes=include_refrigerator_attributes)
         self.domain = DomainAdapter(self.store, self.sources)
         self.jobs = JobManager(self.store, config.limits, auxiliary=self.auxiliary,
                                clock=clock or time.monotonic, utc_now=utc_now)

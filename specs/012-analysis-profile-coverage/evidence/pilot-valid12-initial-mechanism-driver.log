@@ -1,0 +1,18 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+Traceback (most recent call last):
+  File "/Users/umerkhan/code/shopextract/tests/profile_coverage_mechanism_driver.py", line 316, in <module>
+    if __name__=='__main__':main()
+  File "/Users/umerkhan/code/shopextract/tests/profile_coverage_mechanism_driver.py", line 298, in main
+    if args.child:child(args.child);return
+  File "/Users/umerkhan/code/shopextract/tests/profile_coverage_mechanism_driver.py", line 287, in child
+    else:result=asyncio.run(asyncio.wait_for(case_run(case,directory),10))
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/Users/umerkhan/code/shopextract/tests/profile_coverage_mechanism_driver.py", line 133, in case_run
+    assert result['findings'][0]['reason']=='currency_mismatch'
+AssertionError

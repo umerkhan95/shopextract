@@ -19,7 +19,9 @@
               "enum": [
                 "text",
                 "decimal",
-                "mass"
+                "mass",
+                "volume",
+                "length"
               ]
             },
             "role": {
@@ -33,7 +35,11 @@
               "enum": [
                 "exact",
                 "decimal",
-                "mass_kg"
+                "mass_kg",
+                "volume_total_l_v1",
+                "length_width_m_v1",
+                "length_height_m_v1",
+                "length_depth_m_v1"
               ]
             }
           },
@@ -41,7 +47,59 @@
             "kind",
             "role"
           ],
-          "additionalProperties": false
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "volume"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "normalization": {
+                    "enum": [
+                      "volume_total_l_v1"
+                    ]
+                  }
+                },
+                "required": [
+                  "normalization"
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "length"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "normalization": {
+                    "enum": [
+                      "length_width_m_v1",
+                      "length_height_m_v1",
+                      "length_depth_m_v1"
+                    ]
+                  }
+                },
+                "required": [
+                  "normalization"
+                ]
+              }
+            }
+          ]
         }
       }
     }

@@ -56,6 +56,23 @@ def _gtin(value: object) -> str:
     return digits.zfill(14) if (10 - total % 10) % 10 == int(digits[-1]) else ""
 
 
+
+def _attribute_text(value):
+    if isinstance(value, dict):
+        from .._models import QuantityValue
+        from .._portable import _check_type
+        import json
+        try:
+            _check_type(value, QuantityValue, 'attribute')
+        except ValueError:
+            pass
+        else:
+            # Preserve units/semantic spelling. Only insertion order is removed;
+            # quantitative equality never overrides the matcher's conflict veto.
+            return json.dumps(value, sort_keys=True, ensure_ascii=False, allow_nan=False, separators=(',', ':'))
+    return _text(value)
+
+
 def normalized_attributes(product: Product | dict) -> dict[str, str]:
     """Normalize explicit attributes plus conservative capacity/pack title cues."""
     p = _record(product)
@@ -63,8 +80,8 @@ def normalized_attributes(product: Product | dict) -> dict[str, str]:
     result = {}
     for key, value in (p.get("attributes") or {}).items():
         key = aliases.get(_text(key), _text(key))
-        if value is not None and _text(value):
-            result[key] = _text(value)
+        if value is not None and _attribute_text(value):
+            result[key] = _attribute_text(value)
     for key in ("color", "size", "memory", "storage", "capacity", "model", "pack_quantity"):
         if p.get(key) is not None and _text(p[key]):
             result[key] = _text(p[key])
@@ -74,7 +91,7 @@ def normalized_attributes(product: Product | dict) -> dict[str, str]:
     variants = p.get("variants") or []
     if variants:
         options = [v.get("attributes") or {"title": _text(v.get("title"))} for v in variants]
-        result["variant_options"] = str(sorted(str(sorted((str(k), _text(v)) for k, v in o.items())) for o in options))
+        result["variant_options"] = str(sorted(str(sorted((str(k), _attribute_text(v)) for k, v in o.items())) for o in options))
     title = _text(p.get("title"))
     for key, cues in (("memory", "ram|memory"), ("storage", "storage|ssd|hdd")):
         match = re.search(rf"\b(?:{cues})\s*(\d+(?:\.\d+)?)\s*(gb|tb|mb)\b", title)
