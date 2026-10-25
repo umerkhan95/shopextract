@@ -1,0 +1,27 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+{
+  "state": "passed",
+  "provenance": "offline real importer over actual saved official sources",
+  "request_count": 0,
+  "limits": {
+    "seconds": 60,
+    "peak_rss_bytes": 805306368
+  },
+  "baseline_peak_rss_bytes": 87916544,
+  "seconds": 25.467,
+  "peak_rss_bytes": 790441984,
+  "fingerprint": "1ecad259cf8cc558711b472e9194af93f68d12708fa51d6350ac13febd903c17",
+  "counts": {
+    "categories": 14606,
+    "base_attributes": 8240,
+    "extensions": 316,
+    "values": 74820,
+    "context_links": 93007,
+    "parent_links": 14580,
+    "ancestor_links": 53303,
+    "return_reason_links": 120644
+  },
+  "resource_bytes": 2486600,
+  "loaded_manifest": "build/shopify-taxonomy/catalogs/2026-08/1ecad259cf8cc558711b472e9194af93f68d12708fa51d6350ac13febd903c17/manifest.json"
+}

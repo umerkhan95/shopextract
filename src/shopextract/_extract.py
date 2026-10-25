@@ -478,7 +478,7 @@ async def _try_llm_extraction(
 async def _try_api_extraction(url: str, platform: Platform, *, max_products: int = 20,
                               enrich_identifiers: bool = False,
                               api_options: dict[str, str] | None = None,
-                              include_categories: bool = False, category_mode: bool = False) -> ExtractorResult | None:
+                              include_categories: bool = False, category_mode: bool = False, shopify_storefront=None) -> ExtractorResult | None:
     """Try platform-specific API extraction."""
     base_url = url.rstrip("/")
 
@@ -486,6 +486,10 @@ async def _try_api_extraction(url: str, platform: Platform, *, max_products: int
         from .extractors.shopify import ShopifyExtractor
         extractor = ShopifyExtractor()
         result = await extractor.extract(base_url, max_products=max_products, enrich_identifiers=enrich_identifiers)
+        if shopify_storefront is not None:
+            if not category_mode:raise ValueError('Storefront supplement requires category mode')
+            from .extractors.shopify_taxonomy import supplement_categories
+            await supplement_categories(result.products,shopify_storefront)
         if result.products or result.complete:
             return result
 

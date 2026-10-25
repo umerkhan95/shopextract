@@ -1,0 +1,8 @@
+{
+  "stage": "sqlite",
+  "state": "passed",
+  "reason": null,
+  "exit_code": 0,
+  "seconds": 2.2806903820019215,
+  "peak_sampled_group_rss_bytes": 95510528
+}

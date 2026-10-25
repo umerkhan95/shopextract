@@ -138,7 +138,7 @@ def observe_categories(raw: dict, *, context: AdapterContext) -> tuple[CategoryO
         for (term_namespace, term_kind), terms in groups.items():
             relation = 'memberships' if isinstance(value, list) else 'label'
             completeness = 'unknown'
-            if state in ('present', 'empty') and not is_og and method != 'llm':
+            if state in ('present', 'empty') and not is_og and not method.startswith('llm'):
                 completeness = 'complete'
             if partial:
                 completeness = 'partial'

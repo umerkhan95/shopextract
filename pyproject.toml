@@ -33,6 +33,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+taxonomy-build = ["PyYAML>=6.0,<7"]
 mcp = ["mcp>=1.30,<2"]
 dev = ["jsonschema>=4.20", "pytest>=8.0", "pytest-asyncio>=0.24", "respx>=0.22", "build>=1.0", "graphql-core>=3.2,<3.3"]
 
@@ -47,3 +48,12 @@ Documentation = "https://github.com/umerkhan95/shopextract#readme"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+
+[tool.hatch.build.hooks.custom]
+path = "hatch_build.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shopextract"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/hatch_build.py", "/pyproject.toml", "/README.md", "/LICENSE"]

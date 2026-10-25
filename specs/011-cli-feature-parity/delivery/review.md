@@ -1,0 +1,15 @@
+# Publication review — 2026-10-25
+
+User authorized publication and merge of existing uncommitted work. Profile expansion implementation remains a separate pending slice. Author/coordinator: /root. Independent reviewer: /root/coverage_author, who made no edits to the reviewed code.
+
+Initial verdict: changes required. The new bounded LLM path used capture method `llm_bounded`, while source support and generic-category completeness guarded only exact `llm`. Real capture→normalize reproduction marked invented values observed. The coordinator added a regression first: two intended failures and two legacy passes. Replaced exact-method checks with the existing LLM method-family prefix convention. Focused tests then passed: 86, including four provenance regressions. Saved red and green logs are adjacent.
+
+Independent rereview: PASS for repair and integration, pending fresh full-driver and package checks. Reviewer inspected the actual merge result against origin/main: taxonomy supplement, category codec/config/portable, Storefront transport, schema cache, CLI additions and bounded CI driver preserved. No conflict markers or unresolved entries. Maintenance adds only bounded list_jobs. No other blocking finding was identified in this bounded delivery review; this is not a formal proof of every code path.
+
+Current main was 5f7a25b when integrated. Previously merged maintenance/category/Woo work was reconciled rather than removed. Retained source resource was copied from the existing taxonomy worktree and verified through hatch_build.prepared_resource against its pinned hash; no downloads or inference. First full run had 1534 passes/one missing-resource skip; stopped the subsequent oracle family cleanly to prepare the resource before final complete execution. Original logs retained under full-suite; final evidence is final-full-suite/report.json.
+
+Offline wheel install/CLI discovery/examples and installed default taxonomy lookup passed, Python 3.10.11, no dependencies installed, no PYTHONPATH and cwd outside checkout; wheel-report.json holds exact commands and digest. Python 3.11/3.12 remain remote CI checks.
+
+Raw storefront responses, databases, large downloaded references and unrelated experiments remain local per artifacts/README.md. Existing historical verification logs are preserved without rewriting their whitespace or results. Code whitespace and credential-pattern scans are checked separately. No available actual incremental uncached session token counter; no quota estimate. No local model launches or parallel agents.
+
+Final configured gate PASSED: 1665 tests, zero failures/skips, 394.767294 seconds within shared 480s/per-family 240s. Main1535, native oracle24, maintenance106; all process groups cleaned. final-full-suite/report.json is authoritative. Independent code rereview conditions now satisfied locally; remote matrix remains publication gate.

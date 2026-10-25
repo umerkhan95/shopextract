@@ -1,0 +1,63 @@
+{
+  "state": "failed",
+  "seconds": 30.676,
+  "stages": [
+    {
+      "stage": "full-bootstrap",
+      "state": "passed",
+      "reason": null,
+      "exit_code": 0,
+      "seconds": 28.741,
+      "peak_sampled_group_rss_bytes": 708714496,
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-c",
+        "import json,runpy,socket,sys\nfrom pathlib import Path\ncheckout=Path(sys.argv[1]).resolve().parents[1]\nsocket.socket.connect=lambda *a,**k:(_ for _ in ()).throw(AssertionError('offline source proof'))\nsys.argv=[sys.argv[1],'--offline','--source-cache',sys.argv[2]]\nbootstrap_vars=runpy.run_path(sys.argv[0],run_name='__main__')\nassert not any(k=='shopextract' or k.startswith('shopextract.') for k in sys.modules)\nassert not any(k in sys.modules for k in ['crawl4ai','pandas','litellm'])\np=sys.modules['_shopextract_taxonomy_build.prepare']\nassert Path(p.__file__).resolve()==checkout/'src/shopextract/taxonomies/shopify/prepare.py'\nprint(json.dumps({'application_imported':False,'prepare_file':p.__file__,'python':sys.version,'toml_source':bootstrap_vars['TOML_SOURCE']}))\n",
+        "/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/build/shopify-taxonomy/delivery-proof/checkout/scripts/bootstrap_taxonomy.py",
+        "/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/build/shopify-taxonomy/delivery-proof/sources"
+      ],
+      "processgroup_cleanup": true
+    },
+    {
+      "stage": "cold-artifacts",
+      "state": "passed",
+      "reason": null,
+      "exit_code": 0,
+      "seconds": 0.748,
+      "peak_sampled_group_rss_bytes": 26628096,
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-c",
+        "import socket;socket.socket.connect=lambda *a,**k:(_ for _ in ()).throw(AssertionError('offline'));from hatchling.build import build_sdist,build_wheel;print(build_sdist('dist'));print(build_wheel('dist'))"
+      ],
+      "processgroup_cleanup": true
+    },
+    {
+      "stage": "editable-metadata",
+      "state": "failed",
+      "reason": null,
+      "exit_code": 1,
+      "seconds": 1.115,
+      "peak_sampled_group_rss_bytes": 65703936,
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--dry-run",
+        "--no-index",
+        "--no-deps",
+        "--no-build-isolation",
+        "--ignore-installed",
+        "-e",
+        "."
+      ],
+      "processgroup_cleanup": true
+    }
+  ],
+  "source_http_requests": 0,
+  "dependencies": "metadata-derived HTTPX+taxonomy-build(PyYAML), existing environment resolved via pip --no-index; no heavyweight runtime bootstrap",
+  "python_scope": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "matrix_311_312": "workflow configuration; not executed locally",
+  "editable": "dry-run metadata only; developer environment unchanged"
+}

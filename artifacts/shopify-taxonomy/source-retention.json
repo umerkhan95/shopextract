@@ -1,0 +1,20 @@
+{
+  "state": "large sources moved to existing ignored downloads tree; original checkout untouched",
+  "files": [
+    {
+      "historical_path": "artifacts/shopify-taxonomy/taxonomy.en.json.gz",
+      "retained_path": "downloads/shopify-taxonomy/2026-08/taxonomy.en.json.gz",
+      "sha256": "ee77e261eba2f0ab4375a42b95e9d1bec00779e1f3311d0e9eb6d16f05cf4c09",
+      "bytes": 4164580,
+      "git_exclusion": "existing .gitignore downloads/; no ignore edit"
+    },
+    {
+      "historical_path": "artifacts/shopify-taxonomy/attributes.source.yml",
+      "retained_path": "downloads/shopify-taxonomy/2026-08/attributes.source.yml",
+      "sha256": "91ef3829a6621fbc98b46c6447c9702e394fd7c55bfbd56fd2df0545ea9e16b6",
+      "bytes": 4769315,
+      "git_exclusion": "existing .gitignore downloads/; no ignore edit"
+    }
+  ],
+  "historical_checkpoints": "preserved unchanged; historical relative source references resolve via this mapping"
+}

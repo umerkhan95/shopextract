@@ -1,0 +1,33 @@
+{
+  "commit": "2e9aa2e9b882383952c63d212add13eb80f46cf9",
+  "counts": {
+    "ancestor_links": 53303,
+    "base_attributes": 8240,
+    "categories": 14606,
+    "context_links": 93007,
+    "extensions": 316,
+    "parent_links": 14580,
+    "return_reason_links": 120644,
+    "values": 74820
+  },
+  "fingerprint": "1ecad259cf8cc558711b472e9194af93f68d12708fa51d6350ac13febd903c17",
+  "license_sha256": "6a2261660cc6cb406ed6ef788347d8cb35e939f4537def9e699abf88ed025273",
+  "namespace": "shopify:standard_product_taxonomy",
+  "release": "2026-08",
+  "resource_sha256": "76b538b3ef04ef2ca06b208405312f0b78e2b07495450c2a39fe4054f5ced846",
+  "schema_version": 1,
+  "source_hashes": [
+    [
+      "taxonomy.en.json.gz",
+      "ee77e261eba2f0ab4375a42b95e9d1bec00779e1f3311d0e9eb6d16f05cf4c09"
+    ],
+    [
+      "attributes.yml",
+      "91ef3829a6621fbc98b46c6447c9702e394fd7c55bfbd56fd2df0545ea9e16b6"
+    ],
+    [
+      "LICENSE",
+      "6a2261660cc6cb406ed6ef788347d8cb35e939f4537def9e699abf88ed025273"
+    ]
+  ]
+}

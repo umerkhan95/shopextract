@@ -1,0 +1,52 @@
+{
+  "state": "G2_P1_design_repair_pending_affected_G1_G2_review",
+  "author": "category_generic",
+  "date": "2026-10-18",
+  "repair": "complete Storefront-enabled source cache read+write bypass; ordinary unaffected; historical checkpoint replay separate",
+  "files": {
+    "specs/008-shopify-taxonomy/spec.md": {
+      "sha256": "830c6325529b0bd28c284614fb21cecc9bc3c1052f1ee914957909ef7919a162",
+      "bytes": 11257
+    },
+    "specs/008-shopify-taxonomy/test-design.md": {
+      "sha256": "6acfbaeddbdad8ff7ebb65afc75678120e4f261ff711bbfcfce44a16476dff05",
+      "bytes": 9099
+    },
+    "specs/008-shopify-taxonomy/skeleton.md": {
+      "sha256": "9f5a3c9991f5fc5579538d15f99cc4d562c15250d5b724ba3cc4a9d4f6b306e8",
+      "bytes": 18254
+    },
+    "specs/008-shopify-taxonomy/plan.md": {
+      "sha256": "bcee8d783aaca88d60d66f870496c0872ad94eda3034d5219763998f34cfee78",
+      "bytes": 4685
+    },
+    "specs/008-shopify-taxonomy/verification.md": {
+      "sha256": "15a2998f6df050d331bb8fff36f864326be8a7ff56eeb85a66049d5f8a2c93ee",
+      "bytes": 3571
+    },
+    "specs/008-shopify-taxonomy/status.md": {
+      "sha256": "f22f69058269da82460e5b5808c2d0d25adc215997435bc1a74e207e1a83f16f",
+      "bytes": 4088
+    },
+    "specs/008-shopify-taxonomy/reviews.md": {
+      "sha256": "9937ec37600c51a29245283d6e19ed0072e3f200c143f9e0a0a80189b8140d5d",
+      "bytes": 7435
+    },
+    "tests/test_shopify_taxonomy_skeleton.py": {
+      "sha256": "ed6090f5ff63377b6d2cf05b4cd4998b1163d061892f225a9fd46dfe6d16879f",
+      "bytes": 2298
+    },
+    "artifacts/shopify-taxonomy/g2-red-smoke.log": {
+      "sha256": "29eb397c9262bbe80ae31c77d1ad978b53c68e2f3bb2bb9da88f451025bf33a0",
+      "bytes": 859
+    },
+    "artifacts/shopify-taxonomy/g2-checkpoint.json": {
+      "sha256": "d2e783940781b2265a11023c515a7927770450f8534f60459a82e4913179f998",
+      "bytes": 1636
+    }
+  },
+  "new_execution": 0,
+  "production_algorithms": 0,
+  "original_red_preserved": true,
+  "original_review_preserved": true
+}

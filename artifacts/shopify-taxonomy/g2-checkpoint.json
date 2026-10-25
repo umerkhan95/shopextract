@@ -1,0 +1,45 @@
+{
+  "state": "G2_candidate_no_business_implementation",
+  "date": "2026-10-18",
+  "author": "category_generic",
+  "G1": "independent_pass",
+  "red": "1 intended missing-public-API failure0.05s",
+  "files": {
+    "specs/008-shopify-taxonomy/skeleton.md": {
+      "sha256": "e92e4815ef68aa8d20ea925711dc9d63af3d6413102e8ca44588ae3fdf4d21b6",
+      "bytes": 16240
+    },
+    "specs/008-shopify-taxonomy/status.md": {
+      "sha256": "8289635b91c5d0d991e5ab8ac5012f246dfba507f399a7be726108411462ae22",
+      "bytes": 3655
+    },
+    "specs/008-shopify-taxonomy/verification.md": {
+      "sha256": "b3595dd29d0d0a19c3a134e98799778944b816f14245d1a476a48f307410e22b",
+      "bytes": 3088
+    },
+    "specs/008-shopify-taxonomy/reviews.md": {
+      "sha256": "02337673a376dbe0d6c0ccf777409db9ae8d727c94abb66e06a1d05812e1b3de",
+      "bytes": 4265
+    },
+    "tests/test_shopify_taxonomy_skeleton.py": {
+      "sha256": "ed6090f5ff63377b6d2cf05b4cd4998b1163d061892f225a9fd46dfe6d16879f",
+      "bytes": 2298
+    },
+    "artifacts/shopify-taxonomy/storefront-schema-proof.json": {
+      "sha256": "59d4335d790941db1eb1ad303bc7b8aadf0fbeeea9d86b77a7b084ea799229b6",
+      "bytes": 1930
+    },
+    "artifacts/shopify-taxonomy/g2-red-smoke.log": {
+      "sha256": "29eb397c9262bbe80ae31c77d1ad978b53c68e2f3bb2bb9da88f451025bf33a0",
+      "bytes": 859
+    },
+    "artifacts/shopify-taxonomy/g1-checkpoint.json": {
+      "sha256": "291a96edfdc2abf1cdc7954535936f15b2d317e6db9840590cf747917171cb5b",
+      "bytes": 2445
+    }
+  },
+  "source_algorithms": 0,
+  "merchant_requests": 0,
+  "extra_taxonomy_downloads": 0,
+  "token_counters": "unavailable"
+}

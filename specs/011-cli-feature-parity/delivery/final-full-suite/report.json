@@ -1,0 +1,124 @@
+{
+  "status": "passed",
+  "exit_code": 0,
+  "limits": {
+    "group_seconds": 240,
+    "total_seconds": 480,
+    "workers": 1
+  },
+  "planned_groups": [
+    {
+      "name": "main",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--ignore=tests/test_maintenance_acceptance.py",
+        "--ignore=tests/test_maintenance_advisor.py",
+        "--ignore=tests/test_maintenance_remaining_edges.py",
+        "--ignore=tests/test_maintenance_review_repairs.py",
+        "--ignore=tests/test_maintenance_store.py",
+        "--ignore=tests/test_maintenance_stress_prerequisites.py",
+        "--ignore=tests/test_maintenance_workflow.py",
+        "--ignore=tests/test_reliable_changes_stress.py"
+      ]
+    },
+    {
+      "name": "reliable-oracle",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_reliable_changes_stress.py"
+      ]
+    },
+    {
+      "name": "maintenance",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_maintenance_acceptance.py",
+        "tests/test_maintenance_advisor.py",
+        "tests/test_maintenance_remaining_edges.py",
+        "tests/test_maintenance_review_repairs.py",
+        "tests/test_maintenance_store.py",
+        "tests/test_maintenance_stress_prerequisites.py",
+        "tests/test_maintenance_workflow.py"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "main",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--ignore=tests/test_maintenance_acceptance.py",
+        "--ignore=tests/test_maintenance_advisor.py",
+        "--ignore=tests/test_maintenance_remaining_edges.py",
+        "--ignore=tests/test_maintenance_review_repairs.py",
+        "--ignore=tests/test_maintenance_store.py",
+        "--ignore=tests/test_maintenance_stress_prerequisites.py",
+        "--ignore=tests/test_maintenance_workflow.py",
+        "--ignore=tests/test_reliable_changes_stress.py"
+      ],
+      "status": "passed",
+      "pid": 83251,
+      "log": "specs/011-cli-feature-parity/delivery/final-full-suite/main.log",
+      "group_alive_after_cleanup": false,
+      "cleanup_seconds": 6.7e-05,
+      "exit_code": 0,
+      "returncode": 0,
+      "seconds": 200.838517
+    },
+    {
+      "name": "reliable-oracle",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_reliable_changes_stress.py"
+      ],
+      "status": "passed",
+      "pid": 83564,
+      "log": "specs/011-cli-feature-parity/delivery/final-full-suite/reliable-oracle.log",
+      "group_alive_after_cleanup": false,
+      "cleanup_seconds": 6.6e-05,
+      "exit_code": 0,
+      "returncode": 0,
+      "seconds": 78.540902
+    },
+    {
+      "name": "maintenance",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_maintenance_acceptance.py",
+        "tests/test_maintenance_advisor.py",
+        "tests/test_maintenance_remaining_edges.py",
+        "tests/test_maintenance_review_repairs.py",
+        "tests/test_maintenance_store.py",
+        "tests/test_maintenance_stress_prerequisites.py",
+        "tests/test_maintenance_workflow.py"
+      ],
+      "status": "passed",
+      "pid": 83651,
+      "log": "specs/011-cli-feature-parity/delivery/final-full-suite/maintenance.log",
+      "group_alive_after_cleanup": false,
+      "cleanup_seconds": 6.5e-05,
+      "exit_code": 0,
+      "returncode": 0,
+      "seconds": 115.38505
+    }
+  ],
+  "elapsed_seconds": 394.767294
+}

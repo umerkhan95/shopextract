@@ -1,0 +1,14 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F.                                                                       [100%]
+=================================== FAILURES ===================================
+______________ test_static_schema_cache_is_bounded_and_read_only _______________
+
+    def test_static_schema_cache_is_bounded_and_read_only():
+>       from shopextract._schemas import schema_hints
+E       ModuleNotFoundError: No module named 'shopextract._schemas'
+
+tests/test_static_schema_cache.py:8: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_static_schema_cache.py::test_static_schema_cache_is_bounded_and_read_only
+1 failed, 1 passed in 0.20s

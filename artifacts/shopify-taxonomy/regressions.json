@@ -1,0 +1,15 @@
+{
+  "state": "passed",
+  "reason": null,
+  "exit_code": 0,
+  "seconds": 225.885,
+  "timeout_seconds": 480,
+  "command": [
+    "/Users/umerkhan/code/shopextract/.venv/bin/python",
+    "-m",
+    "pytest",
+    "tests",
+    "-q"
+  ],
+  "log": "artifacts/shopify-taxonomy/regressions.log"
+}

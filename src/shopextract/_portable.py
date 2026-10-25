@@ -12,10 +12,11 @@ from decimal import Decimal
 from enum import Enum
 import math
 import types
-from typing import get_args, get_origin, get_type_hints, Union
+from typing import get_args, get_origin, Union
 
 from ._evidence import TrustContract, decode_value, encode_value, trust_view, _id, _utc
 from ._models import Product, Variant, Platform
+from ._schemas import schema_hints
 
 PORTABLE_RECORD_VERSION = 1
 MAX_PORTABLE_DEPTH = 64
@@ -92,7 +93,7 @@ def _check_type(value, annotation, path):
     elif isinstance(annotation, type) and is_dataclass(annotation):
         if not isinstance(value, annotation):
             raise ValueError(f"Expected {annotation.__name__} at {path}")
-        for name, kind in get_type_hints(annotation).items():
+        for name, kind in schema_hints(annotation).items():
             _check_type(getattr(value, name), kind, f"{path}/{name}")
     elif annotation is float:
         if type(value) not in (int, float) or not math.isfinite(value):

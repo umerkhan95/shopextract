@@ -1,0 +1,43 @@
+{
+  "state": "passed",
+  "historical_public_acquired_at": "2026-10-16T23:30:19.213001+00:00",
+  "fresh_public_id_claim": false,
+  "merchant_category_assignments_observed": 1,
+  "llm_calls": 0,
+  "browser_calls": 0,
+  "new_get_requests": 0,
+  "reason": null,
+  "resolved_ids": [
+    "gid://shopify/TaxonomyCategory/tg-2-5"
+  ],
+  "raw_category": {
+    "id": "gid://shopify/TaxonomyCategory/tg-2-5",
+    "name": "Board Games"
+  },
+  "native_observed_at": "2026-10-18T00:55:10.958472+00:00",
+  "category_states": [
+    {
+      "state": "present",
+      "completeness": "complete",
+      "reason": ""
+    }
+  ],
+  "seconds": 3.778,
+  "combined_http_ledger": [
+    {
+      "method": "GET",
+      "url": "https://www.boardgamebliss.com/products/eternal-decks-french-edition-minor-damage.json",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "url": "https://www.boardgamebliss.com/api/2026-10/graphql.json",
+      "phase": "response_retained",
+      "status": 200,
+      "response_bytes": 328,
+      "response_sha256": "d347b7d41031b9708c3e21e917296a91de162feb9b05a220aa6c045f47077f9a"
+    }
+  ],
+  "combined_requests_spent": 2,
+  "remaining_requests": 0
+}

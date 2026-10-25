@@ -1,0 +1,61 @@
+{
+  "state": "passed",
+  "candidate": "dict",
+  "scope": "metadata storage prototype comparison; canonical JSON bytes equally materialized inside timing; no new production backend",
+  "application_import_seconds": 1.261032108013751,
+  "pre_backend_rss_bytes": 89645056,
+  "backend_open_seconds": 3.3540887529961765,
+  "first_schema_seconds": 0.00018532099784351885,
+  "backend_plus_first_seconds": 3.35427407399402,
+  "db_file_hash_seconds": null,
+  "integrity_parity": "production full byte/logical/reference validation",
+  "steady_rss_bytes": 435699712,
+  "rss_delta_from_common_imports_bytes": 346054656,
+  "os_cache": "uncontrolled; expected warm after preparation; fresh process only",
+  "python": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "sqlite": "3.40.1",
+  "semantic_workload_sha256": "1ffa08fe7c025cbd13ed8e7d6fba1ec7cffc240a34bc737bf3e760fcb966026b",
+  "timings": {
+    "hot_repeat_100": {
+      "items": 100,
+      "total_ms": 30.03720199999999,
+      "p50_ms": 0.292739,
+      "p95_ms": 0.333634
+    },
+    "unique_128": {
+      "items": 128,
+      "total_ms": 17.319445999999996,
+      "p50_ms": 0.123344,
+      "p95_ms": 0.264877
+    },
+    "mixed_hits_misses_128": {
+      "items": 128,
+      "total_ms": 8.760022000000003,
+      "p50_ms": 0.031097,
+      "p95_ms": 0.21517
+    },
+    "valid_misses_64": {
+      "items": 64,
+      "total_ms": 0.07694500000000001,
+      "p50_ms": 0.001165,
+      "p95_ms": 0.001439
+    },
+    "batch_1": {
+      "items": 128,
+      "total_ms": 20.30740602640435,
+      "sha256": "94599bf6a5e3a71afbcbb32bb47c0be73d5a3479b68cda59f8bad4313bee8288"
+    },
+    "batch_16": {
+      "items": 128,
+      "total_ms": 20.32200901885517,
+      "sha256": "94599bf6a5e3a71afbcbb32bb47c0be73d5a3479b68cda59f8bad4313bee8288"
+    },
+    "batch_128": {
+      "items": 128,
+      "total_ms": 20.898861985187978,
+      "sha256": "94599bf6a5e3a71afbcbb32bb47c0be73d5a3479b68cda59f8bad4313bee8288"
+    }
+  },
+  "total_worker_seconds": 4.796505520003848,
+  "fingerprint": "1ecad259cf8cc558711b472e9194af93f68d12708fa51d6350ac13febd903c17"
+}

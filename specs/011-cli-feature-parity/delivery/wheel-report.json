@@ -1,0 +1,230 @@
+{
+  "status": "passed",
+  "python_version": "3.10.11",
+  "wheel_name": "shopextract-0.1.2-py3-none-any.whl",
+  "wheel_sha256": "bb585055394c75521b25a249b3b26d60c6c5b4b460d222e175f69ce2a77dd652",
+  "wheel_schema_files": 17,
+  "installed": {
+    "origin": "/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/lib/python3.10/site-packages/shopextract/__init__.py",
+    "prefix": "/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env",
+    "commands": 85,
+    "leaves": 70,
+    "schema_resources": 24,
+    "all_nested_help": "passed",
+    "runtime_constructors": 0
+  },
+  "console_module_capabilities_equal": true,
+  "commands": [
+    {
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pip",
+        "wheel",
+        "--no-deps",
+        "--no-build-isolation",
+        "/Users/umerkhan/code/shopextract",
+        "--wheel-dir",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/wheels"
+      ],
+      "returncode": 0,
+      "seconds": 1.382
+    },
+    {
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "venv",
+        "--system-site-packages",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env"
+      ],
+      "returncode": 0,
+      "seconds": 5.129
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--no-deps",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/wheels/shopextract-0.1.2-py3-none-any.whl"
+      ],
+      "returncode": 0,
+      "seconds": 1.231
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/python",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/inspect-installed.py"
+      ],
+      "returncode": 0,
+      "seconds": 1.665
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/python",
+        "-c",
+        "from shopextract.taxonomies.shopify import load_shopify_taxonomy; c=load_shopify_taxonomy(); assert c.manifest.counts.categories==14606"
+      ],
+      "returncode": 0,
+      "seconds": 5.098
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "capabilities"
+      ],
+      "returncode": 0,
+      "seconds": 1.885
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/python",
+        "-m",
+        "shopextract.cli",
+        "capabilities"
+      ],
+      "returncode": 0,
+      "seconds": 1.763
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "--help"
+      ],
+      "returncode": 0,
+      "seconds": 1.5
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "tools",
+        "serve",
+        "--help"
+      ],
+      "returncode": 0,
+      "seconds": 1.571
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "maintenance",
+        "run",
+        "--help"
+      ],
+      "returncode": 0,
+      "seconds": 1.473
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "categories",
+        "tree",
+        "link",
+        "--help"
+      ],
+      "returncode": 0,
+      "seconds": 1.482
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "evidence",
+        "bundle",
+        "create",
+        "--help"
+      ],
+      "returncode": 0,
+      "seconds": 1.494
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "schema",
+        "show",
+        "tool:match"
+      ],
+      "returncode": 0,
+      "seconds": 1.493
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "--config",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/examples/cli.json",
+        "normalize",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/examples/raw-products.json"
+      ],
+      "returncode": 0,
+      "seconds": 1.495
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "quality",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/normalized.json"
+      ],
+      "returncode": 0,
+      "seconds": 1.497
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "tools",
+        "call",
+        "--config",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/examples/operator.json",
+        "--request",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/examples/session.json",
+        "--timeout",
+        "10"
+      ],
+      "returncode": 0,
+      "seconds": 1.539
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "maintenance",
+        "--db",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/jobs.db",
+        "create",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/examples/goal.json"
+      ],
+      "returncode": 0,
+      "seconds": 1.554
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "maintenance",
+        "--db",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/jobs.db",
+        "list",
+        "--limit",
+        "10"
+      ],
+      "returncode": 0,
+      "seconds": 1.486
+    },
+    {
+      "command": [
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/env/bin/shopextract",
+        "maintenance",
+        "--db",
+        "/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/shopextract-wheel-3wm67wg1/jobs.db",
+        "run",
+        "c4c2b9860e304c3c9c91607eddf3c856",
+        "--timeout",
+        "10"
+      ],
+      "returncode": 3,
+      "seconds": 1.557
+    }
+  ],
+  "dependencies_installed": false,
+  "cwd_outside_checkout": true,
+  "pythonpath_cleared": true,
+  "limitations": "Python3.10.11 only; no3.11/3.12 local claim; MCP real SDK verified separately in .venv, discovery intentionally no runtime activation."
+}

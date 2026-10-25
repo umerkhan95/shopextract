@@ -7,17 +7,30 @@ from .security import GuardedTransport, NativeReadPolicy, normalized
 from .._models import Platform
 
 
+class _TransportLease(httpx.AsyncBaseTransport):
+    """Borrow the exact guarded authority/accounting without owning its pools."""
+    def __init__(self,transport):self.transport=transport
+    async def handle_async_request(self,request):return await self.transport.handle_async_request(request)
+    async def aclose(self):pass
+
+
 class GuardedSources:
-    def __init__(self, config, guard, wire=None, *, category_config=None):
+    def __init__(self, config, guard, wire=None, *, category_config=None,shopify_storefront=None):
         self.config, self.guard, self.wire = config, guard, wire
         self.category_config = category_config
+        self.shopify_storefront = shopify_storefront
+        if shopify_storefront is not None:
+            from ..extractors.shopify_taxonomy import ShopifyStorefrontConfig
+            if not isinstance(shopify_storefront,ShopifyStorefrontConfig) or category_config is None:
+                raise ValueError('Storefront supplement requires category configuration')
         if category_config is not None:
             from ..categories.config import runtime_record
             runtime_record(category_config)
 
     async def execute(self, name, url, maximum, context):
         transport = GuardedTransport(self.config, context, self.guard, self.wire,
-            policy=NativeReadPolicy(category_mode=self.category_config is not None and self.category_config.options.limits.terms > 0))
+            policy=NativeReadPolicy(category_mode=self.category_config is not None and self.category_config.options.limits.terms > 0,
+                shopify_endpoint=self.shopify_storefront.endpoint if self.shopify_storefront else None))
         try:
             async with httpx.AsyncClient(transport=transport, trust_env=False,
                     follow_redirects=False, timeout=10, headers={'User-Agent': 'ShopExtract/0.1.2'}) as client:
@@ -139,6 +152,13 @@ class GuardedSources:
                         transport.policy = NativeReadPolicy(eligible,category_mode=self.category_config is not None and self.category_config.options.limits.terms > 0)
                         options.update(endpoint=base, access_token=token)
                 result = await extractor.extract(origin, **options)
+                if platform==Platform.SHOPIFY and self.shopify_storefront is not None:
+                    from ..extractors.shopify_taxonomy import supplement_categories
+                    from ..extractors._storefront import stateless_cookies
+                    async with httpx.AsyncClient(transport=_TransportLease(transport),trust_env=False,
+                            follow_redirects=False,timeout=10,cookies=stateless_cookies(),
+                            headers={'User-Agent':'ShopExtract/0.1.2'}) as category_client:
+                        await supplement_categories(result.products,self.shopify_storefront,client=category_client)
                 if transport.last_error:
                     raise transport.last_error
                 raw, complete = result.products, result.complete

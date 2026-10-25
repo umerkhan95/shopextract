@@ -1,0 +1,6 @@
+Obtaining file:///Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/build/shopify-taxonomy/delivery-proof/checkout
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Would install shopextract-0.1.2

@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-18",
+  "constraint": "No new runtime or benchmark dependency; use Python standard library and saved source data.",
+  "papers": [
+    {"title": "MonetDB/X100: Hyper-Pipelining Query Execution", "url": "https://www.cidrdb.org/cidr2005/papers/P19.pdf", "read": "Introduction and section 5.1.1 vector-size impact", "lesson": "Amortize interpretation overhead with bounded batches; excessive intermediate materialization and overlarge working sets can reverse gains.", "application_hypothesis": "Batch metadata retrieval and reuse immutable preparation while retaining per-product evidence checks. Python batching does not imply the paper's native vectorization speedups."},
+    {"title": "Cache-Conscious Data Structures", "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/ccds.pdf", "read": "Abstract and section 3 clustering/compression discussion; PDF text extraction partly garbled", "lesson": "Group related records and reduce pointer-heavy working sets.", "application_hypothesis": "Prebuilt compact records, lazy indexed reads and small hot caches may lower cold-start memory; measure rather than assume CPU-cache benefit in Python."},
+    {"title": "PTHash: Revisiting FCH Minimal Perfect Hashing", "url": "https://jermp.github.io/assets/pdf/papers/SIGIR2021.pdf", "read": "Problem definition and construction/lookup tradeoff", "lesson": "Static keys can map to compact dense identifiers, but the perfect-hash definition does not establish membership for unknown keys.", "application_hypothesis": "Dense IDs and packed offsets may be worth testing; preserve exact key comparison for misses. No new PTHash library or custom production perfect-hash engine is proposed."}
+  ],
+  "evidence_status": "Research only. Paper-reported speedups are not Shopextract benchmark results. Actual bounded comparison is requested and pending current regression run."
+}

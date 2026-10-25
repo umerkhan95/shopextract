@@ -1,0 +1,10 @@
+{
+  "state": "passed",
+  "operations": 10,
+  "seconds": 0.41952045302605256,
+  "mean_operation_ms": 41.952045302605256,
+  "requests": 20,
+  "provenance": "controlled MockTransport real producer/public dispatch/normalizer/strict schema; excludes real merchant network latency",
+  "llm_calls": 0,
+  "catalog_reused": true
+}

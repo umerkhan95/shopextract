@@ -1,0 +1,13 @@
+{
+  "state": "failed",
+  "provenance": "offline real importer over actual saved official sources",
+  "request_count": 0,
+  "limits": {
+    "seconds": 60,
+    "peak_rss_bytes": 805306368
+  },
+  "baseline_peak_rss_bytes": 89276416,
+  "seconds": 20.461,
+  "peak_rss_bytes": 823574528,
+  "reason": "TaxonomyIntegrityError: Duplicate or invalid TaxonomyReturnReason ID"
+}

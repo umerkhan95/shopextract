@@ -1,0 +1,41 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+__________ test_prepare_local_override_and_cold_checkout_fail_closed ___________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-124/test_prepare_local_override_an0')
+
+    def test_prepare_local_override_and_cold_checkout_fail_closed(tmp_path):
+>       from shopextract.taxonomies.shopify.prepare import prepare_shopify_taxonomy_build
+E       ModuleNotFoundError: No module named 'shopextract.taxonomies.shopify.prepare'
+
+tests/test_shopify_taxonomy_packaging.py:10: ModuleNotFoundError
+_________ test_hook_is_standalone_and_checks_pin_before_force_include __________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-124/test_hook_is_standalone_and_ch0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1086bc520>
+
+    def test_hook_is_standalone_and_checks_pin_before_force_include(tmp_path,monkeypatch):
+        spec=importlib.util.spec_from_file_location('taxonomy_build_hook',Path('hatch_build.py'))
+>       hook=importlib.util.module_from_spec(spec);spec.loader.exec_module(hook)
+
+tests/test_shopify_taxonomy_packaging.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+<frozen importlib._bootstrap_external>:879: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1016: in get_code
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_frozen_importlib_external.SourceFileLoader object at 0x1086bc7f0>
+path = '/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/hatch_build.py'
+
+>   ???
+E   FileNotFoundError: [Errno 2] No such file or directory: '/Users/umerkhan/.codex/worktrees/shopify-taxonomy/shopextract/hatch_build.py'
+
+<frozen importlib._bootstrap_external>:1073: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_shopify_taxonomy_packaging.py::test_prepare_local_override_and_cold_checkout_fail_closed
+FAILED tests/test_shopify_taxonomy_packaging.py::test_hook_is_standalone_and_checks_pin_before_force_include
+2 failed in 0.32s

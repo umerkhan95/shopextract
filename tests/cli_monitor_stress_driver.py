@@ -52,7 +52,7 @@ for name,selection in CASES:
                 pass
         inventory=subprocess.check_output(['ps','-axo','pid=,pgid=,rss='],text=True)
         orphans=[int(row.split()[0]) for row in inventory.splitlines() if len(row.split())==3 and int(row.split()[1])==process.pid]
-        if orphans:failure='process group remained after cleanup' 
+        if orphans:failure='process group remained after cleanup'
     results.append(dict(case=name,command=command,exit_code=code,seconds=round(time.monotonic()-begin,3),peak_rss_kib=peak,failure=failure,orphans_after_cleanup=orphans))
     (OUT/'status.json').write_text(json.dumps(dict(seed=11025,limits=dict(case_seconds=30,total_seconds=300,rss_mib=512,workers=1,max_input_bytes=1048576,max_records=1000),cases=results,seconds=round(time.monotonic()-start,3)),indent=2))
     if code or failure:sys.exit(1)

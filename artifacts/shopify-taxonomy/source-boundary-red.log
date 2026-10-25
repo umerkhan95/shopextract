@@ -1,0 +1,194 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+........FFFF......FFFFF                                                  [100%]
+=================================== FAILURES ===================================
+_________ test_join_errors_do_not_taint_independent_public_facts[None] _________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+path = None
+
+    @pytest.mark.parametrize('path',[None,['product'],['product','id'],['product','handle']])
+    async def test_join_errors_do_not_taint_independent_public_facts(catalog,path):
+        from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig,supplement_categories
+        from shopextract._evidence import SupportState
+        body={'data':{'product':{'id':'gid://shopify/Product/101','handle':'laptop','category':{'id':'gid://shopify/TaxonomyCategory/el-6-6','name':'Laptops'}}},'errors':[{'path':path}]}
+        raw=public();raw['product_type']='Independent merchant type'
+        capture(raw,STORE+'/products.json','shopify_api')
+        async with httpx.AsyncClient(transport=httpx.MockTransport(lambda r:httpx.Response(200,json=body))) as client:
+            await supplement_categories([raw],ShopifyStorefrontConfig(STORE+'/api/2026-10/graphql.json',auth_mode='tokenless'),client=client)
+        options=shopify_taxonomy_options(CategoryScope(Platform.SHOPIFY,STORE),category_ids=['el-6-6'],taxonomy=catalog,allow_unknown_source_version=True)
+        value=normalize_with_categories(raw,Platform.SHOPIFY,STORE,category_options=options)
+        custom=next(o for o in value.observations if o.taxonomy_kind=='custom_type')
+>       assert custom.terms[0].facts[0].support==SupportState.OBSERVED
+E       AssertionError: assert <SupportState...'unsupported'> == <SupportState...D: 'observed'>
+E         
+E         - observed
+E         + unsupported
+
+tests/test_shopify_taxonomy_storefront.py:69: AssertionError
+________ test_join_errors_do_not_taint_independent_public_facts[path1] _________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+path = ['product']
+
+    @pytest.mark.parametrize('path',[None,['product'],['product','id'],['product','handle']])
+    async def test_join_errors_do_not_taint_independent_public_facts(catalog,path):
+        from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig,supplement_categories
+        from shopextract._evidence import SupportState
+        body={'data':{'product':{'id':'gid://shopify/Product/101','handle':'laptop','category':{'id':'gid://shopify/TaxonomyCategory/el-6-6','name':'Laptops'}}},'errors':[{'path':path}]}
+        raw=public();raw['product_type']='Independent merchant type'
+        capture(raw,STORE+'/products.json','shopify_api')
+        async with httpx.AsyncClient(transport=httpx.MockTransport(lambda r:httpx.Response(200,json=body))) as client:
+            await supplement_categories([raw],ShopifyStorefrontConfig(STORE+'/api/2026-10/graphql.json',auth_mode='tokenless'),client=client)
+        options=shopify_taxonomy_options(CategoryScope(Platform.SHOPIFY,STORE),category_ids=['el-6-6'],taxonomy=catalog,allow_unknown_source_version=True)
+        value=normalize_with_categories(raw,Platform.SHOPIFY,STORE,category_options=options)
+        custom=next(o for o in value.observations if o.taxonomy_kind=='custom_type')
+>       assert custom.terms[0].facts[0].support==SupportState.OBSERVED
+E       AssertionError: assert <SupportState...'unsupported'> == <SupportState...D: 'observed'>
+E         
+E         - observed
+E         + unsupported
+
+tests/test_shopify_taxonomy_storefront.py:69: AssertionError
+________ test_join_errors_do_not_taint_independent_public_facts[path2] _________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+path = ['product', 'id']
+
+    @pytest.mark.parametrize('path',[None,['product'],['product','id'],['product','handle']])
+    async def test_join_errors_do_not_taint_independent_public_facts(catalog,path):
+        from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig,supplement_categories
+        from shopextract._evidence import SupportState
+        body={'data':{'product':{'id':'gid://shopify/Product/101','handle':'laptop','category':{'id':'gid://shopify/TaxonomyCategory/el-6-6','name':'Laptops'}}},'errors':[{'path':path}]}
+        raw=public();raw['product_type']='Independent merchant type'
+        capture(raw,STORE+'/products.json','shopify_api')
+        async with httpx.AsyncClient(transport=httpx.MockTransport(lambda r:httpx.Response(200,json=body))) as client:
+            await supplement_categories([raw],ShopifyStorefrontConfig(STORE+'/api/2026-10/graphql.json',auth_mode='tokenless'),client=client)
+        options=shopify_taxonomy_options(CategoryScope(Platform.SHOPIFY,STORE),category_ids=['el-6-6'],taxonomy=catalog,allow_unknown_source_version=True)
+        value=normalize_with_categories(raw,Platform.SHOPIFY,STORE,category_options=options)
+        custom=next(o for o in value.observations if o.taxonomy_kind=='custom_type')
+        assert custom.terms[0].facts[0].support==SupportState.OBSERVED
+>       assert not any(m.status=='mapped' for m in value.mappings)
+E       assert not True
+E        +  where True = any(<generator object test_join_errors_do_not_taint_independent_public_facts.<locals>.<genexpr> at 0x1077374c0>)
+
+tests/test_shopify_taxonomy_storefront.py:70: AssertionError
+________ test_join_errors_do_not_taint_independent_public_facts[path3] _________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+path = ['product', 'handle']
+
+    @pytest.mark.parametrize('path',[None,['product'],['product','id'],['product','handle']])
+    async def test_join_errors_do_not_taint_independent_public_facts(catalog,path):
+        from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig,supplement_categories
+        from shopextract._evidence import SupportState
+        body={'data':{'product':{'id':'gid://shopify/Product/101','handle':'laptop','category':{'id':'gid://shopify/TaxonomyCategory/el-6-6','name':'Laptops'}}},'errors':[{'path':path}]}
+        raw=public();raw['product_type']='Independent merchant type'
+        capture(raw,STORE+'/products.json','shopify_api')
+        async with httpx.AsyncClient(transport=httpx.MockTransport(lambda r:httpx.Response(200,json=body))) as client:
+            await supplement_categories([raw],ShopifyStorefrontConfig(STORE+'/api/2026-10/graphql.json',auth_mode='tokenless'),client=client)
+        options=shopify_taxonomy_options(CategoryScope(Platform.SHOPIFY,STORE),category_ids=['el-6-6'],taxonomy=catalog,allow_unknown_source_version=True)
+        value=normalize_with_categories(raw,Platform.SHOPIFY,STORE,category_options=options)
+        custom=next(o for o in value.observations if o.taxonomy_kind=='custom_type')
+        assert custom.terms[0].facts[0].support==SupportState.OBSERVED
+>       assert not any(m.status=='mapped' for m in value.mappings)
+E       assert not True
+E        +  where True = any(<generator object test_join_errors_do_not_taint_independent_public_facts.<locals>.<genexpr> at 0x1076a69d0>)
+
+tests/test_shopify_taxonomy_storefront.py:70: AssertionError
+_______ test_configured_endpoint_wrong_methods_denied_before_wire[GET-] ________
+
+method = 'GET', suffix = ''
+
+    @pytest.mark.parametrize('method,suffix',[('GET',''),('HEAD',''),('GET','?query=wrong'),('HEAD','?query=wrong')])
+    async def test_configured_endpoint_wrong_methods_denied_before_wire(method,suffix):
+        sent=[];config=ToolConfig(allowed_origins=(STORE,));runtime=ToolRuntime(config,resolver=resolver)
+        endpoint=STORE+'/api/2026-10/graphql.json'
+        context=OperationContext('guard',time.monotonic()+10,asyncio.Event(),OperationBudget(Limits()),runtime.auxiliary,datetime.now(timezone.utc))
+        transport=GuardedTransport(config,context,runtime.guard,httpx.MockTransport(wire(sent)),policy=NativeReadPolicy(category_mode=True,shopify_endpoint=endpoint))
+        try:
+            async with httpx.AsyncClient(transport=transport) as client:
+>               with pytest.raises(ToolError):await client.request(method,endpoint+suffix)
+E               Failed: DID NOT RAISE ToolError
+
+tests/test_shopify_taxonomy_dispatch.py:74: Failed
+_______ test_configured_endpoint_wrong_methods_denied_before_wire[HEAD-] _______
+
+method = 'HEAD', suffix = ''
+
+    @pytest.mark.parametrize('method,suffix',[('GET',''),('HEAD',''),('GET','?query=wrong'),('HEAD','?query=wrong')])
+    async def test_configured_endpoint_wrong_methods_denied_before_wire(method,suffix):
+        sent=[];config=ToolConfig(allowed_origins=(STORE,));runtime=ToolRuntime(config,resolver=resolver)
+        endpoint=STORE+'/api/2026-10/graphql.json'
+        context=OperationContext('guard',time.monotonic()+10,asyncio.Event(),OperationBudget(Limits()),runtime.auxiliary,datetime.now(timezone.utc))
+        transport=GuardedTransport(config,context,runtime.guard,httpx.MockTransport(wire(sent)),policy=NativeReadPolicy(category_mode=True,shopify_endpoint=endpoint))
+        try:
+            async with httpx.AsyncClient(transport=transport) as client:
+>               with pytest.raises(ToolError):await client.request(method,endpoint+suffix)
+E               Failed: DID NOT RAISE ToolError
+
+tests/test_shopify_taxonomy_dispatch.py:74: Failed
+_ test_configured_endpoint_wrong_methods_denied_before_wire[GET-?query=wrong] __
+
+method = 'GET', suffix = '?query=wrong'
+
+    @pytest.mark.parametrize('method,suffix',[('GET',''),('HEAD',''),('GET','?query=wrong'),('HEAD','?query=wrong')])
+    async def test_configured_endpoint_wrong_methods_denied_before_wire(method,suffix):
+        sent=[];config=ToolConfig(allowed_origins=(STORE,));runtime=ToolRuntime(config,resolver=resolver)
+        endpoint=STORE+'/api/2026-10/graphql.json'
+        context=OperationContext('guard',time.monotonic()+10,asyncio.Event(),OperationBudget(Limits()),runtime.auxiliary,datetime.now(timezone.utc))
+        transport=GuardedTransport(config,context,runtime.guard,httpx.MockTransport(wire(sent)),policy=NativeReadPolicy(category_mode=True,shopify_endpoint=endpoint))
+        try:
+            async with httpx.AsyncClient(transport=transport) as client:
+>               with pytest.raises(ToolError):await client.request(method,endpoint+suffix)
+E               Failed: DID NOT RAISE ToolError
+
+tests/test_shopify_taxonomy_dispatch.py:74: Failed
+_ test_configured_endpoint_wrong_methods_denied_before_wire[HEAD-?query=wrong] _
+
+method = 'HEAD', suffix = '?query=wrong'
+
+    @pytest.mark.parametrize('method,suffix',[('GET',''),('HEAD',''),('GET','?query=wrong'),('HEAD','?query=wrong')])
+    async def test_configured_endpoint_wrong_methods_denied_before_wire(method,suffix):
+        sent=[];config=ToolConfig(allowed_origins=(STORE,));runtime=ToolRuntime(config,resolver=resolver)
+        endpoint=STORE+'/api/2026-10/graphql.json'
+        context=OperationContext('guard',time.monotonic()+10,asyncio.Event(),OperationBudget(Limits()),runtime.auxiliary,datetime.now(timezone.utc))
+        transport=GuardedTransport(config,context,runtime.guard,httpx.MockTransport(wire(sent)),policy=NativeReadPolicy(category_mode=True,shopify_endpoint=endpoint))
+        try:
+            async with httpx.AsyncClient(transport=transport) as client:
+>               with pytest.raises(ToolError):await client.request(method,endpoint+suffix)
+E               Failed: DID NOT RAISE ToolError
+
+tests/test_shopify_taxonomy_dispatch.py:74: Failed
+_____________ test_extract_preserves_configured_merchant_basepath ______________
+
+catalog = ShopifyTaxonomy(manifest=TaxonomyManifest(schema_version=1, namespace='shopify:standard_product_taxonomy', release='fi...n='Contextual color', extended=True, extension_handle='panel-color', value_ids=('gid://shopify/TaxonomyValue/1',)),)}))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1078c0730>
+
+    async def test_extract_preserves_configured_merchant_basepath(catalog,monkeypatch):
+        sent=[];original=httpx.AsyncClient
+        monkeypatch.setattr(httpx,'AsyncClient',lambda **kw:original(transport=httpx.MockTransport(wire(sent)),**kw))
+        values=[]
+        for path in ('/a','/b'):
+            result=await extract_with_shopify_taxonomy(STORE+path,taxonomy=catalog,allow_unknown_source_version=True,
+                storefront=ShopifyStorefrontConfig(STORE+'/api/2026-10/graphql.json',auth_mode='tokenless'))
+            value=result.products[0];values.append(value)
+>           assert value.scope.store_url==STORE+path
+E           AssertionError: assert 'https://merchant.test' == 'https://merchant.test/a'
+E             
+E             - https://merchant.test/a
+E             ?                      --
+E             + https://merchant.test
+
+tests/test_shopify_taxonomy_dispatch.py:86: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_shopify_taxonomy_storefront.py::test_join_errors_do_not_taint_independent_public_facts[None]
+FAILED tests/test_shopify_taxonomy_storefront.py::test_join_errors_do_not_taint_independent_public_facts[path1]
+FAILED tests/test_shopify_taxonomy_storefront.py::test_join_errors_do_not_taint_independent_public_facts[path2]
+FAILED tests/test_shopify_taxonomy_storefront.py::test_join_errors_do_not_taint_independent_public_facts[path3]
+FAILED tests/test_shopify_taxonomy_dispatch.py::test_configured_endpoint_wrong_methods_denied_before_wire[GET-]
+FAILED tests/test_shopify_taxonomy_dispatch.py::test_configured_endpoint_wrong_methods_denied_before_wire[HEAD-]
+FAILED tests/test_shopify_taxonomy_dispatch.py::test_configured_endpoint_wrong_methods_denied_before_wire[GET-?query=wrong]
+FAILED tests/test_shopify_taxonomy_dispatch.py::test_configured_endpoint_wrong_methods_denied_before_wire[HEAD-?query=wrong]
+FAILED tests/test_shopify_taxonomy_dispatch.py::test_extract_preserves_configured_merchant_basepath
+9 failed, 14 passed in 3.58s

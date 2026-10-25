@@ -83,7 +83,7 @@ def _support_outcome(raw, outcome, *, normalized_value, remaining_bytes=PRODUCT_
         values = source_context.get('values', {}) if source_context else {}
         original = values.get(source_path)
         raw_values.append(original)
-        if context and context.get('method') == 'llm':
+        if context and str(context.get('method', '')).startswith('llm'):
             reason = 'LLM output has no verified supporting source span or pointer'
         elif source_path not in values:
             reason = 'Selected source has no retained capture; support unavailable'
@@ -111,7 +111,7 @@ def _support_outcome(raw, outcome, *, normalized_value, remaining_bytes=PRODUCT_
                 reason = 'Retained evidence byte budget exhausted; support truncated'
         elif not reason:
             reason = 'Normalization rejected source value or emitted a compatibility default'
-    if context and context.get('method') == 'llm':
+    if context and str(context.get('method', '')).startswith('llm'):
         state = SupportState.UNSUPPORTED
         reason = 'LLM output has no verified supporting source span or pointer'
     if len(captured_evidence) != len(sources) and state == SupportState.OBSERVED:
