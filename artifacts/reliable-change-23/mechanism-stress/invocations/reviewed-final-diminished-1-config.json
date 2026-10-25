@@ -1,0 +1,21 @@
+{
+  "invocation_id": "reviewed-final-diminished-1",
+  "known_prior_driver_seconds": 132.607,
+  "audit_timeout_seconds": 20,
+  "audit_unmeasured_overhead_reserve_seconds": 0.1,
+  "charged_spent_upper_bound_seconds": 152.707,
+  "remaining_seconds": 27.293000000000006,
+  "child_timeout_seconds": 21,
+  "direct_audit_timeout_seconds": 4,
+  "safety_reserve_seconds": 1,
+  "allowlist": [
+    "SM09-2909-6",
+    "SM09-2909-7"
+  ],
+  "attempts_before": 29,
+  "max_attempts": 32,
+  "expected_final_attempts": 31,
+  "conformant_reused_batches": 22,
+  "old_audit_status": "timeout/incomplete, not passed",
+  "no_automatic_next_chunk": true
+}

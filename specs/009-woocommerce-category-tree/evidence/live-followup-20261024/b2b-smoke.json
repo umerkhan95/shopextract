@@ -1,0 +1,82 @@
+{
+  "name": "b2b-smoke",
+  "url": "https://demo.woocommerce-b2b.com/sales-agents",
+  "outcome": "complete",
+  "reasons": [],
+  "nodes": 7,
+  "pages": 3,
+  "attempts": 3,
+  "parent_edges": 3,
+  "issues": [],
+  "assertions": {
+    "coverage": true,
+    "roundtrip": true,
+    "parents_in_receipts": true
+  },
+  "categories": [
+    {
+      "id": "15",
+      "facts": {
+        "id": 15,
+        "name": "Uncategorized",
+        "slug": "uncategorized",
+        "parent": 0
+      }
+    },
+    {
+      "id": "17",
+      "facts": {
+        "id": 17,
+        "name": "Clothing",
+        "slug": "clothing",
+        "parent": 0
+      }
+    },
+    {
+      "id": "18",
+      "facts": {
+        "id": 18,
+        "name": "Tshirts",
+        "slug": "tshirts",
+        "parent": 17
+      }
+    },
+    {
+      "id": "19",
+      "facts": {
+        "id": 19,
+        "name": "Hoodies",
+        "slug": "hoodies",
+        "parent": 17
+      }
+    },
+    {
+      "id": "20",
+      "facts": {
+        "id": 20,
+        "name": "Accessories",
+        "slug": "accessories",
+        "parent": 17
+      }
+    },
+    {
+      "id": "21",
+      "facts": {
+        "id": 21,
+        "name": "Music",
+        "slug": "music",
+        "parent": 0
+      }
+    },
+    {
+      "id": "22",
+      "facts": {
+        "id": 22,
+        "name": "Decor",
+        "slug": "decor",
+        "parent": 0
+      }
+    }
+  ],
+  "elapsed_seconds": 9.962
+}

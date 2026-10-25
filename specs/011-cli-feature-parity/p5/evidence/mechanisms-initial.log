@@ -1,0 +1,120 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+......F........................F.....F                                   [100%]
+=================================== FAILURES ===================================
+______________ test_tools_static_and_help_never_construct_runtime ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10a709a50>
+
+    def test_tools_static_and_help_never_construct_runtime(monkeypatch):
+        from shopextract.tools import ToolRuntime
+        def forbidden(*a,**k):raise AssertionError('runtime initialized')
+        monkeypatch.setattr(ToolRuntime,'__init__',forbidden)
+        for args in [('tools','schemas'),('schema','show','tool:match'),('capabilities',),('tools','serve','--help'),('maintenance','run','--help')]:
+            result=invoke(*args)
+>           assert result.exit_code==0,result.output
+E           AssertionError: Usage: main maintenance [OPTIONS] COMMAND [ARGS]...
+E             Try 'main maintenance --help' for help.
+E             
+E             Error: Missing option '--db'.
+E             
+E           assert 2 == 0
+E            +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_operations.py:78: AssertionError
+__________________ test_session_page_cap_partial_and_evidence __________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-282/test_session_page_cap_partial_0')
+
+    def test_session_page_cap_partial_and_evidence(tmp_path):
+        config,request=session_fixture(tmp_path)
+        request['steps'][-1]['arguments']['max_pages']=1
+        result=invoke('tools','call','--config',write(tmp_path,'op.json',config),'--request',write(tmp_path,'r.json',request),'--timeout','20')
+        data=payload(result,3)
+        assert data['completeness']=='partial'
+        assert data['steps'][-1]['result']['next_cursor'] and not data['steps'][-1]['result']['complete']
+        # Native ownership/evidence through the captured owner rather than matching projection.
+        from tests.test_reliable_changes import product
+        from shopextract._evidence import trust_view
+>       record=product();eid=trust_view(record)['/price']['evidence_ids'][0]
+E       IndexError: list index out of range
+
+tests/test_cli_operations.py:166: IndexError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+_______________ test_real_sdk_root_stdio_protocol_and_bootstrap ________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-282/test_real_sdk_root_stdio_proto0')
+
+    @pytest.mark.asyncio
+    async def test_real_sdk_root_stdio_protocol_and_bootstrap(tmp_path):
+        import os,sys,asyncio
+        from mcp import ClientSession,StdioServerParameters
+        from mcp.client.stdio import stdio_client
+        root=Path(__file__).resolve().parents[1]
+        config=write(tmp_path,'op.json',{})
+        params=StdioServerParameters(command=sys.executable,args=['-m','shopextract.cli','tools','serve','--config',config],cwd=str(root),
+            env={**os.environ,'PYTHONPATH':str(root/'src'),'SHOPEXTRACT_OUTPUT_FORMAT':'json','SHOPEXTRACT_DIAGNOSTICS':'bad','SHOPEXTRACT_CONFIG':str(tmp_path/'absent-root-config')})
+        async def exercise():
+            async with stdio_client(params) as (read,write_stream):
+                async with ClientSession(read,write_stream) as client:
+                    initialized=await client.initialize();assert initialized.serverInfo.name=='shopextract'
+                    assert len((await client.list_tools()).tools)==8
+                    resource=await client.read_resource('shopextract://session')
+                    assert json.loads(resource.contents[0].text)['captures']==[]
+                    denied=await client.call_tool('extract',{'schema_version':'1.0','url':'https://denied.example/p'})
+                    assert denied.isError
+>       await asyncio.wait_for(exercise(),10)
+
+tests/test_cli_operations.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/tasks.py:445: in wait_for
+    return fut.result()
+tests/test_cli_operations.py:250: in exercise
+    async with stdio_client(params) as (read,write_stream):
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/contextlib.py:199: in __aenter__
+    return await anext(self.gen)
+.venv/lib/python3.10/site-packages/mcp/client/stdio/__init__.py:124: in stdio_client
+    process = await _create_platform_compatible_process(
+.venv/lib/python3.10/site-packages/mcp/client/stdio/__init__.py:251: in _create_platform_compatible_process
+    process = await anyio.open_process(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/anyio/_core/_subprocesses.py:184: in open_process
+    return await get_async_backend().open_process(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/anyio/_backends/_asyncio.py:2810: in open_process
+    transport, protocol = await loop.subprocess_exec(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py:1681: in subprocess_exec
+    transport = await self._make_subprocess_transport(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/unix_events.py:207: in _make_subprocess_transport
+    transp = _UnixSubprocessTransport(self, protocol, args, shell,
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_subprocess.py:36: in __init__
+    self._start(args=args, shell=shell, stdin=stdin, stdout=stdout,
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/unix_events.py:799: in _start
+    self._proc = subprocess.Popen(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py:837: in __init__
+    errread, errwrite) = self._get_handles(stdin, stdout, stderr)
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py:1657: in _get_handles
+    errwrite = stderr.fileno()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_io.TextIOWrapper name='<stderr>' mode='w' encoding='utf-8'>
+
+    def fileno(self) -> int:
+        """Return the file descriptor of the saved original stream when
+        ``CliRunner`` runs in ``fd`` mode. Otherwise delegate to
+        :class:`~io.TextIOWrapper`, which raises
+        :exc:`io.UnsupportedOperation` for a ``BytesIO``-backed buffer.
+        """
+        if self._original_fd >= 0:
+            return self._original_fd
+>       return super().fileno()
+E       io.UnsupportedOperation: fileno
+
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/click/testing.py:200: UnsupportedOperation
+=========================== short test summary info ============================
+FAILED tests/test_cli_operations.py::test_tools_static_and_help_never_construct_runtime
+FAILED tests/test_cli_operations.py::test_session_page_cap_partial_and_evidence
+FAILED tests/test_cli_operations.py::test_real_sdk_root_stdio_protocol_and_bootstrap
+3 failed, 35 passed in 26.89s

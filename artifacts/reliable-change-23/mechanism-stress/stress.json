@@ -1,0 +1,190 @@
+{
+  "status": "timeout",
+  "completed": [
+    {
+      "scenario": "SM02",
+      "rechecks": 3,
+      "reference_checks": 8
+    },
+    {
+      "scenario": "SM03",
+      "frozen_events": 4,
+      "expired_reference_checks": 14
+    },
+    {
+      "scenario": "SM04",
+      "confirmed": 2,
+      "pending": 2,
+      "reference_checks": 12
+    },
+    {
+      "scenario": "SM07",
+      "atomic_update": true,
+      "new_events_after_retry": 2
+    },
+    {
+      "scenario": "SM08",
+      "fault": "currency gate bypass",
+      "mutation": "detected/killed",
+      "restored": "passed"
+    },
+    {
+      "scenario": "SM09",
+      "seed": 1701,
+      "index": 0,
+      "interaction": 0,
+      "products": 4,
+      "input_bytes": 4406,
+      "reference_checks": 14
+    },
+    {
+      "scenario": "SM09",
+      "seed": 1701,
+      "index": 1,
+      "interaction": 1,
+      "products": 6,
+      "input_bytes": 9118,
+      "reference_checks": 14
+    },
+    {
+      "scenario": "SM09",
+      "seed": 1701,
+      "index": 2,
+      "interaction": 2,
+      "products": 8,
+      "input_bytes": 12974,
+      "reference_checks": 9
+    },
+    {
+      "scenario": "SM09",
+      "seed": 1701,
+      "index": 3,
+      "interaction": 3,
+      "products": 10,
+      "input_bytes": 9842,
+      "reference_checks": 4
+    },
+    {
+      "scenario": "SM09",
+      "seed": 1701,
+      "index": 4,
+      "interaction": 0,
+      "products": 12,
+      "input_bytes": 12922,
+      "reference_checks": 14
+    },
+    {
+      "scenario": "SM09",
+      "seed": 1701,
+      "index": 5,
+      "interaction": 1,
+      "products": 14,
+      "input_bytes": 21930,
+      "reference_checks": 14
+    },
+    {
+      "scenario": "SM09",
+      "seed": 1701,
+      "index": 6,
+      "interaction": 2,
+      "products": 16,
+      "input_bytes": 25840,
+      "reference_checks": 9
+    },
+    {
+      "scenario": "SM05",
+      "exact_limit": 7,
+      "offsets": [
+        -1,
+        0,
+        1
+      ],
+      "utf8": false
+    },
+    {
+      "scenario": "SM06",
+      "exact_limit": 15963,
+      "offsets": [
+        -1,
+        0,
+        1
+      ],
+      "utf8": true
+    },
+    {
+      "scenario": "SM09",
+      "seed": 1701,
+      "index": 7,
+      "interaction": 3,
+      "products": 20,
+      "input_bytes": 20804,
+      "reference_checks": 4
+    },
+    {
+      "scenario": "SM09",
+      "seed": 2909,
+      "index": 0,
+      "interaction": 0,
+      "products": 4,
+      "input_bytes": 4406,
+      "reference_checks": 14
+    },
+    {
+      "scenario": "SM09",
+      "seed": 2909,
+      "index": 1,
+      "interaction": 1,
+      "products": 6,
+      "input_bytes": 9118,
+      "reference_checks": 14
+    },
+    {
+      "scenario": "SM09",
+      "seed": 2909,
+      "index": 2,
+      "interaction": 2,
+      "products": 8,
+      "input_bytes": 12974,
+      "reference_checks": 9
+    },
+    {
+      "scenario": "SM09",
+      "seed": 2909,
+      "index": 3,
+      "interaction": 3,
+      "products": 10,
+      "input_bytes": 9842,
+      "reference_checks": 4
+    },
+    {
+      "scenario": "SM09",
+      "seed": 2909,
+      "index": 4,
+      "interaction": 0,
+      "products": 12,
+      "input_bytes": 12922,
+      "reference_checks": 14
+    },
+    {
+      "scenario": "SM09",
+      "seed": 2909,
+      "index": 5,
+      "interaction": 1,
+      "products": 14,
+      "input_bytes": 21930,
+      "reference_checks": 14
+    },
+    {
+      "scenario": "SM09",
+      "seed": 2909,
+      "index": 6,
+      "interaction": 2,
+      "products": 16,
+      "input_bytes": 25840,
+      "reference_checks": 9
+    }
+  ],
+  "remaining_allowlist": [
+    "SM09-2909-7"
+  ]
+}

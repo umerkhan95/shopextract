@@ -1,0 +1,9 @@
+{
+  "modules": 92,
+  "definitions": 384,
+  "workflow_targets": 70,
+  "legacy_commands": 9,
+  "source_revision": "8081f9d8dc17c9b63aa30ecf0f8e295366f4eee2",
+  "scope": "AST classification, not execution or parity pass",
+  "actual_session_token_counters": "unavailable"
+}

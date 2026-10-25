@@ -1,0 +1,13 @@
+{
+  "scope": "documentation integrity only; no runtime tests",
+  "tickets": 25,
+  "requirements": 24,
+  "scenarios": 24,
+  "unique_primary_sources": 60,
+  "markdown_files": 39,
+  "relative_link_failures": [],
+  "result": "PASS",
+  "runtime": "NOTRUN",
+  "host_compatibility": "NOTRUN",
+  "public_distribution": "NOTRUN"
+}

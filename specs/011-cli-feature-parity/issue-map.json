@@ -1,0 +1,50 @@
+{
+  "epic": {
+    "issue_number": 90,
+    "url": "https://github.com/umerkhan95/shopextract/issues/90"
+  },
+  "phases": [
+    {
+      "phase": "P0",
+      "issue_number": 91,
+      "url": "https://github.com/umerkhan95/shopextract/issues/91",
+      "title": "CLI foundation: machine output, strict config and compatibility",
+      "initial_body": "Parent: #90. Local specification: specs/011-cli-feature-parity/p0/.\n\nStatus: design G1 passed; skeleton/red tests next.\n\nFreeze and implement core JSON/errors/exits/config precedence/bootstrap; preserve all nine legacy commands. P0 design G1 passed; skeleton/red/G2/G3 and runtime remain pending.\n\nTraceability: FR01–03/09/10; SC01–03/09/10.\n\n- [ ] Exact behavior/input/output/limits and acceptance cases reviewed (G1).\n- [ ] Skeleton and genuine acceptance-red evidence independently reviewed (G2).\n- [ ] Reused components/seams independently reviewed (G3).\n- [ ] Real CLI implementation, focused green and affected regressions.\n- [ ] Deterministic mechanism/stress checks; live applicability/observations reported separately.\n- [ ] Final independent review, command manifest and docs reconciled.\n\nNo completion claim from planning alone. No paid inference or model downloads; sequential bounded checks. Dependencies and actual progress are tracked in specs/011-cli-feature-parity/status.md and tasks.md."
+    },
+    {
+      "phase": "P1",
+      "issue_number": 92,
+      "url": "https://github.com/umerkhan95/shopextract/issues/92",
+      "title": "CLI extraction, feeds and normalization",
+      "initial_body": "Parent: #90. Local specification: specs/011-cli-feature-parity/.\n\nStatus: planned; phase-specific contracts/gates pending.\n\nExpose extract-one/feed/normalize/quality and native advanced controls; complete results and exact values; no implicit LLM/model downloads. Controlled transports and bounded live extraction.\n\nTraceability: FR02/03/04/09; SC02/03/04/09.\n\n- [ ] Exact behavior/input/output/limits and acceptance cases reviewed (G1).\n- [ ] Skeleton and genuine acceptance-red evidence independently reviewed (G2).\n- [ ] Reused components/seams independently reviewed (G3).\n- [ ] Real CLI implementation, focused green and affected regressions.\n- [ ] Deterministic mechanism/stress checks; live applicability/observations reported separately.\n- [ ] Final independent review, command manifest and docs reconciled.\n\nNo completion claim from planning alone. No paid inference or model downloads; sequential bounded checks. Dependencies and actual progress are tracked in specs/011-cli-feature-parity/status.md and tasks.md."
+    },
+    {
+      "phase": "P2",
+      "issue_number": 93,
+      "url": "https://github.com/umerkhan95/shopextract/issues/93",
+      "title": "CLI matching, analysis, validation and export",
+      "initial_body": "Parent: #90. Local specification: specs/011-cli-feature-parity/.\n\nStatus: planned; phase-specific contracts/gates pending.\n\nExpose identity/matching/evaluation, catalog/competitive analytics, validation/images/duplicates and supported exports; strict file/stdin codecs and safe artifact writes.\n\nTraceability: FR03/05/09; SC03/05/05b/09.\n\n- [ ] Exact behavior/input/output/limits and acceptance cases reviewed (G1).\n- [ ] Skeleton and genuine acceptance-red evidence independently reviewed (G2).\n- [ ] Reused components/seams independently reviewed (G3).\n- [ ] Real CLI implementation, focused green and affected regressions.\n- [ ] Deterministic mechanism/stress checks; live applicability/observations reported separately.\n- [ ] Final independent review, command manifest and docs reconciled.\n\nNo completion claim from planning alone. No paid inference or model downloads; sequential bounded checks. Dependencies and actual progress are tracked in specs/011-cli-feature-parity/status.md and tasks.md."
+    },
+    {
+      "phase": "P3",
+      "issue_number": 94,
+      "url": "https://github.com/umerkhan95/shopextract/issues/94",
+      "title": "CLI monitoring, snapshots and evidence",
+      "initial_body": "Parent: #90. Local specification: specs/011-cli-feature-parity/.\n\nStatus: planned; phase-specific contracts/gates pending.\n\nExplicit DB/history, bounded watch, reliable recheck/replay, snapshots/resolution/evidence/bundles/sidecars/retention/migration; real SQLite transitions and dry-run safety.\n\nTraceability: FR03/06/09; SC03/06/06b/09/09b.\n\n- [ ] Exact behavior/input/output/limits and acceptance cases reviewed (G1).\n- [ ] Skeleton and genuine acceptance-red evidence independently reviewed (G2).\n- [ ] Reused components/seams independently reviewed (G3).\n- [ ] Real CLI implementation, focused green and affected regressions.\n- [ ] Deterministic mechanism/stress checks; live applicability/observations reported separately.\n- [ ] Final independent review, command manifest and docs reconciled.\n\nNo completion claim from planning alone. No paid inference or model downloads; sequential bounded checks. Dependencies and actual progress are tracked in specs/011-cli-feature-parity/status.md and tasks.md."
+    },
+    {
+      "phase": "P4",
+      "issue_number": 95,
+      "url": "https://github.com/umerkhan95/shopextract/issues/95",
+      "title": "CLI categories, mapping and WooCommerce trees",
+      "initial_body": "Parent: #90. Local specification: specs/011-cli-feature-parity/.\n\nStatus: planned; phase-specific contracts/gates pending.\n\nExpose native category extraction/config/mapping/validation/portable records/tree/link/policy workflows; preserve scope and partial-tree semantics.\n\nTraceability: FR03/07/09; SC03/07/09.\n\n- [ ] Exact behavior/input/output/limits and acceptance cases reviewed (G1).\n- [ ] Skeleton and genuine acceptance-red evidence independently reviewed (G2).\n- [ ] Reused components/seams independently reviewed (G3).\n- [ ] Real CLI implementation, focused green and affected regressions.\n- [ ] Deterministic mechanism/stress checks; live applicability/observations reported separately.\n- [ ] Final independent review, command manifest and docs reconciled.\n\nNo completion claim from planning alone. No paid inference or model downloads; sequential bounded checks. Dependencies and actual progress are tracked in specs/011-cli-feature-parity/status.md and tasks.md."
+    },
+    {
+      "phase": "P5",
+      "issue_number": 96,
+      "url": "https://github.com/umerkhan95/shopextract/issues/96",
+      "title": "CLI operations, discovery and complete documentation",
+      "initial_body": "Parent: #90. Local specification: specs/011-cli-feature-parity/.\n\nStatus: planned; phase-specific contracts/gates pending.\n\nIntegrate maintenance and tools/MCP, same-session bounded calls, packaged command/schema discovery, complete docs/examples and final parity audit; real-process integration and wheel smoke.\n\nTraceability: FR01/02/03/08/09/10; SC01/02/03/08/08b/09/10.\n\n- [ ] Exact behavior/input/output/limits and acceptance cases reviewed (G1).\n- [ ] Skeleton and genuine acceptance-red evidence independently reviewed (G2).\n- [ ] Reused components/seams independently reviewed (G3).\n- [ ] Real CLI implementation, focused green and affected regressions.\n- [ ] Deterministic mechanism/stress checks; live applicability/observations reported separately.\n- [ ] Final independent review, command manifest and docs reconciled.\n\nNo completion claim from planning alone. No paid inference or model downloads; sequential bounded checks. Dependencies and actual progress are tracked in specs/011-cli-feature-parity/status.md and tasks.md."
+    }
+  ]
+}

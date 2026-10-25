@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "kind": "proposed skill design bindings;not runnable workflow configuration",
+  "transport": "direct CLI;no MCP required",
+  "entry_points": [
+    "merchant",
+    "shopper"
+  ],
+  "discovery": {
+    "commands": [
+      "capabilities",
+      "schema list",
+      "schema show"
+    ],
+    "refresh": "on executable/package/schema identity change"
+  },
+  "root_argv": [
+    "--output-format",
+    "json"
+  ],
+  "bindings": [
+    {
+      "skill": "offer-compare",
+      "command_paths": [
+        [
+          "extract"
+        ],
+        [
+          "match"
+        ],
+        [
+          "match-pair"
+        ],
+        [
+          "identity",
+          "inspect"
+        ],
+        [
+          "competitive",
+          "position"
+        ],
+        [
+          "evidence",
+          "inspect"
+        ],
+        [
+          "resolve"
+        ]
+      ],
+      "additional_inputs_or_mechanisms": [
+        "exact derived metrics",
+        "unit conversions",
+        "destination-aware costs"
+      ],
+      "skill_implementation": "proposed",
+      "command_availability": "verified in local capabilities",
+      "consumer": "merchant/shopper selected recipe"
+    },
+    {
+      "skill": "deal-check",
+      "command_paths": [
+        [
+          "snapshot-save"
+        ],
+        [
+          "snapshot-load"
+        ],
+        [
+          "history"
+        ],
+        [
+          "changes"
+        ],
+        [
+          "evidence",
+          "get"
+        ]
+      ],
+      "additional_inputs_or_mechanisms": [
+        "compatible captured history"
+      ],
+      "skill_implementation": "proposed",
+      "command_availability": "verified in local capabilities",
+      "consumer": "merchant/shopper selected recipe"
+    },
+    {
+      "skill": "basket-plan",
+      "command_paths": [
+        [
+          "extract"
+        ],
+        [
+          "feed"
+        ],
+        [
+          "match"
+        ],
+        [
+          "match-gtin"
+        ],
+        [
+          "categories",
+          "map"
+        ]
+      ],
+      "additional_inputs_or_mechanisms": [
+        "deterministic basket solver",
+        "quantity/fee/location inputs"
+      ],
+      "skill_implementation": "proposed",
+      "command_availability": "verified in local capabilities",
+      "consumer": "merchant/shopper selected recipe"
+    },
+    {
+      "skill": "alternative-find",
+      "command_paths": [
+        [
+          "discover"
+        ],
+        [
+          "extract"
+        ],
+        [
+          "match"
+        ],
+        [
+          "match-gtin"
+        ],
+        [
+          "competitive",
+          "gaps"
+        ],
+        [
+          "competitive",
+          "brands"
+        ],
+        [
+          "categories",
+          "map"
+        ]
+      ],
+      "additional_inputs_or_mechanisms": [
+        "wider web discovery if requested",
+        "authoritative equivalence evidence"
+      ],
+      "skill_implementation": "proposed",
+      "command_availability": "verified in local capabilities",
+      "consumer": "merchant/shopper selected recipe"
+    },
+    {
+      "skill": "spec-fit",
+      "command_paths": [
+        [
+          "resolve"
+        ],
+        [
+          "evidence",
+          "inspect"
+        ],
+        [
+          "categories",
+          "extract"
+        ],
+        [
+          "categories",
+          "policy",
+          "inspect"
+        ],
+        [
+          "categories",
+          "policy",
+          "review"
+        ],
+        [
+          "categories",
+          "tree",
+          "link"
+        ]
+      ],
+      "additional_inputs_or_mechanisms": [
+        "arbitrary typed requirement evaluator",
+        "authoritative compatibility inputs"
+      ],
+      "skill_implementation": "proposed",
+      "command_availability": "verified in local capabilities",
+      "consumer": "merchant/shopper selected recipe"
+    },
+    {
+      "skill": "catalog-reconcile",
+      "command_paths": [
+        [
+          "normalize"
+        ],
+        [
+          "quality"
+        ],
+        [
+          "duplicates"
+        ],
+        [
+          "maintenance",
+          "create"
+        ],
+        [
+          "maintenance",
+          "run"
+        ],
+        [
+          "maintenance",
+          "resume"
+        ],
+        [
+          "maintenance",
+          "status"
+        ],
+        [
+          "maintenance",
+          "report"
+        ],
+        [
+          "maintenance",
+          "evidence"
+        ],
+        [
+          "export"
+        ]
+      ],
+      "additional_inputs_or_mechanisms": [
+        "arbitrary supplier spreadsheet/PDF mappings"
+      ],
+      "skill_implementation": "proposed",
+      "command_availability": "verified in local capabilities",
+      "consumer": "merchant/shopper selected recipe"
+    },
+    {
+      "skill": "channel-diagnose",
+      "command_paths": [
+        [
+          "validate"
+        ],
+        [
+          "images",
+          "check"
+        ],
+        [
+          "export"
+        ],
+        [
+          "evidence",
+          "sidecar",
+          "create"
+        ],
+        [
+          "evidence",
+          "sidecar",
+          "load"
+        ],
+        [
+          "identity",
+          "inspect"
+        ]
+      ],
+      "additional_inputs_or_mechanisms": [
+        "actual channel diagnostics or authenticated adapter"
+      ],
+      "skill_implementation": "proposed",
+      "command_availability": "verified in local capabilities",
+      "consumer": "merchant/shopper selected recipe"
+    },
+    {
+      "skill": "market-watch",
+      "command_paths": [
+        [
+          "snapshot"
+        ],
+        [
+          "snapshot-save"
+        ],
+        [
+          "snapshot-load"
+        ],
+        [
+          "history"
+        ],
+        [
+          "changes"
+        ],
+        [
+          "watch"
+        ],
+        [
+          "evidence",
+          "get"
+        ]
+      ],
+      "additional_inputs_or_mechanisms": [
+        "separately requested scheduling/notification"
+      ],
+      "skill_implementation": "proposed",
+      "command_availability": "verified in local capabilities",
+      "consumer": "merchant/shopper selected recipe"
+    }
+  ],
+  "exceptions": {
+    "changes": "require --reliable for confirmed events",
+    "watch": "JSONL and unverified scalar candidates",
+    "export": "raw stdout artifact exception;prefer explicit file metadata",
+    "maintenance": "--db group option before subcommand;native lifecycle"
+  },
+  "scope": "local cli-feature-parity installation;not public release compatibility"
+}

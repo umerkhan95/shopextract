@@ -1,0 +1,18 @@
+{
+  "python": "3.10.11",
+  "executable": "/Users/umerkhan/code/shopextract/.venv/bin/python",
+  "modules": {
+    "mcp": true,
+    "pyarrow": true,
+    "fastparquet": false,
+    "build": false,
+    "jsonschema": true,
+    "pytest": true
+  },
+  "wheel_build_followup": {
+    "hatchling": true,
+    "pip": true,
+    "build_frontend": false,
+    "decision": "Use python -m pip wheel --no-deps --no-build-isolation against existing hatchling for genuine final P5 wheel; no build dependency installation needed."
+  }
+}

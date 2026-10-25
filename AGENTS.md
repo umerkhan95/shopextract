@@ -11,6 +11,16 @@ User authorization to use agents for this workflow was given on 2026-10-16.
 Review gates are engineering checks; routine passage does not require another
 user permission request. Keep feature status and evidence in `specs/<feature>/`.
 
+If a target behavior cannot currently be observed live, agents must generate
+realistic deterministic synthetic fixtures and adversarial cases, then execute
+bounded mechanism and stress checks against the real code paths. Do not stop at
+an inconclusive live result or mock the mechanism being verified. Design cases
+and expected outcomes first; use an independent reviewer. Record mechanism
+coverage separately from actual live observation, with seeds, limits and results.
+Agents must also design relevant edge cases and distinct tests for uncovered
+failure modes and feature interactions. Explain each new case's risk and expected
+outcome; duplicate assertions or random input variation alone are not new coverage.
+
 ## Bounded usage and local model experiments
 
 Start with a small concrete test and save results before broad research or sweeps.

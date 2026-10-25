@@ -1,0 +1,128 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+____________________ test_maintenance_durable_native_engine ____________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-279/test_maintenance_durable_nativ0')
+
+    def test_maintenance_durable_native_engine(tmp_path):
+        db=str(tmp_path/'jobs.db'); f=write(tmp_path,'goal.json',goal())
+>       key=payload(invoke('maintenance','--db',db,'create',f))['job_id']
+
+tests/test_cli_operations.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>, exit_code = 0
+
+    def payload(result, exit_code=0):
+>       assert result.exit_code == exit_code, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_operations.py:14: AssertionError
+_______________________ test_tools_schema_inventory_lazy _______________________
+
+    def test_tools_schema_inventory_lazy():
+>       data=payload(invoke('tools','schemas'))
+
+tests/test_cli_operations.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>, exit_code = 0
+
+    def payload(result, exit_code=0):
+>       assert result.exit_code == exit_code, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_operations.py:14: AssertionError
+_____________________ test_tools_call_real_empty_bootstrap _____________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-279/test_tools_call_real_empty_boo0')
+
+    def test_tools_call_real_empty_bootstrap(tmp_path):
+        config=write(tmp_path,'operator.json',{})
+        request=write(tmp_path,'session.json',{'schema_version':'1.0','steps':[{'id':'boot','tool':'bootstrap','arguments':{}}]})
+>       data=payload(invoke('tools','call','--config',config,'--request',request))
+
+tests/test_cli_operations.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>, exit_code = 0
+
+    def payload(result, exit_code=0):
+>       assert result.exit_code == exit_code, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_operations.py:14: AssertionError
+_______________ test_tools_serve_protocol_errors_never_enveloped _______________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-279/test_tools_serve_protocol_erro0')
+
+    def test_tools_serve_protocol_errors_never_enveloped(tmp_path):
+        result=invoke('tools','serve','--config',str(tmp_path/'missing'),env={'SHOPEXTRACT_OUTPUT_FORMAT':'json'})
+>       assert result.exit_code==2 and not result.stdout and 'config' in result.stderr.lower()
+E       assert (2 == 2 and not '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}\n')
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+E        +  and   '{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}\n' = <Result SystemExit(2)>.stdout
+
+tests/test_cli_operations.py:55: AssertionError
+_______________________ test_capabilities_actual_grammar _______________________
+
+    def test_capabilities_actual_grammar():
+>       data=payload(invoke('capabilities'))
+
+tests/test_cli_operations.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>, exit_code = 0
+
+    def payload(result, exit_code=0):
+>       assert result.exit_code == exit_code, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_operations.py:14: AssertionError
+________________________ test_packaged_schema_discovery ________________________
+
+    def test_packaged_schema_discovery():
+>       inventory=payload(invoke('schema','list'))
+
+tests/test_cli_operations.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>, exit_code = 0
+
+    def payload(result, exit_code=0):
+>       assert result.exit_code == exit_code, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_operations.py:14: AssertionError
+=============================== warnings summary ===============================
+../../../../Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/_pytest/config/__init__.py:1464
+  /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli_operations.py::test_maintenance_durable_native_engine
+FAILED tests/test_cli_operations.py::test_tools_schema_inventory_lazy - Asser...
+FAILED tests/test_cli_operations.py::test_tools_call_real_empty_bootstrap - A...
+FAILED tests/test_cli_operations.py::test_tools_serve_protocol_errors_never_enveloped
+FAILED tests/test_cli_operations.py::test_capabilities_actual_grammar - Asser...
+FAILED tests/test_cli_operations.py::test_packaged_schema_discovery - Asserti...
+6 failed, 1 warning in 0.28s

@@ -233,7 +233,3 @@ were reused; no broad suite or live repeat. Updated manifest final dispositions
 and removed stale G2/unimplemented module docstring. W14 independent final repair
 recheck remains pending; no feature-complete claim, commit, push or PR. Actual
 session token counters remain unavailable.
-
-## GitHub delivery validation — 2026-10-24
-
-Delivery uses an isolated `woocommerce-category-tree` checkout based on current `origin/main` (`913721c34bc0b74fa7faf0e9d3680a6ee44edf5d`), preserving unrelated working changes. Feature source/tests match the independently reviewed implementation byte-for-byte. On this base, 122 focused/affected cases passed plus 8 final-edge cases passed (130 total across disjoint invocations). Commands use `PYTHONPATH=src`, the existing dependency runtime, one sequential process, capped BLAS/OpenMP threads. Logs: `evidence/delivery-main-focused.log` and `evidence/delivery-main-final-edges.log`. Existing live and stress evidence is retained; CI will validate the PR revision.

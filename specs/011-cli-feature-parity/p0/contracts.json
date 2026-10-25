@@ -1,0 +1,352 @@
+{
+  "state": "design_pending_G1",
+  "grammar_state": "frozen_proposal",
+  "root_options": [
+    {
+      "flags": [
+        "--config"
+      ],
+      "value": "PATH",
+      "default": null
+    },
+    {
+      "flags": [
+        "--output-format"
+      ],
+      "choices": [
+        "legacy",
+        "json"
+      ],
+      "default": "legacy"
+    },
+    {
+      "flags": [
+        "--diagnostics"
+      ],
+      "choices": [
+        "normal",
+        "quiet"
+      ],
+      "default": "normal"
+    }
+  ],
+  "root_options_position": "before_command_only",
+  "repeat_options": "E_USAGE",
+  "config": {
+    "schema": "config.schema.json",
+    "max_bytes": 65536,
+    "path_env": "SHOPEXTRACT_CONFIG",
+    "setting_env": {
+      "output_format": "SHOPEXTRACT_OUTPUT_FORMAT",
+      "diagnostics": "SHOPEXTRACT_DIAGNOSTICS"
+    },
+    "precedence": [
+      "explicit_root_option",
+      "selected_trusted_file",
+      "documented_environment",
+      "default"
+    ],
+    "validate_overridden_values": true,
+    "stdin": false,
+    "auto_discovery": false
+  },
+  "response_schema": "response.schema.json",
+  "exits": [
+    {
+      "exit": 0,
+      "ok": true,
+      "completeness": "complete",
+      "code": null
+    },
+    {
+      "exit": 1,
+      "ok": false,
+      "completeness": "unavailable",
+      "codes": [
+        "E_OPERATION",
+        "E_INTERNAL",
+        "E_DEPENDENCY",
+        "E_TIMEOUT"
+      ]
+    },
+    {
+      "exit": 2,
+      "ok": false,
+      "completeness": "unavailable",
+      "codes": [
+        "E_USAGE",
+        "E_CONFIG"
+      ]
+    },
+    {
+      "exit": 3,
+      "ok": false,
+      "completeness": "partial",
+      "codes": [
+        "E_PARTIAL"
+      ]
+    },
+    {
+      "exit": 4,
+      "ok": false,
+      "completeness": "unavailable",
+      "codes": [
+        "E_VALIDATION"
+      ]
+    },
+    {
+      "exit": 130,
+      "ok": false,
+      "completeness": "unavailable",
+      "codes": [
+        "E_CANCELLED"
+      ]
+    }
+  ],
+  "diagnostics": "sanitized stderr; quiet suppresses nonessential diagnostics only",
+  "legacy_exit_policy": "unchanged unless explicit machine/config mode opts in; help/version always text",
+  "reserved": [
+    "P1-P5 domain command grammar",
+    "domain payload/input schemas",
+    "streaming JSONL",
+    "browser/LLM activation",
+    "domain timeout enforcement",
+    "output artifact atomicity"
+  ],
+  "error_retryable": {
+    "E_OPERATION": false,
+    "E_INTERNAL": false,
+    "E_DEPENDENCY": false,
+    "E_TIMEOUT": true,
+    "E_USAGE": false,
+    "E_CONFIG": false,
+    "E_PARTIAL": false,
+    "E_VALIDATION": false,
+    "E_CANCELLED": false
+  },
+  "error_retryable_policy": "Generic classifications only; phase-specific native operation retryability must be frozen at affected G1. No automatic retries implied.",
+  "bootstrap": {
+    "recognition": "Scan actual option tokens before --, skipping declared option operands even if they spell --help/--version. Root --help/--version only before command; known leaf --help before its -- is recognized. Validate command existence and unknown option spelling before bootstrap. Known root value errors/duplicates and config/env errors are bypassed by recognized help/version.",
+    "priority": [
+      "unknown_command_or_unknown_option_usage_error",
+      "recognized_help",
+      "recognized_root_version",
+      "normal_validation_dispatch"
+    ],
+    "help_version_order": "help wins in either order",
+    "error_output_routing": "First explicit root output-format occurrence controls routing if its operand is valid json/legacy, even when repetition causes E_USAGE. If absent or first operand invalid/missing, use successfully validated selected-file output_format, otherwise valid environment output_format, otherwise legacy. An invalid source still causes its defined error; fallback chooses representation only. A valid first legacy occurrence blocks all JSON fallback.",
+    "no_read": "Bootstrap help/version never reads file or env; usage routing may read bounded selected config and documented env only to choose error representation, never dispatch."
+  },
+  "bootstrap_cases": [
+    {
+      "id": "B01",
+      "argv": [
+        "--version",
+        "--help"
+      ],
+      "env": {},
+      "exit": 0,
+      "stream": "stdout text root help",
+      "reads_config_env": false
+    },
+    {
+      "id": "B02",
+      "argv": [
+        "--help",
+        "--version"
+      ],
+      "env": {},
+      "exit": 0,
+      "stream": "stdout text root help",
+      "reads_config_env": false
+    },
+    {
+      "id": "B03",
+      "argv": [
+        "--version",
+        "unknown"
+      ],
+      "env": {},
+      "exit": 2,
+      "code": "E_USAGE",
+      "stream": "legacy stderr",
+      "reads_config_env": "routing_only"
+    },
+    {
+      "id": "B04",
+      "argv": [
+        "--help",
+        "unknown"
+      ],
+      "env": {},
+      "exit": 2,
+      "code": "E_USAGE",
+      "stream": "legacy stderr",
+      "reads_config_env": "routing_only"
+    },
+    {
+      "id": "B05",
+      "argv": [
+        "--output-format",
+        "json",
+        "--output-format",
+        "legacy",
+        "detect",
+        "URL"
+      ],
+      "env": {},
+      "exit": 2,
+      "code": "E_USAGE",
+      "stream": "stdout JSON envelope",
+      "reads_config_env": "routing_only"
+    },
+    {
+      "id": "B06",
+      "argv": [
+        "--output-format",
+        "legacy",
+        "--output-format",
+        "json",
+        "detect",
+        "URL"
+      ],
+      "env": {
+        "SHOPEXTRACT_OUTPUT_FORMAT": "json"
+      },
+      "exit": 2,
+      "code": "E_USAGE",
+      "stream": "legacy stderr",
+      "reads_config_env": "routing_only"
+    },
+    {
+      "id": "B07",
+      "argv": [
+        "--output-format",
+        "invalid",
+        "detect",
+        "URL"
+      ],
+      "env": {
+        "SHOPEXTRACT_OUTPUT_FORMAT": "json"
+      },
+      "exit": 2,
+      "code": "E_USAGE",
+      "stream": "stdout JSON envelope",
+      "reads_config_env": "routing_only"
+    },
+    {
+      "id": "B08",
+      "argv": [
+        "--output-format",
+        "invalid",
+        "--help"
+      ],
+      "env": {},
+      "exit": 0,
+      "stream": "stdout text root help",
+      "reads_config_env": false
+    },
+    {
+      "id": "B09",
+      "argv": [
+        "--config",
+        "missing.json",
+        "detect",
+        "--help"
+      ],
+      "env": {
+        "SHOPEXTRACT_OUTPUT_FORMAT": "invalid"
+      },
+      "exit": 0,
+      "stream": "stdout text detect help",
+      "reads_config_env": false
+    },
+    {
+      "id": "B10",
+      "argv": [
+        "detect",
+        "--",
+        "--help"
+      ],
+      "env": {},
+      "exit": "native_result",
+      "stream": "legacy native output",
+      "reads_config_env": true,
+      "note": "--help is URL operand, not bootstrap. No network executed in design validation."
+    },
+    {
+      "id": "B11",
+      "argv": [
+        "--",
+        "--help"
+      ],
+      "env": {},
+      "exit": 2,
+      "code": "E_USAGE",
+      "stream": "legacy stderr",
+      "reads_config_env": "routing_only",
+      "note": "--help is unknown command token."
+    },
+    {
+      "id": "B12",
+      "argv": [
+        "--config",
+        "--help",
+        "detect",
+        "URL"
+      ],
+      "env": {},
+      "exit": 2,
+      "code": "E_CONFIG",
+      "stream": "legacy stderr",
+      "reads_config_env": true,
+      "note": "--help consumed as PATH operand; selected file assumed absent."
+    },
+    {
+      "id": "B13",
+      "argv": [
+        "--output-format",
+        "json",
+        "--output-format",
+        "legacy",
+        "--help"
+      ],
+      "env": {},
+      "exit": 0,
+      "stream": "stdout text root help",
+      "reads_config_env": false
+    },
+    {
+      "id": "B14",
+      "argv": [
+        "--output-format",
+        "json",
+        "detect",
+        "--version"
+      ],
+      "env": {},
+      "exit": 2,
+      "code": "E_USAGE",
+      "stream": "stdout JSON envelope",
+      "reads_config_env": "routing_only",
+      "note": "version is root-only."
+    },
+    {
+      "id": "B15",
+      "argv": [
+        "--output-format",
+        "invalid",
+        "--output-format",
+        "json",
+        "detect",
+        "URL"
+      ],
+      "env": {},
+      "exit": 2,
+      "code": "E_USAGE",
+      "stream": "legacy stderr",
+      "reads_config_env": "routing_only",
+      "note": "invalid first occurrence falls back; later valid occurrence cannot select mode."
+    }
+  ]
+}

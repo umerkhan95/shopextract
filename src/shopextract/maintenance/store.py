@@ -591,6 +591,14 @@ class MaintenanceStore:
             'coverage': json.loads(job['coverage']),
             'pending_steps': [row['id'] for row in self.steps(job_id) if row['state'] != 'committed']}
 
+    def list_jobs(self, *, offset: int = 0, limit: int = 100) -> list[dict]:
+        """List durable jobs in creation order with explicit bounded pagination."""
+        if type(offset) is not int or type(limit) is not int or offset < 0 or not 1 <= limit <= 1000:
+            raise MaintenanceError('invalid_argument')
+        ids = [row[0] for row in self._connect().execute(
+            'SELECT id FROM jobs ORDER BY rowid LIMIT ? OFFSET ?', (limit, offset))]
+        return [dict(id=key, **self.status(key)) for key in ids]
+
     def evidence(self, job_id: str, evidence_id: str) -> dict:
         self._job(job_id)
         row = self._connect().execute('SELECT payload FROM evidence WHERE job=? AND id=?', (job_id, evidence_id)).fetchone()

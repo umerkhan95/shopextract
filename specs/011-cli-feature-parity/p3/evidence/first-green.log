@@ -1,0 +1,29 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.................F...                                                    [100%]
+=================================== FAILURES ===================================
+______________________ test_watch_unchanged_deadline_red _______________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-222/test_watch_unchanged_deadline_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x116f66980>
+
+    def test_watch_unchanged_deadline_red(tmp_path,monkeypatch):
+        import importlib
+        module=importlib.import_module('shopextract.monitor.snapshot')
+        from shopextract._models import ExtractionResult, Platform, ExtractionTier
+        calls=[]
+        async def extraction(url,**kwargs):
+            calls.append(kwargs)
+            return ExtractionResult(products=[product()],platform=Platform.SHOPIFY,tier=ExtractionTier.API)
+        monkeypatch.setattr(module,'extract',extraction)
+        result=invoke('watch','https://shop.example','--interval','0.01','--max-events','1','--timeout','0.05','--max','2','--db',tmp_path/'snap.db')
+>       assert result.exit_code==3,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_TIMEOUT", "message": "Operation timed out.", "retryable": true}, "completeness": "unavailable"}
+E         
+E       assert 1 == 3
+E        +  where 1 = <Result SystemExit(1)>.exit_code
+
+tests/test_cli_monitor.py:126: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_monitor.py::test_watch_unchanged_deadline_red - Asserti...
+1 failed, 20 passed in 0.53s

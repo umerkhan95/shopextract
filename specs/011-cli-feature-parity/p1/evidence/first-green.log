@@ -1,0 +1,61 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+..F.......................................................F              [100%]
+=================================== FAILURES ===================================
+_________________ test_actual_normalize_and_portable_roundtrip _________________
+
+    def test_actual_normalize_and_portable_roundtrip():
+        from shopextract._portable import product_from_record
+        result = invoke('normalize', '-', input=json.dumps([{'title': 'A', 'price':'0.10', 'image_url':'https://fixture.invalid/a.png','product_url':'https://fixture.invalid/a','sku':'0012','in_stock':False}, {}]))
+        assert result.exit_code == 0, result.output
+        data = value(result)['data']
+        assert data['product_count'] == 1 and data['dropped_indices'] == [1]
+        product = product_from_record(data['products'][0])
+>       assert product.price == Decimal('0.10') and product.sku == '0012' and product.in_stock is False
+E       AssertionError: assert (Decimal('0.10') == Decimal('0.10') and '0012' == '0012'
+E        +  where Decimal('0.10') = Product(title='A', price=Decimal('0.10'), currency='USD', description='', image_url='https://fixture.invalid/a.png', p...7-8637-5918-8e19-ae44c3044c2c', supplier_id='fixture.invalid', attributes={}, pack_quantity=None, bundle_components=[]).price
+E        +  and   Decimal('0.10') = Decimal('0.10') is False)
+E         
+E           0012 and True
+E        +  and   True = Product(title='A', price=Decimal('0.10'), currency='USD', description='', image_url='https://fixture.invalid/a.png', p...7-8637-5918-8e19-ae44c3044c2c', supplier_id='fixture.invalid', attributes={}, pack_quantity=None, bundle_components=[]).in_stock
+
+tests/test_cli_extract.py:37: AssertionError
+______ test_phase_gate_follows_click_argument_validation[valid-deferred] _______
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-183/test_phase_gate_follows_click_3')
+native = []
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109202920>
+case = 'valid-deferred'
+
+    @pytest.mark.parametrize("case", ["missing-url", "bad-integer", "missing-path", "valid-deferred"])
+    def test_phase_gate_follows_click_argument_validation(tmp_path, native, monkeypatch, case):
+        attempts = []
+        def prohibited(*args, **kwargs):
+            attempts.append(args)
+            raise AssertionError("native adapter must not run")
+        monkeypatch.setattr(cli, "_extract", prohibited)
+        monkeypatch.setattr(cli, "_discover", prohibited)
+        monkeypatch.setattr(cli, "_validate_file", prohibited)
+        commands = {"missing-url": ["extract"],
+                    "bad-integer": ["discover", URL, "--max", "bad"],
+                    "missing-path": ["validate", str(tmp_path / "missing.json")],
+                    "valid-deferred": ["discover", URL]}
+        result = invoke(["--output-format", "json", *commands[case]])
+>       assert result.exit_code == (1 if case == "valid-deferred" else 2), result.output
+E       AssertionError: {"schema_version": "1.0", "ok": true, "data": {"urls": ["https://fixture.invalid/product"], "count": 1}, "warnings": [], "error": null, "completeness": "complete"}
+E         
+E       assert 0 == 1
+E        +  where 0 = <Result okay>.exit_code
+
+tests/test_cli_core.py:382: AssertionError
+=============================== warnings summary ===============================
+tests/test_cli_extract.py::test_actual_quality_stdin
+tests/test_cli_extract.py::test_actual_normalize_and_portable_roundtrip
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli_extract.py::test_actual_normalize_and_portable_roundtrip
+FAILED tests/test_cli_core.py::test_phase_gate_follows_click_argument_validation[valid-deferred]
+2 failed, 57 passed, 2 warnings in 5.84s

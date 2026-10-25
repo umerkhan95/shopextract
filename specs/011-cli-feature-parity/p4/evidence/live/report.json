@@ -1,0 +1,37 @@
+{
+  "target": "https://demo.athemes.com/botiga",
+  "command": [
+    "--output-format",
+    "json",
+    "categories",
+    "tree",
+    "fetch",
+    "--options",
+    "/Users/umerkhan/code/shopextract/specs/011-cli-feature-parity/p4/evidence/live/options.json",
+    "--limits",
+    "/Users/umerkhan/code/shopextract/specs/011-cli-feature-parity/p4/evidence/live/limits.json",
+    "--timeout",
+    "30"
+  ],
+  "actual_http_attempts": 1,
+  "http_sends": [
+    {
+      "method": "GET",
+      "url": "https://demo.athemes.com/botiga/wp-json/wc/store/v1/products/categories?page=1&per_page=2&hide_empty=false&orderby=slug&order=asc",
+      "status": 200,
+      "source": "native request_accounting retained attempt and captured page"
+    }
+  ],
+  "retained_products": 0,
+  "retained_category_nodes": 2,
+  "retained_items": 2,
+  "live_wall_seconds": 3.954,
+  "cli_exit": 0,
+  "outcome": "complete",
+  "reasons": [],
+  "status": "observed_bounded_tree_native_accounting_auxiliary_counter_missed",
+  "record_sha256": "7f24d9ed5665ced21f2cc14cdfc9b581f48d8289d3c2aa5cdd9b09cb69f77666",
+  "notes": "One saved read-only smoke; no retries/expansion/browser/model. Synthetic mechanism coverage separate; unavailable is not category availability success.",
+  "auxiliary_httpx_counter": 0,
+  "accounting_limitation": "Auxiliary httpx.AsyncHTTPTransport interception missed GuardedTransport direct httpcore pool. Actual1GET200 proven by native request_accounting attempt + retained successful page. No retry run."
+}

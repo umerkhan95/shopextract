@@ -1,0 +1,20 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.F.F                                                                     [100%]
+=================================== FAILURES ===================================
+_____________ test_model_capture_remains_unsupported[llm_bounded] ______________
+tests/test_llm_capture_support.py:19: in test_model_capture_remains_unsupported
+    assert observations[path].state == SupportState.UNSUPPORTED
+E   AssertionError: assert <SupportState...D: 'observed'> == <SupportState...'unsupported'>
+E     
+E     - unsupported
+E     + observed
+___________ test_model_categories_never_claim_complete[llm_bounded] ____________
+tests/test_llm_capture_support.py:32: in test_model_categories_never_claim_complete
+    assert all(item.completeness == 'unknown' for item in observations)
+E   assert False
+E    +  where False = all(<generator object test_model_categories_never_claim_complete.<locals>.<genexpr> at 0x10bad3840>)
+=========================== short test summary info ============================
+FAILED tests/test_llm_capture_support.py::test_model_capture_remains_unsupported[llm_bounded]
+FAILED tests/test_llm_capture_support.py::test_model_categories_never_claim_complete[llm_bounded]
+2 failed, 2 passed in 0.22s

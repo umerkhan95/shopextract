@@ -1,0 +1,75 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFF.                                                                   [100%]
+=================================== FAILURES ===================================
+__________________________ test_new_commands_declared __________________________
+
+    def test_new_commands_declared():
+>       assert {'extract-one', 'feed', 'normalize', 'quality'} <= set(main.commands)
+E       AssertionError: assert {'extract-one...e', 'quality'} <= {'analyze', '...extract', ...}
+E         
+E         Extra items in the left set:
+E         'normalize'
+E         'extract-one'
+E         'quality'
+E         'feed'
+
+tests/test_cli_extract.py:21: AssertionError
+__________________________ test_actual_quality_stdin ___________________________
+
+    def test_actual_quality_stdin():
+        result = invoke('quality', '-', input='[{"title":"A","image_url":"x"},{}]')
+>       assert result.exit_code == 0, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_extract.py:26: AssertionError
+_________________ test_actual_normalize_and_portable_roundtrip _________________
+
+    def test_actual_normalize_and_portable_roundtrip():
+        from shopextract._portable import product_from_record
+        result = invoke('normalize', '-', input=json.dumps([{'title': 'A', 'price':'0.10', 'image_url':'https://fixture.invalid/a.png','product_url':'https://fixture.invalid/a','sku':'0012','in_stock':False}, {}]))
+>       assert result.exit_code == 0, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_extract.py:33: AssertionError
+___________________ test_invalid_options_before_fetch[args0] ___________________
+
+args = ('extract', 'https://fixture.invalid', '--max', '0')
+
+    @pytest.mark.parametrize('args', [('extract','https://fixture.invalid','--max','0'), ('discover','https://fixture.invalid','--max','1001'), ('extract','https://fixture.invalid','--llm-model','ollama/test')])
+    def test_invalid_options_before_fetch(args):
+        result = invoke(*args)
+>       assert result.exit_code == 2, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_OPERATION", "message": "Machine result support for this command requires its domain CLI phase.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 1 == 2
+E        +  where 1 = <Result SystemExit(1)>.exit_code
+
+tests/test_cli_extract.py:43: AssertionError
+___________________ test_invalid_options_before_fetch[args1] ___________________
+
+args = ('discover', 'https://fixture.invalid', '--max', '1001')
+
+    @pytest.mark.parametrize('args', [('extract','https://fixture.invalid','--max','0'), ('discover','https://fixture.invalid','--max','1001'), ('extract','https://fixture.invalid','--llm-model','ollama/test')])
+    def test_invalid_options_before_fetch(args):
+        result = invoke(*args)
+>       assert result.exit_code == 2, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_OPERATION", "message": "Machine result support for this command requires its domain CLI phase.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 1 == 2
+E        +  where 1 = <Result SystemExit(1)>.exit_code
+
+tests/test_cli_extract.py:43: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_extract.py::test_new_commands_declared - AssertionError...
+FAILED tests/test_cli_extract.py::test_actual_quality_stdin - AssertionError:...
+FAILED tests/test_cli_extract.py::test_actual_normalize_and_portable_roundtrip
+FAILED tests/test_cli_extract.py::test_invalid_options_before_fetch[args0] - ...
+FAILED tests/test_cli_extract.py::test_invalid_options_before_fetch[args1] - ...
+5 failed, 1 passed in 0.23s

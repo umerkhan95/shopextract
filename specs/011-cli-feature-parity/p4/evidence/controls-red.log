@@ -1,0 +1,30 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+___________ test_extract_controls_binding[--storefront-config-True] ____________
+tests/test_cli_categories.py:118: in test_extract_controls_binding
+    assert result.exit_code==0,(result.output,result.exception)
+E   AssertionError: ('{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 == 0
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+__________ test_extract_controls_binding[--enrich-identifiers-False] ___________
+tests/test_cli_categories.py:118: in test_extract_controls_binding
+    assert result.exit_code==0,(result.output,result.exception)
+E   AssertionError: ('{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 == 0
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+__________ test_extract_controls_binding[--restore-short-gtin-False] ___________
+tests/test_cli_categories.py:118: in test_extract_controls_binding
+    assert result.exit_code==0,(result.output,result.exception)
+E   AssertionError: ('{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E     ', SystemExit(2))
+E   assert 2 == 0
+E    +  where 2 = <Result SystemExit(2)>.exit_code
+=========================== short test summary info ============================
+FAILED tests/test_cli_categories.py::test_extract_controls_binding[--storefront-config-True]
+FAILED tests/test_cli_categories.py::test_extract_controls_binding[--enrich-identifiers-False]
+FAILED tests/test_cli_categories.py::test_extract_controls_binding[--restore-short-gtin-False]
+3 failed, 13 deselected in 0.58s

@@ -1,0 +1,330 @@
+..FFFFFFFFFFFFFFFFFFFFF.FF.FFFFF                                         [100%]
+=================================== FAILURES ===================================
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert 2 == 0
+     +  where 2 = <Result SystemExit(2)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:78: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert 2 == 0
+     +  where 2 = <Result SystemExit(2)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:111: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert 2 == 0
+     +  where 2 = <Result SystemExit(2)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:111: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--config'.
+      
+    assert 2 == 0
+     +  where 2 = <Result SystemExit(2)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:129: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--config'.
+      
+    assert 2 == 0
+     +  where 2 = <Result SystemExit(2)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:129: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--config'.
+      
+    assert 2 == 0
+     +  where 2 = <Result SystemExit(2)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:129: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--config'.
+      
+    assert 2 == 0
+     +  where 2 = <Result SystemExit(2)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:129: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   assert 'No such option' not in "Usage: main...t-format'.\n"
+      
+      'No such option' is contained here:
+        .
+        
+        Error: No such option '--output-format'.
+      ?        ++++++++++++++
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:152: assert 'No such option' not in "Usage: main...t-format'.\n"
+E   AssertionError: 
+    assert 1 == 0
+     +  where 1 = <Result RuntimeError("'shopextract' is not installed. Try passing 'package_name' instead.")>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:167: AssertionError:
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert 2 == 0
+     +  where 2 = <Result SystemExit(2)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:167: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--config'.
+      
+    assert 2 == 0
+     +  where 2 = <Result SystemExit(2)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:167: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert 2 == 1
+     +  where 2 = <Result SystemExit(2)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:183: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      Try 'main --help' for help.
+      
+      Error: No such option '--output-format'.
+      
+    assert False
+     +  where False = <built-in method startswith of str object at 0x109e28030>('{')
+     +    where <built-in method startswith of str object at 0x109e28030> = ''.startswith
+     +      where '' = <built-in method strip of str object at 0x109e28030>()
+     +        where <built-in method strip of str object at 0x109e28030> = ''.strip
+     +          where '' = <Result SystemExit(2)>.stdout
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:43: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      
+        Extract, compare, and monitor product data from any e-commerce store.
+      
+      Options:
+        --version  Show the version and exit.
+        --help     Show this message and exit.
+      
+      Commands:
+        analyze   Analyze a store's catalog statistics.
+        changes   Show changes between snapshots for a domain.
+        compare   Compare prices for a product across stores.
+        detect    Detect the e-commerce platform of a store.
+        discover  Discover product URLs from a store.
+        extract   Extract products from an e-commerce store.
+        history   Show price history for a product.
+        snapshot  Take a snapshot of a store's catalog.
+        validate  Validate products from a JSON file against marketplace rules.
+      
+    assert 0 == 2
+     +  where 0 = <Result okay>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:201: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+E   AssertionError: 
+    assert 1 == 2
+     +  where 1 = <Result RuntimeError("'shopextract' is not installed. Try passing 'package_name' instead.")>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:201: AssertionError:
+E   AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+      
+        Extract, compare, and monitor product data from any e-commerce store.
+      
+      Options:
+        --version  Show the version and exit.
+        --help     Show this message and exit.
+      
+      Commands:
+        analyze   Analyze a store's catalog statistics.
+        changes   Show changes between snapshots for a domain.
+        compare   Compare prices for a product across stores.
+        detect    Detect the e-commerce platform of a store.
+        discover  Discover product URLs from a store.
+        extract   Extract products from an e-commerce store.
+        history   Show price history for a product.
+        snapshot  Take a snapshot of a store's catalog.
+        validate  Validate products from a JSON file against marketplace rules.
+      
+    assert 0 == 2
+     +  where 0 = <Result okay>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:201: AssertionError: Usage: main [OPTIONS] COMMAND [ARGS]...
+=========================== short test summary info ============================
+FAILED tests/test_cli_core.py::test_machine_detect_uses_one_complete_envelope
+FAILED tests/test_cli_core.py::test_machine_missing_argument_is_structured_before_dispatch
+FAILED tests/test_cli_core.py::test_strict_config_rejected_before_dispatch[{}]
+FAILED tests/test_cli_core.py::test_strict_config_rejected_before_dispatch[[]]
+FAILED tests/test_cli_core.py::test_strict_config_rejected_before_dispatch[{"schema_version":true}]
+FAILED tests/test_cli_core.py::test_strict_config_rejected_before_dispatch[{"schema_version":1,"unknown":0}]
+FAILED tests/test_cli_core.py::test_strict_config_rejected_before_dispatch[{"schema_version":1,"schema_version":1}]
+FAILED tests/test_cli_core.py::test_strict_config_rejected_before_dispatch[{"schema_version":1,"output_format":NaN}]
+FAILED tests/test_cli_core.py::test_strict_config_rejected_before_dispatch[\xef\xbb\xbf{"schema_version":1}]
+FAILED tests/test_cli_core.py::test_strict_config_rejected_before_dispatch[\xff]
+FAILED tests/test_cli_core.py::test_config_byte_cap[65535-True] - AssertionEr...
+FAILED tests/test_cli_core.py::test_config_byte_cap[65536-True] - AssertionEr...
+FAILED tests/test_cli_core.py::test_config_byte_cap[65537-False] - AssertionE...
+FAILED tests/test_cli_core.py::test_format_precedence[None-json-legacy-True]
+FAILED tests/test_cli_core.py::test_format_precedence[legacy-json-json-False]
+FAILED tests/test_cli_core.py::test_format_precedence[None-None-json-True] - ...
+FAILED tests/test_cli_core.py::test_format_precedence[json-legacy-legacy-True]
+FAILED tests/test_cli_core.py::test_invalid_overridden_env_is_still_error - A...
+FAILED tests/test_cli_core.py::test_repeated_format_first_occurrence_routes_error[json-legacy-True]
+FAILED tests/test_cli_core.py::test_repeated_format_first_occurrence_routes_error[legacy-json-False]
+FAILED tests/test_cli_core.py::test_recognized_help_bypasses_config_env[argv0]
+FAILED tests/test_cli_core.py::test_recognized_help_bypasses_config_env[argv2]
+FAILED tests/test_cli_core.py::test_recognized_help_bypasses_config_env[argv3]
+FAILED tests/test_cli_core.py::test_machine_internal_failure_sanitizes_exception
+FAILED tests/test_cli_core.py::test_invalid_explicit_format_uses_valid_env_for_error
+FAILED tests/test_cli_core.py::test_unknown_command_stays_usage_error_before_bootstrap[argv0]
+FAILED tests/test_cli_core.py::test_unknown_command_stays_usage_error_before_bootstrap[argv1]
+FAILED tests/test_cli_core.py::test_unknown_command_stays_usage_error_before_bootstrap[argv2]
+28 failed, 4 passed in 0.64s
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(

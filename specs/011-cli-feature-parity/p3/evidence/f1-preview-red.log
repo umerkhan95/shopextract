@@ -1,0 +1,57 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F..F                                                                     [100%]
+=================================== FAILURES ===================================
+____________ test_prune_preview_logical_size_bound_and_cleanup[-1] _____________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-244/test_prune_preview_logical_siz0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1090c9bd0>
+delta = -1
+
+    @pytest.mark.parametrize('delta',[-1,0,1])
+    def test_prune_preview_logical_size_bound_and_cleanup(tmp_path,monkeypatch,delta):
+        module=importlib.import_module('shopextract.monitor.evidence');db=str(tmp_path/'s.db');save(db,[product()],0)
+        with sqlite3.connect(db) as conn:size=conn.execute('PRAGMA page_count').fetchone()[0]*conn.execute('PRAGMA page_size').fetchone()[0]
+        monkeypatch.setattr(module,'MAX_PREVIEW_DB_BYTES',size+delta,raising=False)
+        before=Path(db).read_bytes();connect=sqlite3.connect;opened=[];closed=[];backups=[]
+        class Tracked(sqlite3.Connection):
+            def close(self):closed.append(id(self));return super().close()
+            def backup(self,*args,**kwargs):backups.append(True);return super().backup(*args,**kwargs)
+        def tracked(*args,**kwargs):
+            kwargs['factory']=Tracked;conn=connect(*args,**kwargs);opened.append(id(conn));return conn
+        monkeypatch.setattr(sqlite3,'connect',tracked)
+        result=invoke('evidence','prune','--before','2026-10-17T00:00:00Z','--db',db)
+        if delta<0:
+>           assert result.exit_code==1 and json.loads(result.output)['error']['code']=='E_OPERATION',result.output
+E           AssertionError: {"schema_version": "1.0", "ok": true, "data": {"examined": 2, "protected": 2, "expired": 0, "payloads_deleted": 0, "dry_run": true, "has_more": false}, "warnings": [], "error": null, "completeness": "complete"}
+E             
+E           assert (0 == 1)
+E            +  where 0 = <Result okay>.exit_code
+
+tests/test_cli_monitor_mechanisms.py:346: AssertionError
+________________ test_prune_preview_deadline_closes_real_backup ________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-244/test_prune_preview_deadline_cl0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x108fd7b20>
+
+    def test_prune_preview_deadline_closes_real_backup(tmp_path,monkeypatch):
+        module=importlib.import_module('shopextract.monitor.evidence');db=str(tmp_path/'s.db');save(db,[product()],0);before=Path(db).read_bytes()
+        ticks=iter([0.,6.]);monkeypatch.setattr(module,'_preview_clock',lambda:next(ticks),raising=False)
+        connect=sqlite3.connect;opened=[];closed=[]
+        class Tracked(sqlite3.Connection):
+            def close(self):closed.append(id(self));return super().close()
+        def tracked(*args,**kwargs):
+            kwargs['factory']=Tracked;conn=connect(*args,**kwargs);opened.append(id(conn));return conn
+        monkeypatch.setattr(sqlite3,'connect',tracked)
+        result=invoke('evidence','prune','--before','2026-10-17T00:00:00Z','--db',db)
+>       assert result.exit_code==1 and '5 seconds' in result.output,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": true, "data": {"examined": 2, "protected": 2, "expired": 0, "payloads_deleted": 0, "dry_run": true, "has_more": false}, "warnings": [], "error": null, "completeness": "complete"}
+E         
+E       assert (0 == 1)
+E        +  where 0 = <Result okay>.exit_code
+
+tests/test_cli_monitor_mechanisms.py:363: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_monitor_mechanisms.py::test_prune_preview_logical_size_bound_and_cleanup[-1]
+FAILED tests/test_cli_monitor_mechanisms.py::test_prune_preview_deadline_closes_real_backup
+2 failed, 2 passed, 54 deselected in 0.42s

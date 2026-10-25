@@ -1,0 +1,1 @@
+{"scope": {"platform": "woocommerce", "store_url": "https://demo.athemes.com/botiga", "catalog": null, "channel": null, "locale": null}, "registry": {"namespace": "operator-local", "version": "v1", "target_ids": []}, "rules": [], "limits": {"terms": 100, "relation_refs": 200, "ancestry_depth": 8, "record_bytes": 262144, "rules": 1000, "targets": 1000, "config_bytes": 262144}}

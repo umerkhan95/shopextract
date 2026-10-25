@@ -1,0 +1,103 @@
+{
+  "mode": "stress",
+  "seed": 11025,
+  "workers": 1,
+  "max_input_bytes": 1048576,
+  "max_products": 100,
+  "total_limit_seconds": 720,
+  "results": [
+    {
+      "name": "p5-stress-origin",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_operations.py",
+        "-k",
+        "denied_origin or malformed_numeric_objects or reduced_operator_limits"
+      ],
+      "returncode": 0,
+      "seconds": 2.864,
+      "stop": null,
+      "max_group_rss_bytes": 110501888,
+      "orphans": [],
+      "summary": "7 passed, 55 deselected in 0.25s"
+    },
+    {
+      "name": "p5-stress-session",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_operations.py",
+        "-k",
+        "real_bootstrap_match or page_cap_partial"
+      ],
+      "returncode": 0,
+      "seconds": 10.449,
+      "stop": null,
+      "max_group_rss_bytes": 212385792,
+      "orphans": [],
+      "summary": "2 passed, 60 deselected in 7.78s"
+    },
+    {
+      "name": "p5-stress-durable",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_operations.py",
+        "-k",
+        "real_separate_processes or native_list_pagination or foreign_maintenance_category"
+      ],
+      "returncode": 0,
+      "seconds": 10.762,
+      "stop": null,
+      "max_group_rss_bytes": 200597504,
+      "orphans": [],
+      "summary": "3 passed, 59 deselected in 8.15s"
+    },
+    {
+      "name": "p5-stress-deadlines",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_operations.py",
+        "-k",
+        "deadline_interrupt or session_deadline"
+      ],
+      "returncode": 0,
+      "seconds": 15.406,
+      "stop": null,
+      "max_group_rss_bytes": 201097216,
+      "orphans": [],
+      "summary": "4 passed, 58 deselected in 12.72s"
+    },
+    {
+      "name": "p5-stress-protocol",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_operations.py",
+        "-k",
+        "real_sdk_root_stdio or missing_sdk or static_and_help"
+      ],
+      "returncode": 0,
+      "seconds": 5.557,
+      "stop": null,
+      "max_group_rss_bytes": 123420672,
+      "orphans": [],
+      "summary": "3 passed, 59 deselected in 2.84s"
+    }
+  ],
+  "seconds": 45.041,
+  "status": "passed",
+  "actual_session_token_counters": "unavailable"
+}

@@ -128,6 +128,9 @@ def get_browser_config(
     text_mode: bool = False,
 ) -> BrowserConfig:
     """Create a BrowserConfig for the requested anti-bot tier."""
+    from .._execution import browser_allowed
+    if not browser_allowed():
+        raise RuntimeError("Browser execution is disabled by the operation policy")
     headers = {**DEFAULT_HEADERS}
 
     if stealth_level == StealthLevel.STANDARD:

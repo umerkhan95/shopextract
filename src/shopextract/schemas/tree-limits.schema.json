@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShopExtract tree-limits",
+  "x-contract-version": "native",
+  "type": "object",
+  "properties": {
+    "requests": {
+      "type": "integer"
+    },
+    "per_page": {
+      "type": "integer"
+    },
+    "categories": {
+      "type": "integer"
+    },
+    "response_bytes": {
+      "type": "integer"
+    },
+    "retained_bytes": {
+      "type": "integer"
+    },
+    "depth": {
+      "type": "integer"
+    },
+    "seconds": {
+      "type": "number"
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

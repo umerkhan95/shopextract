@@ -1,0 +1,59 @@
+{
+  "checks": [
+    {
+      "name": "unavailable partial error",
+      "expected_valid": false,
+      "actual_valid": true,
+      "envelope": {
+        "schema_version": "1.0",
+        "ok": false,
+        "data": null,
+        "warnings": [],
+        "error": {
+          "code": "E_PARTIAL",
+          "message": "sanitized",
+          "retryable": false
+        },
+        "completeness": "unavailable"
+      }
+    },
+    {
+      "name": "retryable usage error",
+      "expected_valid": false,
+      "actual_valid": true,
+      "envelope": {
+        "schema_version": "1.0",
+        "ok": false,
+        "data": null,
+        "warnings": [],
+        "error": {
+          "code": "E_USAGE",
+          "message": "sanitized",
+          "retryable": true
+        },
+        "completeness": "unavailable"
+      }
+    },
+    {
+      "name": "nonretryable timeout",
+      "expected_valid": false,
+      "actual_valid": true,
+      "envelope": {
+        "schema_version": "1.0",
+        "ok": false,
+        "data": null,
+        "warnings": [],
+        "error": {
+          "code": "E_TIMEOUT",
+          "message": "sanitized",
+          "retryable": false
+        },
+        "completeness": "unavailable"
+      }
+    }
+  ],
+  "module_digest_mismatches": [],
+  "baseline_source_digest_matches": true,
+  "scope": "Independent design validation only; no runtime CLI contract execution",
+  "token_counters": "unavailable"
+}

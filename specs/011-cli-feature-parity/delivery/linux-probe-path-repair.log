@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/probe.py", line 8, in <module>
+    result=m['run_plan']((m['TestGroup']('descendant',(sys.executable,'-c',leader)),),root/'logs',group_seconds=1,total_seconds=3)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/before.py", line 89, in run_plan
+    root=Path(__file__).resolve().parents[1];output_dir=Path(output_dir);output_dir.mkdir(parents=True,exist_ok=True)
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/var/lang/lib/python3.11/pathlib.py", line 445, in __getitem__
+    raise IndexError(idx)
+IndexError: 1

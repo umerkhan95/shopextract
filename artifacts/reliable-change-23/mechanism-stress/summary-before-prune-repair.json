@@ -1,0 +1,37 @@
+{
+  "status": "stopped_on_failure",
+  "seeds": [
+    1701,
+    2909
+  ],
+  "max_batches": 24,
+  "max_products": 20,
+  "max_variants_per_product": 4,
+  "max_snapshots_per_batch": 6,
+  "max_input_bytes_per_batch": 2097152,
+  "phase_timeout_seconds": 60,
+  "wall_timeout_seconds": 180,
+  "processes_at_once": 1,
+  "network_requests": 0,
+  "local_inference": false,
+  "usage_counters": "unavailable",
+  "phases": [
+    {
+      "phase": "smoke",
+      "status": "passed",
+      "completed_batches": 1,
+      "reused": true
+    },
+    {
+      "phase": "stress",
+      "status": "failed",
+      "completed_batches": 1
+    }
+  ],
+  "setup_repairs": {
+    "enum_blocker": 1,
+    "membership_oracle_blocker": 1
+  },
+  "failed_phase": "stress",
+  "elapsed_seconds": 3.281
+}

@@ -1,0 +1,17 @@
+{
+  "reviewer": "/root/cli_p5_delivery/p5_reviewer",
+  "source_manifest_mismatches": [],
+  "main_prefix_pass_glyphs": 1249,
+  "main_remaining_exact_nodes": 225,
+  "remaining_command_exact_match": true,
+  "main_partition_disjoint": true,
+  "collection_sha256_matches": true,
+  "main_total": 1474,
+  "maintenance_separate_pass": 106,
+  "total_case_coverage": 1580,
+  "original_main_invocation": "TIMEOUT; not pass",
+  "required_main_group_gate": "unfulfilled",
+  "new_test_runs_by_final_reviewer": 0,
+  "git_diff_check": "clean",
+  "reviewer_probe_repair": "Initial evidence-only command-slice assertion used index5 rather than4; corrected with no source/test/evidence inputs changed."
+}

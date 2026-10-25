@@ -1,4 +1,9 @@
-# CURRENT resume status — 2026-10-16
+# CURRENT resume status — 2026-10-17
+
+Publication COMPLETE: [PR #59](https://github.com/umerkhan95/shopextract/pull/59)
+merged into main as `4d57c6b`. PR CI passed on Python3.10/3.11/3.12.
+#25 and #55–58 are CLOSED with completed checklists and delivery evidence.
+Merged tree matches the tested PR head. Receipt: artifacts/category-mapping/github-delivery.json.
 
 Local implementation and verification COMPLETE; independent final review PASSED.
 Reviewer: maintenance_reviewer; verdict and reviewed digests are in reviews.md.

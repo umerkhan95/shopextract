@@ -1,0 +1,11 @@
+{
+  "classification": "tools.contracts.validate composed_helper P5 tools",
+  "source_hashes_match": 92,
+  "linked_workflows": 68,
+  "named_author_checks": 16,
+  "schema_examples": 22,
+  "author_evidence_path": "evidence/author-repair-checks.json",
+  "parent_coverage_syntax_aligned": true,
+  "runtime_executed": false,
+  "verdict": "G1 PASS; design only"
+}

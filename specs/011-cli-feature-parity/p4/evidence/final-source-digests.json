@@ -1,0 +1,14 @@
+{
+  "src/shopextract/_cli_categories.py": "1fc933a223931e9006069fe53bc61b8ec997935c6e7d3bab8cad876fcd60ff0d",
+  "src/shopextract/_cli_data.py": "f52a11499d01f320802ebb654a2292d602a688639ac4b0dac960af0db0332ef4",
+  "src/shopextract/_cli_analysis.py": "0357fb62c9488dcd8d4d65a7e2a177df3759a686fd2e2f00465ae0b081336acb",
+  "src/shopextract/_cli_core.py": "416e37b00ff42785fc395c5c5f17ede0699c351ae9db66a57b22589265919ef8",
+  "src/shopextract/_normalize.py": "fd9abacb2b3ada75a650ae75ce573ceacf3567b88199950cd5afb0b7f1e2e724",
+  "src/shopextract/cli.py": "197f04a01ed3ae7412cb38aff3ca43b282bf628aee24299bcd8bb23895e88bcb",
+  "tests/test_cli_categories.py": "cd50132d5b3f74a1f43f98fd24e50c4dfca6876112d25d513039e1b37870b155",
+  "tests/test_cli_categories_mechanisms.py": "32c15a41af49966e9acc13c17c5b610183c078f65f44daf219b9a40dd968ec50",
+  "tests/cli_categories_stress_driver.py": "66baab9adc0bf9a7cccac98540032c97b1dc8ffb31a64eea776b101ed6ba1100",
+  "tests/cli_categories_mutation_driver.py": "7e9fb5801f6d72d75215f08355c64695f47268a920ae58f41e9a55214ddb3bff",
+  "tests/cli_categories_live_driver.py": "4fafedb7ee203cd02263432dcffe5c82aa9b41f7cb54cbdf857fa90b0418252c",
+  "docs/cli.md": "cd7ef16ff6731b1d77bdc9984b02b25abc2b39abdd22b138e967c3933dcf0517"
+}

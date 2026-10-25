@@ -17,3 +17,10 @@ See verification.md for final checks and reviews.md for independent gate digests
 Additional pre-merge live request completed: Magento and Woo passed (4 requests,
 318 evidence checks), independently reviewed. Total 6 live requests across three
 platforms; commercial-change result remains inconclusive. PR #48 tracks delivery.
+
+Supplemental workflow test follow-up:23/24 synthetic mechanism/stress batches
+passed; remaining2909/7 interrupted at hard time cap. Owner audit23reports/196refs
+passed. Charged173.914/180s; preserve documented earlier phase breach. No production
+source changes or demonstrated functional mismatch. Do not repeat completed23
+cases; any future authorized continuation starts only from saved remaining case.
+Evidence: artifacts/reliable-change-23/mechanism-stress/final-summary.md.

@@ -1,0 +1,2208 @@
+{
+  "provenance": "Local AST snapshot; inspect source semantics before binding; no imports/model/network",
+  "modules": {
+    "src/shopextract/_capture.py": {
+      "sha256": "97c9e18ccb714378a0c2cbdb772eb355c28117ac3bb6954164b3c4a475ae1dc0",
+      "callables": {
+        "capture": {
+          "async": false,
+          "args": "raw, source_url, method, *, observed_at=None, source=None, excerpt=None",
+          "returns": null,
+          "line": 19
+        },
+        "attach_contract": {
+          "async": false,
+          "args": "product, raw, outcomes",
+          "returns": null,
+          "line": 122
+        }
+      }
+    },
+    "src/shopextract/_detect.py": {
+      "sha256": "fe4d19f4d5ea26ef32dad2dc1d723d5be73e495e032e4c9ae3effa37e7f30bf2",
+      "callables": {
+        "detect": {
+          "async": true,
+          "args": "url: str, *, client: httpx.AsyncClient | None=None",
+          "returns": "PlatformResult",
+          "line": 52
+        }
+      }
+    },
+    "src/shopextract/_discover.py": {
+      "sha256": "79379e5f16fac68905f2c55f8f4b2a7d66cbe63f0108bc6745c2cbb46c66f70a",
+      "callables": {
+        "discover": {
+          "async": true,
+          "args": "url: str, *, platform: Platform | None=None, max_urls: int=100, timeout: float=30.0, client: httpx.AsyncClient | None=None",
+          "returns": "list[str]",
+          "line": 65
+        }
+      }
+    },
+    "src/shopextract/_evidence.py": {
+      "sha256": "368cad9ae37c289951f1bbeec2562f28f419d2c9f9dd8adf0bf63d8f5427859f",
+      "callables": {
+        "Evidence.resolve_pointer": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 95
+        },
+        "TrustContract.validate": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 193
+        },
+        "TrustContract.to_dict": {
+          "async": false,
+          "args": "self",
+          "returns": "dict",
+          "line": 219
+        },
+        "TrustContract.from_dict": {
+          "async": false,
+          "args": "cls, payload: dict",
+          "returns": "TrustContract",
+          "line": 224
+        },
+        "encode_value": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 242
+        },
+        "decode_value": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 267
+        },
+        "factual_paths": {
+          "async": false,
+          "args": "record",
+          "returns": "dict[str, object]",
+          "line": 290
+        },
+        "trust_view": {
+          "async": false,
+          "args": "record, contract: TrustContract | None=None",
+          "returns": "dict[str, dict]",
+          "line": 315
+        }
+      }
+    },
+    "src/shopextract/_extract.py": {
+      "sha256": "064f98087bbdc42bd8bf276113418d6837c17d5f4a15fdc429d6206ef604aacc",
+      "callables": {
+        "extract": {
+          "async": true,
+          "args": "url: str, *, platform: Platform | None=None, max_urls: int=20, shop_url: str | None=None, llm_api_key: str | None=None, llm_model: str='openai/gpt-4o-mini', llm_temperature: float=0.2, enrich_identifiers: bool=False, restore_short_gtin: bool=False, api_options: dict[str, str] | None=None",
+          "returns": "ExtractionResult",
+          "line": 35
+        },
+        "extract_one": {
+          "async": true,
+          "args": "url: str, *, llm_api_key: str | None=None, llm_model: str='openai/gpt-4o-mini'",
+          "returns": "dict",
+          "line": 313
+        },
+        "from_feed": {
+          "async": true,
+          "args": "feed_url: str, *, shop_url: str=''",
+          "returns": "ExtractionResult",
+          "line": 350
+        }
+      }
+    },
+    "src/shopextract/_filters.py": {
+      "sha256": "39f0e609476d60cd850364bd142815472a3bdc98b4d07e17bffa60c1f04156bf",
+      "callables": {
+        "is_non_product_url": {
+          "async": false,
+          "args": "url: str",
+          "returns": "bool",
+          "line": 59
+        }
+      }
+    },
+    "src/shopextract/_models.py": {
+      "sha256": "93e4e4e4a2137daf27931657ff5f0d6724fb307429561d4609fe35067afa3c76",
+      "callables": {
+        "Variant.trust_view": {
+          "async": false,
+          "args": "self, contract: TrustContract | None=None",
+          "returns": "dict",
+          "line": 52
+        },
+        "Product.trust_view": {
+          "async": false,
+          "args": "self, contract: TrustContract | None=None",
+          "returns": "dict",
+          "line": 89
+        },
+        "ExtractorResult.product_count": {
+          "async": false,
+          "args": "self",
+          "returns": "int",
+          "line": 115
+        },
+        "ExtractorResult.is_empty": {
+          "async": false,
+          "args": "self",
+          "returns": "bool",
+          "line": 119
+        },
+        "ExtractionResult.product_count": {
+          "async": false,
+          "args": "self",
+          "returns": "int",
+          "line": 140
+        },
+        "ValidationReport.pass_rate": {
+          "async": false,
+          "args": "self",
+          "returns": "float",
+          "line": 313
+        }
+      }
+    },
+    "src/shopextract/_normalization.py": {
+      "sha256": "d989ba3163da04ac7e5ae5c4be8b5101da082fcecb1898d451133ac7efa40672",
+      "callables": {
+        "NormalizedData.__init__": {
+          "async": false,
+          "args": "self, values, outcomes",
+          "returns": null,
+          "line": 28
+        },
+        "Normalizer.__init__": {
+          "async": false,
+          "args": "self, raw",
+          "returns": null,
+          "line": 35
+        },
+        "Normalizer.select": {
+          "async": false,
+          "args": "self, *paths, truthy=False",
+          "returns": null,
+          "line": 39
+        },
+        "Normalizer.record": {
+          "async": false,
+          "args": "self, field, selection, value, *, accepted=True, reason='', operation=''",
+          "returns": null,
+          "line": 56
+        },
+        "Normalizer.record_inputs": {
+          "async": false,
+          "args": "self, field, selections, value, *, accepted=True, operation=''",
+          "returns": null,
+          "line": 68
+        },
+        "Normalizer.emit": {
+          "async": false,
+          "args": "self, field, *paths, default=None, convert: Callable | None=None, truthy=False, operation='', strict=False",
+          "returns": null,
+          "line": 77
+        },
+        "Normalizer.money": {
+          "async": false,
+          "args": "self, field, *paths, default=Decimal('0'), stringify=False, css=False, truthy=False, divisor=None, operation='', strict=False",
+          "returns": null,
+          "line": 99
+        },
+        "Normalizer.inherit": {
+          "async": false,
+          "args": "self, other, output_prefix, source_prefix",
+          "returns": null,
+          "line": 116
+        },
+        "Normalizer.record_nested": {
+          "async": false,
+          "args": "self, field, value",
+          "returns": null,
+          "line": 121
+        },
+        "Normalizer.result": {
+          "async": false,
+          "args": "self, values",
+          "returns": null,
+          "line": 145
+        }
+      }
+    },
+    "src/shopextract/_normalize.py": {
+      "sha256": "a17358cf615b22d2a0a945f256c14ac51d4bee9afe39d4bde7956f973fa1ee35",
+      "callables": {
+        "normalize": {
+          "async": false,
+          "args": "raw: dict, platform: Platform=Platform.GENERIC, shop_url: str='', *, restore_short_gtin: bool=False",
+          "returns": "Product | None",
+          "line": 60
+        }
+      }
+    },
+    "src/shopextract/_portable.py": {
+      "sha256": "98ef432e6b51bd61ffec3f734ea3b5531fb90ea1e7eb1893e657a824c0a71320",
+      "callables": {
+        "validate_tree": {
+          "async": false,
+          "args": "value, *, encoded=False",
+          "returns": null,
+          "line": 25
+        },
+        "product_to_record": {
+          "async": false,
+          "args": "product: Product",
+          "returns": "dict",
+          "line": 145
+        },
+        "product_from_record": {
+          "async": false,
+          "args": "record: dict",
+          "returns": "Product",
+          "line": 166
+        }
+      }
+    },
+    "src/shopextract/_quality.py": {
+      "sha256": "ce019f2db1c4ef9e43b1d533eca0c27fdc5016b026891eeccd300a9fad0fc3dc",
+      "callables": {
+        "QualityScorer.score_product": {
+          "async": false,
+          "args": "self, product: dict",
+          "returns": "float",
+          "line": 23
+        },
+        "QualityScorer.score_batch": {
+          "async": false,
+          "args": "self, products: list[dict]",
+          "returns": "float",
+          "line": 49
+        }
+      }
+    },
+    "src/shopextract/_resolution.py": {
+      "sha256": "1c466e922fe4b2e677389ed68b1a5bc924741a5f7164ced672c8177dd5f7d22a",
+      "callables": {
+        "ResolutionPolicy.max_age": {
+          "async": false,
+          "args": "self, path",
+          "returns": null,
+          "line": 31
+        },
+        "ResolutionPolicy.authority": {
+          "async": false,
+          "args": "self, path, role",
+          "returns": null,
+          "line": 34
+        },
+        "resolve_fields": {
+          "async": false,
+          "args": "contract: TrustContract, *, as_of: datetime, policy: ResolutionPolicy | None=None",
+          "returns": "TrustContract",
+          "line": 60
+        },
+        "resolution_references": {
+          "async": false,
+          "args": "contract: TrustContract",
+          "returns": "dict",
+          "line": 132
+        }
+      }
+    },
+    "src/shopextract/_scope.py": {
+      "sha256": "39f2172dcedb70b251db43abe5bf6c2fac06a2fb3a55f0356336f4240413422a",
+      "callables": {
+        "catalog_scope": {
+          "async": false,
+          "args": "url: str, platform: Platform | str",
+          "returns": "str",
+          "line": 7
+        }
+      }
+    },
+    "src/shopextract/analyze/competitive.py": {
+      "sha256": "ccec8995f0abab41bdbe3a1b0737b685dc8209bbb45088bda0f5769698fd7bc6",
+      "callables": {
+        "price_position": {
+          "async": true,
+          "args": "my_product: dict, competitors: list[str], *, max_products: int=200",
+          "returns": "PricePosition",
+          "line": 15
+        },
+        "assortment_gaps": {
+          "async": true,
+          "args": "my_store: str, competitors: list[str], *, max_products: int=200",
+          "returns": "AssortmentGaps",
+          "line": 45
+        },
+        "brand_coverage": {
+          "async": false,
+          "args": "catalogs: dict[str, list[dict]]",
+          "returns": "dict[str, dict[str, int]]",
+          "line": 94
+        }
+      }
+    },
+    "src/shopextract/analyze/stats.py": {
+      "sha256": "04fcf40a81da58c5902ef30331bdaf0a9cda214cfcdc2075bd09fbe5bfc2c9af",
+      "callables": {
+        "analyze_products": {
+          "async": false,
+          "args": "products: list[dict]",
+          "returns": "CatalogStats",
+          "line": 15
+        },
+        "price_distribution": {
+          "async": false,
+          "args": "products: list[dict], buckets: list[float] | None=None",
+          "returns": "dict[str, int]",
+          "line": 52
+        },
+        "outliers": {
+          "async": false,
+          "args": "products: list[dict], std_multiplier: float=2.0",
+          "returns": "list[dict]",
+          "line": 81
+        },
+        "brand_breakdown": {
+          "async": false,
+          "args": "products: list[dict]",
+          "returns": "dict[str, float]",
+          "line": 112
+        },
+        "analyze": {
+          "async": true,
+          "args": "url: str, max_products: int=500",
+          "returns": "CatalogStats",
+          "line": 128
+        },
+        "get_price": {
+          "async": false,
+          "args": "product: dict",
+          "returns": "float | None",
+          "line": 162
+        },
+        "count_field": {
+          "async": false,
+          "args": "products: list[dict], field: str",
+          "returns": "dict[str, int]",
+          "line": 191
+        },
+        "count_categories": {
+          "async": false,
+          "args": "products: list[dict]",
+          "returns": "dict[str, int]",
+          "line": 202
+        }
+      }
+    },
+    "src/shopextract/categories/_codec.py": {
+      "sha256": "7076d4fc2db09220d859a50131bc00c6a0804ba2d3294bf6d17a1960754fb081",
+      "callables": {
+        "wire": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 14
+        },
+        "canonical": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 24
+        },
+        "digest": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 29
+        },
+        "typed": {
+          "async": false,
+          "args": "kind, value",
+          "returns": null,
+          "line": 33
+        }
+      }
+    },
+    "src/shopextract/categories/adapters/bigcommerce.py": {
+      "sha256": "6e32f7e50b2322fc3f416eed7a562b2c7d3bfd64104df7f0cce4077e08ba06ba",
+      "callables": {
+        "observe_categories": {
+          "async": false,
+          "args": "raw: dict, *, context: AdapterContext",
+          "returns": "tuple[CategoryObservation, ...]",
+          "line": 12
+        }
+      }
+    },
+    "src/shopextract/categories/adapters/generic.py": {
+      "sha256": "2cb3df6d21d9cee9eb744a4f8577e9f79e83227f3c437a04bae1e2487fd15e38",
+      "callables": {
+        "observe_categories": {
+          "async": false,
+          "args": "raw: dict, *, context: AdapterContext",
+          "returns": "tuple[CategoryObservation, ...]",
+          "line": 31
+        }
+      }
+    },
+    "src/shopextract/categories/adapters/magento.py": {
+      "sha256": "0fb92acd81971297ab5e6978d3d3cc61e157ec891f24f3485d8958e7d5299b36",
+      "callables": {
+        "observe_categories": {
+          "async": false,
+          "args": "raw: dict, *, context: AdapterContext",
+          "returns": "tuple[CategoryObservation, ...]",
+          "line": 14
+        }
+      }
+    },
+    "src/shopextract/categories/adapters/shopify.py": {
+      "sha256": "3c005420b9fb5b63d617bcd4312b4aece1f37e183e5b5a4f187005dfd128c9f1",
+      "callables": {
+        "observe_categories": {
+          "async": false,
+          "args": "raw: dict, *, context: AdapterContext",
+          "returns": "tuple[CategoryObservation, ...]",
+          "line": 19
+        }
+      }
+    },
+    "src/shopextract/categories/adapters/shopware.py": {
+      "sha256": "58040b766bbb09222f13298bc06f37a64df674c4d2c1da425f2aa77d84aa1ded",
+      "callables": {
+        "observe_categories": {
+          "async": false,
+          "args": "raw: dict, *, context: AdapterContext",
+          "returns": "tuple[CategoryObservation, ...]",
+          "line": 12
+        }
+      }
+    },
+    "src/shopextract/categories/adapters/woocommerce.py": {
+      "sha256": "23a54d1643311c371e56edc435f21f3569ba1a764382a4c7ce0f9fabd5c82097",
+      "callables": {
+        "observe_categories": {
+          "async": false,
+          "args": "raw: dict, *, context: AdapterContext",
+          "returns": "tuple[CategoryObservation, ...]",
+          "line": 15
+        }
+      }
+    },
+    "src/shopextract/categories/api.py": {
+      "sha256": "627a9df2d643c8042e8ff678a7eb01dd6468be7b163e845430c2d4afa4da443b",
+      "callables": {
+        "normalize_with_categories": {
+          "async": false,
+          "args": "raw: dict, platform: Platform=Platform.GENERIC, shop_url: str='', *, category_options: CategoryOptions, restore_short_gtin: bool=False",
+          "returns": "CategorizedProduct | None",
+          "line": 14
+        },
+        "extract_with_categories": {
+          "async": true,
+          "args": "url: str, *, category_options: CategoryOptions, **extraction_options: Any",
+          "returns": "CategorizedExtractionResult",
+          "line": 51
+        }
+      }
+    },
+    "src/shopextract/categories/config.py": {
+      "sha256": "ffc2976bec98e45ecfd83e953e140e2faec4a4e358eeee14642f0bf6551f8396",
+      "callables": {
+        "validate_options": {
+          "async": false,
+          "args": "options: CategoryOptions",
+          "returns": "None",
+          "line": 7
+        },
+        "runtime_record": {
+          "async": false,
+          "args": "config: CategoryRuntimeConfig",
+          "returns": "dict",
+          "line": 52
+        },
+        "runtime_from_record": {
+          "async": false,
+          "args": "record: dict",
+          "returns": "CategoryRuntimeConfig",
+          "line": 66
+        },
+        "options_digest": {
+          "async": false,
+          "args": "options",
+          "returns": null,
+          "line": 75
+        }
+      }
+    },
+    "src/shopextract/categories/evidence.py": {
+      "sha256": "401c71253805abff9e0c32d6cc97c4bd9a99e7a038b8d4d245b1965f80281969",
+      "callables": {
+        "source_fact": {
+          "async": false,
+          "args": "raw: dict, pointer: str, *, binding: CategoryFactBinding, convert: Callable | None=None, operation: str=''",
+          "returns": "CategoryFact",
+          "line": 9
+        }
+      }
+    },
+    "src/shopextract/categories/helpers.py": {
+      "sha256": "ae4baba491f13928f9a7e1e679904c8640e6e01ca9dc0b61b5f0037da8381031",
+      "callables": {
+        "merchant_scope": {
+          "async": false,
+          "args": "scope: CategoryScope",
+          "returns": "str",
+          "line": 10
+        },
+        "observation_id": {
+          "async": false,
+          "args": "scope: CategoryScope, namespace: str, relation: str, pointer: str=''",
+          "returns": "str",
+          "line": 15
+        },
+        "nonblank_text": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 20
+        },
+        "native_id": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 26
+        }
+      }
+    },
+    "src/shopextract/categories/maintenance.py": {
+      "sha256": "3c7937e32436168cf92aff019b3bcfe006f6a2568c929bf60fae39b4793ce398",
+      "callables": {
+        "category_policy_digest": {
+          "async": false,
+          "args": "config: CategoryRuntimeConfig",
+          "returns": "str",
+          "line": 8
+        },
+        "category_review_reasons": {
+          "async": false,
+          "args": "value: CategorizedProduct, *, selected_profile: str | None, config: CategoryRuntimeConfig",
+          "returns": "tuple[str, ...]",
+          "line": 12
+        }
+      }
+    },
+    "src/shopextract/categories/mapping.py": {
+      "sha256": "29c4492d95a02dde719fe8334766d8eb9abd8d128984662b953efc1041e9e877",
+      "callables": {
+        "map_categories": {
+          "async": false,
+          "args": "observations: tuple[CategoryObservation, ...], *, options: CategoryOptions",
+          "returns": "tuple[MappingDecision, ...]",
+          "line": 13
+        }
+      }
+    },
+    "src/shopextract/categories/native.py": {
+      "sha256": "49f7b45abc0f965c9454d66a1f5f0a5eab52d01e0d7c57562f95dc1deda546e7",
+      "callables": {
+        "localize_category_errors": {
+          "async": false,
+          "args": "errors: tuple[NativeCategoryError, ...], *, product_path: tuple[str | int, ...]",
+          "returns": "tuple[NativeCategoryError, ...]",
+          "line": 19
+        },
+        "native_body": {
+          "async": false,
+          "args": "response, *, include_categories=False",
+          "returns": null,
+          "line": 32
+        },
+        "attach_category_diagnostics": {
+          "async": false,
+          "args": "raw, errors, *, product_path",
+          "returns": null,
+          "line": 63
+        },
+        "native_source_fact": {
+          "async": false,
+          "args": "raw, pointer, facet, context, ref=None, convert=None, operation=''",
+          "returns": null,
+          "line": 70
+        }
+      }
+    },
+    "src/shopextract/categories/portable.py": {
+      "sha256": "2e3a0bbcf9e1214e09fff008ed7168320b9af99e0a6614481c74293c261e93fa",
+      "callables": {
+        "bind_product": {
+          "async": false,
+          "args": "product, scope, observations, mappings, config_digest, *, limits=None",
+          "returns": null,
+          "line": 38
+        },
+        "categorized_product_to_record": {
+          "async": false,
+          "args": "value: CategorizedProduct",
+          "returns": "dict",
+          "line": 51
+        },
+        "categorized_product_from_record": {
+          "async": false,
+          "args": "record: dict",
+          "returns": "CategorizedProduct",
+          "line": 64
+        },
+        "validate_categorized_products": {
+          "async": false,
+          "args": "records, *, options, maximum",
+          "returns": null,
+          "line": 83
+        }
+      }
+    },
+    "src/shopextract/categories/validation.py": {
+      "sha256": "092199930af26416640444ebc7457df060a07b376c1c2bb464a7f2f08f7cd9b0",
+      "callables": {
+        "validate_observations": {
+          "async": false,
+          "args": "observations, limits=None",
+          "returns": null,
+          "line": 8
+        }
+      }
+    },
+    "src/shopextract/categories/woo_tree.py": {
+      "sha256": "56b63c46043c070d7412da5a6bc9a2d519da3da44891b34edd931d8dc62f6ecf",
+      "callables": {
+        "fetch_woocommerce_category_tree": {
+          "async": true,
+          "args": "scope: CategoryScope, *, limits: WooTreeLimits=WooTreeLimits(), cancelled: asyncio.Event | None=None, resolver: Resolver | None=None, wire_transport: httpx.AsyncBaseTransport | None=None, utc_now: Callable[[], datetime] | None=None",
+          "returns": "WooCategoryTree",
+          "line": 389
+        },
+        "link_tree_memberships": {
+          "async": false,
+          "args": "tree: WooCategoryTree, observations: tuple[CategoryObservation, ...]",
+          "returns": "tuple[TreeMembershipLink, ...]",
+          "line": 554
+        },
+        "woo_tree_to_record": {
+          "async": false,
+          "args": "tree: WooCategoryTree",
+          "returns": "dict",
+          "line": 635
+        },
+        "woo_tree_from_record": {
+          "async": false,
+          "args": "record: dict",
+          "returns": "WooCategoryTree",
+          "line": 648
+        }
+      }
+    },
+    "src/shopextract/cli.py": {
+      "sha256": "39e99388bd641556613cca1f873ff2ec4e65ab1140b1e706dcabc9964cdad37d",
+      "callables": {
+        "main": {
+          "async": false,
+          "args": "",
+          "returns": "None",
+          "line": 14
+        },
+        "extract": {
+          "async": false,
+          "args": "url: str, max_urls: int, fmt: str, output_path: str | None",
+          "returns": "None",
+          "line": 24
+        },
+        "detect": {
+          "async": false,
+          "args": "url: str",
+          "returns": "None",
+          "line": 31
+        },
+        "discover": {
+          "async": false,
+          "args": "url: str, max_urls: int",
+          "returns": "None",
+          "line": 39
+        },
+        "compare": {
+          "async": false,
+          "args": "query: str, stores: tuple[str, ...]",
+          "returns": "None",
+          "line": 47
+        },
+        "snapshot": {
+          "async": false,
+          "args": "url: str",
+          "returns": "None",
+          "line": 54
+        },
+        "changes": {
+          "async": false,
+          "args": "domain: str",
+          "returns": "None",
+          "line": 61
+        },
+        "history": {
+          "async": false,
+          "args": "domain: str, product: str",
+          "returns": "None",
+          "line": 69
+        },
+        "analyze": {
+          "async": false,
+          "args": "url: str, max_urls: int",
+          "returns": "None",
+          "line": 77
+        },
+        "validate_cmd": {
+          "async": false,
+          "args": "file: str, marketplace: str",
+          "returns": "None",
+          "line": 87
+        }
+      }
+    },
+    "src/shopextract/compare/catalog.py": {
+      "sha256": "4e65139d14d216e2b63bf16439e45b4216f5153a9dbc2f09c93549f526d57b25",
+      "callables": {
+        "compare_catalogs": {
+          "async": true,
+          "args": "store_a: str, store_b: str, *, max_products: int=_DEFAULT_MAX_PRODUCTS, threshold: float=_MATCH_THRESHOLD, semantic_candidates: SemanticCandidates | None=None, publisher_aliases: dict[str, list[str]] | None=None, enrich_identifiers: bool=False, restore_short_gtin: bool=False",
+          "returns": "CatalogDiff",
+          "line": 18
+        }
+      }
+    },
+    "src/shopextract/compare/evaluation.py": {
+      "sha256": "e01c7ff552754a118f2d3d08bcbc65d86cc6d492e7eb1559725e6ded1d7a840b",
+      "callables": {
+        "evaluate_matching": {
+          "async": false,
+          "args": "dataset: list[dict], *, threshold: float=0.8, publisher_aliases: dict[str, list[str]] | None=None",
+          "returns": "dict",
+          "line": 7
+        }
+      }
+    },
+    "src/shopextract/compare/identity_match.py": {
+      "sha256": "0931100a27c53cd6773a78917b66a2893f1f8d288bff815ffccb6b88202e2a53",
+      "callables": {
+        "normalized_attributes": {
+          "async": false,
+          "args": "product: Product | dict",
+          "returns": "dict[str, str]",
+          "line": 59
+        },
+        "classify_match": {
+          "async": false,
+          "args": "a: Product | dict, b: Product | dict, *, threshold: float=0.8, publisher_aliases: dict[str, list[str]] | None=None",
+          "returns": "MatchDecision",
+          "line": 202
+        },
+        "match_products": {
+          "async": false,
+          "args": "products_a: list[Product | dict], products_b: list[Product | dict], *, threshold: float=0.8, publisher_aliases: dict[str, list[str]] | None=None, semantic_candidates: SemanticCandidates | None=None",
+          "returns": "list[MatchDecision]",
+          "line": 215
+        }
+      }
+    },
+    "src/shopextract/compare/match.py": {
+      "sha256": "3c25f85a8ca37367143c58f72d0bbb079273aa89cfd54b7203d9c7a729fbd2e8",
+      "callables": {
+        "title_similarity": {
+          "async": false,
+          "args": "a: str, b: str",
+          "returns": "float",
+          "line": 10
+        },
+        "fuzzy_match": {
+          "async": false,
+          "args": "products_a: list[dict], products_b: list[dict], *, threshold: float=_DEFAULT_THRESHOLD",
+          "returns": "list[tuple[dict, dict, float]]",
+          "line": 19
+        },
+        "match_gtin": {
+          "async": false,
+          "args": "gtin: str, products: list[dict]",
+          "returns": "list[dict]",
+          "line": 60
+        }
+      }
+    },
+    "src/shopextract/compare/price.py": {
+      "sha256": "ac9d55e8b65c5a35b6711433bdddc145c8944ba4a9369e7c73b0dbe0ae9cd48a",
+      "callables": {
+        "compare": {
+          "async": true,
+          "args": "query: str, stores: list[str], *, max_per_store: int=_DEFAULT_MAX_PER_STORE, threshold: float=_DEFAULT_THRESHOLD",
+          "returns": "ComparisonResult",
+          "line": 20
+        }
+      }
+    },
+    "src/shopextract/export/__init__.py": {
+      "sha256": "0c6a995bfd80117a2e7b6d9ce913ffdfb423b578f642f7a233337c65672f2c7f",
+      "callables": {
+        "to_csv": {
+          "async": false,
+          "args": "products: list[dict] | list[Product], path: str, *, evidence_path: str | None=None",
+          "returns": "None",
+          "line": 27
+        },
+        "to_json": {
+          "async": false,
+          "args": "products: list[dict], path: str, indent: int=2",
+          "returns": "None",
+          "line": 39
+        },
+        "to_feed": {
+          "async": false,
+          "args": "products: list[dict] | list[Product], path: str, format: str='google_shopping', *, evidence_path: str | None=None",
+          "returns": "None",
+          "line": 50
+        },
+        "to_dataframe": {
+          "async": false,
+          "args": "products: list[dict]",
+          "returns": "Any",
+          "line": 84
+        },
+        "to_parquet": {
+          "async": false,
+          "args": "products: list[dict], path: str",
+          "returns": "None",
+          "line": 106
+        }
+      }
+    },
+    "src/shopextract/export/_bundle.py": {
+      "sha256": "0afc254ee7b3e68fb3167d25a2d663968832bc20ad962b15ba7383848e97a381",
+      "callables": {
+        "create_evidence_bundle": {
+          "async": false,
+          "args": "products: list[Product]",
+          "returns": "dict",
+          "line": 43
+        },
+        "load_evidence_bundle": {
+          "async": false,
+          "args": "bundle: dict",
+          "returns": "list[Product]",
+          "line": 61
+        },
+        "write_evidence_bundle": {
+          "async": false,
+          "args": "products: list[Product], path: str | Path",
+          "returns": "None",
+          "line": 86
+        },
+        "read_evidence_bundle": {
+          "async": false,
+          "args": "path: str | Path",
+          "returns": "list[Product]",
+          "line": 104
+        },
+        "create_evidence_sidecar": {
+          "async": false,
+          "args": "products: list[Product], exported_bytes: bytes, *, format: str",
+          "returns": "dict",
+          "line": 144
+        },
+        "load_evidence_sidecar": {
+          "async": false,
+          "args": "sidecar: dict, exported_bytes: bytes",
+          "returns": "list[Product]",
+          "line": 166
+        }
+      }
+    },
+    "src/shopextract/extractors/_bigcommerce_auth.py": {
+      "sha256": "3f6f274c322f43b2dc55cbc4f766cd996f729edf8a491bf5980d187554d3aa2f",
+      "callables": {
+        "validate_auth": {
+          "async": false,
+          "args": "token_type='storefront', access_token=None, customer_access_token=None, customer_id=None",
+          "returns": null,
+          "line": 11
+        },
+        "auth_headers": {
+          "async": false,
+          "args": "token, token_type, origin, customer_access_token=None, customer_id=None",
+          "returns": null,
+          "line": 31
+        }
+      }
+    },
+    "src/shopextract/extractors/_browser.py": {
+      "sha256": "be669f0a6100fbd78f8e9b9e859bff7ac4a3e743e248ce0720188bad59aa0eeb",
+      "callables": {
+        "get_default_user_agent": {
+          "async": false,
+          "args": "",
+          "returns": "str",
+          "line": 112
+        },
+        "get_browser_config": {
+          "async": false,
+          "args": "stealth_level: StealthLevel=StealthLevel.STANDARD, headless: bool=True, text_mode: bool=False",
+          "returns": "BrowserConfig",
+          "line": 125
+        },
+        "get_crawler_strategy": {
+          "async": false,
+          "args": "stealth_level: StealthLevel, browser_config: BrowserConfig | None=None",
+          "returns": "AsyncPlaywrightCrawlerStrategy | None",
+          "line": 153
+        },
+        "get_crawl_config": {
+          "async": false,
+          "args": "stealth_level: StealthLevel=StealthLevel.STANDARD, extraction_strategy=None, markdown_generator=None, deep_crawl_strategy=None, wait_until: str='domcontentloaded', wait_for: str | None=PRODUCT_WAIT_CONDITION, page_timeout: int=DEFAULT_PAGE_TIMEOUT, delay_before_return_html: float=DEFAULT_DELAY_BEFORE_RETURN, scan_full_page: bool=True, remove_overlay_elements: bool=True, scroll_delay: float=0.5, check_robots_txt: bool=True, locale: str='en-US', timezone: str='America/New_York'",
+          "returns": "CrawlerRunConfig",
+          "line": 171
+        },
+        "fetch_html_with_browser": {
+          "async": true,
+          "args": "url: str, stealth_level: StealthLevel=StealthLevel.STEALTH",
+          "returns": "str | None",
+          "line": 233
+        }
+      }
+    },
+    "src/shopextract/extractors/_markdown_price.py": {
+      "sha256": "dc66427bd925064e8015a8b400fe831f5d2071557e5cba2f03c4988591f8ab41",
+      "callables": {
+        "extract_price": {
+          "async": false,
+          "args": "text: str",
+          "returns": "tuple[str, str | None] | None",
+          "line": 113
+        },
+        "extract_title": {
+          "async": false,
+          "args": "markdown: str",
+          "returns": "str | None",
+          "line": 143
+        },
+        "extract": {
+          "async": false,
+          "args": "markdown: str, url: str=''",
+          "returns": "dict",
+          "line": 166
+        }
+      }
+    },
+    "src/shopextract/extractors/_opengraph.py": {
+      "sha256": "ede58ff40924513ddd49260725638bd9339fb3e2f3a34d013fc07bce0a66d9e5",
+      "callables": {
+        "OpenGraphExtractor.extract_from_html": {
+          "async": false,
+          "args": "html: str, url: str, *, include_categories: bool=False",
+          "returns": "list[dict]",
+          "line": 17
+        },
+        "OpenGraphExtractor.from_metadata": {
+          "async": false,
+          "args": "metadata: dict",
+          "returns": "list[dict]",
+          "line": 58
+        }
+      }
+    },
+    "src/shopextract/extractors/_schema_org.py": {
+      "sha256": "cb1c6570c80d0c3752eca20f990a1df605eff62febb2879100c4c3adea74baac",
+      "callables": {
+        "SchemaOrgExtractor.extract_from_html": {
+          "async": false,
+          "args": "html: str, url: str",
+          "returns": "list[dict]",
+          "line": 103
+        }
+      }
+    },
+    "src/shopextract/extractors/_storefront.py": {
+      "sha256": "dbe3e09f20dac8ee9a36e5e45b60a7389baaf78668a4f52958ea92e7449fc2c0",
+      "callables": {
+        "positive_limits": {
+          "async": false,
+          "args": "*values",
+          "returns": null,
+          "line": 12
+        },
+        "storefront_client": {
+          "async": true,
+          "args": "client, timeout, headers=None",
+          "returns": null,
+          "line": 18
+        },
+        "request": {
+          "async": true,
+          "args": "client, method, url, **kwargs",
+          "returns": null,
+          "line": 26
+        },
+        "endpoint_url": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 56
+        },
+        "public_config": {
+          "async": false,
+          "args": "html, platform, page_url",
+          "returns": null,
+          "line": 68
+        },
+        "resolve_config": {
+          "async": true,
+          "args": "client, url, platform, endpoint=None, access_token=None",
+          "returns": null,
+          "line": 85
+        },
+        "json_body": {
+          "async": false,
+          "args": "response",
+          "returns": null,
+          "line": 96
+        }
+      }
+    },
+    "src/shopextract/extractors/bigcommerce.py": {
+      "sha256": "31d183d5914da50b14c0524717955e79deb6aa4f51a4dd8fdd8c3b06ab3706b4",
+      "callables": {
+        "BigCommerceExtractor.__init__": {
+          "async": false,
+          "args": "self, timeout=30, page_size=20, max_pages=100, http_client=None",
+          "returns": null,
+          "line": 33
+        },
+        "BigCommerceExtractor.extract": {
+          "async": true,
+          "args": "self, shop_url, *, max_products=20, endpoint=None, access_token=None, token_type='storefront', customer_access_token=None, customer_id=None, include_categories=False",
+          "returns": null,
+          "line": 38
+        }
+      }
+    },
+    "src/shopextract/extractors/css.py": {
+      "sha256": "5505f75f39934057a5a893d43afd6c7bc83f3003cabca177ee5ca1e58edfe4de",
+      "callables": {
+        "CSSExtractor.__init__": {
+          "async": false,
+          "args": "self, schema: dict, stealth_level: StealthLevel=StealthLevel.STANDARD",
+          "returns": null,
+          "line": 30
+        },
+        "CSSExtractor.extract": {
+          "async": true,
+          "args": "self, url: str",
+          "returns": "ExtractorResult",
+          "line": 52
+        },
+        "CSSExtractor.extract_batch": {
+          "async": true,
+          "args": "self, urls: list[str]",
+          "returns": "ExtractorResult",
+          "line": 88
+        }
+      }
+    },
+    "src/shopextract/extractors/feed.py": {
+      "sha256": "c2b3847b33a7ea7b8b3220b6fd43b2980ab5e0d1dd5cd61d36e733584c2fc44c",
+      "callables": {
+        "GoogleFeedExtractor.extract": {
+          "async": true,
+          "args": "self, feed_url: str, *, include_categories: bool=False",
+          "returns": "ExtractorResult",
+          "line": 39
+        }
+      }
+    },
+    "src/shopextract/extractors/llm.py": {
+      "sha256": "d2a28ea164e3c53a80dbc0f90aa0d214c3949d7aefadb6b014608a1a054b83ff",
+      "callables": {
+        "LLMExtractor.__init__": {
+          "async": false,
+          "args": "self, llm_config: LLMConfig, temperature: float=0.2, max_tokens: int=4000, stealth_level: StealthLevel=StealthLevel.STANDARD",
+          "returns": null,
+          "line": 62
+        },
+        "LLMExtractor.extract": {
+          "async": true,
+          "args": "self, url: str",
+          "returns": "ExtractorResult",
+          "line": 147
+        },
+        "LLMExtractor.extract_batch": {
+          "async": true,
+          "args": "self, urls: list[str]",
+          "returns": "ExtractorResult",
+          "line": 192
+        }
+      }
+    },
+    "src/shopextract/extractors/magento.py": {
+      "sha256": "c84958ae7bebac714d513f4bf3ed16c850a59b28cf3dddccc2006c93a88113ba",
+      "callables": {
+        "MagentoExtractor.__init__": {
+          "async": false,
+          "args": "self, timeout: int=30, page_size: int=100, max_pages: int=100",
+          "returns": null,
+          "line": 21
+        },
+        "MagentoExtractor.extract": {
+          "async": true,
+          "args": "self, shop_url: str, *, max_products: int | None=None, endpoint: str | None=None, access_token: str | None=None",
+          "returns": "ExtractorResult",
+          "line": 26
+        }
+      }
+    },
+    "src/shopextract/extractors/magento_graphql.py": {
+      "sha256": "49bfa18b3b0806c3fdbb85c3628839ab9785423884e7ac25994d6844bd3aa825",
+      "callables": {
+        "MagentoGraphQLExtractor.__init__": {
+          "async": false,
+          "args": "self, timeout=30, page_size=20, max_pages=100, http_client=None",
+          "returns": null,
+          "line": 25
+        },
+        "MagentoGraphQLExtractor.extract": {
+          "async": true,
+          "args": "self, shop_url, *, max_products=20, endpoint=None, access_token=None, include_categories=False",
+          "returns": null,
+          "line": 30
+        }
+      }
+    },
+    "src/shopextract/extractors/shopify.py": {
+      "sha256": "9eb2081e148f693b18d4ff0c3856cb12f8d867b892a1439fb6be0f8df3d41dff",
+      "callables": {
+        "ShopifyExtractor.__init__": {
+          "async": false,
+          "args": "self, timeout: int=30, max_pages: int=100, http_client=None",
+          "returns": null,
+          "line": 23
+        },
+        "ShopifyExtractor.extract": {
+          "async": true,
+          "args": "self, shop_url: str, *, max_products: int | None=None, enrich_identifiers: bool=False",
+          "returns": "ExtractorResult",
+          "line": 28
+        }
+      }
+    },
+    "src/shopextract/extractors/shopware.py": {
+      "sha256": "7b4397851fae3d428519a8ed7e8143d68e9fee9f3aa253aa03be57eeccc22422",
+      "callables": {
+        "ShopwareExtractor.__init__": {
+          "async": false,
+          "args": "self, timeout=30, page_size=20, max_pages=100, http_client=None",
+          "returns": null,
+          "line": 10
+        },
+        "ShopwareExtractor.extract": {
+          "async": true,
+          "args": "self, shop_url, *, max_products=20, endpoint=None, access_token=None",
+          "returns": null,
+          "line": 15
+        }
+      }
+    },
+    "src/shopextract/extractors/unified.py": {
+      "sha256": "aee4a6ea53f2837c33e3d3710d3cce6540c10572b0c4eca44c553873c1b9a0e2",
+      "callables": {
+        "UnifiedCrawlExtractor.__init__": {
+          "async": false,
+          "args": "self, stealth_level: StealthLevel=StealthLevel.STANDARD, http_client: httpx.AsyncClient | None=None",
+          "returns": null,
+          "line": 46
+        },
+        "UnifiedCrawlExtractor.extract": {
+          "async": true,
+          "args": "self, shop_url: str",
+          "returns": "ExtractorResult",
+          "line": 54
+        },
+        "UnifiedCrawlExtractor.extract_batch": {
+          "async": true,
+          "args": "self, urls: list[str]",
+          "returns": "ExtractorResult",
+          "line": 78
+        }
+      }
+    },
+    "src/shopextract/extractors/woocommerce.py": {
+      "sha256": "66f72e317fff6757d4c7ad1bdcc4414261f3033d2b6779aa77a152a271a338cf",
+      "callables": {
+        "WooCommerceExtractor.__init__": {
+          "async": false,
+          "args": "self, timeout: int=30, max_pages: int=100, http_client=None",
+          "returns": null,
+          "line": 22
+        },
+        "WooCommerceExtractor.extract": {
+          "async": true,
+          "args": "self, shop_url: str",
+          "returns": "ExtractorResult",
+          "line": 27
+        }
+      }
+    },
+    "src/shopextract/identity.py": {
+      "sha256": "cc9b63aa42d470f22eec6364430c2818a6e189f05d1040d7ef0f386396c37ab4",
+      "callables": {
+        "supplier_scope": {
+          "async": false,
+          "args": "value: str",
+          "returns": "str",
+          "line": 14
+        },
+        "assign_identity": {
+          "async": false,
+          "args": "product: Product, supplier_id: str=''",
+          "returns": "Product",
+          "line": 51
+        },
+        "identify_records": {
+          "async": false,
+          "args": "conn: sqlite3.Connection, products: list[dict], supplier_id: str, *, legacy_titles: bool=False",
+          "returns": "list[dict]",
+          "line": 106
+        },
+        "migrate_snapshot_identities": {
+          "async": false,
+          "args": "conn: sqlite3.Connection, domain: str | None=None",
+          "returns": "int",
+          "line": 129
+        }
+      }
+    },
+    "src/shopextract/maintenance/__main__.py": {
+      "sha256": "d496f1e7e0cd421a18b8795f27d9145f633288e090c5923e29b59e53ea2b542d",
+      "callables": {
+        "load_profiles": {
+          "async": false,
+          "args": "path",
+          "returns": null,
+          "line": 12
+        },
+        "execute": {
+          "async": true,
+          "args": "args",
+          "returns": null,
+          "line": 20
+        },
+        "main": {
+          "async": false,
+          "args": "",
+          "returns": null,
+          "line": 40
+        }
+      }
+    },
+    "src/shopextract/maintenance/contracts.py": {
+      "sha256": "9ce97d048715c5e8ab74a75cd92df89353fe638f5663eb667f6206391f2ac3d6",
+      "callables": {
+        "MaintenanceError.__init__": {
+          "async": false,
+          "args": "self, code: str, message: str | None=None",
+          "returns": null,
+          "line": 11
+        },
+        "Investigator.bound": {
+          "async": false,
+          "args": "self, payload: Mapping[str, Any]",
+          "returns": "AdvisorBound",
+          "line": 81
+        },
+        "Investigator.investigate": {
+          "async": true,
+          "args": "self, payload: Mapping[str, Any], *, reservation: AdvisorReservation, timeout: float",
+          "returns": "AdvisorResult",
+          "line": 82
+        },
+        "RequestAccounting.before_request": {
+          "async": false,
+          "args": "self, method: str, url: str",
+          "returns": "str",
+          "line": 93
+        },
+        "RequestAccounting.after_request": {
+          "async": false,
+          "args": "self, method: str, url: str, status: int",
+          "returns": "None",
+          "line": 94
+        }
+      }
+    },
+    "src/shopextract/maintenance/engine.py": {
+      "sha256": "7ff9befb3991442030106c837448d83e81fa643a419536963183b1ce6d32e1e4",
+      "callables": {
+        "json_value": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 19
+        },
+        "pointer": {
+          "async": false,
+          "args": "record, field",
+          "returns": null,
+          "line": 24
+        },
+        "MaintenanceEngine.__init__": {
+          "async": false,
+          "args": "self, store: MaintenanceStore, *, tool_config, resolver=None, wire_transport=None, utc_now=None, investigator: Investigator | None=None, failure_hook: FailureHook | None=None, category_config: CategoryRuntimeConfig | None=None",
+          "returns": null,
+          "line": 57
+        },
+        "MaintenanceEngine.now": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 78
+        },
+        "MaintenanceEngine.hook": {
+          "async": false,
+          "args": "self, event, **payload",
+          "returns": null,
+          "line": 81
+        },
+        "MaintenanceEngine.run": {
+          "async": true,
+          "args": "self, job_id",
+          "returns": null,
+          "line": 85
+        },
+        "MaintenanceEngine.resume": {
+          "async": true,
+          "args": "self, job_id",
+          "returns": null,
+          "line": 157
+        },
+        "MaintenanceEngine.retry_unknown": {
+          "async": true,
+          "args": "self, job_id, step_id",
+          "returns": null,
+          "line": 612
+        },
+        "MaintenanceEngine.cancel": {
+          "async": true,
+          "args": "self, job_id",
+          "returns": null,
+          "line": 689
+        },
+        "MaintenanceEngine.close": {
+          "async": true,
+          "args": "self",
+          "returns": null,
+          "line": 703
+        }
+      }
+    },
+    "src/shopextract/maintenance/profiles.py": {
+      "sha256": "0612d0476b2a12a716701d6da948747bae9adea08e9eea4657651542177d4528",
+      "callables": {
+        "profile": {
+          "async": false,
+          "args": "name: str",
+          "returns": "CategoryProfile",
+          "line": 19
+        },
+        "compare_field": {
+          "async": false,
+          "args": "rule: FieldRule, before, after",
+          "returns": "dict",
+          "line": 42
+        }
+      }
+    },
+    "src/shopextract/maintenance/store.py": {
+      "sha256": "e94662e41545d8b3862b1769551edd899f0bccae988cf02f9c14c443f2e04e15",
+      "callables": {
+        "packed": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 26
+        },
+        "digest": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 34
+        },
+        "MaintenanceStore.__init__": {
+          "async": false,
+          "args": "self, path, *, custom_profiles: Mapping[str, CategoryProfile] | None=None, category_config: CategoryRuntimeConfig | None=None",
+          "returns": null,
+          "line": 68
+        },
+        "MaintenanceStore.acquire": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 163
+        },
+        "MaintenanceStore.release": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 186
+        },
+        "MaintenanceStore.close": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 193
+        },
+        "MaintenanceStore.create": {
+          "async": false,
+          "args": "self, goal: Goal",
+          "returns": "str",
+          "line": 295
+        },
+        "MaintenanceStore.category_policy": {
+          "async": false,
+          "args": "self, job_id: str",
+          "returns": "CategoryPolicySnapshot",
+          "line": 312
+        },
+        "MaintenanceStore.goal": {
+          "async": false,
+          "args": "self, job_id",
+          "returns": null,
+          "line": 345
+        },
+        "MaintenanceStore.validate_profiles": {
+          "async": false,
+          "args": "self, job_id",
+          "returns": null,
+          "line": 348
+        },
+        "MaintenanceStore.status": {
+          "async": false,
+          "args": "self, job_id: str",
+          "returns": "dict",
+          "line": 354
+        },
+        "MaintenanceStore.usage": {
+          "async": false,
+          "args": "self, job_id",
+          "returns": null,
+          "line": 360
+        },
+        "MaintenanceStore.steps": {
+          "async": false,
+          "args": "self, job_id",
+          "returns": null,
+          "line": 379
+        },
+        "MaintenanceStore.add_steps": {
+          "async": false,
+          "args": "self, job_id, steps",
+          "returns": null,
+          "line": 384
+        },
+        "MaintenanceStore.add_step": {
+          "async": false,
+          "args": "self, job_id, step_id, kind",
+          "returns": null,
+          "line": 394
+        },
+        "MaintenanceStore.begin": {
+          "async": false,
+          "args": "self, job_id, *, now",
+          "returns": null,
+          "line": 406
+        },
+        "MaintenanceStore.request_cancel": {
+          "async": false,
+          "args": "self, job_id: str",
+          "returns": "dict",
+          "line": 426
+        },
+        "MaintenanceStore.check_cancel": {
+          "async": false,
+          "args": "self, job_id",
+          "returns": null,
+          "line": 434
+        },
+        "MaintenanceStore.finish": {
+          "async": false,
+          "args": "self, job_id, state, reason=None, coverage=None",
+          "returns": null,
+          "line": 438
+        },
+        "MaintenanceStore.reserve": {
+          "async": false,
+          "args": "self, job_id, step_id, amount, *, now, explicit_retry=False",
+          "returns": null,
+          "line": 450
+        },
+        "MaintenanceStore.checkpoint": {
+          "async": false,
+          "args": "self, job_id, step_id, result, *, evidence=(), findings=(), settlements=None, violations=(), advisories=()",
+          "returns": null,
+          "line": 486
+        },
+        "MaintenanceStore.fail_attempt": {
+          "async": false,
+          "args": "self, attempt_id, code, *, known=True, retry_at=None",
+          "returns": null,
+          "line": 575
+        },
+        "MaintenanceStore.report": {
+          "async": false,
+          "args": "self, job_id: str, *, offset: int=0, limit: int=100",
+          "returns": "dict",
+          "line": 584
+        },
+        "MaintenanceStore.evidence": {
+          "async": false,
+          "args": "self, job_id: str, evidence_id: str",
+          "returns": "dict",
+          "line": 594
+        },
+        "MaintenanceStore.attempts": {
+          "async": false,
+          "args": "self, job_id, step_id",
+          "returns": null,
+          "line": 602
+        },
+        "MaintenanceStore.cache_get": {
+          "async": false,
+          "args": "self, key, *, now",
+          "returns": null,
+          "line": 609
+        },
+        "MaintenanceStore.cache_put": {
+          "async": false,
+          "args": "self, key, payload, *, expires, byte_limit=16 * 1024 * 1024",
+          "returns": null,
+          "line": 621
+        },
+        "MaintenanceStore.prepare_step": {
+          "async": false,
+          "args": "self, job_id, step_id, details",
+          "returns": null,
+          "line": 632
+        },
+        "MaintenanceStore.advisory_history": {
+          "async": false,
+          "args": "self, job_id, step_id",
+          "returns": null,
+          "line": 656
+        },
+        "MaintenanceStore.model_stop": {
+          "async": false,
+          "args": "self, job_id",
+          "returns": null,
+          "line": 661
+        },
+        "MaintenanceStore.completion": {
+          "async": false,
+          "args": "self, job_id, *, source_reason=None, coverage=None, model_reason=None",
+          "returns": null,
+          "line": 675
+        }
+      }
+    },
+    "src/shopextract/monitor/changes.py": {
+      "sha256": "ac9b5d56c09a14c12f23b80db3f0c2c1ccacae659d6ac58d8b86fad0a60f5b84",
+      "callables": {
+        "changes": {
+          "async": false,
+          "args": "domain: str, *, db_path: str=_DEFAULT_DB_PATH",
+          "returns": "list[Change]",
+          "line": 54
+        },
+        "price_history": {
+          "async": false,
+          "args": "domain: str, product_title: str='', *, db_path: str=_DEFAULT_DB_PATH, canonical_product_id: str | None=None",
+          "returns": "list[tuple[datetime, float]]",
+          "line": 158
+        }
+      }
+    },
+    "src/shopextract/monitor/evidence.py": {
+      "sha256": "f79c8682912ab94bd7d1869eaba01ac06f4336d75ec482d11d5dc3081256eccf",
+      "callables": {
+        "save_snapshot": {
+          "async": false,
+          "args": "products: Iterable[Product], domain: str, *, db_path=DEFAULT_DB_PATH, metadata: Mapping[str, object] | None=None",
+          "returns": "int",
+          "line": 162
+        },
+        "load_snapshot": {
+          "async": false,
+          "args": "snapshot_id: int, *, db_path=DEFAULT_DB_PATH",
+          "returns": "list[Product]",
+          "line": 271
+        },
+        "get_evidence": {
+          "async": false,
+          "args": "evidence_id: str, *, snapshot_id=None, record_key=None, db_path=DEFAULT_DB_PATH",
+          "returns": "EvidenceLookup",
+          "line": 284
+        },
+        "prune_evidence": {
+          "async": false,
+          "args": "*, db_path=DEFAULT_DB_PATH, before: datetime, protect_references=True, dry_run=True, batch_size=100",
+          "returns": "PruneReport",
+          "line": 309
+        }
+      }
+    },
+    "src/shopextract/monitor/reliable.py": {
+      "sha256": "0e7294faf303ee4052de77ec385b0be8fb0cf7a4014df9885a7c1deab2d63139",
+      "callables": {
+        "reliable_changes": {
+          "async": false,
+          "args": "domain: str, *, previous_snapshot_id: int, current_snapshot_id: int, recheck_snapshot_id: int | None=None, db_path: str=DEFAULT_DB_PATH",
+          "returns": "dict",
+          "line": 329
+        }
+      }
+    },
+    "src/shopextract/monitor/snapshot.py": {
+      "sha256": "4429303a02af7be36a5aee8960afc6e626f44a769814930b11db7a2ae7f1ea12",
+      "callables": {
+        "snapshot": {
+          "async": true,
+          "args": "url: str, *, db_path: str=_DEFAULT_DB_PATH, max_urls: int=200",
+          "returns": "int",
+          "line": 87
+        }
+      }
+    },
+    "src/shopextract/monitor/watch.py": {
+      "sha256": "2c5c6391671e726cc0e0ef8a1a6b2b9a1a37c34f31a43640d72d30b2cdcc8a46",
+      "callables": {
+        "watch": {
+          "async": true,
+          "args": "url: str, *, interval: int=_DEFAULT_INTERVAL, db_path: str=_DEFAULT_DB_PATH",
+          "returns": "AsyncGenerator[Change, None]",
+          "line": 22
+        },
+        "alert": {
+          "async": false,
+          "args": "url: str, product: str, when: Callable[[Change], bool], callback: Callable[[Change], None]",
+          "returns": "None",
+          "line": 49
+        }
+      }
+    },
+    "src/shopextract/tools/__main__.py": {
+      "sha256": "244e047f6a964a39db76a36b7d60d5fb055604376751569a6bbe82c04a70ea1e",
+      "callables": {
+        "load_config": {
+          "async": false,
+          "args": "path",
+          "returns": null,
+          "line": 9
+        },
+        "main": {
+          "async": false,
+          "args": "",
+          "returns": null,
+          "line": 20
+        }
+      }
+    },
+    "src/shopextract/tools/captures.py": {
+      "sha256": "d19a89547aacebf0b0e4021d28d2e5def8b196e98da685f4a862881255e16fd6",
+      "callables": {
+        "load_capture": {
+          "async": false,
+          "args": "payload",
+          "returns": null,
+          "line": 11
+        }
+      }
+    },
+    "src/shopextract/tools/context.py": {
+      "sha256": "27c76cd0584c12e50716ec37e982fd7db515566c3650d239c38d3662999597de",
+      "callables": {
+        "AuxiliaryOwner.run": {
+          "async": true,
+          "args": "self, kind: Literal['resolve', 'domain'], payload: bytes, context: 'OperationContext'",
+          "returns": "bytes",
+          "line": 10
+        },
+        "AuxiliaryOwner.cancel_and_reap": {
+          "async": true,
+          "args": "self, context: 'OperationContext'",
+          "returns": "None",
+          "line": 12
+        }
+      }
+    },
+    "src/shopextract/tools/contracts.py": {
+      "sha256": "0bd9814b31d635fa645938b7ba7de9c9b6fe6d8dec3699bd26c1dfb7cd278cd5",
+      "callables": {
+        "ToolError.__init__": {
+          "async": false,
+          "args": "self, code, message=None, *, details=None, retryable=False",
+          "returns": null,
+          "line": 9
+        },
+        "encoded": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 15
+        },
+        "envelope": {
+          "async": false,
+          "args": "data=None, error=None",
+          "returns": null,
+          "line": 19
+        },
+        "schema": {
+          "async": false,
+          "args": "name",
+          "returns": null,
+          "line": 43
+        },
+        "validate": {
+          "async": false,
+          "args": "name, arguments, limits",
+          "returns": null,
+          "line": 60
+        }
+      }
+    },
+    "src/shopextract/tools/domain.py": {
+      "sha256": "dc9549258fe6a61dcb9e9a780c5a1ecee3cffb15b39d05f766b0868184e3d549",
+      "callables": {
+        "json_value": {
+          "async": false,
+          "args": "value",
+          "returns": null,
+          "line": 12
+        },
+        "synchronous": {
+          "async": false,
+          "args": "payload",
+          "returns": null,
+          "line": 28
+        },
+        "catalog_graph": {
+          "async": false,
+          "args": "records, store, *, complete=True, diagnostics=None, grant=None",
+          "returns": null,
+          "line": 89
+        },
+        "DomainAdapter.__init__": {
+          "async": false,
+          "args": "self, store, sources",
+          "returns": null,
+          "line": 129
+        },
+        "DomainAdapter.execute": {
+          "async": true,
+          "args": "self, name, args, context",
+          "returns": null,
+          "line": 132
+        }
+      }
+    },
+    "src/shopextract/tools/execution.py": {
+      "sha256": "ba460813e9e9fda2535629333b00488b915081e2b9504a8bc64faca0d65d42d1",
+      "callables": {
+        "OwnedProcess.__init__": {
+          "async": false,
+          "args": "self, limits, *, child_target=None",
+          "returns": null,
+          "line": 35
+        },
+        "OwnedProcess.run": {
+          "async": true,
+          "args": "self, kind, payload, context",
+          "returns": null,
+          "line": 43
+        },
+        "OwnedProcess.cancel_and_reap": {
+          "async": true,
+          "args": "self, context=None",
+          "returns": null,
+          "line": 84
+        }
+      }
+    },
+    "src/shopextract/tools/jobs.py": {
+      "sha256": "a4b6e3931037d7a5bd0ccf9817ed202c2929879208080e66f659da1625186423",
+      "callables": {
+        "JobManager.__init__": {
+          "async": false,
+          "args": "self, store, limits, *, auxiliary=None, clock=time.monotonic, utc_now=None",
+          "returns": null,
+          "line": 13
+        },
+        "JobManager.trim": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 20
+        },
+        "JobManager.submit": {
+          "async": false,
+          "args": "self, operation, timeout, *, private=False",
+          "returns": null,
+          "line": 34
+        },
+        "JobManager.run": {
+          "async": true,
+          "args": "self, key, operation",
+          "returns": null,
+          "line": 50
+        },
+        "JobManager.find": {
+          "async": false,
+          "args": "self, key",
+          "returns": null,
+          "line": 115
+        },
+        "JobManager.status": {
+          "async": false,
+          "args": "self, key",
+          "returns": null,
+          "line": 123
+        },
+        "JobManager.result": {
+          "async": false,
+          "args": "self, key, collection, size, cursor",
+          "returns": null,
+          "line": 130
+        },
+        "JobManager.cancel": {
+          "async": true,
+          "args": "self, key",
+          "returns": null,
+          "line": 138
+        },
+        "JobManager.discard_private": {
+          "async": true,
+          "args": "self, key",
+          "returns": null,
+          "line": 153
+        },
+        "JobManager.close": {
+          "async": true,
+          "args": "self",
+          "returns": null,
+          "line": 162
+        }
+      }
+    },
+    "src/shopextract/tools/mcp_server.py": {
+      "sha256": "582af2d04c55f97fe861728070d6b6f938c77bc320e009a33c4ab027e7fef302",
+      "callables": {
+        "serve": {
+          "async": true,
+          "args": "runtime: ToolRuntime",
+          "returns": "None",
+          "line": 8
+        }
+      }
+    },
+    "src/shopextract/tools/runtime.py": {
+      "sha256": "2a142d425b72cc5b37f2780b81003aa03a309eb44b810c7b4dbac8aaa148d511",
+      "callables": {
+        "ToolRuntime.__init__": {
+          "async": false,
+          "args": "self, config: ToolConfig, *, resolver: Resolver | None=None, wire_transport: httpx.AsyncBaseTransport | None=None, clock=None, utc_now: Callable[[], datetime] | None=None, category_config=None",
+          "returns": null,
+          "line": 59
+        },
+        "ToolRuntime.call": {
+          "async": true,
+          "args": "self, name, arguments",
+          "returns": null,
+          "line": 96
+        },
+        "ToolRuntime.tool_schemas": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 134
+        },
+        "ToolRuntime.bootstrap": {
+          "async": true,
+          "args": "self, *, timeout_seconds=None",
+          "returns": null,
+          "line": 138
+        },
+        "ToolRuntime.aclose": {
+          "async": true,
+          "args": "self",
+          "returns": null,
+          "line": 198
+        }
+      }
+    },
+    "src/shopextract/tools/schemas.py": {
+      "sha256": "9bb44bd403dbe547d139d085d9ac5abff7f873811fe904450ca4a2c5f51edeb0",
+      "callables": {
+        "output_schema": {
+          "async": false,
+          "args": "name",
+          "returns": null,
+          "line": 63
+        }
+      }
+    },
+    "src/shopextract/tools/security.py": {
+      "sha256": "f8d84b3febf83633f66123c96d63abd872fb293d5b151f2d130c9a50583964c0",
+      "callables": {
+        "normalized": {
+          "async": false,
+          "args": "url",
+          "returns": null,
+          "line": 16
+        },
+        "public": {
+          "async": false,
+          "args": "address",
+          "returns": null,
+          "line": 40
+        },
+        "SourceGuard.__init__": {
+          "async": false,
+          "args": "self, config: ToolConfig, *, resolver: Resolver | None=None",
+          "returns": null,
+          "line": 51
+        },
+        "SourceGuard.authorize": {
+          "async": true,
+          "args": "self, url: str, context: OperationContext",
+          "returns": null,
+          "line": 55
+        },
+        "PinnedBackend.__init__": {
+          "async": false,
+          "args": "self, context, guard, scheme",
+          "returns": null,
+          "line": 85
+        },
+        "PinnedBackend.connect_tcp": {
+          "async": true,
+          "args": "self, host, port, timeout=None, local_address=None, socket_options=None",
+          "returns": null,
+          "line": 89
+        },
+        "PinnedBackend.connect_unix_socket": {
+          "async": true,
+          "args": "self, *args, **kwargs",
+          "returns": null,
+          "line": 98
+        },
+        "PinnedBackend.sleep": {
+          "async": true,
+          "args": "self, seconds",
+          "returns": null,
+          "line": 101
+        },
+        "CoreStream.__init__": {
+          "async": false,
+          "args": "self, stream",
+          "returns": null,
+          "line": 106
+        },
+        "CoreStream.aclose": {
+          "async": true,
+          "args": "self",
+          "returns": null,
+          "line": 111
+        },
+        "GuardedTransport.__init__": {
+          "async": false,
+          "args": "self, config, context, guard, wire_transport=None, *, policy=None",
+          "returns": null,
+          "line": 122
+        },
+        "GuardedTransport.raw": {
+          "async": true,
+          "args": "self, request",
+          "returns": null,
+          "line": 128
+        },
+        "GuardedTransport.handle_async_request": {
+          "async": true,
+          "args": "self, request",
+          "returns": null,
+          "line": 144
+        },
+        "GuardedTransport.guarded": {
+          "async": true,
+          "args": "self, request",
+          "returns": null,
+          "line": 154
+        },
+        "GuardedTransport.aclose": {
+          "async": true,
+          "args": "self",
+          "returns": null,
+          "line": 242
+        }
+      }
+    },
+    "src/shopextract/tools/sources.py": {
+      "sha256": "64b0f0c3c1896102a11e9355694ce12780c81bd25525a8045983886823bd99aa",
+      "callables": {
+        "GuardedSources.__init__": {
+          "async": false,
+          "args": "self, config, guard, wire=None, *, category_config=None",
+          "returns": null,
+          "line": 11
+        },
+        "GuardedSources.execute": {
+          "async": true,
+          "args": "self, name, url, maximum, context",
+          "returns": null,
+          "line": 18
+        },
+        "GuardedSources.discover": {
+          "async": true,
+          "args": "self, client, url, maximum, context",
+          "returns": null,
+          "line": 31
+        },
+        "GuardedSources.extract": {
+          "async": true,
+          "args": "self, client, transport, url, maximum, context",
+          "returns": null,
+          "line": 89
+        }
+      }
+    },
+    "src/shopextract/tools/state.py": {
+      "sha256": "9c0aa94727cddbe6932887684464fffd45d25c1aa4bce6a1fbff818dc1510a4b",
+      "callables": {
+        "RetainedGraph.size": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 24
+        },
+        "SessionStore.__init__": {
+          "async": false,
+          "args": "self, limits, *, clock=time.monotonic",
+          "returns": null,
+          "line": 34
+        },
+        "SessionStore.reserve": {
+          "async": false,
+          "args": "self, size",
+          "returns": null,
+          "line": 42
+        },
+        "SessionStore.unreserve": {
+          "async": false,
+          "args": "self, size",
+          "returns": null,
+          "line": 48
+        },
+        "SessionStore.mint": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 51
+        },
+        "SessionStore.sweep": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 54
+        },
+        "SessionStore.release": {
+          "async": false,
+          "args": "self, job_id",
+          "returns": null,
+          "line": 59
+        },
+        "SessionStore.publish": {
+          "async": false,
+          "args": "self, job_id, graph",
+          "returns": null,
+          "line": 73
+        },
+        "SessionStore.publish_batch": {
+          "async": false,
+          "args": "self, staged",
+          "returns": null,
+          "line": 93
+        },
+        "SessionStore.get": {
+          "async": false,
+          "args": "self, job_id",
+          "returns": null,
+          "line": 114
+        },
+        "SessionStore.lookup": {
+          "async": false,
+          "args": "self, handle, kind",
+          "returns": null,
+          "line": 120
+        },
+        "SessionStore.page": {
+          "async": false,
+          "args": "self, job_id, collection, size, cursor",
+          "returns": null,
+          "line": 130
+        },
+        "SessionStore.close": {
+          "async": false,
+          "args": "self",
+          "returns": null,
+          "line": 156
+        }
+      }
+    },
+    "src/shopextract/validate/duplicates.py": {
+      "sha256": "f51950ca6c34cbe47239fcce3a42d8fc8a0047c3780b0a7d79b55a8674915ac1",
+      "callables": {
+        "find_duplicates": {
+          "async": false,
+          "args": "products: list[dict], method: str='title', threshold: float=0.9",
+          "returns": "list[tuple[int, int, float]]",
+          "line": 13
+        }
+      }
+    },
+    "src/shopextract/validate/images.py": {
+      "sha256": "e993aa115c55eff96931a0732cda47ecd3765ce67c08f0c1e4b5504743e109df",
+      "callables": {
+        "check_images": {
+          "async": true,
+          "args": "products: list[dict], *, timeout: float=_TIMEOUT, concurrency: int=_CONCURRENCY, client: httpx.AsyncClient | None=None",
+          "returns": "list[ImageIssue]",
+          "line": 26
+        }
+      }
+    },
+    "src/shopextract/validate/marketplace.py": {
+      "sha256": "273df782b57e31113318ef744e312766eb802e86b65044a3946ce5638ed82333",
+      "callables": {
+        "validate": {
+          "async": false,
+          "args": "products: list[dict], marketplace: str='google_shopping'",
+          "returns": "ValidationReport",
+          "line": 52
+        }
+      }
+    }
+  }
+}

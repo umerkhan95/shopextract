@@ -1,0 +1,15 @@
+{
+  "status": "incomplete",
+  "final_generator_status": "timeout",
+  "direct_owner_audit": "not_run_after_generator_stop",
+  "completed_logical_batches": 23,
+  "attempted_batches": 31,
+  "final_chunk_seconds": 21.016,
+  "cumulative_charged_execution_seconds": 173.723,
+  "accounting": "132.607 measured prior driver sec +20s audit timeout +0.100s unmeasured-overhead reserve +measured finalchunk",
+  "original_phase_breach": "approximately4seconds, retained",
+  "prior_fullgraph_audit": "timed out; not passed",
+  "network_requests": 0,
+  "local_inference": false,
+  "usage_counters": "unavailable"
+}

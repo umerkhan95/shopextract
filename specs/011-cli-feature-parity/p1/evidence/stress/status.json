@@ -1,0 +1,72 @@
+{
+  "seed": 11025,
+  "workers": 1,
+  "case_timeout_seconds": 30,
+  "total_timeout_seconds": 180,
+  "rss_limit_bytes": 536870912,
+  "raw_record_limit": 1001,
+  "normalized_product_limit": 100,
+  "cases": [
+    {
+      "name": "byte-edges",
+      "returncode": 0,
+      "max_child_rss_bytes": 108556288
+    },
+    {
+      "name": "record-edges",
+      "returncode": 0,
+      "max_child_rss_bytes": 108556288
+    },
+    {
+      "name": "depth-edges",
+      "returncode": 0,
+      "max_child_rss_bytes": 108556288
+    },
+    {
+      "name": "node-edges",
+      "returncode": 0,
+      "max_child_rss_bytes": 114372608
+    },
+    {
+      "name": "typed-mixed",
+      "returncode": 0,
+      "max_child_rss_bytes": 114372608
+    },
+    {
+      "name": "money-evidence-eleven",
+      "returncode": 0,
+      "max_child_rss_bytes": 114372608
+    },
+    {
+      "name": "ambient-guard",
+      "returncode": 0,
+      "max_child_rss_bytes": 114372608
+    },
+    {
+      "name": "nested-budget",
+      "returncode": 0,
+      "max_child_rss_bytes": 114372608
+    },
+    {
+      "name": "timeout-cleanup",
+      "returncode": 0,
+      "max_child_rss_bytes": 114372608
+    },
+    {
+      "name": "atomic-rollback",
+      "returncode": 0,
+      "max_child_rss_bytes": 114372608
+    },
+    {
+      "name": "optional-browser",
+      "returncode": 0,
+      "max_child_rss_bytes": 114372608
+    },
+    {
+      "name": "provider-secret",
+      "returncode": 0,
+      "max_child_rss_bytes": 114372608
+    }
+  ],
+  "elapsed_seconds": 28.671
+}

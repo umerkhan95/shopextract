@@ -1,0 +1,5 @@
+# P1 implementation plan
+
+Constitution: additive flags/policy, original constructors and legacy behavior preserved; native trust codecs, explicit bounded LLM only, including already running local endpoints, no inference in verification. First test saved before expansion. G1/G2/G3/final independent reviews required in reviews.md. No parallel agents/models; root coordinates independent other-phase work.
+Architecture planned: private reusable `_execution.py` context-local policy with explicit LLM/browser boundaries; `_cli_data.py` strict bounded JSON/raw/portable codecs used by extraction and later offline/trust phases; `_cli_extract.py` typed extraction adapters/validation; cli.py retains declarations and nine legacy implementations. Root P0 policy remains closed, canonical machine allowlist extends implemented names only.
+Verification follows test-design; save red before implementation, focused smoke before stress; bounded live only after green. docs/cli.md and machine-readable capability manifest describe actual contracts. Parent owns issue92 and no commits/push.

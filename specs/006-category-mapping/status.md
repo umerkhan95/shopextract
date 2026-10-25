@@ -1,5 +1,10 @@
 # CURRENT — 2026-10-17
 
+Publication COMPLETE: [PR #59](https://github.com/umerkhan95/shopextract/pull/59)
+merged into main as `4d57c6b`. PR CI passed on Python3.10/3.11/3.12.
+#25 and #55–58 are CLOSED with completed checklists and delivery evidence.
+Merged tree matches the tested PR head. Receipt: artifacts/category-mapping/github-delivery.json.
+
 Component model and six platform integrations implemented. G1/G2/G3 and source/driver
 reviews passed. Offline whole suite:1054 passed377.35s, Python3.10.11; SDK absent-import
 and installedMCP1.30 checks passed. All75 C01–24 invocations covered by reviewed split

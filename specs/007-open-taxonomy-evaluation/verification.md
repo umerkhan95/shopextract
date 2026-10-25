@@ -1,0 +1,15 @@
+# Verification —2026-10-17
+
+Existing integration confirmed from src/shopextract/categories, maintenance/profiles.py, docs/category-mapping.md and mergedPR59. Full external taxonomy dataset is not bundled/imported in runtime; downloaded YAML is research data. No production changes: checkpoint hash comparison0deltas.
+
+Official Shopify release2026-08 sources pinned commit2e9aa2e9b882383952c63d212add13eb80f46cf9;5saved files6488755B,6downloadattempts including initial system-urllib CA failure and one verified-httpx repair;4metadata calls. No values corpus/locales or installs. Source smoke555297B saved before expansion, license text retained and hashes independently validated. Actual reference downloads are separate from derived synthetic product assignments.
+
+Approved probe used existing capture/normalize_with_categories/map/strictcodec/category_review_reasons/profile/compare_field; no duplicate mapper or automatic classification. FirstLaptop smoke saved before remaining checks.12checks PASS, probe0.509s/outer3.189s,120s outerwatchdog,64KiBlogcap,seed26,threadcaps,zero modelcalls. Exact outputs in compatibility-results.json,driver-status.json,mapper-smoke.json; no timeout/truncation. No full-suite rerun necessary for source-free evaluation;006local1054/PRmatrix evidence remains historical.
+
+Actual selected targets: Laptops el-6-6 (19declared attributes), Boots aa-8-3 (16), Refrigerators hg-11-7-41 (10). All45declared category/attribute links resolve. These counts exclude inferred inheritance. Enumhandles observed, e.g. memory_technology37 and boot_style22; values display-label corpus was not fetched or validated. Explicit fixture rules map Shopify custom label, WooID13 and Magento fixtureUID to these real targets; they are not official supplier crosswalks. Source taxonomy version remains unknown with explicitpermission; target2026-08 pinned.
+
+Negative/safety proof: changed capturedWooID cannot map through oldID rule; missing category unavailable;1001distinct actual IDs rejected by1000target cap while3targetsubset succeeds; RAM16vs32 and shoe8vs9 remain identity_variant differences; missing/conflicting explicit profiles remain review. No correction-authority claim from metadata.
+
+Gaps: numeric RAM capacity absent from selectedLaptop declared attrs, existing RAMguard remains required. No refrigerator-specific maintenance policy exists. Actual pinned Refrigerator declares umbrella_opening_mechanism with an umbrella-canopy definition: potential upstream relevance anomaly, requiring review before generating policies. This is not a statement that all upstream data is incorrect. Taxonomy category/attribute reuse is supported, complete policy equivalence/universal coverage is not proved.
+
+Next practical integration, if requested: reuse existing006mapper with a pinned taxonomy loader and relevant job subsets, then reviewed field aliases/unit/identity rules. No new engine, automatic full-market policy generation, code publication or production importer was added. Actual session counters unavailable; no quota percentage estimate.

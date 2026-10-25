@@ -214,7 +214,8 @@ SemanticCandidates = Callable[[dict, list[dict]], Iterable[int]]
 
 def match_products(products_a: list[Product | dict], products_b: list[Product | dict], *,
                    threshold: float = 0.8, publisher_aliases: dict[str, list[str]] | None = None,
-                   semantic_candidates: SemanticCandidates | None = None) -> list[MatchDecision]:
+                   semantic_candidates: SemanticCandidates | None = None,
+                   semantic_candidate_indices: list[list[int]] | None = None) -> list[MatchDecision]:
     """Report all related candidates and unmatched records, reserving unique exact pairs.
 
     Ambiguous exact edges require review. Semantic callbacks run only for sources
@@ -222,6 +223,12 @@ def match_products(products_a: list[Product | dict], products_b: list[Product | 
     """
     if not 0 <= threshold <= 1:
         raise ValueError("threshold must be between 0 and 1")
+    if semantic_candidate_indices is not None:
+        if semantic_candidates is not None or len(semantic_candidate_indices) != len(products_a):
+            raise ValueError("Invalid semantic candidate rows")
+        if any(not isinstance(row, list) or any(type(j) is not int or not 0 <= j < len(products_b) for j in row)
+               for row in semantic_candidate_indices):
+            raise ValueError("Semantic candidate index outside target catalog")
     report = []
     for i, a in enumerate(products_a):
         candidates = []
@@ -233,8 +240,9 @@ def match_products(products_a: list[Product | dict], products_b: list[Product | 
         exact = [d for d in candidates if d.relation == MatchRelation.EXACT]
         if exact:
             candidates = exact
-        if not candidates and semantic_candidates:
-            for j in dict.fromkeys(semantic_candidates(_record(a), [_record(b) for b in products_b])):
+        if not candidates and (semantic_candidates or semantic_candidate_indices is not None):
+            indices = semantic_candidate_indices[i] if semantic_candidate_indices is not None else semantic_candidates(_record(a), [_record(b) for b in products_b])
+            for j in dict.fromkeys(indices):
                 if not isinstance(j, int) or not 0 <= j < len(products_b):
                     raise ValueError("Semantic candidate index outside target catalog")
                 d = _classify_match(a, products_b[j], threshold=threshold, publisher_aliases=publisher_aliases)

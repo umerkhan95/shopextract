@@ -1,0 +1,230 @@
+{
+  "seed": 11025,
+  "limits": {
+    "case_seconds": 30,
+    "total_seconds": 300,
+    "rss_mib": 512,
+    "workers": 1,
+    "max_input_bytes": 1048576,
+    "max_records": 1000
+  },
+  "cases": [
+    {
+      "case": "bindings",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "binding_family"
+      ],
+      "exit_code": 0,
+      "seconds": 2.806,
+      "peak_rss_kib": 105352,
+      "failure": null,
+      "orphans_after_cleanup": []
+    },
+    {
+      "case": "snapshots",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "snapshot_roundtrip or snapshot_explicit or snapshot_save_rollback or metadata_invalid"
+      ],
+      "exit_code": 0,
+      "seconds": 2.866,
+      "peak_rss_kib": 106672,
+      "failure": null,
+      "orphans_after_cleanup": []
+    },
+    {
+      "case": "history",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "history_exact or legacy_identity or sqlite_connections"
+      ],
+      "exit_code": 0,
+      "seconds": 2.719,
+      "peak_rss_kib": 106616,
+      "failure": null,
+      "orphans_after_cleanup": []
+    },
+    {
+      "case": "reliable",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "reliable_replay or suspicious_recheck or partial_replay"
+      ],
+      "exit_code": 0,
+      "seconds": 2.993,
+      "peak_rss_kib": 106332,
+      "failure": null,
+      "orphans_after_cleanup": []
+    },
+    {
+      "case": "atomic",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "invalid_selection or transaction_fault"
+      ],
+      "exit_code": 0,
+      "seconds": 2.866,
+      "peak_rss_kib": 106496,
+      "failure": null,
+      "orphans_after_cleanup": []
+    },
+    {
+      "case": "retention",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "prune or lookup_missing"
+      ],
+      "exit_code": 0,
+      "seconds": 2.857,
+      "peak_rss_kib": 107028,
+      "failure": null,
+      "orphans_after_cleanup": []
+    },
+    {
+      "case": "resolution",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "resolve or policy_rejects"
+      ],
+      "exit_code": 0,
+      "seconds": 2.855,
+      "peak_rss_kib": 106308,
+      "failure": null,
+      "orphans_after_cleanup": []
+    },
+    {
+      "case": "artifacts",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "bundle_sidecar_runtime or sidecar_independent or bundle_duplicate"
+      ],
+      "exit_code": 0,
+      "seconds": 2.915,
+      "peak_rss_kib": 105972,
+      "failure": null,
+      "orphans_after_cleanup": []
+    },
+    {
+      "case": "aliases",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "alias or same_input"
+      ],
+      "exit_code": 0,
+      "seconds": 2.696,
+      "peak_rss_kib": 105388,
+      "failure": null,
+      "orphans_after_cleanup": []
+    },
+    {
+      "case": "corruption",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "malformed_artifacts or output_growth"
+      ],
+      "exit_code": 0,
+      "seconds": 2.717,
+      "peak_rss_kib": 109044,
+      "failure": null,
+      "orphans_after_cleanup": []
+    },
+    {
+      "case": "boundaries",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "boundaries or missing_db"
+      ],
+      "exit_code": 0,
+      "seconds": 7.648,
+      "peak_rss_kib": 115944,
+      "failure": null,
+      "orphans_after_cleanup": []
+    },
+    {
+      "case": "watch",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_cli_monitor.py",
+        "tests/test_cli_monitor_mechanisms.py",
+        "-k",
+        "watch or nonempty_source_errors"
+      ],
+      "exit_code": 0,
+      "seconds": 4.469,
+      "peak_rss_kib": 198564,
+      "failure": null,
+      "orphans_after_cleanup": []
+    }
+  ],
+  "seconds": 40.417
+}

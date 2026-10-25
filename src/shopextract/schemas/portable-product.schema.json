@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShopExtract portable-product",
+  "x-contract-version": "1",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "product": {
+      "type": "object"
+    },
+    "evidence_contract": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "variant_contracts": {
+      "type": "array",
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ]
+      }
+    },
+    "evidence_availability": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "variant_evidence_availability": {
+      "type": "array",
+      "items": {}
+    }
+  },
+  "required": [
+    "schema_version",
+    "product",
+    "evidence_contract",
+    "variant_contracts"
+  ],
+  "additionalProperties": false
+}

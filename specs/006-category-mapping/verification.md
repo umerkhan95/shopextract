@@ -192,3 +192,11 @@ Exact13 completion path prepared only after root authorization. Frozen mechanism
 Final independent review PASS (reviews.md):60 checkpoint hashes verified,0 source
 deltas after testing, no unresolved blockers. Only authorized T16/status bookkeeping
 followed; no source/test/network changes. Local Python3.11/3.12 matrix remains unrun.
+
+## Publication — 2026-10-17
+
+PR #59 merged as `4d57c6be0d4b519da6ca5b061c0a485dc9296b40`; tested PR head `7a097032a7129ae64375035ddfd820f42a460ebf`.
+GitHub CI passed Python3.10/3.11/3.12; merged tree equals tested head tree.
+Tickets #25/#55–58 closed and checklists/evidence updated. Neutral branch/commit/PR
+names, configured user author email, no co-author trailers or added labels verified.
+Delivery excluded unrelated local history/artifacts and preserved original workspace.

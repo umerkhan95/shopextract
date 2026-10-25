@@ -1,0 +1,364 @@
+{
+  "_extract.py": [
+    {
+      "name": "extract",
+      "signature": "url: str, *, platform: Platform | None=None, max_urls: int=20, shop_url: str | None=None, llm_api_key: str | None=None, llm_model: str='openai/gpt-4o-mini', llm_temperature: float=0.2, enrich_identifiers: bool=False, restore_short_gtin: bool=False, api_options: dict[str, str] | None=None"
+    },
+    {
+      "name": "extract_one",
+      "signature": "url: str, *, llm_api_key: str | None=None, llm_model: str='openai/gpt-4o-mini'"
+    },
+    {
+      "name": "from_feed",
+      "signature": "feed_url: str, *, shop_url: str=''"
+    },
+    {
+      "name": "_resolve_llm_api_key",
+      "signature": "model: str"
+    },
+    {
+      "name": "_try_llm_extraction",
+      "signature": "urls: list[str], api_key: str, model: str, temperature: float"
+    },
+    {
+      "name": "_try_api_extraction",
+      "signature": "url: str, platform: Platform, *, max_products: int=20, enrich_identifiers: bool=False, api_options: dict[str, str] | None=None, include_categories: bool=False, category_mode: bool=False"
+    },
+    {
+      "name": "_extract_batch_concurrent",
+      "signature": "extractor: Any, urls: list[str], concurrency: int"
+    },
+    {
+      "name": "_normalize_batch",
+      "signature": "raw_products: list[dict], platform: Platform, shop_url: str, *, restore_short_gtin: bool=False"
+    },
+    {
+      "name": "_get_generic_css_schema",
+      "signature": ""
+    },
+    {
+      "name": "_chunks",
+      "signature": "lst: list, n: int"
+    },
+    {
+      "name": "_extract_single",
+      "signature": "u: str"
+    }
+  ],
+  "_detect.py": [
+    {
+      "name": "_run_all_probes",
+      "signature": "client, url, signals"
+    },
+    {
+      "name": "detect",
+      "signature": "url: str, *, client: httpx.AsyncClient | None=None"
+    },
+    {
+      "name": "_probe_headers",
+      "signature": "client: httpx.AsyncClient, url: str, signals: dict[Platform, list[str]]"
+    },
+    {
+      "name": "_probe_api_endpoints",
+      "signature": "client: httpx.AsyncClient, url: str, signals: dict[Platform, list[str]]"
+    },
+    {
+      "name": "_probe_shopify_api",
+      "signature": "client: httpx.AsyncClient, base_url: str, signals: dict[Platform, list[str]]"
+    },
+    {
+      "name": "_probe_woocommerce_api",
+      "signature": "client: httpx.AsyncClient, base_url: str, signals: dict[Platform, list[str]]"
+    },
+    {
+      "name": "_probe_magento_api",
+      "signature": "client: httpx.AsyncClient, base_url: str, signals: dict[Platform, list[str]]"
+    },
+    {
+      "name": "_probe_magento_graphql",
+      "signature": "client, base_url, signals"
+    },
+    {
+      "name": "_probe_shopware_api",
+      "signature": "client: httpx.AsyncClient, base_url: str, signals: dict[Platform, list[str]]"
+    },
+    {
+      "name": "_probe_html_content",
+      "signature": "client: httpx.AsyncClient, url: str, signals: dict[Platform, list[str]]"
+    },
+    {
+      "name": "_analyze_meta_tags",
+      "signature": "html: str, signals: dict[Platform, list[str]]"
+    },
+    {
+      "name": "_analyze_cdn_sources",
+      "signature": "html: str, signals: dict[Platform, list[str]]"
+    },
+    {
+      "name": "_determine_platform",
+      "signature": "signals: dict[Platform, list[str]]"
+    }
+  ],
+  "_discover.py": [
+    {
+      "name": "discover",
+      "signature": "url: str, *, platform: Platform | None=None, max_urls: int=100, timeout: float=30.0, client: httpx.AsyncClient | None=None"
+    },
+    {
+      "name": "_discover_for_platform",
+      "signature": "base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None, max_urls: int=100"
+    },
+    {
+      "name": "_discover_shopify",
+      "signature": "base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None"
+    },
+    {
+      "name": "_discover_woocommerce",
+      "signature": "base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None"
+    },
+    {
+      "name": "_discover_magento",
+      "signature": "base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None"
+    },
+    {
+      "name": "_discover_bigcommerce",
+      "signature": "base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None, max_urls: int=100"
+    },
+    {
+      "name": "_discover_generic",
+      "signature": "base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None"
+    },
+    {
+      "name": "_discover_via_sitemap",
+      "signature": "base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None"
+    },
+    {
+      "name": "_try_product_sitemaps",
+      "signature": "base_url: str, paths: list[str], timeout: float, client: httpx.AsyncClient | None"
+    },
+    {
+      "name": "_parse_sitemap_xml",
+      "signature": "xml_text: str"
+    },
+    {
+      "name": "_filter_woocommerce_urls",
+      "signature": "urls: list[str]"
+    },
+    {
+      "name": "_discover_via_crawl4ai",
+      "signature": "base_url: str, max_pages: int=100"
+    }
+  ],
+  "_normalize.py": [
+    {
+      "name": "_strip_html",
+      "signature": "html: str"
+    },
+    {
+      "name": "_validate_gtin",
+      "signature": "value: str | None"
+    },
+    {
+      "name": "_parse_additional_properties",
+      "signature": "props: list"
+    },
+    {
+      "name": "normalize",
+      "signature": "raw: dict, platform: Platform=Platform.GENERIC, shop_url: str='', *, restore_short_gtin: bool=False"
+    },
+    {
+      "name": "_is_valid_product",
+      "signature": "product: Product"
+    },
+    {
+      "name": "_shopify_stock_status",
+      "signature": "variants_raw: list[dict]"
+    },
+    {
+      "name": "_record_items",
+      "signature": "trace, field, source, items, paths, operation"
+    },
+    {
+      "name": "_variant_stock",
+      "signature": "trace, *, shopify"
+    },
+    {
+      "name": "_variants",
+      "signature": "raw, trace, *, shopify"
+    },
+    {
+      "name": "_normalize_shopify",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "_normalize_woocommerce",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "_normalize_magento_graphql",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "_normalize_shopware_store_api",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "_normalize_bigcommerce",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "_normalize_magento",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "_normalize_shopware",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "_normalize_google_feed",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "_normalize_generic",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "_parse_condition",
+      "signature": "condition_str: str"
+    },
+    {
+      "name": "_extract_image_url",
+      "signature": "img: str | dict"
+    },
+    {
+      "name": "_normalize_schema_org",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "_normalize_opengraph",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "_normalize_css_generic",
+      "signature": "raw: dict, shop_url: str"
+    },
+    {
+      "name": "attr",
+      "signature": "field, **kwargs"
+    },
+    {
+      "name": "condition",
+      "signature": "value"
+    }
+  ],
+  "_quality.py": [
+    {
+      "name": "score_product",
+      "signature": "self, product: dict"
+    },
+    {
+      "name": "score_batch",
+      "signature": "self, products: list[dict]"
+    },
+    {
+      "name": "_has_any_field",
+      "signature": "product: dict, field_names: tuple[str, ...]"
+    }
+  ],
+  "_portable.py": [
+    {
+      "name": "validate_tree",
+      "signature": "value, *, encoded=False"
+    },
+    {
+      "name": "_check_type",
+      "signature": "value, annotation, path"
+    },
+    {
+      "name": "_contract_to_dict",
+      "signature": "owner"
+    },
+    {
+      "name": "_contract_from_dict",
+      "signature": "value, owner"
+    },
+    {
+      "name": "_availability",
+      "signature": "value, owner"
+    },
+    {
+      "name": "product_to_record",
+      "signature": "product: Product"
+    },
+    {
+      "name": "product_from_record",
+      "signature": "record: dict"
+    }
+  ],
+  "_resolution.py": [
+    {
+      "name": "_equivalent_key",
+      "signature": "value, path"
+    },
+    {
+      "name": "resolve_fields",
+      "signature": "contract: TrustContract, *, as_of: datetime, policy: ResolutionPolicy | None=None"
+    },
+    {
+      "name": "resolution_references",
+      "signature": "contract: TrustContract"
+    },
+    {
+      "name": "max_age",
+      "signature": "self, path"
+    },
+    {
+      "name": "authority",
+      "signature": "self, path, role"
+    }
+  ],
+  "extractors/llm.py": [
+    {
+      "name": "_create_markdown_generator",
+      "signature": ""
+    },
+    {
+      "name": "_create_strategy",
+      "signature": "self"
+    },
+    {
+      "name": "_merge_chunk_products",
+      "signature": "products: list[dict]"
+    },
+    {
+      "name": "extract",
+      "signature": "self, url: str"
+    },
+    {
+      "name": "extract_batch",
+      "signature": "self, urls: list[str]"
+    }
+  ],
+  "extractors/_browser.py": [
+    {
+      "name": "get_default_user_agent",
+      "signature": ""
+    },
+    {
+      "name": "get_browser_config",
+      "signature": "stealth_level: StealthLevel=StealthLevel.STANDARD, headless: bool=True, text_mode: bool=False"
+    },
+    {
+      "name": "get_crawler_strategy",
+      "signature": "stealth_level: StealthLevel, browser_config: BrowserConfig | None=None"
+    },
+    {
+      "name": "get_crawl_config",
+      "signature": "stealth_level: StealthLevel=StealthLevel.STANDARD, extraction_strategy=None, markdown_generator=None, deep_crawl_strategy=None, wait_until: str='domcontentloaded', wait_for: str | None=PRODUCT_WAIT_CONDITION, page_timeout: int=DEFAULT_PAGE_TIMEOUT, delay_before_return_html: float=DEFAULT_DELAY_BEFORE_RETURN, scan_full_page: bool=True, remove_overlay_elements: bool=True, scroll_delay: float=0.5, check_robots_txt: bool=True, locale: str='en-US', timezone: str='America/New_York'"
+    },
+    {
+      "name": "fetch_html_with_browser",
+      "signature": "url: str, stealth_level: StealthLevel=StealthLevel.STEALTH"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "final-source-digests": {
+    "entries": 37,
+    "mismatches": [],
+    "sha256": "4f464c1bde59c7a4cc122bd7c292cc6f2288a3e965b42510107f030893dc218e"
+  },
+  "final-review-inputs": {
+    "entries": 26,
+    "mismatches": [],
+    "sha256": "236060b0137a2a1055159d374ad503c235d85b4ee3d145b678d449073493dbf1"
+  },
+  "package_source_manifest_mismatches": 0,
+  "reviewer": "/root/cli_p5_delivery/p5_reviewer",
+  "configured_gate": "passed-fresh-exact-reviewed-plan",
+  "groups": [
+    187.612391,
+    121.997828,
+    109.903748
+  ],
+  "elapsed_seconds": 419.517006,
+  "total_tests": 1595,
+  "configured_report_sha256": "044d2af62ad3acdcc470dc8e8030a94837f14ba2327ee7354bea44c866d3e28c",
+  "driver_sha256": "8c53f2a5aecd3d71b6fb04bd8615cef4d8e10dbe923718ef313217ad053d8dae",
+  "workflow_sha256": "430763f2bc8faf770d25291bb4d33bf8c8bd6fbf5dc181db052a62c1659887ae",
+  "original_timeout": "retained historical; repaired gate now passed",
+  "new_test_or_network_runs": 0,
+  "final_blockers": []
+}

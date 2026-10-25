@@ -28,7 +28,7 @@ jobs:
           allow-download: "true"
 
       - name: Install dependencies
-        run: pip install -e ".[dev,mcp]"
+        run: pip install -e ".[dev,mcp]" pyarrow
 
       - name: Optional SDK import compatibility
         run: |
@@ -43,9 +43,22 @@ jobs:
       - name: Require MCP extra
         run: python -c "import mcp; import importlib.metadata; print(importlib.metadata.version('mcp'))"
 
-      # Sequential caps total up to 480s per matrix job (previously 240s).
-      - name: Run existing tests
-        run: timeout 240s pytest --ignore=tests/test_maintenance_acceptance.py --ignore=tests/test_maintenance_advisor.py --ignore=tests/test_maintenance_remaining_edges.py --ignore=tests/test_maintenance_review_repairs.py --ignore=tests/test_maintenance_store.py --ignore=tests/test_maintenance_stress_prerequisites.py --ignore=tests/test_maintenance_workflow.py
+      # All assertions retained: each file family <=240s, shared total <=480s.
+      - name: Run complete bounded test gate
+        run: python scripts/run_tests.py --output-dir "${RUNNER_TEMP}/shopextract-tests"
 
-      - name: Run maintenance tests
-        run: timeout 240s pytest tests/test_maintenance_acceptance.py tests/test_maintenance_advisor.py tests/test_maintenance_remaining_edges.py tests/test_maintenance_review_repairs.py tests/test_maintenance_store.py tests/test_maintenance_stress_prerequisites.py tests/test_maintenance_workflow.py
+      - name: Show bounded failure diagnostics
+        if: failure()
+        shell: bash
+        run: |
+          python - <<'PYCODE'
+          import os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP']) / 'shopextract-tests'
+          for path in sorted(root.glob('*.log')):
+              print(f'Failure diagnostics: {path.name}')
+              with path.open('rb') as log:
+                  log.seek(0, 2)
+                  log.seek(max(0, log.tell() - 16000))
+                  print(log.read(16000).decode('utf-8', errors='replace'))
+          PYCODE

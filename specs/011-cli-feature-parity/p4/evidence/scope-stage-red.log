@@ -1,0 +1,70 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFF....FF                                                             [100%]
+=================================== FAILURES ===================================
+_________ test_decoded_scope_path_rejects_before_http[/shop/../other] __________
+tests/test_cli_categories_mechanisms.py:538: in test_decoded_scope_path_rejects_before_http
+    assert result.exit_code==2 and body(result)['error']['code']=='E_USAGE',result.output
+E   AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_INTERNAL", "message": "Command failed unexpectedly.", "retryable": false}, "completeness": "unavailable"}
+E     
+E   assert (1 == 2)
+E    +  where 1 = <Result SystemExit(1)>.exit_code
+_______ test_decoded_scope_path_rejects_before_http[/shop/%2e%2e/other] ________
+tests/test_cli_categories_mechanisms.py:538: in test_decoded_scope_path_rejects_before_http
+    assert result.exit_code==2 and body(result)['error']['code']=='E_USAGE',result.output
+E   AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_INTERNAL", "message": "Command failed unexpectedly.", "retryable": false}, "completeness": "unavailable"}
+E     
+E   assert (1 == 2)
+E    +  where 1 = <Result SystemExit(1)>.exit_code
+_____ test_decoded_scope_path_rejects_before_http[/shop/%252e%252e/other] ______
+tests/test_cli_categories_mechanisms.py:538: in test_decoded_scope_path_rejects_before_http
+    assert result.exit_code==2 and body(result)['error']['code']=='E_USAGE',result.output
+E   AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_INTERNAL", "message": "Command failed unexpectedly.", "retryable": false}, "completeness": "unavailable"}
+E     
+E   assert (1 == 2)
+E    +  where 1 = <Result SystemExit(1)>.exit_code
+________ test_decoded_scope_path_rejects_before_http[/shop/.%2e/other] _________
+tests/test_cli_categories_mechanisms.py:538: in test_decoded_scope_path_rejects_before_http
+    assert result.exit_code==2 and body(result)['error']['code']=='E_USAGE',result.output
+E   AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_INTERNAL", "message": "Command failed unexpectedly.", "retryable": false}, "completeness": "unavailable"}
+E     
+E   assert (1 == 2)
+E    +  where 1 = <Result SystemExit(1)>.exit_code
+______ test_decoded_scope_path_rejects_before_http[/shop/%2e%2e%2fother] _______
+tests/test_cli_categories_mechanisms.py:538: in test_decoded_scope_path_rejects_before_http
+    assert result.exit_code==2 and body(result)['error']['code']=='E_USAGE',result.output
+E   AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_INTERNAL", "message": "Command failed unexpectedly.", "retryable": false}, "completeness": "unavailable"}
+E     
+E   assert (1 == 2)
+E    +  where 1 = <Result SystemExit(1)>.exit_code
+_______ test_decoded_scope_path_rejects_before_http[/shop/%5c..%5cother] _______
+tests/test_cli_categories_mechanisms.py:538: in test_decoded_scope_path_rejects_before_http
+    assert result.exit_code==2 and body(result)['error']['code']=='E_USAGE',result.output
+E   AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_INTERNAL", "message": "Command failed unexpectedly.", "retryable": false}, "completeness": "unavailable"}
+E     
+E   assert (1 == 2)
+E    +  where 1 = <Result SystemExit(1)>.exit_code
+_________ test_categorized_actual_staged_file_size_boundary[1-payload] _________
+tests/test_cli_categories_mechanisms.py:594: in test_categorized_actual_staged_file_size_boundary
+    assert result.exit_code==2,result.output
+E   AssertionError: {"schema_version": "1.0", "ok": true, "data": {"format": "csv", "output": "/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-260/test_categorized_actual_staged4/out", "evidence_output": "/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-260/test_categorized_actual_staged4/evidence", "categories_output": "/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-260/test_categorized_actual_staged4/cats", "product_count": 1, "bytes": 1048577}, "warnings": [], "error": null, "completeness": "complete"}
+E     
+E   assert 0 == 2
+E    +  where 0 = <Result okay>.exit_code
+________ test_categorized_actual_staged_file_size_boundary[1-evidence] _________
+tests/test_cli_categories_mechanisms.py:594: in test_categorized_actual_staged_file_size_boundary
+    assert result.exit_code==2,result.output
+E   AssertionError: {"schema_version": "1.0", "ok": true, "data": {"format": "csv", "output": "/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-260/test_categorized_actual_staged5/out", "evidence_output": "/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-260/test_categorized_actual_staged5/evidence", "categories_output": "/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-260/test_categorized_actual_staged5/cats", "product_count": 1, "bytes": 1097}, "warnings": [], "error": null, "completeness": "complete"}
+E     
+E   assert 0 == 2
+E    +  where 0 = <Result okay>.exit_code
+=========================== short test summary info ============================
+FAILED tests/test_cli_categories_mechanisms.py::test_decoded_scope_path_rejects_before_http[/shop/../other]
+FAILED tests/test_cli_categories_mechanisms.py::test_decoded_scope_path_rejects_before_http[/shop/%2e%2e/other]
+FAILED tests/test_cli_categories_mechanisms.py::test_decoded_scope_path_rejects_before_http[/shop/%252e%252e/other]
+FAILED tests/test_cli_categories_mechanisms.py::test_decoded_scope_path_rejects_before_http[/shop/.%2e/other]
+FAILED tests/test_cli_categories_mechanisms.py::test_decoded_scope_path_rejects_before_http[/shop/%2e%2e%2fother]
+FAILED tests/test_cli_categories_mechanisms.py::test_decoded_scope_path_rejects_before_http[/shop/%5c..%5cother]
+FAILED tests/test_cli_categories_mechanisms.py::test_categorized_actual_staged_file_size_boundary[1-payload]
+FAILED tests/test_cli_categories_mechanisms.py::test_categorized_actual_staged_file_size_boundary[1-evidence]
+8 failed, 4 passed, 62 deselected in 2.34s

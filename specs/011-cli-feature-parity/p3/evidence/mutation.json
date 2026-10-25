@@ -1,0 +1,6 @@
+{
+  "before_sha256": "6f7f33156eec4677ca7016462aa33b776e211d82b0840147a8c01d7c99650166",
+  "mutant_exit": 1,
+  "restored_sha256": "6f7f33156eec4677ca7016462aa33b776e211d82b0840147a8c01d7c99650166",
+  "restored_exit": 0
+}

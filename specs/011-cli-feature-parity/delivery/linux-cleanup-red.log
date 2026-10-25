@@ -1,0 +1,21 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+______________ test_owned_group_reaping_preserves_unrelated_child ______________
+tests/test_ci_driver.py:202: in test_owned_group_reaping_preserves_unrelated_child
+    d._reap_group(pid,deadline)
+E   AttributeError: module 'shopextract_ci_driver' has no attribute '_reap_group'
+_______________ test_group_reaping_waits_for_popen_leader_status _______________
+tests/test_ci_driver.py:216: in test_group_reaping_waits_for_popen_leader_status
+    d=driver();owned=[];original=subprocess.Popen;reap=d._reap_group
+E   AttributeError: module 'shopextract_ci_driver' has no attribute '_reap_group'
+_________ test_subreaper_state_restored_and_setup_failure_stops_launch _________
+tests/test_ci_driver.py:228: in test_subreaper_state_restored_and_setup_failure_stops_launch
+    d=driver();previous=d._subreaper()
+E   AttributeError: module 'shopextract_ci_driver' has no attribute '_subreaper'
+=========================== short test summary info ============================
+FAILED tests/test_ci_driver.py::test_owned_group_reaping_preserves_unrelated_child
+FAILED tests/test_ci_driver.py::test_group_reaping_waits_for_popen_leader_status
+FAILED tests/test_ci_driver.py::test_subreaper_state_restored_and_setup_failure_stops_launch
+3 failed, 15 deselected in 0.80s

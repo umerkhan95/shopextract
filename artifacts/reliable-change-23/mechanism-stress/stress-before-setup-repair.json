@@ -1,0 +1,9 @@
+{
+  "phase": "stress",
+  "status": "failed",
+  "completed": [],
+  "provenance": "synthetic",
+  "stopped_at": "SM02",
+  "error": "ValueError: Expected SupportState at evidence_contract/observations/1/state",
+  "elapsed_seconds": 0.826
+}

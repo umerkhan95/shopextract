@@ -20,6 +20,7 @@ import httpx
 
 from . import _markdown_price as markdown_price_extractor
 from .._models import ExtractorResult
+from .._execution import browser_allowed
 from .._capture import capture
 from ._browser import (
     DEFAULT_HEADERS,
@@ -65,6 +66,9 @@ class UnifiedCrawlExtractor:
             httpx_products = products
         else:
             httpx_products = []
+
+        if not browser_allowed():
+            return ExtractorResult(products=httpx_products)
 
         browser_products = await self._extract_with_browser(url)
         if browser_products:

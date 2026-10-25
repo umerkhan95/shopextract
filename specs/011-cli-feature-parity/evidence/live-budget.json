@@ -1,0 +1,55 @@
+{
+  "scope": "Whole integrated CLI delivery; only actual live request/phase wall time counts; no merchant writes, models or paid calls.",
+  "ceiling": {
+    "actual_http_attempts": 30,
+    "retained_products": 12,
+    "live_wall_seconds": 300
+  },
+  "phases": {
+    "P1": {
+      "actual_http_attempts": 1,
+      "retained_products": 2,
+      "live_wall_seconds": 0.527,
+      "status": "passed_bounded_smoke",
+      "evidence": "../p1/evidence/live/report.json",
+      "target": "https://www.boardgamebliss.com",
+      "notes": "Explicit Shopify; expected partial3/catalog_complete=false at max2 cap; no retries/browser/model."
+    },
+    "P3": {
+      "actual_http_attempts": 1,
+      "retained_products": 2,
+      "live_wall_seconds": 1.148,
+      "status": "passed_bounded_persistence_smoke",
+      "evidence": "../p3/evidence/live/report.json",
+      "target": "https://www.boardgamebliss.com",
+      "notes": "Explicit Shopify extract -> temp native SQLite -> CLI load/get; scoped lookup0HTTP; no observed source-price transition; no retry/browser/model."
+    },
+    "P4": {
+      "target": "https://demo.athemes.com/botiga",
+      "actual_http_attempts": 1,
+      "retained_products": 0,
+      "retained_category_nodes": 2,
+      "retained_items": 2,
+      "live_wall_seconds": 3.954,
+      "status": "observed_bounded_tree_native_accounting_auxiliary_counter_missed",
+      "outcome": "complete",
+      "evidence": "../p4/evidence/live/report.json",
+      "accounting_limitation": "Auxiliary httpx.AsyncHTTPTransport interception missed GuardedTransport direct httpcore pool. Actual1GET200 proven by native request_accounting attempt + retained successful page. No retry run."
+    }
+  },
+  "spent": {
+    "actual_http_attempts": 3,
+    "retained_products": 4,
+    "live_wall_seconds": 5.629,
+    "retained_category_nodes": 2,
+    "retained_items": 6
+  },
+  "notes": "Record each phase receipt before further live expansion; controlled/local fixtures are offline.",
+  "retained_item_budget": {
+    "ceiling": 12,
+    "products": 4,
+    "category_nodes": 2,
+    "note": "Category nodes also consume the original whole-feature retained-item ceiling; product-only counters remain for source receipts.",
+    "total": 6
+  }
+}

@@ -1,0 +1,23 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________________ test_history_exact_readonly_red ________________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-241/test_history_exact_readonly_re0')
+
+    def test_history_exact_readonly_red(tmp_path):
+        db=str(tmp_path/'snap.db')
+        save(db,[product('10.010000000000000001')],0)
+        before=Path(db).read_bytes()
+        result=payload(invoke('history',DOMAIN,'Widget','--db',db))
+        from shopextract._evidence import decode_value
+>       assert decode_value(result['entries'][0]['price'])==Decimal('10.010000000000000001')
+E       AssertionError: assert 10.01 == Decimal('10.010000000000000001')
+E        +  where 10.01 = <function decode_value at 0x1083c0f70>(10.01)
+E        +  and   Decimal('10.010000000000000001') = Decimal('10.010000000000000001')
+
+tests/test_cli_monitor.py:67: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_monitor.py::test_history_exact_readonly_red - Assertion...
+1 failed in 0.27s

@@ -1,0 +1,31 @@
+{
+  "state": "candidate before final independent review; T21 intentionally pending",
+  "sha256": {
+    "specs/011-cli-feature-parity/spec.md": "0970307ecc2b44845e335dbc91947335c417d9695ceb4ba0f1dcee993b1333a8",
+    "specs/011-cli-feature-parity/test-design.md": "3224165397e94dda958e4c85e4e64cde5ba89af63e017ea03174b560ef8c0a38",
+    "specs/011-cli-feature-parity/plan.md": "1370956bd52e337215af25ce11d48040a4029966e98cafc455edbef3e7b64531",
+    "specs/011-cli-feature-parity/tasks.md": "0e468887d7157c402ec8fad4950a133995ed141cac742c40204a2e1077e730e5",
+    "specs/011-cli-feature-parity/status.md": "019e6e78213e4c90d7800b037e7e9750847c5e39575bc256ee51f3e073cd9136",
+    "specs/011-cli-feature-parity/coverage.md": "ba84762a27ae06bc3ff77439d6f5be2e12df3eca86314e3974ba03c30b7e6c94",
+    "specs/011-cli-feature-parity/reviews.md": "c99ea9c4b0ca8b0a440c003be3670400538a83295f849caf548cf76ea2142c74",
+    "specs/011-cli-feature-parity/verification.md": "51724bad4690c595bfb5f3eea2d812c800cf59c1f28c3ee4f034ec67c55afafb",
+    "specs/011-cli-feature-parity/p5/spec.md": "b84b3b35b4e3e1a88b15805dbe5511945dbb3f2dca6ddac40ac7f4b66957e1ed",
+    "specs/011-cli-feature-parity/p5/test-design.md": "f2dd346ce8c7edc56d73821a6d58bef92190ab74c93a2ecc243b7bb2aef3955e",
+    "specs/011-cli-feature-parity/p5/tasks.md": "8a70095f0fd325ef7ff0a6acb4e83a13b7efc3bcf2c2de8b62a4932b0a4e76e3",
+    "specs/011-cli-feature-parity/p5/research.md": "7d6180bf534a2e77d9c994f1eb8422f2123bbe34637d337c95f72989d9a2d1cc",
+    "specs/011-cli-feature-parity/p5/plan.md": "73c870b3dd0942b25d3523a9fc4ca0b04504d3e85939963b82c77e26ce411c3e",
+    "specs/011-cli-feature-parity/p5/skeleton.md": "24fcdfd65f822262f91f527eba72890049b7bd804c0980f1cdafdb43a1f8cb7f",
+    "specs/011-cli-feature-parity/p5/components.md": "2856101c4550fb255ffb6305f45355f7762c2f3ef84ee9b4749145b0383ce78a",
+    "specs/011-cli-feature-parity/p5/ci-amendment.md": "b382a42651ab3a14b7bcc9df15d3c5720f9cae5728a6124ae15f69eddb28e9c6",
+    "specs/011-cli-feature-parity/p5/coverage-review.md": "65ab0d5a0908a9c3b8843e5f86d0caef524ebe42fe2a4bebc3a488201b014365",
+    "specs/011-cli-feature-parity/p5/capability-manifest.json": "ac978fa55ef784210a9a557c5e813e728f6e6371875ca1a7e824a224e6386e00",
+    "specs/011-cli-feature-parity/p5/final-traceability.md": "6edb66aa890258c28825a18f9a29f50a3c244d0d61cb4ba7432c9ee1975690a2",
+    "specs/011-cli-feature-parity/p5/status.md": "6f9aedf2678ca5116ca0f146155151bd26db80e40c089801f3a6e026f1904b72",
+    "specs/011-cli-feature-parity/p5/verification.md": "ea392a250a65e947fef35b09285b2dd35997ae5952854c8bc57d8767ac1a9aba",
+    "specs/011-cli-feature-parity/p5/evidence/final-source-digests.json": "4f464c1bde59c7a4cc122bd7c292cc6f2288a3e965b42510107f030893dc218e",
+    "specs/011-cli-feature-parity/p5/evidence/configured-ci/report.json": "044d2af62ad3acdcc470dc8e8030a94837f14ba2327ee7354bea44c866d3e28c",
+    "specs/011-cli-feature-parity/p5/evidence/wheel-report.json": "cb5df191f87bba2aa1d51bcee76f866ea3c2e62ef2e5e97e272db59d5ea17a28",
+    "specs/011-cli-feature-parity/p5/evidence/stress-status.json": "a0929a7c6c85792f54cc9939ecffe36927b0d5e97694ede6223d5b6b542df573",
+    "specs/011-cli-feature-parity/p5/evidence/mutation-report.json": "3ed7bf379d53fbbb2abaa7e9eff8596782af9f5a40d33bc9953cb341bf450193"
+  }
+}

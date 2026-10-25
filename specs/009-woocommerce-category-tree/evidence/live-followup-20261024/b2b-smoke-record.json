@@ -1,0 +1,526 @@
+{
+  "schema_version": 1,
+  "payload": {
+    "scope": {
+      "platform": "woocommerce",
+      "store_url": "https://demo.woocommerce-b2b.com/sales-agents",
+      "catalog": null,
+      "channel": null,
+      "locale": null
+    },
+    "limits": {
+      "requests": 4,
+      "per_page": 3,
+      "categories": 12,
+      "response_bytes": 262144,
+      "retained_bytes": 1048576,
+      "depth": 8,
+      "seconds": 15.0
+    },
+    "outcome": "complete",
+    "confirmed_empty": false,
+    "reasons": [],
+    "pages": [
+      {
+        "number": 1,
+        "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+        "observed_at": {
+          "$type": "datetime",
+          "value": "2026-10-24T18:08:25.422712+00:00"
+        },
+        "body": "[{\"id\":20,\"name\":\"Accessories\",\"slug\":\"accessories\",\"description\":\"\",\"parent\":17,\"count\":5,\"image\":null,\"review_count\":0,\"permalink\":\"https:\\/\\/demo.woocommerce-b2b.com\\/sales-agents\\/product-category\\/clothing\\/accessories\\/\"},{\"id\":17,\"name\":\"Clothing\",\"slug\":\"clothing\",\"description\":\"\",\"parent\":0,\"count\":14,\"image\":null,\"review_count\":0,\"permalink\":\"https:\\/\\/demo.woocommerce-b2b.com\\/sales-agents\\/product-category\\/clothing\\/\"},{\"id\":22,\"name\":\"Decor\",\"slug\":\"decor\",\"description\":\"\",\"parent\":0,\"count\":1,\"image\":null,\"review_count\":0,\"permalink\":\"https:\\/\\/demo.woocommerce-b2b.com\\/sales-agents\\/product-category\\/decor\\/\"}]",
+        "total": "7",
+        "total_pages": "3"
+      },
+      {
+        "number": 2,
+        "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+        "observed_at": {
+          "$type": "datetime",
+          "value": "2026-10-24T18:08:28.668992+00:00"
+        },
+        "body": "[{\"id\":19,\"name\":\"Hoodies\",\"slug\":\"hoodies\",\"description\":\"\",\"parent\":17,\"count\":3,\"image\":null,\"review_count\":0,\"permalink\":\"https:\\/\\/demo.woocommerce-b2b.com\\/sales-agents\\/product-category\\/clothing\\/hoodies\\/\"},{\"id\":21,\"name\":\"Music\",\"slug\":\"music\",\"description\":\"\",\"parent\":0,\"count\":2,\"image\":null,\"review_count\":0,\"permalink\":\"https:\\/\\/demo.woocommerce-b2b.com\\/sales-agents\\/product-category\\/music\\/\"},{\"id\":18,\"name\":\"Tshirts\",\"slug\":\"tshirts\",\"description\":\"\",\"parent\":17,\"count\":5,\"image\":null,\"review_count\":0,\"permalink\":\"https:\\/\\/demo.woocommerce-b2b.com\\/sales-agents\\/product-category\\/clothing\\/tshirts\\/\"}]",
+        "total": "7",
+        "total_pages": "3"
+      },
+      {
+        "number": 3,
+        "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=3&per_page=3&hide_empty=false&orderby=slug&order=asc",
+        "observed_at": {
+          "$type": "datetime",
+          "value": "2026-10-24T18:08:31.884175+00:00"
+        },
+        "body": "[{\"id\":15,\"name\":\"Uncategorized\",\"slug\":\"uncategorized\",\"description\":\"\",\"parent\":0,\"count\":0,\"image\":null,\"review_count\":0,\"permalink\":\"https:\\/\\/demo.woocommerce-b2b.com\\/sales-agents\\/product-category\\/uncategorized\\/\"}]",
+        "total": "7",
+        "total_pages": "3"
+      }
+    ],
+    "nodes": [
+      {
+        "native_id": "15",
+        "declarations": [
+          {
+            "page": 3,
+            "index": 0,
+            "native_id": "15",
+            "facts": [
+              {
+                "facet": "id",
+                "pointer": "/0/id",
+                "raw_value": 15,
+                "value": "15",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=3&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:31.884175+00:00"
+                }
+              },
+              {
+                "facet": "name",
+                "pointer": "/0/name",
+                "raw_value": "Uncategorized",
+                "value": "Uncategorized",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=3&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:31.884175+00:00"
+                }
+              },
+              {
+                "facet": "slug",
+                "pointer": "/0/slug",
+                "raw_value": "uncategorized",
+                "value": "uncategorized",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=3&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:31.884175+00:00"
+                }
+              },
+              {
+                "facet": "parent",
+                "pointer": "/0/parent",
+                "raw_value": 0,
+                "value": "0",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=3&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:31.884175+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        "conflicted": false
+      },
+      {
+        "native_id": "17",
+        "declarations": [
+          {
+            "page": 1,
+            "index": 1,
+            "native_id": "17",
+            "facts": [
+              {
+                "facet": "id",
+                "pointer": "/1/id",
+                "raw_value": 17,
+                "value": "17",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              },
+              {
+                "facet": "name",
+                "pointer": "/1/name",
+                "raw_value": "Clothing",
+                "value": "Clothing",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              },
+              {
+                "facet": "slug",
+                "pointer": "/1/slug",
+                "raw_value": "clothing",
+                "value": "clothing",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              },
+              {
+                "facet": "parent",
+                "pointer": "/1/parent",
+                "raw_value": 0,
+                "value": "0",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        "conflicted": false
+      },
+      {
+        "native_id": "18",
+        "declarations": [
+          {
+            "page": 2,
+            "index": 2,
+            "native_id": "18",
+            "facts": [
+              {
+                "facet": "id",
+                "pointer": "/2/id",
+                "raw_value": 18,
+                "value": "18",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              },
+              {
+                "facet": "name",
+                "pointer": "/2/name",
+                "raw_value": "Tshirts",
+                "value": "Tshirts",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              },
+              {
+                "facet": "slug",
+                "pointer": "/2/slug",
+                "raw_value": "tshirts",
+                "value": "tshirts",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              },
+              {
+                "facet": "parent",
+                "pointer": "/2/parent",
+                "raw_value": 17,
+                "value": "17",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        "conflicted": false
+      },
+      {
+        "native_id": "19",
+        "declarations": [
+          {
+            "page": 2,
+            "index": 0,
+            "native_id": "19",
+            "facts": [
+              {
+                "facet": "id",
+                "pointer": "/0/id",
+                "raw_value": 19,
+                "value": "19",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              },
+              {
+                "facet": "name",
+                "pointer": "/0/name",
+                "raw_value": "Hoodies",
+                "value": "Hoodies",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              },
+              {
+                "facet": "slug",
+                "pointer": "/0/slug",
+                "raw_value": "hoodies",
+                "value": "hoodies",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              },
+              {
+                "facet": "parent",
+                "pointer": "/0/parent",
+                "raw_value": 17,
+                "value": "17",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        "conflicted": false
+      },
+      {
+        "native_id": "20",
+        "declarations": [
+          {
+            "page": 1,
+            "index": 0,
+            "native_id": "20",
+            "facts": [
+              {
+                "facet": "id",
+                "pointer": "/0/id",
+                "raw_value": 20,
+                "value": "20",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              },
+              {
+                "facet": "name",
+                "pointer": "/0/name",
+                "raw_value": "Accessories",
+                "value": "Accessories",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              },
+              {
+                "facet": "slug",
+                "pointer": "/0/slug",
+                "raw_value": "accessories",
+                "value": "accessories",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              },
+              {
+                "facet": "parent",
+                "pointer": "/0/parent",
+                "raw_value": 17,
+                "value": "17",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        "conflicted": false
+      },
+      {
+        "native_id": "21",
+        "declarations": [
+          {
+            "page": 2,
+            "index": 1,
+            "native_id": "21",
+            "facts": [
+              {
+                "facet": "id",
+                "pointer": "/1/id",
+                "raw_value": 21,
+                "value": "21",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              },
+              {
+                "facet": "name",
+                "pointer": "/1/name",
+                "raw_value": "Music",
+                "value": "Music",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              },
+              {
+                "facet": "slug",
+                "pointer": "/1/slug",
+                "raw_value": "music",
+                "value": "music",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              },
+              {
+                "facet": "parent",
+                "pointer": "/1/parent",
+                "raw_value": 0,
+                "value": "0",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=2&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:28.668992+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        "conflicted": false
+      },
+      {
+        "native_id": "22",
+        "declarations": [
+          {
+            "page": 1,
+            "index": 2,
+            "native_id": "22",
+            "facts": [
+              {
+                "facet": "id",
+                "pointer": "/2/id",
+                "raw_value": 22,
+                "value": "22",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              },
+              {
+                "facet": "name",
+                "pointer": "/2/name",
+                "raw_value": "Decor",
+                "value": "Decor",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              },
+              {
+                "facet": "slug",
+                "pointer": "/2/slug",
+                "raw_value": "decor",
+                "value": "decor",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              },
+              {
+                "facet": "parent",
+                "pointer": "/2/parent",
+                "raw_value": 0,
+                "value": "0",
+                "state": "observed",
+                "source_url": "https://demo.woocommerce-b2b.com/sales-agents/wp-json/wc/store/v1/products/categories?page=1&per_page=3&hide_empty=false&orderby=slug&order=asc",
+                "observed_at": {
+                  "$type": "datetime",
+                  "value": "2026-10-24T18:08:25.422712+00:00"
+                }
+              }
+            ]
+          }
+        ],
+        "conflicted": false
+      }
+    ],
+    "rejected": [],
+    "parent_edges": [
+      [
+        "18",
+        "17"
+      ],
+      [
+        "19",
+        "17"
+      ],
+      [
+        "20",
+        "17"
+      ]
+    ],
+    "issues": [],
+    "attempts": [
+      {
+        "number": 1,
+        "url_sha256": "0455e15cf88315e94e8dfc09120daaeba2c5a3542ddb2ba84d3a3e06450f69ca",
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "number": 2,
+        "url_sha256": "32bc95c269470fde10ff6cad1550aa29041268ffb1817e42b6b778cf6af313f9",
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "number": 3,
+        "url_sha256": "a6682475cdc5f7fba923cafcbdf66ea39db43f1572cb81c2a77b16bed0323951",
+        "status_code": 200,
+        "error": null
+      }
+    ],
+    "schema_version": 1
+  },
+  "sha256": "6495b2cd7e05db601b4811e06cc34944d786324e7c78ff0ab683034f3f58c5de"
+}

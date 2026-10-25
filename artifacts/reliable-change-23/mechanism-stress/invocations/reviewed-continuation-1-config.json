@@ -1,0 +1,26 @@
+{
+  "known_spent_seconds": 72.586,
+  "remaining_wall_seconds": 107.414,
+  "chunk_hard_timeout_seconds": 60,
+  "allowlist": [
+    "SM05",
+    "SM06",
+    "SM09-1701-7",
+    "SM09-2909-0",
+    "SM09-2909-1",
+    "SM09-2909-2",
+    "SM09-2909-3",
+    "SM09-2909-4",
+    "SM09-2909-5",
+    "SM09-2909-6",
+    "SM09-2909-7"
+  ],
+  "attempts_before": 19,
+  "max_attempts": 32,
+  "expected_final_attempts": 30,
+  "conformant_reused_batches": 13,
+  "original_phase_breach": "approximately4seconds, preserved",
+  "no_automatic_extra_chunk": true,
+  "threads": 2,
+  "network_requests": 0
+}

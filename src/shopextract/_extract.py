@@ -13,6 +13,7 @@ from collections.abc import Iterator
 from typing import Any
 
 from ._scope import catalog_scope
+from ._execution import current_policy, browser_allowed, bounded_llm
 from ._models import (
     ExtractionResult,
     ExtractionTier,
@@ -124,9 +125,15 @@ async def extract(
         shop_url = url.rstrip("/")
 
     # Read LLM config from env if not provided
-    if llm_api_key is None:
-        llm_api_key = _resolve_llm_api_key(llm_model)
-    llm_model = os.environ.get("SHOPEXTRACT_LLM_MODEL", llm_model)
+    policy = current_policy()
+    if policy is not None:
+        llm_api_key = "explicit-policy" if policy.llm else ""
+        if policy.llm:
+            llm_model = policy.llm.model
+    else:
+        if llm_api_key is None:
+            llm_api_key = _resolve_llm_api_key(llm_model)
+        llm_model = os.environ.get("SHOPEXTRACT_LLM_MODEL", llm_model)
 
     # Step 1: Detect platform
     if platform is None:
@@ -256,9 +263,10 @@ async def extract(
     css = CSSExtractor(schema=generic_schema)
 
     all_products: list[dict] = []
-    for batch_urls in _chunks(urls, _EXTRACTION_CONCURRENCY):
-        batch_result = await css.extract_batch(batch_urls)
-        all_products.extend(batch_result.products)
+    if browser_allowed():
+        for batch_urls in _chunks(urls, _EXTRACTION_CONCURRENCY):
+            batch_result = await css.extract_batch(batch_urls)
+            all_products.extend(batch_result.products)
 
     if all_products:
         products = _normalize_batch(all_products, platform, shop_url)
@@ -336,6 +344,10 @@ async def extract_one(
     if result.products:
         return result.products[0]
 
+    # Explicit policy also governs nested single-page fallback.
+    policy = current_policy()
+    if policy is not None:
+        llm_api_key = "explicit-policy" if policy.llm else ""
     # LLM fallback for single page
     if llm_api_key:
         llm_products = await _try_llm_extraction(
@@ -434,6 +446,8 @@ async def _try_llm_extraction(
     temperature: float,
 ) -> list[dict]:
     """Try LLM-based extraction on URLs."""
+    if current_policy() is not None:
+        return await bounded_llm(urls)
     try:
         from crawl4ai import LLMConfig
         from .extractors.llm import LLMExtractor

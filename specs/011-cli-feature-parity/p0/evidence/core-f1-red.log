@@ -1,0 +1,24 @@
+FFF.                                                                     [100%]
+=================================== FAILURES ===================================
+E   AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_OPERATION", "message": "Machine result support for this command requires its domain CLI phase.", "retryable": false}, "completeness": "unavailable"}
+      
+    assert 1 == 2
+     +  where 1 = <Result SystemExit(1)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:382: AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_OPERATION", "message": "Machine result support for this command requires its domain CLI phase.", "retryable": false}, "completeness": "unavailable"}
+E   AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_OPERATION", "message": "Machine result support for this command requires its domain CLI phase.", "retryable": false}, "completeness": "unavailable"}
+      
+    assert 1 == 2
+     +  where 1 = <Result SystemExit(1)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:382: AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_OPERATION", "message": "Machine result support for this command requires its domain CLI phase.", "retryable": false}, "completeness": "unavailable"}
+E   AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_OPERATION", "message": "Machine result support for this command requires its domain CLI phase.", "retryable": false}, "completeness": "unavailable"}
+      
+    assert 1 == 2
+     +  where 1 = <Result SystemExit(1)>.exit_code
+/Users/umerkhan/code/shopextract/tests/test_cli_core.py:382: AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_OPERATION", "message": "Machine result support for this command requires its domain CLI phase.", "retryable": false}, "completeness": "unavailable"}
+=========================== short test summary info ============================
+FAILED tests/test_cli_core.py::test_phase_gate_follows_click_argument_validation[missing-url]
+FAILED tests/test_cli_core.py::test_phase_gate_follows_click_argument_validation[bad-integer]
+FAILED tests/test_cli_core.py::test_phase_gate_follows_click_argument_validation[missing-path]
+3 failed, 1 passed, 48 deselected in 0.21s
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(

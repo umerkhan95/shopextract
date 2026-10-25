@@ -1,0 +1,35 @@
+{
+  "mode": "full",
+  "seed": 11025,
+  "workers": 1,
+  "max_input_bytes": 1048576,
+  "max_products": 100,
+  "total_limit_seconds": 720,
+  "results": [
+    {
+      "name": "full-existing",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--ignore=tests/test_maintenance_acceptance.py",
+        "--ignore=tests/test_maintenance_advisor.py",
+        "--ignore=tests/test_maintenance_remaining_edges.py",
+        "--ignore=tests/test_maintenance_review_repairs.py",
+        "--ignore=tests/test_maintenance_store.py",
+        "--ignore=tests/test_maintenance_stress_prerequisites.py",
+        "--ignore=tests/test_maintenance_workflow.py"
+      ],
+      "returncode": -15,
+      "seconds": 240.165,
+      "stop": "timeout",
+      "max_group_rss_bytes": 352428032,
+      "orphans": [],
+      "summary": ""
+    }
+  ],
+  "seconds": 240.165,
+  "status": "running-or-failed",
+  "actual_session_token_counters": "unavailable"
+}

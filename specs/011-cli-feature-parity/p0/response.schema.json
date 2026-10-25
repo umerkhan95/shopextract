@@ -1,0 +1,482 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShopExtract CLI response 1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "ok",
+    "data",
+    "warnings",
+    "error",
+    "completeness"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "ok": {
+      "type": "boolean"
+    },
+    "data": {},
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "message",
+            "retryable"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "E_OPERATION",
+                "E_INTERNAL",
+                "E_DEPENDENCY",
+                "E_TIMEOUT",
+                "E_USAGE",
+                "E_CONFIG",
+                "E_PARTIAL",
+                "E_VALIDATION",
+                "E_CANCELLED"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1
+            },
+            "retryable": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "completeness": {
+      "enum": [
+        "complete",
+        "partial",
+        "unavailable"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "ok": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "type": "null"
+          },
+          "completeness": {
+            "const": "complete"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ok": {
+            "const": false
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "message",
+              "retryable"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "enum": [
+                  "E_OPERATION",
+                  "E_INTERNAL",
+                  "E_DEPENDENCY",
+                  "E_TIMEOUT",
+                  "E_USAGE",
+                  "E_CONFIG",
+                  "E_PARTIAL",
+                  "E_VALIDATION",
+                  "E_CANCELLED"
+                ]
+              },
+              "message": {
+                "type": "string",
+                "minLength": 1
+              },
+              "retryable": {
+                "type": "boolean"
+              }
+            }
+          },
+          "completeness": {
+            "enum": [
+              "partial",
+              "unavailable"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "completeness": {
+            "const": "unavailable"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "completeness": {
+            "const": "partial"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "not": {
+              "type": "null"
+            }
+          },
+          "error": {
+            "properties": {
+              "code": {
+                "const": "E_PARTIAL"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "const": "E_OPERATION"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": false
+              }
+            }
+          },
+          "completeness": {
+            "const": "unavailable"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "const": "E_INTERNAL"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": false
+              }
+            }
+          },
+          "completeness": {
+            "const": "unavailable"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "const": "E_DEPENDENCY"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": false
+              }
+            }
+          },
+          "completeness": {
+            "const": "unavailable"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "const": "E_TIMEOUT"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": true
+              }
+            }
+          },
+          "completeness": {
+            "const": "unavailable"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "const": "E_USAGE"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": false
+              }
+            }
+          },
+          "completeness": {
+            "const": "unavailable"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "const": "E_CONFIG"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": false
+              }
+            }
+          },
+          "completeness": {
+            "const": "unavailable"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "const": "E_PARTIAL"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": false
+              }
+            }
+          },
+          "completeness": {
+            "const": "partial"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "const": "E_VALIDATION"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": false
+              }
+            }
+          },
+          "completeness": {
+            "const": "unavailable"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "const": "E_CANCELLED"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": false
+              }
+            }
+          },
+          "completeness": {
+            "const": "unavailable"
+          }
+        }
+      }
+    }
+  ]
+}

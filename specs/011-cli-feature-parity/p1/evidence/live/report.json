@@ -1,0 +1,20 @@
+{
+  "domain": "www.boardgamebliss.com",
+  "request_limit": 5,
+  "product_limit": 2,
+  "timeout_seconds": 30,
+  "retries": 0,
+  "attempts": [
+    {
+      "method": "GET",
+      "url": "https://www.boardgamebliss.com/products.json?limit=2&page=1",
+      "status": 200
+    }
+  ],
+  "actual_observation": "passed",
+  "exit_code": 3,
+  "products_retained": 2,
+  "catalog_complete": false,
+  "elapsed_seconds": 0.527,
+  "actual_http_attempts": 1
+}

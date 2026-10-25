@@ -1,0 +1,123 @@
+{
+  "legacy_declarations_dispatch_identical": true,
+  "legacy_commands": 9,
+  "baseline_source_sha256": "39e99388bd641556613cca1f873ff2ec4e65ab1140b1e706dcabc9964cdad37d",
+  "current_cli_sha256": "3da88320db5086f8f99db47a1d8354ecd4f8818163989a2383f31e144597116b",
+  "core_sha256": "e991b9570d448933f04ab1a51d8ed9c1dc4f0cf451508330849a08ce1585ef66",
+  "new_private_core_classifications": [
+    {
+      "name": "CliSettings",
+      "classification": "data_schema",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "CliFailure",
+      "classification": "data_schema",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "ConfigSource",
+      "classification": "data_schema",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "BootstrapScan",
+      "classification": "data_schema",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "settings",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "scan_bootstrap",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "read_cli_config",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "select_config",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "error_output_format",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "resolve_settings",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "make_response",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "emit_response",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "emit_diagnostic",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "failure_exit",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "emit_success",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    },
+    {
+      "name": "CoreGroup",
+      "classification": "implementation_helper",
+      "phase": "P0",
+      "target": "root settings/bootstrap/response/error",
+      "rationale": "Private shared CLI core; no standalone domain workflow."
+    }
+  ],
+  "git_diff_check_returncode": 0,
+  "inventory_note": "Frozen design inventory preserved; current core delta classified here. Full evolving capability manifest audit belongs to final parity stage."
+}

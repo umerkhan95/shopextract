@@ -1,0 +1,494 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFFFFFFFF.FFFFFFF                                                    [100%]
+=================================== FAILURES ===================================
+_________________________ test_snapshot_roundtrip_red __________________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-221/test_snapshot_roundtrip_red0')
+
+    def test_snapshot_roundtrip_red(tmp_path):
+        source=tmp_path/'products.json'; db=tmp_path/'snap.db'
+        source.write_text(json.dumps([product_to_record(Product(title='synthetic',price=Decimal('10.010000000000000001'),external_id='a'))]))
+        saved=invoke('snapshot-save',source,'--domain','shop.example','--db',db)
+>       assert saved.exit_code==0,saved.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:19: AssertionError
+______________________ test_resolve_missing_contract_red _______________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-221/test_resolve_missing_contract_0')
+
+    def test_resolve_missing_contract_red(tmp_path):
+        source=tmp_path/'products.json'
+        source.write_text(json.dumps([product_to_record(Product(title='synthetic'))]))
+        result=invoke('resolve',source,'--as-of','2026-10-16T10:00:00Z')
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:30: AssertionError
+______________________ test_p3_binding_family_red[args0] _______________________
+
+args = ['snapshot', 'https://shop.example', '--db', 'unused.db', '--max', '2']
+
+    @pytest.mark.parametrize('args',[
+        ['snapshot','https://shop.example','--db','unused.db','--max','2'],
+        ['history','shop.example','title','--db','missing.db','--canonical-id','p_a'],
+        ['changes','shop.example','--reliable','--previous','1','--current','2','--recheck','3','--db','missing.db'],
+        ['watch','https://shop.example','--interval','1','--max-events','1','--timeout','0.01','--db','unused.db'],
+        ['evidence','get','e_missing','--snapshot','1','--record-key','product/0','--db','missing.db'],
+        ['evidence','prune','--before','2026-10-16T00:00:00Z','--db','missing.db'],
+        ['evidence','bundle','create','missing.json'],
+        ['evidence','sidecar','load','missing.json','--payload','missing.csv'],
+        ['identity','migrate','--db','missing.db','--apply'],
+    ])
+    def test_p3_binding_family_red(args):
+        # Registration and arity must succeed before native file errors; no network runs.
+        result=invoke(*args,'--help')
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:49: AssertionError
+______________________ test_p3_binding_family_red[args1] _______________________
+
+args = ['history', 'shop.example', 'title', '--db', 'missing.db', '--canonical-id', ...]
+
+    @pytest.mark.parametrize('args',[
+        ['snapshot','https://shop.example','--db','unused.db','--max','2'],
+        ['history','shop.example','title','--db','missing.db','--canonical-id','p_a'],
+        ['changes','shop.example','--reliable','--previous','1','--current','2','--recheck','3','--db','missing.db'],
+        ['watch','https://shop.example','--interval','1','--max-events','1','--timeout','0.01','--db','unused.db'],
+        ['evidence','get','e_missing','--snapshot','1','--record-key','product/0','--db','missing.db'],
+        ['evidence','prune','--before','2026-10-16T00:00:00Z','--db','missing.db'],
+        ['evidence','bundle','create','missing.json'],
+        ['evidence','sidecar','load','missing.json','--payload','missing.csv'],
+        ['identity','migrate','--db','missing.db','--apply'],
+    ])
+    def test_p3_binding_family_red(args):
+        # Registration and arity must succeed before native file errors; no network runs.
+        result=invoke(*args,'--help')
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:49: AssertionError
+______________________ test_p3_binding_family_red[args2] _______________________
+
+args = ['changes', 'shop.example', '--reliable', '--previous', '1', '--current', ...]
+
+    @pytest.mark.parametrize('args',[
+        ['snapshot','https://shop.example','--db','unused.db','--max','2'],
+        ['history','shop.example','title','--db','missing.db','--canonical-id','p_a'],
+        ['changes','shop.example','--reliable','--previous','1','--current','2','--recheck','3','--db','missing.db'],
+        ['watch','https://shop.example','--interval','1','--max-events','1','--timeout','0.01','--db','unused.db'],
+        ['evidence','get','e_missing','--snapshot','1','--record-key','product/0','--db','missing.db'],
+        ['evidence','prune','--before','2026-10-16T00:00:00Z','--db','missing.db'],
+        ['evidence','bundle','create','missing.json'],
+        ['evidence','sidecar','load','missing.json','--payload','missing.csv'],
+        ['identity','migrate','--db','missing.db','--apply'],
+    ])
+    def test_p3_binding_family_red(args):
+        # Registration and arity must succeed before native file errors; no network runs.
+        result=invoke(*args,'--help')
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:49: AssertionError
+______________________ test_p3_binding_family_red[args3] _______________________
+
+args = ['watch', 'https://shop.example', '--interval', '1', '--max-events', '1', ...]
+
+    @pytest.mark.parametrize('args',[
+        ['snapshot','https://shop.example','--db','unused.db','--max','2'],
+        ['history','shop.example','title','--db','missing.db','--canonical-id','p_a'],
+        ['changes','shop.example','--reliable','--previous','1','--current','2','--recheck','3','--db','missing.db'],
+        ['watch','https://shop.example','--interval','1','--max-events','1','--timeout','0.01','--db','unused.db'],
+        ['evidence','get','e_missing','--snapshot','1','--record-key','product/0','--db','missing.db'],
+        ['evidence','prune','--before','2026-10-16T00:00:00Z','--db','missing.db'],
+        ['evidence','bundle','create','missing.json'],
+        ['evidence','sidecar','load','missing.json','--payload','missing.csv'],
+        ['identity','migrate','--db','missing.db','--apply'],
+    ])
+    def test_p3_binding_family_red(args):
+        # Registration and arity must succeed before native file errors; no network runs.
+        result=invoke(*args,'--help')
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:49: AssertionError
+______________________ test_p3_binding_family_red[args4] _______________________
+
+args = ['evidence', 'get', 'e_missing', '--snapshot', '1', '--record-key', ...]
+
+    @pytest.mark.parametrize('args',[
+        ['snapshot','https://shop.example','--db','unused.db','--max','2'],
+        ['history','shop.example','title','--db','missing.db','--canonical-id','p_a'],
+        ['changes','shop.example','--reliable','--previous','1','--current','2','--recheck','3','--db','missing.db'],
+        ['watch','https://shop.example','--interval','1','--max-events','1','--timeout','0.01','--db','unused.db'],
+        ['evidence','get','e_missing','--snapshot','1','--record-key','product/0','--db','missing.db'],
+        ['evidence','prune','--before','2026-10-16T00:00:00Z','--db','missing.db'],
+        ['evidence','bundle','create','missing.json'],
+        ['evidence','sidecar','load','missing.json','--payload','missing.csv'],
+        ['identity','migrate','--db','missing.db','--apply'],
+    ])
+    def test_p3_binding_family_red(args):
+        # Registration and arity must succeed before native file errors; no network runs.
+        result=invoke(*args,'--help')
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:49: AssertionError
+______________________ test_p3_binding_family_red[args5] _______________________
+
+args = ['evidence', 'prune', '--before', '2026-10-16T00:00:00Z', '--db', 'missing.db']
+
+    @pytest.mark.parametrize('args',[
+        ['snapshot','https://shop.example','--db','unused.db','--max','2'],
+        ['history','shop.example','title','--db','missing.db','--canonical-id','p_a'],
+        ['changes','shop.example','--reliable','--previous','1','--current','2','--recheck','3','--db','missing.db'],
+        ['watch','https://shop.example','--interval','1','--max-events','1','--timeout','0.01','--db','unused.db'],
+        ['evidence','get','e_missing','--snapshot','1','--record-key','product/0','--db','missing.db'],
+        ['evidence','prune','--before','2026-10-16T00:00:00Z','--db','missing.db'],
+        ['evidence','bundle','create','missing.json'],
+        ['evidence','sidecar','load','missing.json','--payload','missing.csv'],
+        ['identity','migrate','--db','missing.db','--apply'],
+    ])
+    def test_p3_binding_family_red(args):
+        # Registration and arity must succeed before native file errors; no network runs.
+        result=invoke(*args,'--help')
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:49: AssertionError
+______________________ test_p3_binding_family_red[args6] _______________________
+
+args = ['evidence', 'bundle', 'create', 'missing.json']
+
+    @pytest.mark.parametrize('args',[
+        ['snapshot','https://shop.example','--db','unused.db','--max','2'],
+        ['history','shop.example','title','--db','missing.db','--canonical-id','p_a'],
+        ['changes','shop.example','--reliable','--previous','1','--current','2','--recheck','3','--db','missing.db'],
+        ['watch','https://shop.example','--interval','1','--max-events','1','--timeout','0.01','--db','unused.db'],
+        ['evidence','get','e_missing','--snapshot','1','--record-key','product/0','--db','missing.db'],
+        ['evidence','prune','--before','2026-10-16T00:00:00Z','--db','missing.db'],
+        ['evidence','bundle','create','missing.json'],
+        ['evidence','sidecar','load','missing.json','--payload','missing.csv'],
+        ['identity','migrate','--db','missing.db','--apply'],
+    ])
+    def test_p3_binding_family_red(args):
+        # Registration and arity must succeed before native file errors; no network runs.
+        result=invoke(*args,'--help')
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:49: AssertionError
+______________________ test_p3_binding_family_red[args7] _______________________
+
+args = ['evidence', 'sidecar', 'load', 'missing.json', '--payload', 'missing.csv']
+
+    @pytest.mark.parametrize('args',[
+        ['snapshot','https://shop.example','--db','unused.db','--max','2'],
+        ['history','shop.example','title','--db','missing.db','--canonical-id','p_a'],
+        ['changes','shop.example','--reliable','--previous','1','--current','2','--recheck','3','--db','missing.db'],
+        ['watch','https://shop.example','--interval','1','--max-events','1','--timeout','0.01','--db','unused.db'],
+        ['evidence','get','e_missing','--snapshot','1','--record-key','product/0','--db','missing.db'],
+        ['evidence','prune','--before','2026-10-16T00:00:00Z','--db','missing.db'],
+        ['evidence','bundle','create','missing.json'],
+        ['evidence','sidecar','load','missing.json','--payload','missing.csv'],
+        ['identity','migrate','--db','missing.db','--apply'],
+    ])
+    def test_p3_binding_family_red(args):
+        # Registration and arity must succeed before native file errors; no network runs.
+        result=invoke(*args,'--help')
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:49: AssertionError
+______________________ test_p3_binding_family_red[args8] _______________________
+
+args = ['identity', 'migrate', '--db', 'missing.db', '--apply']
+
+    @pytest.mark.parametrize('args',[
+        ['snapshot','https://shop.example','--db','unused.db','--max','2'],
+        ['history','shop.example','title','--db','missing.db','--canonical-id','p_a'],
+        ['changes','shop.example','--reliable','--previous','1','--current','2','--recheck','3','--db','missing.db'],
+        ['watch','https://shop.example','--interval','1','--max-events','1','--timeout','0.01','--db','unused.db'],
+        ['evidence','get','e_missing','--snapshot','1','--record-key','product/0','--db','missing.db'],
+        ['evidence','prune','--before','2026-10-16T00:00:00Z','--db','missing.db'],
+        ['evidence','bundle','create','missing.json'],
+        ['evidence','sidecar','load','missing.json','--payload','missing.csv'],
+        ['identity','migrate','--db','missing.db','--apply'],
+    ])
+    def test_p3_binding_family_red(args):
+        # Registration and arity must succeed before native file errors; no network runs.
+        result=invoke(*args,'--help')
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:49: AssertionError
+_______________________ test_history_exact_readonly_red ________________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-221/test_history_exact_readonly_re0')
+
+    def test_history_exact_readonly_red(tmp_path):
+        db=str(tmp_path/'snap.db')
+        save(db,[product('10.010000000000000001')],0)
+        before=Path(db).read_bytes()
+>       result=payload(invoke('history',DOMAIN,'Widget','--db',db))
+
+tests/test_cli_monitor.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>
+
+    def payload(result):
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:57: AssertionError
+___________________________ test_reliable_replay_red ___________________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-221/test_reliable_replay_red0')
+
+    def test_reliable_replay_red(tmp_path):
+        db=str(tmp_path/'snap.db'); a=save(db,[product()],0); b=save(db,[product('11',tick=1)],1)
+        args=('changes',DOMAIN,'--reliable','--previous',a,'--current',b,'--db',db)
+>       assert len(payload(invoke(*args))['new_events'])==1
+
+tests/test_cli_monitor.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>
+
+    def payload(result):
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:57: AssertionError
+_____________________ test_evidence_get_prune_readonly_red _____________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-221/test_evidence_get_prune_readon0')
+
+    def test_evidence_get_prune_readonly_red(tmp_path):
+        db=str(tmp_path/'snap.db'); sid=save(db,[product()],0)
+        from shopextract._portable import product_to_record
+        eid=product_to_record(product())['evidence_contract']['evidence'][0]['evidence_id']
+        before=Path(db).read_bytes()
+>       assert payload(invoke('evidence','get',eid,'--snapshot',sid,'--record-key','product/0','--db',db))['status']=='available'
+
+tests/test_cli_monitor.py:91: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>
+
+    def payload(result):
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:57: AssertionError
+_______________________ test_bundle_sidecar_runtime_red ________________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-221/test_bundle_sidecar_runtime_re0')
+
+    def test_bundle_sidecar_runtime_red(tmp_path):
+        from shopextract.export import to_csv
+        source=tmp_path/'products.json'; bundle=tmp_path/'bundle.json'; sidecar=tmp_path/'sidecar.json'; csv=tmp_path/'products.csv'
+        products=[product()]; source.write_text(json.dumps([product_to_record(p) for p in products])); to_csv(products,str(csv))
+>       payload(invoke('evidence','bundle','create',source,'-o',bundle))
+
+tests/test_cli_monitor.py:101: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>
+
+    def payload(result):
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:57: AssertionError
+__________________ test_identity_migration_apply_required_red __________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-221/test_identity_migration_apply_0')
+
+    def test_identity_migration_apply_required_red(tmp_path):
+        db=str(tmp_path/'snap.db'); save(db,[product()],0); before=Path(db).read_bytes()
+        result=invoke('identity','migrate','--db',db)
+        assert result.exit_code==2
+        assert json.loads(result.output)['error']['code']=='E_USAGE'
+        assert Path(db).read_bytes()==before
+>       assert payload(invoke('identity','migrate','--db',db,'--apply'))['applied'] is True
+
+tests/test_cli_monitor.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>
+
+    def payload(result):
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:57: AssertionError
+______________________ test_watch_unchanged_deadline_red _______________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-221/test_watch_unchanged_deadline_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x113eaa710>
+
+    def test_watch_unchanged_deadline_red(tmp_path,monkeypatch):
+        import importlib
+        module=importlib.import_module('shopextract.monitor.snapshot')
+        from shopextract._models import ExtractionResult, Platform, ExtractionTier
+        calls=[]
+        async def extraction(url,**kwargs):
+            calls.append(kwargs)
+            return ExtractionResult(products=[product()],platform=Platform.SHOPIFY,tier=ExtractionTier.API)
+        monkeypatch.setattr(module,'extract',extraction)
+        result=invoke('watch','https://shop.example','--interval','0.01','--max-events','1','--timeout','0.05','--max','2','--db',tmp_path/'snap.db')
+>       assert result.exit_code==3,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 3
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:126: AssertionError
+__________________________ test_prune_independent_red __________________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-221/test_prune_independent_red0')
+
+    def test_prune_independent_red(tmp_path):
+        db=str(tmp_path/'snap.db'); save(db,[product()],0); before=Path(db).read_bytes()
+>       report=payload(invoke('evidence','prune','--before','2026-10-17T00:00:00Z','--db',db))
+
+tests/test_cli_monitor.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>
+
+    def payload(result):
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:57: AssertionError
+_________________________ test_sidecar_independent_red _________________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-221/test_sidecar_independent_red0')
+
+    def test_sidecar_independent_red(tmp_path):
+        from shopextract.export import to_csv
+        from shopextract.export._bundle import create_evidence_sidecar
+        products=[product()]; csv=tmp_path/'p.csv'; to_csv(products,str(csv))
+        sidecar=tmp_path/'side.json'; sidecar.write_text(json.dumps(create_evidence_sidecar(products,csv.read_bytes(),format='csv')))
+>       assert len(payload(invoke('evidence','sidecar','load',sidecar,'--payload',csv))['products'])==1
+
+tests/test_cli_monitor.py:144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>
+
+    def payload(result):
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:57: AssertionError
+_______________________ test_snapshot_explicit_bound_red _______________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-221/test_snapshot_explicit_bound_r0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x113eb2320>
+
+    def test_snapshot_explicit_bound_red(tmp_path,monkeypatch):
+        import importlib
+        module=importlib.import_module('shopextract.monitor.snapshot')
+        from shopextract._models import ExtractionResult, Platform, ExtractionTier
+        async def extraction(url,**kwargs):
+            assert kwargs['max_urls']==2
+            return ExtractionResult(products=[product(key=str(i)) for i in range(3)],platform=Platform.SHOPIFY,tier=ExtractionTier.API)
+        monkeypatch.setattr(module,'extract',extraction)
+        db=str(tmp_path/'snap.db')
+>       assert payload(invoke('snapshot','https://shop.example','--max','2','--timeout','1','--db',db))['stored_products']==2
+
+tests/test_cli_monitor.py:156: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = <Result SystemExit(2)>
+
+    def payload(result):
+>       assert result.exit_code==0,result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_cli_monitor.py:57: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli_monitor.py::test_snapshot_roundtrip_red - AssertionErro...
+FAILED tests/test_cli_monitor.py::test_resolve_missing_contract_red - Asserti...
+FAILED tests/test_cli_monitor.py::test_p3_binding_family_red[args0] - Asserti...
+FAILED tests/test_cli_monitor.py::test_p3_binding_family_red[args1] - Asserti...
+FAILED tests/test_cli_monitor.py::test_p3_binding_family_red[args2] - Asserti...
+FAILED tests/test_cli_monitor.py::test_p3_binding_family_red[args3] - Asserti...
+FAILED tests/test_cli_monitor.py::test_p3_binding_family_red[args4] - Asserti...
+FAILED tests/test_cli_monitor.py::test_p3_binding_family_red[args5] - Asserti...
+FAILED tests/test_cli_monitor.py::test_p3_binding_family_red[args6] - Asserti...
+FAILED tests/test_cli_monitor.py::test_p3_binding_family_red[args7] - Asserti...
+FAILED tests/test_cli_monitor.py::test_p3_binding_family_red[args8] - Asserti...
+FAILED tests/test_cli_monitor.py::test_history_exact_readonly_red - Assertion...
+FAILED tests/test_cli_monitor.py::test_reliable_replay_red - AssertionError: ...
+FAILED tests/test_cli_monitor.py::test_evidence_get_prune_readonly_red - Asse...
+FAILED tests/test_cli_monitor.py::test_bundle_sidecar_runtime_red - Assertion...
+FAILED tests/test_cli_monitor.py::test_identity_migration_apply_required_red
+FAILED tests/test_cli_monitor.py::test_watch_unchanged_deadline_red - Asserti...
+FAILED tests/test_cli_monitor.py::test_prune_independent_red - AssertionError...
+FAILED tests/test_cli_monitor.py::test_sidecar_independent_red - AssertionErr...
+FAILED tests/test_cli_monitor.py::test_snapshot_explicit_bound_red - Assertio...
+20 failed, 1 passed in 0.64s

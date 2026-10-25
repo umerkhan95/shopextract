@@ -1,0 +1,11 @@
+{
+  "json_decode": "passed",
+  "schema_meta_validation": "passed",
+  "validator": "installed jsonschema Draft202012Validator.check_schema",
+  "schemas": [
+    "config.schema.json",
+    "response.schema.json"
+  ],
+  "runtime_acceptance": "not_run",
+  "network_models_installs": false
+}

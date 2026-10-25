@@ -1,0 +1,4 @@
+{"group": "main", "status": "passed", "seconds": 187.612391, "summary": "1465 passed, 74 warnings in 184.06s (0:03:04)", "log": "specs/011-cli-feature-parity/p5/evidence/configured-ci/main.log"}
+{"group": "reliable-oracle", "status": "passed", "seconds": 121.997828, "summary": "24 passed in 119.46s (0:01:59)", "log": "specs/011-cli-feature-parity/p5/evidence/configured-ci/reliable-oracle.log"}
+{"group": "maintenance", "status": "passed", "seconds": 109.903748, "summary": "106 passed in 107.42s (0:01:47)", "log": "specs/011-cli-feature-parity/p5/evidence/configured-ci/maintenance.log"}
+{"status": "passed", "seconds": 419.517006, "report": "specs/011-cli-feature-parity/p5/evidence/configured-ci/report.json"}

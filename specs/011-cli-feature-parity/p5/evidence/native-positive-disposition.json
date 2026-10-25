@@ -1,0 +1,7 @@
+{
+  "hypothesis": "native float annotations imply fractional limit values accepted",
+  "disposition": "rejected; native uses exact default-value types, all current defaults ints",
+  "production_restored_byteidentical_to_reviewed_manifest": true,
+  "source_sha256": "8c8f278a595c89179401426c722ffbf235f42262ffefc33f97b75028ba6c22ce",
+  "counted_as_acceptance_pass": false
+}

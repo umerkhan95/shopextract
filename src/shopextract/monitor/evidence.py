@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib
 import json
 import sqlite3
+import time
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from decimal import Decimal
@@ -21,6 +22,17 @@ from ..identity import identify_records, migrate_snapshot_identities, supplier_s
 DEFAULT_DB_PATH = "~/.shopextract/snapshots.db"
 MAX_SNAPSHOT_BYTES = 16 * 1024 * 1024
 MAX_PRUNE_BATCH = 1000
+MAX_PREVIEW_DB_BYTES = 64 * 1024 * 1024
+PREVIEW_TIMEOUT_SECONDS = 5
+_preview_clock = time.monotonic
+
+
+class PreviewLimitError(RuntimeError):
+    """A read-only retention preview exceeded its explicit resource boundary."""
+    def __init__(self, reason):
+        self.reason = reason
+        super().__init__(reason)
+
 _REASON = "legacy_snapshot_without_captured_graph"
 
 @dataclass(frozen=True)
@@ -268,9 +280,10 @@ def _load_snapshot(conn, snapshot_id):
     return list(_iter_snapshot(conn, snapshot_id))
 
 
-def load_snapshot(snapshot_id: int, *, db_path=DEFAULT_DB_PATH) -> list[Product]:
+def load_snapshot(snapshot_id: int, *, db_path=DEFAULT_DB_PATH, read_only=False) -> list[Product]:
     from .snapshot import _get_connection
-    conn = _get_connection(db_path)
+    from .changes import _open_read_db
+    conn = _open_read_db(db_path) if read_only else _get_connection(db_path)
     try:
         with conn:
             conn.execute("BEGIN")
@@ -281,9 +294,10 @@ def load_snapshot(snapshot_id: int, *, db_path=DEFAULT_DB_PATH) -> list[Product]
         conn.close()
 
 
-def get_evidence(evidence_id: str, *, snapshot_id=None, record_key=None, db_path=DEFAULT_DB_PATH) -> EvidenceLookup:
+def get_evidence(evidence_id: str, *, snapshot_id=None, record_key=None, db_path=DEFAULT_DB_PATH, read_only=False) -> EvidenceLookup:
     from .snapshot import _get_connection
-    conn = _get_connection(db_path)
+    from .changes import _open_read_db
+    conn = _open_read_db(db_path) if read_only else _get_connection(db_path)
     try:
         conn.execute("BEGIN")
         where, args = ["evidence_id=?"], [evidence_id]
@@ -306,7 +320,7 @@ def get_evidence(evidence_id: str, *, snapshot_id=None, record_key=None, db_path
         conn.close()
 
 
-def prune_evidence(*, db_path=DEFAULT_DB_PATH, before: datetime, protect_references=True, dry_run=True, batch_size=100) -> PruneReport:
+def prune_evidence(*, db_path=DEFAULT_DB_PATH, before: datetime, protect_references=True, dry_run=True, batch_size=100, read_only_preview=False) -> PruneReport:
     """Inspect one bounded prefix; protected prefixes may remain on later calls."""
     from .snapshot import _get_connection
     _utc(before)
@@ -314,7 +328,41 @@ def prune_evidence(*, db_path=DEFAULT_DB_PATH, before: datetime, protect_referen
         raise ValueError("batch_size must be between 1 and 1000")
     if type(protect_references) is not bool or type(dry_run) is not bool:
         raise ValueError("Retention options must be boolean")
-    conn = _get_connection(db_path)
+    if read_only_preview:
+        if not dry_run:
+            raise ValueError('read_only_preview requires dry_run')
+        from .changes import _open_read_db
+        source = _open_read_db(db_path)
+        conn = None
+        try:
+            page_size = source.execute('PRAGMA page_size').fetchone()[0]
+            page_count = source.execute('PRAGMA page_count').fetchone()[0]
+            if page_count * page_size > MAX_PREVIEW_DB_BYTES:
+                raise PreviewLimitError('size')
+            started = _preview_clock()
+            def bounded_copy(status, remaining, total):
+                # SQLite reports actual source pages, including concurrent growth.
+                if total * page_size > MAX_PREVIEW_DB_BYTES:
+                    raise PreviewLimitError('size')
+                if _preview_clock() - started >= PREVIEW_TIMEOUT_SECONDS:
+                    raise PreviewLimitError('deadline')
+            conn = sqlite3.connect(':memory:')
+            source.backup(conn, pages=256, progress=bounded_copy, sleep=0.05)
+        except BaseException:
+            if conn is not None:
+                conn.close()
+            raise
+        finally:
+            source.close()
+        # Reuse native schema and retention algorithm exclusively on the copy.
+        try:
+            with conn:
+                _ensure_evidence_schema(conn)
+        except BaseException:
+            conn.close()
+            raise
+    else:
+        conn = _get_connection(db_path)
     try:
         conn.execute("BEGIN IMMEDIATE")
         rows = conn.execute("SELECT * FROM evidence_records WHERE status='available' AND observed_at<? ORDER BY observed_at,snapshot_id,record_key,evidence_id LIMIT ?", (before.isoformat(timespec="microseconds"), batch_size + 1)).fetchall()

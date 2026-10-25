@@ -1,0 +1,52 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_watch_initial_timeout_state _______________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-224/test_watch_initial_timeout_sta0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x116525000>
+
+    def test_watch_initial_timeout_state(tmp_path,monkeypatch):
+        import importlib,asyncio
+        module=importlib.import_module('shopextract.monitor.snapshot'); cancelled=[]
+        async def extraction(*args,**kwargs):
+            try:await asyncio.sleep(1)
+            finally:cancelled.append(True)
+        monkeypatch.setattr(module,'extract',extraction)
+        db=tmp_path/'no.db'
+        result=invoke('watch','https://shop.example','--interval','0.01','--max-events','1','--timeout','0.03','--db',db)
+        assert result.exit_code==3,result.output
+>       assert json.loads(result.output)['data']=={'events':0,'reason':'timeout','initialized':False}
+E       AssertionError: assert {'events': 0,...n': 'timeout'} == {'events': 0,...lized': False}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Right contains 1 more item:
+E         {'initialized': False}
+E         Use -v to get more diff
+
+tests/test_cli_monitor.py:173: AssertionError
+__________________ test_watch_partial_changes_are_unverified ___________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-224/test_watch_partial_changes_are0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1164d3790>
+
+    def test_watch_partial_changes_are_unverified(tmp_path,monkeypatch):
+        import importlib
+        from shopextract._models import ExtractionResult,Platform,ExtractionTier
+        module=importlib.import_module('shopextract.monitor.snapshot');calls=[]
+        async def extraction(*args,**kwargs):
+            tick=len(calls);calls.append(tick)
+            return ExtractionResult(products=[product('10' if not tick else '11',tick=tick)],platform=Platform.SHOPIFY,tier=ExtractionTier.API,catalog_complete=False,observation_scope='catalog:shop.example:all')
+        monkeypatch.setattr(module,'extract',extraction)
+        result=invoke('watch','https://shop.example','--interval','0.001','--max-events','1','--timeout','1','--db',tmp_path/'s.db')
+        assert result.exit_code==0,result.output
+        rows=[json.loads(line)['data'] for line in result.output.splitlines()]
+>       assert rows[0]['verification']=='unverified_scalar_comparison'
+E       KeyError: 'verification'
+
+tests/test_cli_monitor.py:188: KeyError
+=========================== short test summary info ============================
+FAILED tests/test_cli_monitor.py::test_watch_initial_timeout_state - Assertio...
+FAILED tests/test_cli_monitor.py::test_watch_partial_changes_are_unverified
+2 failed, 21 deselected in 0.33s

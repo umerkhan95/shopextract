@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "mode": "read-only standard-library identity records",
+  "cases": 23,
+  "completed_cases": 23,
+  "reports": 23,
+  "owner_references_checked": 196,
+  "elapsed_seconds": 0.053
+}

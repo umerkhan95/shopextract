@@ -1,19 +1,79 @@
 {
+  "state": "merged",
+  "updated_at": "2026-10-17T01:46:42.008541+02:00",
   "pull_request": "https://github.com/umerkhan95/shopextract/pull/59",
-  "branch": "catalog-maintenance-categories",
-  "base": "13065f3c2bfd5161eec6c71ea92802ff55816760",
-  "tickets": [
-    25,
-    55,
-    56,
-    57,
-    58
+  "merged_at": "2026-10-16T23:45:27Z",
+  "merge_commit": "4d57c6be0d4b519da6ca5b061c0a485dc9296b40",
+  "reviewed_head": "7a097032a7129ae64375035ddfd820f42a460ebf",
+  "checks": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-16T23:44:42Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/umerkhan95/shopextract/actions/runs/38982745784/job/117247129967",
+      "name": "test (3.10)",
+      "startedAt": "2026-10-16T23:41:27Z",
+      "status": "COMPLETED",
+      "workflowName": "Tests"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-16T23:44:35Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/umerkhan95/shopextract/actions/runs/38982745784/job/117247129947",
+      "name": "test (3.11)",
+      "startedAt": "2026-10-16T23:41:27Z",
+      "status": "COMPLETED",
+      "workflowName": "Tests"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-16T23:45:02Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/umerkhan95/shopextract/actions/runs/38982745784/job/117247129771",
+      "name": "test (3.12)",
+      "startedAt": "2026-10-16T23:41:27Z",
+      "status": "COMPLETED",
+      "workflowName": "Tests"
+    }
   ],
-  "state": "submitted",
-  "validation": {
-    "reviewed_workspace_tests": 1054,
-    "isolated_focused_passes": 3,
-    "remote_ci": "See PR for live result"
-  },
-  "excluded": "Unrelated stress/workflow history and artifacts, spec004 status, generated databases/locks/bytecode"
+  "tickets": [
+    {
+      "closedAt": "2026-10-16T23:45:28Z",
+      "number": 55,
+      "state": "CLOSED",
+      "title": "Durable catalog maintenance jobs and cumulative budgets",
+      "url": "https://github.com/umerkhan95/shopextract/issues/55"
+    },
+    {
+      "closedAt": "2026-10-16T23:45:28Z",
+      "number": 56,
+      "state": "CLOSED",
+      "title": "Category-aware catalog reconciliation and evidence reports",
+      "url": "https://github.com/umerkhan95/shopextract/issues/56"
+    },
+    {
+      "closedAt": "2026-10-16T23:45:29Z",
+      "number": 57,
+      "state": "CLOSED",
+      "title": "Optional bounded investigation for ambiguous catalog cases",
+      "url": "https://github.com/umerkhan95/shopextract/issues/57"
+    },
+    {
+      "closedAt": "2026-10-16T23:45:29Z",
+      "number": 58,
+      "state": "CLOSED",
+      "title": "Catalog maintenance mechanism verification and operating examples",
+      "url": "https://github.com/umerkhan95/shopextract/issues/58"
+    },
+    {
+      "closedAt": "2026-10-16T23:45:28Z",
+      "number": 25,
+      "state": "CLOSED",
+      "title": "[EPIC 5/9] Catalog Maintenance Agent",
+      "url": "https://github.com/umerkhan95/shopextract/issues/25"
+    }
+  ],
+  "tree_matches_tested_pr_head": true,
+  "unrelated_local_work": "Preserved; original branch/index/worktree not reset or rewritten"
 }

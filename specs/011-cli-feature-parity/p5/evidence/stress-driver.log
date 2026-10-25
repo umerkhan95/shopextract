@@ -1,0 +1,5 @@
+{"name": "p5-stress-origin", "returncode": 0, "seconds": 2.864, "stop": null, "max_group_rss_bytes": 110501888, "orphans": [], "summary": "7 passed, 55 deselected in 0.25s"}
+{"name": "p5-stress-session", "returncode": 0, "seconds": 10.449, "stop": null, "max_group_rss_bytes": 212385792, "orphans": [], "summary": "2 passed, 60 deselected in 7.78s"}
+{"name": "p5-stress-durable", "returncode": 0, "seconds": 10.762, "stop": null, "max_group_rss_bytes": 200597504, "orphans": [], "summary": "3 passed, 59 deselected in 8.15s"}
+{"name": "p5-stress-deadlines", "returncode": 0, "seconds": 15.406, "stop": null, "max_group_rss_bytes": 201097216, "orphans": [], "summary": "4 passed, 58 deselected in 12.72s"}
+{"name": "p5-stress-protocol", "returncode": 0, "seconds": 5.557, "stop": null, "max_group_rss_bytes": 123420672, "orphans": [], "summary": "3 passed, 59 deselected in 2.84s"}

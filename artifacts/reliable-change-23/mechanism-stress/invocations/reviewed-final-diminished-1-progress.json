@@ -1,0 +1,21 @@
+{
+  "status": "running",
+  "attempts": 31,
+  "completed": [
+    {
+      "scenario": "SM09",
+      "seed": 2909,
+      "index": 6,
+      "interaction": 2,
+      "products": 16,
+      "input_bytes": 25840,
+      "reference_checks": 9
+    }
+  ],
+  "allowlist": [
+    "SM09-2909-6",
+    "SM09-2909-7"
+  ],
+  "provenance": "synthetic",
+  "active_case": "SM09-2909-7"
+}

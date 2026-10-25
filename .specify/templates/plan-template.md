@@ -18,3 +18,8 @@ Named checks, saved results and dependent-ticket boundaries.
 Define offline checks and a bounded live plan before implementation, including
 assertions, requests/items, timeouts, retries and stop conditions. Save actual
 results in verification.md and the resume point in status.md.
+For unobservable live behavior, assign agents to reproducible fixture/generator
+authoring, real-path mechanism checks, bounded stress and independent review.
+Predesign expected outcomes and budgets; save seed/configuration and minimal
+failures. Record mechanism/stress results separately from live observations and
+reuse matching valid saved checks. Missing required coverage blocks completion.

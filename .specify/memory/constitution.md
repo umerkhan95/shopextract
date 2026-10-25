@@ -10,7 +10,13 @@
    Follow `docs/development-workflow.md`: research/review, skeleton/review,
    reusable components/review, implementation, offline checks, then bounded live
    checks. Record live not-applicable or blocked honestly; never substitute mocks
-   for required live proof. Save results before expanding scope.
+   for required live proof. When live behavior is unobservable, agents must design
+   reproducible synthetic/adversarial cases first and run bounded mechanism and
+   stress checks against real code, with independent review and separately
+   labelled evidence. Include relevant edge cases and distinct tests for uncovered
+   failure risks/interactions; duplicated assertions do not establish coverage.
+   An inconclusive live result cannot replace those checks.
+   Save results before expanding scope.
 5. Apply the user's bounded-usage instructions: sequential work, no parallel agents
    or inference without authorization, bounded processes, and saved progress.
 6. Keep core code and contracts MIT, self-hostable and free of paid service gates.

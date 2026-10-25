@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShopExtract maintenance-goal",
+  "x-contract-version": "1.0",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "baseline": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "maxItems": 1000
+    },
+    "supplier_origin": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_urls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "baseline_mode": {
+      "enum": [
+        "supplied",
+        "captured"
+      ]
+    },
+    "budgets": {
+      "type": "object",
+      "properties": {
+        "requests": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000,
+          "default": 20
+        },
+        "products": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000,
+          "default": 100
+        },
+        "tokens": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000,
+          "default": 0
+        },
+        "cost_micros": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000000,
+          "default": 0
+        },
+        "input_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 262144,
+          "default": 262144
+        },
+        "evidence_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16777216,
+          "default": 16777216
+        },
+        "report_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2097152,
+          "default": 2097152
+        },
+        "attempt_seconds": {
+          "type": "number",
+          "minimum": 1e-12,
+          "maximum": 120,
+          "default": 10
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "freshness_seconds": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 86400
+    }
+  },
+  "required": [
+    "schema_version",
+    "baseline",
+    "supplier_origin",
+    "product_urls",
+    "deadline"
+  ],
+  "additionalProperties": false
+}

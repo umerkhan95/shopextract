@@ -1,0 +1,30 @@
+{
+  "status": "incomplete",
+  "final_generator_status": "timeout",
+  "direct_owner_audit": "passed",
+  "completed_logical_batches": 23,
+  "attempted_batches": 31,
+  "final_chunk_seconds": 21.016,
+  "cumulative_charged_execution_seconds": 173.914,
+  "accounting": "132.607 measured prior driver sec +20s audit timeout +0.100s unmeasured-overhead reserve +measured finalchunk",
+  "original_phase_breach": "approximately4seconds, retained",
+  "prior_fullgraph_audit": "timed out; not passed",
+  "network_requests": 0,
+  "local_inference": false,
+  "usage_counters": "unavailable",
+  "final_direct_audit_seconds": 0.191,
+  "remaining_seed_batches": [
+    {
+      "seed": 2909,
+      "index": 7,
+      "state": "interrupted"
+    }
+  ],
+  "reusable_pytest_cases_declared": 24,
+  "pytest_collection": "not run by delegate",
+  "no_production_mismatch": true,
+  "fixture_setup_failures": 3,
+  "superseded_boundary_passes": 2,
+  "interrupted_attempts": 3,
+  "source_code_changed": false
+}

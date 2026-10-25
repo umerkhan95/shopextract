@@ -1,0 +1,12 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+........................................................................ [ 55%]
+.........................................................                [100%]
+=============================== warnings summary ===============================
+tests/test_cli_extract.py: 12 warnings
+tests/test_cli_extract_limits.py: 1 warning
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+129 passed, 13 warnings in 1.84s
