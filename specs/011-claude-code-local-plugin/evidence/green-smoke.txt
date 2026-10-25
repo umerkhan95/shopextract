@@ -1,0 +1,47 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+...sF                                                                    [100%]
+=================================== FAILURES ===================================
+___ test_declared_launch_initializes_real_server_with_literal_hostile_paths ____
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/test_claude_code_workflow.py", line 50, in test_declared_launch_initializes_real_server_with_literal_hostile_paths
+  |     await asyncio.wait_for(exercise(), timeout=15)
+  |   File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+  |     return fut.result()
+  |   File "/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/test_claude_code_workflow.py", line 39, in exercise
+  |     async with stdio_client(params) as (read, write):
+  |   File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/contextlib.py", line 217, in __aexit__
+  |     await self.gen.athrow(typ, value, traceback)
+  |   File "/Users/umerkhan/code/shopextract/.venv/lib/python3.10/site-packages/mcp/client/stdio/__init__.py", line 182, in stdio_client
+  |     async with (
+  |   File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/Users/umerkhan/code/shopextract/.venv/lib/python3.10/site-packages/mcp/client/stdio/__init__.py", line 189, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/test_claude_code_workflow.py", line 40, in exercise
+    |     async with ClientSession(read, write) as client:
+    |   File "/Users/umerkhan/code/shopextract/.venv/lib/python3.10/site-packages/mcp/shared/session.py", line 238, in __aexit__
+    |     return await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |   File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+    |     raise BaseExceptionGroup(
+    | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/Users/umerkhan/.codex/worktrees/claude-code-local-plugin/shopextract/tests/test_claude_code_workflow.py", line 41, in exercise
+      |     initialized = await client.initialize()
+      |   File "/Users/umerkhan/code/shopextract/.venv/lib/python3.10/site-packages/mcp/client/session.py", line 183, in initialize
+      |     result = await self.send_request(
+      |   File "/Users/umerkhan/code/shopextract/.venv/lib/python3.10/site-packages/mcp/shared/session.py", line 306, in send_request
+      |     raise McpError(response_or_error.error)
+      | mcp.shared.exceptions.McpError: Connection closed
+      +------------------------------------
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+Install shopextract[mcp] to run the MCP server.
+=========================== short test summary info ============================
+FAILED tests/test_claude_code_workflow.py::test_declared_launch_initializes_real_server_with_literal_hostile_paths
+1 failed, 3 passed, 1 skipped in 1.95s

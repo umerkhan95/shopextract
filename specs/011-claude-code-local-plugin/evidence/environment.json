@@ -1,0 +1,21 @@
+{
+  "python": "3.10.11",
+  "mcp": "1.30.0",
+  "pytest": "9.1.1",
+  "fixture_seed": 24,
+  "package_files": 5,
+  "package_bytes": 11495,
+  "fixture_bounds": {
+    "products": 2,
+    "recipe_tools": 6,
+    "recipe_seconds": 120,
+    "sdk_test_seconds": 20,
+    "direct_case_seconds": 15,
+    "source_stress_admitted_jobs": 9,
+    "source_stress_rejected_jobs": 1,
+    "shutdown_seconds": 2
+  },
+  "usage_counters": "Actual session token counters unavailable; no quota percentage inferred",
+  "core_changes": false,
+  "model_inference": false
+}
