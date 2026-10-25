@@ -18,7 +18,7 @@ class CliSettings:
     diagnostics: str = "normal"
 
 
-@dataclass(frozen=True)
+@dataclass
 class CliFailure(Exception):
     code: str
     message: str

@@ -390,3 +390,21 @@ def test_phase_gate_follows_click_argument_validation(tmp_path, native, monkeypa
     assert result.exit_code == (1 if case == "valid-deferred" else 2), result.output
     envelope(result, "E_OPERATION" if case == "valid-deferred" else "E_USAGE")
     assert attempts == [] and native == []
+
+
+def test_cli_failure_allows_runtime_traceback():
+    from shopextract._cli_core import CliFailure
+    failure=CliFailure('E_USAGE','Synthetic invalid input')
+    try:raise failure
+    except CliFailure as caught:trace=caught.__traceback__
+    failure.__traceback__=trace
+    assert failure.__traceback__ is trace and failure.code=='E_USAGE'
+
+
+def test_cli_failure_survives_execution_context():
+    from shopextract._cli_core import CliFailure
+    from shopextract._execution import ExecutionPolicy,current_policy,execution_policy
+    prior=current_policy();failure=CliFailure('E_USAGE','Synthetic invalid input')
+    with pytest.raises(CliFailure) as caught:
+        with execution_policy(ExecutionPolicy()):raise failure
+    assert caught.value is failure and current_policy() is prior

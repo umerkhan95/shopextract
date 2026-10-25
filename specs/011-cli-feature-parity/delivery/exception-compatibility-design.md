@@ -1,0 +1,5 @@
+# CLI exception compatibility repair — 2026-10-25
+
+Observed Python3.11/3.12 CLI failures emit E_INTERNAL instead of the designed usage/operation codes. Actual CliFailure class reproduction through contextlib on installed Python3.11 raises FrozenInstanceError on __traceback__. Python3.10 local suite did not reveal this contextlib difference.
+
+Design: retain CliFailure fields/code/message/serialization and error redaction; remove only its frozen dataclass flag so Python exception runtime may assign traceback/context/cause. All non-exception immutable settings/policies remain frozen. No new abstraction or dependency. Before implementation add a traceback-assignment regression (fails deterministically on all versions) and real execution_policy propagation preserving the exact exception and restoring context. Existing real CLI error-path tests remain unchanged and must pass on full3-version CI. A small actual Python3.11 import of the production module independently reproduces red then verifies green; full local3.10 affected suites verify existing envelopes. Existing independent review rechecks this narrow changed contract.
