@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "blocked_no_suitable_exact_product_url",
+  "search_queries": [
+    "refrigerator \"total capacity\" \"model\" manufacturer product UK",
+    "site:aeg.co.uk/kitchen/cooling/refrigerators/ \"refrigerator\" \"model\" -filetype:pdf"
+  ],
+  "search_count": 2,
+  "considered_metadata_urls": [
+    "https://podrodze.net/wp-content/uploads/2025/07/Instrukcja-Obslugi-YOLCO-KX40-Zielono-czarny.pdf",
+    "https://device.report/m/fd2fb9700aae2232bc16481fa5aa98c577f5e5b57018b127e3741e8362960a85_optim.pdf",
+    "https://www.teka.com/en-gb/wp-content/uploads/sites/13/2019/06/Teka-Brochure-May-2019.pdf",
+    "https://www.aeg.co.uk/kitchen/cooling/refrigerators/",
+    "https://www.aeg.co.uk/siteassets/regional-assets/emea/uk/support/download-brochures/5324_aeg_mkm_combined_2021_optimized-may-2021-final.pdf",
+    "https://www.aeg.co.uk/kitchen/cooling/"
+  ],
+  "reason": "Considered results were PDF manuals/brochures or category pages, not a suitable exact refrigerator product URL. No guessing, further searches or anti-bot workarounds. Requested one exact product URL from user.",
+  "product_urls": [],
+  "product_http_requests": 0,
+  "actual_live_fields_observed": [],
+  "limits": {
+    "searches": 2,
+    "considered_result_urls": 6,
+    "product_urls": 3,
+    "http_requests_including_redirects": 6,
+    "per_request_seconds": 15,
+    "total_seconds": 90,
+    "automatic_retries": 0
+  },
+  "synthetic_mechanism_status": "48_passed_plus_5_auxiliary_not_live"
+}

@@ -30,3 +30,15 @@ evidence/coverage-matrix.json has4125 sorted rows; reversed branch order produce
 an identical result. Execution finished74.148s within120s, one process, zero
 network/model calls. Focused synthetic+runtime-boundary tests20 passed0.32s.
 Full repository driver and independent inventory final review are still pending.
+
+
+## Current selected policy
+
+The refrigerator pilot now implements nine explicitly selected fields; see
+evidence/current-policy-overlay.json for the shipped definition and digests.
+This derived overlay preserves the original baseline matrix bytes. Generic
+SchemaOrg support passed synthetic mechanism checks; five native lanes remain
+unavailable for the selected physical quantities. Actual live observation is
+blocked pending a suitable exact product URL. Whole-family review and the exact
+remaining profile count remain incomplete/unknown;4,125 taxonomy nodes are not
+4,125 independent profiles.

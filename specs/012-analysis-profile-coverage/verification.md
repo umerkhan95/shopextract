@@ -332,3 +332,25 @@ the same unrelated startup failure before its saved complete passing retry.
 No repeated local full sweep. Deliver draft PR to run repository's exact full
 configured driver in existing Linux Python3.10/3.11/3.12 CI. CI results on the final
 head must pass before live/final/merge; local limitation remains honestly recorded.
+
+
+## Complete CI gate and live disposition
+
+Exact executable head bed967e0579f5384357c6af8a9c3134516aeadfb: run40211313355
+SUCCESS, Python3.10/3.11/3.12 all passed the configured complete driver with
+1772tests each (1642main+24oracle+106maintenance),zero skips. Total170.007460s,
+210.981151s,229.762401s respectively; existing240pergroup/480shared caps retained.
+Compact actual results in evidence/pilot-ci-run.json; full raw CI log stays local
+under artifacts/analysis-profile-coverage/delivery. The macOS startup limitation
+is preserved, not reclassified as passing or repaired by raising a limit.
+
+Permitted discovery then used exactly2search queries and considered6metadata
+URLs. Results were PDFs/category pages, not a suitable exact product URL. No
+product HTTP made; no URL guessed, further search, authentication or anti-bot
+workaround. Live gate BLOCKED, actual observed selected fields empty. Requested
+a concrete product link from user. Synthetic48+5 proof remains separately passed.
+No feature-complete/live-pass claim or next-category expansion.
+
+Current policy overlay derived from immutable baseline+actual shipped definition
+is saved with canonical digests; whole-family completion/remaining count unknown
+and no global job checked facts inferred.
