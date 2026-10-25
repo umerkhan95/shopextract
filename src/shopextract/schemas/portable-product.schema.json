@@ -9,7 +9,85 @@
       "const": 1
     },
     "product": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "value",
+                  "semantic"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "value": {
+                    "type": [
+                      "string",
+                      "integer",
+                      "number",
+                      "boolean",
+                      "null"
+                    ],
+                    "maxLength": 128
+                  },
+                  "semantic": {
+                    "type": "string",
+                    "maxLength": 32
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "additionalProperties": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "value",
+                        "semantic"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "value": {
+                          "type": [
+                            "string",
+                            "integer",
+                            "number",
+                            "boolean",
+                            "null"
+                          ],
+                          "maxLength": 128
+                        },
+                        "semantic": {
+                          "type": "string",
+                          "maxLength": 32
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "evidence_contract": {
       "type": [

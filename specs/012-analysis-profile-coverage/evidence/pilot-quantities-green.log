@@ -1,0 +1,16 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.....F...................................                                [100%]
+=================================== FAILURES ===================================
+__________ test_quantity_precision_does_not_depend_on_decimal_context __________
+tests/test_profile_quantities.py:39: in test_quantity_precision_does_not_depend_on_decimal_context
+    assert result['normalized_before']==digits[:-3]+'.'+digits[-3:]
+E   AssertionError: assert '123456789012...8901234567.89' == '123456789012...901234567.890'
+E
+E     Skipping 49 identical leading characters in diff, use -v to show
+E     - 01234567.890
+E     ?            -
+E     + 01234567.89
+=========================== short test summary info ============================
+FAILED tests/test_profile_quantities.py::test_quantity_precision_does_not_depend_on_decimal_context
+1 failed, 40 passed in 0.55s

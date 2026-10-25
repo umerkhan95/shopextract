@@ -1,0 +1,23 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________ test_repeated_process_cancel_no_accumulation _________________
+tests/test_tool_mechanisms.py:149: in test_repeated_process_cancel_no_accumulation
+    assert barrier.exists(), f'Controlled resolver did not start within operation budget (task_done={task.done()})'
+E   AssertionError: Controlled resolver did not start within operation budget (task_done=True)
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-348/test_repeated_process_cancel_n0/resolver-0.ready').exists
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_tool_mechanisms.py::test_repeated_process_cancel_no_accumulation
+1 failed in 2.62s
+Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<OwnedProcess.run() done, defined at /Users/umerkhan/code/shopextract/src/shopextract/tools/execution.py:43> exception=ToolError('timeout')>
+Traceback (most recent call last):
+  File "/Users/umerkhan/code/shopextract/src/shopextract/tools/execution.py", line 67, in run
+    raise ToolError('timeout')
+shopextract.tools.contracts.ToolError: timeout

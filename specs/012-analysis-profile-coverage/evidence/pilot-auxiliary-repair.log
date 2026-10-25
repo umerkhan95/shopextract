@@ -1,0 +1,14 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+____________ test_fresh_process_hash_seeds_preserve_portable_bytes _____________
+tests/profile_coverage_mechanism_checks.py:55: in test_fresh_process_hash_seeds_preserve_portable_bytes
+    assert outputs[0]==outputs[1]
+E   assert b'{"schema_ve...tracts":[]}\n' == b'{"schema_ve...tracts":[]}\n'
+E
+E     At index 525 diff: b'2' != b'4'
+E     Use -v to get more diff
+=========================== short test summary info ============================
+FAILED tests/profile_coverage_mechanism_checks.py::test_fresh_process_hash_seeds_preserve_portable_bytes
+1 failed, 1 passed in 3.83s

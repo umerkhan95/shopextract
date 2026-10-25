@@ -1,0 +1,21 @@
+diff --git a/tests/test_tool_mechanisms.py b/tests/test_tool_mechanisms.py
+index 5bb77ad..8354c1d 100644
+--- a/tests/test_tool_mechanisms.py
++++ b/tests/test_tool_mechanisms.py
+@@ -141,10 +141,12 @@ async def test_repeated_process_cancel_no_accumulation(tmp_path):
+         ctx=context(limits,owner)
+         barrier=tmp_path/f'resolver-{index}.ready'
+         task=asyncio.create_task(owner.run('resolve',encoded({'host':'store.example','barrier':str(barrier)}),ctx))
+-        for _ in range(300):
+-            if barrier.exists():break
+-            await asyncio.sleep(.005)
+-        assert barrier.exists(), 'Controlled resolver did not start'
++        readiness_deadline=ctx.deadline-limits.cleanup_seconds
++        while not barrier.exists() and not task.done():
++            remaining=readiness_deadline-time.monotonic()
++            if remaining<=0:break
++            await asyncio.sleep(min(.005,remaining))
++        assert barrier.exists(), f'Controlled resolver did not start within operation budget (task_done={task.done()})'
+         ctx.cancelled.set();task.cancel()
+         with pytest.raises(asyncio.CancelledError):await task
+         assert barrier.with_suffix('.late').exists()

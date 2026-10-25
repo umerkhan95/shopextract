@@ -1,0 +1,48 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+_ test_raw_state_metadata_cannot_upgrade_unsupported_comparison[raw0-empty-empty] _
+tests/test_profile_quantities.py:113: in test_raw_state_metadata_cannot_upgrade_unsupported_comparison
+    result=compare_field(FieldRule('volume','identity_variant','volume_total_l_v1'),q('250 L'),None,raw_after=raw)
+E   TypeError: compare_field() got an unexpected keyword argument 'raw_after'
+_ test_raw_state_metadata_cannot_upgrade_unsupported_comparison[raw1-null-null] _
+tests/test_profile_quantities.py:113: in test_raw_state_metadata_cannot_upgrade_unsupported_comparison
+    result=compare_field(FieldRule('volume','identity_variant','volume_total_l_v1'),q('250 L'),None,raw_after=raw)
+E   TypeError: compare_field() got an unexpected keyword argument 'raw_after'
+_ test_raw_state_metadata_cannot_upgrade_unsupported_comparison[raw2-value-None] _
+tests/test_profile_quantities.py:113: in test_raw_state_metadata_cannot_upgrade_unsupported_comparison
+    result=compare_field(FieldRule('volume','identity_variant','volume_total_l_v1'),q('250 L'),None,raw_after=raw)
+E   TypeError: compare_field() got an unexpected keyword argument 'raw_after'
+______ test_source_empty_state_does_not_become_supported_null[None-null] _______
+tests/test_profile_coverage_integration.py:154: in test_source_empty_state_does_not_become_supported_null
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=policy())
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+________ test_source_empty_state_does_not_become_supported_null[-empty] ________
+tests/test_profile_coverage_integration.py:154: in test_source_empty_state_does_not_become_supported_null
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=policy())
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+______ test_source_empty_state_does_not_become_supported_null[   -empty] _______
+tests/test_profile_coverage_integration.py:154: in test_source_empty_state_does_not_become_supported_null
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=policy())
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+=========================== short test summary info ============================
+FAILED tests/test_profile_quantities.py::test_raw_state_metadata_cannot_upgrade_unsupported_comparison[raw0-empty-empty]
+FAILED tests/test_profile_quantities.py::test_raw_state_metadata_cannot_upgrade_unsupported_comparison[raw1-null-null]
+FAILED tests/test_profile_quantities.py::test_raw_state_metadata_cannot_upgrade_unsupported_comparison[raw2-value-None]
+FAILED tests/test_profile_coverage_integration.py::test_source_empty_state_does_not_become_supported_null[None-null]
+FAILED tests/test_profile_coverage_integration.py::test_source_empty_state_does_not_become_supported_null[-empty]
+FAILED tests/test_profile_coverage_integration.py::test_source_empty_state_does_not_become_supported_null[   -empty]
+6 failed in 0.57s

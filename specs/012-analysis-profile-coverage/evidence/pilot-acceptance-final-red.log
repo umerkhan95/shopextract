@@ -1,0 +1,512 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFFFFFFFFFFFFFFFFFF.FFFFFFFFFFFF...FFFFFFFFFFFFFFFFFF.FFFFFFFFFFFF   [100%]
+=================================== FAILURES ===================================
+_ test_quantities_equal_with_explicit_semantics[volume-volume_total_l_v1-total_volume-500 ml-0.5 L-0.5] _
+tests/test_profile_quantities.py:26: in test_quantities_equal_with_explicit_semantics
+    assert result['comparison']=='equal'
+E   AssertionError: assert 'unknown' == 'equal'
+E
+E     - equal
+E     + unknown
+_ test_quantities_equal_with_explicit_semantics[length-length_width_m_v1-product_width-60 cm-0.6 m-0.6] _
+tests/test_profile_quantities.py:26: in test_quantities_equal_with_explicit_semantics
+    assert result['comparison']=='equal'
+E   AssertionError: assert 'unknown' == 'equal'
+E
+E     - equal
+E     + unknown
+_ test_quantities_equal_with_explicit_semantics[length-length_height_m_v1-product_height-1800 mm-1.8 m-1.8] _
+tests/test_profile_quantities.py:26: in test_quantities_equal_with_explicit_semantics
+    assert result['comparison']=='equal'
+E   AssertionError: assert 'unknown' == 'equal'
+E
+E     - equal
+E     + unknown
+_ test_quantities_equal_with_explicit_semantics[length-length_depth_m_v1-product_depth-650 mm-65 cm-0.65] _
+tests/test_profile_quantities.py:26: in test_quantities_equal_with_explicit_semantics
+    assert result['comparison']=='equal'
+E   AssertionError: assert 'unknown' == 'equal'
+E
+E     - equal
+E     + unknown
+_ test_quantities_equal_with_explicit_semantics[volume-volume_total_l_v1-total_volume-0 ml-0 L-0] _
+tests/test_profile_quantities.py:26: in test_quantities_equal_with_explicit_semantics
+    assert result['comparison']=='equal'
+E   AssertionError: assert 'unknown' == 'equal'
+E
+E     - equal
+E     + unknown
+__________ test_quantity_precision_does_not_depend_on_decimal_context __________
+tests/test_profile_quantities.py:38: in test_quantity_precision_does_not_depend_on_decimal_context
+    assert result['comparison']=='equal'
+E   AssertionError: assert 'unknown' == 'equal'
+E
+E     - equal
+E     + unknown
+_ test_invalid_quantity_is_unknown_with_preserved_state[None-total_volume-null-null] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[-total_volume-empty-empty] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[   -total_volume-empty-empty] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[False-total_volume-value-invalid_type] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[0-total_volume-value-unit_missing] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[250-total_volume-value-unit_missing] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[-1 L-total_volume-value-negative] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[NaN-total_volume-value-non_finite] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[Infinity-total_volume-value-non_finite] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[1-2 L-total_volume-value-range] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[250 kg-total_volume-value-unit_incompatible] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[250 gallons-total_volume-value-unit_unsupported] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[250 L-net_volume-value-semantic_mismatch] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[250 L-gross_volume-value-semantic_mismatch] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+_ test_invalid_quantity_is_unknown_with_preserved_state[60 cm-package_width-value-semantic_mismatch] _
+tests/test_profile_quantities.py:55: in test_invalid_quantity_is_unknown_with_preserved_state
+    assert result['input_states']['before']==state and result['input_reasons']['before']==reason
+E   KeyError: 'input_states'
+___________________ test_axis_policy_rejects_height_as_width ___________________
+tests/test_profile_quantities.py:61: in test_axis_policy_rejects_height_as_width
+    assert result['comparison']=='unknown' and result['input_reasons']['before']=='semantic_mismatch'
+E   KeyError: 'input_reasons'
+_______________ test_refrigerator_profile_is_exactly_nine_fields _______________
+tests/test_profile_quantities.py:65: in test_refrigerator_profile_is_exactly_nine_fields
+    value=profile('refrigerator-v1')
+src/shopextract/maintenance/profiles.py:36: in profile
+    raise MaintenanceError('invalid_argument', 'Unknown category profile')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile
+___________ test_custom_quantity_profile_python_and_jsonschema_agree ___________
+tests/test_profile_quantities.py:85: in test_custom_quantity_profile_python_and_jsonschema_agree
+    store=MaintenanceStore(tmp_path/'jobs.db',custom_profiles={'physical-v1':custom})
+src/shopextract/maintenance/store.py:83: in __init__
+    value = _profile_record(configured)
+src/shopextract/maintenance/store.py:60: in _profile_record
+    raise MaintenanceError('invalid_argument', 'Unsupported field rule')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unsupported field rule
+________________ test_quantity_input_length_boundary[128-equal] ________________
+tests/test_profile_quantities.py:99: in test_quantity_input_length_boundary
+    assert result['comparison']==expected
+E   AssertionError: assert 'unknown' == 'equal'
+E
+E     - equal
+E     + unknown
+_______________ test_quantity_input_length_boundary[129-unknown] _______________
+tests/test_profile_quantities.py:100: in test_quantity_input_length_boundary
+    if length==129:assert result['input_reasons']['before']=='input_too_long'
+E   KeyError: 'input_reasons'
+____ test_packaged_schema_admits_new_rule_and_rejects_cross_dimension_pair _____
+tests/test_profile_quantities.py:106: in test_packaged_schema_admits_new_rule_and_rejects_cross_dimension_pair
+    Draft202012Validator(schema).validate(data)
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/jsonschema/validators.py:450: in validate
+    raise error
+E   jsonschema.exceptions.ValidationError: 'volume' is not one of ['text', 'decimal', 'mass']
+E
+E   Failed validating 'enum' in schema['properties']['profiles']['additionalProperties']['additionalProperties']['properties']['kind']:
+E       {'enum': ['text', 'decimal', 'mass']}
+E
+E   On instance['profiles']['physical-v1']['attributes/capacity']['kind']:
+E       'volume'
+___ test_source_projection_keeps_label_value_evidence_and_default_unchanged ____
+tests/test_profile_coverage_integration.py:19: in test_source_projection_keeps_label_value_evidence_and_default_unchanged
+    product=normalized(raw)
+tests/profile_coverage_helpers.py:35: in normalized
+    return normalize(raw,Platform.GENERIC,ORIGIN,include_refrigerator_attributes=enrich)
+E   TypeError: normalize() got an unexpected keyword argument 'include_refrigerator_attributes'
+____ test_finite_unknown_wrapper_survives_real_portable[250 L-total_volume] ____
+tests/test_profile_coverage_integration.py:35: in test_finite_unknown_wrapper_survives_real_portable
+    record=product_to_record(product)
+src/shopextract/_portable.py:149: in product_to_record
+    _check_type(product, Product, "product")
+src/shopextract/_portable.py:97: in _check_type
+    _check_type(getattr(value, name), kind, f"{path}/{name}")
+src/shopextract/_portable.py:87: in _check_type
+    _check_type(child, args[1], f"{path}/{key}")
+src/shopextract/_portable.py:102: in _check_type
+    raise ValueError(f"Invalid type at {path}")
+E   ValueError: Invalid type at product/attributes/capacity
+______ test_finite_unknown_wrapper_survives_real_portable[0-total_volume] ______
+tests/test_profile_coverage_integration.py:35: in test_finite_unknown_wrapper_survives_real_portable
+    record=product_to_record(product)
+src/shopextract/_portable.py:149: in product_to_record
+    _check_type(product, Product, "product")
+src/shopextract/_portable.py:97: in _check_type
+    _check_type(getattr(value, name), kind, f"{path}/{name}")
+src/shopextract/_portable.py:87: in _check_type
+    _check_type(child, args[1], f"{path}/{key}")
+src/shopextract/_portable.py:102: in _check_type
+    raise ValueError(f"Invalid type at {path}")
+E   ValueError: Invalid type at product/attributes/capacity
+____ test_finite_unknown_wrapper_survives_real_portable[False-total_volume] ____
+tests/test_profile_coverage_integration.py:35: in test_finite_unknown_wrapper_survives_real_portable
+    record=product_to_record(product)
+src/shopextract/_portable.py:149: in product_to_record
+    _check_type(product, Product, "product")
+src/shopextract/_portable.py:97: in _check_type
+    _check_type(getattr(value, name), kind, f"{path}/{name}")
+src/shopextract/_portable.py:87: in _check_type
+    _check_type(child, args[1], f"{path}/{key}")
+src/shopextract/_portable.py:102: in _check_type
+    raise ValueError(f"Invalid type at {path}")
+E   ValueError: Invalid type at product/attributes/capacity
+____ test_finite_unknown_wrapper_survives_real_portable[None-total_volume] _____
+tests/test_profile_coverage_integration.py:35: in test_finite_unknown_wrapper_survives_real_portable
+    record=product_to_record(product)
+src/shopextract/_portable.py:149: in product_to_record
+    _check_type(product, Product, "product")
+src/shopextract/_portable.py:97: in _check_type
+    _check_type(getattr(value, name), kind, f"{path}/{name}")
+src/shopextract/_portable.py:87: in _check_type
+    _check_type(child, args[1], f"{path}/{key}")
+src/shopextract/_portable.py:102: in _check_type
+    raise ValueError(f"Invalid type at {path}")
+E   ValueError: Invalid type at product/attributes/capacity
+______ test_finite_unknown_wrapper_survives_real_portable[-total_volume] _______
+tests/test_profile_coverage_integration.py:35: in test_finite_unknown_wrapper_survives_real_portable
+    record=product_to_record(product)
+src/shopextract/_portable.py:149: in product_to_record
+    _check_type(product, Product, "product")
+src/shopextract/_portable.py:97: in _check_type
+    _check_type(getattr(value, name), kind, f"{path}/{name}")
+src/shopextract/_portable.py:87: in _check_type
+    _check_type(child, args[1], f"{path}/{key}")
+src/shopextract/_portable.py:102: in _check_type
+    raise ValueError(f"Invalid type at {path}")
+E   ValueError: Invalid type at product/attributes/capacity
+____ test_finite_unknown_wrapper_survives_real_portable[250 L-gross_volume] ____
+tests/test_profile_coverage_integration.py:35: in test_finite_unknown_wrapper_survives_real_portable
+    record=product_to_record(product)
+src/shopextract/_portable.py:149: in product_to_record
+    _check_type(product, Product, "product")
+src/shopextract/_portable.py:97: in _check_type
+    _check_type(getattr(value, name), kind, f"{path}/{name}")
+src/shopextract/_portable.py:87: in _check_type
+    _check_type(child, args[1], f"{path}/{key}")
+src/shopextract/_portable.py:102: in _check_type
+    raise ValueError(f"Invalid type at {path}")
+E   ValueError: Invalid type at product/attributes/capacity
+___ test_finite_unknown_wrapper_survives_real_portable[60 cm-package_width] ____
+tests/test_profile_coverage_integration.py:35: in test_finite_unknown_wrapper_survives_real_portable
+    record=product_to_record(product)
+src/shopextract/_portable.py:149: in product_to_record
+    _check_type(product, Product, "product")
+src/shopextract/_portable.py:97: in _check_type
+    _check_type(getattr(value, name), kind, f"{path}/{name}")
+src/shopextract/_portable.py:87: in _check_type
+    _check_type(child, args[1], f"{path}/{key}")
+src/shopextract/_portable.py:102: in _check_type
+    raise ValueError(f"Invalid type at {path}")
+E   ValueError: Invalid type at product/attributes/capacity
+_ test_ambiguous_semantic_sources_never_create_observed_quantity[properties0] __
+tests/test_profile_coverage_integration.py:50: in test_ambiguous_semantic_sources_never_create_observed_quantity
+    product=normalized(raw_product(additionalProperty=properties))
+tests/profile_coverage_helpers.py:35: in normalized
+    return normalize(raw,Platform.GENERIC,ORIGIN,include_refrigerator_attributes=enrich)
+E   TypeError: normalize() got an unexpected keyword argument 'include_refrigerator_attributes'
+_ test_ambiguous_semantic_sources_never_create_observed_quantity[properties1] __
+tests/test_profile_coverage_integration.py:50: in test_ambiguous_semantic_sources_never_create_observed_quantity
+    product=normalized(raw_product(additionalProperty=properties))
+tests/profile_coverage_helpers.py:35: in normalized
+    return normalize(raw,Platform.GENERIC,ORIGIN,include_refrigerator_attributes=enrich)
+E   TypeError: normalize() got an unexpected keyword argument 'include_refrigerator_attributes'
+_ test_ambiguous_semantic_sources_never_create_observed_quantity[properties2] __
+tests/test_profile_coverage_integration.py:50: in test_ambiguous_semantic_sources_never_create_observed_quantity
+    product=normalized(raw_product(additionalProperty=properties))
+tests/profile_coverage_helpers.py:35: in normalized
+    return normalize(raw,Platform.GENERIC,ORIGIN,include_refrigerator_attributes=enrich)
+E   TypeError: normalize() got an unexpected keyword argument 'include_refrigerator_attributes'
+____________ test_changed_capacity_remains_identity_variant_review _____________
+tests/test_profile_coverage_integration.py:56: in test_changed_capacity_remains_identity_variant_review
+    result=await reconcile(tmp_path/'j.db',raw=raw_product(additionalProperty=[{'name':'Total capacity','value':'300 L'}]),config=policy())
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+_ test_invalid_captured_fact_is_unknown_not_wholejob_failure[0-total_volume-unit_missing-value] _
+tests/test_profile_coverage_integration.py:68: in test_invalid_captured_fact_is_unknown_not_wholejob_failure
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=policy())
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+_ test_invalid_captured_fact_is_unknown_not_wholejob_failure[False-total_volume-invalid_type-value] _
+tests/test_profile_coverage_integration.py:68: in test_invalid_captured_fact_is_unknown_not_wholejob_failure
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=policy())
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+_ test_invalid_captured_fact_is_unknown_not_wholejob_failure[None-total_volume-null-null] _
+tests/test_profile_coverage_integration.py:68: in test_invalid_captured_fact_is_unknown_not_wholejob_failure
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=policy())
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+_ test_invalid_captured_fact_is_unknown_not_wholejob_failure[250 L-net_volume-semantic_mismatch-value] _
+tests/test_profile_coverage_integration.py:68: in test_invalid_captured_fact_is_unknown_not_wholejob_failure
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=policy())
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+________ test_new_profile_never_bypasses_binding_or_identity[no_config] ________
+tests/test_profile_coverage_integration.py:80: in test_new_profile_never_bypasses_binding_or_identity
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=config,goal=configured_goal(profiles={}) if kind=='selection_absent' else None)
+tests/profile_coverage_helpers.py:47: in reconcile
+    value=normalized(raw or raw_product(),config=config)
+tests/profile_coverage_helpers.py:35: in normalized
+    return normalize(raw,Platform.GENERIC,ORIGIN,include_refrigerator_attributes=enrich)
+E   TypeError: normalize() got an unexpected keyword argument 'include_refrigerator_attributes'
+_______ test_new_profile_never_bypasses_binding_or_identity[no_binding] ________
+tests/test_profile_coverage_integration.py:80: in test_new_profile_never_bypasses_binding_or_identity
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=config,goal=configured_goal(profiles={}) if kind=='selection_absent' else None)
+tests/profile_coverage_helpers.py:47: in reconcile
+    value=normalized(raw or raw_product(),config=config)
+tests/profile_coverage_helpers.py:34: in normalized
+    return normalize_with_categories(raw,Platform.GENERIC,ORIGIN,category_options=config.options,include_refrigerator_attributes=enrich)
+E   TypeError: normalize_with_categories() got an unexpected keyword argument 'include_refrigerator_attributes'
+______ test_new_profile_never_bypasses_binding_or_identity[wrong_binding] ______
+tests/test_profile_coverage_integration.py:80: in test_new_profile_never_bypasses_binding_or_identity
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=config,goal=configured_goal(profiles={}) if kind=='selection_absent' else None)
+tests/profile_coverage_helpers.py:47: in reconcile
+    value=normalized(raw or raw_product(),config=config)
+tests/profile_coverage_helpers.py:34: in normalized
+    return normalize_with_categories(raw,Platform.GENERIC,ORIGIN,category_options=config.options,include_refrigerator_attributes=enrich)
+E   TypeError: normalize_with_categories() got an unexpected keyword argument 'include_refrigerator_attributes'
+_______ test_new_profile_never_bypasses_binding_or_identity[boots_label] _______
+tests/test_profile_coverage_integration.py:80: in test_new_profile_never_bypasses_binding_or_identity
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=config,goal=configured_goal(profiles={}) if kind=='selection_absent' else None)
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+______ test_new_profile_never_bypasses_binding_or_identity[gtin_conflict] ______
+tests/test_profile_coverage_integration.py:80: in test_new_profile_never_bypasses_binding_or_identity
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=config,goal=configured_goal(profiles={}) if kind=='selection_absent' else None)
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+____ test_new_profile_never_bypasses_binding_or_identity[selection_absent] _____
+tests/test_profile_coverage_integration.py:80: in test_new_profile_never_bypasses_binding_or_identity
+    result=await reconcile(tmp_path/'j.db',raw=raw,config=config,goal=configured_goal(profiles={}) if kind=='selection_absent' else None)
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+______ test_persisted_missing_rule_is_review_only_even_with_exact_support ______
+tests/test_profile_coverage_integration.py:96: in test_persisted_missing_rule_is_review_only_even_with_exact_support
+    await engine._reconcile(key,store.goal(key),[product_to_record(product)])
+src/shopextract/maintenance/engine.py:420: in _reconcile
+    elif rule_value['role'] == 'identity_variant' and comparison['comparison'] != 'equal':
+E   TypeError: 'NoneType' object is not subscriptable
+______ test_unit_policy_snapshot_mismatch_and_unrelated_registry_addition ______
+tests/test_profile_coverage_integration.py:103: in test_unit_policy_snapshot_mismatch_and_unrelated_registry_addition
+    store=MaintenanceStore(tmp_path/'j.db');key=store.create(configured_goal());snapshot=store.status(key)['profile_definitions'];store.close()
+src/shopextract/maintenance/store.py:296: in create
+    record, definitions = self._validated(goal)
+src/shopextract/maintenance/store.py:273: in _validated
+    raise MaintenanceError('invalid_argument', 'Unsupported selected field')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unsupported selected field
+_______ test_trusted_profile_selection_propagates_to_real_source_runtime _______
+tests/test_profile_coverage_integration.py:117: in test_trusted_profile_selection_propagates_to_real_source_runtime
+    requests=[];config=policy();store=MaintenanceStore(tmp_path/'j.db',category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+_________ test_missing_quantity_retains_missing_not_null_after_engine __________
+tests/test_profile_coverage_integration.py:136: in test_missing_quantity_retains_missing_not_null_after_engine
+    result=await reconcile(tmp_path/'j.db',raw=raw_product(additionalProperty=[]),config=policy())
+tests/profile_coverage_helpers.py:46: in reconcile
+    store=MaintenanceStore(path,category_config=config)
+src/shopextract/maintenance/store.py:88: in __init__
+    raise MaintenanceError('invalid_argument','Unknown category profile binding')
+E   shopextract.maintenance.contracts.MaintenanceError: invalid_argument: Unknown category profile binding
+_ test_page_diagnostics_preserve_legacy_defaults_and_do_not_read_all_findings __
+tests/test_profile_coverage_cli.py:37: in test_page_diagnostics_preserve_legacy_defaults_and_do_not_read_all_findings
+    page=store.report(key,offset=100,limit=1,include_profile_coverage=True)
+E   TypeError: MaintenanceStore.report() got an unexpected keyword argument 'include_profile_coverage'
+_______ test_report_limit_contract_is_retained_with_diagnostics[0-False] _______
+tests/test_profile_coverage_cli.py:56: in test_report_limit_contract_is_retained_with_diagnostics
+    with pytest.raises(MaintenanceError,match='invalid_argument'):store.report(key,limit=limit,include_profile_coverage=True)
+E   TypeError: MaintenanceStore.report() got an unexpected keyword argument 'include_profile_coverage'
+_______ test_report_limit_contract_is_retained_with_diagnostics[1-True] ________
+tests/test_profile_coverage_cli.py:54: in test_report_limit_contract_is_retained_with_diagnostics
+    if valid:assert len(store.report(key,limit=limit,include_profile_coverage=True)['findings'])==1
+E   TypeError: MaintenanceStore.report() got an unexpected keyword argument 'include_profile_coverage'
+______ test_report_limit_contract_is_retained_with_diagnostics[999-True] _______
+tests/test_profile_coverage_cli.py:54: in test_report_limit_contract_is_retained_with_diagnostics
+    if valid:assert len(store.report(key,limit=limit,include_profile_coverage=True)['findings'])==1
+E   TypeError: MaintenanceStore.report() got an unexpected keyword argument 'include_profile_coverage'
+______ test_report_limit_contract_is_retained_with_diagnostics[1000-True] ______
+tests/test_profile_coverage_cli.py:54: in test_report_limit_contract_is_retained_with_diagnostics
+    if valid:assert len(store.report(key,limit=limit,include_profile_coverage=True)['findings'])==1
+E   TypeError: MaintenanceStore.report() got an unexpected keyword argument 'include_profile_coverage'
+_____ test_report_limit_contract_is_retained_with_diagnostics[1001-False] ______
+tests/test_profile_coverage_cli.py:56: in test_report_limit_contract_is_retained_with_diagnostics
+    with pytest.raises(MaintenanceError,match='invalid_argument'):store.report(key,limit=limit,include_profile_coverage=True)
+E   TypeError: MaintenanceStore.report() got an unexpected keyword argument 'include_profile_coverage'
+____________ test_python_public_operation_root_and_module_cli_agree ____________
+tests/test_profile_coverage_cli.py:63: in test_python_public_operation_root_and_module_cli_agree
+    try:expected=store.report(key,include_profile_coverage=True)
+E   TypeError: MaintenanceStore.report() got an unexpected keyword argument 'include_profile_coverage'
+_______ test_actual_utf8_envelope_budget_includes_newline[1048575-True] ________
+tests/test_profile_coverage_cli.py:79: in test_actual_utf8_envelope_budget_includes_newline
+    encode=importlib.import_module('shopextract.maintenance.reporting').encode_coverage_response
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1050: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1027: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1004: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'shopextract.maintenance.reporting'
+_______ test_actual_utf8_envelope_budget_includes_newline[1048576-True] ________
+tests/test_profile_coverage_cli.py:79: in test_actual_utf8_envelope_budget_includes_newline
+    encode=importlib.import_module('shopextract.maintenance.reporting').encode_coverage_response
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1050: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1027: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1004: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'shopextract.maintenance.reporting'
+_______ test_actual_utf8_envelope_budget_includes_newline[1048577-False] _______
+tests/test_profile_coverage_cli.py:79: in test_actual_utf8_envelope_budget_includes_newline
+    encode=importlib.import_module('shopextract.maintenance.reporting').encode_coverage_response
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1050: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1027: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1004: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'shopextract.maintenance.reporting'
+____________ test_coverage_flag_is_explicit_on_both_cli_help_paths _____________
+tests/test_profile_coverage_cli.py:92: in test_coverage_flag_is_explicit_on_both_cli_help_paths
+    assert root.exit_code==0 and '--coverage' in root.stdout
+E   AssertionError: assert (0 == 0 and '--coverage' in 'Usage: main maintenance report [OPTIONS] JOB\n\nOptions:\n  --offset INTEGER RANGE  [default: 0; x>=0]\n  --limit INTEGER RANGE   [default: 100; 1<=x<=1000]\n  --help                  Show this message and exit.\n')
+E    +  where 0 = <Result okay>.exit_code
+E    +  and   'Usage: main maintenance report [OPTIONS] JOB\n\nOptions:\n  --offset INTEGER RANGE  [default: 0; x>=0]\n  --limit INTEGER RANGE   [default: 100; 1<=x<=1000]\n  --help                  Show this message and exit.\n' = <Result okay>.stdout
+__ test_current_policy_overlay_preserves_baseline_and_never_claims_job_checks __
+tests/test_profile_coverage_inventory.py:140: in test_current_policy_overlay_preserves_baseline_and_never_claims_job_checks
+    current=build_inventory(corpus,include_current_policy=True)
+E   TypeError: build_inventory() got an unexpected keyword argument 'include_current_policy'
+=========================== short test summary info ============================
+FAILED tests/test_profile_quantities.py::test_quantities_equal_with_explicit_semantics[volume-volume_total_l_v1-total_volume-500 ml-0.5 L-0.5]
+FAILED tests/test_profile_quantities.py::test_quantities_equal_with_explicit_semantics[length-length_width_m_v1-product_width-60 cm-0.6 m-0.6]
+FAILED tests/test_profile_quantities.py::test_quantities_equal_with_explicit_semantics[length-length_height_m_v1-product_height-1800 mm-1.8 m-1.8]
+FAILED tests/test_profile_quantities.py::test_quantities_equal_with_explicit_semantics[length-length_depth_m_v1-product_depth-650 mm-65 cm-0.65]
+FAILED tests/test_profile_quantities.py::test_quantities_equal_with_explicit_semantics[volume-volume_total_l_v1-total_volume-0 ml-0 L-0]
+FAILED tests/test_profile_quantities.py::test_quantity_precision_does_not_depend_on_decimal_context
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[None-total_volume-null-null]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[-total_volume-empty-empty]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[   -total_volume-empty-empty]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[False-total_volume-value-invalid_type]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[0-total_volume-value-unit_missing]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[250-total_volume-value-unit_missing]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[-1 L-total_volume-value-negative]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[NaN-total_volume-value-non_finite]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[Infinity-total_volume-value-non_finite]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[1-2 L-total_volume-value-range]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[250 kg-total_volume-value-unit_incompatible]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[250 gallons-total_volume-value-unit_unsupported]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[250 L-net_volume-value-semantic_mismatch]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[250 L-gross_volume-value-semantic_mismatch]
+FAILED tests/test_profile_quantities.py::test_invalid_quantity_is_unknown_with_preserved_state[60 cm-package_width-value-semantic_mismatch]
+FAILED tests/test_profile_quantities.py::test_axis_policy_rejects_height_as_width
+FAILED tests/test_profile_quantities.py::test_refrigerator_profile_is_exactly_nine_fields
+FAILED tests/test_profile_quantities.py::test_custom_quantity_profile_python_and_jsonschema_agree
+FAILED tests/test_profile_quantities.py::test_quantity_input_length_boundary[128-equal]
+FAILED tests/test_profile_quantities.py::test_quantity_input_length_boundary[129-unknown]
+FAILED tests/test_profile_quantities.py::test_packaged_schema_admits_new_rule_and_rejects_cross_dimension_pair
+FAILED tests/test_profile_coverage_integration.py::test_source_projection_keeps_label_value_evidence_and_default_unchanged
+FAILED tests/test_profile_coverage_integration.py::test_finite_unknown_wrapper_survives_real_portable[250 L-total_volume]
+FAILED tests/test_profile_coverage_integration.py::test_finite_unknown_wrapper_survives_real_portable[0-total_volume]
+FAILED tests/test_profile_coverage_integration.py::test_finite_unknown_wrapper_survives_real_portable[False-total_volume]
+FAILED tests/test_profile_coverage_integration.py::test_finite_unknown_wrapper_survives_real_portable[None-total_volume]
+FAILED tests/test_profile_coverage_integration.py::test_finite_unknown_wrapper_survives_real_portable[-total_volume]
+FAILED tests/test_profile_coverage_integration.py::test_finite_unknown_wrapper_survives_real_portable[250 L-gross_volume]
+FAILED tests/test_profile_coverage_integration.py::test_finite_unknown_wrapper_survives_real_portable[60 cm-package_width]
+FAILED tests/test_profile_coverage_integration.py::test_ambiguous_semantic_sources_never_create_observed_quantity[properties0]
+FAILED tests/test_profile_coverage_integration.py::test_ambiguous_semantic_sources_never_create_observed_quantity[properties1]
+FAILED tests/test_profile_coverage_integration.py::test_ambiguous_semantic_sources_never_create_observed_quantity[properties2]
+FAILED tests/test_profile_coverage_integration.py::test_changed_capacity_remains_identity_variant_review
+FAILED tests/test_profile_coverage_integration.py::test_invalid_captured_fact_is_unknown_not_wholejob_failure[0-total_volume-unit_missing-value]
+FAILED tests/test_profile_coverage_integration.py::test_invalid_captured_fact_is_unknown_not_wholejob_failure[False-total_volume-invalid_type-value]
+FAILED tests/test_profile_coverage_integration.py::test_invalid_captured_fact_is_unknown_not_wholejob_failure[None-total_volume-null-null]
+FAILED tests/test_profile_coverage_integration.py::test_invalid_captured_fact_is_unknown_not_wholejob_failure[250 L-net_volume-semantic_mismatch-value]
+FAILED tests/test_profile_coverage_integration.py::test_new_profile_never_bypasses_binding_or_identity[no_config]
+FAILED tests/test_profile_coverage_integration.py::test_new_profile_never_bypasses_binding_or_identity[no_binding]
+FAILED tests/test_profile_coverage_integration.py::test_new_profile_never_bypasses_binding_or_identity[wrong_binding]
+FAILED tests/test_profile_coverage_integration.py::test_new_profile_never_bypasses_binding_or_identity[boots_label]
+FAILED tests/test_profile_coverage_integration.py::test_new_profile_never_bypasses_binding_or_identity[gtin_conflict]
+FAILED tests/test_profile_coverage_integration.py::test_new_profile_never_bypasses_binding_or_identity[selection_absent]
+FAILED tests/test_profile_coverage_integration.py::test_persisted_missing_rule_is_review_only_even_with_exact_support
+FAILED tests/test_profile_coverage_integration.py::test_unit_policy_snapshot_mismatch_and_unrelated_registry_addition
+FAILED tests/test_profile_coverage_integration.py::test_trusted_profile_selection_propagates_to_real_source_runtime
+FAILED tests/test_profile_coverage_integration.py::test_missing_quantity_retains_missing_not_null_after_engine
+FAILED tests/test_profile_coverage_cli.py::test_page_diagnostics_preserve_legacy_defaults_and_do_not_read_all_findings
+FAILED tests/test_profile_coverage_cli.py::test_report_limit_contract_is_retained_with_diagnostics[0-False]
+FAILED tests/test_profile_coverage_cli.py::test_report_limit_contract_is_retained_with_diagnostics[1-True]
+FAILED tests/test_profile_coverage_cli.py::test_report_limit_contract_is_retained_with_diagnostics[999-True]
+FAILED tests/test_profile_coverage_cli.py::test_report_limit_contract_is_retained_with_diagnostics[1000-True]
+FAILED tests/test_profile_coverage_cli.py::test_report_limit_contract_is_retained_with_diagnostics[1001-False]
+FAILED tests/test_profile_coverage_cli.py::test_python_public_operation_root_and_module_cli_agree
+FAILED tests/test_profile_coverage_cli.py::test_actual_utf8_envelope_budget_includes_newline[1048575-True]
+FAILED tests/test_profile_coverage_cli.py::test_actual_utf8_envelope_budget_includes_newline[1048576-True]
+FAILED tests/test_profile_coverage_cli.py::test_actual_utf8_envelope_budget_includes_newline[1048577-False]
+FAILED tests/test_profile_coverage_cli.py::test_coverage_flag_is_explicit_on_both_cli_help_paths
+FAILED tests/test_profile_coverage_inventory.py::test_current_policy_overlay_preserves_baseline_and_never_claims_job_checks
+65 failed, 5 passed in 2.77s

@@ -156,7 +156,7 @@ def maintenance_operation(command,scope,job=None,**params):
         if command=='create':return {'job_id':store.create(goal)}
         if command in {'show','status'}:return store.status(job)
         if command=='list':return {'jobs':store.list_jobs(offset=params['offset'],limit=params['limit'])}
-        if command=='report':return store.report(job,offset=params['offset'],limit=params['limit'])
+        if command=='report':return store.report(job,offset=params['offset'],limit=params['limit'],include_profile_coverage=params.get('include_profile_coverage',False))
         if command=='evidence':return store.evidence(job,params['evidence_id'])
         # Validate ID before engine creates any runtime or acquires ownership.
         store.status(job)
@@ -326,7 +326,15 @@ def register(main):
     maintenance.command_class=CoreCommand
     def finish(command,scope,job=None,**params):
         data=maintenance_operation(command,scope,job,**params)
-        bounded_output(data,partial=command in {'run','resume','retry'} and data.get('state') in {'partial','paused','failed'})
+        if command=='report' and params.get('include_profile_coverage'):
+            from .maintenance.reporting import encode_coverage_response
+            try:encoded=encode_coverage_response(make_response(data))
+            except Exception as error:
+                if getattr(error,'code',None)=='resource_limit':raise CliFailure('E_OPERATION','Result exceeds 1 MiB report limit.') from None
+                raise
+            click.echo(encoded.decode('utf-8'),nl=False)
+        else:
+            bounded_output(data,partial=command in {'run','resume','retry'} and data.get('state') in {'partial','paused','failed'})
     @maintenance.command('create')
     @click.argument('goal',type=click.Path(dir_okay=False))
     @click.pass_obj
@@ -345,7 +353,9 @@ def register(main):
             @click.option('--limit',type=click.IntRange(1,1000),default=100,show_default=True)
             @click.pass_obj
             def action(scope,**params):finish(command,scope,**params)
-            if command=='report':action=click.argument('job')(action)
+            if command=='report':
+                action=click.option('--coverage','include_profile_coverage',is_flag=True,help='Include retained finding-page profile coverage.')(action)
+                action=click.argument('job')(action)
             maintenance.command(command)(action)
         build(name)
     @maintenance.command('evidence')

@@ -1,11 +1,15 @@
-# Planning status — 2026-10-25
+# Pilot verification / PR checkpoint — 2026-10-25
 
-Scope: user requests expansion planning only. No production implementation, network research, model inference, commits, pushes or PRs authorized by this planning task.
+One refrigerator profile implemented; scope frozen after user steering.99focused
++202 affected regressions green; completed-resume14green;48mechanism cases PASS
+6.258s/~106MiB plus5 auxiliary risks separately passed. See verification.md and
+reviews.md for source/evidence and bounded repairs. No further category work.
 
-Current stage: planning G1 passed after independent review and documented planning repairs; behavior/test design, tasks, research and plan are complete for the requested planning scope. G2 skeleton, G3 components, red tests, implementation and final runtime/live verification remain pending. No runtime verdict assumed.
+Local configured full driver1641pass/1existing resolver-startup failure; one
+test-only synchronization repair failed and was reverted. No second local repair
+or sweep. Exact full CI gate on final PR head is next, then bounded live check,
+independent final disposition and delivery. Production/assertions/timeouts intact.
 
-Ownership: /root authored behavior/test design and coordinates; /root/profile_plan_author authored task breakdown/research/plan; independent G1 reviewer /root/profile_plan_reviewer reviewed and repaired planning ambiguities sequentially. Next action: inventory author starts APC03 only under an implementation instruction; current planning handoff stops here.
-
-Deliverable: specs/012-analysis-profile-coverage/. Next implementation milestone: reproducible scoped coverage inventory, then one new refrigerator pilot and unchanged legacy-profile checks. Exact whole-market profile count remains unassessed; six adapters are not six detailed domain policies.
-
-Resources: saved-source-first, compact reads, no model calls or downloads. Actual incremental session token counters unavailable; no quota percentage inferred. Future mechanism/stress/live budgets are declared in test-design.md; no runs yet.
+Inventory has4125 pinned nodes but semantic family review remains incomplete;
+exact remaining profile count unknown. Raw captures/local databases stay local.
+Exact session token counters unavailable; no inference/model/download runs.

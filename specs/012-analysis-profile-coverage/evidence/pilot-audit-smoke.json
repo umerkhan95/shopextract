@@ -1,0 +1,30 @@
+{
+  "platform": "generic",
+  "provenance": "synthetic-controlled-offline",
+  "method": "json_ld",
+  "source_quantity_pointers": [
+    "/model",
+    "/additionalProperty/0/@type",
+    "/additionalProperty/0/name",
+    "/additionalProperty/0/value",
+    "/additionalProperty/1/@type",
+    "/additionalProperty/1/name",
+    "/additionalProperty/1/value",
+    "/additionalProperty",
+    "/additionalProperty/0",
+    "/additionalProperty/1"
+  ],
+  "attributes": {},
+  "field_support": {
+    "capacity": "unsupported",
+    "width": "unsupported",
+    "height": "unsupported",
+    "depth": "unsupported",
+    "model": "unsupported"
+  },
+  "title_support": "observed",
+  "portable_roundtrip": true,
+  "sqlite_checkpoint_reopen": true,
+  "retained_total_capacity": "250 L",
+  "retained_model": "FX-250"
+}

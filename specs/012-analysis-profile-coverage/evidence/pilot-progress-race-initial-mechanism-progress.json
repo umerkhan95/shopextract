@@ -1,0 +1,102 @@
+{
+  "phase": "idle",
+  "phase_started": 664612.993421194,
+  "cases": [
+    {
+      "id": "valid-01",
+      "status": "passed",
+      "seconds": 1.465,
+      "result": null
+    },
+    {
+      "id": "valid-02",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-03",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-04",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-05",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-06",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-07",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-08",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-09",
+      "status": "passed",
+      "seconds": 0.181,
+      "result": null
+    },
+    {
+      "id": "valid-10",
+      "status": "passed",
+      "seconds": 0.002,
+      "result": null
+    },
+    {
+      "id": "valid-11",
+      "status": "passed",
+      "seconds": 0.13,
+      "result": null
+    },
+    {
+      "id": "valid-12",
+      "status": "passed",
+      "seconds": 0.252,
+      "result": null
+    },
+    {
+      "id": "invalid-01",
+      "status": "passed",
+      "seconds": 0.18,
+      "result": null
+    },
+    {
+      "id": "invalid-02",
+      "status": "passed",
+      "seconds": 0.194,
+      "result": null
+    },
+    {
+      "id": "invalid-03",
+      "status": "passed",
+      "seconds": 0.113,
+      "result": null
+    }
+  ],
+  "seed": 26,
+  "status": "running",
+  "peak_rss_bytes": 102633472,
+  "input_bytes": 9926,
+  "elapsed_seconds": 2.542,
+  "active": "invalid-03"
+}

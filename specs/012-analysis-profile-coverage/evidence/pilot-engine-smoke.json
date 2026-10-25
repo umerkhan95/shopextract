@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "job_id": "790a2a4cd46649a0a797594e53eb92f5",
+  "state": "completed",
+  "stop_reason": null,
+  "findings": [
+    {
+      "after": {
+        "semantic": "total_volume",
+        "value": "250 L"
+      },
+      "baseline_support": {
+        "evidence_ids": [],
+        "kind": "supplied",
+        "observed_at": null,
+        "source_url": null,
+        "state": "asserted"
+      },
+      "before": {
+        "semantic": "total_volume",
+        "value": "250 L"
+      },
+      "category_review_reasons": [],
+      "comparison": "equal",
+      "evidence_ids": [
+        "e_f9a1da2e-0639-40bc-89f9-7b52b51f6c2f",
+        "e_4ab73f3e-ed59-48d0-8371-e313114917e7"
+      ],
+      "field": "attributes/capacity",
+      "finding_id": "bdb9039721565452550e59cf04d847703e682379b41c4050d53785b3501b2357",
+      "input_reasons": {
+        "after": null,
+        "before": null
+      },
+      "input_states": {
+        "after": "value",
+        "before": "value"
+      },
+      "match_reason": {
+        "conflicts": [
+          "missing attributes: depth, height, width"
+        ],
+        "evidence": [
+          "validated GTIN agrees",
+          "supplier-scoped external_id agrees",
+          "supplier-scoped sku agrees"
+        ]
+      },
+      "normalized_after": "250",
+      "normalized_before": "250",
+      "ordinal": 0,
+      "product_key": "S1",
+      "profile": "refrigerator-v1",
+      "reason": "identity_unresolved",
+      "role": "identity_variant",
+      "status": "needs_review",
+      "supplier_support": {
+        "evidence_ids": [
+          "e_f9a1da2e-0639-40bc-89f9-7b52b51f6c2f",
+          "e_4ab73f3e-ed59-48d0-8371-e313114917e7"
+        ],
+        "kind": "captured",
+        "observed_at": "2026-10-25T12:00:00+00:00",
+        "source_url": "https://synthetic-profile.invalid/products/S1",
+        "state": "observed"
+      },
+      "trace": [
+        {
+          "after": {
+            "semantic": "total_volume",
+            "value": "250 L"
+          },
+          "before": {
+            "semantic": "total_volume",
+            "value": "250 L"
+          },
+          "normalized_after": "250",
+          "normalized_before": "250",
+          "operation": "volume_total_l_v1",
+          "unit": "L"
+        }
+      ]
+    }
+  ],
+  "usage": {
+    "requests": 2,
+    "tokens": 0,
+    "cost_micros": 0,
+    "reserved_tokens": 0,
+    "reserved_cost_micros": 0,
+    "unknown_requests": 0,
+    "violations": 0
+  },
+  "coverage": {
+    "baseline_count": 1,
+    "processed_products": 1,
+    "source_complete": true,
+    "supplier_products": 1
+  },
+  "pending_steps": [],
+  "profile_coverage": {
+    "schema_version": 1,
+    "scope": "finding_page",
+    "offset": 0,
+    "limit": 100,
+    "finding_count": 1,
+    "products": [
+      {
+        "product_key": "S1",
+        "selected_profile": "refrigerator-v1",
+        "profile_definition_digest": "4c8be252c5f771cbb3ce8ac570dcd612531a24ba90a0ea5971a401a3c3f9687c",
+        "configured_fields": [
+          "attributes/capacity",
+          "attributes/depth",
+          "attributes/height",
+          "attributes/model",
+          "attributes/width",
+          "currency",
+          "description",
+          "price",
+          "title"
+        ],
+        "requested_fields": [
+          "attributes/capacity"
+        ],
+        "page_fields": [
+          "attributes/capacity"
+        ],
+        "unrequested_fields": [
+          "attributes/depth",
+          "attributes/height",
+          "attributes/model",
+          "attributes/width",
+          "currency",
+          "description",
+          "price",
+          "title"
+        ],
+        "field_diagnostics": [
+          {
+            "field": "attributes/capacity",
+            "outcome": "checked",
+            "reason": null,
+            "input_states": {
+              "after": "value",
+              "before": "value"
+            },
+            "input_reasons": {
+              "after": null,
+              "before": null
+            },
+            "blockers": [
+              "identity_unresolved"
+            ],
+            "baseline_basis": "supplied"
+          }
+        ],
+        "checked_fields": [
+          "attributes/capacity"
+        ],
+        "unavailable_fields": [],
+        "invalid_fields": [],
+        "unsupported_fields": [],
+        "not_recorded_fields": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+........................................................................ [  4%]
+........................................................................ [  8%]
+........................................................................ [ 13%]
+........................................................................ [ 17%]
+........................................................................ [ 21%]
+........................................................................ [ 26%]
+........................................................................ [ 30%]
+........................................................................ [ 35%]
+........................................................................ [ 39%]
+........................................................................ [ 43%]
+........................................................................ [ 48%]
+........................................................................ [ 52%]
+........................................................................ [ 57%]
+........................................................................ [ 61%]
+........................................................................ [ 65%]
+........................................................................ [ 70%]
+........................................................................ [ 74%]
+........................................................................ [ 78%]
+........................................................................ [ 83%]
+........................................................................ [ 87%]
+..........................................................F............. [ 92%]
+........................................................................ [ 96%]
+..........................................................               [100%]
+=================================== FAILURES ===================================
+_________________ test_repeated_process_cancel_no_accumulation _________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-346/test_repeated_process_cancel_n0')
+
+    @pytest.mark.asyncio
+    async def test_repeated_process_cancel_no_accumulation(tmp_path):
+        """Three explicit cancellation lifetimes share one slot and leave zero child handles."""
+        limits=Limits(cleanup_seconds=.3);owner=OwnedProcess(limits,child_target=_late_resolver_child)
+        for index in range(3):
+            ctx=context(limits,owner)
+            barrier=tmp_path/f'resolver-{index}.ready'
+            task=asyncio.create_task(owner.run('resolve',encoded({'host':'store.example','barrier':str(barrier)}),ctx))
+            for _ in range(300):
+                if barrier.exists():break
+                await asyncio.sleep(.005)
+>           assert barrier.exists(), 'Controlled resolver did not start'
+E           AssertionError: Controlled resolver did not start
+E           assert False
+E            +  where False = exists()
+E            +    where exists = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-346/test_repeated_process_cancel_n0/resolver-0.ready').exists
+
+tests/test_tool_mechanisms.py:147: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=============================== warnings summary ===============================
+tests/test_cli_analysis.py: 16 warnings
+tests/test_cli_analysis_mechanisms.py: 41 warnings
+tests/test_cli_categories_mechanisms.py: 1 warning
+tests/test_cli_extract.py: 12 warnings
+tests/test_cli_extract_limits.py: 1 warning
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+tests/test_cli_analysis.py::test_workflow_red_families[args12-value12]
+tests/test_cli_analysis_mechanisms.py::test_export_stdout_and_optional_engine
+tests/test_cli_analysis_mechanisms.py::test_zero_false_null_and_extension_preserved
+  /Users/umerkhan/code/shopextract/src/shopextract/_cli_analysis.py:218: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    click.get_binary_stream('stdout').write(Path(payload).read_bytes())
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_tool_mechanisms.py::test_repeated_process_cancel_no_accumulation
+1 failed, 1641 passed, 74 warnings in 208.91s (0:03:28)

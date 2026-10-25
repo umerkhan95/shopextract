@@ -1,0 +1,15 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.............................................F.......................... [ 93%]
+.....                                                                    [100%]
+=================================== FAILURES ===================================
+____________ test_changed_capacity_remains_identity_variant_review _____________
+tests/test_profile_coverage_integration.py:59: in test_changed_capacity_remains_identity_variant_review
+    assert finding['reason']=='variant_specification'
+E   AssertionError: assert 'identity_unresolved' == 'variant_specification'
+E
+E     - variant_specification
+E     + identity_unresolved
+=========================== short test summary info ============================
+FAILED tests/test_profile_coverage_integration.py::test_changed_capacity_remains_identity_variant_review
+1 failed, 76 passed in 9.13s

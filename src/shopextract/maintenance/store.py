@@ -19,7 +19,7 @@ from uuid import uuid4
 from .contracts import Budgets, Goal, MaintenanceError
 from .profiles import CategoryProfile, FieldRule, profile
 
-SHIPPED = ('hardware-v1', 'footwear-v1', 'generic-v1')
+SHIPPED = ('hardware-v1', 'footwear-v1', 'generic-v1', 'refrigerator-v1')
 STATES = {'queued', 'running', 'paused', 'partial', 'completed', 'cancelled', 'failed'}
 
 
@@ -54,7 +54,9 @@ def _profile_record(value):
             item = asdict(rule)
         except TypeError as error:
             raise MaintenanceError('invalid_argument', 'Invalid field rule') from error
-        allowed = {'text': {'exact'}, 'decimal': {'decimal'}, 'mass': {'mass_kg'}}
+        allowed = {'text': {'exact'}, 'decimal': {'decimal'}, 'mass': {'mass_kg'},
+                   'volume': {'volume_total_l_v1'},
+                   'length': {'length_width_m_v1', 'length_height_m_v1', 'length_depth_m_v1'}}
         if (item.get('kind') not in allowed or item.get('normalization') not in allowed[item['kind']]
             or item.get('role') not in {'comparable', 'identity_variant', 'price_context'}):
             raise MaintenanceError('invalid_argument', 'Unsupported field rule')
@@ -409,9 +411,9 @@ class MaintenanceStore:
         row = self._job(job_id)
         if row['state'] in {'cancelled', 'failed'}:
             raise MaintenanceError('invalid_state')
+        self.validate_profiles(job_id)
         if row['state'] == 'completed':
             return False
-        self.validate_profiles(job_id)
         if row['state'] == 'running':
             raise MaintenanceError('already_running')
         goal = json.loads(row['goal'])
@@ -581,15 +583,34 @@ class MaintenanceStore:
                 ('failed' if known else 'unknown', code, attempt['reserved'] if known else None,
                  retry_at.isoformat() if retry_at is not None else None, attempt_id))
 
-    def report(self, job_id: str, *, offset: int = 0, limit: int = 100) -> dict:
+    def report(self, job_id: str, *, offset: int = 0, limit: int = 100, include_profile_coverage: bool = False) -> dict:
         if type(offset) is not int or type(limit) is not int or offset < 0 or not 1 <= limit <= 1000:
             raise MaintenanceError('invalid_argument')
+        if type(include_profile_coverage) is not bool:
+            raise MaintenanceError('invalid_argument')
         job = self._job(job_id)
-        findings = self._findings(job_id)[offset:offset+limit]
-        return {'schema_version': '1.0', 'job_id': job_id, 'state': job['state'],
+        if include_profile_coverage:
+            findings = [json.loads(row[0]) for row in self._connect().execute(
+                'SELECT payload FROM findings WHERE job=? ORDER BY ordinal,id LIMIT ? OFFSET ?',
+                (job_id, limit, offset))]
+            latest = dict(self._connect().execute('''SELECT a.finding,a.payload FROM advisories a
+                JOIN (SELECT id FROM findings WHERE job=? ORDER BY ordinal,id LIMIT ? OFFSET ?) p
+                ON p.id=a.finding WHERE a.job=? AND a.number=(SELECT MAX(b.number) FROM advisories b
+                WHERE b.job=a.job AND b.finding=a.finding)''', (job_id, limit, offset, job_id)))
+            for finding in findings:
+                if finding['finding_id'] in latest:
+                    finding['advisory'] = json.loads(latest[finding['finding_id']])
+        else:
+            findings = self._findings(job_id)[offset:offset+limit]
+        result = {'schema_version': '1.0', 'job_id': job_id, 'state': job['state'],
             'stop_reason': job['stop_reason'], 'findings': findings, 'usage': self.usage(job_id),
             'coverage': json.loads(job['coverage']),
             'pending_steps': [row['id'] for row in self.steps(job_id) if row['state'] != 'committed']}
+        if include_profile_coverage:
+            from .reporting import page_coverage, encode_coverage_response
+            result['profile_coverage'] = page_coverage(json.loads(job['goal']), json.loads(job['profiles']), findings, offset, limit)
+            encode_coverage_response(result)
+        return result
 
     def list_jobs(self, *, offset: int = 0, limit: int = 100) -> list[dict]:
         """List durable jobs in creation order with explicit bounded pagination."""
