@@ -236,3 +236,31 @@ confirms the actual exception. Driver's exact expected wrapper now matches this
 existing public boundary. Zero partial findings/uncommitted step after failure
 and2unique exactly-once findings after retry/repeat remain asserted unchanged.
 No production repair,test execution or weakened persistence assertion.
+
+
+# Pilot offline final review — accepted; overall completion BLOCKED
+
+Independent reviewer /root reviewed actual author source changes, typed transport
+and source evidence, conservative matcher/category guards, old-profile snapshots,
+bounded SQL/report/API/CLI behavior and all focused/mechanism evidence. Narrow
+coordinator preflight/driver repairs separately reviewed by /root/coverage_author.
+Full configured CI on exact executable head bed967e passed1772tests per
+Python3.10/3.11/3.12,zero skips. Code remains explicit opt-in and one new policy;
+no automatic selection or native extraction coverage claimed. No further scope
+expansion after user steering.
+
+Offline implementation APC11–15 ACCEPTED. Actual required live APC16 BLOCKED:
+exact2-search budget yielded no suitable concrete product URL; no product HTTP
+was executed. Evidence/pilot-live-discovery.json records considered metadata and
+limits; user has been asked for a product link. Overall APC17 completion/merge
+not approved pending that live check. Synthetic proof cannot waive it. Keep PR98
+draft, preserve baseline artifact and local raw corpus/databases.
+
+Reviewed source digests:
+- `src/shopextract/maintenance/profiles.py`: `a5314d292c6fa70460a0d2c1a52bcdad3553f8ab09a1530d1d6ee987fac812d1`
+- `src/shopextract/maintenance/engine.py`: `8523f5c76ca084da811bf1472f7fc1d64cd39fac8d3fa27fb1a0f78ccfa7b531`
+- `src/shopextract/maintenance/store.py`: `4056223847fcbbcb82cf18146ca761047074bf23d64e79e703e0c7ee7d96b184`
+- `src/shopextract/maintenance/reporting.py`: `fe5d556e916b10558380dfeb5cb58836c447f473f158c62a4024cd55daffc92d`
+- `src/shopextract/maintenance/inventory.py`: `bcbab374fd81e76a0d76d541dc80ebed8b3099ac0d27e0b084605e93b6b3d300`
+- `src/shopextract/_normalize.py`: `e6bef6487a6b64b6469cdda43dbc7153922cdc4cb2b3272676a24a4366321b9f`
+- `src/shopextract/_portable.py`: `27bed781a87f590bdad49598e4cc8561c6845a11bd354baaad287bb411103794`

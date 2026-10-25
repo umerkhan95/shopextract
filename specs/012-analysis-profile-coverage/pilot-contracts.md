@@ -1,7 +1,9 @@
-# Refrigerator pilot contract candidate — APC07
+# Refrigerator pilot contract — approved APC07–10
 
-Author /root/coverage_author,2026-10-25. Refreshed pilot G1 pending. Inventory
-G2/G3/final do not approve this pilot. No production code or new stubs written.
+Author /root/coverage_author,2026-10-25. Pilot G1/G2/G3 and later bounded
+implementation amendments are recorded in reviews.md. Implementation/offline
+verification completed; required live capture remains blocked as recorded in
+evidence/pilot-live-discovery.json. This contract does not claim live coverage.
 
 ## Finite policy and physical quantity meaning
 
