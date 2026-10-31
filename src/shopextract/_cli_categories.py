@@ -157,17 +157,51 @@ def register(main):
     def option_input(function):return click.option('--options','options_path',required=True,help='Exact native CategoryOptions JSON.')(function)
     def destination(function):return click.option('--output','destination',help='Atomic native artifact file; omit for response stdout.')(function)
 
+    @categories.command('index-listings',cls=CoreCommand)
+    @click.argument('file',type=click.Path(exists=True,dir_okay=False))
+    @option_input
+    @destination
+    @click.option('--max-pages',type=click.IntRange(1,1000),default=20,show_default=True)
+    @click.option('--max-memberships',type=click.IntRange(1,10000),default=1000,show_default=True)
+    @click.option('--timeout',type=float,default=30.,show_default=True)
+    @native_errors
+    def index_listings(file,options_path,destination,max_pages,max_memberships,timeout):
+        from .categories.listings import listing_urls, build_listing_index
+        sources(destination,file,options_path);options=options_file(options_path)
+        try:
+            with open(file,'rb') as stream:
+                urls=listing_urls(stream.read(MAX_BYTES+1))
+        except OSError:
+            raise CliFailure('E_USAGE','Cannot read category URL file.') from None
+        timeout=validate_timeout(timeout)
+        index,warnings=run_operation(lambda:build_listing_index(urls,options.scope.store_url,
+            max_pages=max_pages,max_memberships=max_memberships),ExecutionPolicy(),timeout)
+        bound(index)
+        if destination:
+            write_artifact(index,destination)
+            data=dict(output=destination,pages_visited=index['pages_visited'],membership_count=len(index['memberships']),
+                complete=index['complete'],reasons=index['reasons'])
+        else:data=index
+        category_output(data,partial=not index['complete'],warnings=warnings)
+
     @categories.command('normalize',cls=CoreCommand)
     @click.argument('file')
     @option_input
     @destination
     @click.option('--restore-short-gtin',is_flag=True)
+    @click.option('--listing-index',type=click.Path(exists=True,dir_okay=False),help='Opt-in captured listing membership index.')
     @native_errors
-    def normalize(file,options_path,destination,restore_short_gtin):
+    def normalize(file,options_path,destination,restore_short_gtin,listing_index):
         from .categories.api import normalize_with_categories
-        sources(destination,file,options_path);options=options_file(options_path)
+        sources(destination,*[p for p in (file,options_path,listing_index) if p is not None]);options=options_file(options_path)
         records=raw_records(read_json_file(file));values=[]
+        index=None
+        if listing_index:
+            from .categories.listings import validate_listing_index, with_listing_categories
+            index=read_json_file(listing_index)
+            validate_listing_index(index,options.scope.store_url)
         for raw in records:
+            if index is not None:raw=with_listing_categories(raw,index)
             value=normalize_with_categories(raw,options.scope.platform,options.scope.store_url,
                 category_options=options,restore_short_gtin=restore_short_gtin)
             if value is not None:values.append(value)

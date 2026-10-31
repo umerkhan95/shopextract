@@ -1,0 +1,32 @@
+/workspace/shopextract/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+F..                                                                      [100%]
+=================================== FAILURES ===================================
+_________ test_dripping_body_cannot_outlive_total_acquisition_deadline _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7ffbd2bf2e70>
+
+    @pytest.mark.asyncio
+    async def test_dripping_body_cannot_outlive_total_acquisition_deadline(monkeypatch):
+        import asyncio
+        import time
+        import shopextract.categories.listings as module
+        class Drip(httpx.AsyncByteStream):
+            async def __aiter__(self):
+                for chunk in [b'<main>']*100:
+                    await asyncio.sleep(.01)
+                    yield chunk
+        monkeypatch.setattr(module,'_TOTAL_TIMEOUT',.02)
+        async with httpx.AsyncClient(transport=httpx.MockTransport(lambda req:httpx.Response(200,stream=Drip()))) as client:
+            start=time.monotonic()
+            index=await module.build_listing_index([CATEGORY],STORE,client=client)
+            elapsed=time.monotonic()-start
+>       assert elapsed<.25
+E       assert 1.1326508700000204 < 0.25
+
+tests/test_listing_categories.py:167: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_listing_categories.py::test_dripping_body_cannot_outlive_total_acquisition_deadline
+1 failed, 2 passed, 13 deselected in 1.27s

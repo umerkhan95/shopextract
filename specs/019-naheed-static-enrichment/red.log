@@ -1,0 +1,307 @@
+/workspace/shopextract/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+FFFF..F..FFFFFFFFFFFFFFFFF                                               [100%]
+=================================== FAILURES ===================================
+_____ test_static_dom_enriches_before_early_return_with_honest_provenance ______
+
+    @pytest.mark.asyncio
+    async def test_static_dom_enriches_before_early_return_with_honest_provenance():
+        async with httpx.AsyncClient(transport=httpx.MockTransport(lambda req: httpx.Response(200, text=page()))) as client:
+            extractor = UnifiedCrawlExtractor(http_client=client)
+            with execution_policy(ExecutionPolicy()), patch.object(extractor, '_extract_with_browser', AsyncMock()) as browser:
+                result = await extractor.extract(URL)
+            browser.assert_not_called()
+        raw = result.products[0]
+        assert raw['_capture']['values']['/image'] == PLACEHOLDER
+        product = normalize(raw, Platform.MAGENTO, STORE)
+>       assert product.image_url == IMAGE
+E       AssertionError: assert 'https://www....ceholder/.jpg' == 'https://medi...oduct/m/f.jpg'
+E
+E         - https://media.naheed.pk/catalog/product/m/f.jpg
+E         + https://www.naheed.pk/static/Magento_Catalog/images/product/placeholder/.jpg
+
+tests/test_naheed_static.py:49: AssertionError
+_ test_placeholder_is_not_complete_or_normalized_as_image[https://www.naheed.pk/static/Magento_Catalog/images/product/placeholder/.jpg] _
+
+image = 'https://www.naheed.pk/static/Magento_Catalog/images/product/placeholder/.jpg'
+
+    @pytest.mark.parametrize('image', [PLACEHOLDER, [PLACEHOLDER], {'@type': 'ImageObject', 'url': PLACEHOLDER}, [], None])
+    def test_placeholder_is_not_complete_or_normalized_as_image(image):
+        html = '<script type="application/ld+json">' + json.dumps({'@type':'Product','name':'Powder','image':image,'offers':{'price':10}}) + '</script>'
+        raw = UnifiedCrawlExtractor._extract_structured_from_html(html, URL)[0]
+>       assert not UnifiedCrawlExtractor._has_price_and_image(raw)
+E       AssertionError: assert not True
+E        +  where True = <function UnifiedCrawlExtractor._has_price_and_image at 0x7f03d9e86020>({'@type': 'Product', 'name': 'Powder', 'image': 'https://www.naheed.pk/static/Magento_Catalog/images/product/placeholder/.jpg', 'offers': {'price': 10}, ...})
+E        +    where <function UnifiedCrawlExtractor._has_price_and_image at 0x7f03d9e86020> = UnifiedCrawlExtractor._has_price_and_image
+
+tests/test_naheed_static.py:64: AssertionError
+_______ test_placeholder_is_not_complete_or_normalized_as_image[image1] ________
+
+image = ['https://www.naheed.pk/static/Magento_Catalog/images/product/placeholder/.jpg']
+
+    @pytest.mark.parametrize('image', [PLACEHOLDER, [PLACEHOLDER], {'@type': 'ImageObject', 'url': PLACEHOLDER}, [], None])
+    def test_placeholder_is_not_complete_or_normalized_as_image(image):
+        html = '<script type="application/ld+json">' + json.dumps({'@type':'Product','name':'Powder','image':image,'offers':{'price':10}}) + '</script>'
+        raw = UnifiedCrawlExtractor._extract_structured_from_html(html, URL)[0]
+>       assert not UnifiedCrawlExtractor._has_price_and_image(raw)
+E       AssertionError: assert not True
+E        +  where True = <function UnifiedCrawlExtractor._has_price_and_image at 0x7f03d9e86020>({'@type': 'Product', 'name': 'Powder', 'image': ['https://www.naheed.pk/static/Magento_Catalog/images/product/placeholder/.jpg'], 'offers': {'price': 10}, ...})
+E        +    where <function UnifiedCrawlExtractor._has_price_and_image at 0x7f03d9e86020> = UnifiedCrawlExtractor._has_price_and_image
+
+tests/test_naheed_static.py:64: AssertionError
+_______ test_placeholder_is_not_complete_or_normalized_as_image[image2] ________
+
+image = {'@type': 'ImageObject', 'url': 'https://www.naheed.pk/static/Magento_Catalog/images/product/placeholder/.jpg'}
+
+    @pytest.mark.parametrize('image', [PLACEHOLDER, [PLACEHOLDER], {'@type': 'ImageObject', 'url': PLACEHOLDER}, [], None])
+    def test_placeholder_is_not_complete_or_normalized_as_image(image):
+        html = '<script type="application/ld+json">' + json.dumps({'@type':'Product','name':'Powder','image':image,'offers':{'price':10}}) + '</script>'
+        raw = UnifiedCrawlExtractor._extract_structured_from_html(html, URL)[0]
+>       assert not UnifiedCrawlExtractor._has_price_and_image(raw)
+E       AssertionError: assert not True
+E        +  where True = <function UnifiedCrawlExtractor._has_price_and_image at 0x7f03d9e86020>({'@type': 'Product', 'name': 'Powder', 'image': {'@type': 'ImageObject', 'url': 'https://www.naheed.pk/static/Magento_Catalog/images/product/placeholder/.jpg'}, 'offers': {'price': 10}, ...})
+E        +    where <function UnifiedCrawlExtractor._has_price_and_image at 0x7f03d9e86020> = UnifiedCrawlExtractor._has_price_and_image
+
+tests/test_naheed_static.py:64: AssertionError
+___ test_mixed_image_reindex_keeps_real_source_support_and_structured_fields ___
+
+    def test_mixed_image_reindex_keeps_real_source_support_and_structured_fields():
+        raw = UnifiedCrawlExtractor._extract_structured_from_html(page(image=[PLACEHOLDER, {'url': IMAGE}], brand='Original', sku='Original-SKU'), URL)[0]
+        product = normalize(raw, Platform.MAGENTO, STORE)
+>       assert product.image_url == IMAGE and product.vendor == 'Original' and product.sku == 'Original-SKU'
+E       AssertionError: assert ('https://www....ceholder/.jpg' == 'https://medi...oduct/m/f.jpg'
+E
+E         - https://media.naheed.pk/catalog/product/m/f.jpg
+E         + https://www.naheed.pk/static/Magento_Catalog/images/product/placeholder/.jpg)
+
+tests/test_naheed_static.py:71: AssertionError
+_____________ test_browser_result_and_og_path_share_dom_enrichment _____________
+
+    def test_browser_result_and_og_path_share_dom_enrichment():
+        html = page().replace('<script type="application/ld+json">', '<script type="not-json-ld">')
+        html += '<meta property="og:title" content="Max Factor Powder"><meta property="product:price:amount" content="2500">'
+        result = SimpleNamespace(url=URL, html=html, metadata={}, markdown='', media={'images':[{'src':PLACEHOLDER,'score':10}]})
+        raw = UnifiedCrawlExtractor._extract_from_crawl_result(result, URL)[0]
+        product = normalize(raw, Platform.MAGENTO, STORE)
+>       assert product.image_url == IMAGE and product.vendor == 'Max Factor' and product.sku == 'IC-1160205'
+E       AssertionError: assert ('https://www....ceholder/.jpg' == 'https://medi...oduct/m/f.jpg'
+E
+E         - https://media.naheed.pk/catalog/product/m/f.jpg
+E         + https://www.naheed.pk/static/Magento_Catalog/images/product/placeholder/.jpg)
+
+tests/test_naheed_static.py:97: AssertionError
+_ test_magento_html_detected_despite_403_apis_and_generic_zero_confidence[<script src="/static/Magento_Catalog/js/catalog.js"></script>-magento] _
+
+html = '<script src="/static/Magento_Catalog/js/catalog.js"></script>'
+expected = <Platform.MAGENTO: 'magento'>
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('html,expected', [('<script src="/static/Magento_Catalog/js/catalog.js"></script>',Platform.MAGENTO),
+        ('<script>require(["mage/gallery/gallery"],function(){});</script>',Platform.MAGENTO),
+        ('<p>We discuss Magento_Catalog and mage/ as plain prose.</p>',Platform.GENERIC)])
+    async def test_magento_html_detected_despite_403_apis_and_generic_zero_confidence(html, expected):
+        def handler(req):
+            return httpx.Response(200, text=html) if req.url.path == '/' else httpx.Response(403)
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+            result = await detect(STORE, client=client)
+>       assert result.platform == expected
+E       AssertionError: assert <Platform.GENERIC: 'generic'> == <Platform.MAGENTO: 'magento'>
+E
+E         - magento
+E         + generic
+
+tests/test_naheed_static.py:110: AssertionError
+_ test_magento_html_detected_despite_403_apis_and_generic_zero_confidence[<script>require(["mage/gallery/gallery"],function(){});</script>-magento] _
+
+html = '<script>require(["mage/gallery/gallery"],function(){});</script>'
+expected = <Platform.MAGENTO: 'magento'>
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('html,expected', [('<script src="/static/Magento_Catalog/js/catalog.js"></script>',Platform.MAGENTO),
+        ('<script>require(["mage/gallery/gallery"],function(){});</script>',Platform.MAGENTO),
+        ('<p>We discuss Magento_Catalog and mage/ as plain prose.</p>',Platform.GENERIC)])
+    async def test_magento_html_detected_despite_403_apis_and_generic_zero_confidence(html, expected):
+        def handler(req):
+            return httpx.Response(200, text=html) if req.url.path == '/' else httpx.Response(403)
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+            result = await detect(STORE, client=client)
+>       assert result.platform == expected
+E       AssertionError: assert <Platform.GENERIC: 'generic'> == <Platform.MAGENTO: 'magento'>
+E
+E         - magento
+E         + generic
+
+tests/test_naheed_static.py:110: AssertionError
+_ test_magento_html_detected_despite_403_apis_and_generic_zero_confidence[<p>We discuss Magento_Catalog and mage/ as plain prose.</p>-generic] _
+
+html = '<p>We discuss Magento_Catalog and mage/ as plain prose.</p>'
+expected = <Platform.GENERIC: 'generic'>
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('html,expected', [('<script src="/static/Magento_Catalog/js/catalog.js"></script>',Platform.MAGENTO),
+        ('<script>require(["mage/gallery/gallery"],function(){});</script>',Platform.MAGENTO),
+        ('<p>We discuss Magento_Catalog and mage/ as plain prose.</p>',Platform.GENERIC)])
+    async def test_magento_html_detected_despite_403_apis_and_generic_zero_confidence(html, expected):
+        def handler(req):
+            return httpx.Response(200, text=html) if req.url.path == '/' else httpx.Response(403)
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+            result = await detect(STORE, client=client)
+        assert result.platform == expected
+>       assert (result.confidence > 0) if expected == Platform.MAGENTO else result.confidence == 0
+E       assert False
+
+tests/test_naheed_static.py:111: AssertionError
+______ test_listing_index_retains_two_memberships_and_maps_with_evidence _______
+
+    @pytest.mark.asyncio
+    async def test_listing_index_retains_two_memberships_and_maps_with_evidence():
+>       from shopextract.categories.listings import build_listing_index, with_listing_categories
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:44: ModuleNotFoundError
+_ test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership[failed] _
+
+kind = 'failed'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('kind', ['failed','oversize','cross-next','redirect','nonlisting'])
+    async def test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership(kind):
+>       from shopextract.categories.listings import build_listing_index
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:68: ModuleNotFoundError
+_ test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership[oversize] _
+
+kind = 'oversize'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('kind', ['failed','oversize','cross-next','redirect','nonlisting'])
+    async def test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership(kind):
+>       from shopextract.categories.listings import build_listing_index
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:68: ModuleNotFoundError
+_ test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership[cross-next] _
+
+kind = 'cross-next'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('kind', ['failed','oversize','cross-next','redirect','nonlisting'])
+    async def test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership(kind):
+>       from shopextract.categories.listings import build_listing_index
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:68: ModuleNotFoundError
+_ test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership[redirect] _
+
+kind = 'redirect'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('kind', ['failed','oversize','cross-next','redirect','nonlisting'])
+    async def test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership(kind):
+>       from shopextract.categories.listings import build_listing_index
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:68: ModuleNotFoundError
+_ test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership[nonlisting] _
+
+kind = 'nonlisting'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('kind', ['failed','oversize','cross-next','redirect','nonlisting'])
+    async def test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership(kind):
+>       from shopextract.categories.listings import build_listing_index
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:68: ModuleNotFoundError
+______ test_missing_heading_is_url_only_and_budget_exhaustion_is_partial _______
+
+    @pytest.mark.asyncio
+    async def test_missing_heading_is_url_only_and_budget_exhaustion_is_partial():
+>       from shopextract.categories.listings import build_listing_index, with_listing_categories
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:83: ModuleNotFoundError
+______ test_index_validation_rejects_tamper_scope_and_exact_url_matching _______
+
+    @pytest.mark.asyncio
+    async def test_index_validation_rejects_tamper_scope_and_exact_url_matching():
+>       from shopextract.categories.listings import build_listing_index, with_listing_categories, validate_listing_index
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:96: ModuleNotFoundError
+___ test_page_budget_boundaries_and_deterministic_100_card_stress[1-1-False] ___
+
+limit = 1, expected = 1, complete = False
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('limit,expected,complete', [(1,1,False),(2,2,False),(3,3,True)])
+    async def test_page_budget_boundaries_and_deterministic_100_card_stress(limit,expected,complete):
+>       from shopextract.categories.listings import build_listing_index
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:113: ModuleNotFoundError
+___ test_page_budget_boundaries_and_deterministic_100_card_stress[2-2-False] ___
+
+limit = 2, expected = 2, complete = False
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('limit,expected,complete', [(1,1,False),(2,2,False),(3,3,True)])
+    async def test_page_budget_boundaries_and_deterministic_100_card_stress(limit,expected,complete):
+>       from shopextract.categories.listings import build_listing_index
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:113: ModuleNotFoundError
+___ test_page_budget_boundaries_and_deterministic_100_card_stress[3-3-True] ____
+
+limit = 3, expected = 3, complete = True
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('limit,expected,complete', [(1,1,False),(2,2,False),(3,3,True)])
+    async def test_page_budget_boundaries_and_deterministic_100_card_stress(limit,expected,complete):
+>       from shopextract.categories.listings import build_listing_index
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:113: ModuleNotFoundError
+___________ test_saved_sitemap_urls_are_not_membership_observations ____________
+
+    def test_saved_sitemap_urls_are_not_membership_observations():
+>       from shopextract.categories.listings import listing_urls
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:126: ModuleNotFoundError
+______________ test_cli_index_then_normalize_uses_existing_mapper ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_cli_index_then_normalize_0')
+
+    def test_cli_index_then_normalize_uses_existing_mapper(tmp_path):
+>       from shopextract.categories.listings import build_listing_index
+E       ModuleNotFoundError: No module named 'shopextract.categories.listings'
+
+tests/test_listing_categories.py:134: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_naheed_static.py::test_static_dom_enriches_before_early_return_with_honest_provenance
+FAILED tests/test_naheed_static.py::test_placeholder_is_not_complete_or_normalized_as_image[https://www.naheed.pk/static/Magento_Catalog/images/product/placeholder/.jpg]
+FAILED tests/test_naheed_static.py::test_placeholder_is_not_complete_or_normalized_as_image[image1]
+FAILED tests/test_naheed_static.py::test_placeholder_is_not_complete_or_normalized_as_image[image2]
+FAILED tests/test_naheed_static.py::test_mixed_image_reindex_keeps_real_source_support_and_structured_fields
+FAILED tests/test_naheed_static.py::test_browser_result_and_og_path_share_dom_enrichment
+FAILED tests/test_naheed_static.py::test_magento_html_detected_despite_403_apis_and_generic_zero_confidence[<script src="/static/Magento_Catalog/js/catalog.js"></script>-magento]
+FAILED tests/test_naheed_static.py::test_magento_html_detected_despite_403_apis_and_generic_zero_confidence[<script>require(["mage/gallery/gallery"],function(){});</script>-magento]
+FAILED tests/test_naheed_static.py::test_magento_html_detected_despite_403_apis_and_generic_zero_confidence[<p>We discuss Magento_Catalog and mage/ as plain prose.</p>-generic]
+FAILED tests/test_listing_categories.py::test_listing_index_retains_two_memberships_and_maps_with_evidence
+FAILED tests/test_listing_categories.py::test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership[failed]
+FAILED tests/test_listing_categories.py::test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership[oversize]
+FAILED tests/test_listing_categories.py::test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership[cross-next]
+FAILED tests/test_listing_categories.py::test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership[redirect]
+FAILED tests/test_listing_categories.py::test_failed_or_unsafe_acquisition_is_partial_without_fabricated_membership[nonlisting]
+FAILED tests/test_listing_categories.py::test_missing_heading_is_url_only_and_budget_exhaustion_is_partial
+FAILED tests/test_listing_categories.py::test_index_validation_rejects_tamper_scope_and_exact_url_matching
+FAILED tests/test_listing_categories.py::test_page_budget_boundaries_and_deterministic_100_card_stress[1-1-False]
+FAILED tests/test_listing_categories.py::test_page_budget_boundaries_and_deterministic_100_card_stress[2-2-False]
+FAILED tests/test_listing_categories.py::test_page_budget_boundaries_and_deterministic_100_card_stress[3-3-True]
+FAILED tests/test_listing_categories.py::test_saved_sitemap_urls_are_not_membership_observations
+FAILED tests/test_listing_categories.py::test_cli_index_then_normalize_uses_existing_mapper
+22 failed, 4 passed in 0.37s

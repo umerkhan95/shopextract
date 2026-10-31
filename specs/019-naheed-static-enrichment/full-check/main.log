@@ -1,0 +1,53 @@
+/workspace/shopextract/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+........................................................................ [  4%]
+........................................................................ [  9%]
+........................................................................ [ 13%]
+........................................................................ [ 18%]
+........................................................................ [ 22%]
+........................................................................ [ 27%]
+........................................................................ [ 31%]
+........................................................................ [ 36%]
+........................................................................ [ 40%]
+........................................................................ [ 45%]
+........................................................................ [ 49%]
+........................................................................ [ 54%]
+........................................................................ [ 58%]
+........................................................................ [ 63%]
+........................................................................ [ 67%]
+........................................................................ [ 72%]
+........................................................................ [ 76%]
+........................................................................ [ 81%]
+........................................................................ [ 85%]
+........................................................................ [ 90%]
+........................................................................ [ 94%]
+........................................................................ [ 99%]
+..........                                                               [100%]
+=============================== warnings summary ===============================
+tests/test_capture_provenance.py::test_mocked_llm_cannot_assert_support_or_confidence
+  /workspace/shopextract/src/shopextract/extractors/llm.py:77: DeprecationWarning: PruningContentFilter (BeautifulSoup-based) is deprecated in favor of PruningContentFilterLXML, an lxml reimplementation that is ~10x faster with identical output. Switch to PruningContentFilterLXML now. In an upcoming release PruningContentFilter will become an alias for the lxml implementation, and PruningContentFilterLXML will be kept as a legacy alias.
+    content_filter=PruningContentFilter(
+
+tests/test_capture_provenance.py::test_browser_redirect_capture_uses_final_url[json_ld]
+tests/test_capture_provenance.py::test_browser_redirect_capture_uses_final_url[opengraph]
+  /workspace/shopextract/src/shopextract/extractors/_browser.py:201: DeprecationWarning: PruningContentFilter (BeautifulSoup-based) is deprecated in favor of PruningContentFilterLXML, an lxml reimplementation that is ~10x faster with identical output. Switch to PruningContentFilterLXML now. In an upcoming release PruningContentFilter will become an alias for the lxml implementation, and PruningContentFilterLXML will be kept as a legacy alias.
+    content_filter=PruningContentFilter(threshold=0.48),
+
+tests/test_cli_analysis.py: 16 warnings
+tests/test_cli_analysis_mechanisms.py: 41 warnings
+tests/test_cli_categories_mechanisms.py: 1 warning
+tests/test_cli_extract.py: 12 warnings
+tests/test_cli_extract_limits.py: 1 warning
+  /workspace/shopextract/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+tests/test_cli_analysis.py::test_workflow_red_families[args12-value12]
+tests/test_cli_analysis_mechanisms.py::test_export_stdout_and_optional_engine
+tests/test_cli_analysis_mechanisms.py::test_zero_false_null_and_extension_preserved
+  /workspace/shopextract/src/shopextract/_cli_analysis.py:218: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    click.get_binary_stream('stdout').write(Path(payload).read_bytes())
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1594 passed, 77 warnings in 113.19s (0:01:53)

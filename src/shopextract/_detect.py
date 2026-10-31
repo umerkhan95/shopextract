@@ -93,7 +93,7 @@ async def detect(url: str, *, client: httpx.AsyncClient | None = None) -> Platfo
 
     platform, platform_signals = _determine_platform(signals)
     max_sigs = _MAX_SIGNALS.get(platform, 1)
-    confidence = min(len(platform_signals) / max_sigs, 1.0)
+    confidence = 0.0 if platform == Platform.GENERIC else min(len(platform_signals) / max_sigs, 1.0)
 
     elapsed = time.time() - start_time
     logger.info(
@@ -230,6 +230,7 @@ async def _probe_html_content(
         html = raw_html.lower()
         _analyze_meta_tags(html, signals)
         _analyze_cdn_sources(html, signals)
+        _analyze_magento_html(raw_html, signals)
         from .extractors._storefront import public_config
         endpoint, token = public_config(raw_html, 'shopware', str(response.url))
         if endpoint and token:
@@ -265,6 +266,21 @@ def _analyze_cdn_sources(html: str, signals: dict[Platform, list[str]]) -> None:
 
     if "/bundles/storefront/" in html or "shopware-storefront" in html:
         signals[Platform.SHOPWARE].append("cdn:shopware_storefront")
+
+
+def _analyze_magento_html(html: str, signals: dict[Platform, list[str]]) -> None:
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html, "html.parser")
+    for node in soup.find_all(["script", "link"]):
+        source = str(node.get("src") or node.get("href") or "").lower()
+        if re.search(r"(?:^|/)magento_[a-z]+/", source):
+            signals[Platform.MAGENTO].append("html:magento-module-asset")
+            break
+    for node in soup.find_all("script"):
+        text = node.get_text()
+        if re.search(r"[\"']mage/[a-z]", text, re.IGNORECASE):
+            signals[Platform.MAGENTO].append("html:mage-requirejs")
+            break
 
 
 def _determine_platform(signals: dict[Platform, list[str]]) -> tuple[Platform, list[str]]:
