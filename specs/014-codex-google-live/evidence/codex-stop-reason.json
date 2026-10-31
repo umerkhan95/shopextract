@@ -1,0 +1,6 @@
+{
+  "reason": "native Codex backend WebSocket/HTTP proxy403 observed; stop retries rather than consume whole120s",
+  "owned_groups_signalled": [
+    7239
+  ]
+}

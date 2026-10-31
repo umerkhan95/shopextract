@@ -48,16 +48,18 @@ class UnifiedCrawlExtractor:
         self,
         stealth_level: StealthLevel = StealthLevel.STANDARD,
         http_client: httpx.AsyncClient | None = None,
+        *, include_categories: bool = False,
     ):
         self._stealth_level = stealth_level
         self._http_client = http_client
+        self._include_categories = include_categories
 
     async def extract(self, shop_url: str) -> ExtractorResult:
         """Extract product data from a single URL."""
         url = shop_url
         html = await self._fetch_html_httpx(url)
         if html:
-            products = self._extract_structured_from_html(html, getattr(html, "source_url", url))
+            products = self._extract_structured_from_html(html, getattr(html, "source_url", url), include_categories=self._include_categories)
             for product in products:
                 if "_capture" in product and hasattr(html, "observed_at"):
                     product["_capture"]["at"] = html.observed_at.isoformat()
@@ -107,7 +109,7 @@ class UnifiedCrawlExtractor:
                 for result in results:
                     if not result.success:
                         continue
-                    products = self._extract_from_crawl_result(result, result.url)
+                    products = self._extract_from_crawl_result(result, result.url, include_categories=self._include_categories)
                     all_products.extend(products)
         except Exception as e:
             logger.exception("Batch unified crawl failed: %s", e)
@@ -193,7 +195,7 @@ class UnifiedCrawlExtractor:
                         result = await crawler.arun(url=url, config=crawl_config)
                         if not result.success:
                             continue
-                        products = self._extract_from_crawl_result(result, getattr(result, "url", None) or url)
+                        products = self._extract_from_crawl_result(result, getattr(result, "url", None) or url, include_categories=self._include_categories)
                         if products:
                             return products
                     except Exception as e:
@@ -207,7 +209,7 @@ class UnifiedCrawlExtractor:
     # -- Core extraction from CrawlResult -------------------------------------
 
     @staticmethod
-    def _extract_from_crawl_result(result: Any, url: str) -> list[dict]:
+    def _extract_from_crawl_result(result: Any, url: str, *, include_categories: bool = False) -> list[dict]:
         url = getattr(result, "url", None) or url
         html = getattr(result, "html", "") or ""
         metadata = getattr(result, "metadata", {}) or {}
@@ -230,7 +232,7 @@ class UnifiedCrawlExtractor:
 
         # Layer 2: OG tags
         og_from_meta = OpenGraphExtractor.from_metadata(metadata) if metadata else []
-        og_from_html = OpenGraphExtractor.extract_from_html(html, url) if html else []
+        og_from_html = OpenGraphExtractor.extract_from_html(html, url, include_categories=include_categories) if html else []
         og = _merge_og(og_from_meta, og_from_html)
         if og:
             capture(og, url, "opengraph_crawl")

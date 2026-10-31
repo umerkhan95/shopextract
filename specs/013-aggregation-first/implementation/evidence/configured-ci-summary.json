@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "python": "3.12.14",
+  "tests": 1777,
+  "main": 1647,
+  "native_oracle": 24,
+  "maintenance": 106,
+  "failed": 0,
+  "skipped": 0,
+  "elapsed_seconds": 111.463886,
+  "original_limits": {
+    "group_seconds": 240,
+    "total_seconds": 480,
+    "workers": 1
+  },
+  "owned_processes_remaining": false,
+  "report": "configured-ci-report.json"
+}

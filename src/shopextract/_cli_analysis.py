@@ -16,7 +16,7 @@ import click
 from ._cli_core import CliFailure, CoreCommand, emit_response, make_response
 from ._cli_data import (CatalogInput, catalog_from_value, load_catalog, flat_to_products,
                         read_json_file, MAX_RECORDS)
-from ._cli_extract import run_operation, validate_timeout, validate_url, validate_max
+from ._cli_extract import run_operation, validate_timeout, validate_url, validate_max, execution_options, policy_options
 from ._execution import ExecutionPolicy
 from ._evidence import encode_value
 from ._models import Product
@@ -127,8 +127,9 @@ def native_inputs(catalog):
     return catalog.products if catalog.products is not None else catalog.records
 
 
-def network(operation, timeout):
-    data,warnings = run_operation(operation,ExecutionPolicy(),validate_timeout(timeout))
+def network(operation, timeout, options=None):
+    policy, deadline = policy_options(dict(options or {}, timeout=timeout))
+    data,warnings = run_operation(operation,policy,deadline)
     sources = getattr(data,'sources',[])
     if sources and not any(source.usable for source in sources):
         raise CliFailure('E_OPERATION','No usable source catalogs; inspect configured URLs and source availability.')
@@ -136,18 +137,19 @@ def network(operation, timeout):
     output(data,partial=partial,warnings=warnings)
 
 
-def compare_command(query,urls,max_per_store,threshold,timeout):
+def compare_command(query,urls,max_per_store,threshold,timeout,options=None):
     from .compare import compare
     urls=stores(urls); validate_max(max_per_store); number(threshold,high=1,name='Threshold')
-    network(lambda:compare(query,urls,max_per_store=max_per_store,threshold=threshold,currency_safe=True),timeout)
+    network(lambda:compare(query,urls,max_per_store=max_per_store,threshold=threshold,currency_safe=True),timeout,options)
 
 
-def analyze_command(url,maximum,timeout):
+def analyze_command(url,maximum,timeout,options=None):
     from . import extract
     from .analyze import analyze_products
     from ._analysis_safe import source_status
     validate_url(url); validate_max(maximum)
-    result,warnings=run_operation(lambda:extract(url,max_urls=maximum),ExecutionPolicy(),validate_timeout(timeout))
+    policy, deadline = policy_options(dict(options or {}, timeout=timeout))
+    result,warnings=run_operation(lambda:extract(url,max_urls=maximum),policy,deadline)
     source=source_status(url,result)
     if not source.usable:
         raise CliFailure('E_OPERATION','No usable source catalog.')
@@ -264,14 +266,14 @@ def register(main):
     @click.option('--semantic-candidates',type=click.Path())
     @click.option('--enrich-identifiers',is_flag=True)
     @click.option('--restore-short-gtin',is_flag=True)
-    @click.option('--timeout',type=float,default=None)
-    def catalogs(store_a,store_b,max_products,threshold,publisher_aliases,semantic_candidates,enrich_identifiers,restore_short_gtin,timeout):
+    @execution_options()
+    def catalogs(store_a,store_b,max_products,threshold,publisher_aliases,semantic_candidates,enrich_identifiers,restore_short_gtin,timeout,**options):
         """Compare two native store URLs (not offline catalog files)."""
         from .compare import compare_catalogs
         stores((store_a,store_b));number(threshold,high=1,name='Threshold')
-        options=matching_files(publisher_aliases,semantic_candidates)
+        matching=matching_files(publisher_aliases,semantic_candidates)
         network(lambda:compare_catalogs(store_a,store_b,max_products=max_products,threshold=threshold,source_report=True,
-                enrich_identifiers=enrich_identifiers,restore_short_gtin=restore_short_gtin,**options),timeout)
+                enrich_identifiers=enrich_identifiers,restore_short_gtin=restore_short_gtin,**matching),timeout,options)
 
     @main.command('match')
     @click.argument('left')
@@ -393,8 +395,8 @@ def register(main):
     @click.argument('file')
     @click.option('--competitor',multiple=True,required=True)
     @click.option('--max-products',type=click.IntRange(1,1000),default=200)
-    @click.option('--timeout',type=float,default=None)
-    def position(file,competitor,max_products,timeout):
+    @execution_options()
+    def position(file,competitor,max_products,timeout,**options):
         from .analyze import price_position
         catalog=load_catalog(file);single(catalog);urls=stores(competitor)
         product=catalog.records[0];currency=product.get('currency')
@@ -402,16 +404,16 @@ def register(main):
             from ._analysis_safe import observed_currency
             currency=observed_currency(catalog.products[0],catalog.products[0].raw_data)
         if not isinstance(currency,str) or not currency.strip() or not product.get('title') or product.get('price') is None:raise CliFailure('E_USAGE','Position requires title,price and explicit currency.')
-        network(lambda:price_position(product,urls,max_products=max_products,currency=currency.strip().upper()),timeout)
+        network(lambda:price_position(product,urls,max_products=max_products,currency=currency.strip().upper()),timeout,options)
     @competitive.command('gaps',cls=CoreCommand)
     @click.argument('store')
     @click.option('--competitor',multiple=True,required=True)
     @click.option('--max-products',type=click.IntRange(1,1000),default=200)
-    @click.option('--timeout',type=float,default=None)
-    def gaps(store,competitor,max_products,timeout):
+    @execution_options()
+    def gaps(store,competitor,max_products,timeout,**options):
         from .analyze import assortment_gaps
         urls=stores((store,*competitor))
-        network(lambda:assortment_gaps(urls[0],urls[1:],max_products=max_products,source_report=True),timeout)
+        network(lambda:assortment_gaps(urls[0],urls[1:],max_products=max_products,source_report=True),timeout,options)
 
     @main.command('duplicates')
     @click.argument('file')

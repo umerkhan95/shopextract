@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "origin": "/workspace/shopextract/build/google-delivery/venv/lib/python3.12/site-packages/shopextract/__init__.py",
+  "google_nodes": 5595,
+  "lookup_paths": 5595,
+  "normalized_samples": 3,
+  "fingerprint": "3b6a52f1d3512c813109844031e0b7e16574ca39c00a60eee02d0d992321323c",
+  "resource_route": "operator-provisioned",
+  "network_during_lookup": false,
+  "yaml_during_lookup": false,
+  "wheel": "shopextract-0.1.2-py3-none-any.whl",
+  "sdist": "shopextract-0.1.2.tar.gz",
+  "rebuilt_wheel": "shopextract-0.1.2-py3-none-any.whl",
+  "google_corpus_bundled": false,
+  "sdist_offline_rebuild": true
+}

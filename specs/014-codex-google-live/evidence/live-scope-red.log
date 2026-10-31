@@ -1,0 +1,48 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_live_public_scope_rejects_ambiguous_escape_and_multicast[https://shop.test/shop/%2525252e%2525252e/private-https://shop.test/shop] _
+
+url = 'https://shop.test/shop/%2525252e%2525252e/private'
+shop = 'https://shop.test/shop'
+
+    @pytest.mark.parametrize('url,shop',[('https://shop.test/shop/%2525252e%2525252e/private','https://shop.test/shop'),
+        ('https://224.0.0.1/item','https://224.0.0.1')])
+    def test_live_public_scope_rejects_ambiguous_escape_and_multicast(url,shop):
+        api()
+        from shopextract.taxonomies.google.live_profile import in_scope
+>       assert not in_scope(url,shop)
+E       AssertionError: assert not True
+E        +  where True = <function in_scope at 0x7f47f242a0c0>('https://shop.test/shop/%2525252e%2525252e/private', 'https://shop.test/shop')
+
+tests/test_google_live.py:184: AssertionError
+_ test_live_public_scope_rejects_ambiguous_escape_and_multicast[https://224.0.0.1/item-https://224.0.0.1] _
+
+url = 'https://224.0.0.1/item', shop = 'https://224.0.0.1'
+
+    @pytest.mark.parametrize('url,shop',[('https://shop.test/shop/%2525252e%2525252e/private','https://shop.test/shop'),
+        ('https://224.0.0.1/item','https://224.0.0.1')])
+    def test_live_public_scope_rejects_ambiguous_escape_and_multicast(url,shop):
+        api()
+        from shopextract.taxonomies.google.live_profile import in_scope
+>       assert not in_scope(url,shop)
+E       AssertionError: assert not True
+E        +  where True = <function in_scope at 0x7f47f242a0c0>('https://224.0.0.1/item', 'https://224.0.0.1')
+
+tests/test_google_live.py:184: AssertionError
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_live.py::test_live_public_scope_rejects_ambiguous_escape_and_multicast[https://shop.test/shop/%2525252e%2525252e/private-https://shop.test/shop]
+FAILED tests/test_google_live.py::test_live_public_scope_rejects_ambiguous_escape_and_multicast[https://224.0.0.1/item-https://224.0.0.1]
+2 failed, 20 deselected, 1 warning in 0.06s

@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "tests": 1800,
+  "groups": {
+    "main": 1670,
+    "reliable-oracle": 24,
+    "maintenance": 106
+  },
+  "failed": 0,
+  "skipped": 0,
+  "elapsed_seconds": 115.99641,
+  "limits": {
+    "group_seconds": 240,
+    "total_seconds": 480,
+    "workers": 1
+  },
+  "owned_groups_remaining": false
+}

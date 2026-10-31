@@ -62,7 +62,7 @@ def test_p4_family_binding(tmp_path,family,monkeypatch):
         tree=dump(tmp_path/'tree.json',tree_record())
     if family=='extract':
         install_transport(monkeypatch)
-        args=['categories','extract',STORE,'--options',files['options'],'--max-products','1']
+        args=['categories','extract',STORE,'--source-mode','native','--options',files['options'],'--max-products','1']
     elif family=='normalize':args=['categories','normalize',files['raw'],'--options',files['options']]
     elif family in ('map','validate'):args=['categories',family,files['categorized'],'--options',files['options']]
     elif family.startswith('record-'):
@@ -122,7 +122,7 @@ def install_transport(monkeypatch,rows=None,status=200):
 @pytest.mark.parametrize('flag,args',[('--storefront-config',True),('--enrich-identifiers',False),('--restore-short-gtin',False)])
 def test_extract_controls_binding(tmp_path,monkeypatch,flag,args):
     files=fixture_files(tmp_path);install_transport(monkeypatch)
-    command=['categories','extract',STORE,'--options',files['options'],flag]
+    command=['categories','extract',STORE,'--source-mode','native','--options',files['options'],flag]
     if args:command+=[dump(tmp_path/'storefront.json',{})]
     result=invoke(command)
     assert result.exit_code==0,(result.output,result.exception)

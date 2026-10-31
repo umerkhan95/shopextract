@@ -1,0 +1,57 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+F...F
+=================================== FAILURES ===================================
+__________________ test_production_profile_and_policy_denial ___________________
+
+profile = (PosixPath('/tmp/pytest-of-agent/pytest-44/test_production_profile_and_po0'), PosixPath('/tmp/pytest-of-agent/pytest-4...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f7abf36fef0>
+
+    def test_production_profile_and_policy_denial(profile, monkeypatch):
+        root, path, _ = production_profile(profile)
+        module = importlib.import_module('shopextract.taxonomies.google.live')
+        monkeypatch.setattr(module, 'policy_denial', lambda url: {'reason': 'host_not_allowed'})
+>       report = module.verify_google_live(path, root / 'out', project_root=root, live=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_google_production.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/taxonomies/google/live.py:54: in verify_google_live
+    profile = load_live_profile(profile_path,project_root=project_root)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/tmp/pytest-of-agent/pytest-44/test_production_profile_and_po0/profile.json')
+project_root = PosixPath('/tmp/pytest-of-agent/pytest-44/test_production_profile_and_po0')
+
+    def load_live_profile(path, *, project_root=None):
+        root = Path(project_root or Path.cwd()).resolve()
+        try:
+            value = read_json_file(str(path))
+            required = {'schema_version', 'catalog_root', 'catalog_fingerprint', 'cli_config', 'sites', 'limits'}
+            if not isinstance(value, dict) or set(value) != required or type(value['schema_version']) is not int or value['schema_version'] != 1:
+>               raise ValueError('Invalid profile fields/version')
+E               ValueError: Invalid profile fields/version
+
+src/shopextract/taxonomies/google/live_profile.py:48: ValueError
+_________________ test_owned_output_exact_boundary[128-False] __________________
+No module named 'shopextract._owned_process'
+
+During handling of the above exception, another exception occurred:
+Production owned-process supervisor is missing
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_production.py::test_production_profile_and_policy_denial
+FAILED tests/test_google_production.py::test_owned_output_exact_boundary[128-False]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 2 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+2 failed, 3 passed, 1 warning in 0.06s

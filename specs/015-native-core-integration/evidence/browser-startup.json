@@ -1,0 +1,19 @@
+{
+  "status": "blocked",
+  "browser_startup_verified": false,
+  "merchant_live_verified": false,
+  "error_type": "Error",
+  "missing_executable_reported": true,
+  "provenance": "actual_Crawl4AI_local_raw_HTML_startup_probe_no_merchant_request",
+  "timeout_seconds": 12,
+  "process": {
+    "returncode": 0,
+    "timed_out": false,
+    "output_exceeded": false,
+    "cleanup_complete": true,
+    "elapsed_seconds": 0.7409610909999174
+  },
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 0,
+  "dependencies_installed_by_task": false
+}

@@ -44,6 +44,7 @@ async def extract(
     llm_temperature: float = 0.2,
     enrich_identifiers: bool = False,
     restore_short_gtin: bool = False,
+    include_categories: bool = False,
     api_options: dict[str, str] | None = None,
 ) -> ExtractionResult:
     """Extract products from an e-commerce store.
@@ -60,6 +61,7 @@ async def extract(
         max_urls: Maximum crawl URLs or API products retained; Shopify pagination is bounded.
         enrich_identifiers: Opt into ID-checked Shopify detail barcode reads.
         restore_short_gtin: Opt into checksum-validated 11-digit UPC zero restoration.
+        include_categories: Retain captured source category declarations across native tiers.
         shop_url: Base shop URL for normalization (defaults to url).
         api_options: Optional storefront endpoint/access_token overrides and BigCommerce
             token_type/customer_access_token/customer_id context. Magento
@@ -161,6 +163,8 @@ async def extract(
 
     # Step 2: Try API extraction first
     api_kwargs = {'max_products': max_urls, 'enrich_identifiers': enrich_identifiers}
+    if include_categories:
+        api_kwargs.update(include_categories=True, category_mode=True)
     if api_options:
         api_kwargs['api_options'] = api_options
     api_result = await _try_api_extraction(url, platform, **api_kwargs)
@@ -224,7 +228,7 @@ async def extract(
     # Step 4: Try UnifiedCrawl on a sample URL
     from .extractors.unified import UnifiedCrawlExtractor
 
-    unified = UnifiedCrawlExtractor()
+    unified = UnifiedCrawlExtractor(include_categories=True) if include_categories else UnifiedCrawlExtractor()
     sample_url = urls[0]
     probe_result = await unified.extract(sample_url)
 
@@ -242,7 +246,7 @@ async def extract(
                 )
                 all_products.extend(batch_result.products)
 
-            products = _normalize_batch(all_products, platform, shop_url)
+            products = _normalize_batch(all_products, platform, shop_url, restore_short_gtin=restore_short_gtin)
             return ExtractionResult(
                 observation_scope=observation_scope,
                 incompleteness_reasons=["crawl_coverage_unverified"],
@@ -259,7 +263,7 @@ async def extract(
     # Step 5: CSS fallback with generic schema
     from .extractors.css import CSSExtractor
 
-    generic_schema = _get_generic_css_schema()
+    generic_schema = _get_generic_css_schema(include_categories=include_categories)
     css = CSSExtractor(schema=generic_schema)
 
     all_products: list[dict] = []
@@ -269,7 +273,7 @@ async def extract(
             all_products.extend(batch_result.products)
 
     if all_products:
-        products = _normalize_batch(all_products, platform, shop_url)
+        products = _normalize_batch(all_products, platform, shop_url, restore_short_gtin=restore_short_gtin)
         return ExtractionResult(
             observation_scope=observation_scope,
             incompleteness_reasons=["crawl_coverage_unverified"],
@@ -289,7 +293,7 @@ async def extract(
             urls, llm_api_key, llm_model, llm_temperature
         )
         if llm_products:
-            products = _normalize_batch(llm_products, platform, shop_url)
+            products = _normalize_batch(llm_products, platform, shop_url, restore_short_gtin=restore_short_gtin)
             return ExtractionResult(
                 observation_scope=observation_scope,
                 incompleteness_reasons=["crawl_coverage_unverified"],
@@ -304,7 +308,7 @@ async def extract(
             )
 
     # Nothing worked
-    products = _normalize_batch(all_products, platform, shop_url)
+    products = _normalize_batch(all_products, platform, shop_url, restore_short_gtin=restore_short_gtin)
     return ExtractionResult(
         observation_scope=observation_scope,
         incompleteness_reasons=["crawl_coverage_unverified"],
@@ -573,9 +577,9 @@ def _normalize_batch(
     return products
 
 
-def _get_generic_css_schema() -> dict:
+def _get_generic_css_schema(*, include_categories: bool = False) -> dict:
     """Return a generic CSS extraction schema."""
-    return {
+    schema = {
         "name": "products",
         "baseSelector": "[itemtype*='Product'], .product, [data-product]",
         "fields": [
@@ -586,6 +590,9 @@ def _get_generic_css_schema() -> dict:
             {"name": "sku", "selector": "[itemprop='sku']", "type": "text"},
         ],
     }
+    if include_categories:
+        schema["fields"].append({"name": "product_type", "selector": "[itemprop='category'], [data-product-category], .product-category", "type": "text"})
+    return schema
 
 
 def _chunks(lst: list, n: int) -> Iterator[list]:

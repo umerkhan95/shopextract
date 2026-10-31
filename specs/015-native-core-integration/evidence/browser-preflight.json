@@ -1,0 +1,8 @@
+{
+  "provenance": "actual_installed_dependency_probe_not_browser_startup",
+  "crawl4ai_version": "0.9.5",
+  "configured_playwright_chromium_installed": false,
+  "system_chromium_present": true,
+  "browser_startup_verified": false,
+  "dependencies_installed_by_task": false
+}

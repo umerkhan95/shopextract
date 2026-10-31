@@ -17,8 +17,8 @@ from ._execution import ExecutionPolicy, LLMBudget, execution_policy
 from ._models import Platform
 
 
-def execution_options(llm=True):
-    options = [click.option('--timeout', type=float, default=None, help='Operation deadline seconds (0,300], bounded default30.'),
+def execution_options(llm=True, *, timeout_required=False):
+    options = [click.option('--timeout', type=float, default=None, required=timeout_required, help='Operation deadline seconds (0,300], bounded default30.'),
                click.option('--browser/--no-browser', default=None, help='Explicit browser activation; bounded default off.')]
     if llm:
         options += [click.option('--allow-llm', is_flag=True, help='Explicitly enable bounded inference; providers may bill timed-out work.'),
@@ -40,6 +40,15 @@ def explicit_controls():
     from click.core import ParameterSource
     old = {'url', 'max_urls', 'fmt', 'output_path'}
     return any(p.name not in old and ctx.get_parameter_source(p.name) == ParameterSource.COMMANDLINE
+               for p in ctx.command.params)
+
+
+def execution_requested():
+    """Select bounded CLI routing only for explicitly supplied execution options."""
+    from click.core import ParameterSource
+    ctx = click.get_current_context()
+    return any((p.name in {'browser', 'allow_llm'} or p.name.startswith('llm_'))
+               and ctx.get_parameter_source(p.name) == ParameterSource.COMMANDLINE
                for p in ctx.command.params)
 
 

@@ -935,6 +935,13 @@ them through a shared exact, versioned rule engine. Memberships, hierarchy and
 merchant labels stay distinct; ordinary extraction formats stay compatible.
 See [configuration, platform behavior and persistence](docs/category-mapping.md).
 
+### Google taxonomy integration
+
+Google category lookup and mapping are documented in
+[Google taxonomy integration](docs/google-taxonomy.md), including complete
+operator-provisioned catalogs, directional Shopify mappings and existing category
+export compatibility.
+
 ### Full Shopify taxonomy
 
 Installed packages include all 14,606 Shopify categories, 8,240 base attributes,
@@ -943,3 +950,8 @@ captured native GIDs with bounded mapping policies and category-specific schemas
 optional Storefront acquisition preserves existing product and variant data.
 See [lookup, extraction, packaging and measured limits](docs/shopify-taxonomy.md).
 Full source/generated data stays outside Git and is embedded in release artifacts.
+
+Extraction-backed CLI commands expose explicit browser/inference controls;
+category and Google verification can use the native fallback pipeline. See the
+[native-core integration audit](docs/native-core-integration.md) for configuration,
+resource contracts and actual verification limits.

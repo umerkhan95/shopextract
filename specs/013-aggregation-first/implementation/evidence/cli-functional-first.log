@@ -1,0 +1,118 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+...FF.                                                                   [100%]
+=================================== FAILURES ===================================
+___________ test_google_cli_pagination_binds_identity_and_page_size ____________
+
+prepared = (PosixPath('/tmp/pytest-of-agent/pytest-9/test_google_cli_pagination_bin0'), ['taxonomy', 'google', '--catalog-root', ...alog'], {'schema_version': 1, 'namespace': 'google:product_category', 'version': '2021-09-21', 'locale': 'en-US', ...})
+
+    def test_google_cli_pagination_binds_identity_and_page_size(prepared):
+        _, args, manifest = prepared
+        seen, token = [], None
+        while True:
+            result = CliRunner().invoke(main, [*args, 'list', '--limit', '1', *(['--cursor', token] if token else [])])
+            assert result.exit_code == 0, result.output
+            data = json.loads(result.output)['data']
+            seen.extend(n['id'] for n in data['categories'])
+            assert data['fingerprint'] == manifest['fingerprint']
+            token = data['next_cursor']
+            if not token:
+                break
+            bad = CliRunner().invoke(main, [*args, 'list', '--limit', '2', '--cursor', token])
+>           assert bad.exit_code == 2 and json.loads(bad.output)['error']['code'] == 'E_USAGE'
+                                          ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_google_taxonomy_cli.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7fa593f8e6c0>
+s = 'Error: Invalid Google taxonomy source, identity, mapping, cursor or input; consult taxonomy google --help.\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py:356: JSONDecodeError
+_______________ test_google_cli_batch_misses_and_expected_errors _______________
+
+prepared = (PosixPath('/tmp/pytest-of-agent/pytest-9/test_google_cli_batch_misses_a0'), ['taxonomy', 'google', '--catalog-root', ...alog'], {'schema_version': 1, 'namespace': 'google:product_category', 'version': '2021-09-21', 'locale': 'en-US', ...})
+
+    def test_google_cli_batch_misses_and_expected_errors(prepared):
+        path, args, _ = prepared
+        values = path / 'ids.json'
+        values.write_text('["2","999"]')
+        result = CliRunner().invoke(main, [*args, 'lookup-batch', str(values)])
+        assert result.exit_code == 0, result.output
+        nodes = json.loads(result.output)['data']['categories']
+        assert nodes[0]['id'] == '2' and nodes[1] is None
+        bad = CliRunner().invoke(main, [*args, 'lookup', '999'])
+        assert bad.exit_code == 2
+        missing = CliRunner().invoke(main, ['taxonomy', 'google', '--catalog-root', str(path / 'missing'), 'info'])
+        assert missing.exit_code == 1
+>       assert json.loads(missing.output)['error']['code'] == 'E_OPERATION'
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_google_taxonomy_cli.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7fa593f8e6c0>
+s = 'Error: Google resource unavailable or publication failed; provision the source and select its exact identity.\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py:356: JSONDecodeError
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_taxonomy_cli.py::test_google_cli_pagination_binds_identity_and_page_size
+FAILED tests/test_google_taxonomy_cli.py::test_google_cli_batch_misses_and_expected_errors
+2 failed, 4 passed, 1 deselected, 1 warning in 0.10s

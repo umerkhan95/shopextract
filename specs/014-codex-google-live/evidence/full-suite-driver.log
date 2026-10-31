@@ -1,0 +1,4 @@
+{"group": "main", "status": "passed", "seconds": 69.681711, "summary": "1670 passed, 4 warnings in 67.89s (0:01:07)", "log": "build/google-live-ci/main.log"}
+{"group": "reliable-oracle", "status": "passed", "seconds": 14.419672, "summary": "24 passed, 1 warning in 13.53s", "log": "build/google-live-ci/reliable-oracle.log"}
+{"group": "maintenance", "status": "passed", "seconds": 31.892779, "summary": "106 passed, 1 warning in 31.02s", "log": "build/google-live-ci/maintenance.log"}
+{"status": "passed", "seconds": 115.99641, "report": "build/google-live-ci/report.json"}

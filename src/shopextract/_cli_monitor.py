@@ -15,7 +15,7 @@ import click
 from ._cli_core import CliFailure, CoreCommand
 from ._cli_analysis import output, number
 from ._cli_data import read_json_file, load_products, atomic_json, MAX_BYTES
-from ._cli_extract import validate_url, validate_max, validate_timeout, run_operation
+from ._cli_extract import validate_url, validate_max, validate_timeout, run_operation, execution_options, policy_options
 from ._evidence import encode_value
 from ._execution import ExecutionPolicy, execution_policy
 from ._portable import product_to_record
@@ -86,11 +86,12 @@ def change_record(change):
     return dict(type=name,**{key:encode_value(getattr(change,key)) for key in fields[name]})
 
 
-def snapshot_command(url, db, maximum, timeout):
+def snapshot_command(url, db, maximum, timeout, options=None):
     from .monitor.snapshot import snapshot
     validate_url(url); validate_max(maximum)
+    policy, deadline = policy_options(dict(options or {}, timeout=timeout))
     try:
-        count,_=run_operation(lambda:snapshot(url,db_path=db,max_urls=maximum,retain_limit=maximum),ExecutionPolicy(),validate_timeout(timeout))
+        count,_=run_operation(lambda:snapshot(url,db_path=db,max_urls=maximum,retain_limit=maximum),policy,deadline)
     except (ValueError,OSError,sqlite3.Error):
         raise CliFailure('E_OPERATION','Snapshot source or persistence failed; no usable baseline established.') from None
     output({'stored_products':count})
@@ -260,15 +261,18 @@ def register(main):
     @click.argument('url')
     @click.option('--interval',type=float,required=True)
     @click.option('--max-events',type=click.IntRange(1,1000),required=True)
-    @click.option('--timeout',type=float,required=True)
+    @execution_options(timeout_required=True)
     @click.option('--max','maximum',type=click.IntRange(1,1000),default=20)
     @click.option('--db',default=DEFAULT_DB)
-    def watch(url,interval,max_events,timeout,maximum,db):
+    def watch(url,interval,max_events,timeout,maximum,db,**options):
         from .monitor.watch import watch as native_watch
-        validate_url(url); number(interval,low=0,high=3600,strict=True,name='interval'); deadline=validate_timeout(timeout)
+        validate_url(url); number(interval,low=0,high=3600,strict=True,name='interval')
+        if timeout is None:
+            raise CliFailure('E_USAGE','Watch requires an explicit --timeout.')
+        policy, deadline=policy_options(dict(options,timeout=timeout))
         state={'events':0,'initialized':False}
         async def consume():
-            with execution_policy(ExecutionPolicy(),deadline):
+            with execution_policy(policy,deadline):
                 generator=native_watch(url,interval=interval,db_path=db,max_urls=maximum,retain_limit=maximum,on_initialized=lambda:state.update(initialized=True))
                 try:
                     async for change in generator:

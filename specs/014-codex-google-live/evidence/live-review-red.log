@@ -1,0 +1,99 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+____________ test_live_controlled_actual_parse_cli_export_roundtrip ____________
+
+profile = (PosixPath('/tmp/pytest-of-agent/pytest-32/test_live_controlled_actual_pa0'), PosixPath('/tmp/pytest-of-agent/pytest-3...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+
+    def test_live_controlled_actual_parse_cli_export_roundtrip(profile):
+        root, path, _ = profile
+        body = '<script type="application/ld+json">'+json.dumps({'@type':'Product','name':'Book',
+            'category':'Books','offers':{'price':'1.00','priceCurrency':'PKR'}})+'</script>'
+        transport = httpx.MockTransport(lambda request: httpx.Response(200, text=body))
+        result = api().verify_google_live(path, root / 'out', project_root=root, live=True, transport=transport)
+        assert result['status'] == 'pass', result
+        assert result['mode'] == 'controlled' and not result['live_verified']
+        site = result['sites'][0]
+        assert site['mapping']['classifications'][0]['target_id'] == '784'
+        assert site['export']['verified'] and site['cli']['exit_code'] == 0
+>       assert site['cli']['sha256']==sha256((root/'out'/site['cli']['output']).read_bytes()).hexdigest()
+E       AssertionError: assert 'd98ca64ed25d...fcc42338d9d9d' == 'f148d89a1bed...83c61ce018387'
+E         
+E         - f148d89a1bede35dca8668808aa0c4ec7542c3b1c20a9b5392683c61ce018387
+E         + d98ca64ed25d19b37d8d107847cd5688f2e5c8dce6babceb8b8fcc42338d9d9d
+
+tests/test_google_live.py:67: AssertionError
+_____ test_live_invalid_semantic_rules_reject_before_transport[<lambda>0] ______
+
+profile = (PosixPath('/tmp/pytest-of-agent/pytest-32/test_live_invalid_semantic_rul0'), PosixPath('/tmp/pytest-of-agent/pytest-3...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+change = <function <lambda> at 0x7f4578e9a700>
+
+    @pytest.mark.parametrize('change',[lambda r:r.update(target_ids=[]),
+        lambda r:r['selector'].update(allow_unknown_version=False),lambda r:r.update(target_ids=['999'])])
+    def test_live_invalid_semantic_rules_reject_before_transport(profile,change):
+        root,path,data=profile;change(data['sites'][0]['mapping_rules'][0]);path.write_text(json.dumps(data));calls=[]
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_google_live.py:152: Failed
+_____ test_live_invalid_semantic_rules_reject_before_transport[<lambda>1] ______
+
+profile = (PosixPath('/tmp/pytest-of-agent/pytest-32/test_live_invalid_semantic_rul1'), PosixPath('/tmp/pytest-of-agent/pytest-3...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+change = <function <lambda> at 0x7f4578e9a7a0>
+
+    @pytest.mark.parametrize('change',[lambda r:r.update(target_ids=[]),
+        lambda r:r['selector'].update(allow_unknown_version=False),lambda r:r.update(target_ids=['999'])])
+    def test_live_invalid_semantic_rules_reject_before_transport(profile,change):
+        root,path,data=profile;change(data['sites'][0]['mapping_rules'][0]);path.write_text(json.dumps(data));calls=[]
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_google_live.py:152: Failed
+_____ test_live_invalid_semantic_rules_reject_before_transport[<lambda>2] ______
+
+profile = (PosixPath('/tmp/pytest-of-agent/pytest-32/test_live_invalid_semantic_rul2'), PosixPath('/tmp/pytest-of-agent/pytest-3...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+change = <function <lambda> at 0x7f4578e9a840>
+
+    @pytest.mark.parametrize('change',[lambda r:r.update(target_ids=[]),
+        lambda r:r['selector'].update(allow_unknown_version=False),lambda r:r.update(target_ids=['999'])])
+    def test_live_invalid_semantic_rules_reject_before_transport(profile,change):
+        root,path,data=profile;change(data['sites'][0]['mapping_rules'][0]);path.write_text(json.dumps(data));calls=[]
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_google_live.py:152: Failed
+_____________ test_live_duplicate_css_field_rejects_before_output ______________
+
+profile = (PosixPath('/tmp/pytest-of-agent/pytest-32/test_live_duplicate_css_field_0'), PosixPath('/tmp/pytest-of-agent/pytest-3...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+
+    def test_live_duplicate_css_field_rejects_before_output(profile):
+        root,path,data=profile;field={'name':'title','selector':'h1','type':'text'}
+        data['sites'][0].update(source_kind='html_css',css_schema={'baseSelector':'body','fields':[field,field]})
+        path.write_text(json.dumps(data))
+>       with pytest.raises(ValueError):api().verify_google_live(path,root/'out',project_root=root)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_google_live.py:162: Failed
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_live.py::test_live_controlled_actual_parse_cli_export_roundtrip
+FAILED tests/test_google_live.py::test_live_invalid_semantic_rules_reject_before_transport[<lambda>0]
+FAILED tests/test_google_live.py::test_live_invalid_semantic_rules_reject_before_transport[<lambda>1]
+FAILED tests/test_google_live.py::test_live_invalid_semantic_rules_reject_before_transport[<lambda>2]
+FAILED tests/test_google_live.py::test_live_duplicate_css_field_rejects_before_output
+5 failed, 14 deselected, 1 warning in 1.26s

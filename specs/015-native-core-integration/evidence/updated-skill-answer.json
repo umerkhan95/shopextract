@@ -1,0 +1,18 @@
+{
+  "skill_used": true,
+  "status": "blocked",
+  "live_verified": false,
+  "native_cli_discovery_verified": false,
+  "report_path": "/workspace/shopextract/build/google-live/native-core-review-skill-1/report.json",
+  "tested_urls": [
+    "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+    "https://libertybooks.com/products/atomic-habits-an-easy-and-proven-way-to-build-good-habits-and-break-bad-ones"
+  ],
+  "usage": {
+    "pipeline_invocations": 0,
+    "products": 0,
+    "network_requests": null,
+    "network_bytes": null
+  },
+  "summary": "Updated repo skill parh kar configured v2 production CLI dono Pakistani sites ke liye aik martaba chalaya. Fresh network policy ne dono hosts skip kiye; pipeline starts aur products 0 rahe. Extraction, platform detection, Crawl4AI aur Google mapping nahin chale. Network counters null hain; live browser/merchant verification sabit nahin hui. Yeh explicit file-based app-agent exercise hai, native CLI skill discovery ka proof nahin."
+}

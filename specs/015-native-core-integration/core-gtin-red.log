@@ -1,0 +1,43 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+.F.                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_shopify_short_gtin_policy_survives_unified_fallback[True-29877030712-0029877030712] _
+
+boundaries = {'http_status': 403, 'http_html': '', 'browser_html': '<script type="application/ld+json">{"@type": "Product", "name":...cts.json?limit=250&page=1', 'https://merchant.test/sitemap_products_1.xml', 'https://merchant.test/product/book'], ...}
+restore = True, barcode = '29877030712', expected = '0029877030712'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('restore,barcode,expected',[(False,'29877030712',None),(True,'29877030712','0029877030712'),(True,'29877030713',None)])
+    async def test_shopify_short_gtin_policy_survives_unified_fallback(boundaries,restore,barcode,expected):
+        raw={'@type':'Product','name':'Book','image':SHOP+'/book.jpg','offers':{'price':'25','priceCurrency':'PKR'},
+             'variants':[{'id':10,'barcode':barcode}]}
+        boundaries['browser_html']='<script type="application/ld+json">'+json.dumps(raw)+'</script>'
+        with execution_policy(ExecutionPolicy(browser=True)):
+            result=await extract(SHOP,platform=Platform.SHOPIFY,max_urls=1,restore_short_gtin=restore)
+        assert result.tier==ExtractionTier.UNIFIED_CRAWL and boundaries['browser']
+>       assert result.products[0].gtin==expected
+E       AssertionError: assert None == '0029877030712'
+E        +  where None = Product(title='Book', price=Decimal('25'), currency='PKR', description='', image_url='https://merchant.test/book.jpg',...f49-2cc6-4294-a48d-76ec9546eee1', supplier_id='merchant.test', attributes={}, pack_quantity=None, bundle_components=[]).gtin
+
+tests/test_native_core_integration.py:165: AssertionError
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+tests/test_native_core_integration.py::test_shopify_short_gtin_policy_survives_unified_fallback[False-29877030712-None]
+tests/test_native_core_integration.py::test_shopify_short_gtin_policy_survives_unified_fallback[True-29877030712-0029877030712]
+tests/test_native_core_integration.py::test_shopify_short_gtin_policy_survives_unified_fallback[True-29877030713-None]
+  /workspace/shopextract/src/shopextract/extractors/_browser.py:233: DeprecationWarning: PruningContentFilter (BeautifulSoup-based) is deprecated in favor of PruningContentFilterLXML, an lxml reimplementation that is ~10x faster with identical output. Switch to PruningContentFilterLXML now. In an upcoming release PruningContentFilter will become an alias for the lxml implementation, and PruningContentFilterLXML will be kept as a legacy alias.
+    content_filter=PruningContentFilter(threshold=0.48),
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_native_core_integration.py::test_shopify_short_gtin_policy_survives_unified_fallback[True-29877030712-0029877030712]
+1 failed, 2 passed, 14 deselected, 4 warnings in 0.13s

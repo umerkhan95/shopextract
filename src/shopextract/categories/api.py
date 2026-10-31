@@ -1,4 +1,4 @@
-"""Explicit opt-in native/static category wrappers, with no model/browser fallback."""
+"""Category binding over compatible native sources or opt-in production extraction."""
 from dataclasses import replace
 from importlib import import_module
 from typing import Any
@@ -59,14 +59,50 @@ def _bind_categories(product, observations, category_options):
                         options_digest(category_options), limits=category_options.limits)
 
 
+def _validate_production_source(url: str, store_url: str) -> None:
+    """Validate selected input scope before extraction; no redirect guarantee."""
+    from urllib.parse import urlsplit, unquote
+    from ..tools.security import normalized
+    from ..tools.contracts import ToolError
+    try:
+        target, origin, _, _ = normalized(url)
+        source, expected_origin, _, _ = normalized(store_url)
+        if origin != expected_origin:
+            raise ValueError()
+        def source_path(value):
+            path = urlsplit(value).path
+            for _ in range(3):
+                decoded = unquote(path,errors='strict')
+                if decoded == path:
+                    break
+                path = decoded
+            if unquote(path,errors='strict') != path or '\\' in path or any(part in ('.','..') for part in path.split('/')):
+                raise ValueError()
+            return path.rstrip('/')
+        path, base = source_path(target), source_path(source)
+        if base and path != base and not path.startswith(base + '/'):
+            raise ValueError()
+    except (ValueError, TypeError, ToolError):
+        raise CategoryError('Category production source differs from store scope') from None
+
+
 async def extract_with_categories(url: str, *, category_options: CategoryOptions,
+                                  source_mode: str = 'native',
                                   **extraction_options: Any) -> CategorizedExtractionResult:
+    """Bind native source categories, optionally using the full production chain.
+
+    Native remains the compatible source-specific default. Production delegates
+    tier selection to extract(); the caller's execution policy controls browser
+    and inference eligibility. Neither mode guesses missing source categories.
+    """
     validate_options(category_options)
+    if source_mode not in ('native', 'production'):
+        raise CategoryError('Unknown category extraction source mode')
     allowed = {'platform','max_urls','shop_url','llm_api_key','llm_model','llm_temperature',
                'enrich_identifiers','restore_short_gtin','api_options'}
     if set(extraction_options) - allowed:
         raise CategoryError('Unknown category extraction option')
-    if extraction_options.get('llm_api_key'):
+    if source_mode == 'native' and extraction_options.get('llm_api_key'):
         raise CategoryError('Category mode uses native/static sources only')
     platform = extraction_options.get('platform') or category_options.scope.platform
     if platform != category_options.scope.platform:
@@ -80,7 +116,16 @@ async def extract_with_categories(url: str, *, category_options: CategoryOptions
             set(api_options) - {'endpoint','access_token','protocol','token_type','customer_access_token','customer_id'} or
             any(not isinstance(v,str) for v in api_options.values())):
         raise CategoryError('Invalid storefront API options')
-    if platform == Platform.GENERIC:
+    if source_mode == 'production':
+        from .._extract import extract
+        from .._scope import catalog_scope
+        if catalog_scope(shop,platform) != catalog_scope(category_options.scope.store_url,platform):
+            raise CategoryError('Category extraction shop scope mismatch')
+        _validate_production_source(url, category_options.scope.store_url)
+        kwargs = dict(extraction_options)
+        kwargs.update(platform=platform,shop_url=shop,include_categories=True)
+        result = await extract(url,**kwargs)
+    elif platform == Platform.GENERIC:
         from ..extractors._storefront import request
         from ..extractors.feed import GoogleFeedExtractor
         from ..extractors.unified import UnifiedCrawlExtractor

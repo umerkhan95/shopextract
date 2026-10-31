@@ -1,0 +1,50 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+F
+=================================== FAILURES ===================================
+_ test_production_categories_use_native_fallbacks_and_observed_facts[body0-schema.org:category] _
+
+boundaries = {'http_status': 403, 'http_html': '', 'browser_html': '<script type="application/ld+json">{"@type": "Product", "name":...", "offers": {"price": "25", "priceCurrency": "PKR"}, "description": "A book", "sku": "B1"}</script>', 'http': [], ...}
+body = '<script type="application/ld+json">{"@type": "Product", "name": "Book", "category": "Books", "image": "https://merchant.test/book.jpg", "offers": {"price": "25", "priceCurrency": "PKR"}, "description": "A book", "sku": "B1"}</script>'
+namespace = 'schema.org:category'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('body,namespace',[(JSONLD,'schema.org:category'),(OG,'opengraph:product_category'),(CSS,'generic:product_type')])
+    async def test_production_categories_use_native_fallbacks_and_observed_facts(boundaries,body,namespace):
+        boundaries['browser_html']=body
+        with execution_policy(ExecutionPolicy(browser=True)):
+>           result = await extract_with_categories(SHOP, category_options=options(namespace), source_mode='production', max_urls=1)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_native_core_integration.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://merchant.test'
+category_options = CategoryOptions(scope=CategoryScope(platform=<Platform.GENERIC: 'generic'>, store_url='https://merchant.test', catalog...ts(terms=100, relation_refs=200, ancestry_depth=8, record_bytes=262144, rules=1000, targets=1000, config_bytes=262144))
+extraction_options = {'source_mode': 'production', 'max_urls': 1}
+
+    async def extract_with_categories(url: str, *, category_options: CategoryOptions,
+                                      **extraction_options: Any) -> CategorizedExtractionResult:
+        validate_options(category_options)
+        allowed = {'platform','max_urls','shop_url','llm_api_key','llm_model','llm_temperature',
+                   'enrich_identifiers','restore_short_gtin','api_options'}
+        if set(extraction_options) - allowed:
+>           raise CategoryError('Unknown category extraction option')
+E           shopextract.categories.contracts.CategoryError: Unknown category extraction option
+
+src/shopextract/categories/api.py:68: CategoryError
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_native_core_integration.py::test_production_categories_use_native_fallbacks_and_observed_facts[body0-schema.org:category]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 1 warning in 0.05s

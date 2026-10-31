@@ -1,0 +1,64 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________ test_live_malformed_shopify_response_is_reported _______________
+
+profile = (PosixPath('/tmp/pytest-of-agent/pytest-30/test_live_malformed_shopify_re0'), PosixPath('/tmp/pytest-of-agent/pytest-3...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+
+    def test_live_malformed_shopify_response_is_reported(profile):
+        root,path,data=profile;data['sites'][0].update(platform='shopify',source_kind='shopify_products',mapping_rules=[])
+        path.write_text(json.dumps(data))
+>       result=api().verify_google_live(path,root/'out',project_root=root,live=True,
+            transport=httpx.MockTransport(lambda request:httpx.Response(200,json=[])))
+
+tests/test_google_live.py:133: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/taxonomies/google/live.py:127: in verify_google_live
+    raw=parse_source(site,body.decode('utf-8'),url,remaining)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+site = {'id': 'books', 'url': 'https://shop.test/item', 'platform': 'shopify', 'source_kind': 'shopify_products', ...}
+body = '[]', url = 'https://shop.test/item', maximum = 4
+
+    def parse_source(site, body, url, maximum):
+        if site['source_kind'] == 'shopify_products':
+            from ..._capture import capture
+            value = json.loads(body)
+>           products = value.get('products', [])
+                       ^^^^^^^^^
+E           AttributeError: 'list' object has no attribute 'get'
+
+src/shopextract/taxonomies/google/live.py:34: AttributeError
+_________ test_policy_unknown_boolean_version_never_establishes_denial _________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-30/test_policy_unknown_boolean_ve0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7ff3956fcf50>
+
+    def test_policy_unknown_boolean_version_never_establishes_denial(tmp_path,monkeypatch):
+        policy=importlib.import_module('shopextract.taxonomies.google.live_policy')
+        source=tmp_path/'policy.json';source.write_text(json.dumps({'version':True,
+            'http_network_policy':{'type':'restricted','egress_rules':[]}}))
+        monkeypatch.setattr(policy,'Path',lambda _:source)
+>       assert policy.policy_denial('https://shop.test/item') is None
+E       AssertionError: assert {'reason': 'host_not_allowed', 'host': 'shop.test', 'policy_path': '/tmp/pytest-of-agent/pytest-30/test_policy_unknown_boolean_ve0/policy.json', 'sha256': '9282c994b5b960c3a204687248accb7e882f45c177b583192e5e397f5d37b88d', ...} is None
+E        +  where {'reason': 'host_not_allowed', 'host': 'shop.test', 'policy_path': '/tmp/pytest-of-agent/pytest-30/test_policy_unknown_boolean_ve0/policy.json', 'sha256': '9282c994b5b960c3a204687248accb7e882f45c177b583192e5e397f5d37b88d', ...} = <function policy_denial at 0x7ff3956c0360>('https://shop.test/item')
+E        +    where <function policy_denial at 0x7ff3956c0360> = <module 'shopextract.taxonomies.google.live_policy' from '/workspace/shopextract/src/shopextract/taxonomies/google/live_policy.py'>.policy_denial
+
+tests/test_google_live.py:144: AssertionError
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_live.py::test_live_malformed_shopify_response_is_reported
+FAILED tests/test_google_live.py::test_policy_unknown_boolean_version_never_establishes_denial
+2 failed, 13 deselected, 1 warning in 0.07s

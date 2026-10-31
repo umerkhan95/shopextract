@@ -11,7 +11,7 @@ import click
 from ._cli_core import CliFailure, CoreCommand, emit_response, make_response
 from ._cli_data import (read_json_file, raw_records, categorized_from_value, atomic_json,
                         MAX_BYTES, MAX_RECORDS, category_policy_from_value)
-from ._cli_extract import run_operation, validate_timeout, validate_url, storefront_options
+from ._cli_extract import run_operation, validate_timeout, validate_url, storefront_options, execution_options, policy_options
 from ._cli_monitor import check_destination
 from ._execution import ExecutionPolicy
 from ._portable import product_to_record
@@ -181,20 +181,25 @@ def register(main):
     @click.option('--enrich-identifiers',is_flag=True)
     @click.option('--restore-short-gtin',is_flag=True)
     @click.option('--max-products',type=click.IntRange(1,1000),default=20,show_default=True)
-    @click.option('--timeout',type=float,default=30.,show_default=True)
+    @click.option('--source-mode',type=click.Choice(['native','production']),default='production',show_default=True)
+    @execution_options()
     @native_errors
-    def extract(url,options_path,destination,max_products,timeout,storefront_config,enrich_identifiers,restore_short_gtin):
+    def extract(url,options_path,destination,max_products,timeout,storefront_config,enrich_identifiers,restore_short_gtin,source_mode,**execution):
         from .categories.api import extract_with_categories
         sources(destination,*[p for p in (options_path,storefront_config) if p is not None]);options=options_file(options_path)
         api=storefront_options(storefront_config,options.scope.platform.value)
-        validate_url(url);timeout=validate_timeout(timeout)
+        validate_url(url)
+        if source_mode=='native' and execution.get('allow_llm'):
+            raise CliFailure('E_USAGE','Native category mode does not support LLM; select production.')
+        secrets=tuple(v for k,v in (api or {}).items() if k in ('access_token','customer_access_token','customer_id'))
+        policy,timeout=policy_options(dict(execution,timeout=timeout),secrets)
         source,scope=urlsplit(url),urlsplit(options.scope.store_url)
         prefix=_scope_path(scope.path)
         source_path=_scope_path(source.path)
         if (source.scheme,source.netloc)!=(scope.scheme,scope.netloc) or not (source_path==prefix or source_path.startswith(prefix+'/')):
             raise CliFailure('E_USAGE','Extraction URL differs from category store origin/base path.')
-        result,warnings=run_operation(lambda:extract_with_categories(url,category_options=options,max_urls=max_products,api_options=api,
-            enrich_identifiers=enrich_identifiers,restore_short_gtin=restore_short_gtin),ExecutionPolicy(secrets=tuple(v for k,v in (api or {}).items() if k in ('access_token','customer_access_token','customer_id'))),timeout)
+        result,warnings=run_operation(lambda:extract_with_categories(url,category_options=options,source_mode=source_mode,max_urls=max_products,api_options=api,
+            enrich_identifiers=enrich_identifiers,restore_short_gtin=restore_short_gtin),policy,timeout)
         data=category_data(result.products,catalog_complete=result.result.catalog_complete,
             incompleteness_reasons=list(result.result.incompleteness_reasons),
             input_count=len(result.result.raw_products),dropped_count=len(result.result.raw_products)-len(result.products))

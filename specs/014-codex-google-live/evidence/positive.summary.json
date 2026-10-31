@@ -1,0 +1,57 @@
+{
+  "case": "positive",
+  "argv": [
+    "codex",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--json",
+    "--sandbox",
+    "workspace-write",
+    "-c",
+    "approval_policy=\"never\"",
+    "-C",
+    "/workspace/shopextract",
+    "--output-schema",
+    "/workspace/shopextract/build/google-codex-host/answer.schema.json",
+    "--output-last-message",
+    "/workspace/shopextract/build/google-codex-host/positive.final.json",
+    "-"
+  ],
+  "exit_code": -15,
+  "reason": null,
+  "seconds": 46.81356767200032,
+  "trace_bytes": 1309,
+  "commands_started": 0,
+  "completed_commands": [],
+  "events": [
+    "thread.started",
+    "turn.started",
+    "error",
+    "error",
+    "error",
+    "error",
+    "item.completed",
+    "error",
+    "error",
+    "error"
+  ],
+  "answer": null,
+  "identity_before": {
+    "code": "e4a5037cf2ba2e80bfad66fd093346ebef5a397f7d2bea230f46296fa13fdcaa",
+    "skill": "e98990bbff8fedc91391caaf50168781eabc0ad9a2f33f01a7a209a545a46c75",
+    "profile": "67d3ab7248cd274c687f4257d08b1f49ace5c17f3c3775da082281bfc27353c7"
+  },
+  "identity_after": {
+    "code": "e4a5037cf2ba2e80bfad66fd093346ebef5a397f7d2bea230f46296fa13fdcaa",
+    "skill": "e98990bbff8fedc91391caaf50168781eabc0ad9a2f33f01a7a209a545a46c75",
+    "profile": "67d3ab7248cd274c687f4257d08b1f49ace5c17f3c3775da082281bfc27353c7"
+  },
+  "identities_unchanged": true,
+  "owned_group_alive_after": false,
+  "cleanup": {
+    "cleanup_seconds": 2.6e-05,
+    "group_alive_after_cleanup": false
+  },
+  "usage": []
+}

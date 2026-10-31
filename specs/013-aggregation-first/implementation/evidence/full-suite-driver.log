@@ -1,0 +1,4 @@
+{"group": "main", "status": "passed", "seconds": 65.627228, "summary": "1647 passed, 4 warnings in 63.89s (0:01:03)", "log": "build/google-integration-ci/main.log"}
+{"group": "reliable-oracle", "status": "passed", "seconds": 14.487179, "summary": "24 passed, 1 warning in 13.65s", "log": "build/google-integration-ci/reliable-oracle.log"}
+{"group": "maintenance", "status": "passed", "seconds": 31.347078, "summary": "106 passed, 1 warning in 30.49s", "log": "build/google-integration-ci/maintenance.log"}
+{"status": "passed", "seconds": 111.463886, "report": "build/google-integration-ci/report.json"}

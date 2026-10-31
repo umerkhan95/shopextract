@@ -56,7 +56,7 @@ def test_six_extract_real_wire_parsers(tmp_path,monkeypatch,platform):
     def client(*args,**kwargs):
         kwargs.setdefault('transport',httpx.MockTransport(response));return original(*args,**kwargs)
     monkeypatch.setattr(httpx,'AsyncClient',client)
-    command=['categories','extract',STORE,'--max-products','1','--options',dump(tmp_path/'opt.json',wire(options(platform)))]
+    command=['categories','extract',STORE,'--source-mode','native','--max-products','1','--options',dump(tmp_path/'opt.json',wire(options(platform)))]
     if platform in (Platform.SHOPWARE,Platform.BIGCOMMERCE):
         command+=['--storefront-config',dump(tmp_path/'api.json',{'endpoint':STORE+('/store-api' if platform==Platform.SHOPWARE else '/graphql'),'access_token':'public-fixture-token'})]
     result=invoke(command)
@@ -540,7 +540,7 @@ def test_decoded_scope_path_rejects_before_http(tmp_path,monkeypatch,path):
 
 def test_valid_nested_scope_extract(tmp_path,monkeypatch):
     files=fixture_files(tmp_path);install_transport(monkeypatch)
-    result=invoke(['categories','extract',STORE+'/nested','--options',files['options']])
+    result=invoke(['categories','extract',STORE+'/nested','--source-mode','native','--options',files['options']])
     assert result.exit_code==0 and body(result)['data']['product_count']==1,result.output
 
 @pytest.mark.parametrize('control',['enrich','restore'])

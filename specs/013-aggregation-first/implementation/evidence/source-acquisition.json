@@ -1,0 +1,42 @@
+{
+  "catalog_origin": "official Shopify integration snapshot of Google2021-09-21, not direct Google-byte verification",
+  "direct_google": {
+    "requests": 1,
+    "outcome": "proxy denied403",
+    "url": "https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt"
+  },
+  "source_commit": "2e9aa2e9b882383952c63d212add13eb80f46cf9",
+  "files": [
+    {
+      "name": "full_names.yml",
+      "bytes": 577969,
+      "sha256": "4b6fcdaf79f501a4f5cef9d35b95749b021c0cff48baeb3fd8be6733d1e9bee6",
+      "source_url": "https://raw.githubusercontent.com/Shopify/product-taxonomy/2e9aa2e9b882383952c63d212add13eb80f46cf9/data/integrations/google/2021-09-21/full_names.yml",
+      "kind": "upstream"
+    },
+    {
+      "name": "from_shopify.yml",
+      "bytes": 1355910,
+      "sha256": "93a223a7ac687a78a0a1151d6e763d3dcfe43d4100cc0f225a2c30672e577903",
+      "source_url": "https://raw.githubusercontent.com/Shopify/product-taxonomy/2e9aa2e9b882383952c63d212add13eb80f46cf9/data/integrations/google/2021-09-21/mappings/from_shopify.yml",
+      "kind": "upstream"
+    },
+    {
+      "name": "shopify-google-snapshot.en-US.txt",
+      "bytes": 482896,
+      "sha256": "30039729880ec5ac4851de088ad228a6898aa253f0de5d5ebea5bb1437478fce",
+      "source_url": null,
+      "kind": "derived from pinned YAML"
+    }
+  ],
+  "observed_counts": {
+    "google_nodes": 5595,
+    "google_roots": 21,
+    "google_max_depth": 6,
+    "shopify_forward_rules": 14528,
+    "explicit_source_exclusions": 78
+  },
+  "redistribution_route": "no Google data bundled in Git/source package without separate terms conclusion; explicit complete operator-provisioned catalog resource supported",
+  "full_source_corpus": "retained under ignored downloads/google-taxonomy/2021-09-21",
+  "models": 0
+}

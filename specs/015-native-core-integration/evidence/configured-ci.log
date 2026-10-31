@@ -1,0 +1,2 @@
+{"group": "main", "status": "failed", "seconds": 83.812658, "summary": "10 failed, 1728 passed, 15 warnings in 81.09s (0:01:21)", "log": "build/native-core-ci/main.log"}
+{"status": "failed", "seconds": 83.81434, "report": "build/native-core-ci/report.json"}
