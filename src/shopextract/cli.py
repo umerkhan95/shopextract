@@ -78,12 +78,13 @@ def discover(url: str, max_urls: int, platform: str | None, **options) -> None:
 @click.option("--stores", "-s", multiple=True, required=True, help="Store URLs to compare.")
 @click.option('--max-per-store',type=int,default=None)
 @click.option('--threshold',type=float,default=None)
-@click.option('--timeout',type=float,default=None)
-def compare(query: str, stores: tuple[str, ...], max_per_store, threshold, timeout) -> None:
+@execution_options()
+def compare(query: str, stores: tuple[str, ...], max_per_store, threshold, timeout, **options) -> None:
     """Compare prices for a product across stores."""
-    if settings().output_format == 'json' or any(v is not None for v in (max_per_store,threshold,timeout)):
+    from ._cli_extract import execution_requested
+    if settings().output_format == 'json' or any(v is not None for v in (max_per_store,threshold,timeout)) or execution_requested():
         from ._cli_analysis import compare_command
-        compare_command(query,list(stores),50 if max_per_store is None else max_per_store,.6 if threshold is None else threshold,timeout)
+        compare_command(query,list(stores),50 if max_per_store is None else max_per_store,.6 if threshold is None else threshold,timeout,options)
     else:
         asyncio.run(_compare(query, list(stores)))
 
@@ -92,12 +93,13 @@ def compare(query: str, stores: tuple[str, ...], max_per_store, threshold, timeo
 @click.argument("url")
 @click.option('--db',type=click.Path(),default=None)
 @click.option('--max','max_urls',type=int,default=None)
-@click.option('--timeout',type=float,default=None)
-def snapshot(url: str, db, max_urls, timeout) -> None:
+@execution_options()
+def snapshot(url: str, db, max_urls, timeout, **options) -> None:
     """Take a snapshot of a store's catalog."""
-    if settings().output_format == 'json' or any(v is not None for v in (db,max_urls,timeout)):
+    from ._cli_extract import execution_requested
+    if settings().output_format == 'json' or any(v is not None for v in (db,max_urls,timeout)) or execution_requested():
         from ._cli_monitor import snapshot_command, DEFAULT_DB
-        snapshot_command(url,db or DEFAULT_DB,20 if max_urls is None else max_urls,timeout)
+        snapshot_command(url,db or DEFAULT_DB,20 if max_urls is None else max_urls,timeout,options)
     else:
         asyncio.run(_snapshot(url))
 
@@ -135,12 +137,13 @@ def history(domain: str, product: str, db, canonical_id) -> None:
 @main.command()
 @click.argument("url")
 @click.option("--max", "-n", "max_urls", default=20, help="Max product URLs to analyze.")
-@click.option('--timeout',type=float,default=None)
-def analyze(url: str, max_urls: int, timeout) -> None:
+@execution_options()
+def analyze(url: str, max_urls: int, timeout, **options) -> None:
     """Analyze a store's catalog statistics."""
-    if settings().output_format == 'json' or timeout is not None:
+    from ._cli_extract import execution_requested
+    if settings().output_format == 'json' or timeout is not None or execution_requested():
         from ._cli_analysis import analyze_command
-        analyze_command(url,max_urls,timeout)
+        analyze_command(url,max_urls,timeout,options)
     else:
         asyncio.run(_analyze(url, max_urls))
 
@@ -375,6 +378,9 @@ _register_operations(main)
 
 from ._cli_discovery import register as _register_discovery
 _register_discovery(main)
+
+from ._cli_google import register as _register_google
+_register_google(main)
 
 if __name__ == "__main__":
     main()

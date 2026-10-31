@@ -1,0 +1,20 @@
+{
+  "scope": "user switched to Pakistani sites; previous blocked sites retired from current selection",
+  "requests": 2,
+  "results": [
+    {
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "error": "URLError",
+      "message": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "skipped": true,
+      "seconds": 0.011288149999927555
+    },
+    {
+      "url": "https://www.libertybooks.com/",
+      "error": "URLError",
+      "message": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "skipped": true,
+      "seconds": 0.0038447969996013853
+    }
+  ]
+}

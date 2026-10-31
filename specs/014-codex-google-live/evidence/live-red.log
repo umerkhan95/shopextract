@@ -1,0 +1,71 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+_______________________ test_live_dry_run_is_not_a_scan ________________________
+No module named 'shopextract.taxonomies.google.live'
+
+During handling of the above exception, another exception occurred:
+Configured Google live verification API is not implemented
+_________________ test_live_current_policy_skip_never_requests _________________
+No module named 'shopextract.taxonomies.google.live'
+
+During handling of the above exception, another exception occurred:
+Configured Google live verification API is not implemented
+____________ test_live_controlled_actual_parse_cli_export_roundtrip ____________
+No module named 'shopextract.taxonomies.google.live'
+
+During handling of the above exception, another exception occurred:
+Configured Google live verification API is not implemented
+________________ test_live_empty_rules_cannot_guess_from_title _________________
+No module named 'shopextract.taxonomies.google.live'
+
+During handling of the above exception, another exception occurred:
+Configured Google live verification API is not implemented
+________________ test_live_redirect_cannot_expand_source_origin ________________
+No module named 'shopextract.taxonomies.google.live'
+
+During handling of the above exception, another exception occurred:
+Configured Google live verification API is not implemented
+_______________ test_live_rejects_existing_output_before_network _______________
+No module named 'shopextract.taxonomies.google.live'
+
+During handling of the above exception, another exception occurred:
+Configured Google live verification API is not implemented
+__________ test_live_profile_rejects_invalid_scope_limits[<lambda>0] ___________
+No module named 'shopextract.taxonomies.google.live'
+
+During handling of the above exception, another exception occurred:
+Configured Google live verification API is not implemented
+__________ test_live_profile_rejects_invalid_scope_limits[<lambda>1] ___________
+No module named 'shopextract.taxonomies.google.live'
+
+During handling of the above exception, another exception occurred:
+Configured Google live verification API is not implemented
+__________ test_live_profile_rejects_invalid_scope_limits[<lambda>2] ___________
+No module named 'shopextract.taxonomies.google.live'
+
+During handling of the above exception, another exception occurred:
+Configured Google live verification API is not implemented
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_live.py::test_live_dry_run_is_not_a_scan - Failed: C...
+FAILED tests/test_google_live.py::test_live_current_policy_skip_never_requests
+FAILED tests/test_google_live.py::test_live_controlled_actual_parse_cli_export_roundtrip
+FAILED tests/test_google_live.py::test_live_empty_rules_cannot_guess_from_title
+FAILED tests/test_google_live.py::test_live_redirect_cannot_expand_source_origin
+FAILED tests/test_google_live.py::test_live_rejects_existing_output_before_network
+FAILED tests/test_google_live.py::test_live_profile_rejects_invalid_scope_limits[<lambda>0]
+FAILED tests/test_google_live.py::test_live_profile_rejects_invalid_scope_limits[<lambda>1]
+FAILED tests/test_google_live.py::test_live_profile_rejects_invalid_scope_limits[<lambda>2]
+9 failed, 1 warning in 0.05s

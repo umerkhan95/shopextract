@@ -1,0 +1,28 @@
+{
+  "native_codex_cli": {
+    "version": "0.163.0",
+    "authentication_eligibility": "Logged in using ChatGPT",
+    "status": "blocked",
+    "cause": "backend proxy403 before any skill/command execution",
+    "skill_activation_verified": false,
+    "model_answer_observed": false,
+    "commands_started": 0,
+    "negative_case": "not_run_known_backend_block",
+    "stop_reason": "codex-stop-reason.json"
+  },
+  "orchestrated_codex_agent": {
+    "host_kind": "existing Codex app multi-agent runtime; explicit file-based skill exercise, not nativeCLI discovery",
+    "positive_agent": "skill_response_probe",
+    "status": "workflow_executed_and_answer_consistent",
+    "reported_shell_calls": 7,
+    "report_sha256": "32681273004fd50c491f5d142045ac6a0b7812e3b033cf245718f56dbcd585a9",
+    "source_live_verified": false,
+    "answer_file": "orchestrated-positive.answer.json",
+    "report_file": "orchestrated-positive.report.json",
+    "negative_agent": "skill_negative_probe",
+    "negative_status": "unrelated response only; not native implicit-discovery proof",
+    "negative_answer_file": "orchestrated-negative.answer.json"
+  },
+  "website_mapping": "not_run_policy_skips",
+  "all_live_verified": false
+}

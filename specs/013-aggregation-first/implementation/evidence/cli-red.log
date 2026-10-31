@@ -1,0 +1,40 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+______________ test_google_taxonomy_help_is_static_and_registered ______________
+
+    def test_google_taxonomy_help_is_static_and_registered():
+        result = CliRunner().invoke(main, ["taxonomy", "google", "--help"])
+>       assert result.exit_code == 0, result.output
+E       AssertionError: Error: Unknown command or option.
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_google_taxonomy_cli.py:11: AssertionError
+____________ test_google_taxonomy_capabilities_include_public_paths ____________
+
+    def test_google_taxonomy_capabilities_include_public_paths():
+        result = CliRunner().invoke(main, ["capabilities"])
+        assert result.exit_code == 0, result.output
+        paths = [row["path"] for row in json.loads(result.output)["data"]["commands"]]
+>       assert ["taxonomy", "google", "lookup"] in paths
+E       AssertionError: assert ['taxonomy', 'google', 'lookup'] in [[], ['analyze'], ['analyze-file'], ['capabilities'], ['categories'], ['categories', 'extract'], ...]
+
+tests/test_google_taxonomy_cli.py:19: AssertionError
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_taxonomy_cli.py::test_google_taxonomy_help_is_static_and_registered
+FAILED tests/test_google_taxonomy_cli.py::test_google_taxonomy_capabilities_include_public_paths
+2 failed, 1 warning in 0.05s

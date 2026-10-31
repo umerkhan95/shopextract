@@ -1,0 +1,52 @@
+{
+  "execution_proof": "explicit_file_based_codex_app_agent",
+  "native_cli_discovery_verified": false,
+  "skill_path": "/workspace/shopextract/.agents/skills/shopextract-google-mapping/SKILL.md",
+  "skill_sha256": "173325e66e6d25e7eef7556f73f03ab148b98dc3dd751d044fee345ee2086bc3",
+  "command": [
+    "shopextract",
+    "--config",
+    "examples/cli/google-live-cli.json",
+    "taxonomy",
+    "google",
+    "verify-live",
+    "--profile",
+    "examples/cli/google-live-profile.json",
+    "--output-dir",
+    "build/google-live/native-core-review-skill-1",
+    "--live"
+  ],
+  "exit_code": 3,
+  "report_path": "/workspace/shopextract/build/google-live/native-core-review-skill-1/report.json",
+  "report_sha256": "a914e5dac2fffebff72560d88a37085b24413800d6756d587dfa3c7b6a591582",
+  "run_id": "f4251e2ad9c84b34a493c49997ef27aa",
+  "profile_sha256": "7e3a345f9394170acfb67fc936fb3d4f5cf27721fad7474b59b27fd8e299ffd3",
+  "runtime_fingerprint": "26506d815157ab127e8aac3aad7ad1711cb4acefe7b2bc3718d61225e2f72b0f",
+  "catalog_fingerprint": "3b6a52f1d3512c813109844031e0b7e16574ca39c00a60eee02d0d992321323c",
+  "status": "blocked",
+  "live_verified": false,
+  "usage": {
+    "pipeline_invocations": 0,
+    "products": 0,
+    "network_requests": null,
+    "network_bytes": null
+  },
+  "site_results": [
+    {
+      "id": "priceoye-a16",
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "fetch": "skipped_network_policy",
+      "extraction": "not_run",
+      "mapping": "not_run",
+      "policy_sha256": "b40e6662f38d1272fb995562ffc812a99c8acf3a81d5c5707f4a3469ea1cc904"
+    },
+    {
+      "id": "liberty-atomic-habits",
+      "url": "https://libertybooks.com/products/atomic-habits-an-easy-and-proven-way-to-build-good-habits-and-break-bad-ones",
+      "fetch": "skipped_network_policy",
+      "extraction": "not_run",
+      "mapping": "not_run",
+      "policy_sha256": "b40e6662f38d1272fb995562ffc812a99c8acf3a81d5c5707f4a3469ea1cc904"
+    }
+  ]
+}

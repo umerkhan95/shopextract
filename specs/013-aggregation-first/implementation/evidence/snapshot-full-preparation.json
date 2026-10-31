@@ -1,0 +1,15 @@
+{
+  "elapsed_seconds": 1.115113874999679,
+  "directory": "/workspace/shopextract/build/google-taxonomy/catalogs/2021-09-21/en-US/3b6a52f1d3512c813109844031e0b7e16574ca39c00a60eee02d0d992321323c",
+  "counts": {
+    "categories": 5595,
+    "roots": 21,
+    "leaves": 4719,
+    "parent_links": 5574
+  },
+  "fingerprint": "3b6a52f1d3512c813109844031e0b7e16574ca39c00a60eee02d0d992321323c",
+  "original_sha256": "4b6fcdaf79f501a4f5cef9d35b95749b021c0cff48baeb3fd8be6733d1e9bee6",
+  "derived_sha256": "30039729880ec5ac4851de088ad228a6898aa253f0de5d5ebea5bb1437478fce",
+  "network_requests": 0,
+  "source_kind": "shopify_google_snapshot"
+}

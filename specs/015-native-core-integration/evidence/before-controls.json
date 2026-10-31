@@ -1,0 +1,72 @@
+{
+  "provenance": "actual-installed-click-grammar-before-fix",
+  "commands": [
+    {
+      "command": "analyze",
+      "browser_control": false,
+      "llm_control": false,
+      "timeout_control": true
+    },
+    {
+      "command": "categories extract",
+      "browser_control": false,
+      "llm_control": false,
+      "timeout_control": true
+    },
+    {
+      "command": "compare",
+      "browser_control": false,
+      "llm_control": false,
+      "timeout_control": true
+    },
+    {
+      "command": "compare-catalogs",
+      "browser_control": false,
+      "llm_control": false,
+      "timeout_control": true
+    },
+    {
+      "command": "competitive gaps",
+      "browser_control": false,
+      "llm_control": false,
+      "timeout_control": true
+    },
+    {
+      "command": "competitive position",
+      "browser_control": false,
+      "llm_control": false,
+      "timeout_control": true
+    },
+    {
+      "command": "discover",
+      "browser_control": true,
+      "llm_control": false,
+      "timeout_control": true
+    },
+    {
+      "command": "extract",
+      "browser_control": true,
+      "llm_control": true,
+      "timeout_control": true
+    },
+    {
+      "command": "extract-one",
+      "browser_control": true,
+      "llm_control": true,
+      "timeout_control": true
+    },
+    {
+      "command": "snapshot",
+      "browser_control": false,
+      "llm_control": false,
+      "timeout_control": true
+    },
+    {
+      "command": "watch",
+      "browser_control": false,
+      "llm_control": false,
+      "timeout_control": true
+    }
+  ],
+  "session_token_counters": "unavailable"
+}

@@ -134,7 +134,7 @@ def select_config(scan: BootstrapScan, env: Mapping[str, str], cwd: Path) -> Con
 def error_output_format(scan: BootstrapScan, env: Mapping[str, str], source: ConfigSource) -> str:
     if scan.command_path == ("tools", "serve"):
         return "legacy"
-    if scan.command_path in _ENVELOPE_COMMANDS or scan.command_path and scan.command_path[0] in {"maintenance","tools","capabilities","schema"}:
+    if scan.command_path in _ENVELOPE_COMMANDS or scan.command_path and scan.command_path[0] in {"maintenance","tools","capabilities","schema","taxonomy"}:
         return "json"
     explicit = next((v for k, v in scan.explicit_options if k == "output_format"), None)
     if explicit in _CHOICES["output_format"]:

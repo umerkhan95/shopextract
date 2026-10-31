@@ -1,0 +1,124 @@
+/workspace/shopextract/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+___________ test_effective_direct_classification_and_corrupt_binding ___________
+
+    def test_effective_direct_classification_and_corrupt_binding():
+>       module = api()
+                 ^^^^^
+
+tests/test_google_taxonomy_mapping.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        module = importlib.import_module('shopextract.taxonomies.google')
+>       assert callable(getattr(module, 'effective_google_category', None)), 'Effective Google classification is missing'
+E       AssertionError: Effective Google classification is missing
+E       assert False
+E        +  where False = callable(None)
+E        +    where None = getattr(<module 'shopextract.taxonomies.google' from '/workspace/shopextract/src/shopextract/taxonomies/google/__init__.py'>, 'effective_google_category', None)
+
+tests/test_google_taxonomy_mapping.py:23: AssertionError
+______________ test_effective_route_conflict_never_chooses_first _______________
+
+    def test_effective_route_conflict_never_chooses_first():
+>       module = api()
+                 ^^^^^
+
+tests/test_google_taxonomy_mapping.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        module = importlib.import_module('shopextract.taxonomies.google')
+>       assert callable(getattr(module, 'effective_google_category', None)), 'Effective Google classification is missing'
+E       AssertionError: Effective Google classification is missing
+E       assert False
+E        +  where False = callable(None)
+E        +    where None = getattr(<module 'shopextract.taxonomies.google' from '/workspace/shopextract/src/shopextract/taxonomies/google/__init__.py'>, 'effective_google_category', None)
+
+tests/test_google_taxonomy_mapping.py:23: AssertionError
+__ test_effective_multiple_targets_and_partial_are_not_single_classification ___
+
+    def test_effective_multiple_targets_and_partial_are_not_single_classification():
+>       module = api()
+                 ^^^^^
+
+tests/test_google_taxonomy_mapping.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        module = importlib.import_module('shopextract.taxonomies.google')
+>       assert callable(getattr(module, 'effective_google_category', None)), 'Effective Google classification is missing'
+E       AssertionError: Effective Google classification is missing
+E       assert False
+E        +  where False = callable(None)
+E        +    where None = getattr(<module 'shopextract.taxonomies.google' from '/workspace/shopextract/src/shopextract/taxonomies/google/__init__.py'>, 'effective_google_category', None)
+
+tests/test_google_taxonomy_mapping.py:23: AssertionError
+_____ test_unknown_permission_unsupported_capture_and_other_merchant_scope _____
+
+    def test_unknown_permission_unsupported_capture_and_other_merchant_scope():
+>       module = api()
+                 ^^^^^
+
+tests/test_google_taxonomy_mapping.py:76: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        module = importlib.import_module('shopextract.taxonomies.google')
+>       assert callable(getattr(module, 'effective_google_category', None)), 'Effective Google classification is missing'
+E       AssertionError: Effective Google classification is missing
+E       assert False
+E        +  where False = callable(None)
+E        +    where None = getattr(<module 'shopextract.taxonomies.google' from '/workspace/shopextract/src/shopextract/taxonomies/google/__init__.py'>, 'effective_google_category', None)
+
+tests/test_google_taxonomy_mapping.py:23: AssertionError
+________________ test_effective_wrong_catalog_identity_rejected ________________
+
+    def test_effective_wrong_catalog_identity_rejected():
+>       module = api()
+                 ^^^^^
+
+tests/test_google_taxonomy_mapping.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        module = importlib.import_module('shopextract.taxonomies.google')
+>       assert callable(getattr(module, 'effective_google_category', None)), 'Effective Google classification is missing'
+E       AssertionError: Effective Google classification is missing
+E       assert False
+E        +  where False = callable(None)
+E        +    where None = getattr(<module 'shopextract.taxonomies.google' from '/workspace/shopextract/src/shopextract/taxonomies/google/__init__.py'>, 'effective_google_category', None)
+
+tests/test_google_taxonomy_mapping.py:23: AssertionError
+_____ test_shopify_crosswalk_preserves_source_none_and_explicit_permission _____
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-5/test_shopify_crosswalk_preserv0')
+
+    def test_shopify_crosswalk_preserves_source_none_and_explicit_permission(tmp_path):
+>       module = api()
+                 ^^^^^
+
+tests/test_google_taxonomy_mapping.py:104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        module = importlib.import_module('shopextract.taxonomies.google')
+>       assert callable(getattr(module, 'effective_google_category', None)), 'Effective Google classification is missing'
+E       AssertionError: Effective Google classification is missing
+E       assert False
+E        +  where False = callable(None)
+E        +    where None = getattr(<module 'shopextract.taxonomies.google' from '/workspace/shopextract/src/shopextract/taxonomies/google/__init__.py'>, 'effective_google_category', None)
+
+tests/test_google_taxonomy_mapping.py:23: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_google_taxonomy_mapping.py::test_effective_direct_classification_and_corrupt_binding
+FAILED tests/test_google_taxonomy_mapping.py::test_effective_route_conflict_never_chooses_first
+FAILED tests/test_google_taxonomy_mapping.py::test_effective_multiple_targets_and_partial_are_not_single_classification
+FAILED tests/test_google_taxonomy_mapping.py::test_unknown_permission_unsupported_capture_and_other_merchant_scope
+FAILED tests/test_google_taxonomy_mapping.py::test_effective_wrong_catalog_identity_rejected
+FAILED tests/test_google_taxonomy_mapping.py::test_shopify_crosswalk_preserves_source_none_and_explicit_permission
+6 failed in 0.06s

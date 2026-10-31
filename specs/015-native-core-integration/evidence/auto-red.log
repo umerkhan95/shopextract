@@ -1,0 +1,243 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_____ test_production_worker_uses_actual_api_and_retains_capture[shopify] ______
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fb64e1a8fe0>
+platform = 'shopify'
+
+    @pytest.mark.parametrize('platform', ['shopify', 'auto'])
+    def test_production_worker_uses_actual_api_and_retains_capture(monkeypatch, platform):
+        import asyncio
+        import httpx
+        from shopextract._execution import current_policy
+        try:
+            worker = importlib.import_module('shopextract.taxonomies.google.live_worker')
+        except ModuleNotFoundError:
+            pytest.fail('Native production worker is missing', pytrace=False)
+        observed = []
+        def respond(request):
+            observed.append(current_policy())
+            if request.url.path in ('', '/'):
+                return httpx.Response(200, headers={'x-shopid':'1'},
+                                      text='<meta name="generator" content="shopify">')
+            if request.url.path != '/products.json':
+                return httpx.Response(404)
+            return httpx.Response(200, json={'products': [{'id':1, 'title':'Book',
+                'handle':'book','product_type':'Books','images':[{'src':'https://shop.test/image'}],
+                'variants':[{'id':2,'price':'1.00','sku':'book'}]}]})
+        original = httpx.AsyncClient
+        monkeypatch.setattr(httpx, 'AsyncClient', lambda *args, **kw:
+            original(*args, **dict(kw, transport=httpx.MockTransport(respond))))
+        value = asyncio.run(worker.produce(dict(url='https://shop.test', shop_url='https://shop.test',
+            platform=platform, max_products=1, timeout=5)))
+        assert value['tier'] == 'api'
+>       assert value['platform'] == 'shopify'
+               ^^^^^^^^^^^^^^^^^
+E       KeyError: 'platform'
+
+tests/test_google_production.py:127: KeyError
+_______ test_production_worker_uses_actual_api_and_retains_capture[auto] _______
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fb64e1af470>
+platform = 'auto'
+
+    @pytest.mark.parametrize('platform', ['shopify', 'auto'])
+    def test_production_worker_uses_actual_api_and_retains_capture(monkeypatch, platform):
+        import asyncio
+        import httpx
+        from shopextract._execution import current_policy
+        try:
+            worker = importlib.import_module('shopextract.taxonomies.google.live_worker')
+        except ModuleNotFoundError:
+            pytest.fail('Native production worker is missing', pytrace=False)
+        observed = []
+        def respond(request):
+            observed.append(current_policy())
+            if request.url.path in ('', '/'):
+                return httpx.Response(200, headers={'x-shopid':'1'},
+                                      text='<meta name="generator" content="shopify">')
+            if request.url.path != '/products.json':
+                return httpx.Response(404)
+            return httpx.Response(200, json={'products': [{'id':1, 'title':'Book',
+                'handle':'book','product_type':'Books','images':[{'src':'https://shop.test/image'}],
+                'variants':[{'id':2,'price':'1.00','sku':'book'}]}]})
+        original = httpx.AsyncClient
+        monkeypatch.setattr(httpx, 'AsyncClient', lambda *args, **kw:
+            original(*args, **dict(kw, transport=httpx.MockTransport(respond))))
+>       value = asyncio.run(worker.produce(dict(url='https://shop.test', shop_url='https://shop.test',
+            platform=platform, max_products=1, timeout=5)))
+
+tests/test_google_production.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+src/shopextract/taxonomies/google/live_worker.py:23: in produce
+    result = await asyncio.wait_for(extract(payload['url'], platform=Platform(payload['platform']),
+                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/enum.py:751: in __call__
+    return cls.__new__(cls, value)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <enum 'Platform'>, value = 'auto'
+
+    def __new__(cls, value):
+        # all enum instances are actually created during class construction
+        # without calling this method; this method is called by the metaclass'
+        # __call__ (i.e. Color(3) ), and by pickle
+        if type(value) is cls:
+            # For lookups like Color(Color.RED)
+            return value
+        # by-value search for a matching enum member
+        # see if it's in the reverse mapping (for hashable values)
+        try:
+            return cls._value2member_map_[value]
+        except KeyError:
+            # Not found, no need to do long O(n) search
+            pass
+        except TypeError:
+            # not there, now do long search -- O(n) behavior
+            for member in cls._member_map_.values():
+                if member._value_ == value:
+                    return member
+        # still not found -- verify that members exist, in-case somebody got here mistakenly
+        # (such as via super when trying to override __new__)
+        if not cls._member_map_:
+            raise TypeError("%r has no members defined" % cls)
+        #
+        # still not found -- try _missing_ hook
+        try:
+            exc = None
+            result = cls._missing_(value)
+        except Exception as e:
+            exc = e
+            result = None
+        try:
+            if isinstance(result, cls):
+                return result
+            elif (
+                    Flag is not None and issubclass(cls, Flag)
+                    and cls._boundary_ is EJECT and isinstance(result, int)
+                ):
+                return result
+            else:
+                ve_exc = ValueError("%r is not a valid %s" % (value, cls.__qualname__))
+                if result is None and exc is None:
+>                   raise ve_exc
+E                   ValueError: 'auto' is not a valid Platform
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/enum.py:1170: ValueError
+___________________ test_auto_profile_and_unscoped_rule_only ___________________
+
+profile = (PosixPath('/tmp/pytest-of-agent/pytest-51/test_auto_profile_and_unscoped0'), PosixPath('/tmp/pytest-of-agent/pytest-5...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fb64e1b61e0>
+
+    def test_auto_profile_and_unscoped_rule_only(profile, monkeypatch):
+        root, path, value = production_profile(profile)
+        value['sites'][0]['platform'] = 'auto'
+        path.write_text(json.dumps(value))
+        from shopextract.taxonomies.google import live
+        monkeypatch.setattr(live, 'policy_denial', lambda _: {'reason':'host_not_allowed'})
+>       report = live.verify_google_live(path, root / 'out', project_root=root, live=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_google_production.py:222: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/taxonomies/google/live.py:54: in verify_google_live
+    profile = load_live_profile(profile_path,project_root=project_root)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/shopextract/taxonomies/google/live_profile.py:62: in load_live_profile
+    platform = Platform(site['platform'])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/enum.py:751: in __call__
+    return cls.__new__(cls, value)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <enum 'Platform'>, value = 'auto'
+
+    def __new__(cls, value):
+        # all enum instances are actually created during class construction
+        # without calling this method; this method is called by the metaclass'
+        # __call__ (i.e. Color(3) ), and by pickle
+        if type(value) is cls:
+            # For lookups like Color(Color.RED)
+            return value
+        # by-value search for a matching enum member
+        # see if it's in the reverse mapping (for hashable values)
+        try:
+            return cls._value2member_map_[value]
+        except KeyError:
+            # Not found, no need to do long O(n) search
+            pass
+        except TypeError:
+            # not there, now do long search -- O(n) behavior
+            for member in cls._member_map_.values():
+                if member._value_ == value:
+                    return member
+        # still not found -- verify that members exist, in-case somebody got here mistakenly
+        # (such as via super when trying to override __new__)
+        if not cls._member_map_:
+            raise TypeError("%r has no members defined" % cls)
+        #
+        # still not found -- try _missing_ hook
+        try:
+            exc = None
+            result = cls._missing_(value)
+        except Exception as e:
+            exc = e
+            result = None
+        try:
+            if isinstance(result, cls):
+                return result
+            elif (
+                    Flag is not None and issubclass(cls, Flag)
+                    and cls._boundary_ is EJECT and isinstance(result, int)
+                ):
+                return result
+            else:
+                ve_exc = ValueError("%r is not a valid %s" % (value, cls.__qualname__))
+                if result is None and exc is None:
+>                   raise ve_exc
+E                   ValueError: 'auto' is not a valid Platform
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/enum.py:1170: ValueError
+___________________ test_explicit_platform_mismatch_rejected ___________________
+
+    def test_explicit_platform_mismatch_rejected():
+        from shopextract.taxonomies.google.live_production import validate_result
+        value = dict(schema_version=1, platform='shopify', raw_products=[], tier='api', urls_attempted=1,
+            urls_succeeded=0, errors=[], catalog_complete=False, incompleteness_reasons=[],
+            truncated=False, browser={'enabled':True,'attempted':None},
+            llm={'enabled':False,'reason':'no_configured_budget'})
+        with pytest.raises(ValueError):
+>           validate_result(value, 1, declared_platform='generic')
+E           TypeError: validate_result() got an unexpected keyword argument 'declared_platform'
+
+tests/test_google_production.py:239: TypeError
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_production.py::test_production_worker_uses_actual_api_and_retains_capture[shopify]
+FAILED tests/test_google_production.py::test_production_worker_uses_actual_api_and_retains_capture[auto]
+FAILED tests/test_google_production.py::test_auto_profile_and_unscoped_rule_only
+FAILED tests/test_google_production.py::test_explicit_platform_mismatch_rejected
+4 failed, 21 deselected, 1 warning in 0.11s

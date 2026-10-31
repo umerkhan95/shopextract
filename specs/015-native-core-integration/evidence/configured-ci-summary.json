@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "total_passed": 1869,
+  "failures": 0,
+  "skipped": 0,
+  "elapsed_seconds": 130.594584,
+  "groups": [
+    {
+      "name": "main",
+      "passed": 1739,
+      "status": "passed",
+      "group_alive_after_cleanup": false
+    },
+    {
+      "name": "reliable-oracle",
+      "passed": 24,
+      "status": "passed",
+      "group_alive_after_cleanup": false
+    },
+    {
+      "name": "maintenance",
+      "passed": 106,
+      "status": "passed",
+      "group_alive_after_cleanup": false
+    }
+  ],
+  "code_sha256": "26506d815157ab127e8aac3aad7ad1711cb4acefe7b2bc3718d61225e2f72b0f",
+  "source_report": "build/native-core-ci-final/report.json"
+}

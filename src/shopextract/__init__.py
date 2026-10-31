@@ -84,10 +84,16 @@ from .export._bundle import (create_evidence_bundle, create_evidence_sidecar,
                              load_evidence_bundle, load_evidence_sidecar,
                              read_evidence_bundle, write_evidence_bundle)
 from .validate import check_images, find_duplicates, validate
+from .taxonomies.google import (parse_google_taxonomy, prepare_google_taxonomy,
+    load_google_taxonomy, google_taxonomy_options, normalize_with_google_taxonomy,
+    prepare_google_snapshot)
 
 __version__ = "0.1.2"
 
 __all__ = [
+    "parse_google_taxonomy", "prepare_google_taxonomy", "load_google_taxonomy",
+    "google_taxonomy_options", "normalize_with_google_taxonomy",
+    "prepare_google_snapshot",
     "ResolutionPolicy", "resolve_fields", "resolution_references",
     "Evidence", "FieldObservation", "FieldResolution", "SupportState",
     "TrustContract", "ValidatedConfidence", "factual_paths", "trust_view",

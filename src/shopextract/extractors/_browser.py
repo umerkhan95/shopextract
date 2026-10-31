@@ -9,9 +9,11 @@ Provides three anti-bot tiers:
 from __future__ import annotations
 
 import logging
+import os
+from urllib.parse import urlsplit, unquote
 from enum import Enum
 
-from crawl4ai import BrowserConfig, CacheMode, CrawlerRunConfig, UndetectedAdapter
+from crawl4ai import BrowserConfig, CacheMode, CrawlerRunConfig, UndetectedAdapter, ProxyConfig
 from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 
 try:
@@ -122,6 +124,33 @@ class StealthLevel(str, Enum):
     UNDETECTED = "undetected"
 
 
+def _environment_proxy() -> ProxyConfig | None:
+    """Route browsers through an inherited proxy; invalid config never means direct.
+
+    One browser proxy routes every scheme through the selected server. HTTPX's
+    scheme-specific and NO_PROXY routing are not claimed here. Keep env intact.
+    """
+    value = next((os.environ[key] for key in ('HTTPS_PROXY','https_proxy','ALL_PROXY','all_proxy','HTTP_PROXY','http_proxy')
+                  if os.environ.get(key)), None)
+    if value is None:
+        return None
+    try:
+        if any(ord(c) <= 32 or ord(c) == 127 for c in value):
+            raise ValueError()
+        parts = urlsplit(value)
+        if parts.scheme not in ('http','https','socks5') or not parts.hostname or parts.path not in ('','/') or parts.query or parts.fragment:
+            raise ValueError()
+        port = parts.port
+        host = parts.hostname
+        if ':' in host:
+            host = '[' + host + ']'
+        server = parts.scheme + '://' + host + (':' + str(port) if port is not None else '')
+        return ProxyConfig(server=server, username=unquote(parts.username) if parts.username is not None else None,
+                           password=unquote(parts.password) if parts.password is not None else None)
+    except (ValueError, TypeError):
+        raise ValueError('Configured browser proxy is invalid or unsupported') from None
+
+
 def get_browser_config(
     stealth_level: StealthLevel = StealthLevel.STANDARD,
     headless: bool = True,
@@ -132,6 +161,7 @@ def get_browser_config(
     if not browser_allowed():
         raise RuntimeError("Browser execution is disabled by the operation policy")
     headers = {**DEFAULT_HEADERS}
+    proxy_config = _environment_proxy()
 
     if stealth_level == StealthLevel.STANDARD:
         return BrowserConfig(
@@ -139,6 +169,7 @@ def get_browser_config(
             verbose=False,
             text_mode=text_mode,
             headers=headers,
+            proxy_config=proxy_config,
         )
 
     # STEALTH and UNDETECTED both use stealth + large viewport
@@ -150,6 +181,7 @@ def get_browser_config(
         viewport_width=1920,
         viewport_height=1080,
         headers=headers,
+        proxy_config=proxy_config,
     )
 
 

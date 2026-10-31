@@ -1,0 +1,19 @@
+{
+  "requests": 2,
+  "results": [
+    {
+      "url": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
+      "error": "URLError",
+      "message": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "seconds": 0.008822363000035693,
+      "live_mapping_verified": false
+    },
+    {
+      "url": "https://www.boardgamebliss.com/products.json?limit=1",
+      "error": "URLError",
+      "message": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "seconds": 0.002228299000307743,
+      "live_mapping_verified": false
+    }
+  ]
+}

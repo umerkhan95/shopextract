@@ -1,5 +1,12 @@
 # Offline CLI examples
 
+Configured Pakistani-site verification and the repository Codex mapping skill
+are documented in [Codex Google mapping](../../docs/codex-google-mapping.md).
+Use `google-live-cli.json` for root CLI options and the separate
+`google-live-profile.json` for pinned taxonomy/site settings. `verify-live`
+creates a fresh report and skips current policy-denied sites; a skip is not a
+successful live mapping.
+
 From the repository root with ShopExtract installed:
 
 ```sh
@@ -18,3 +25,10 @@ partial/product_budget and performs no HTTP. IDs persist in the selected databas
 bootstrap handles belong only to one tools call. A new positive-budget goal needs
 a current future deadline and authorized public supplier origin. These files are
 synthetic examples, not captured commercial data.
+
+The configured Google live profile is version2 and uses native production
+extraction with platform auto detection and browser eligibility. Limits count
+pipeline starts/retained products/time/output; network request/byte counters are
+unobserved. Version1 static profiles remain supported. See
+[the native-core audit](../../docs/native-core-integration.md) for repaired CLI
+browser/inference controls and intentional source-specific limits.

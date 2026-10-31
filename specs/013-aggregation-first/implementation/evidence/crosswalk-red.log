@@ -1,0 +1,562 @@
+/workspace/shopextract/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+FFFFFFFFFFFFFFFF                                                         [100%]
+=================================== FAILURES ===================================
+____________ test_crosswalk_direction_endpoints_and_disjoint_ledger ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_direction_endpo0')
+
+    def test_crosswalk_direction_endpoints_and_disjoint_ledger(tmp_path):
+>       index = load(tmp_path)
+                ^^^^^^^^^^^^^^
+
+tests/test_google_crosswalk.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+________ test_crosswalk_invalid_source_never_activates[source-version] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_invalid_source_0')
+change = 'source-version'
+
+    @pytest.mark.parametrize('change', ['source-version', 'target-version', 'source-id', 'target-id',
+                                        'empty-target', 'exclusion-conflict', 'extra-root', 'bad-type'])
+    def test_crosswalk_invalid_source_never_activates(tmp_path, change):
+        value = document()
+        if change == 'source-version': value['input_taxonomy'] = 'shopify/2025-01'
+        elif change == 'target-version': value['output_taxonomy'] = 'google/2020-01-01'
+        elif change == 'source-id': value['rules'][0]['input']['product_category_id'] = 'outside'
+        elif change == 'target-id': value['rules'][0]['output']['product_category_id'] = ['999']
+        elif change == 'empty-target': value['rules'][0]['output']['product_category_id'] = []
+        elif change == 'exclusion-conflict': value['unmapped_product_category_ids'].append('a')
+        elif change == 'extra-root': value['extra'] = True
+        elif change == 'bad-type': value['rules'][0]['output']['product_category_id'] = [True]
+        with pytest.raises(ValueError):
+>           load(tmp_path, value)
+
+tests/test_google_crosswalk.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+________ test_crosswalk_invalid_source_never_activates[target-version] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_invalid_source_1')
+change = 'target-version'
+
+    @pytest.mark.parametrize('change', ['source-version', 'target-version', 'source-id', 'target-id',
+                                        'empty-target', 'exclusion-conflict', 'extra-root', 'bad-type'])
+    def test_crosswalk_invalid_source_never_activates(tmp_path, change):
+        value = document()
+        if change == 'source-version': value['input_taxonomy'] = 'shopify/2025-01'
+        elif change == 'target-version': value['output_taxonomy'] = 'google/2020-01-01'
+        elif change == 'source-id': value['rules'][0]['input']['product_category_id'] = 'outside'
+        elif change == 'target-id': value['rules'][0]['output']['product_category_id'] = ['999']
+        elif change == 'empty-target': value['rules'][0]['output']['product_category_id'] = []
+        elif change == 'exclusion-conflict': value['unmapped_product_category_ids'].append('a')
+        elif change == 'extra-root': value['extra'] = True
+        elif change == 'bad-type': value['rules'][0]['output']['product_category_id'] = [True]
+        with pytest.raises(ValueError):
+>           load(tmp_path, value)
+
+tests/test_google_crosswalk.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+___________ test_crosswalk_invalid_source_never_activates[source-id] ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_invalid_source_2')
+change = 'source-id'
+
+    @pytest.mark.parametrize('change', ['source-version', 'target-version', 'source-id', 'target-id',
+                                        'empty-target', 'exclusion-conflict', 'extra-root', 'bad-type'])
+    def test_crosswalk_invalid_source_never_activates(tmp_path, change):
+        value = document()
+        if change == 'source-version': value['input_taxonomy'] = 'shopify/2025-01'
+        elif change == 'target-version': value['output_taxonomy'] = 'google/2020-01-01'
+        elif change == 'source-id': value['rules'][0]['input']['product_category_id'] = 'outside'
+        elif change == 'target-id': value['rules'][0]['output']['product_category_id'] = ['999']
+        elif change == 'empty-target': value['rules'][0]['output']['product_category_id'] = []
+        elif change == 'exclusion-conflict': value['unmapped_product_category_ids'].append('a')
+        elif change == 'extra-root': value['extra'] = True
+        elif change == 'bad-type': value['rules'][0]['output']['product_category_id'] = [True]
+        with pytest.raises(ValueError):
+>           load(tmp_path, value)
+
+tests/test_google_crosswalk.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+___________ test_crosswalk_invalid_source_never_activates[target-id] ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_invalid_source_3')
+change = 'target-id'
+
+    @pytest.mark.parametrize('change', ['source-version', 'target-version', 'source-id', 'target-id',
+                                        'empty-target', 'exclusion-conflict', 'extra-root', 'bad-type'])
+    def test_crosswalk_invalid_source_never_activates(tmp_path, change):
+        value = document()
+        if change == 'source-version': value['input_taxonomy'] = 'shopify/2025-01'
+        elif change == 'target-version': value['output_taxonomy'] = 'google/2020-01-01'
+        elif change == 'source-id': value['rules'][0]['input']['product_category_id'] = 'outside'
+        elif change == 'target-id': value['rules'][0]['output']['product_category_id'] = ['999']
+        elif change == 'empty-target': value['rules'][0]['output']['product_category_id'] = []
+        elif change == 'exclusion-conflict': value['unmapped_product_category_ids'].append('a')
+        elif change == 'extra-root': value['extra'] = True
+        elif change == 'bad-type': value['rules'][0]['output']['product_category_id'] = [True]
+        with pytest.raises(ValueError):
+>           load(tmp_path, value)
+
+tests/test_google_crosswalk.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+_________ test_crosswalk_invalid_source_never_activates[empty-target] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_invalid_source_4')
+change = 'empty-target'
+
+    @pytest.mark.parametrize('change', ['source-version', 'target-version', 'source-id', 'target-id',
+                                        'empty-target', 'exclusion-conflict', 'extra-root', 'bad-type'])
+    def test_crosswalk_invalid_source_never_activates(tmp_path, change):
+        value = document()
+        if change == 'source-version': value['input_taxonomy'] = 'shopify/2025-01'
+        elif change == 'target-version': value['output_taxonomy'] = 'google/2020-01-01'
+        elif change == 'source-id': value['rules'][0]['input']['product_category_id'] = 'outside'
+        elif change == 'target-id': value['rules'][0]['output']['product_category_id'] = ['999']
+        elif change == 'empty-target': value['rules'][0]['output']['product_category_id'] = []
+        elif change == 'exclusion-conflict': value['unmapped_product_category_ids'].append('a')
+        elif change == 'extra-root': value['extra'] = True
+        elif change == 'bad-type': value['rules'][0]['output']['product_category_id'] = [True]
+        with pytest.raises(ValueError):
+>           load(tmp_path, value)
+
+tests/test_google_crosswalk.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+______ test_crosswalk_invalid_source_never_activates[exclusion-conflict] _______
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_invalid_source_5')
+change = 'exclusion-conflict'
+
+    @pytest.mark.parametrize('change', ['source-version', 'target-version', 'source-id', 'target-id',
+                                        'empty-target', 'exclusion-conflict', 'extra-root', 'bad-type'])
+    def test_crosswalk_invalid_source_never_activates(tmp_path, change):
+        value = document()
+        if change == 'source-version': value['input_taxonomy'] = 'shopify/2025-01'
+        elif change == 'target-version': value['output_taxonomy'] = 'google/2020-01-01'
+        elif change == 'source-id': value['rules'][0]['input']['product_category_id'] = 'outside'
+        elif change == 'target-id': value['rules'][0]['output']['product_category_id'] = ['999']
+        elif change == 'empty-target': value['rules'][0]['output']['product_category_id'] = []
+        elif change == 'exclusion-conflict': value['unmapped_product_category_ids'].append('a')
+        elif change == 'extra-root': value['extra'] = True
+        elif change == 'bad-type': value['rules'][0]['output']['product_category_id'] = [True]
+        with pytest.raises(ValueError):
+>           load(tmp_path, value)
+
+tests/test_google_crosswalk.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+__________ test_crosswalk_invalid_source_never_activates[extra-root] ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_invalid_source_6')
+change = 'extra-root'
+
+    @pytest.mark.parametrize('change', ['source-version', 'target-version', 'source-id', 'target-id',
+                                        'empty-target', 'exclusion-conflict', 'extra-root', 'bad-type'])
+    def test_crosswalk_invalid_source_never_activates(tmp_path, change):
+        value = document()
+        if change == 'source-version': value['input_taxonomy'] = 'shopify/2025-01'
+        elif change == 'target-version': value['output_taxonomy'] = 'google/2020-01-01'
+        elif change == 'source-id': value['rules'][0]['input']['product_category_id'] = 'outside'
+        elif change == 'target-id': value['rules'][0]['output']['product_category_id'] = ['999']
+        elif change == 'empty-target': value['rules'][0]['output']['product_category_id'] = []
+        elif change == 'exclusion-conflict': value['unmapped_product_category_ids'].append('a')
+        elif change == 'extra-root': value['extra'] = True
+        elif change == 'bad-type': value['rules'][0]['output']['product_category_id'] = [True]
+        with pytest.raises(ValueError):
+>           load(tmp_path, value)
+
+tests/test_google_crosswalk.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+___________ test_crosswalk_invalid_source_never_activates[bad-type] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_invalid_source_7')
+change = 'bad-type'
+
+    @pytest.mark.parametrize('change', ['source-version', 'target-version', 'source-id', 'target-id',
+                                        'empty-target', 'exclusion-conflict', 'extra-root', 'bad-type'])
+    def test_crosswalk_invalid_source_never_activates(tmp_path, change):
+        value = document()
+        if change == 'source-version': value['input_taxonomy'] = 'shopify/2025-01'
+        elif change == 'target-version': value['output_taxonomy'] = 'google/2020-01-01'
+        elif change == 'source-id': value['rules'][0]['input']['product_category_id'] = 'outside'
+        elif change == 'target-id': value['rules'][0]['output']['product_category_id'] = ['999']
+        elif change == 'empty-target': value['rules'][0]['output']['product_category_id'] = []
+        elif change == 'exclusion-conflict': value['unmapped_product_category_ids'].append('a')
+        elif change == 'extra-root': value['extra'] = True
+        elif change == 'bad-type': value['rules'][0]['output']['product_category_id'] = [True]
+        with pytest.raises(ValueError):
+>           load(tmp_path, value)
+
+tests/test_google_crosswalk.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+_ test_crosswalk_identical_duplicate_diagnostic_and_conflicting_duplicate_rejection _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_identical_dupli0')
+
+    def test_crosswalk_identical_duplicate_diagnostic_and_conflicting_duplicate_rejection(tmp_path):
+        value = document()
+        value['rules'].append(row('a', ['1']))
+>       index = load(tmp_path, value)
+                ^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_google_crosswalk.py:91: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+_ test_crosswalk_duplicate_keys_aliases_and_objects_rejected[{"input_taxonomy":"shopify/2026-08","input_taxonomy":"shopify/2026-08"}] _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_duplicate_keys_0')
+text = '{"input_taxonomy":"shopify/2026-08","input_taxonomy":"shopify/2026-08"}'
+
+    @pytest.mark.parametrize('text', [
+        '{"input_taxonomy":"shopify/2026-08","input_taxonomy":"shopify/2026-08"}',
+        'input_taxonomy: shopify/2026-08\ninput_taxonomy: shopify/2026-08\n',
+        'input_taxonomy: &x shopify/2026-08\noutput_taxonomy: *x\n',
+        '!!python/object/apply:os.system [false]',
+    ])
+    def test_crosswalk_duplicate_keys_aliases_and_objects_rejected(tmp_path, text):
+        with pytest.raises(ValueError):
+>           load(tmp_path, text=text)
+
+tests/test_google_crosswalk.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+_ test_crosswalk_duplicate_keys_aliases_and_objects_rejected[input_taxonomy: shopify/2026-08\ninput_taxonomy: shopify/2026-08\n] _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_duplicate_keys_1')
+text = 'input_taxonomy: shopify/2026-08\ninput_taxonomy: shopify/2026-08\n'
+
+    @pytest.mark.parametrize('text', [
+        '{"input_taxonomy":"shopify/2026-08","input_taxonomy":"shopify/2026-08"}',
+        'input_taxonomy: shopify/2026-08\ninput_taxonomy: shopify/2026-08\n',
+        'input_taxonomy: &x shopify/2026-08\noutput_taxonomy: *x\n',
+        '!!python/object/apply:os.system [false]',
+    ])
+    def test_crosswalk_duplicate_keys_aliases_and_objects_rejected(tmp_path, text):
+        with pytest.raises(ValueError):
+>           load(tmp_path, text=text)
+
+tests/test_google_crosswalk.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+_ test_crosswalk_duplicate_keys_aliases_and_objects_rejected[input_taxonomy: &x shopify/2026-08\noutput_taxonomy: *x\n] _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_duplicate_keys_2')
+text = 'input_taxonomy: &x shopify/2026-08\noutput_taxonomy: *x\n'
+
+    @pytest.mark.parametrize('text', [
+        '{"input_taxonomy":"shopify/2026-08","input_taxonomy":"shopify/2026-08"}',
+        'input_taxonomy: shopify/2026-08\ninput_taxonomy: shopify/2026-08\n',
+        'input_taxonomy: &x shopify/2026-08\noutput_taxonomy: *x\n',
+        '!!python/object/apply:os.system [false]',
+    ])
+    def test_crosswalk_duplicate_keys_aliases_and_objects_rejected(tmp_path, text):
+        with pytest.raises(ValueError):
+>           load(tmp_path, text=text)
+
+tests/test_google_crosswalk.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+_ test_crosswalk_duplicate_keys_aliases_and_objects_rejected[!!python/object/apply:os.system [false]] _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_duplicate_keys_3')
+text = '!!python/object/apply:os.system [false]'
+
+    @pytest.mark.parametrize('text', [
+        '{"input_taxonomy":"shopify/2026-08","input_taxonomy":"shopify/2026-08"}',
+        'input_taxonomy: shopify/2026-08\ninput_taxonomy: shopify/2026-08\n',
+        'input_taxonomy: &x shopify/2026-08\noutput_taxonomy: *x\n',
+        '!!python/object/apply:os.system [false]',
+    ])
+    def test_crosswalk_duplicate_keys_aliases_and_objects_rejected(tmp_path, text):
+        with pytest.raises(ValueError):
+>           load(tmp_path, text=text)
+
+tests/test_google_crosswalk.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+_________ test_crosswalk_source_digest_and_ledger_fingerprint_required _________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_source_digest_a0')
+
+    def test_crosswalk_source_digest_and_ledger_fingerprint_required(tmp_path):
+        with pytest.raises(ValueError):
+>           load(tmp_path, expected='0' * 64)
+
+tests/test_google_crosswalk.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_google_crosswalk.py:52: in load
+    loader = operation('load_shopify_google_crosswalk')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+_______________ test_crosswalk_source_byte_limit_precedes_parse ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-2/test_crosswalk_source_byte_lim0')
+
+    def test_crosswalk_source_byte_limit_precedes_parse(tmp_path):
+>       loader = operation('load_shopify_google_crosswalk')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_google_crosswalk.py:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'load_shopify_google_crosswalk'
+
+    def operation(name):
+        module = importlib.import_module('shopextract.taxonomies.google')
+        value = getattr(module, name, None)
+>       assert callable(value), f'Google integration callable {name} is missing'
+E       AssertionError: Google integration callable load_shopify_google_crosswalk is missing
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_google_crosswalk.py:16: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_google_crosswalk.py::test_crosswalk_direction_endpoints_and_disjoint_ledger
+FAILED tests/test_google_crosswalk.py::test_crosswalk_invalid_source_never_activates[source-version]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_invalid_source_never_activates[target-version]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_invalid_source_never_activates[source-id]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_invalid_source_never_activates[target-id]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_invalid_source_never_activates[empty-target]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_invalid_source_never_activates[exclusion-conflict]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_invalid_source_never_activates[extra-root]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_invalid_source_never_activates[bad-type]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_identical_duplicate_diagnostic_and_conflicting_duplicate_rejection
+FAILED tests/test_google_crosswalk.py::test_crosswalk_duplicate_keys_aliases_and_objects_rejected[{"input_taxonomy":"shopify/2026-08","input_taxonomy":"shopify/2026-08"}]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_duplicate_keys_aliases_and_objects_rejected[input_taxonomy: shopify/2026-08\ninput_taxonomy: shopify/2026-08\n]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_duplicate_keys_aliases_and_objects_rejected[input_taxonomy: &x shopify/2026-08\noutput_taxonomy: *x\n]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_duplicate_keys_aliases_and_objects_rejected[!!python/object/apply:os.system [false]]
+FAILED tests/test_google_crosswalk.py::test_crosswalk_source_digest_and_ledger_fingerprint_required
+FAILED tests/test_google_crosswalk.py::test_crosswalk_source_byte_limit_precedes_parse
+16 failed in 0.08s

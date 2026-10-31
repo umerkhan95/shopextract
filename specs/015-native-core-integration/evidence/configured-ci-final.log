@@ -1,0 +1,4 @@
+{"group": "main", "status": "passed", "seconds": 84.003481, "summary": "1739 passed, 15 warnings in 81.18s (0:01:21)", "log": "build/native-core-ci-final/main.log"}
+{"group": "reliable-oracle", "status": "passed", "seconds": 14.663344, "summary": "24 passed, 1 warning in 13.80s", "log": "build/native-core-ci-final/reliable-oracle.log"}
+{"group": "maintenance", "status": "passed", "seconds": 31.925301, "summary": "106 passed, 1 warning in 31.02s", "log": "build/native-core-ci-final/maintenance.log"}
+{"status": "passed", "seconds": 130.594584, "report": "build/native-core-ci-final/report.json"}

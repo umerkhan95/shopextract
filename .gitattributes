@@ -1,0 +1,5 @@
+# Preserve captured execution logs byte-for-byte, including pytest whitespace.
+specs/013-aggregation-first/implementation/evidence/*.log -whitespace
+specs/014-codex-google-live/evidence/*.log -whitespace
+specs/015-native-core-integration/evidence/*.log -whitespace
+specs/015-native-core-integration/*.log -whitespace

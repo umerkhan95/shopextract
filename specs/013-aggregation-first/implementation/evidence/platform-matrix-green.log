@@ -1,0 +1,28 @@
+/workspace/shopextract/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+..............................................F                          [100%]
+=================================== FAILURES ===================================
+__________ test_google_cli_prepares_explicit_snapshot_with_provenance __________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-19/test_google_cli_prepares_expli0')
+
+    def test_google_cli_prepares_explicit_snapshot_with_provenance(tmp_path):
+        from hashlib import sha256
+        source = tmp_path / 'full_names.yml'
+        source.write_text('- id: 1\n  full_name: Animals\n- id: 2\n  full_name: Animals > Cats\n')
+        result = CliRunner().invoke(main, ['taxonomy', 'google', '--catalog-root', str(tmp_path / 'catalog'),
+            'prepare-snapshot', '--source', str(source), '--source-commit', 'a' * 40,
+            '--source-url', 'https://example.test/pinned/full_names.yml',
+            '--expected-sha256', sha256(source.read_bytes()).hexdigest()])
+>       assert result.exit_code == 0, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command or option.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 2 == 0
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_google_taxonomy_cli.py:149: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_google_taxonomy_cli.py::test_google_cli_prepares_explicit_snapshot_with_provenance
+1 failed, 46 passed in 0.44s

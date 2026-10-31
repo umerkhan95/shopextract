@@ -1,0 +1,60 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+........FF
+=================================== FAILURES ===================================
+___________ test_native_policy_reaches_each_cli_source[True-compare] ___________
+
+name = 'compare', enabled = True
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-41/test_native_policy_reaches_eac8')
+source = []
+
+    @pytest.mark.parametrize('name', COMMANDS)
+    @pytest.mark.parametrize('enabled', [False, True])
+    def test_native_policy_reaches_each_cli_source(name, enabled, tmp_path, source):
+        flags = ['--browser', '--allow-llm', '--llm-max-calls', '1'] if enabled else []
+        timeout = '0.1' if name == 'watch' else '5'
+        result = CliRunner().invoke(main, ['--output-format', 'json',
+            *arguments(name, tmp_path), '--timeout', timeout, *flags])
+>       assert result.exit_code in (0, 3), (result.output, result.exception)
+E       AssertionError: ('{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E         ', SystemExit(2))
+E       assert 2 in (0, 3)
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_native_cli_controls.py:79: AssertionError
+___________ test_native_policy_reaches_each_cli_source[True-analyze] ___________
+
+name = 'analyze', enabled = True
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-41/test_native_policy_reaches_eac9')
+source = []
+
+    @pytest.mark.parametrize('name', COMMANDS)
+    @pytest.mark.parametrize('enabled', [False, True])
+    def test_native_policy_reaches_each_cli_source(name, enabled, tmp_path, source):
+        flags = ['--browser', '--allow-llm', '--llm-max-calls', '1'] if enabled else []
+        timeout = '0.1' if name == 'watch' else '5'
+        result = CliRunner().invoke(main, ['--output-format', 'json',
+            *arguments(name, tmp_path), '--timeout', timeout, *flags])
+>       assert result.exit_code in (0, 3), (result.output, result.exception)
+E       AssertionError: ('{"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_USAGE", "message": "Unknown command option.", "retryable": false}, "completeness": "unavailable"}
+E         ', SystemExit(2))
+E       assert 2 in (0, 3)
+E        +  where 2 = <Result SystemExit(2)>.exit_code
+
+tests/test_native_cli_controls.py:79: AssertionError
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_native_cli_controls.py::test_native_policy_reaches_each_cli_source[True-compare]
+FAILED tests/test_native_cli_controls.py::test_native_policy_reaches_each_cli_source[True-analyze]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 2 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+2 failed, 8 passed, 1 warning in 0.22s

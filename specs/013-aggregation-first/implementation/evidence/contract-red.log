@@ -1,0 +1,83 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+FFFFFFFFFFF                                                              [100%]
+=================================== FAILURES ===================================
+___________ test_google_complete_structural_contract_and_exact_path ____________
+No module named 'shopextract.taxonomies.google'
+
+During handling of the above exception, another exception occurred:
+Google taxonomy public integration is not implemented
+____________ test_google_invalid_source_rejected_before_index[bad0] ____________
+No module named 'shopextract.taxonomies.google'
+
+During handling of the above exception, another exception occurred:
+Google taxonomy public integration is not implemented
+____________ test_google_invalid_source_rejected_before_index[bad1] ____________
+No module named 'shopextract.taxonomies.google'
+
+During handling of the above exception, another exception occurred:
+Google taxonomy public integration is not implemented
+____________ test_google_invalid_source_rejected_before_index[bad2] ____________
+No module named 'shopextract.taxonomies.google'
+
+During handling of the above exception, another exception occurred:
+Google taxonomy public integration is not implemented
+______________ test_google_source_digest_is_checked_not_inferred _______________
+No module named 'shopextract.taxonomies.google'
+
+During handling of the above exception, another exception occurred:
+Google taxonomy public integration is not implemented
+_______ test_google_supported_feed_id_and_path_reuse_native_portable[6] ________
+No module named 'shopextract.taxonomies.google'
+
+During handling of the above exception, another exception occurred:
+Google taxonomy public integration is not implemented
+_ test_google_supported_feed_id_and_path_reuse_native_portable[Electronics > Computers > Laptops] _
+No module named 'shopextract.taxonomies.google'
+
+During handling of the above exception, another exception occurred:
+Google taxonomy public integration is not implemented
+_______ test_google_unknown_source_version_requires_explicit_permission ________
+No module named 'shopextract.taxonomies.google'
+
+During handling of the above exception, another exception occurred:
+Google taxonomy public integration is not implemented
+_______________ test_google_selected_options_keep_native_limits ________________
+No module named 'shopextract.taxonomies.google'
+
+During handling of the above exception, another exception occurred:
+Google taxonomy public integration is not implemented
+____________ test_google_prepared_catalog_is_offline_and_hash_bound ____________
+No module named 'shopextract.taxonomies.google'
+
+During handling of the above exception, another exception occurred:
+Google taxonomy public integration is not implemented
+_____________ test_google_invalid_prepare_preserves_prior_catalog ______________
+No module named 'shopextract.taxonomies.google'
+
+During handling of the above exception, another exception occurred:
+Google taxonomy public integration is not implemented
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_taxonomy_contract.py::test_google_complete_structural_contract_and_exact_path
+FAILED tests/test_google_taxonomy_contract.py::test_google_invalid_source_rejected_before_index[bad0]
+FAILED tests/test_google_taxonomy_contract.py::test_google_invalid_source_rejected_before_index[bad1]
+FAILED tests/test_google_taxonomy_contract.py::test_google_invalid_source_rejected_before_index[bad2]
+FAILED tests/test_google_taxonomy_contract.py::test_google_source_digest_is_checked_not_inferred
+FAILED tests/test_google_taxonomy_contract.py::test_google_supported_feed_id_and_path_reuse_native_portable[6]
+FAILED tests/test_google_taxonomy_contract.py::test_google_supported_feed_id_and_path_reuse_native_portable[Electronics > Computers > Laptops]
+FAILED tests/test_google_taxonomy_contract.py::test_google_unknown_source_version_requires_explicit_permission
+FAILED tests/test_google_taxonomy_contract.py::test_google_selected_options_keep_native_limits
+FAILED tests/test_google_taxonomy_contract.py::test_google_prepared_catalog_is_offline_and_hash_bound
+FAILED tests/test_google_taxonomy_contract.py::test_google_invalid_prepare_preserves_prior_catalog
+11 failed, 1 warning in 0.03s

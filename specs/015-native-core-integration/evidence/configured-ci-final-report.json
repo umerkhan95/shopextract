@@ -1,0 +1,124 @@
+{
+  "status": "passed",
+  "exit_code": 0,
+  "limits": {
+    "group_seconds": 240,
+    "total_seconds": 480,
+    "workers": 1
+  },
+  "planned_groups": [
+    {
+      "name": "main",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--ignore=tests/test_maintenance_acceptance.py",
+        "--ignore=tests/test_maintenance_advisor.py",
+        "--ignore=tests/test_maintenance_remaining_edges.py",
+        "--ignore=tests/test_maintenance_review_repairs.py",
+        "--ignore=tests/test_maintenance_store.py",
+        "--ignore=tests/test_maintenance_stress_prerequisites.py",
+        "--ignore=tests/test_maintenance_workflow.py",
+        "--ignore=tests/test_reliable_changes_stress.py"
+      ]
+    },
+    {
+      "name": "reliable-oracle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_reliable_changes_stress.py"
+      ]
+    },
+    {
+      "name": "maintenance",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_maintenance_acceptance.py",
+        "tests/test_maintenance_advisor.py",
+        "tests/test_maintenance_remaining_edges.py",
+        "tests/test_maintenance_review_repairs.py",
+        "tests/test_maintenance_store.py",
+        "tests/test_maintenance_stress_prerequisites.py",
+        "tests/test_maintenance_workflow.py"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "main",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--ignore=tests/test_maintenance_acceptance.py",
+        "--ignore=tests/test_maintenance_advisor.py",
+        "--ignore=tests/test_maintenance_remaining_edges.py",
+        "--ignore=tests/test_maintenance_review_repairs.py",
+        "--ignore=tests/test_maintenance_store.py",
+        "--ignore=tests/test_maintenance_stress_prerequisites.py",
+        "--ignore=tests/test_maintenance_workflow.py",
+        "--ignore=tests/test_reliable_changes_stress.py"
+      ],
+      "status": "passed",
+      "pid": 10485,
+      "log": "build/native-core-ci-final/main.log",
+      "group_alive_after_cleanup": false,
+      "cleanup_seconds": 0.000159,
+      "exit_code": 0,
+      "returncode": 0,
+      "seconds": 84.003481
+    },
+    {
+      "name": "reliable-oracle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_reliable_changes_stress.py"
+      ],
+      "status": "passed",
+      "pid": 10832,
+      "log": "build/native-core-ci-final/reliable-oracle.log",
+      "group_alive_after_cleanup": false,
+      "cleanup_seconds": 3.3e-05,
+      "exit_code": 0,
+      "returncode": 0,
+      "seconds": 14.663344
+    },
+    {
+      "name": "maintenance",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_maintenance_acceptance.py",
+        "tests/test_maintenance_advisor.py",
+        "tests/test_maintenance_remaining_edges.py",
+        "tests/test_maintenance_review_repairs.py",
+        "tests/test_maintenance_store.py",
+        "tests/test_maintenance_stress_prerequisites.py",
+        "tests/test_maintenance_workflow.py"
+      ],
+      "status": "passed",
+      "pid": 10864,
+      "log": "build/native-core-ci-final/maintenance.log",
+      "group_alive_after_cleanup": false,
+      "cleanup_seconds": 3e-05,
+      "exit_code": 0,
+      "returncode": 0,
+      "seconds": 31.925301
+    }
+  ],
+  "elapsed_seconds": 130.594584
+}

@@ -1,0 +1,173 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________ test_live_default_project_root_is_invocation_directory ____________
+
+path = PosixPath('/tmp/pytest-of-agent/pytest-36/test_live_default_project_root0/profile.json')
+project_root = None
+
+    def load_live_profile(path, *, project_root=None):
+        root = Path(project_root or Path(__file__).resolve().parents[4]).resolve()
+        try:
+            value = read_json_file(str(path))
+            required = {'schema_version', 'catalog_root', 'catalog_fingerprint', 'cli_config', 'sites', 'limits'}
+            if not isinstance(value, dict) or set(value) != required or type(value['schema_version']) is not int or value['schema_version'] != 1:
+                raise ValueError('Invalid profile fields/version')
+            if any(not isinstance(value[k], str) or not value[k] for k in ('catalog_root', 'catalog_fingerprint', 'cli_config')):
+                raise ValueError('Invalid profile paths')
+            sites = value['sites']
+            if not isinstance(sites, list) or not 1 <= len(sites) <= 2:
+                raise ValueError('Expected1..2sites')
+            ids = set()
+            for site in sites:
+                required_site = {'id', 'url', 'platform', 'source_kind', 'shop_url', 'mapping_rules'}
+                if not isinstance(site, dict) or set(site) != required_site | ({'css_schema'} if site.get('source_kind') == 'html_css' else set()):
+                    raise ValueError('Invalid site fields')
+                if not isinstance(site['id'], str) or not site['id'] or len(site['id']) > 64 or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789-' for c in site['id']) or site['id'] in ids:
+                    raise ValueError('Invalid site ID')
+                ids.add(site['id'])
+                platform = Platform(site['platform'])
+                if site['source_kind'] not in ('html', 'html_css', 'shopify_products') or not in_scope(site['url'], site['shop_url']):
+                    raise ValueError('Invalid source origin/scope')
+                if site['source_kind'] == 'shopify_products' and platform != Platform.SHOPIFY:
+                    raise ValueError('Shopify source requires Shopify platform')
+                rules = site['mapping_rules']
+                if not isinstance(rules, list) or len(rules) > 1000:
+                    raise ValueError('Invalid mapping rules')
+                for rule in rules:
+                    parsed = typed(MappingRule, rule)
+                    if parsed.selector.scope is not None and parsed.selector.scope != CategoryScope(platform, site['shop_url']):
+                        raise ValueError('Mapping scope differs from site')
+                if site['source_kind'] == 'html_css':
+                    schema = site['css_schema']
+                    if not isinstance(schema, dict) or set(schema) != {'baseSelector','fields'} or not isinstance(schema['baseSelector'],str) or not 1 <= len(schema['baseSelector']) <= 256 or not isinstance(schema['fields'],list) or not 1 <= len(schema['fields']) <= 20:
+                        raise ValueError('Invalid CSS schema')
+                    for field in schema['fields']:
+                        if not isinstance(field,dict) or set(field) != {'name','selector','type'} or field['name'] not in {'title','price','product_type'} or field['type'] != 'text' or not isinstance(field['selector'],str) or not 1 <= len(field['selector']) <= 256:
+                            raise ValueError('Only declared text selectors are supported')
+                    if len({field['name'] for field in schema['fields']})!=len(schema['fields']):
+                        raise ValueError('Duplicate CSS field names')
+            limits = value['limits']; maxima = dict(requests=8, products=4, seconds=120, response_bytes=1048576)
+            if not isinstance(limits,dict) or set(limits) != set(maxima) or any(type(limits[k]) is not int or not 1 <= limits[k] <= maximum for k,maximum in maxima.items()):
+                raise ValueError('Invalid live limits')
+            for name in ('catalog_root', 'cli_config'):
+                selected = Path(value[name]); selected = selected if selected.is_absolute() else root / selected
+                value[name] = str(selected.resolve())
+>           read_cli_config(Path(value['cli_config']))
+
+/workspace/shopextract/src/shopextract/taxonomies/google/live_profile.py:89: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/workspace/shopextract/cli.json')
+
+    def read_cli_config(path: Path) -> Mapping[str, object]:
+        try:
+            with path.open("rb") as stream:
+                raw = stream.read(65537)
+            if len(raw) > 65536 or raw.startswith(b"\xef\xbb\xbf"):
+                raise ValueError("encoding or size")
+            value = json.loads(raw.decode("utf-8"), object_pairs_hook=_reject_pairs,
+                               parse_constant=lambda _: (_ for _ in ()).throw(ValueError("nonfinite")))
+            if not isinstance(value, dict) or set(value) - {"schema_version", *_CHOICES}:
+                raise ValueError("object or keys")
+            if type(value.get("schema_version")) is not int or value["schema_version"] != 1:
+                raise ValueError("version")
+            for name, choices in _CHOICES.items():
+                if name in value and (not isinstance(value[name], str) or value[name] not in choices):
+                    raise ValueError("setting")
+            return value
+        except (OSError, ValueError, UnicodeError, RecursionError):
+>           raise CliFailure("E_CONFIG", "Cannot read a valid CLI config; use schema_version 1 and documented settings.") from None
+E           shopextract._cli_core.CliFailure: ('E_CONFIG', 'Cannot read a valid CLI config; use schema_version 1 and documented settings.')
+
+/workspace/shopextract/src/shopextract/_cli_core.py:116: CliFailure
+
+The above exception was the direct cause of the following exception:
+
+profile = (PosixPath('/tmp/pytest-of-agent/pytest-36/test_live_default_project_root0'), PosixPath('/tmp/pytest-of-agent/pytest-3...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe3fb6c4890>
+
+    def test_live_default_project_root_is_invocation_directory(profile,monkeypatch):
+        root,path,_=profile;monkeypatch.chdir(root)
+>       result=api().verify_google_live(path,root/'out')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/workspace/shopextract/tests/test_google_live.py:189: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/workspace/shopextract/src/shopextract/taxonomies/google/live.py:54: in verify_google_live
+    profile = load_live_profile(profile_path,project_root=project_root)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/tmp/pytest-of-agent/pytest-36/test_live_default_project_root0/profile.json')
+project_root = None
+
+    def load_live_profile(path, *, project_root=None):
+        root = Path(project_root or Path(__file__).resolve().parents[4]).resolve()
+        try:
+            value = read_json_file(str(path))
+            required = {'schema_version', 'catalog_root', 'catalog_fingerprint', 'cli_config', 'sites', 'limits'}
+            if not isinstance(value, dict) or set(value) != required or type(value['schema_version']) is not int or value['schema_version'] != 1:
+                raise ValueError('Invalid profile fields/version')
+            if any(not isinstance(value[k], str) or not value[k] for k in ('catalog_root', 'catalog_fingerprint', 'cli_config')):
+                raise ValueError('Invalid profile paths')
+            sites = value['sites']
+            if not isinstance(sites, list) or not 1 <= len(sites) <= 2:
+                raise ValueError('Expected1..2sites')
+            ids = set()
+            for site in sites:
+                required_site = {'id', 'url', 'platform', 'source_kind', 'shop_url', 'mapping_rules'}
+                if not isinstance(site, dict) or set(site) != required_site | ({'css_schema'} if site.get('source_kind') == 'html_css' else set()):
+                    raise ValueError('Invalid site fields')
+                if not isinstance(site['id'], str) or not site['id'] or len(site['id']) > 64 or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789-' for c in site['id']) or site['id'] in ids:
+                    raise ValueError('Invalid site ID')
+                ids.add(site['id'])
+                platform = Platform(site['platform'])
+                if site['source_kind'] not in ('html', 'html_css', 'shopify_products') or not in_scope(site['url'], site['shop_url']):
+                    raise ValueError('Invalid source origin/scope')
+                if site['source_kind'] == 'shopify_products' and platform != Platform.SHOPIFY:
+                    raise ValueError('Shopify source requires Shopify platform')
+                rules = site['mapping_rules']
+                if not isinstance(rules, list) or len(rules) > 1000:
+                    raise ValueError('Invalid mapping rules')
+                for rule in rules:
+                    parsed = typed(MappingRule, rule)
+                    if parsed.selector.scope is not None and parsed.selector.scope != CategoryScope(platform, site['shop_url']):
+                        raise ValueError('Mapping scope differs from site')
+                if site['source_kind'] == 'html_css':
+                    schema = site['css_schema']
+                    if not isinstance(schema, dict) or set(schema) != {'baseSelector','fields'} or not isinstance(schema['baseSelector'],str) or not 1 <= len(schema['baseSelector']) <= 256 or not isinstance(schema['fields'],list) or not 1 <= len(schema['fields']) <= 20:
+                        raise ValueError('Invalid CSS schema')
+                    for field in schema['fields']:
+                        if not isinstance(field,dict) or set(field) != {'name','selector','type'} or field['name'] not in {'title','price','product_type'} or field['type'] != 'text' or not isinstance(field['selector'],str) or not 1 <= len(field['selector']) <= 256:
+                            raise ValueError('Only declared text selectors are supported')
+                    if len({field['name'] for field in schema['fields']})!=len(schema['fields']):
+                        raise ValueError('Duplicate CSS field names')
+            limits = value['limits']; maxima = dict(requests=8, products=4, seconds=120, response_bytes=1048576)
+            if not isinstance(limits,dict) or set(limits) != set(maxima) or any(type(limits[k]) is not int or not 1 <= limits[k] <= maximum for k,maximum in maxima.items()):
+                raise ValueError('Invalid live limits')
+            for name in ('catalog_root', 'cli_config'):
+                selected = Path(value[name]); selected = selected if selected.is_absolute() else root / selected
+                value[name] = str(selected.resolve())
+            read_cli_config(Path(value['cli_config']))
+            return value
+        except CliFailure as error:
+>           raise ValueError('Invalid profile or root CLI configuration') from error
+E           ValueError: Invalid profile or root CLI configuration
+
+/workspace/shopextract/src/shopextract/taxonomies/google/live_profile.py:92: ValueError
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_live.py::test_live_default_project_root_is_invocation_directory
+1 failed, 22 deselected, 1 warning in 0.07s

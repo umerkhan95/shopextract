@@ -171,7 +171,7 @@ Evaluation rows contain exactly `id`, `a`, `b`, `label`; labels are native
 Competitive brands takes a mapping of store names to catalog inputs (at most10
 stores and1000 total records). Position takes one product with explicit currency
 and competitor URLs; gaps and compare-catalogs take store URLs. URL operations
-use bounded P1 execution with browser/LLM off, at most10 stores and1000 products
+use bounded P1 execution with browser/LLM off by default, at most10 stores and1000 products
 per store, default30s shared cooperative deadline. Unknown completeness is explicit;
 known incomplete/failed sources return usable partial data with exit3, all unusable
 sources fail. These controls do not bound native downloaded response bytes.
@@ -220,7 +220,7 @@ shopextract identity migrate --db snapshots.db --apply
 
 Snapshot `--max` bounds URL work and retained products (1–1000); excess products
 mark incomplete coverage. New network operations use the explicit execution policy
-with browser/LLM disabled and a cooperative deadline (0,300] seconds. Plain legacy
+with browser/LLM off by default and a cooperative deadline (0,300] seconds. Plain legacy
 snapshot/changes/history keep their existing behavior. Explicit options and JSON
 use the new contracts. History keeps both positional operands, including when
 `--canonical-id` selects identity; its new mode reads exact stored Decimal text
@@ -592,3 +592,16 @@ callback/config imports or arbitrary Python function execution is supported;
 Python extension protocols (watch callbacks, advisor/investigator) stay Python APIs.
 `examples/cli/` contains offline inputs for normalization, discovery, bootstrap and
 bounded maintenance; no external service or model is needed to run those examples.
+
+## Shared native extraction controls
+
+`compare`, `analyze`, `compare-catalogs`, `competitive position`, `competitive gaps`,
+`snapshot`, `watch`, and `categories extract` accept the existing `--browser` and
+explicit bounded LLM options. Each operation shares one execution state across
+its source URLs/watch iterations. `watch` still requires explicit `--timeout`.
+The category CLI defaults to `--source-mode production`, reusing native extraction;
+`--source-mode native` preserves source-specific API/feed behavior and rejects LLM
+activation. Native-source completeness and full catalog coverage are different;
+production can return partial status where source-specific mode returned success.
+See the [native-core audit](native-core-integration.md) for repaired integration
+gaps, browser dependency/proxy behavior, and intentional HTTP-only tools contracts.

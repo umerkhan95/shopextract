@@ -1,0 +1,65 @@
+/home/agent/.local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+F........                                                                [100%]
+=================================== FAILURES ===================================
+__________________ test_production_profile_and_policy_denial ___________________
+
+profile = (PosixPath('/tmp/pytest-of-agent/pytest-45/test_production_profile_and_po0'), PosixPath('/tmp/pytest-of-agent/pytest-4...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fb6aa7160c0>
+
+    def test_production_profile_and_policy_denial(profile, monkeypatch):
+        root, path, _ = production_profile(profile)
+        module = importlib.import_module('shopextract.taxonomies.google.live')
+        monkeypatch.setattr(module, 'policy_denial', lambda url: {'reason': 'host_not_allowed'})
+>       report = module.verify_google_live(path, root / 'out', project_root=root, live=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_google_production.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+profile_path = PosixPath('/tmp/pytest-of-agent/pytest-45/test_production_profile_and_po0/profile.json')
+output_dir = PosixPath('/tmp/pytest-of-agent/pytest-45/test_production_profile_and_po0/out')
+live = True, site_id = None
+project_root = PosixPath('/tmp/pytest-of-agent/pytest-45/test_production_profile_and_po0')
+transport = None
+
+    def verify_google_live(profile_path, output_dir, *, live=False, site_id=None, project_root=None, transport=None):
+        profile_path = Path(profile_path).resolve()
+        profile = load_live_profile(profile_path,project_root=project_root)
+        sites = [s for s in profile['sites'] if site_id is None or s['id'] == site_id]
+        if not sites:
+            raise ValueError('Unknown selected site')
+        out = Path(output_dir).resolve()
+        if out.exists():
+            raise ValueError('Output exists; use a new run directory')
+        catalog = load_google_taxonomy(catalog_root=profile['catalog_root'],fingerprint=profile['catalog_fingerprint'])
+        from ..._models import Platform
+        from ...categories._codec import typed
+        from ...categories.contracts import MappingRule, CategoryScope
+        from .options import google_taxonomy_options
+        for site in sites:
+            rules=tuple(typed(MappingRule,rule) for rule in site['mapping_rules'])
+            targets={target for rule in rules for target in rule.target_ids}
+            google_taxonomy_options(CategoryScope(Platform(site['platform']),site['shop_url']),
+                category_ids=targets,mappings=rules,taxonomy=catalog)
+        if profile['schema_version'] == 2:
+            if transport is not None:
+                raise ValueError('HTTP transport injection is only supported for static profiles')
+>           from .live_production import verify_production
+E           ModuleNotFoundError: No module named 'shopextract.taxonomies.google.live_production'
+
+src/shopextract/taxonomies/google/live.py:74: ModuleNotFoundError
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_production.py::test_production_profile_and_policy_denial
+1 failed, 8 passed, 1 warning in 1.43s

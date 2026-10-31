@@ -1,0 +1,11 @@
+{
+  "skill_used": true,
+  "status": "blocked",
+  "live_verified": false,
+  "report_path": "build/google-live/orchestrated-pakistan-positive-1/report.json",
+  "tested_urls": [
+    "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+    "https://libertybooks.com/products/atomic-habits-an-easy-and-proven-way-to-build-good-habits-and-break-bad-ones"
+  ],
+  "summary": "Local skill parh kar aik asal verify-live CLI run dono configured Pakistani URLs ke liye chalaya. Maujooda network policy ne dono hosts skip kiye; HTTP requests 0 aur products 0 rahe. Extraction aur Google mapping nahin chale; live verification sabit nahin hui. Catalog aur report ke profile, runtime aur policy hashes milte hain."
+}

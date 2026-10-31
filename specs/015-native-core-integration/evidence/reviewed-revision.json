@@ -1,0 +1,33 @@
+{
+  "reviewer": "/root/native_integration_reviewer",
+  "runtime_fingerprint": "26506d815157ab127e8aac3aad7ad1711cb4acefe7b2bc3718d61225e2f72b0f",
+  "files": {
+    "src/shopextract/_extract.py": "1144811e86c6cbaed993f89f9a51e2923d78c0eadf11be7b73bcbb09f81ab890",
+    "src/shopextract/categories/api.py": "ff9770c5920aa78f8f47d5e6d41a8563ef9c3e92ea9c41a65917cae1eb382543",
+    "src/shopextract/extractors/unified.py": "63d77cb4334c8ab7d4256880e5260ba27ff6827f53cc1158f3402a2358057eca",
+    "src/shopextract/extractors/_browser.py": "b4e929dffddfa39dc685aea75c45dce7f4fb7f2df393bffd2e687470b6a9330c",
+    "src/shopextract/_cli_extract.py": "c3457a3aa1fb9b4d110242c6fa19a5b4f060a05c8d369d42b55bdca0b50e994a",
+    "src/shopextract/_cli_analysis.py": "f0157fb68332eabaf337d750f8ca58f5956e86c97a4c6243af94091fb665a78d",
+    "src/shopextract/_cli_categories.py": "7d5b7fd07ac757b7447d285c3f1700ec6ecaa6692b8db4152ebcc5a7039ea5ff",
+    "src/shopextract/_cli_monitor.py": "0400b716dde91e3c19ad17bce2a9b2fd505ba962a702d14848c22c283cd274dc",
+    "src/shopextract/cli.py": "638366857d0ccc01df5b72556bc6359bc807f2520f62cdeda324d20d982cc2d5",
+    "src/shopextract/_owned_process.py": "a924919f1a68b6fa64fc09a556320b4f4c55f6d90b62c40ee00a675e63df2cd1",
+    "src/shopextract/taxonomies/google/live.py": "312787bf34dd1b2f83258387c61269aaaf6d1f44d77761614a7022bbec83adf0",
+    "src/shopextract/taxonomies/google/live_profile.py": "d0eee08e6ae100198174053892f31e6b04dab1d1028d2c718f3adf1f8185bf0d",
+    "src/shopextract/taxonomies/google/live_worker.py": "a7222a7b34abd2744ecc11b3837766159d6ed0e860fecbb9a7705cb2364ed99a",
+    "src/shopextract/taxonomies/google/live_production.py": "c589afda037da712a9e84543b746d37c010420b30d3bc02b8e646219c2b21cf4",
+    "tests/test_native_core_integration.py": "ca16f64d69609bba398ae766cb313e8a52bf6a94b3780292860d445a6b142a7b",
+    "tests/test_native_cli_controls.py": "299a2d11dd9122d0da69a32bd8f2c3cdaff0e7b13c009d47df4fbb6b86935d68",
+    "tests/test_google_production.py": "1bd0c9add96af8b5f34749423b6cae478674ac011faf8dd3ba067710df91f9ce",
+    "tests/test_cli_categories.py": "d67cabb9c38c48aca5dc807eaf6ecc32e9cb11463a5633d77e132e0af1e885d2",
+    "tests/test_cli_categories_mechanisms.py": "fd599da7936df900d99bcd61045a9a0e98918aca7043a23e64589241820cd3f9",
+    ".agents/skills/shopextract-google-mapping/SKILL.md": "173325e66e6d25e7eef7556f73f03ab148b98dc3dd751d044fee345ee2086bc3",
+    "examples/cli/google-live-profile.json": "7e3a345f9394170acfb67fc936fb3d4f5cf27721fad7474b59b27fd8e299ffd3",
+    "docs/native-core-integration.md": "8a1b5991500c05f05550d0f17dddef7ff21b52b1e95c07ca9c19447cd72b415f",
+    "docs/codex-google-mapping.md": "4ac12fe071505d6a12dedf97280a47c8d5e6719b20f4b0e8f91589e4a731fc14"
+  },
+  "code_review": "passed_no_open_blocking_findings",
+  "verification": "offline_passed_live_blocked",
+  "configured_test_report": "specs/015-native-core-integration/evidence/configured-ci-final-report.json",
+  "skill_report": "specs/015-native-core-integration/evidence/updated-skill-report.json"
+}

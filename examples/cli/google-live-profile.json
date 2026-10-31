@@ -1,0 +1,30 @@
+{
+  "schema_version": 2,
+  "catalog_root": "build/google-taxonomy/catalogs",
+  "catalog_fingerprint": "3b6a52f1d3512c813109844031e0b7e16574ca39c00a60eee02d0d992321323c",
+  "cli_config": "examples/cli/google-live-cli.json",
+  "sites": [
+    {
+      "id": "priceoye-a16",
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "platform": "auto",
+      "source_kind": "production",
+      "shop_url": "https://priceoye.pk",
+      "mapping_rules": []
+    },
+    {
+      "id": "liberty-atomic-habits",
+      "url": "https://libertybooks.com/products/atomic-habits-an-easy-and-proven-way-to-build-good-habits-and-break-bad-ones",
+      "platform": "auto",
+      "source_kind": "production",
+      "shop_url": "https://libertybooks.com",
+      "mapping_rules": []
+    }
+  ],
+  "limits": {
+    "invocations": 2,
+    "products": 4,
+    "seconds": 120,
+    "output_bytes": 1048576
+  }
+}

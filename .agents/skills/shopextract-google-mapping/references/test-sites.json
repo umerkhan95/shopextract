@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "profile": "examples/cli/google-live-profile.json",
+  "initial_preflight_evidence": "specs/014-codex-google-live/evidence/pakistan-preflight.json",
+  "cases": [
+    {
+      "site_id": "priceoye-a16",
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "platform": "auto",
+      "source_kind": "production",
+      "shop_url": "https://priceoye.pk",
+      "initial_observation": "blocked_proxy_403_exact_product_url",
+      "expected_mapping": "not_asserted_without_supported_category_and_reviewed_rule"
+    },
+    {
+      "site_id": "liberty-atomic-habits",
+      "url": "https://libertybooks.com/products/atomic-habits-an-easy-and-proven-way-to-build-good-habits-and-break-bad-ones",
+      "platform": "auto",
+      "source_kind": "production",
+      "shop_url": "https://libertybooks.com",
+      "initial_observation": "exact_canonical_product_not_fetched",
+      "related_preflight_note": "Earlier www-root proxy403 is separate evidence, not this canonical product capture.",
+      "expected_mapping": "not_asserted_without_supported_category_and_reviewed_rule"
+    }
+  ]
+}
