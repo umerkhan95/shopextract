@@ -1,0 +1,15 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.                                                                        [100%]
+=============================== warnings summary ===============================
+../../../../Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/_pytest/config/__init__.py:1464
+  /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/test_cli_product_discovery.py:58
+  /Users/umerkhan/code/shopextract-pr99-audit-20261031/tests/test_cli_product_discovery.py:58: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1 passed, 1 deselected, 2 warnings in 0.56s

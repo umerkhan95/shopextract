@@ -1,0 +1,58 @@
+{
+  "live-smoke": {
+    "exit_code": 0,
+    "ok": true,
+    "products": 3,
+    "raw_captures": 3,
+    "unique_capture_urls": 3,
+    "urls_attempted": 3,
+    "urls_succeeded": 3,
+    "errors": [],
+    "currencies": [
+      "PKR"
+    ],
+    "nonempty_titles": 3,
+    "prices_equal_captured_offer": 3,
+    "capture_methods": [
+      "json_ld"
+    ],
+    "category_urls": [],
+    "catalog_complete": null,
+    "incompleteness_reasons": [
+      "crawl_coverage_unverified"
+    ],
+    "placeholder_images": 3,
+    "playwright_cleanup_warning": true,
+    "capture_first": "2026-10-31T16:51:35.553651+00:00",
+    "capture_last": "2026-10-31T16:51:37.155533+00:00",
+    "category_reference_count": 757
+  },
+  "live50": {
+    "exit_code": 0,
+    "ok": true,
+    "products": 50,
+    "raw_captures": 50,
+    "unique_capture_urls": 50,
+    "urls_attempted": 50,
+    "urls_succeeded": 50,
+    "errors": [],
+    "currencies": [
+      "PKR"
+    ],
+    "nonempty_titles": 50,
+    "prices_equal_captured_offer": 50,
+    "capture_methods": [
+      "json_ld"
+    ],
+    "category_urls": [],
+    "catalog_complete": null,
+    "incompleteness_reasons": [
+      "crawl_coverage_unverified"
+    ],
+    "placeholder_images": 50,
+    "playwright_cleanup_warning": true,
+    "capture_first": "2026-10-31T16:51:49.446344+00:00",
+    "capture_last": "2026-10-31T16:52:19.755282+00:00",
+    "category_reference_count": 757
+  }
+}

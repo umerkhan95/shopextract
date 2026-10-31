@@ -1,0 +1,55 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________________ test_native_three_product_smoke ________________________
+
+no_browser_or_seeder = None
+
+    @pytest.mark.asyncio
+    async def test_native_three_product_smoke(no_browser_or_seeder):
+        calls=[]
+        async with httpx.AsyncClient(transport=httpx.MockTransport(source_handler(4,calls))) as client:
+            urls=await discover(SHOP,platform=Platform.GENERIC,max_urls=3,client=client)
+>       assert urls == [SHOP+f'/item-{i}' for i in range(3)]
+E       AssertionError: assert [] == ['https://mer....test/item-2']
+E         
+E         Right contains 3 more items, first extra item: 'https://merchant.test/item-0'
+E         Use -v to get more diff
+
+tests/test_cli_product_discovery.py:63: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  shopextract._discover:_discover.py:279 AsyncUrlSeeder failed for merchant.test: A successful native sitemap path must not start the seeder
+ERROR    shopextract._discover:_discover.py:101 Error discovering URLs for https://merchant.test: A successful native sitemap path must not start a browser
+_______________ test_actual_cli_fifty_products_no_category_crawl _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x107577b50>
+no_browser_or_seeder = None
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-1/test_actual_cli_fifty_products0')
+
+    def test_actual_cli_fifty_products_no_category_crawl(monkeypatch,no_browser_or_seeder,tmp_path):
+        calls=[];real=httpx.AsyncClient
+        def client(*args,**kwargs):
+            kwargs['transport']=httpx.MockTransport(source_handler(51,calls))
+            return real(*args,**kwargs)
+        monkeypatch.setattr(httpx,'AsyncClient',client)
+        # The native CLI performs detection, discovery, extraction and normalization.
+        # Browser preflight is an external availability boundary, never an extraction fake.
+        monkeypatch.setattr('shopextract._cli_extract._browser_preflight',lambda:None)
+        path=tmp_path/'products.json'
+        result=CliRunner().invoke(main,['--output-format','json','extract',SHOP,'--max','50',
+            '--browser','--timeout','30','--format','json','--output',str(path)])
+>       assert result.exit_code == 0, result.output
+E       AssertionError: {"schema_version": "1.0", "ok": false, "data": null, "warnings": [], "error": {"code": "E_OPERATION", "message": "No usable products were extracted; source failed or was incomplete.", "retryable": false}, "completeness": "unavailable"}
+E         
+E       assert 1 == 0
+E        +  where 1 = <Result SystemExit(1)>.exit_code
+
+tests/test_cli_product_discovery.py:80: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  shopextract._discover:_discover.py:279 AsyncUrlSeeder failed for merchant.test: A successful native sitemap path must not start the seeder
+ERROR    shopextract._discover:_discover.py:101 Error discovering URLs for https://merchant.test: A successful native sitemap path must not start a browser
+=========================== short test summary info ============================
+FAILED tests/test_cli_product_discovery.py::test_native_three_product_smoke
+FAILED tests/test_cli_product_discovery.py::test_actual_cli_fifty_products_no_category_crawl
+2 failed in 0.29s
