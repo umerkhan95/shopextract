@@ -1,0 +1,50 @@
+{
+  "main-base-live3": {
+    "exit_code": 0,
+    "ok": true,
+    "products": 3,
+    "raw_captures": 3,
+    "unique_urls": 3,
+    "attempted": 3,
+    "succeeded": 3,
+    "errors": [],
+    "currencies": [
+      "PKR"
+    ],
+    "prices_equal_captured_offer": 3,
+    "category_overlap": [],
+    "catalog_complete": null,
+    "incompleteness_reasons": [
+      "crawl_coverage_unverified"
+    ],
+    "capture_methods": [
+      "json_ld"
+    ],
+    "placeholder_images": 3,
+    "playwright_cleanup_warning": true
+  },
+  "main-base-live50": {
+    "exit_code": 0,
+    "ok": true,
+    "products": 50,
+    "raw_captures": 50,
+    "unique_urls": 50,
+    "attempted": 50,
+    "succeeded": 50,
+    "errors": [],
+    "currencies": [
+      "PKR"
+    ],
+    "prices_equal_captured_offer": 50,
+    "category_overlap": [],
+    "catalog_complete": null,
+    "incompleteness_reasons": [
+      "crawl_coverage_unverified"
+    ],
+    "capture_methods": [
+      "json_ld"
+    ],
+    "placeholder_images": 50,
+    "playwright_cleanup_warning": true
+  }
+}

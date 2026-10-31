@@ -68,3 +68,15 @@ The retained CLI receipts and `live-summary.json` report exit 0 for both runs: 3
 T12 and T13 are checked; T11 remains unchecked because the full driver failed on this host and its later groups did not run. The result is a successful requested live sample and feature verification with an explicitly incomplete whole-repository gate. No further test or network run was performed for this review.
 
 Reviewed artifact SHA-256 (concatenated sha256sum manifest): `1c06d8023c6585b9ccf0b3d7e11df6009bc385248c77bafe28ac328cf8e25680`.
+
+## PR-base isolation review
+
+Verdict: PASS for isolated scope and compatibility; merge remains gated on required Linux CI.
+
+Reviewed commit `38091ec` against `origin/main` (`a900599`). The one-commit diff is limited to `docs/cli.md`, the new spec-018 design/evidence records, `_discover.py`, the new private sitemap helper, and the related discovery/CLI tests. It does not include spec-016/spec-017 files or PR99 shared-control changes. The platform API path remains first; native sitemap traversal feeds the established discovery/extraction path, and the updated Shopify transport fixture accounts for the new robots/root-sitemap requests. The main-base affected run records 115 passed.
+
+Fresh main-base live evidence records exit 0 for both runs: 3/3 and 50/50. The 50-run summary records 50 unique JSON-LD captures, PKR prices matching captured offers, and no overlap with the 757 category URLs. Catalog coverage remains unverified; placeholder images and the existing Playwright preflight/cleanup warning remain documented. The earlier macOS full-driver failure is retained as historical evidence and is not used as a merge pass. Required Linux PR CI remains pending and must pass before merge.
+
+One status line still says “no push or commit was made” even though the isolated commit now exists; update that stale historical wording before publication. It does not change the reviewed code scope or live evidence.
+
+Reviewed commit diff SHA-256: `6c1d90aac7e27c0456f2677b31a9895c30d5e2b1b85be0ff04bb6bd6b3fa6997`. Main-base evidence/status manifest SHA-256: `e1aa3b30610a400984937843821684c4ddd9162564ee11dd3824fbbc8c961f1b`.
