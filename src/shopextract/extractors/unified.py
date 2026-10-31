@@ -32,6 +32,7 @@ from ._browser import (
 )
 from ._opengraph import OpenGraphExtractor
 from ._schema_org import SchemaOrgExtractor
+from ._product_html import enrich_product_html, usable_image
 
 logger = logging.getLogger(__name__)
 
@@ -157,10 +158,12 @@ class UnifiedCrawlExtractor:
                 og = og_list[0]
                 for product in products:
                     _fill_gaps_from_og(product, og)
+            enrich_product_html(products, html, url)
             return products
 
         og_list = OpenGraphExtractor.extract_from_html(html, url, include_categories=include_categories)
         if og_list:
+            enrich_product_html(og_list, html, url)
             return og_list
 
         return []
@@ -250,6 +253,7 @@ class UnifiedCrawlExtractor:
                 _fill_gaps_from_markdown(product, md_data)
                 if best_image:
                     _fill_image(product, best_image)
+            enrich_product_html(products, html, url)
             return products
 
         if og or md_data:
@@ -260,6 +264,7 @@ class UnifiedCrawlExtractor:
             if best_image:
                 _fill_image(product, best_image)
             if product and _has_product_signal(product, og):
+                enrich_product_html([product], html, url)
                 return [product]
 
         return []
@@ -267,7 +272,7 @@ class UnifiedCrawlExtractor:
     @staticmethod
     def _has_price_and_image(product: dict) -> bool:
         has_price = bool(_get_price(product))
-        has_image = bool(product.get("image") or product.get("og:image"))
+        has_image = usable_image(product.get("image")) or usable_image(product.get("og:image"))
         return has_price and has_image
 
 
@@ -331,7 +336,7 @@ def _fill_gaps_from_markdown(product: dict, md_data: dict) -> None:
 
 
 def _fill_image(product: dict, image_url: str) -> None:
-    if not product.get("image") and not product.get("og:image"):
+    if usable_image(image_url) and not usable_image(product.get("image")) and not usable_image(product.get("og:image")):
         product["og:image"] = image_url
 
 
@@ -347,7 +352,7 @@ def _extract_best_image(media: dict | list) -> str | None:
 
     scored = [
         img for img in images
-        if isinstance(img, dict) and img.get("src") and isinstance(img.get("score", 0), (int, float))
+        if isinstance(img, dict) and usable_image(img.get("src")) and isinstance(img.get("score", 0), (int, float))
     ]
     if not scored:
         return None

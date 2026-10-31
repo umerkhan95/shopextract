@@ -1,0 +1,56 @@
+/workspace/shopextract/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:300: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the "fixture" caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+.............FFF..                                                       [100%]
+=================================== FAILURES ===================================
+_____ test_non_image_gallery_references_never_become_product_page_images[] _____
+
+href = ''
+
+    @pytest.mark.parametrize('href', ['', '#', '#zoom', 'javascript:void(0)'])
+    def test_non_image_gallery_references_never_become_product_page_images(href):
+        product={'@type':'Product','name':'Powder','offers':{'price':10}}
+        html='<script type="application/ld+json">'+json.dumps(product)+'</script><a class="MagicZoom" href="'+href+'">zoom</a>'
+        raw=UnifiedCrawlExtractor._extract_structured_from_html(html,URL)[0]
+>       assert not UnifiedCrawlExtractor._has_price_and_image(raw)
+E       AssertionError: assert not True
+E        +  where True = <function UnifiedCrawlExtractor._has_price_and_image at 0x7f420a78e5c0>({'@type': 'Product', 'name': 'Powder', 'offers': {'price': 10}, '_capture': {'url': 'https://www.naheed.pk/max-factor-...0+00:00', 'values': {'/@type': 'Product', '/name': 'Powder', '/offers/price': 10, '/offers': {'price': 10}}, ...}, ...})
+E        +    where <function UnifiedCrawlExtractor._has_price_and_image at 0x7f420a78e5c0> = UnifiedCrawlExtractor._has_price_and_image
+
+tests/test_naheed_static.py:119: AssertionError
+____ test_non_image_gallery_references_never_become_product_page_images[#] _____
+
+href = '#'
+
+    @pytest.mark.parametrize('href', ['', '#', '#zoom', 'javascript:void(0)'])
+    def test_non_image_gallery_references_never_become_product_page_images(href):
+        product={'@type':'Product','name':'Powder','offers':{'price':10}}
+        html='<script type="application/ld+json">'+json.dumps(product)+'</script><a class="MagicZoom" href="'+href+'">zoom</a>'
+        raw=UnifiedCrawlExtractor._extract_structured_from_html(html,URL)[0]
+>       assert not UnifiedCrawlExtractor._has_price_and_image(raw)
+E       AssertionError: assert not True
+E        +  where True = <function UnifiedCrawlExtractor._has_price_and_image at 0x7f420a78e5c0>({'@type': 'Product', 'name': 'Powder', 'offers': {'price': 10}, '_capture': {'url': 'https://www.naheed.pk/max-factor-...4+00:00', 'values': {'/@type': 'Product', '/name': 'Powder', '/offers/price': 10, '/offers': {'price': 10}}, ...}, ...})
+E        +    where <function UnifiedCrawlExtractor._has_price_and_image at 0x7f420a78e5c0> = UnifiedCrawlExtractor._has_price_and_image
+
+tests/test_naheed_static.py:119: AssertionError
+__ test_non_image_gallery_references_never_become_product_page_images[#zoom] ___
+
+href = '#zoom'
+
+    @pytest.mark.parametrize('href', ['', '#', '#zoom', 'javascript:void(0)'])
+    def test_non_image_gallery_references_never_become_product_page_images(href):
+        product={'@type':'Product','name':'Powder','offers':{'price':10}}
+        html='<script type="application/ld+json">'+json.dumps(product)+'</script><a class="MagicZoom" href="'+href+'">zoom</a>'
+        raw=UnifiedCrawlExtractor._extract_structured_from_html(html,URL)[0]
+>       assert not UnifiedCrawlExtractor._has_price_and_image(raw)
+E       AssertionError: assert not True
+E        +  where True = <function UnifiedCrawlExtractor._has_price_and_image at 0x7f420a78e5c0>({'@type': 'Product', 'name': 'Powder', 'offers': {'price': 10}, '_capture': {'url': 'https://www.naheed.pk/max-factor-...1+00:00', 'values': {'/@type': 'Product', '/name': 'Powder', '/offers/price': 10, '/offers': {'price': 10}}, ...}, ...})
+E        +    where <function UnifiedCrawlExtractor._has_price_and_image at 0x7f420a78e5c0> = UnifiedCrawlExtractor._has_price_and_image
+
+tests/test_naheed_static.py:119: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_naheed_static.py::test_non_image_gallery_references_never_become_product_page_images[]
+FAILED tests/test_naheed_static.py::test_non_image_gallery_references_never_become_product_page_images[#]
+FAILED tests/test_naheed_static.py::test_non_image_gallery_references_never_become_product_page_images[#zoom]
+3 failed, 15 passed in 0.28s

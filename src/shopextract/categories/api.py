@@ -40,6 +40,9 @@ def _observe_categories(raw, platform, scope, limits):
     context = AdapterContext(scope, limits, tuple(errors))
     adapter = import_module('.adapters.' + name, __package__)
     observations = adapter.observe_categories(raw, context=context)
+    if "listing_categories" in raw:
+        from .listings import observe_listing_categories
+        observations += observe_listing_categories(raw, context=context)
     remaining = limits.terms
     bounded = []
     for observation in observations:

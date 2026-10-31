@@ -1,0 +1,3 @@
+# Plan and G1 decisions
+G1 passed in reviews.md. Preserve constructors and default category flow. Add shared product-HTML parser/placeholder utilities and field-source bindings; do not recapture mutated JSON-LD. OG normalizer gains additive brand/SKU/additional gallery support. Magento signals must be runtime/module signatures, with generic confidence zero.
+Listing index is opt-in, reachable via CLI and library. It records only positively observed product-card membership; URL-only categories are valid with missing labels and unknown total coverage. Successful acquisition does not establish exhaustive catalog membership. Existing mapper/portable validation remain authoritative.

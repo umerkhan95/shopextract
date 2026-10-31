@@ -693,12 +693,19 @@ def _normalize_opengraph(raw: dict, shop_url: str) -> dict | None:
     price_path = '/og:price:amount' if raw.get('og:price:amount') else '/product:price:amount'
     currency_path = '/og:price:currency' if raw.get('og:price:currency') else '/product:price:currency'
     category = [raw['product:category']] if raw.get('product:category') else []
+    gallery = raw.get('image')
+    gallery = gallery if isinstance(gallery, list) else []
+    image_paths = [f'/image/{i}' for i in range(1, len(gallery))]
+    additional = [_extract_image_url(item) for item in gallery[1:]]
     return t.result({
         'external_id':t.emit('external_id','/og:product_id','/product:retailer_item_id',default=''),
         'title':title,'description':t.emit('description','/og:description',default='',convert=_strip_html,operation='Strip HTML and whitespace'),
         'price':t.money('price',price_path,stringify=True),
         'currency':t.emit('currency',currency_path,default='USD'),
-        'image_url':t.emit('image_url','/og:image',default=''),
+        'image_url':t.emit('image_url','/image/0','/og:image',default='',truthy=True,convert=_extract_image_url),
+        'sku':t.emit('sku','/sku',truthy=True),
+        'vendor':t.emit('vendor','/brand/name' if isinstance(raw.get('brand'),dict) else '/brand',truthy=True),
+        'additional_images':_record_items(t,'additional_images','/image',additional,image_paths,'Project remaining DOM gallery images'),
         'product_url':t.emit('product_url','/og:url',default=shop_url),
         'condition':t.emit('condition','/product:condition',truthy=True),
         'category_path':_record_items(t,'category_path','/product:category',category,['/product:category']*len(category),'Project product category'),
