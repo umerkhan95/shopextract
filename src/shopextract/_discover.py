@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import time
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
 
@@ -32,7 +33,8 @@ except ImportError:
 
 from ._filters import PLATFORM_PRODUCT_SITEMAPS, is_non_product_url
 from ._models import Platform
-from ._execution import browser_allowed
+from ._execution import browser_allowed, current_state
+from ._discovery_sitemaps import discover_sitemap_urls
 from .extractors._browser import (
     StealthLevel,
     get_browser_config,
@@ -63,6 +65,10 @@ _USER_AGENT = (
 )
 
 
+class _DiscoveryStopped(Exception):
+    pass
+
+
 async def discover(
     url: str,
     *,
@@ -91,11 +97,19 @@ async def discover(
     base_url = url.rstrip("/")
     logger.info("Discovering URLs for %s (platform: %s)", base_url, platform)
 
+    state = current_state()
+    deadline = min(float(timeout), _DISCOVERY_TIMEOUT)
+    if state is not None:
+        deadline = min(deadline, state.deadline - time.monotonic())
+    if deadline <= 0:
+        return []
     try:
         coro = _discover_for_platform(base_url, platform, timeout, client, max_urls=max_urls)
-        urls = await asyncio.wait_for(coro, timeout=_DISCOVERY_TIMEOUT)
+        urls = await asyncio.wait_for(coro, timeout=deadline)
+    except _DiscoveryStopped:
+        return []
     except asyncio.TimeoutError:
-        logger.error("URL discovery timed out after %ds for %s", _DISCOVERY_TIMEOUT, base_url)
+        logger.error("URL discovery timed out after %gs for %s", deadline, base_url)
         return []
     except Exception as e:
         logger.error("Error discovering URLs for %s: %s", base_url, e)
@@ -112,19 +126,20 @@ async def _discover_for_platform(
     max_urls: int = 100,
 ) -> list[str]:
     if platform == Platform.SHOPIFY:
-        return await _discover_shopify(base_url, platform, timeout, client)
+        return await _discover_shopify(base_url, platform, timeout, client, max_urls=max_urls)
     elif platform == Platform.WOOCOMMERCE:
-        return await _discover_woocommerce(base_url, platform, timeout, client)
+        return await _discover_woocommerce(base_url, platform, timeout, client, max_urls=max_urls)
     elif platform == Platform.MAGENTO:
-        return await _discover_magento(base_url, platform, timeout, client)
+        return await _discover_magento(base_url, platform, timeout, client, max_urls=max_urls)
     elif platform == Platform.BIGCOMMERCE:
         return await _discover_bigcommerce(base_url, platform, timeout, client, max_urls=max_urls)
     else:
-        return await _discover_generic(base_url, platform, timeout, client)
+        return await _discover_generic(base_url, platform, timeout, client, max_urls=max_urls)
 
 
 async def _discover_shopify(
-    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None
+    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None,
+    max_urls: int = 100,
 ) -> list[str]:
     api_url = f"{base_url}/products.json?limit=250&page=1"
 
@@ -145,14 +160,15 @@ async def _discover_shopify(
         return urls
     except Exception as e:
         logger.debug("Shopify /products.json failed for %s: %s, falling back to sitemap", base_url, e)
-        return await _discover_via_sitemap(base_url, platform, timeout, client)
+        return await _discover_via_sitemap(base_url, platform, timeout, client, max_urls=max_urls)
     finally:
         if own_client:
             await c.aclose()
 
 
 async def _discover_woocommerce(
-    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None
+    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None,
+    max_urls: int = 100,
 ) -> list[str]:
     api_url = f"{base_url}/wp-json/wc/store/v1/products"
 
@@ -168,7 +184,7 @@ async def _discover_woocommerce(
         if own_client:
             await c.aclose()
 
-    urls = await _discover_via_sitemap(base_url, platform, timeout, client)
+    urls = await _discover_via_sitemap(base_url, platform, timeout, client, max_urls=max_urls)
     if urls:
         return _filter_woocommerce_urls(urls)
 
@@ -176,7 +192,8 @@ async def _discover_woocommerce(
 
 
 async def _discover_magento(
-    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None
+    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None,
+    max_urls: int = 100,
 ) -> list[str]:
     api_url = f"{base_url}/rest/V1/products?searchCriteria[pageSize]=100"
 
@@ -192,7 +209,7 @@ async def _discover_magento(
         if own_client:
             await c.aclose()
 
-    urls = await _discover_via_sitemap(base_url, platform, timeout, client)
+    urls = await _discover_via_sitemap(base_url, platform, timeout, client, max_urls=max_urls)
     if urls:
         return urls
 
@@ -222,16 +239,17 @@ async def _discover_bigcommerce(
                 return cards
     except Exception as e:
         logger.debug('BigCommerce public card discovery unavailable: %s', type(e).__name__)
-    urls = await _discover_via_sitemap(base_url, platform, timeout, client)
+    urls = await _discover_via_sitemap(base_url, platform, timeout, client, max_urls=max_urls)
     if urls:
         return urls
     return await _discover_via_crawl4ai(base_url)
 
 
 async def _discover_generic(
-    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None
+    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None,
+    max_urls: int = 100,
 ) -> list[str]:
-    urls = await _discover_via_sitemap(base_url, platform, timeout, client)
+    urls = await _discover_via_sitemap(base_url, platform, timeout, client, max_urls=max_urls)
     if urls:
         return urls
 
@@ -245,10 +263,17 @@ async def _discover_generic(
 # -- Sitemap discovery -------------------------------------------------------
 
 async def _discover_via_sitemap(
-    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None
+    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None,
+    max_urls: int = 100,
 ) -> list[str]:
     base_url = base_url.rstrip("/")
     domain = urlparse(base_url).netloc
+
+    native = await discover_sitemap_urls(base_url, max_urls=max_urls, timeout=timeout, client=client)
+    if native.urls:
+        return list(native.urls)
+    if native.stop_fallback:
+        raise _DiscoveryStopped()
 
     # Phase 1: platform-specific product sitemaps
     product_sitemap_paths = PLATFORM_PRODUCT_SITEMAPS.get(platform.value, [])
@@ -267,7 +292,7 @@ async def _discover_via_sitemap(
         source="sitemap",
         pattern="*",
         filter_nonsense_urls=True,
-        max_urls=5000,
+        max_urls=max_urls,
         force=False,
     )
     urls: list[str] = []

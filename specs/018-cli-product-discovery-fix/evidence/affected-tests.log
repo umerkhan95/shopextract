@@ -1,0 +1,16 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+........................................................................ [ 45%]
+........................................................................ [ 90%]
+...............                                                          [100%]
+=============================== warnings summary ===============================
+tests/test_native_core_integration.py::test_production_categories_use_native_fallbacks_and_observed_facts[<div class="product"><h1>Book</h1><span class="price">25</span><span itemprop="category">Books</span><img class="product-image" src="/book.jpg"></div>-generic:product_type]
+  /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/bs4/builder/_lxml.py:124: DeprecationWarning: The 'strip_cdata' option of HTMLParser() has never done anything and will eventually be removed.
+    parser = parser(
+
+tests/test_cli_extract.py: 12 warnings
+  /Users/umerkhan/code/shopextract-pr99-audit-20261031/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+159 passed, 13 warnings in 8.32s

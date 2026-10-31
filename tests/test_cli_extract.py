@@ -356,11 +356,14 @@ def test_actual_discover_shopify_transport(transport):
     import httpx
     routes,calls=transport
     routes['/products.json']=lambda r:httpx.Response(404)
+    # Native advertised-sitemap discovery precedes the known Shopify fallback.
+    routes['/robots.txt']=lambda r:httpx.Response(404)
+    routes['/sitemap.xml']=lambda r:httpx.Response(404)
     routes['/sitemap_products_1.xml']=lambda r:httpx.Response(200,text='<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://fixture.invalid/products/a</loc></url><url><loc>https://fixture.invalid/products/b</loc></url></urlset>')
     result=invoke('discover','https://fixture.invalid','--platform','shopify','--max','1')
     assert result.exit_code==0, result.output[:800]
     assert value(result)['data']=={'urls':['https://fixture.invalid/products/a'],'count':1}
-    assert [request.url.path for request in calls]==['/products.json','/sitemap_products_1.xml']
+    assert [request.url.path for request in calls]==['/products.json','/robots.txt','/sitemap.xml','/sitemap_products_1.xml']
 
 
 def test_detect_deadline_cleanup(monkeypatch):

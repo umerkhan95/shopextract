@@ -1,0 +1,33 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________ test_robots_longest_matching_disallow_overrides_allow _____________
+
+    @async_test
+    async def test_robots_longest_matching_disallow_overrides_allow():
+        """RFC robots specificity: a longer Disallow beats a broad Allow."""
+        def route(req):
+            if req.url.path == '/robots.txt':
+                return httpx.Response(200,text=robots(ORIGIN+'/maps/products.xml',rules='Allow: /\nDisallow: /shop/item'))
+            if req.url.path == '/maps/products.xml': return httpx.Response(200,text=urlset(BASE+'/item/blocked'))
+            return httpx.Response(404)
+        async with httpx.AsyncClient(transport=httpx.MockTransport(route)) as client:
+            result=await native.discover_sitemap_urls(BASE,client=client)
+>       assert result.urls == () and result.stop_fallback
+E       AssertionError: assert (('https://mer...tem/blocked',) == ()
+E         
+E         Left contains one more item: 'https://merchant.test/shop/item/blocked'
+E         Use -v to get more diff)
+
+tests/test_discovery_sitemap_bounds.py:181: AssertionError
+=============================== warnings summary ===============================
+../../../../Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/_pytest/config/__init__.py:1464
+  /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_discovery_sitemap_bounds.py::test_robots_longest_matching_disallow_overrides_allow
+1 failed, 1 warning in 0.24s

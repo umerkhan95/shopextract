@@ -592,3 +592,21 @@ callback/config imports or arbitrary Python function execution is supported;
 Python extension protocols (watch callbacks, advisor/investigator) stay Python APIs.
 `examples/cli/` contains offline inputs for normalization, discovery, bootstrap and
 bounded maintenance; no external service or model is needed to run those examples.
+
+## Bounded native sitemap discovery
+
+Store extraction first tries the existing platform API. Its sitemap fallback now
+reads public robots-advertised sitemap indexes through native HTTP before
+starting optional generic seeding or browser discovery. It excludes advertised
+category/collection map entries, follows only same-origin sources, scopes returned
+URLs to the selected store path, and stops at the requested URL cap. Native
+traversal is bounded by 12 physical requests (including redirects), 10 MiB per
+decoded source, 20 MiB total and at most 30 seconds within the operation deadline.
+Robots exclusions and exhausted native budgets cannot start an unrestricted
+fallback. Missing or unsupported sources retain the existing fallback chain.
+
+`extract STORE --max 50 --browser --timeout 300 --format json -o products.json`
+uses this path without an external crawler script. `--max` caps processed URLs;
+unavailable pages may yield fewer products. A successful sample never certifies
+full-catalog coverage; inspect product counts, source captures and completeness
+metadata in the returned envelope.

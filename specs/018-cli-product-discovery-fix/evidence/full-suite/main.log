@@ -1,0 +1,613 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+........................................................................ [  4%]
+........................................................................ [  8%]
+........................................................................ [ 12%]
+........................................................................ [ 16%]
+........................................................................ [ 20%]
+........................................................................ [ 24%]
+........................................................................ [ 28%]
+........................................................................ [ 32%]
+........................................................................ [ 36%]
+........................................................................ [ 40%]
+........................................................................ [ 44%]
+........................................................................ [ 49%]
+........................................................................ [ 53%]
+........................................................................ [ 57%]
+......................................................FFFFFFFF..FFFFFFFF [ 61%]
+........................................................................ [ 65%]
+........................................................................ [ 69%]
+........................................................................ [ 73%]
+........................................................................ [ 77%]
+........................................................................ [ 81%]
+........................................................................ [ 85%]
+.....s.................................................................. [ 89%]
+........................................................................ [ 93%]
+........................................................................ [ 98%]
+..................................                                       [100%]
+=================================== FAILURES ===================================
+________________ test_owned_output_exact_boundary[128-False-1] _________________
+
+amount = 128, exceeded = False, stream = 1
+
+    @pytest.mark.parametrize('stream', [1, 2])
+    @pytest.mark.parametrize('amount,exceeded', [(128, False), (129, True)])
+    def test_owned_output_exact_boundary(amount, exceeded, stream):
+>       result = supervisor()([sys.executable, '-c', f'import os;os.write({stream},b"x"*{amount})'],
+                              input_bytes=b'', timeout=2, maximum_bytes=128)
+
+tests/test_google_production.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/_owned_process.py:96: in run_owned
+    previous = _subreaper(True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+value = True
+
+    def _subreaper(value=None):
+        if sys.platform != 'linux':
+>           raise RuntimeError('Owned browser supervision requires Linux')
+E           RuntimeError: Owned browser supervision requires Linux
+
+src/shopextract/_owned_process.py:22: RuntimeError
+________________ test_owned_output_exact_boundary[128-False-2] _________________
+
+amount = 128, exceeded = False, stream = 2
+
+    @pytest.mark.parametrize('stream', [1, 2])
+    @pytest.mark.parametrize('amount,exceeded', [(128, False), (129, True)])
+    def test_owned_output_exact_boundary(amount, exceeded, stream):
+>       result = supervisor()([sys.executable, '-c', f'import os;os.write({stream},b"x"*{amount})'],
+                              input_bytes=b'', timeout=2, maximum_bytes=128)
+
+tests/test_google_production.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/_owned_process.py:96: in run_owned
+    previous = _subreaper(True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+value = True
+
+    def _subreaper(value=None):
+        if sys.platform != 'linux':
+>           raise RuntimeError('Owned browser supervision requires Linux')
+E           RuntimeError: Owned browser supervision requires Linux
+
+src/shopextract/_owned_process.py:22: RuntimeError
+_________________ test_owned_output_exact_boundary[129-True-1] _________________
+
+amount = 129, exceeded = True, stream = 1
+
+    @pytest.mark.parametrize('stream', [1, 2])
+    @pytest.mark.parametrize('amount,exceeded', [(128, False), (129, True)])
+    def test_owned_output_exact_boundary(amount, exceeded, stream):
+>       result = supervisor()([sys.executable, '-c', f'import os;os.write({stream},b"x"*{amount})'],
+                              input_bytes=b'', timeout=2, maximum_bytes=128)
+
+tests/test_google_production.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/_owned_process.py:96: in run_owned
+    previous = _subreaper(True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+value = True
+
+    def _subreaper(value=None):
+        if sys.platform != 'linux':
+>           raise RuntimeError('Owned browser supervision requires Linux')
+E           RuntimeError: Owned browser supervision requires Linux
+
+src/shopextract/_owned_process.py:22: RuntimeError
+_________________ test_owned_output_exact_boundary[129-True-2] _________________
+
+amount = 129, exceeded = True, stream = 2
+
+    @pytest.mark.parametrize('stream', [1, 2])
+    @pytest.mark.parametrize('amount,exceeded', [(128, False), (129, True)])
+    def test_owned_output_exact_boundary(amount, exceeded, stream):
+>       result = supervisor()([sys.executable, '-c', f'import os;os.write({stream},b"x"*{amount})'],
+                              input_bytes=b'', timeout=2, maximum_bytes=128)
+
+tests/test_google_production.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/_owned_process.py:96: in run_owned
+    previous = _subreaper(True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+value = True
+
+    def _subreaper(value=None):
+        if sys.platform != 'linux':
+>           raise RuntimeError('Owned browser supervision requires Linux')
+E           RuntimeError: Owned browser supervision requires Linux
+
+src/shopextract/_owned_process.py:22: RuntimeError
+___________ test_owned_timeout_and_success_clean_descendants[False] ____________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_owned_timeout_and_success0')
+exit_parent = False
+
+    @pytest.mark.parametrize('exit_parent', [False, True])
+    def test_owned_timeout_and_success_clean_descendants(tmp_path, exit_parent):
+        marker = tmp_path / 'pid'
+        program = ('import subprocess,sys,time,signal;'
+            'signal.signal(signal.SIGTERM,signal.SIG_IGN);'
+            'p=subprocess.Popen([sys.executable,"-c",'
+            '"import signal,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(60)"]);'
+            f'open({str(marker)!r},"w").write(str(p.pid));'
+            + ('print("done",flush=True)' if exit_parent else 'time.sleep(60)'))
+>       result = supervisor()([sys.executable, '-c', program], input_bytes=b'',
+                              timeout=1.5, maximum_bytes=128)
+
+tests/test_google_production.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/_owned_process.py:96: in run_owned
+    previous = _subreaper(True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+value = True
+
+    def _subreaper(value=None):
+        if sys.platform != 'linux':
+>           raise RuntimeError('Owned browser supervision requires Linux')
+E           RuntimeError: Owned browser supervision requires Linux
+
+src/shopextract/_owned_process.py:22: RuntimeError
+____________ test_owned_timeout_and_success_clean_descendants[True] ____________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_owned_timeout_and_success1')
+exit_parent = True
+
+    @pytest.mark.parametrize('exit_parent', [False, True])
+    def test_owned_timeout_and_success_clean_descendants(tmp_path, exit_parent):
+        marker = tmp_path / 'pid'
+        program = ('import subprocess,sys,time,signal;'
+            'signal.signal(signal.SIGTERM,signal.SIG_IGN);'
+            'p=subprocess.Popen([sys.executable,"-c",'
+            '"import signal,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(60)"]);'
+            f'open({str(marker)!r},"w").write(str(p.pid));'
+            + ('print("done",flush=True)' if exit_parent else 'time.sleep(60)'))
+>       result = supervisor()([sys.executable, '-c', program], input_bytes=b'',
+                              timeout=1.5, maximum_bytes=128)
+
+tests/test_google_production.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/shopextract/_owned_process.py:96: in run_owned
+    previous = _subreaper(True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+value = True
+
+    def _subreaper(value=None):
+        if sys.platform != 'linux':
+>           raise RuntimeError('Owned browser supervision requires Linux')
+E           RuntimeError: Owned browser supervision requires Linux
+
+src/shopextract/_owned_process.py:22: RuntimeError
+_______ test_owned_signal_cleanup_restores_process_state[Signals.SIGINT] _______
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_owned_signal_cleanup_rest0')
+signum = <Signals.SIGINT: 2>
+
+    @pytest.mark.parametrize('signum', [signal.SIGINT, signal.SIGTERM])
+    def test_owned_signal_cleanup_restores_process_state(tmp_path, signum):
+        marker = tmp_path / 'pid'
+        child = f'import os,time;open({str(marker)!r},"w").write(str(os.getpid()));time.sleep(60)'
+        script = '''import json,os,signal,sys,threading
+    from shopextract._owned_process import run_owned,_subreaper
+    sig=int(sys.argv[1]);before=signal.getsignal(sig);reaper=_subreaper()
+    timer=threading.Timer(.4,lambda:os.kill(os.getpid(),sig));timer.start()
+    try:
+     run_owned([sys.executable,'-c',sys.argv[2]],input_bytes=b'',timeout=2,maximum_bytes=128)
+    except (KeyboardInterrupt,SystemExit):
+     print(json.dumps({'signal_restored':signal.getsignal(sig)==before,'reaper_restored':_subreaper()==reaper}))
+    finally: timer.cancel()
+    '''
+        reply = subprocess.run([sys.executable, '-c', script, str(signum), child],
+                               capture_output=True, timeout=4)
+>       assert reply.returncode == 0, reply.stderr
+E       AssertionError: b'/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDe...st):
+E           File "<string>", line 3, in <module>
+E         ValueError: invalid literal for int() with base 10: \'Signals.SIGINT\'
+E         '
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/umerkhan/code/shopextract/.venv/bin/python', '-c', "import json,os,signal,sys,threading...t):\n  File "<string>", line 3, in <module>\nValueError: invalid literal for int() with base 10: \'Signals.SIGINT\'\n').returncode
+
+tests/test_google_production.py:95: AssertionError
+______ test_owned_signal_cleanup_restores_process_state[Signals.SIGTERM] _______
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_owned_signal_cleanup_rest1')
+signum = <Signals.SIGTERM: 15>
+
+    @pytest.mark.parametrize('signum', [signal.SIGINT, signal.SIGTERM])
+    def test_owned_signal_cleanup_restores_process_state(tmp_path, signum):
+        marker = tmp_path / 'pid'
+        child = f'import os,time;open({str(marker)!r},"w").write(str(os.getpid()));time.sleep(60)'
+        script = '''import json,os,signal,sys,threading
+    from shopextract._owned_process import run_owned,_subreaper
+    sig=int(sys.argv[1]);before=signal.getsignal(sig);reaper=_subreaper()
+    timer=threading.Timer(.4,lambda:os.kill(os.getpid(),sig));timer.start()
+    try:
+     run_owned([sys.executable,'-c',sys.argv[2]],input_bytes=b'',timeout=2,maximum_bytes=128)
+    except (KeyboardInterrupt,SystemExit):
+     print(json.dumps({'signal_restored':signal.getsignal(sig)==before,'reaper_restored':_subreaper()==reaper}))
+    finally: timer.cancel()
+    '''
+        reply = subprocess.run([sys.executable, '-c', script, str(signum), child],
+                               capture_output=True, timeout=4)
+>       assert reply.returncode == 0, reply.stderr
+E       AssertionError: b'/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDe...t):
+E           File "<string>", line 3, in <module>
+E         ValueError: invalid literal for int() with base 10: \'Signals.SIGTERM\'
+E         '
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/umerkhan/code/shopextract/.venv/bin/python', '-c', "import json,os,signal,sys,threading...):\n  File "<string>", line 3, in <module>\nValueError: invalid literal for int() with base 10: \'Signals.SIGTERM\'\n').returncode
+
+tests/test_google_production.py:95: AssertionError
+______________ test_owned_worker_to_actual_mapping_export[Books] _______________
+
+profile = (PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_owned_worker_to...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x110ccbf40>
+category = 'Books'
+
+    @pytest.mark.parametrize('category', ['Books', None, 'mapping_failure', 'invocations', 'products'])
+    def test_owned_worker_to_actual_mapping_export(profile, monkeypatch, category):
+        """Real child/native pipeline/CLI/export; only remote HTTP/seeding controlled."""
+        root, path, config = production_profile(profile)
+        if category in ('invocations', 'products'):
+            config['sites'].append(dict(config['sites'][0], id='second'))
+            config['limits'][category] = 1
+            path.write_text(json.dumps(config))
+        product = {'@type':'Product','name':'Book','image':'https://shop.test/book.jpg',
+                   'offers':{'price':'1.00','priceCurrency':'PKR'}}
+        if category:
+            product['category'] = 'Books'
+        html = '<script type="application/ld+json">' + json.dumps(product) + '</script>'
+        script = root / 'controlled_source.py'
+        script.write_text('''import sys,json,httpx
+    from contextlib import redirect_stdout
+    with redirect_stdout(sys.stderr):
+     import shopextract._discover as discovery
+     class Seeder:
+      async def __aenter__(self): return self
+      async def __aexit__(self,*args): pass
+      async def urls(self,*args): return [{'url':'https://shop.test/item','status':'valid'}]
+     discovery.AsyncUrlSeeder=Seeder
+     original=httpx.AsyncClient
+     body=''' + repr(html) + '''
+     def response(request): return httpx.Response(200,text=body)
+     httpx.AsyncClient=lambda *a,**kw: original(*a,**dict(kw,transport=httpx.MockTransport(response)))
+     from shopextract.taxonomies.google.live_worker import main
+    main()
+    ''')
+        from shopextract.taxonomies.google import live_production as production
+        monkeypatch.setattr(production, 'worker_command', lambda: [sys.executable, str(script)])
+        from shopextract.taxonomies.google import live
+        monkeypatch.setattr(live, 'policy_denial', lambda _: None)
+        if category == 'mapping_failure':
+            def fail(*args): raise OSError('Injected mapping artifact failure')
+            monkeypatch.setattr(live, 'map_products', fail)
+        report = live.verify_google_live(path, root / 'out', project_root=root, live=True, controlled=True)
+        expected = 'fail' if category == 'mapping_failure' else 'pass' if category == 'Books' else 'needs_review'
+>       assert report['status'] == expected, report
+E       AssertionError: {'schema_version': 2, 'run_id': '3378290f65164aacab3d33e1cb67694e', 'started_at': '2026-10-31T16:49:39.065368+00:00', 'mode': 'controlled', ...}
+E       assert 'fail' == 'pass'
+E         
+E         - pass
+E         + fail
+
+tests/test_google_production.py:172: AssertionError
+_______________ test_owned_worker_to_actual_mapping_export[None] _______________
+
+profile = (PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_owned_worker_to...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11d58d360>
+category = None
+
+    @pytest.mark.parametrize('category', ['Books', None, 'mapping_failure', 'invocations', 'products'])
+    def test_owned_worker_to_actual_mapping_export(profile, monkeypatch, category):
+        """Real child/native pipeline/CLI/export; only remote HTTP/seeding controlled."""
+        root, path, config = production_profile(profile)
+        if category in ('invocations', 'products'):
+            config['sites'].append(dict(config['sites'][0], id='second'))
+            config['limits'][category] = 1
+            path.write_text(json.dumps(config))
+        product = {'@type':'Product','name':'Book','image':'https://shop.test/book.jpg',
+                   'offers':{'price':'1.00','priceCurrency':'PKR'}}
+        if category:
+            product['category'] = 'Books'
+        html = '<script type="application/ld+json">' + json.dumps(product) + '</script>'
+        script = root / 'controlled_source.py'
+        script.write_text('''import sys,json,httpx
+    from contextlib import redirect_stdout
+    with redirect_stdout(sys.stderr):
+     import shopextract._discover as discovery
+     class Seeder:
+      async def __aenter__(self): return self
+      async def __aexit__(self,*args): pass
+      async def urls(self,*args): return [{'url':'https://shop.test/item','status':'valid'}]
+     discovery.AsyncUrlSeeder=Seeder
+     original=httpx.AsyncClient
+     body=''' + repr(html) + '''
+     def response(request): return httpx.Response(200,text=body)
+     httpx.AsyncClient=lambda *a,**kw: original(*a,**dict(kw,transport=httpx.MockTransport(response)))
+     from shopextract.taxonomies.google.live_worker import main
+    main()
+    ''')
+        from shopextract.taxonomies.google import live_production as production
+        monkeypatch.setattr(production, 'worker_command', lambda: [sys.executable, str(script)])
+        from shopextract.taxonomies.google import live
+        monkeypatch.setattr(live, 'policy_denial', lambda _: None)
+        if category == 'mapping_failure':
+            def fail(*args): raise OSError('Injected mapping artifact failure')
+            monkeypatch.setattr(live, 'map_products', fail)
+        report = live.verify_google_live(path, root / 'out', project_root=root, live=True, controlled=True)
+        expected = 'fail' if category == 'mapping_failure' else 'pass' if category == 'Books' else 'needs_review'
+>       assert report['status'] == expected, report
+E       AssertionError: {'schema_version': 2, 'run_id': '6a19807a23034c51bdcc898df47fe959', 'started_at': '2026-10-31T16:49:39.130854+00:00', 'mode': 'controlled', ...}
+E       assert 'fail' == 'needs_review'
+E         
+E         - needs_review
+E         + fail
+
+tests/test_google_production.py:172: AssertionError
+_________ test_owned_worker_to_actual_mapping_export[mapping_failure] __________
+
+profile = (PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_owned_worker_to...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11d514040>
+category = 'mapping_failure'
+
+    @pytest.mark.parametrize('category', ['Books', None, 'mapping_failure', 'invocations', 'products'])
+    def test_owned_worker_to_actual_mapping_export(profile, monkeypatch, category):
+        """Real child/native pipeline/CLI/export; only remote HTTP/seeding controlled."""
+        root, path, config = production_profile(profile)
+        if category in ('invocations', 'products'):
+            config['sites'].append(dict(config['sites'][0], id='second'))
+            config['limits'][category] = 1
+            path.write_text(json.dumps(config))
+        product = {'@type':'Product','name':'Book','image':'https://shop.test/book.jpg',
+                   'offers':{'price':'1.00','priceCurrency':'PKR'}}
+        if category:
+            product['category'] = 'Books'
+        html = '<script type="application/ld+json">' + json.dumps(product) + '</script>'
+        script = root / 'controlled_source.py'
+        script.write_text('''import sys,json,httpx
+    from contextlib import redirect_stdout
+    with redirect_stdout(sys.stderr):
+     import shopextract._discover as discovery
+     class Seeder:
+      async def __aenter__(self): return self
+      async def __aexit__(self,*args): pass
+      async def urls(self,*args): return [{'url':'https://shop.test/item','status':'valid'}]
+     discovery.AsyncUrlSeeder=Seeder
+     original=httpx.AsyncClient
+     body=''' + repr(html) + '''
+     def response(request): return httpx.Response(200,text=body)
+     httpx.AsyncClient=lambda *a,**kw: original(*a,**dict(kw,transport=httpx.MockTransport(response)))
+     from shopextract.taxonomies.google.live_worker import main
+    main()
+    ''')
+        from shopextract.taxonomies.google import live_production as production
+        monkeypatch.setattr(production, 'worker_command', lambda: [sys.executable, str(script)])
+        from shopextract.taxonomies.google import live
+        monkeypatch.setattr(live, 'policy_denial', lambda _: None)
+        if category == 'mapping_failure':
+            def fail(*args): raise OSError('Injected mapping artifact failure')
+            monkeypatch.setattr(live, 'map_products', fail)
+        report = live.verify_google_live(path, root / 'out', project_root=root, live=True, controlled=True)
+        expected = 'fail' if category == 'mapping_failure' else 'pass' if category == 'Books' else 'needs_review'
+        assert report['status'] == expected, report
+        assert report['mode'] == 'controlled' and not report['live_verified']
+>       assert report['usage'] == dict(pipeline_invocations=1, products=1, network_requests=None, network_bytes=None)
+E       AssertionError: assert {'pipeline_in..._bytes': None} == {'pipeline_in..._bytes': None}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'products': 0} != {'products': 1}
+E         Use -v to get more diff
+
+tests/test_google_production.py:174: AssertionError
+___________ test_owned_worker_to_actual_mapping_export[invocations] ____________
+
+profile = (PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_owned_worker_to...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11e316890>
+category = 'invocations'
+
+    @pytest.mark.parametrize('category', ['Books', None, 'mapping_failure', 'invocations', 'products'])
+    def test_owned_worker_to_actual_mapping_export(profile, monkeypatch, category):
+        """Real child/native pipeline/CLI/export; only remote HTTP/seeding controlled."""
+        root, path, config = production_profile(profile)
+        if category in ('invocations', 'products'):
+            config['sites'].append(dict(config['sites'][0], id='second'))
+            config['limits'][category] = 1
+            path.write_text(json.dumps(config))
+        product = {'@type':'Product','name':'Book','image':'https://shop.test/book.jpg',
+                   'offers':{'price':'1.00','priceCurrency':'PKR'}}
+        if category:
+            product['category'] = 'Books'
+        html = '<script type="application/ld+json">' + json.dumps(product) + '</script>'
+        script = root / 'controlled_source.py'
+        script.write_text('''import sys,json,httpx
+    from contextlib import redirect_stdout
+    with redirect_stdout(sys.stderr):
+     import shopextract._discover as discovery
+     class Seeder:
+      async def __aenter__(self): return self
+      async def __aexit__(self,*args): pass
+      async def urls(self,*args): return [{'url':'https://shop.test/item','status':'valid'}]
+     discovery.AsyncUrlSeeder=Seeder
+     original=httpx.AsyncClient
+     body=''' + repr(html) + '''
+     def response(request): return httpx.Response(200,text=body)
+     httpx.AsyncClient=lambda *a,**kw: original(*a,**dict(kw,transport=httpx.MockTransport(response)))
+     from shopextract.taxonomies.google.live_worker import main
+    main()
+    ''')
+        from shopextract.taxonomies.google import live_production as production
+        monkeypatch.setattr(production, 'worker_command', lambda: [sys.executable, str(script)])
+        from shopextract.taxonomies.google import live
+        monkeypatch.setattr(live, 'policy_denial', lambda _: None)
+        if category == 'mapping_failure':
+            def fail(*args): raise OSError('Injected mapping artifact failure')
+            monkeypatch.setattr(live, 'map_products', fail)
+        report = live.verify_google_live(path, root / 'out', project_root=root, live=True, controlled=True)
+        expected = 'fail' if category == 'mapping_failure' else 'pass' if category == 'Books' else 'needs_review'
+>       assert report['status'] == expected, report
+E       AssertionError: {'schema_version': 2, 'run_id': '37aece1e80f547f6a050bb63fd94f78b', 'started_at': '2026-10-31T16:49:39.260782+00:00', 'mode': 'controlled', ...}
+E       assert 'fail' == 'needs_review'
+E         
+E         - needs_review
+E         + fail
+
+tests/test_google_production.py:172: AssertionError
+_____________ test_owned_worker_to_actual_mapping_export[products] _____________
+
+profile = (PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_owned_worker_to...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11d5297b0>
+category = 'products'
+
+    @pytest.mark.parametrize('category', ['Books', None, 'mapping_failure', 'invocations', 'products'])
+    def test_owned_worker_to_actual_mapping_export(profile, monkeypatch, category):
+        """Real child/native pipeline/CLI/export; only remote HTTP/seeding controlled."""
+        root, path, config = production_profile(profile)
+        if category in ('invocations', 'products'):
+            config['sites'].append(dict(config['sites'][0], id='second'))
+            config['limits'][category] = 1
+            path.write_text(json.dumps(config))
+        product = {'@type':'Product','name':'Book','image':'https://shop.test/book.jpg',
+                   'offers':{'price':'1.00','priceCurrency':'PKR'}}
+        if category:
+            product['category'] = 'Books'
+        html = '<script type="application/ld+json">' + json.dumps(product) + '</script>'
+        script = root / 'controlled_source.py'
+        script.write_text('''import sys,json,httpx
+    from contextlib import redirect_stdout
+    with redirect_stdout(sys.stderr):
+     import shopextract._discover as discovery
+     class Seeder:
+      async def __aenter__(self): return self
+      async def __aexit__(self,*args): pass
+      async def urls(self,*args): return [{'url':'https://shop.test/item','status':'valid'}]
+     discovery.AsyncUrlSeeder=Seeder
+     original=httpx.AsyncClient
+     body=''' + repr(html) + '''
+     def response(request): return httpx.Response(200,text=body)
+     httpx.AsyncClient=lambda *a,**kw: original(*a,**dict(kw,transport=httpx.MockTransport(response)))
+     from shopextract.taxonomies.google.live_worker import main
+    main()
+    ''')
+        from shopextract.taxonomies.google import live_production as production
+        monkeypatch.setattr(production, 'worker_command', lambda: [sys.executable, str(script)])
+        from shopextract.taxonomies.google import live
+        monkeypatch.setattr(live, 'policy_denial', lambda _: None)
+        if category == 'mapping_failure':
+            def fail(*args): raise OSError('Injected mapping artifact failure')
+            monkeypatch.setattr(live, 'map_products', fail)
+        report = live.verify_google_live(path, root / 'out', project_root=root, live=True, controlled=True)
+        expected = 'fail' if category == 'mapping_failure' else 'pass' if category == 'Books' else 'needs_review'
+>       assert report['status'] == expected, report
+E       AssertionError: {'schema_version': 2, 'run_id': '16ca35ae87444133affd33d8cb9a8b40', 'started_at': '2026-10-31T16:49:39.325616+00:00', 'mode': 'controlled', ...}
+E       assert 'fail' == 'needs_review'
+E         
+E         - needs_review
+E         + fail
+
+tests/test_google_production.py:172: AssertionError
+__________ test_invalid_child_protocol_cannot_map[print("not json")] ___________
+
+profile = (PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_invalid_child_p...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11e315390>
+program = 'print("not json")'
+
+    @pytest.mark.parametrize('program', ['print("not json")',
+        'print("{}")', 'import sys;print("{}");sys.exit(1)'])
+    def test_invalid_child_protocol_cannot_map(profile, monkeypatch, program):
+        root, path, _ = production_profile(profile)
+        from shopextract.taxonomies.google import live, live_production
+        monkeypatch.setattr(live, 'policy_denial', lambda _: None)
+        monkeypatch.setattr(live_production, 'worker_command', lambda: [sys.executable, '-c', program])
+        result = live.verify_google_live(path, root / 'out', project_root=root, live=True, controlled=True)
+        assert result['status'] == 'fail' and not result['live_verified']
+        assert result['sites'][0]['mapping']['status'] == 'not_run'
+>       assert result['sites'][0]['extraction']['process']['cleanup_complete']
+E       KeyError: 'process'
+
+tests/test_google_production.py:203: KeyError
+_____________ test_invalid_child_protocol_cannot_map[print("{}")] ______________
+
+profile = (PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_invalid_child_p...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11d52a650>
+program = 'print("{}")'
+
+    @pytest.mark.parametrize('program', ['print("not json")',
+        'print("{}")', 'import sys;print("{}");sys.exit(1)'])
+    def test_invalid_child_protocol_cannot_map(profile, monkeypatch, program):
+        root, path, _ = production_profile(profile)
+        from shopextract.taxonomies.google import live, live_production
+        monkeypatch.setattr(live, 'policy_denial', lambda _: None)
+        monkeypatch.setattr(live_production, 'worker_command', lambda: [sys.executable, '-c', program])
+        result = live.verify_google_live(path, root / 'out', project_root=root, live=True, controlled=True)
+        assert result['status'] == 'fail' and not result['live_verified']
+        assert result['sites'][0]['mapping']['status'] == 'not_run'
+>       assert result['sites'][0]['extraction']['process']['cleanup_complete']
+E       KeyError: 'process'
+
+tests/test_google_production.py:203: KeyError
+__ test_invalid_child_protocol_cannot_map[import sys;print("{}");sys.exit(1)] __
+
+profile = (PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-11/test_invalid_child_p...talog_fingerprint': 'f07d0933732a5fd32b163268830764095d6209622b76db305d149ed35d6e1711', 'cli_config': 'cli.json', ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11e3163b0>
+program = 'import sys;print("{}");sys.exit(1)'
+
+    @pytest.mark.parametrize('program', ['print("not json")',
+        'print("{}")', 'import sys;print("{}");sys.exit(1)'])
+    def test_invalid_child_protocol_cannot_map(profile, monkeypatch, program):
+        root, path, _ = production_profile(profile)
+        from shopextract.taxonomies.google import live, live_production
+        monkeypatch.setattr(live, 'policy_denial', lambda _: None)
+        monkeypatch.setattr(live_production, 'worker_command', lambda: [sys.executable, '-c', program])
+        result = live.verify_google_live(path, root / 'out', project_root=root, live=True, controlled=True)
+        assert result['status'] == 'fail' and not result['live_verified']
+        assert result['sites'][0]['mapping']['status'] == 'not_run'
+>       assert result['sites'][0]['extraction']['process']['cleanup_complete']
+E       KeyError: 'process'
+
+tests/test_google_production.py:203: KeyError
+=============================== warnings summary ===============================
+tests/test_cli_analysis.py: 16 warnings
+tests/test_cli_analysis_mechanisms.py: 41 warnings
+tests/test_cli_categories_mechanisms.py: 1 warning
+tests/test_cli_extract.py: 12 warnings
+tests/test_cli_extract_limits.py: 1 warning
+  /Users/umerkhan/code/shopextract-pr99-audit-20261031/src/shopextract/_cli_data.py:45: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    raw = click.get_binary_stream('stdin').read(MAX_BYTES + 1)
+
+tests/test_cli_analysis.py::test_workflow_red_families[args12-value12]
+tests/test_cli_analysis_mechanisms.py::test_export_stdout_and_optional_engine
+tests/test_cli_analysis_mechanisms.py::test_zero_false_null_and_extension_preserved
+  /Users/umerkhan/code/shopextract-pr99-audit-20261031/src/shopextract/_cli_analysis.py:220: DeprecationWarning: 'get_binary_stream' is deprecated and will be removed in Click 9.0.
+    click.get_binary_stream('stdout').write(Path(payload).read_bytes())
+
+tests/test_google_live.py::test_live_static_css_reuses_dom_capture_without_browser
+tests/test_native_core_integration.py::test_production_categories_use_native_fallbacks_and_observed_facts[<div class="product"><h1>Book</h1><span class="price">25</span><span itemprop="category">Books</span><img class="product-image" src="/book.jpg"></div>-generic:product_type]
+  /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/bs4/builder/_lxml.py:124: DeprecationWarning: The 'strip_cdata' option of HTMLParser() has never done anything and will eventually be removed.
+    parser = parser(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_google_production.py::test_owned_output_exact_boundary[128-False-1]
+FAILED tests/test_google_production.py::test_owned_output_exact_boundary[128-False-2]
+FAILED tests/test_google_production.py::test_owned_output_exact_boundary[129-True-1]
+FAILED tests/test_google_production.py::test_owned_output_exact_boundary[129-True-2]
+FAILED tests/test_google_production.py::test_owned_timeout_and_success_clean_descendants[False]
+FAILED tests/test_google_production.py::test_owned_timeout_and_success_clean_descendants[True]
+FAILED tests/test_google_production.py::test_owned_signal_cleanup_restores_process_state[Signals.SIGINT]
+FAILED tests/test_google_production.py::test_owned_signal_cleanup_restores_process_state[Signals.SIGTERM]
+FAILED tests/test_google_production.py::test_owned_worker_to_actual_mapping_export[Books]
+FAILED tests/test_google_production.py::test_owned_worker_to_actual_mapping_export[None]
+FAILED tests/test_google_production.py::test_owned_worker_to_actual_mapping_export[mapping_failure]
+FAILED tests/test_google_production.py::test_owned_worker_to_actual_mapping_export[invocations]
+FAILED tests/test_google_production.py::test_owned_worker_to_actual_mapping_export[products]
+FAILED tests/test_google_production.py::test_invalid_child_protocol_cannot_map[print("not json")]
+FAILED tests/test_google_production.py::test_invalid_child_protocol_cannot_map[print("{}")]
+FAILED tests/test_google_production.py::test_invalid_child_protocol_cannot_map[import sys;print("{}");sys.exit(1)]
+16 failed, 1745 passed, 1 skipped, 76 warnings in 210.79s (0:03:30)

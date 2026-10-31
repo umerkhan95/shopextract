@@ -1,0 +1,2 @@
+{"group": "main", "status": "failed", "seconds": 214.324344, "summary": "16 failed, 1745 passed, 1 skipped, 76 warnings in 210.79s (0:03:30)", "log": "specs/018-cli-product-discovery-fix/evidence/full-suite/main.log"}
+{"status": "failed", "seconds": 214.325399, "report": "specs/018-cli-product-discovery-fix/evidence/full-suite/report.json"}
