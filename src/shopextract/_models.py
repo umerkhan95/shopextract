@@ -6,13 +6,18 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from decimal import Decimal
 from enum import Enum
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, TypedDict
 
 from ._evidence import (Evidence, FieldObservation, FieldResolution, SupportState,
                         TrustContract, ValidatedConfidence, factual_paths, trust_view)
 
 if TYPE_CHECKING:
     from .compare.identity_match import MatchDecision
+
+
+class QuantityValue(TypedDict):
+    value: str | int | float | bool | None
+    semantic: str
 
 
 class Platform(str, Enum):
@@ -46,7 +51,7 @@ class Variant:
     sku: str | None = None
     in_stock: bool = True
     canonical_variant_id: str = ""
-    attributes: dict[str, str] = field(default_factory=dict)
+    attributes: dict[str, str | QuantityValue] = field(default_factory=dict)
     gtin: str | None = None
 
     def trust_view(self, contract: TrustContract | None = None) -> dict:
@@ -82,7 +87,7 @@ class Product:
     raw_data: dict = field(default_factory=dict)
     canonical_product_id: str = ""
     supplier_id: str = ""
-    attributes: dict[str, str] = field(default_factory=dict)
+    attributes: dict[str, str | QuantityValue] = field(default_factory=dict)
     pack_quantity: int | None = None
     bundle_components: list[str] = field(default_factory=list)
 

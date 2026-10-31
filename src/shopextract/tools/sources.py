@@ -15,8 +15,11 @@ class _TransportLease(httpx.AsyncBaseTransport):
 
 
 class GuardedSources:
-    def __init__(self, config, guard, wire=None, *, category_config=None,shopify_storefront=None):
+    def __init__(self, config, guard, wire=None, *, category_config=None,shopify_storefront=None,include_refrigerator_attributes=False):
         self.config, self.guard, self.wire = config, guard, wire
+        if type(include_refrigerator_attributes) is not bool:
+            raise ValueError("Refrigerator attribute opt-in must be boolean")
+        self.include_refrigerator_attributes = include_refrigerator_attributes
         self.category_config = category_config
         self.shopify_storefront = shopify_storefront
         if shopify_storefront is not None:
@@ -174,6 +177,8 @@ class GuardedSources:
         payload = {'operation': 'parse', 'mode': mode, 'html': html if raw is None else None,
             'raw': raw, 'platform': platform.value, 'url': url, 'origin': origin,
             'maximum': maximum, 'observed_at': context.observed_at.isoformat()}
+        if self.include_refrigerator_attributes:
+            payload['include_refrigerator_attributes'] = True
         if self.category_config is not None:
             from ..categories.config import runtime_record
             payload['category_config'] = runtime_record(self.category_config)

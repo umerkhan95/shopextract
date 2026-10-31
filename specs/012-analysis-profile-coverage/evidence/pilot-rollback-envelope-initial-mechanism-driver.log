@@ -1,0 +1,35 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+Traceback (most recent call last):
+  File "/Users/umerkhan/code/shopextract/src/shopextract/maintenance/store.py", line 145, in _transaction
+    yield db
+  File "/Users/umerkhan/code/shopextract/src/shopextract/maintenance/store.py", line 522, in checkpoint
+    db.execute('INSERT OR IGNORE INTO findings VALUES(?,?,?,?)', (job_id, value['finding_id'], ordinal, encoded))
+sqlite3.IntegrityError: synthetic fault
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/umerkhan/code/shopextract/tests/profile_coverage_mechanism_driver.py", line 322, in <module>
+    if __name__=='__main__':main()
+  File "/Users/umerkhan/code/shopextract/tests/profile_coverage_mechanism_driver.py", line 300, in main
+    if args.child:child(args.child);return
+  File "/Users/umerkhan/code/shopextract/tests/profile_coverage_mechanism_driver.py", line 289, in child
+    else:result=asyncio.run(asyncio.wait_for(case_run(case,directory),10))
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/Users/umerkhan/code/shopextract/tests/profile_coverage_mechanism_driver.py", line 193, in case_run
+    elif group=='replay':await replay_case(name,path)
+  File "/Users/umerkhan/code/shopextract/tests/profile_coverage_mechanism_driver.py", line 244, in replay_case
+    with pytest.raises(sqlite3.IntegrityError):store.checkpoint(job,'fault',{'synthetic':True},findings=values)
+  File "/Users/umerkhan/code/shopextract/src/shopextract/maintenance/store.py", line 490, in checkpoint
+    with self._transaction() as db:
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/umerkhan/code/shopextract/src/shopextract/maintenance/store.py", line 151, in _transaction
+    raise MaintenanceError('storage_error') from error
+shopextract.maintenance.contracts.MaintenanceError: storage_error

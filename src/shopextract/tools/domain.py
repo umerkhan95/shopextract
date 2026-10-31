@@ -35,6 +35,9 @@ def synchronous(payload):
         from .._models import Platform
         from .._capture import capture
         from ..identity import assign_identity
+        refrigerator = payload.get('include_refrigerator_attributes', False)
+        if type(refrigerator) is not bool:
+            raise ValueError('Refrigerator attribute opt-in must be boolean')
         category_config = None
         if payload.get('category_config') is not None:
             from ..categories.config import runtime_from_record
@@ -56,10 +59,10 @@ def synchronous(payload):
             companion = None
             if category_config is not None:
                 from ..categories.api import normalize_with_categories
-                companion = normalize_with_categories(item, Platform(payload['platform']), payload['origin'],category_options=category_config.options)
+                companion = normalize_with_categories(item, Platform(payload['platform']), payload['origin'],category_options=category_config.options,include_refrigerator_attributes=refrigerator)
                 product = companion.product if companion else None
             else:
-                product = normalize(item, Platform(payload['platform']), payload['origin'])
+                product = normalize(item, Platform(payload['platform']), payload['origin'],include_refrigerator_attributes=refrigerator)
             if product:
                 assign_identity(product, payload['origin'])
                 # The finalized portable view discards unused raw engine state.

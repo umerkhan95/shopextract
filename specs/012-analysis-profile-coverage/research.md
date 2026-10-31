@@ -44,3 +44,96 @@ A generic raw `capacity`/`width` key alone does not establish total-volume/produ
 Retain existing *-v1 profile naming validation in this pilot; no existing definition is rewritten. New volume/length normalization identifiers carry immutable version semantics (e.g. volume_l_v1/length_m_v1, exact spellings frozen at G2) in the persisted FieldRule record, so a policy semantic change must create a different identifier/profile definition and trigger existing mismatch behavior for affected jobs. Legacy custom rules continue to validate exactly as before. New identifiers are additive allowlist entries in both Store and CLI schema. No global conversion change may alter the meaning of an existing normalization identifier. A subsequent refrigerator-v2 naming extension is separate work unless needed to resolve a discovered blocker before implementation.
 
 G1 admission clarification: Store._validated currently rejects fields absent from an explicitly selected profile. Preserve that invalid_argument contract. Test the defensive absent-rule engine guard using a labelled persisted legacy/corrupt-state fixture reaching the real comparison path; do not relax goal admission to make the fixture executable.
+
+## APC07 bounded extraction audit and pilot contract candidate — 2026-10-25
+
+Fresh pilot G1 pending. No production implementation or stubs. Source inspection
+was bounded to six extractors, _schema_org.py, _normalize.py/_normalization.py,
+_capture/_portable, maintenance engine/store, category review and both CLI report
+adapters. Exact candidate contracts live in pilot-contracts.md; skeleton.md links
+that interface candidate. Inventory acceptance does not approve pilot semantics.
+
+Probe expected behavior and limits were saved first in evidence/pilot-audit-plan.md.
+One generic HTML smoke ran and saved pilot-audit-smoke.json before native expansion:
+actual SchemaOrgExtractor.extract_from_html retained total-capacity and model raw
+values, but normalize produced attributes{}; quantity/model support unsupported,
+common title observed. Real portable roundtrip, temporary Store checkpoint,
+close/reopen and engine._supported exercised; no hand-built Product or fakeStore.
+
+Then five actual native extractors processed one source-shaped synthetic product
+each; ONLY httpx external transport controlled. Result6lanes/6controlledrequests,
+0.477s, zero realnetwork/model calls. Evidence/pilot-audit-six-lanes.json and
+pilot_extraction_audit.py retain exact shapes/reproduction. URL.synthetic-audit
+invalid domain and receipt labels explicitly identify synthetic provenance;
+real captured merchant facts/live availability are not claimed.
+
+| Lane | Source capture and relevant fields | Actual current result / disposition |
+| --- | --- | --- |
+| Generic SchemaOrg | _schema_org.extract_from_html captures additionalProperty/name,value plus model; _normalize_schema_org only uses additionalProperty for identifiers | Observed title; all5 selected attrs unsupported despite retained source; one demonstrated normalization seam |
+| Shopify | ShopifyExtractor.extract captures public products.json with title/variants; no requested metafield query | Observed title; all5 attrs unsupported; unavailable lane, no new native request |
+| Woo | WooCommerceExtractor.extract captures prices and source attributes list | Attributes list not normalized into approved semantic dictionary; all5 unsupported; no guessed term/unit projection |
+| Magento | MagentoGraphQLExtractor.extract captures sku/name and controlled custom_attributes sample | Native normalizer uses selected custom attributes for identifiers, not approved refrigerator semantics; all5 unsupported |
+| Shopware | ShopwareExtractor.extract captures width/height/length/customFields plus context | Raw dimensions retained but units/product conventions not approved at this seam; all5 unsupported; native values not guessed |
+| BigCommerce | BigCommerceExtractor.extract captures fixed published query product fields | Query has no quantity/model field; all5 unsupported; no pretend custom fields |
+
+All6 lane paths include real normalize→product_to/from_record→Store checkpoint/
+reopen→Engine._supported; title observed and selected quantities/model unsupported.
+Native response samples may include optional fields not guaranteed by current
+queries; they demonstrate normalization unavailability, not live schema field
+availability. No production extraction change outside generic opt-in justified.
+
+Code findings resolved in candidate design: Product/Variant attributes annotation
+is dict[str,str], so wrapper needs additive TypedDict union without constructor
+changes. The seventh control proves strict portable validation currently rejects
+nested wrapper despite primitive codec support; candidate adds narrow closed-wrapper
+validation and coherent JSON schema, with old-string validation unchanged. record_inputs can
+bind both semantic label and value to a wrapper; record_nested skips an already
+recorded child, preventing accidental rewrite. _supported resolves retained
+observations/evidence and rechecks freshness. Existing _compare can dereference
+rule_value['role'] after a missing rule; guard must precede that path. Existing
+_category_conflict ignores new profile names; fridge wrong-Boots case needs explicit
+veto plus mandatory persisted exact category policy/binding. Old3 behavior stays.
+
+Store selected-definition fingerprints already include kind/normalization/role;
+versioned axis-specific IDs freeze semantic meaning without new serialization
+keys. Preserve old3 definitions and custom rule admission; add only new allowed
+combinations. No new transactional diagnostics table is needed: report derives
+coverage from immutable goal/selected-definition snapshots and committed findings,
+plus new quantity-only input state/reason keys. This removes migration/checkpoint
+ownership surface. Report currently materializes all _findings before slicing;
+opt-in page diagnostics must page SQL before advisory overlay. Existing root CLI
+already has universal1MiB cap after PR97; module CLI cap only --coverage is new.
+
+Original baseline inventory must remain reproducible; APC17 additionally saves a
+current-policy overlay with selected9-field implementation rather than whole-family
+coverage. No retrospective conversion of pending rows into reviewed totals.
+
+Concrete live URL is not yet known from retained discovery. Candidate contract
+bounds later search to2queries/6result metadata candidates, then exact URL and
+expected sourcefields must be declared BEFORE the original <=6 product requests.
+No guessed URL/capture or waived live gate. This assignment performs no searches,
+network,models or downloads. Counter telemetry remains unavailable.
+
+Carrier control after6-lane audit (seventh product, predeclared separately)
+FAILED at real product_to_record: ValueError Invalid type at
+product/attributes/capacity. Strict _portable._check_type enforces dict[str,str];
+primitive nested support alone does not establish portable compatibility. Receipt
+evidence/pilot-carrier-control.json records blocked stage and proposed typed
+repair. No production repair attempted. Additive annotation, narrow closed
+TypedDict validation and portable-product JSON schema need independent review
+and failing acceptance tests before implementation. No constructor field added.
+
+Compatibility refinement: generic enrichment must be explicitly opted-in, default
+False, only through trusted persisted refrigerator-profile selection in maintenance.
+Propagate capability via existing per-run ToolRuntime/GuardedSources/domain path;
+selected definitions/capability tag version1 separate cache meaning. Default old
+hardware model capture cannot silently improve. Root CLI already caps1MiB after
+PR97; moduleCLI --coverage must preflight its actual legacy-style envelope.
+
+Refreshed G1 carrier repair: transport wrapper value admits JSON-finite scalar
+str/int/float/bool/None and bounded semantic string; allowed domain meanings
+remain comparator authority. This preserves real unknown source facts for review
+without whole-job type rejection. Typed codec remains closed and rejects nested/
+list/extra-key/nonfinite numeric payloads. Exact priority/null/empty semantics and
+real engine roundtrip cases are updated in pilot-contracts.md/test-design.md.
+No production/stub changes or extra probes for this repair.

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "source_commit": "bed967e0579f5384357c6af8a9c3134516aeadfb",
+  "run_id": 40211313355,
+  "url": "https://github.com/umerkhan95/shopextract/actions/runs/40211313355",
+  "conclusion": "success",
+  "jobs": [
+    "3.10",
+    "3.11",
+    "3.12"
+  ],
+  "driver_results": [
+    {
+      "job": "test (3.10)",
+      "group": "main",
+      "status": "passed",
+      "seconds": 93.242378,
+      "summary": "1642 passed, 77 warnings in 91.63s (0:01:31)",
+      "log": "/home/runner/work/_temp/shopextract-tests/main.log"
+    },
+    {
+      "job": "test (3.10)",
+      "group": "reliable-oracle",
+      "status": "passed",
+      "seconds": 31.092694,
+      "summary": "24 passed in 30.22s",
+      "log": "/home/runner/work/_temp/shopextract-tests/reliable-oracle.log"
+    },
+    {
+      "job": "test (3.10)",
+      "group": "maintenance",
+      "status": "passed",
+      "seconds": 45.669648,
+      "summary": "106 passed in 44.79s",
+      "log": "/home/runner/work/_temp/shopextract-tests/maintenance.log"
+    },
+    {
+      "job": "test (3.10)",
+      "status": "passed",
+      "seconds": 170.00746,
+      "report": "/home/runner/work/_temp/shopextract-tests/report.json"
+    },
+    {
+      "job": "test (3.11)",
+      "group": "main",
+      "status": "passed",
+      "seconds": 115.13471,
+      "summary": "1642 passed, 77 warnings in 112.68s (0:01:52)",
+      "log": "/home/runner/work/_temp/shopextract-tests/main.log"
+    },
+    {
+      "job": "test (3.11)",
+      "group": "reliable-oracle",
+      "status": "passed",
+      "seconds": 35.505388,
+      "summary": "24 passed in 34.31s",
+      "log": "/home/runner/work/_temp/shopextract-tests/reliable-oracle.log"
+    },
+    {
+      "job": "test (3.11)",
+      "group": "maintenance",
+      "status": "passed",
+      "seconds": 60.337953,
+      "summary": "106 passed in 59.11s",
+      "log": "/home/runner/work/_temp/shopextract-tests/maintenance.log"
+    },
+    {
+      "job": "test (3.11)",
+      "status": "passed",
+      "seconds": 210.981151,
+      "report": "/home/runner/work/_temp/shopextract-tests/report.json"
+    },
+    {
+      "job": "test (3.12)",
+      "group": "main",
+      "status": "passed",
+      "seconds": 124.573377,
+      "summary": "1642 passed, 77 warnings in 122.00s (0:02:02)",
+      "log": "/home/runner/work/_temp/shopextract-tests/main.log"
+    },
+    {
+      "job": "test (3.12)",
+      "group": "reliable-oracle",
+      "status": "passed",
+      "seconds": 37.990686,
+      "summary": "24 passed in 36.63s",
+      "log": "/home/runner/work/_temp/shopextract-tests/reliable-oracle.log"
+    },
+    {
+      "job": "test (3.12)",
+      "group": "maintenance",
+      "status": "passed",
+      "seconds": 67.194474,
+      "summary": "106 passed in 65.84s (0:01:05)",
+      "log": "/home/runner/work/_temp/shopextract-tests/maintenance.log"
+    },
+    {
+      "job": "test (3.12)",
+      "status": "passed",
+      "seconds": 229.762401,
+      "report": "/home/runner/work/_temp/shopextract-tests/report.json"
+    }
+  ]
+}
