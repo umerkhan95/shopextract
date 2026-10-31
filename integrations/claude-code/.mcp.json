@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "shopextract": {
+      "type": "stdio",
+      "command": "${SHOPEXTRACT_PYTHON}",
+      "args": ["-m", "shopextract.tools", "--config", "${SHOPEXTRACT_CONFIG}"]
+    }
+  }
+}

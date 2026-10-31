@@ -1,0 +1,19 @@
+{
+  "selected_executable": "/usr/local/bin/claude",
+  "preflight": {
+    "eligible": false,
+    "reason": "known_bounded_client_version_unavailable",
+    "probes": [
+      {
+        "argv_flags": [
+          "--version"
+        ],
+        "returncode": 0,
+        "timed_out": false
+      }
+    ],
+    "version": "1.0.35"
+  },
+  "model_calls": 0,
+  "purpose": "bounded eligibility only; inaccessible cloud client not searched"
+}

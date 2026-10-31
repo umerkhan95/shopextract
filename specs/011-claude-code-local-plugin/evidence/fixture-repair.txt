@@ -1,0 +1,141 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFF.....                                                                 [100%]
+=================================== FAILURES ===================================
+______________ test_real_source_recipe_cases[success-6-complete] _______________
+
+case = 'success', expected_calls = 6, stop = 'complete'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('case,expected_calls,stop', [
+        ('success', 6, 'complete'), ('duplicates', 6, 'complete'), ('feed-cap', 6, 'complete'),
+        ('failed-discover', 2, 'source_error'), ('failed-extract', 4, 'failed'),
+        ('pending-discover', 2, 'queued'), ('pending-extract', 4, 'queued'),
+        ('timeout-extract', 4, 'timed_out')])
+    async def test_real_source_recipe_cases(case, expected_calls, stop):
+        from tests.claude_code_fixture import fixture_runtime, CAPTURE_TIME
+        from tests.claude_code_recipe import run_recipe
+        from tests.tool_api_fixtures import ORIGIN
+        engine, requests = fixture_runtime(case)
+
+        async def synchronize(job_id, operation):
+            if case == 'pending-discover' or (case == 'pending-extract' and operation == 'extract'):
+                return  # Real pending job is intentionally not awaited.
+            await ready(engine, job_id)
+        try:
+            trace = await asyncio.wait_for(run_recipe(engine.call, ORIGIN, after_submit=synchronize), 15)
+            assert len(trace.calls) == expected_calls
+            assert trace.stop == stop
+            assert len(trace.records) <= 2
+            assert all(arguments.get('max_items', 2) == 2 for _, arguments, _ in trace.calls)
+            if stop == 'complete':
+                product = trace.records[0]
+                assert product['price'] == '10.25'
+                assert product['currency'] == 'EUR'
+                assert product['canonical_product_id']
+                assert product['field_evidence']['/price']
+                assert trace.evidence['status'] == 'available'
+                support = trace.evidence['evidence']
+                assert support['retained_data']['value'] == '10.25'
+                assert support['observed_at'] == CAPTURE_TIME.isoformat()
+                assert product['vendor'] is None  # Missing source field remains unsupported.
+>               assert '/vendor' not in product['field_evidence']
+E               AssertionError: assert '/vendor' not in {'/title': ['e_6a18a4d5-d307-49dd-b7f3-5a41fd933fa3'], '/price': ['e_348ac1ab-e8a3-408c-a7fc-fb7b64d46106'], '/currency': ['e_8192bc2d-0389-441c-a138-8cced15900b8'], '/description': [], ...}
+
+tests/test_claude_code_workflow.py:96: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+_____________ test_real_source_recipe_cases[duplicates-6-complete] _____________
+
+case = 'duplicates', expected_calls = 6, stop = 'complete'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('case,expected_calls,stop', [
+        ('success', 6, 'complete'), ('duplicates', 6, 'complete'), ('feed-cap', 6, 'complete'),
+        ('failed-discover', 2, 'source_error'), ('failed-extract', 4, 'failed'),
+        ('pending-discover', 2, 'queued'), ('pending-extract', 4, 'queued'),
+        ('timeout-extract', 4, 'timed_out')])
+    async def test_real_source_recipe_cases(case, expected_calls, stop):
+        from tests.claude_code_fixture import fixture_runtime, CAPTURE_TIME
+        from tests.claude_code_recipe import run_recipe
+        from tests.tool_api_fixtures import ORIGIN
+        engine, requests = fixture_runtime(case)
+
+        async def synchronize(job_id, operation):
+            if case == 'pending-discover' or (case == 'pending-extract' and operation == 'extract'):
+                return  # Real pending job is intentionally not awaited.
+            await ready(engine, job_id)
+        try:
+            trace = await asyncio.wait_for(run_recipe(engine.call, ORIGIN, after_submit=synchronize), 15)
+            assert len(trace.calls) == expected_calls
+            assert trace.stop == stop
+            assert len(trace.records) <= 2
+            assert all(arguments.get('max_items', 2) == 2 for _, arguments, _ in trace.calls)
+            if stop == 'complete':
+                product = trace.records[0]
+                assert product['price'] == '10.25'
+                assert product['currency'] == 'EUR'
+                assert product['canonical_product_id']
+                assert product['field_evidence']['/price']
+                assert trace.evidence['status'] == 'available'
+                support = trace.evidence['evidence']
+                assert support['retained_data']['value'] == '10.25'
+                assert support['observed_at'] == CAPTURE_TIME.isoformat()
+                assert product['vendor'] is None  # Missing source field remains unsupported.
+>               assert '/vendor' not in product['field_evidence']
+E               AssertionError: assert '/vendor' not in {'/title': ['e_db4b218c-68c9-4153-8492-bd4dc6319176'], '/price': ['e_76000e58-1634-4d8a-ab79-f6b313422718'], '/currency': ['e_3bc06418-bbe1-4948-8a04-a34b063713f8'], '/description': [], ...}
+
+tests/test_claude_code_workflow.py:96: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+______________ test_real_source_recipe_cases[feed-cap-6-complete] ______________
+
+case = 'feed-cap', expected_calls = 6, stop = 'complete'
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize('case,expected_calls,stop', [
+        ('success', 6, 'complete'), ('duplicates', 6, 'complete'), ('feed-cap', 6, 'complete'),
+        ('failed-discover', 2, 'source_error'), ('failed-extract', 4, 'failed'),
+        ('pending-discover', 2, 'queued'), ('pending-extract', 4, 'queued'),
+        ('timeout-extract', 4, 'timed_out')])
+    async def test_real_source_recipe_cases(case, expected_calls, stop):
+        from tests.claude_code_fixture import fixture_runtime, CAPTURE_TIME
+        from tests.claude_code_recipe import run_recipe
+        from tests.tool_api_fixtures import ORIGIN
+        engine, requests = fixture_runtime(case)
+
+        async def synchronize(job_id, operation):
+            if case == 'pending-discover' or (case == 'pending-extract' and operation == 'extract'):
+                return  # Real pending job is intentionally not awaited.
+            await ready(engine, job_id)
+        try:
+            trace = await asyncio.wait_for(run_recipe(engine.call, ORIGIN, after_submit=synchronize), 15)
+            assert len(trace.calls) == expected_calls
+            assert trace.stop == stop
+            assert len(trace.records) <= 2
+            assert all(arguments.get('max_items', 2) == 2 for _, arguments, _ in trace.calls)
+            if stop == 'complete':
+                product = trace.records[0]
+                assert product['price'] == '10.25'
+                assert product['currency'] == 'EUR'
+                assert product['canonical_product_id']
+                assert product['field_evidence']['/price']
+                assert trace.evidence['status'] == 'available'
+                support = trace.evidence['evidence']
+                assert support['retained_data']['value'] == '10.25'
+                assert support['observed_at'] == CAPTURE_TIME.isoformat()
+                assert product['vendor'] is None  # Missing source field remains unsupported.
+>               assert '/vendor' not in product['field_evidence']
+E               AssertionError: assert '/vendor' not in {'/title': ['e_c57cc666-765b-4e4b-a4fc-d4874ee92694'], '/price': ['e_c0665b23-b57c-4a0f-918d-d5a6e06b1aa7'], '/currency': ['e_b8901f54-873c-454e-98ce-355f2e88865c'], '/description': [], ...}
+
+tests/test_claude_code_workflow.py:96: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_claude_code_workflow.py::test_real_source_recipe_cases[success-6-complete]
+FAILED tests/test_claude_code_workflow.py::test_real_source_recipe_cases[duplicates-6-complete]
+FAILED tests/test_claude_code_workflow.py::test_real_source_recipe_cases[feed-cap-6-complete]
+3 failed, 5 passed, 11 deselected in 5.35s

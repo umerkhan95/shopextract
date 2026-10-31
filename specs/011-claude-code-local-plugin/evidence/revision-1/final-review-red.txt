@@ -1,0 +1,142 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+FFFFFFFFFFFFFFFFFFFF........                                             [100%]
+=================================== FAILURES ===================================
+_________ test_wrong_or_unexecuted_case_cannot_pass[success-unrelated] _________
+tests/test_claude_code_review_repairs.py:43: in test_wrong_or_unexecuted_case_cannot_pass
+    assert result['status'] == 'failed', 'Runner accepted a different/unexecuted case as passed'
+E   AssertionError: Runner accepted a different/unexecuted case as passed
+E   assert 'passed' == 'failed'
+E
+E     - failed
+E     + passed
+_______ test_wrong_or_unexecuted_case_cannot_pass[success-prerequisite] ________
+tests/test_claude_code_review_repairs.py:43: in test_wrong_or_unexecuted_case_cannot_pass
+    assert result['status'] == 'failed', 'Runner accepted a different/unexecuted case as passed'
+E   AssertionError: Runner accepted a different/unexecuted case as passed
+E   assert 'passed' == 'failed'
+E
+E     - failed
+E     + passed
+______ test_wrong_or_unexecuted_case_cannot_pass[missing-grant-unrelated] ______
+tests/test_claude_code_review_repairs.py:43: in test_wrong_or_unexecuted_case_cannot_pass
+    assert result['status'] == 'failed', 'Runner accepted a different/unexecuted case as passed'
+E   AssertionError: Runner accepted a different/unexecuted case as passed
+E   assert 'passed' == 'failed'
+E
+E     - failed
+E     + passed
+____ test_wrong_or_unexecuted_case_cannot_pass[missing-grant-prerequisite] _____
+tests/test_claude_code_review_repairs.py:43: in test_wrong_or_unexecuted_case_cannot_pass
+    assert result['status'] == 'failed', 'Runner accepted a different/unexecuted case as passed'
+E   AssertionError: Runner accepted a different/unexecuted case as passed
+E   assert 'passed' == 'failed'
+E
+E     - failed
+E     + passed
+__________________ test_runner_requires_explicit_case_binding __________________
+tests/test_claude_code_review_repairs.py:48: in test_runner_requires_explicit_case_binding
+    assert parameter is not None, 'Missing trusted expected_case binding (FR15)'
+E   AssertionError: Missing trusted expected_case binding (FR15)
+E   assert None is not None
+________________ test_positive_pending_is_incomplete_not_passed ________________
+tests/test_claude_code_review_repairs.py:57: in test_positive_pending_is_incomplete_not_passed
+    assert result['status'] == 'incomplete'
+E   AssertionError: assert 'passed' == 'incomplete'
+E
+E     - incomplete
+E     + passed
+_______ test_missing_grant_can_pass_only_executed_selected_server_denial _______
+tests/test_claude_code_review_repairs.py:68: in test_missing_grant_can_pass_only_executed_selected_server_denial
+    assert result['trace'].get('domain_denials'), 'Missing executed denial provenance'
+E   AssertionError: Missing executed denial provenance
+E   assert None
+E    +  where None = <built-in method get of dict object at 0x10bf540c0>('domain_denials')
+E    +    where <built-in method get of dict object at 0x10bf540c0> = {'domain_count': 1, 'schema_host_count': 1, 'skill_host_count': 0, 'returned_products': 0, ...}.get
+_____ test_preflight_rejects_recognized_text_from_unsafe_probe[timeout-0] ______
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+_____ test_preflight_rejects_recognized_text_from_unsafe_probe[timeout-1] ______
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+_____ test_preflight_rejects_recognized_text_from_unsafe_probe[timeout-2] ______
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+____ test_preflight_rejects_recognized_text_from_unsafe_probe[terminated-0] ____
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+____ test_preflight_rejects_recognized_text_from_unsafe_probe[terminated-1] ____
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+____ test_preflight_rejects_recognized_text_from_unsafe_probe[terminated-2] ____
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+____ test_preflight_rejects_recognized_text_from_unsafe_probe[diagnostic-0] ____
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+____ test_preflight_rejects_recognized_text_from_unsafe_probe[diagnostic-1] ____
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+____ test_preflight_rejects_recognized_text_from_unsafe_probe[diagnostic-2] ____
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+_____ test_preflight_rejects_recognized_text_from_unsafe_probe[cleanup-0] ______
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+_____ test_preflight_rejects_recognized_text_from_unsafe_probe[cleanup-1] ______
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+_____ test_preflight_rejects_recognized_text_from_unsafe_probe[cleanup-2] ______
+tests/test_claude_code_review_repairs.py:96: in test_preflight_rejects_recognized_text_from_unsafe_probe
+    assert result['eligible'] is False, 'Recognized stdout hid failed probe supervision'
+E   AssertionError: Recognized stdout hid failed probe supervision
+E   assert True is False
+_ test_encoded_separator_decision_is_explicit[https://store.example/products%2Fwidget-None] _
+tests/test_claude_code_review_repairs.py:105: in test_encoded_separator_decision_is_explicit
+    assert select_product_url([url], ORIGIN) == expected
+E   AssertionError: assert 'https://store.example/products%2Fwidget' == None
+E    +  where 'https://store.example/products%2Fwidget' = select_product_url(['https://store.example/products%2Fwidget'], 'https://store.example')
+=========================== short test summary info ============================
+FAILED tests/test_claude_code_review_repairs.py::test_wrong_or_unexecuted_case_cannot_pass[success-unrelated]
+FAILED tests/test_claude_code_review_repairs.py::test_wrong_or_unexecuted_case_cannot_pass[success-prerequisite]
+FAILED tests/test_claude_code_review_repairs.py::test_wrong_or_unexecuted_case_cannot_pass[missing-grant-unrelated]
+FAILED tests/test_claude_code_review_repairs.py::test_wrong_or_unexecuted_case_cannot_pass[missing-grant-prerequisite]
+FAILED tests/test_claude_code_review_repairs.py::test_runner_requires_explicit_case_binding
+FAILED tests/test_claude_code_review_repairs.py::test_positive_pending_is_incomplete_not_passed
+FAILED tests/test_claude_code_review_repairs.py::test_missing_grant_can_pass_only_executed_selected_server_denial
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[timeout-0]
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[timeout-1]
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[timeout-2]
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[terminated-0]
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[terminated-1]
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[terminated-2]
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[diagnostic-0]
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[diagnostic-1]
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[diagnostic-2]
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[cleanup-0]
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[cleanup-1]
+FAILED tests/test_claude_code_review_repairs.py::test_preflight_rejects_recognized_text_from_unsafe_probe[cleanup-2]
+FAILED tests/test_claude_code_review_repairs.py::test_encoded_separator_decision_is_explicit[https://store.example/products%2Fwidget-None]
+20 failed, 8 passed in 4.73s
