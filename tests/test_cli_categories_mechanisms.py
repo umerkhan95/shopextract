@@ -286,6 +286,10 @@ def test_p4_aliases_all_inputs_and_single_read(tmp_path,monkeypatch):
 
 def test_p4_byte_structure_record_boundaries(tmp_path,monkeypatch):
     from shopextract import _cli_data as data
+    assert (data.MAX_BYTES,data.MAX_NODES)==(33554432,1000000)
+    # Full-size boundaries are covered by money reader acceptance; reuse mechanics.
+    monkeypatch.setattr(data,'MAX_BYTES',1048576)
+    monkeypatch.setattr(data,'MAX_NODES',100000)
     for count,valid in ((1048576,True),(1048577,False)):
         path=tmp_path/'bytes';path.write_bytes(b'{}'+b' '*(count-2))
         if valid:assert read_json_file(str(path))=={}

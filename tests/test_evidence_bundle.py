@@ -137,7 +137,8 @@ def test_bundle_duplicate_keys_and_versions():
 
 @pytest.mark.parametrize('format', ['csv', 'google_shopping', 'idealo'])
 def test_sidecar_all_rows_and_duplicate_ids(tmp_path, format):
-    products = [fixture_product(), fixture_product()]
+    from tests.test_downstream_remediation import native_stock_default
+    products = [fixture_product(), fixture_product()] if format=='csv' else [native_stock_default(stock=True),native_stock_default(stock=True)]
     path, companion = tmp_path / 'feed', tmp_path / 'evidence.json'
     if format == 'csv':
         to_csv(products, str(path), evidence_path=str(companion))

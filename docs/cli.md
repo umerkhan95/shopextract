@@ -63,8 +63,22 @@ hidden ten-product preview. `--max/-n` is1–1000 (extract default20, discover10
 feed retains at most `--max` products (default1000). Feed transfer/parser limits
 remain native, so the retention cap does not limit the downloaded feed size.
 `--timeout` bounds the operation to a finite value greater than0 and at most300
-seconds, default30 on bounded commands. Cancellation awaits async cleanup; these
-are cooperative deadlines rather than OS process/resource guarantees.
+seconds, default30 on bounded commands. Cancellation awaits async cleanup. Extract-store cancels source work at the
+deadline; an accepted bounded checkpoint returns E_PARTIAL/exit3, while no usable
+checkpoint returns E_TIMEOUT/exit1. Recovery normalization and output add time
+after cancellation; this is not a strict whole-command wallclock guarantee.
+Direct discovery owns one worker, a maximum30s source deadline plus up to2s
+termination/reaping reserve; explicitly borrowed HTTP transports use cooperative
+cancellation.
+
+Discovery uses at most16 HTTP requests including robots/detection/redirects,
+10MiB decoded response bodies,256KiB decoded robots and1000 returned URLs. It reads robots once for
+ShopExtract, checks policy before requests/emission, rejects cross-origin
+redirects and fails closed on unavailable policy (404 means absent). Bounded
+sitemap discovery replaces the private SDK/browser network walk; unassessed
+browser discovery remains explicit. Coverage stays unverified even with URLs.
+URLs and machine extraction records have stable canonical identity ordering;
+input Product/source buffers are unchanged. Worker/library progress uses stderr.
 
 Plain legacy `extract` and `discover` retain their defaults. Adding new controls
 or selecting machine mode activates bounded execution. Browser and LLM execution
@@ -97,8 +111,8 @@ timed-out requests. LLM options require explicit activation. No inference is
 performed by help, config parsing, normalization or quality scoring.
 
 `normalize FILE` and `quality FILE` accept UTF-8 JSON object or object array;
-`-` reads stdin once. Inputs are limited to1MiB,1000 records,64 nested levels and
-100000 nodes, with duplicate keys, nonfinite values, BOM and malformed typed
+`-` reads stdin once. Inputs are limited to32MiB,1000 records,64 nested levels and
+1000000 nodes, with duplicate keys, nonfinite values, BOM and malformed typed
 values rejected. Normalize takes raw platform records and reports dropped indices;
 quality also accepts native portable record arrays or extraction/normalization
 result envelopes. It returns native per-product and batch scores, including an
@@ -261,8 +275,10 @@ retention, with both connections closed. `--apply` expires selected evidence; ad
 supported access, not every residual raw/compatibility copy. Native tombstones
 survive load and bundle roundtrips.
 
-Bundle and sidecar input/output artifacts are bounded to1MiB and1000products;
-output growth beyond the CLI artifact limit fails before publication. `-o` writes
+Native bundle and sidecar codecs bound artifacts to64MiB and1000products; common
+CLI catalog JSON readers accept32MiB. Export companions also observe the CLI
+32MiB publication cap. An artifact from a larger native-codec allowance can exceed
+a later CLI reader allowance; use smaller catalogs in that case. `-o` writes
 an atomic native artifact; load commands write a portable product array directly
 usable by snapshot-save/resolve/export. Without it stdout returns the artifact or
 portable products in an envelope. Bundle load reads its bounded input once. Native bundle file and in-memory APIs are both exercised.
@@ -308,8 +324,8 @@ Choose exactly one of native_id/raw_label/raw_path; null taxonomy versions requi
 explicit allow_unknown_version. Native exact matching is case sensitive. Conflicting
 rules retain ambiguous target candidates. Limits may be lowered to zero where the
 native contract permits it; zero category terms preserves partial source state.
-Config and each companion are capped256KiB by native codecs. All CLI JSON inputs
-are read once, at most1MiB/1000records/depth64/100000nodes. Category artifacts and
+Config and each companion are capped256KiB by native codecs. Common CLI catalog JSON inputs
+are read once, at most32MiB/1000records/depth64/1000000nodes. Category artifacts and
 entire response bytes are capped1MiB; a dual projection can exceed this limit even
 when its input fits. Reduce input/limits when rejected. Only one input can use `-`.
 
@@ -597,7 +613,8 @@ bounded maintenance; no external service or model is needed to run those example
 
 Store extraction first tries the existing platform API. Its sitemap fallback now
 reads public robots-advertised sitemap indexes through native HTTP before
-starting optional generic seeding or browser discovery. It excludes advertised
+trying the bounded HTTP sitemap fallback. Browser discovery remains unassessed
+when its subrequest allowance cannot be enforced. It excludes advertised
 category/collection map entries, follows only same-origin sources, scopes returned
 URLs to the selected store path, and stops at the requested URL cap. Native
 traversal is bounded by 12 physical requests (including redirects), 10 MiB per
@@ -610,3 +627,56 @@ uses this path without an external crawler script. `--max` caps processed URLs;
 unavailable pages may yield fewer products. A successful sample never certifies
 full-catalog coverage; inspect product counts, source captures and completeness
 metadata in the returned envelope.
+
+
+## Local readiness profiles
+
+`readiness FILE --target google_shopping|schema_org|openai_discovery|acp` always
+emits the versioned report envelope. `--strict` exits3 when the named profile has
+blockers or unassessed context; the report remains in `data`. Without strict mode,
+exit0 means that report generation succeeded. It does not mean listing approval.
+
+Google reuses `google-catalog-subset-2026-11-01`. An optional `--context FILE`
+contains `destination`, `country`, `category`, `condition`, boolean `variant`, and
+`identifier_status` (`present`, `absent`, `unknown`). `--country`/`--category`
+override that file. Unsupported branches remain needs_context. For example:
+
+```json
+{"destination":"shopping_ads","country":"US","category":"general","condition":"new","variant":false,"identifier_status":"present"}
+```
+
+OpenAI's profile covers the nine basic fields in the
+[stable product specification](https://developers.openai.com/commerce/specs/file-upload/products?fields=required&version=currently-stable&view=table).
+Supply `--seller-name`; no domain-derived seller is invented. Unknown availability
+is permitted; unknown currency is not. Variant/grouping requirements are reported
+unassessed when variants exist, so a basic-field pass cannot imply a whole feed pass.
+Schema reports modeled field coverage and separates ProductGroup/variants. ACP
+always reports unsupported protocol assessment, not certification. Source URLs,
+retrieval dates, maturity, scope and unassessed checks are included in every report.
+
+The profile helper accepts at most1000 records/1000 source variant nodes, with
+source variant graph depth64; raw provenance is not traversed as a variant graph.
+Schema coverage assesses at most100 variant nodes/depth8 and reports omissions.
+Individual profile strings cap8192 UTF-8 bytes and escaped JSON reports cap8MiB.
+Resource overflow is explicit needs_context. Existing catalog-reader limits remain
+separate; CLI input over1000 records is E_USAGE.
+
+## Compact catalog extraction
+
+`extract --compact` emits lossless catalog transport compatible with `analyze-file`,
+`export` and `readiness`. Catalog JSON wire/expanded input caps are32MiB,1million
+nodes,2million lexical tokens,depth64 and1000 products. Native protocol request,
+category-tree and other command-specific budgets remain separate. Source currency
+must be a supported ISO4217 pricing code; no missing/default currency is fabricated.
+Explicit zero remains an observed amount with destination eligibility diagnostics.
+
+Google feed export reports retained/skipped counts and issues. Unknown stock is
+not emitted as in stock; vendor supplies brand only when supported. Item IDs use
+explicit external IDs or labeled derived canonical identity, never a title/price
+hash presented as a manufacturer identifier. Idealo keeps its SKU identity path.
+
+
+Unknown variant stock is serialized as `null`; known availability remains boolean.
+The Variant constructor still defaults toTrue for compatibility,which does not
+make an absent source observation factual. Consumers of new nullable records must
+support unknown availability; text placeholders remain invalid.

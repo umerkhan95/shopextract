@@ -7,6 +7,7 @@ the tiered fallback chain: API > UnifiedCrawl > CSS.
 from __future__ import annotations
 
 import asyncio
+import httpx
 import logging
 import os
 from collections.abc import Iterator
@@ -43,6 +44,7 @@ async def extract(
     llm_model: str = "openai/gpt-4o-mini",
     llm_temperature: float = 0.2,
     enrich_identifiers: bool = False,
+    enrich_variants: bool = False,
     restore_short_gtin: bool = False,
     api_options: dict[str, str] | None = None,
 ) -> ExtractionResult:
@@ -115,12 +117,19 @@ async def extract(
         raise ValueError("max_urls must be a positive integer")
     if api_options is not None:
         if set(api_options) - {'endpoint', 'access_token', 'protocol', 'token_type',
-                               'customer_access_token', 'customer_id'}:
+                               'customer_access_token', 'customer_id','capabilities'}:
             raise ValueError('Unknown storefront API option')
-        if any(not isinstance(v, str) for v in api_options.values()):
+        if any(not isinstance(v, str) for k,v in api_options.items() if k!='capabilities'):
             raise ValueError('Storefront API options must be strings')
         if api_options.get('protocol', 'graphql') not in ('graphql', 'rest'):
             raise ValueError('API protocol must be graphql or rest')
+    if enrich_variants and platform is not None and platform!=Platform.WOOCOMMERCE:
+        raise ValueError('Variant enrichment is only supported for WooCommerce')
+    if api_options and 'capabilities' in api_options:
+        from .extractors.magento_graphql import validate_capabilities
+        validate_capabilities(api_options['capabilities'])
+        if platform!=Platform.MAGENTO or api_options.get('protocol','graphql')!='graphql':
+            raise ValueError('Capabilities require explicit Magento GraphQL')
     if shop_url is None:
         shop_url = url.rstrip("/")
 
@@ -141,6 +150,8 @@ async def extract(
         result = await detect(url)
         platform = result.platform
 
+    if enrich_variants and platform!=Platform.WOOCOMMERCE:
+        raise ValueError('Variant enrichment is only supported for WooCommerce')
     if api_options and 'protocol' in api_options and platform != Platform.MAGENTO:
         raise ValueError('API protocol option is only supported for Magento')
 
@@ -159,8 +170,12 @@ async def extract(
         context = api_options.get('customer_id') or api_options['customer_access_token']
         observation_scope += ':customer:' + hashlib.sha256(context.encode()).hexdigest()
 
+    from ._execution import configure_progress_result
+    configure_progress_result(platform,observation_scope,restore_short_gtin=restore_short_gtin,shop_url=shop_url)
+
     # Step 2: Try API extraction first
     api_kwargs = {'max_products': max_urls, 'enrich_identifiers': enrich_identifiers}
+    if enrich_variants:api_kwargs['enrich_variants']=True
     if api_options:
         api_kwargs['api_options'] = api_options
     api_result = await _try_api_extraction(url, platform, **api_kwargs)
@@ -170,7 +185,7 @@ async def extract(
         scorer = QualityScorer()
         quality = scorer.score_batch(api_result.products)
         if quality >= _QUALITY_THRESHOLD or not api_result.products or customer_context:
-            products = _normalize_batch(api_result.products, platform, shop_url, restore_short_gtin=restore_short_gtin)
+            products = _normalize_batch(api_result.products, platform, shop_url, restore_short_gtin=restore_short_gtin,progress_tier=ExtractionTier.API)
             reasons = []
             if api_result.complete is not True:
                 reasons.append(api_result.completeness_reason or "source_incomplete")
@@ -211,7 +226,9 @@ async def extract(
 
     # Step 3: Discover URLs for crawl-based extraction
     from ._discover import discover
-    urls = await discover(url, platform=platform, max_urls=max_urls)
+    # Borrow this operation's HTTP boundary; direct public discovery owns a worker.
+    async with httpx.AsyncClient(timeout=30,follow_redirects=False) as discovery_client:
+        urls = await discover(url, platform=platform, max_urls=max_urls,client=discovery_client)
 
     if not urls:
         return ExtractionResult(
@@ -477,6 +494,7 @@ async def _try_llm_extraction(
 
 async def _try_api_extraction(url: str, platform: Platform, *, max_products: int = 20,
                               enrich_identifiers: bool = False,
+                              enrich_variants: bool = False,
                               api_options: dict[str, str] | None = None,
                               include_categories: bool = False, category_mode: bool = False, shopify_storefront=None) -> ExtractorResult | None:
     """Try platform-specific API extraction."""
@@ -496,7 +514,7 @@ async def _try_api_extraction(url: str, platform: Platform, *, max_products: int
     elif platform == Platform.WOOCOMMERCE:
         from .extractors.woocommerce import WooCommerceExtractor
         extractor = WooCommerceExtractor(max_pages=max(1, (max_products+99)//100)) if category_mode else WooCommerceExtractor()
-        result = await extractor.extract(base_url)
+        result = await extractor.extract(base_url,max_products=max_products,**({'enrich_variants':True} if enrich_variants else {}))
         if result.products:
             return result
 
@@ -519,6 +537,7 @@ async def _try_api_extraction(url: str, platform: Platform, *, max_products: int
                    Platform.BIGCOMMERCE: BigCommerceExtractor}[platform]
             auth = {key: options[key] for key in ('token_type', 'customer_access_token', 'customer_id')
                     if platform == Platform.BIGCOMMERCE and key in options}
+            if platform==Platform.MAGENTO and 'capabilities' in options:auth['capabilities']=options['capabilities']
             if include_categories and platform in (Platform.MAGENTO, Platform.BIGCOMMERCE):
                 auth['include_categories'] = True
             result = await cls().extract(base_url, max_products=max_products,
@@ -561,7 +580,7 @@ async def _extract_batch_concurrent(
 
 
 def _normalize_batch(
-    raw_products: list[dict], platform: Platform, shop_url: str, *, restore_short_gtin: bool = False
+    raw_products: list[dict], platform: Platform, shop_url: str, *, restore_short_gtin: bool = False,progress_tier=ExtractionTier.UNIFIED_CRAWL
 ) -> list[Product]:
     """Normalize a batch of raw product dicts."""
     products = []
@@ -570,6 +589,8 @@ def _normalize_batch(
         product = normalize(raw, platform=platform, shop_url=shop_url, restore_short_gtin=restore_short_gtin)
         if product:
             products.append(product)
+    from ._execution import register_progress_source
+    register_progress_source(products,platform,shop_url,normalized=True,tier=progress_tier)
     return products
 
 

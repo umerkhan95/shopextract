@@ -60,6 +60,7 @@ def test_capabilities_actual_grammar():
     paths={tuple(v['path']) for v in data['commands']}
     assert {('maintenance','create'),('tools','serve'),('categories','tree','link'),('schema','show')}<=paths
     assert data['schema_version']=='1.0'
+    assert data['limits']=={'input_bytes':33554432,'depth':64,'records':1000,'json_nodes':1000000}
 
 
 def test_packaged_schema_discovery():

@@ -100,92 +100,80 @@ class SchemaOrgExtractor:
         return og_data
 
     @staticmethod
-    def extract_from_html(html: str, url: str) -> list[dict]:
-        """Extract JSON-LD Product data from raw HTML content.
-
-        Args:
-            html: Raw HTML content.
-            url: URL for logging purposes.
-
-        Returns:
-            List of raw Product JSON-LD dicts. Empty list if no Product found.
-        """
-        try:
-            soup = BeautifulSoup(html, "html.parser")
-            script_tags = soup.find_all("script", type="application/ld+json")
-
-            if not script_tags:
-                return []
-
-            products = []
-
-            for script in script_tags:
-                try:
-                    data = json.loads(script.string)
-
-                    if isinstance(data, dict):
-                        if SchemaOrgExtractor._is_product_type(data.get("@type")):
-                            products.append(data)
-                        elif "@graph" in data and isinstance(data["@graph"], list):
-                            for item in data["@graph"]:
-                                if not isinstance(item, dict):
-                                    continue
-                                if SchemaOrgExtractor._is_product_type(item.get("@type")):
-                                    products.append(item)
-                                else:
-                                    item_type = item.get("@type", "")
-                                    page_types = ("WebPage", "ItemPage", "CollectionPage")
-                                    is_page_type = (
-                                        isinstance(item_type, str) and any(pt in item_type for pt in page_types)
-                                    ) or (
-                                        isinstance(item_type, list) and any(
-                                            any(pt in str(t) for pt in page_types) for t in item_type
-                                        )
-                                    )
-                                    if is_page_type:
-                                        for key in ("mainEntity", "mainEntityOfPage"):
-                                            nested = item.get(key)
-                                            if isinstance(nested, dict) and SchemaOrgExtractor._is_product_type(nested.get("@type")):
-                                                products.append(nested)
-                                            elif isinstance(nested, list):
-                                                for sub in nested:
-                                                    if isinstance(sub, dict) and SchemaOrgExtractor._is_product_type(sub.get("@type")):
-                                                        products.append(sub)
-
-                    elif isinstance(data, list):
-                        for item in data:
-                            if isinstance(item, dict) and SchemaOrgExtractor._is_product_type(item.get("@type")):
-                                products.append(item)
-
-                except json.JSONDecodeError:
-                    continue
-                except Exception as e:
-                    logger.debug("Error processing JSON-LD block for %s: %s", url, e)
-                    continue
-
-            if not products:
-                return products
-
-            products = [SchemaOrgExtractor._strip_pii_fields(p) for p in products]
-            for product in products:
-                capture(product, url, "json_ld")
-                if product.get("@type") == "ProductGroup":
-                    SchemaOrgExtractor._enrich_product_group(product)
-
-            products = [SchemaOrgExtractor._strip_pii_fields(p) for p in products]
-
-            og_data = SchemaOrgExtractor._extract_og_meta(soup)
-            if og_data:
-                for product in products:
-                    if not product.get("image") and og_data.get("og:image"):
-                        product["image"] = og_data["og:image"]
-                    if not product.get("url") and og_data.get("og:url"):
-                        product["url"] = og_data["og:url"]
-                    if not product.get("description") and og_data.get("og:description"):
-                        product["description"] = og_data["og:description"]
-
-            return products
-
-        except Exception as e:
-            logger.exception("Schema.org extraction failed for %s: %s", url, e)
-            return []
+    def extract_from_html(html: str, url: str, *, diagnostics=None, max_nodes=256,
+                          max_depth=8, _soup=None, collected_nodes=None) -> list[dict]:
+        """Walk bounded JSON-LD blocks and resolve only captured local references."""
+        from urllib.parse import urljoin
+        from .._product_admission import has_product_evidence
+        diagnostics = diagnostics if diagnostics is not None else []
+        soup = _soup if _soup is not None else BeautifulSoup(html, 'html.parser')
+        products=[]; emitted=set()
+        for block,script in enumerate(soup.find_all('script',type='application/ld+json')):
+            try:data=json.loads(script.string or script.get_text())
+            except (ValueError,TypeError):continue
+            stack=[(data,0,'',False)]; nodes=[]; count=0; exceeded=False
+            while stack:
+                node,depth,pointer,variant=stack.pop()
+                if not isinstance(node,(dict,list)):continue
+                count+=1
+                if count>max_nodes or depth>max_depth:exceeded=True;break
+                if isinstance(node,dict):
+                    nodes.append((node,pointer,variant))
+                    group='ProductGroup' in str(node.get('@type',''))
+                    for key,value in reversed(list(node.items())):
+                        token=key.replace('~','~0').replace('/','~1')
+                        stack.append((value,depth+1,pointer+'/'+token,variant or group and key=='hasVariant'))
+                else:
+                    for i,value in reversed(list(enumerate(node))):stack.append((value,depth+1,pointer+'/'+str(i),variant))
+            if exceeded:
+                diagnostics.append({'code':'jsonld_budget_exceeded','message':'JSON-LD block exceeds traversal budget'})
+                continue
+            if collected_nodes is not None:
+                for node,pointer,_ in nodes:
+                    types=node.get('@type',[])
+                    if isinstance(types,str):types=[types]
+                    if isinstance(types,list) and any(isinstance(t,str) and t.rstrip('/').rsplit('/',1)[-1].rsplit(':',1)[-1]=='BreadcrumbList' for t in types):
+                        collected_nodes.append((node,'/scripts/'+str(block)+pointer))
+            index={urljoin(url,n['@id']):n for n,_,_ in nodes if isinstance(n.get('@id'),str) and len(n)>1}
+            def resolve(value,prefix,seen,mapping,depth=0):
+                if depth>max_depth:
+                    diagnostics.append({'code':'jsonld_budget_exceeded','message':'JSON-LD reference depth exceeded'})
+                    return None
+                if isinstance(value,list):return [resolve(v,prefix+'/'+str(i),seen,mapping,depth+1) for i,v in enumerate(value)]
+                if not isinstance(value,dict):return value
+                identifier=value.get('@id')
+                if isinstance(identifier,str) and len(value)==1:
+                    key=urljoin(url,identifier)
+                    if key in seen:return {'@id':identifier}
+                    if key not in index and prefix.endswith('/inCodeSet'):
+                        return {'@id':identifier}  # Opaque captured taxonomy namespace, not a node fetch.
+                    if key not in index:
+                        diagnostics.append({'code':'external_reference_ignored','message':'Reference not present in captured document'})
+                        return None
+                    original=index[key]; captured=capture(dict(original),url,'json_ld_reference')['_capture']
+                    for path in captured['values']:
+                        mapping[prefix+path]={'capture_path':path,'_capture':captured}
+                    return resolve(original,prefix,seen|{key},mapping,depth+1)
+                return {k:resolve(v,prefix+'/'+k.replace('~','~0').replace('/','~1'),seen,mapping,depth+1) for k,v in value.items()}
+            for original,pointer,variant in nodes:
+                if variant or not has_product_evidence(original):continue
+                identifier=urljoin(url,original['@id']) if isinstance(original.get('@id'),str) else (block,pointer)
+                if identifier in emitted:continue
+                emitted.add(identifier)
+                raw=SchemaOrgExtractor._strip_pii_fields(dict(original))
+                context=capture(dict(raw),url,'json_ld')['_capture']
+                context['document_pointer']='/scripts/'+str(block)+pointer
+                mapping={}; resolved=resolve(raw,'',{identifier},mapping)
+                if not isinstance(resolved,dict):continue
+                resolved['_capture']=context
+                if mapping:resolved['_field_sources']=mapping
+                if 'ProductGroup' in str(raw.get('@type','')):
+                    SchemaOrgExtractor._enrich_product_group(resolved)
+                    for i,variant_node in enumerate(raw.get('hasVariant') or []):
+                        if isinstance(variant_node,dict) and resolved.get('offers')==variant_node.get('offers'):
+                            prefix='/hasVariant/'+str(i)+'/offers'
+                            for path in context['values']:
+                                if path.startswith(prefix):resolved.setdefault('_field_sources',{})['/offers'+path[len(prefix):]]={'capture_path':path,'_capture':context}
+                            break
+                products.append(SchemaOrgExtractor._strip_pii_fields(resolved))
+        return products

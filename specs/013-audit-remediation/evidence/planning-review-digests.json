@@ -1,0 +1,16 @@
+{
+  "reviewer": "/root/audit_plan_review",
+  "baseline": "90d5bd1",
+  "sha256": {
+    "spec.md": "473f2ff399493e2951970b3450e0340c4c07062ca2dae6b66e7fa1981ddd9184",
+    "test-design.md": "85b119b6cfd5eba357a898680f876c1d96b4bfa78e23869436096f3c8b80791b",
+    "research.md": "8c57ad481ad0a099c98e28158b4dc23dad4eb7d3c8ff0c7dff27acc17323c6c2",
+    "tasks.md": "4c2ba70e12152a44d0a8640eb7c61341d777c31cf717ec4426f2d73697f704b5",
+    "plan.md": "dbe3c2b39024da02fe82ff8804a6930eb2a1bb216bb501e3b67c1544c774c1db",
+    "verification.md": "18d4bf737893f4966db6e83337c2cf06235703019803509e5b2ae73e73ddeea5",
+    "evidence/diagnostic.py": "7c5c3e20cd2e34997904935c4343d5f67b0377906617e01d65d2fa0623bb68b1",
+    "evidence/diagnostic.json": "f938226e1f61e8370be6125ffa627a61b260b4ae8e3253fd656bedc0b146da0f",
+    "evidence/smoke.json": "dcb06debbe412a3a5ed40e60f88d0f338e7d8338f057f31c31b7a1e18a6fa865",
+    "evidence/historical-index.json": "ac3a435f32c5875783787117ffb6b67f634e7cf9730a58df354d093b5cb51927"
+  }
+}

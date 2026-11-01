@@ -52,6 +52,7 @@ _SUPPORTED_MARKETPLACES = list(_MARKETPLACE_RULES.keys())
 def validate(
     products: list[dict],
     marketplace: str = "google_shopping",
+    *,context=None,
 ) -> ValidationReport:
     """Validate products against marketplace requirements.
 
@@ -68,6 +69,19 @@ def validate(
             f"Supported: {_SUPPORTED_MARKETPLACES}"
         )
 
+    if marketplace=='google_shopping':
+        from ._destination import assess_google,RULES_VERSION,UNASSESSED
+        report=ValidationReport(marketplace=marketplace,total=len(products),rules_version=RULES_VERSION,unassessed_checks=list(UNASSESSED))
+        statuses=[]
+        for index,product in enumerate(products):
+            result=assess_google(product,context=context);statuses.append(result['subset_status'])
+            report.invalid+=result['subset_status']=='blocked'
+            for i in result['issues']:
+                report.issues.append(ValidationIssue(product_index=index,product_title=str(result['projection'].get('title') or ''),field=i['field'],error=i['message'],severity=i['severity'],rule_id=i['rule_id']))
+                report.warnings+=i['severity']=='warning'
+        report.valid=report.total-report.invalid
+        report.subset_status='blocked' if 'blocked' in statuses else 'needs_context' if 'needs_context' in statuses else 'subset_pass'
+        return report
     rules = _MARKETPLACE_RULES[marketplace]
     report = ValidationReport(marketplace=marketplace, total=len(products))
     invalid_indices: set[int] = set()

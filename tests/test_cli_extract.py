@@ -62,6 +62,8 @@ def transport(monkeypatch):
     original = httpx.AsyncClient
     calls=[]
     routes={}
+    from tests._discovery_boundary import borrow_worker_network
+    borrow_worker_network(monkeypatch)
     def handle(request):
         calls.append(request)
         route = routes.get(request.url.path)
@@ -94,7 +96,10 @@ def test_eleven_products_native_transport_and_exact_codec(transport):
     assert response['error']['retryable'] is False and response['completeness']=='partial'
     assert data['product_count']==11 and len(data['products'])==11
     assert len(calls)==1
-    for i, record in enumerate(data['products']):
+    assert {r['product']['external_id'] for r in data['products']}=={f'{i:04}' for i in range(11)}
+    assert [r['product']['canonical_product_id'] for r in data['products']]==sorted(r['product']['canonical_product_id'] for r in data['products'])
+    for record in data['products']:
+        i=int(record['product']['external_id'])
         assert record['product']['variants'][0]['price']=={'$type':'decimal','value':'0.10'}
         product=product_from_record(record)
         assert product.variants[0].price==Decimal('0.10')
@@ -164,7 +169,7 @@ def test_storefront_protocol_invalid_before_transport(transport,tmp_path):
     assert result.exit_code==2 and not calls and 'SECRET' not in result.output[:800]
 
 
-def test_option_fidelity_and_unknown_coverage_success(monkeypatch,tmp_path):
+def test_option_fidelity_and_empty_extraction_failure(monkeypatch,tmp_path):
     import shopextract
     from shopextract._models import ExtractionResult,Platform
     calls=[]
@@ -174,9 +179,10 @@ def test_option_fidelity_and_unknown_coverage_success(monkeypatch,tmp_path):
     monkeypatch.setattr(shopextract,'extract',boundary)
     path=tmp_path/'options.json';path.write_text('{"protocol":"rest","endpoint":"https://fixture.invalid/api","access_token":"secret"}')
     result=invoke('extract','https://fixture.invalid','--platform','magento','--shop-url','https://fixture.invalid/shop','--enrich-identifiers','--restore-short-gtin','--storefront',str(path),'--max','17')
-    assert result.exit_code==0, result.output[:800]
+    assert result.exit_code==1, result.output[:800]
     assert calls==[dict(max_urls=17,platform=Platform.MAGENTO,shop_url='https://fixture.invalid/shop',enrich_identifiers=True,restore_short_gtin=True,api_options={'protocol':'rest','endpoint':'https://fixture.invalid/api','access_token':'secret'})]
-    assert value(result)['data']['catalog_complete'] is None
+    assert value(result)['data'] is None
+    assert value(result)['error']['code']=='E_OPERATION'
 
 
 def test_timeout_cleanup_and_policy_reset(monkeypatch):
@@ -355,15 +361,20 @@ def test_new_default_errors_are_envelopes():
 def test_actual_discover_shopify_transport(transport):
     import httpx
     routes,calls=transport
+    routes['/robots.txt']=lambda r:httpx.Response(404)
     routes['/products.json']=lambda r:httpx.Response(404)
     # Native advertised-sitemap discovery precedes the known Shopify fallback.
     routes['/robots.txt']=lambda r:httpx.Response(404)
     routes['/sitemap.xml']=lambda r:httpx.Response(404)
     routes['/sitemap_products_1.xml']=lambda r:httpx.Response(200,text='<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://fixture.invalid/products/a</loc></url><url><loc>https://fixture.invalid/products/b</loc></url></urlset>')
     result=invoke('discover','https://fixture.invalid','--platform','shopify','--max','1')
-    assert result.exit_code==0, result.output[:800]
-    assert value(result)['data']=={'urls':['https://fixture.invalid/products/a'],'count':1}
-    assert [request.url.path for request in calls]==['/products.json','/robots.txt','/sitemap.xml','/sitemap_products_1.xml']
+    assert result.exit_code==3, result.output[:800]
+    assert value(result)['data']=={'urls':['https://fixture.invalid/products/a'],'count':1,
+        'catalog_complete':None,'incompleteness_reasons':['discovery_coverage_unverified','discovery_url_budget'],'request_count':4}
+    assert [request.url.path for request in calls]==['/robots.txt','/products.json','/sitemap.xml','/sitemap_products_1.xml']
+
+    assert value(result)['data']['catalog_complete'] is None
+    assert value(result)['completeness']=='partial'
 
 
 def test_detect_deadline_cleanup(monkeypatch):
@@ -475,3 +486,21 @@ def test_atomic_output_roundtrip_quality_file(transport,tmp_path,cap,exit_code):
     quality=invoke('quality',str(path))
     assert quality.exit_code==0 and value(quality)['data']['product_count']==1
     assert value(quality)['data']['batch_score']>0
+
+
+def test_operation_prints_never_reach_response_stdout(monkeypatch):
+    # crawl4ai 0.8.5 printed [FETCH]/[SCRAPE] progress to stdout during --browser runs.
+    import shopextract
+    async def noisy(url):
+        print('[FETCH]... progress line')
+        return {'@type': 'Product', 'name': 'Widget'}
+    monkeypatch.setattr(shopextract, 'extract_one', noisy)
+    result = CliRunner().invoke(main, ['--output-format', 'json', 'extract-one', 'https://fixture.invalid/p', '--timeout', '5'])
+    assert result.exit_code == 0, result.output[:800]
+    assert value(result)['data']['product']['name'] == 'Widget'
+    assert '[FETCH]' not in result.stdout and '[FETCH]' in result.stderr
+
+
+def test_browser_run_config_disables_crawl4ai_progress_logging():
+    from shopextract.extractors._browser import get_crawl_config, StealthLevel
+    assert all(get_crawl_config(stealth_level=level).verbose is False for level in StealthLevel)

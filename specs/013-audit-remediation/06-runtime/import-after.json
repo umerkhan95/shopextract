@@ -1,0 +1,32 @@
+[
+  {
+    "module": "shopextract",
+    "exit": 0,
+    "wall_seconds": 1.143,
+    "observed": {
+      "seconds": 0.8788,
+      "modules": 361,
+      "crawl4ai_loaded": false
+    }
+  },
+  {
+    "module": "shopextract.tools.domain",
+    "exit": 0,
+    "wall_seconds": 1.194,
+    "observed": {
+      "seconds": 0.9223,
+      "modules": 370,
+      "crawl4ai_loaded": false
+    }
+  },
+  {
+    "module": "shopextract.extractors",
+    "exit": 0,
+    "wall_seconds": 1.247,
+    "observed": {
+      "seconds": 0.9697,
+      "modules": 362,
+      "crawl4ai_loaded": false
+    }
+  }
+]

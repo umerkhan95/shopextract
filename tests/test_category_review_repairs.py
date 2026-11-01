@@ -163,7 +163,7 @@ async def test_c24_encode_and_checkpoint_failure_atomic_retry(tmp_path,monkeypat
             if reply:
                 armed = False
                 # Return corrupted actual worker output; no codec call in injector.
-                reply[0]['original_binding'] = 'invalid'
+                reply['products'][0]['original_binding'] = 'invalid'
                 return encoded(reply)
         return result
     monkeypatch.setattr(OwnedProcess,'run',corrupt_child_reply)

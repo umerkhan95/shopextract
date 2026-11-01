@@ -18,7 +18,8 @@ ALIASES = {row['b']['variants'][0]['barcode']: ['Mayfair Games', 'Catan Studio']
 def test_explicit_availability_and_observed_currency():
     p = normalize({'title': 'Sold out', 'id': 1, '_shop_currency': 'USD',
                    'variants': [{'id': 1, 'price': '10', 'price_currency': 'CAD', 'available': False, 'inventory_quantity': 9}]}, Platform.SHOPIFY, 'https://s.example')
-    assert p.currency == 'CAD' and not p.in_stock and not p.variants[0].in_stock
+    assert p.currency == '' and not p.in_stock and not p.variants[0].in_stock
+    assert all(o.state.value!='observed' for o in p.evidence_contract.observations if o.field_path=='/currency')
     p = normalize({'title': 'Mixed', 'id': 1, 'variants': [
         {'id': 1, 'price': '10', 'available': False}, {'id': 2, 'price': '20', 'available': True}]}, Platform.SHOPIFY, 'https://s.example')
     assert p.in_stock and not p.variants[0].in_stock and p.variants[1].in_stock

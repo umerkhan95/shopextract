@@ -44,7 +44,7 @@ class Variant:
     title: str = ""
     price: Decimal = Decimal("0")
     sku: str | None = None
-    in_stock: bool = True
+    in_stock: bool | None = True
     canonical_variant_id: str = ""
     attributes: dict[str, str] = field(default_factory=dict)
     gtin: str | None = None
@@ -135,6 +135,13 @@ class ExtractionResult:
     catalog_complete: bool | None = None
     observation_scope: str = ""
     incompleteness_reasons: list[str] = field(default_factory=list)
+
+    @property
+    def outcome(self) -> str:
+        from ._outcomes import assess_extraction_outcome
+        return assess_extraction_outcome(product_count=self.product_count,
+            catalog_complete=self.catalog_complete, errors=self.errors,
+            incompleteness_reasons=self.incompleteness_reasons)
 
     @property
     def product_count(self) -> int:
@@ -256,6 +263,7 @@ class CatalogStats:
     has_gtin: int = 0
     has_images: int = 0
     completeness_score: float = 0.0
+    unknown_stock: int = 0
 
 
 @dataclass
@@ -298,6 +306,7 @@ class ValidationIssue:
     field: str
     error: str
     severity: str = "error"  # "error" or "warning"
+    rule_id: str = ""
 
 
 @dataclass
@@ -310,6 +319,9 @@ class ValidationReport:
     invalid: int = 0
     issues: list[ValidationIssue] = field(default_factory=list)
     warnings: int = 0
+    subset_status: str = "unassessed"
+    rules_version: str = ""
+    unassessed_checks: list[str] = field(default_factory=list)
 
     @property
     def pass_rate(self) -> float:

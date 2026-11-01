@@ -161,7 +161,8 @@ async def test_candidate_only_robots_denial_stops_legacy_fallback(monkeypatch):
     import shopextract._discover as legacy
     async def forbidden(*a, **k): raise AssertionError('denied source must not fall through to browser crawl')
     monkeypatch.setattr(legacy, '_discover_via_crawl4ai', forbidden)
-    monkeypatch.setattr(legacy, 'AsyncUrlSeeder', lambda *a, **k: (_ for _ in ()).throw(AssertionError('denied source must not seed')))
+    import shopextract._discovery_runtime as bounded
+    monkeypatch.setattr(bounded, 'bounded_sitemaps', forbidden)
     async with httpx.AsyncClient(transport=httpx.MockTransport(route)) as client:
         urls = await discover(BASE, platform=Platform.GENERIC, client=client)
     assert urls == []
@@ -202,7 +203,8 @@ async def test_store_root_denial_stops_browser_and_seeder(monkeypatch):
     import shopextract._discover as legacy
     async def forbidden(*a, **k): raise AssertionError('store denial must block fallback')
     monkeypatch.setattr(legacy, '_discover_via_crawl4ai', forbidden)
-    monkeypatch.setattr(legacy, 'AsyncUrlSeeder', lambda *a, **k: (_ for _ in ()).throw(AssertionError('store denial must block seeder')))
+    import shopextract._discovery_runtime as bounded
+    monkeypatch.setattr(bounded, 'bounded_sitemaps', forbidden)
     async with httpx.AsyncClient(transport=httpx.MockTransport(lambda req: httpx.Response(200, text='User-agent: *\nDisallow: /shop/'))) as client:
         urls = await discover(BASE, platform=Platform.GENERIC, client=client)
     assert urls == []
@@ -314,11 +316,9 @@ async def test_malformed_xml_and_dtd_are_rejected_then_legacy_fallback_remains(m
         if req.url.path == '/maps/bad.xml': return httpx.Response(200,text='<!DOCTYPE x [<!ENTITY e "boom">]><urlset>&e;</urlset>')
         return httpx.Response(404)
     import shopextract._discover as legacy
-    class Seeder:
-        async def __aenter__(self): return self
-        async def __aexit__(self,*a): pass
-        async def urls(self,domain,config): return [{'url':BASE+'/legacy-item','status':'valid'}]
-    monkeypatch.setattr(legacy,'AsyncUrlSeeder',Seeder)
+    import shopextract._discovery_runtime as bounded
+    async def fallback(*a,**k):return [BASE+'/legacy-item']
+    monkeypatch.setattr(bounded,'bounded_sitemaps',fallback)
     monkeypatch.setattr(legacy,'_discover_via_crawl4ai',lambda *a,**k: asyncio.sleep(0,result=[]))
     async with httpx.AsyncClient(transport=httpx.MockTransport(route)) as client:
         urls=await discover(BASE,platform=Platform.GENERIC,client=client)
@@ -341,3 +341,22 @@ async def test_seeded_5000_candidate_leaf_returns_exact_fifty_without_extra_http
         result=await native.discover_sitemap_urls(BASE,max_urls=50,client=client)
     assert len(result.urls)==50 and result.urls==tuple(candidates[:50])
     assert len(calls)==2 and calls.count('/maps/large.xml')==1
+
+
+@async_test
+async def test_public_discovery_retains_positive_native_budget_diagnostic(monkeypatch):
+    monkeypatch.setattr(native,'MAX_REQUESTS',3)
+    calls=[]
+    def route(request):
+        calls.append(request.url.path)
+        if request.url.path=='/robots.txt':
+            return httpx.Response(200,text=robots(ORIGIN+'/maps/index.xml'))
+        if request.url.path=='/maps/index.xml':
+            return httpx.Response(200,text=index(ORIGIN+'/maps/first.xml',ORIGIN+'/maps/second.xml'))
+        assert request.url.path=='/maps/first.xml', 'Budget/fallback issued an extra request'
+        return httpx.Response(200,text=urlset(BASE+'/item/retained'))
+    async with httpx.AsyncClient(transport=httpx.MockTransport(route)) as client:
+        result=await discover(BASE,platform=Platform.GENERIC,max_urls=50,client=client)
+    assert result==[BASE+'/item/retained']
+    assert 'native_sitemap_budget' in result.reasons
+    assert calls==['/robots.txt','/maps/index.xml','/maps/first.xml']

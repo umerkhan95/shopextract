@@ -24,6 +24,7 @@ class TestValidateGoogleShopping:
             "product_url": "https://example.com/widget",
             "gtin": "4006381333931",
         }]
+        products[0].update(external_id='P1',currency='USD',description='Source description',in_stock=True)
         report = validate(products, marketplace="google_shopping")
         assert report.valid == 1
         assert report.invalid == 0
@@ -55,6 +56,7 @@ class TestValidateGoogleShopping:
             "image_url": "https://img.jpg",
             "product_url": "https://example.com",
         }]
+        products[0].update(external_id='P1',currency='USD',description='Source description',in_stock=True)
         report = validate(products, marketplace="google_shopping")
         assert report.warnings >= 1
         assert report.valid == 1  # Warnings don't invalidate
@@ -174,6 +176,7 @@ class TestValidateEdgeCases:
             {"title": "A", "price": "10", "image_url": "i.jpg", "product_url": "u"},
             {"title": "B"},  # missing required
         ]
+        products[0].update(external_id='P1',currency='USD',description='Source description',in_stock=True)
         report = validate(products, marketplace="google_shopping")
         assert report.total == 2
         assert report.valid == 1

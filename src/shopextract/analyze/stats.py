@@ -24,12 +24,20 @@ def analyze_products(products: list[dict]) -> CatalogStats:
     if not products:
         return CatalogStats()
 
+    from ..validate._destination import source_record
+    projected=[]
+    for product in products:
+        row,support=source_record(product)
+        if support is not None and support.get('/in_stock',{}).get('state')!='observed':row['in_stock']=None
+        projected.append(row)
+    products=projected
     prices = _extract_prices(products)
     currencies = count_field(products, "currency")
     brands = count_field(products, "vendor")
     categories = count_categories(products)
 
-    in_stock = sum(1 for p in products if _is_in_stock(p))
+    in_stock = sum(1 for p in products if p.get('in_stock') is True)
+    out_stock=sum(1 for p in products if p.get('in_stock') is False)
     has_gtin = sum(1 for p in products if _has_value(p, "gtin"))
     has_images = sum(1 for p in products if _has_image(p))
 
@@ -42,7 +50,8 @@ def analyze_products(products: list[dict]) -> CatalogStats:
         brands=brands,
         categories=categories,
         in_stock=in_stock,
-        out_of_stock=len(products) - in_stock,
+        out_of_stock=out_stock,
+        unknown_stock=len(products)-in_stock-out_stock,
         has_gtin=has_gtin,
         has_images=has_images,
         completeness_score=_completeness_score(products),
@@ -203,14 +212,11 @@ def count_categories(products: list[dict]) -> dict[str, int]:
     """Count category occurrences (supports category_path lists and product_type)."""
     counts: dict[str, int] = {}
     for p in products:
-        cats = p.get("category_path", [])
-        if isinstance(cats, list):
-            for cat in cats:
-                if cat and isinstance(cat, str):
-                    counts[cat] = counts.get(cat, 0) + 1
-        pt = p.get("product_type")
-        if pt and isinstance(pt, str) and pt.strip():
-            counts[pt.strip()] = counts.get(pt.strip(), 0) + 1
+        cats=p.get('category_path') or []
+        labels={v.strip() for v in cats if isinstance(v,str) and v.strip()} if isinstance(cats,list) else set()
+        pt=p.get('product_type')
+        if isinstance(pt,str) and pt.strip():labels.add(pt.strip())
+        for label in labels:counts[label]=counts.get(label,0)+1
     return dict(sorted(counts.items(), key=lambda x: x[1], reverse=True))
 
 

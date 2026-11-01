@@ -12,9 +12,9 @@ from ._cli_core import CliFailure
 from ._evidence import decode_value, encode_value
 from ._portable import product_from_record, product_to_record, validate_tree
 
-MAX_BYTES = 1048576
+MAX_BYTES = 33554432
 MAX_RECORDS = 1000
-MAX_NODES = 100000
+MAX_NODES = 1000000
 
 
 def _pairs(pairs):
@@ -48,8 +48,19 @@ def read_json_file(path):
                 raw = stream.read(MAX_BYTES + 1)
         if len(raw) > MAX_BYTES or raw.startswith(b'\xef\xbb\xbf'):
             raise ValueError()
+        from ._bounded_json import preflight_catalog_json
+        preflight_catalog_json(raw)
         value = json.loads(raw.decode('utf-8'), object_pairs_hook=_pairs,
                            parse_constant=lambda _: (_ for _ in ()).throw(ValueError()))
+        bounded_tree(value)
+        from ._compact_catalog import decode_compact_catalog, canonical, CompactLimits, _cost
+        if isinstance(value,dict) and value.get('schema_version')=='catalog-1':
+            value=decode_compact_catalog(raw)
+        elif isinstance(value,dict) and isinstance(value.get('data'),dict) and value['data'].get('schema_version')=='catalog-1':
+            outer=dict(value,data=None)
+            size,nodes,depth=_cost(outer,CompactLimits())
+            value['data']=decode_compact_catalog(canonical(value['data']),limits=CompactLimits(
+                max_expanded_bytes=MAX_BYTES-(size-4),max_nodes=MAX_NODES-(nodes-1),max_depth=63))
         bounded_tree(value)
         return value
     except (OSError, UnicodeError, ValueError, RecursionError):
@@ -95,7 +106,15 @@ def products_from_value(value):
 
 def extraction_data(result):
     from ._execution import safe_error
-    return dict(products=[product_to_record(p) for p in result.products],
+    import json
+    records=[product_to_record(p) for p in result.products]
+    def order(record):
+        values=record['product']
+        facts={k:v for k,v in values.items() if k not in {'raw_data','scraped_at'}}
+        return (values.get('canonical_product_id') or values.get('external_id') or '',
+                values.get('product_url') or '',
+                json.dumps(facts,sort_keys=True,separators=(',',':'),allow_nan=False))
+    return dict(products=sorted(records,key=order),
                 raw_products=encode_value(result.raw_products), platform=result.platform.value,
                 tier=result.tier.value, quality_score=result.quality_score,
                 urls_attempted=result.urls_attempted, urls_succeeded=result.urls_succeeded,

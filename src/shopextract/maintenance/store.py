@@ -614,7 +614,14 @@ class MaintenanceStore:
             'WHERE a.job=? AND (a.step=? OR s.kind=?) ORDER BY a.rowid',
             (job_id, step_id, 'wire:' + step_id))]
 
-    def cache_get(self, key, *, now):
+    @staticmethod
+    def _page_observation(value):
+        return (isinstance(value,dict) and value.get('complete') is False and
+                isinstance(value.get('products'),list) and bool(value['products']) and
+                isinstance(value.get('diagnostics'),list) and bool(value['diagnostics']) and
+                all(isinstance(d,dict) and d.get('code')=='catalog_coverage_unverified' for d in value['diagnostics']))
+
+    def cache_get(self, key, *, now, allow_page_observation=False):
         row = self._connect().execute('SELECT * FROM cache WHERE key=?', (key,)).fetchone()
         if row is None:
             return None
@@ -622,14 +629,14 @@ class MaintenanceStore:
             if now >= datetime.fromisoformat(row['expires']) or len(row['payload'].encode()) > 16 * 1024 * 1024:
                 return None
             value = json.loads(row['payload'])
-            return value if isinstance(value, dict) and value.get('complete') is True else None
+            return value if isinstance(value, dict) and (value.get('complete') is True or allow_page_observation and self._page_observation(value)) else None
         except (ValueError, TypeError):
             return None
 
-    def cache_put(self, key, payload, *, expires, byte_limit=16 * 1024 * 1024):
+    def cache_put(self, key, payload, *, expires, byte_limit=16 * 1024 * 1024, allow_page_observation=False):
         value = packed(payload)
         size = len(value.encode())
-        if payload.get('complete') is not True or size > byte_limit:
+        if not (payload.get('complete') is True or allow_page_observation and self._page_observation(payload)) or size > byte_limit:
             return
         with self._transaction() as db:
             db.execute('INSERT OR REPLACE INTO cache VALUES(?,?,?,?)', (key, value, expires.isoformat(), size))
@@ -690,8 +697,9 @@ class MaintenanceStore:
                              and step['result'].get('complete') is False for step in sources)
         pending_sources = [step for step in sources if step['state'] != 'committed']
         pending_compares = any(step['kind'] == 'compare' and step['state'] != 'committed' for step in steps)
+        inferred_partial = source_reason is None and (partial_source or retained.get('source_complete') is False)
         if source_reason is None:
-            if partial_source or retained.get('source_complete') is False:
+            if inferred_partial:
                 source_reason = 'source_partial'
             elif pending_sources:
                 unknown = any(attempt['state'] in {'intent', 'unknown'}
@@ -701,5 +709,6 @@ class MaintenanceStore:
                 source_reason = 'pending_work'
             elif retained.get('processed_products', 0) < retained.get('baseline_count', 0):
                 source_reason = 'product_budget'
-        reason = source_reason or self.model_stop(job_id) or model_reason
+        model_stop = self.model_stop(job_id) or model_reason
+        reason = (model_stop if inferred_partial and model_stop else source_reason or model_stop)
         return ('partial' if reason else 'completed'), reason, retained

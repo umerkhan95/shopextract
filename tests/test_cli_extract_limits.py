@@ -7,10 +7,10 @@ from shopextract._cli_core import CliFailure
 from shopextract._cli_data import bounded_tree, raw_records, read_json_file
 
 
-@pytest.mark.parametrize('size',[1048575,1048576,1048577])
+@pytest.mark.parametrize('size',[33554431,33554432,33554433])
 def test_input_byte_edges(tmp_path,size):
     path=tmp_path/'input.json';path.write_bytes(b'[]'+b' '*(size-2))
-    if size>1048576:
+    if size>33554432:
         with pytest.raises(CliFailure): read_json_file(str(path))
     else:
         assert read_json_file(str(path))==[]
@@ -34,10 +34,10 @@ def test_depth_edges(depth):
     else: bounded_tree(value)
 
 
-@pytest.mark.parametrize('nodes',[99999,100000,100001])
+@pytest.mark.parametrize('nodes',[999999,1000000,1000001])
 def test_node_edges(nodes):
     value=[None]*(nodes-1)
-    if nodes>100000:
+    if nodes>1000000:
         with pytest.raises(ValueError): bounded_tree(value)
     else: bounded_tree(value)
 

@@ -182,13 +182,13 @@ class MaintenanceEngine:
         await self._runtime.guard.authorize(url, context)
         scope = {'url': url, 'mode': mode, 'maximum': maximum, 'profiles': self.store.status(job)['profile_definitions'],
                  'fields': goal['fields'], 'freshness_seconds': goal['freshness_seconds'],
-                 'policy': asdict(self.tool_config), 'native_version': 1}
+                 'policy': asdict(self.tool_config), 'native_version': 2}
         if self._category_config is not None:
             from ..categories.maintenance import category_policy_digest
             scope['category_policy'] = category_policy_digest(self._category_config)
             scope['category_schema'] = 1
         cache_key = digest(scope)
-        cached = self.store.cache_get(cache_key, now=self.now()) if self.shopify_storefront is None else None
+        cached = self.store.cache_get(cache_key, now=self.now(),allow_page_observation=mode=='extract') if self.shopify_storefront is None else None
         if cached is not None:
             try:
                 if mode == 'extract':
@@ -225,9 +225,12 @@ class MaintenanceEngine:
                 self.hook('before_checkpoint', job_id=job, step_id=step)
                 self.store.checkpoint(job, step, result, settlements=settlements)
                 self.hook('after_checkpoint', job_id=job, step_id=step)
-                if result.get('complete') and self.shopify_storefront is None:
+                # Cache a validated page observation without promoting catalog coverage.
+                page_only = (mode == 'extract' and bool(result.get('products')) and
+                    {d.get('code') for d in result.get('diagnostics', [])} == {'catalog_coverage_unverified'})
+                if (result.get('complete') or page_only) and self.shopify_storefront is None:
                     self.store.cache_put(cache_key, result,
-                        expires=self.now() + timedelta(seconds=goal['freshness_seconds']))
+                        expires=self.now() + timedelta(seconds=goal['freshness_seconds']),allow_page_observation=page_only)
                 return result, None
             except (ToolError, asyncio.TimeoutError, MaintenanceError) as error:
                 code = getattr(error, 'code', 'timeout')

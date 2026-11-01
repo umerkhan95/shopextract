@@ -197,6 +197,9 @@ def test_native_validation_and_duplicates():
 def test_real_export_payload_and_companion_roundtrip(tmp_path,fmt):
     from shopextract.export import load_evidence_sidecar
     p=Product(title='A',external_id='001',product_url='https://synthetic.test/a',price=Decimal('0.10'),gtin=GTIN,in_stock=False)
+    if fmt in ('google_shopping','idealo'):
+        from tests.test_downstream_remediation import native_stock_default
+        p=native_stock_default(stock=False)
     source=tmp_path/'source.json';source.write_text(json.dumps([product_to_record(p)]))
     target=tmp_path/'out';side=tmp_path/'side'
     args=['export',str(source),'--format',fmt,'-o',str(target)]

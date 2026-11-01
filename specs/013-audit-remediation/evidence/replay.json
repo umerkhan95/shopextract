@@ -1,0 +1,17 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 3.353,
+  "timeout_seconds": 30,
+  "network_requests": 0,
+  "diagnostic_assertions": {
+    "empty_reports_complete": true,
+    "explicit_incomplete_fails": true,
+    "woo_midstream404_false_complete": true,
+    "root_vs_graph_gap": true,
+    "usd_unsupported": true,
+    "weak_validation": true,
+    "category_double_count": true
+  },
+  "all_reproduced": true,
+  "meaning": "reproduced defects, not corrected acceptance behavior"
+}

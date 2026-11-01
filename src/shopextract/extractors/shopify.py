@@ -12,7 +12,7 @@ from ._storefront import storefront_client
 
 from .._models import ExtractorResult
 from .._capture import capture
-from ._browser import DEFAULT_HEADERS, get_default_user_agent
+from ._http_defaults import DEFAULT_HEADERS, get_default_user_agent
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +31,9 @@ class ShopifyExtractor:
         if max_products is not None and (not isinstance(max_products, int) or isinstance(max_products, bool) or max_products <= 0):
             raise ValueError("max_products must be a positive integer")
         all_products: list[dict[str, Any]] = []
+        from .._execution import register_progress_source
+        from .._models import Platform
+        register_progress_source(all_products,Platform.SHOPIFY,shop_url)
         base_url = shop_url.rstrip("/")
         shop_currency: str | None = None
         currency_capture = None
@@ -57,8 +60,9 @@ class ShopifyExtractor:
                     response = await client.get(url)
 
                     if response.status_code == 429:
-                        retry_after = int(response.headers.get("Retry-After", "2"))
-                        await asyncio.sleep(retry_after)
+                        from ._retry import wait_for_retry
+                        if not await wait_for_retry(response.headers.get('Retry-After','2')):
+                            complete=False;error='Retry delay exceeds remaining execution budget';break
                         response = await client.get(url)
                         if response.status_code == 429:
                             complete = False
@@ -102,6 +106,9 @@ class ShopifyExtractor:
                     remaining = max_products - len(all_products) if max_products is not None else len(products)
                     for product in products:
                         capture(product, str(response.url), "shopify_api")
+                        if shop_currency:
+                            product['_shop_currency']=shop_currency
+                            product.setdefault('_field_sources',{})['/_shop_currency']={'capture_path':'/cart_currency','_capture':currency_capture}
 
                     all_products.extend(products[:remaining])
                     if max_products is not None and len(all_products) >= max_products:
@@ -151,6 +158,8 @@ class ShopifyExtractor:
                         by_id = {str(v.get("id")): v for v in data.get("variants", []) if v.get("id") is not None}
                         for variant in variants:
                             source = by_id.get(str(variant.get("id")), {})
+                            if not source and not variant.get("barcode"):
+                                product.setdefault("_identifier_enrichment_errors",[]).append("Variant ID missing in identifier detail response")
                             if not variant.get("barcode") and source.get("barcode"):
                                 detail_capture = capture({"barcode": source["barcode"]}, str(detail.url), "shopify_detail_api", observed_at=data["_capture"]["at"])
                                 variant["barcode"] = source["barcode"]

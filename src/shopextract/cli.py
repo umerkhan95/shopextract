@@ -28,9 +28,11 @@ def main() -> None:
 @click.option("--format", "-f", "fmt", type=click.Choice(["csv", "json"]), default="json",
               help="Output format.")
 @click.option("-o", "--output", "output_path", default=None, help="Output file path.")
+@click.option("--compact", is_flag=True, help="Deduplicate captured provenance in bounded catalog transport.")
 @click.option("--platform", type=click.Choice([p.value for p in Platform]))
 @click.option("--shop-url")
 @click.option("--enrich-identifiers", is_flag=True)
+@click.option("--enrich-variants", is_flag=True, help="Read bounded Woo variant details (opt in).")
 @click.option("--restore-short-gtin", is_flag=True)
 @click.option("--storefront", type=click.Path(), help="Closed native storefront JSON options file.")
 @execution_options()
@@ -65,7 +67,7 @@ def detect(url: str, timeout: float | None) -> None:
 @click.option("--platform", type=click.Choice([p.value for p in Platform]))
 @execution_options(llm=False)
 def discover(url: str, max_urls: int, platform: str | None, **options) -> None:
-    """Discover product URLs from a store."""
+    """Discover URLs (robots checked,16 requests,30s worker cap; coverage unverified)."""
     from ._cli_extract import explicit_controls, discover_urls
     if settings().output_format == "json" or explicit_controls():
         discover_urls(url, max_urls, platform, options)
@@ -375,6 +377,9 @@ _register_operations(main)
 
 from ._cli_discovery import register as _register_discovery
 _register_discovery(main)
+
+from ._readiness import register as _register_readiness
+_register_readiness(main)
 
 if __name__ == "__main__":
     main()

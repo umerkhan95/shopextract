@@ -1,0 +1,14 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_money_roundtrip.py",
+    "tests/test_catalog_budget_amendment.py",
+    "-q",
+    "--tb=short"
+  ],
+  "exit_code": "timeout",
+  "seconds": 120.084,
+  "timeout": 120
+}

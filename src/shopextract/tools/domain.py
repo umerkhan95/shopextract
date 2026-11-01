@@ -39,11 +39,13 @@ def synchronous(payload):
         if payload.get('category_config') is not None:
             from ..categories.config import runtime_from_record
             category_config = runtime_from_record(payload['category_config'])
+        diagnostics=[]
         raw = payload.get('raw')
         if raw is None:
             if payload['mode'] == 'html':
-                from ..extractors.unified import UnifiedCrawlExtractor
-                raw = UnifiedCrawlExtractor._extract_structured_from_html(payload['html'], payload['url'],include_categories=category_config is not None)
+                from .._structured_html import extract_structured_products
+                parsed=extract_structured_products(payload['html'],payload['url'],include_categories=category_config is not None)
+                raw,diagnostics=parsed.products,parsed.diagnostics
             else:
                 from ..extractors.feed import GoogleFeedExtractor
                 parser = GoogleFeedExtractor._parse_xml if payload['mode'] == 'xml' else GoogleFeedExtractor._parse_csv
@@ -71,7 +73,7 @@ def synchronous(payload):
                     products.append(categorized_product_to_record(companion))
                 else:
                     products.append(product_to_record(product))
-        return products
+        return {'products':products,'diagnostics':diagnostics} if payload.get('include_diagnostics',False) else products
     if operation == 'match':
         from ..compare.identity_match import match_products
         left = [product_from_record(v) for v in payload['left']]

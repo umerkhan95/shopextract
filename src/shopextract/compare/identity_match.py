@@ -82,9 +82,12 @@ def normalized_attributes(product: Product | dict) -> dict[str, str]:
             match = re.search(rf"\b(\d+(?:\.\d+)?)\s*(gb|tb|mb)\s*(?:{cues})\b", title)
         if match:
             result.setdefault(key, match.group(1) + match.group(2))
-    capacities = re.findall(r"\b(\d+(?:\.\d+)?)\s*(gb|tb|mb|ml|kg|litres?|liters?)\b", title)
+    capacities = re.findall(r"\b(\d+(?:\.\d+)?)\s*(gb|tb|mb|ml|kg|l|litres?|liters?)\b", title)
     if capacities:
         result["title_capacity"] = ",".join(sorted(n + unit for n, unit in capacities))
+    for name,words in [('title_color',('taupe','white','black','blue','red','green','navy','beige')),('title_function',('shampoo','conditioner'))]:
+        values=sorted({word for word in words if re.search(r'\b'+word+r'\b',title)})
+        if values:result[name]=','.join(values)
     pack = re.search(r"\b(?:pack of|set of)\s*(\d+)\b|\b(\d+)\s*[- ]?\s*(?:pack|pk)\b", title)
     if pack:
         result.setdefault("pack_quantity", pack.group(1) or pack.group(2))

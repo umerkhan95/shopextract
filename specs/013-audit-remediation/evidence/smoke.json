@@ -1,0 +1,32 @@
+{
+  "revision": "90d5bd1",
+  "provenance": "synthetic offline; current production functions",
+  "css_prices": {
+    "3,720": {
+      "value": "3.720",
+      "accepted": true
+    },
+    "Rs. 3,720": {
+      "value": "0",
+      "accepted": false
+    },
+    "3,720.00": {
+      "value": "3720.00",
+      "accepted": true
+    },
+    "3.720,00": {
+      "value": "3.72000",
+      "accepted": true
+    }
+  },
+  "quality": {
+    "fixture": {
+      "title": "Returns and exchanges policy",
+      "price": -1,
+      "image_url": "https://example.invalid/placeholder.jpg",
+      "description": "x",
+      "id": "x"
+    },
+    "score": 1.0
+  }
+}

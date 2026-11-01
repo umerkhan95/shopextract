@@ -15,6 +15,9 @@ class ShopwareExtractor:
     async def extract(self, shop_url, *, max_products=20, endpoint=None, access_token=None):
         positive_limits(max_products)
         products, seen = [], set()
+        from .._execution import register_progress_source
+        from .._models import Platform
+        register_progress_source(products,Platform.SHOPWARE,shop_url)
         try:
             async with storefront_client(self.http_client, self.timeout) as client:
                 base, token = await resolve_config(client, shop_url, 'shopware', endpoint, access_token)

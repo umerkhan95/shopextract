@@ -228,6 +228,7 @@ async def _probe_html_content(
             return
 
         html = raw_html.lower()
+        if 'text/x-magento-init' in html or 'data-mage-init=' in html:signals[Platform.MAGENTO].append('html:magento-init')
         _analyze_meta_tags(html, signals)
         _analyze_cdn_sources(html, signals)
         _analyze_magento_html(raw_html, signals)

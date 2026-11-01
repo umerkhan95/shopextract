@@ -1,0 +1,17 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_html_coverage.py",
+    "-q",
+    "-k",
+    "diagnostics_serialization or unified_http_diagnostics or native_diagnostic_collection or dom_owner_selected",
+    "--tb=short"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 12.044,
+  "timeout": 120,
+  "selected": 11,
+  "total": 39
+}

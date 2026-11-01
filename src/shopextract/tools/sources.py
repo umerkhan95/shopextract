@@ -43,20 +43,39 @@ class GuardedSources:
 
     async def discover(self, client, url, maximum, context):
         from .._discover import _parse_sitemap_xml
+        from .._discovery_runtime import DiscoveryClient
+        client=DiscoveryClient(client)
         # Native sitemap parser, no crawl4ai fallback or discovered authority.
         origin = normalized(url)[1]
-        response = await client.get(origin + '/sitemap.xml')
+        urls, diagnostics = [], [{'code':'discovery_coverage_unverified', 'message':'Catalog coverage is unverified'}]
+        def finish():
+            present={d['code'] for d in diagnostics}
+            for code in client.reasons:
+                if code not in present:
+                    diagnostics.append({'code':code,'message':'Bounded discovery source policy or budget'})
+                    present.add(code)
+            return {'urls':sorted(urls),'complete':False,'diagnostics':diagnostics}
+        try:
+            response = await client.get(origin + '/sitemap.xml')
+        except httpx.HTTPError:
+            client.note('discovery_source_error')
+            return finish()
         if response.status_code != 200:
             raise ToolError('source_error', 'Public sitemap unavailable')
-        urls, diagnostics = [], []
+        locations=0
         pending = [(str(response.url), response.text)]
         seen_maps = {str(response.url)}
         from defusedxml import ElementTree
         while pending:
             visit, text = pending.pop(0)
             if text is None:
+                if not await client.allowed(visit):
+                    diagnostics.append({'code':'rejected_source','message':'Discovered source denied'})
+                    continue
                 try:
                     nested = await client.get(visit)
+                except httpx.HTTPError:
+                    return finish()
                 except ToolError as error:
                     if error.code != 'permission_denied':
                         raise
@@ -75,6 +94,10 @@ class GuardedSources:
             if not candidates:
                 candidates = [e.text.strip() for e in root.iter() if e.tag.rsplit('}', 1)[-1] == 'loc' and e.text]
             for candidate in candidates:
+                locations+=1
+                if locations>5000:
+                    client.note('discovery_location_budget')
+                    return finish()
                 try:
                     target = urljoin(origin, candidate)
                     if is_index:
@@ -88,6 +111,9 @@ class GuardedSources:
                         diagnostics.append({'code': 'unsupported_source', 'message': 'Discovered format is unsupported'})
                         continue
                     allowed, _ = await self.guard.authorize(target, context)
+                    if not await client.allowed(allowed):
+                        diagnostics.append({'code':'robots_disallowed','message':'Discovery policy excludes URL'})
+                        continue
                 except ToolError as error:
                     if error.code != 'permission_denied':
                         raise
@@ -96,8 +122,8 @@ class GuardedSources:
                 if allowed not in urls:
                     urls.append(allowed)
                     if len(urls) >= maximum:
-                        return {'urls': urls, 'complete': False, 'diagnostics': diagnostics}
-        return {'urls': urls, 'complete': not diagnostics, 'diagnostics': diagnostics}
+                        return finish()
+        return finish()
 
     async def extract(self, client, transport, url, maximum, context):
         from .._detect import _analyze_meta_tags, _analyze_cdn_sources, _determine_platform
@@ -138,7 +164,7 @@ class GuardedSources:
             cls = classes.get(platform)
             if cls:
                 extractor = cls(http_client=client, max_pages=20)
-                options = {} if platform == Platform.WOOCOMMERCE else {'max_products': maximum}
+                options = {'max_products': maximum}
                 if self.category_config is not None and platform in (Platform.BIGCOMMERCE,Platform.MAGENTO):
                     options['include_categories'] = self.category_config.options.limits.terms > 0
                 if platform == Platform.SHOPWARE:
@@ -166,24 +192,32 @@ class GuardedSources:
                     diagnostics.append({'code': 'source_error', 'message': 'Native source incomplete'})
                 if not raw:
                     if complete:
-                        return {'products': [], 'complete': True, 'diagnostics': diagnostics}
+                        raise ToolError('source_error', 'No usable products extracted')
                     if self.category_config is not None:
-                        return {'products': [], 'complete': False, 'diagnostics': diagnostics}
+                        raise ToolError('source_error', 'No usable products extracted')
                     # A static supported product can still supply truthful partial results.
                     raw = None
-        payload = {'operation': 'parse', 'mode': mode, 'html': html if raw is None else None,
+        payload = {'operation': 'parse', 'include_diagnostics':True, 'mode': mode, 'html': html if raw is None else None,
             'raw': raw, 'platform': platform.value, 'url': url, 'origin': origin,
             'maximum': maximum, 'observed_at': context.observed_at.isoformat()}
         if self.category_config is not None:
             from ..categories.config import runtime_record
             payload['category_config'] = runtime_record(self.category_config)
-        value = json.loads(await context.auxiliary.run('domain', encoded(payload), context))
+        parsed = json.loads(await context.auxiliary.run('domain', encoded(payload), context))
+        if not isinstance(parsed,dict) or set(parsed)!={'products','diagnostics'} or not isinstance(parsed['products'],list) or not isinstance(parsed['diagnostics'],list):
+            raise ToolError('source_error','Invalid native parser result')
+        value=parsed['products'];diagnostics.extend(parsed['diagnostics'])
         if self.category_config is not None:
             from ..categories.portable import validate_categorized_products
             validate_categorized_products(value, options=self.category_config.options, maximum=maximum)
         if not value:
-            raise ToolError('source_error', 'No supported native or static product data; browser/model modes unavailable')
+            raise ToolError('source_error', 'No supported product data: '+','.join(d.get('code','source_error') for d in diagnostics))
         if raw is not None and len(raw) >= maximum:
             complete = False
-        return {'products': value, 'complete': complete and len(value) < maximum,
-                'diagnostics': diagnostics}
+        from .._outcomes import assess_extraction_outcome
+        coverage = complete and len(value) < maximum if platform == Platform.SHOPIFY and raw is not None else None
+        if coverage is None:
+            diagnostics.append({'code':'catalog_coverage_unverified', 'message':'Catalog coverage is unverified'})
+        outcome = assess_extraction_outcome(product_count=len(value), catalog_complete=coverage,
+            errors=diagnostics)
+        return {'products': value, 'complete': outcome == 'complete', 'diagnostics': diagnostics}

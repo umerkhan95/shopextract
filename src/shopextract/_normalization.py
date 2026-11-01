@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field, replace
 from decimal import Decimal, InvalidOperation
+import re
 from typing import Callable
 
 
@@ -96,22 +97,55 @@ class Normalizer:
         return self.record(field, selection, value, accepted=accepted,
                            reason=reason, operation=operation)
 
+    def currency(self, field, *paths):
+        selections=[self.select(path) for path in paths]
+        usable=[v for v in selections if v.present and v.value not in (None,'')]
+        from ._currencies import is_pricing_currency
+        valid=[v for v in usable if isinstance(v.value,str) and is_pricing_currency(v.value.strip())]
+        codes={v.value.strip().upper() for v in valid}
+        accepted=bool(valid) and len(valid)==len(usable) and len(codes)==1
+        value=next(iter(codes)) if accepted else ''
+        reason='' if accepted else ('Conflicting currency sources' if len(codes)>1 else 'Missing or invalid ISO4217 pricing currency')
+        chosen=usable or selections[:1]
+        self.outcomes['/'+field]=ConversionOutcome(tuple(v.path for v in chosen),value,accepted,reason,
+            ['Uppercase source currency'] if accepted else [],tuple(v.value for v in chosen))
+        return value
+
     def money(self, field, *paths, default=Decimal('0'), stringify=False,
-              css=False, truthy=False, divisor=None, operation='', strict=False):
+              css=False, truthy=False, divisor=None, operation='', strict=False,
+              currency=None, locale=None):
         def convert(value):
-            if css and isinstance(value, str):
-                value = value.replace('$', '').replace('€', '').replace('£', '').strip()
-                value = value.replace(',', '') if '.' in value else value.replace(',', '.')
-            elif stringify:
-                value = str(value)
-            value = Decimal(value)
-            if divisor is not None:
-                value /= divisor
-            if not value.is_finite():
-                raise ValueError('Nonfinite price')
+            if css and isinstance(value,str):
+                rupee=bool(re.search(r'\bRs\.?',value,re.I))
+                value=re.sub(r'\bRs\.?','',value,flags=re.I)
+                value=value.replace('$','').replace('€','').replace('£','').strip()
+                if re.search(r'(?<=\d)[ \u00a0](?=\d)',value):
+                    if not locale or not re.fullmatch(r'\d{1,3}(?:[ \u00a0]\d{3})+(?:[.,]\d+)?',value):
+                        raise ValueError('Unqualified or malformed space grouping')
+                    value=value.replace(' ','').replace('\u00a0','')
+                decimal_comma=bool(locale and locale.lower().startswith(('de','fr','it','es')))
+                if ',' in value and '.' in value:
+                    decimal=',' if value.rfind(',')>value.rfind('.') else '.'
+                    grouping='.' if decimal==',' else ','
+                    whole,fraction=value.rsplit(decimal,1)
+                    if not fraction.isdigit() or not re.fullmatch(r'\d{1,3}(?:'+re.escape(grouping)+r'\d{3})+',whole):raise ValueError('Invalid grouped money')
+                    value=whole.replace(grouping,'')+'.'+fraction
+                elif ',' in value:
+                    if decimal_comma:
+                        if value.count(',')!=1:raise ValueError('Invalid decimal comma')
+                        value=value.replace(',','.')
+                    elif (rupee or currency in ('PKR','USD','GBP','INR','LKR')) and re.fullmatch(r'\d{1,3}(?:,\d{3})+',value):value=value.replace(',','')
+                    else:raise ValueError('Ambiguous comma money')
+            elif stringify:value=str(value)
+            value=Decimal(value)
+            if divisor is not None:value/=divisor
+            if not value.is_finite() or value<0:raise ValueError('Invalid price')
             return value
-        return self.emit(field, *paths, default=default, convert=convert, truthy=truthy,
-                         operation=operation or 'Parse decimal amount' + ('; strip currency symbols and normalize separators' if css else ''), strict=strict)
+        result=self.emit(field,*paths,default=default,convert=convert,truthy=truthy,
+                         operation=operation or 'Parse contextual decimal amount',strict=strict)
+        outcome=self.outcomes['/'+field]
+        if outcome.accepted and result==0:outcome.reason='Explicit zero price; verify destination eligibility'
+        return result
 
     def inherit(self, other, output_prefix, source_prefix):
         for path, outcome in other.outcomes.items():

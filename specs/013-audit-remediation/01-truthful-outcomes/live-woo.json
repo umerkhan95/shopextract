@@ -1,0 +1,25 @@
+{
+  "case": "woo",
+  "provenance": "actual read-only HTTP observation",
+  "at": "2026-11-01T03:39:06.416566+00:00",
+  "requests": [
+    "https://woocommerce.com/wp-json/wc/store/v1/products?per_page=2&page=1&offset=0&orderby=id&order=asc"
+  ],
+  "responses": [
+    {
+      "url": "https://woocommerce.com/wp-json/wc/store/v1/products?per_page=2&page=1&offset=0&orderby=id&order=asc",
+      "status": 200
+    }
+  ],
+  "request_cap": 3,
+  "exit_code": 3,
+  "ok": false,
+  "completeness": "partial",
+  "error": {
+    "code": "E_PARTIAL",
+    "message": "Operation returned bounded or incomplete results; inspect metadata.",
+    "retryable": false
+  },
+  "product_count": 2,
+  "assertion": true
+}

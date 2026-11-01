@@ -51,7 +51,7 @@ def register(main):
         bounded_output({'schema_version':'1.0','response_schema_version':'1.0',
                         'commands':command_inventory(main),
                         'root_options_before_command':True,
-                        'limits':{'input_bytes':1048576,'depth':64,'records':1000,'json_nodes':100000},
+                        'limits':{'input_bytes':33554432,'depth':64,'records':1000,'json_nodes':1000000},
                         'schema_discovery':['schema','list'],
                         'session_handles':'one tools call invocation','maintenance_ids':'durable within explicit --db'})
     @main.group('schema')

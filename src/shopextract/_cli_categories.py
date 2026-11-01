@@ -10,12 +10,14 @@ import click
 
 from ._cli_core import CliFailure, CoreCommand, emit_response, make_response
 from ._cli_data import (read_json_file, raw_records, categorized_from_value, atomic_json,
-                        MAX_BYTES, MAX_RECORDS, category_policy_from_value)
+                        MAX_RECORDS, category_policy_from_value)
 from ._cli_extract import run_operation, validate_timeout, validate_url, storefront_options
 from ._cli_monitor import check_destination
 from ._execution import ExecutionPolicy
 from ._portable import product_to_record
 
+
+MAX_BYTES = 1048576  # Category publication protocol, independent of catalog input.
 
 def encoded(value):
     return json.dumps(value, ensure_ascii=False, allow_nan=False, separators=(',', ':')).encode('utf-8')
@@ -296,13 +298,13 @@ def register(main):
         from .categories._codec import typed
         sources(destination,*[p for p in (options_path,limits_path) if p is not None])
         options=options_file(options_path);timeout=validate_timeout(timeout)
-        limits=WooTreeLimits(response_bytes=MAX_BYTES,retained_bytes=MAX_BYTES)
+        limits=WooTreeLimits(response_bytes=1048576,retained_bytes=1048576)
         if limits_path:
             data=read_json_file(limits_path)
             if not isinstance(data,dict) or type(data.get('seconds')) not in (int,float):raise ValueError()
             data=dict(data,seconds=float(data['seconds']));limits=typed(WooTreeLimits,data)
         _validate_limits(limits)
-        if limits.retained_bytes>MAX_BYTES or limits.response_bytes>MAX_BYTES:raise ValueError()
+        if limits.retained_bytes>1048576 or limits.response_bytes>1048576:raise ValueError()
         limits=replace(limits,seconds=min(limits.seconds,timeout))
         value,_=run_operation(lambda:fetch_woocommerce_category_tree(options.scope,limits=limits),ExecutionPolicy(),timeout)
         tree_publish(value,destination)

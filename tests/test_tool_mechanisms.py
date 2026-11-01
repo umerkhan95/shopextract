@@ -270,7 +270,7 @@ async def test_discovered_denied_link_is_diagnostic_only():
         page=await engine.call('job_result',{'schema_version':'1.0','job_id':jid,'collection':'urls'})
         assert page['data']['items']==[ORIGIN+'/products/a'] and page['data']['completeness']=='partial'
         diagnostics=await engine.call('job_result',{'schema_version':'1.0','job_id':jid,'collection':'diagnostics'})
-        assert diagnostics['data']['items'][0]['code']=='rejected_source'
+        assert {d['code'] for d in diagnostics['data']['items']}=={'discovery_coverage_unverified','rejected_source'}
     finally:await engine.aclose()
 
 
@@ -446,8 +446,8 @@ async def test_real_changes_replay_and_capture_grants(tmp_path):
 
 
 @pytest.mark.asyncio
-async def test_supported_empty_distinct_from_backend_failure():
-    """Known native authoritative empty succeeds; failed native source is never success[]."""
+async def test_empty_extraction_and_backend_failure_are_errors():
+    """Both authoritative-empty extraction and failed native source are errors."""
     for status in (200,500):
         def response(req):
             if req.url.path=='/':return httpx.Response(200,text='<meta name="generator" content="wordpress">')
@@ -458,8 +458,7 @@ async def test_supported_empty_distinct_from_backend_failure():
             reply=await engine.call('job_result',{'schema_version':'1.0','job_id':accepted['data']['job_id'],'collection':'products'})
             if not reply['ok'] or reply['data']['state']=='succeeded':break
             await asyncio.sleep(.02)
-        if status==200:assert reply['ok'] and reply['data']['items']==[] and reply['data']['completeness']=='complete'
-        else:assert not reply['ok'] and reply['error']['code']=='source_error' and 'secret_canary' not in str(reply)
+        assert not reply['ok'] and reply['error']['code']=='source_error' and 'secret_canary' not in str(reply)
         await engine.aclose()
 
 

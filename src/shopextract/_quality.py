@@ -15,7 +15,7 @@ _SKU_FIELDS = ("sku", "external_id", "id")
 
 
 class QualityScorer:
-    """Score product data quality on a 0.0-1.0 scale.
+    """Score field presence on a 0.0-1.0 scale; not eligibility or factual support.
 
     Standalone component -- takes raw product dicts, returns numeric scores.
     """

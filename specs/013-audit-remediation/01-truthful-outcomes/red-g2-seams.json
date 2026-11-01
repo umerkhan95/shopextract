@@ -1,0 +1,15 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_truthful_outcomes.py",
+    "-q",
+    "-k",
+    "feed_own_outcome_projection or woo_later_page_pipeline_cli_retention",
+    "--tb=short"
+  ],
+  "timeout_seconds": 120,
+  "exit_code": 1,
+  "elapsed_seconds": 14.859
+}

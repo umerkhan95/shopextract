@@ -1,0 +1,15 @@
+{
+  "exit_code": 1,
+  "elapsed_seconds": 25.169,
+  "timeout": 120,
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_truthful_outcomes.py",
+    "-q",
+    "-k",
+    "product_group or normalize_empty_compatibility or browser_200_metadata",
+    "--tb=short"
+  ]
+}

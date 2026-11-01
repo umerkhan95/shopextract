@@ -167,11 +167,13 @@ async def test_native_sitemap_discovery_then_guarded_extraction(tmp_path):
     requests = []
     def native(request):
         requests.append(str(request.url))
+        if request.url.path == '/robots.txt':return httpx.Response(404)
         if request.url.path == '/sitemap.xml':
             return httpx.Response(200, text='<urlset><url><loc>' + ORIGIN + '/products/p1</loc></url></urlset>')
         return httpx.Response(200, text=supplier_html())
     h.engine.wire_transport = httpx.MockTransport(native)
     _, report = await h.run(goal(product_urls=()))
-    assert requests[0].endswith('/sitemap.xml')
+    assert requests[:2]==[ORIGIN+'/robots.txt',ORIGIN+'/sitemap.xml']
+    assert requests.count(ORIGIN+'/robots.txt')==1
     assert report['findings'][0]['status'] == 'proposed_correction'
     assert report['usage']['requests'] == len(requests)

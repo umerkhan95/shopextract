@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-01",
+  "milestone": "core fixes and readiness functionally reviewed; remaining runtime R3-R5",
+  "session_token_counters_available": false,
+  "method": "available tool metadata checked; get_goal returned goal=null, remainingTokens=null, completionBudgetReport=null",
+  "quota_percentage_estimated": false,
+  "local_inference_processes_launched": 0,
+  "parallel_delegated_work_authorized_or_started": false,
+  "execution": "author and reviewer work sequentially, bounded tests and saved evidence"
+}
