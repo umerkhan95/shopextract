@@ -249,6 +249,16 @@ def test_duplicate_identity_order_uses_facts_not_timestamps():
   return [product_from_record(r).vendor for r in rows]
  assert order(False)==order(True)==['A','B']
 
+def terminated(pid):
+ # Under a Linux child subreaper (scripts/run_tests.py) a killed orphan stays a
+ # zombie until the runner reaps it; signal 0 still succeeds on a zombie.
+ try:os.kill(pid,0)
+ except ProcessLookupError:return True
+ try:
+  with open(f'/proc/{pid}/stat') as stat:return stat.read().rsplit(')',1)[1].split()[0]=='Z'
+ except FileNotFoundError:return os.path.isdir('/proc')
+ except OSError:return False
+
 @pytest.mark.asyncio
 async def test_worker_kills_ignoring_descendant_after_leader_exit(tmp_path):
  from shopextract._discovery_runtime import run_discovery_worker
@@ -260,10 +270,9 @@ async def test_worker_kills_ignoring_descendant_after_leader_exit(tmp_path):
   assert 'discovery_timeout' in r.reasons and pid.exists() and child.exists()
   for file in (pid,child):
    for _ in range(50):
-    try:os.kill(int(file.read_text()),0)
-    except ProcessLookupError:break
+    if terminated(int(file.read_text())):break
     await asyncio.sleep(.01)
-   with pytest.raises(ProcessLookupError):os.kill(int(file.read_text()),0)
+   assert terminated(int(file.read_text()))
  finally:cleanup_owned(pid,child)
 
 
