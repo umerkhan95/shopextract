@@ -110,6 +110,22 @@ async def test_robots_forbidden_fails_closed_as_unavailable(status):
  assert not r and len(s)==1 and 'robots_unavailable' in r.reasons and 'robots_disallowed' not in r.reasons
 
 @pytest.mark.asyncio
+async def test_concurrent_requests_wait_for_single_robots_read():
+ # Live Naheed 2026-11-01: parallel platform probes saw the fail-closed placeholder and were denied.
+ from shopextract._discovery_runtime import DiscoveryClient
+ sent=[]
+ async def respond(r):
+  sent.append(r.url.path)
+  if r.url.path=='/robots.txt':
+   await asyncio.sleep(0.05);return httpx.Response(200,text='User-agent: *\nDisallow: /private')
+  return httpx.Response(200,text='ok')
+ async with httpx.AsyncClient(transport=httpx.MockTransport(respond)) as c:
+  guard=DiscoveryClient(c,max_requests=16)
+  results=await asyncio.gather(*(guard.allowed(ROOT+p) for p in ('/a','/b','/c','/private')))
+ assert results==[True,True,True,False] and sent.count('/robots.txt')==1
+ assert 'robots_unavailable' not in guard.reasons and 'robots_disallowed' in guard.reasons
+
+@pytest.mark.asyncio
 async def test_robots_missing_allows():
  r,s=await local({'/sitemap.xml':(200,xml('/products/b','/products/a','/products/a'))})
  assert r==[ROOT+'/products/a',ROOT+'/products/b'] and s.count(ROOT+'/robots.txt')==1

@@ -42,21 +42,17 @@ def source_handler(count, calls):
 
 
 @pytest.fixture
-def no_browser_or_seeder(monkeypatch):
+def no_browser(monkeypatch):
     import shopextract._discover as module
     from shopextract.extractors.unified import UnifiedCrawlExtractor
-    class Seeder:
-        def __init__(self,*args,**kwargs):
-            raise AssertionError('A successful native sitemap path must not start the seeder')
     async def browser(*args,**kwargs):
         raise AssertionError('A successful native sitemap path must not start a browser')
-    monkeypatch.setattr(module,'AsyncUrlSeeder',Seeder)
     monkeypatch.setattr(module,'_discover_via_crawl4ai',browser)
     monkeypatch.setattr(UnifiedCrawlExtractor,'_extract_with_browser',browser)
 
 
 @pytest.mark.asyncio
-async def test_native_three_product_smoke(no_browser_or_seeder):
+async def test_native_three_product_smoke(no_browser):
     calls=[]
     async with httpx.AsyncClient(transport=httpx.MockTransport(source_handler(4,calls))) as client:
         urls=await discover(SHOP,platform=Platform.GENERIC,max_urls=3,client=client)
@@ -65,7 +61,7 @@ async def test_native_three_product_smoke(no_browser_or_seeder):
     assert SHOP+'/health-beauty' not in urls
 
 
-def test_actual_cli_fifty_products_no_category_crawl(monkeypatch,no_browser_or_seeder,tmp_path):
+def test_actual_cli_fifty_products_no_category_crawl(monkeypatch,no_browser,tmp_path):
     calls=[];real=httpx.AsyncClient
     def client(*args,**kwargs):
         kwargs['transport']=httpx.MockTransport(source_handler(51,calls))
@@ -77,9 +73,12 @@ def test_actual_cli_fifty_products_no_category_crawl(monkeypatch,no_browser_or_s
     path=tmp_path/'products.json'
     result=CliRunner().invoke(main,['--output-format','json','extract',SHOP,'--max','50',
         '--browser','--timeout','30','--format','json','--output',str(path)])
-    assert result.exit_code == 0, result.output
+    # Crawled coverage is unverified, so a full budget is still a truthful partial.
+    assert result.exit_code == 3, result.output[:800]
     value=json.loads(path.read_text());data=value['data']
-    assert value['ok'] and len(data['products']) == len(data['raw_products']) == 50
+    assert not value['ok'] and value['error']['code'] == 'E_PARTIAL'
+    assert data['incompleteness_reasons'] == ['crawl_coverage_unverified']
+    assert len(data['products']) == len(data['raw_products']) == 50
     assert data['catalog_complete'] is not True
     assert data['urls_attempted'] == 50
     products=[record['product'] for record in data['products']]

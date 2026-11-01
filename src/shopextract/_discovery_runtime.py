@@ -29,6 +29,7 @@ class DiscoveryClient:
         self.origin = None
         self.robots = {}
         self.robot_responses = {}
+        self.robot_locks = {}
 
     def __getattr__(self, name):
         return getattr(self.client, name)
@@ -76,6 +77,18 @@ class DiscoveryClient:
             return False
         parts = urlsplit(str(url))
         origin = f'{parts.scheme}://{parts.netloc}'
+        # Concurrent probes wait for the one robots.txt read instead of seeing the
+        # fail-closed placeholder (live 2026-11-01: 4 Naheed detection probes denied).
+        async with self.robot_locks.setdefault(origin, asyncio.Lock()):
+            await self._load_robots(origin)
+        policy = self.robots[origin]
+        allowed = policy if isinstance(policy,bool) else policy.can_fetch('ShopExtract',str(url))
+        if not allowed:
+            # A fail-closed default is not a robots rule; report it as unavailable.
+            self.note('robots_disallowed' if isinstance(policy,RobotFileParser) else 'robots_unavailable')
+        return allowed
+
+    async def _load_robots(self, origin):
         if origin not in self.robots:
             # Set fail-closed before request; no recursion and no repeated retries.
             self.robots[origin] = False
@@ -94,12 +107,6 @@ class DiscoveryClient:
                     self.note('robots_unavailable')
             except (httpx.HTTPError, ValueError):
                 self.note('robots_unavailable')
-        policy = self.robots[origin]
-        allowed = policy if isinstance(policy,bool) else policy.can_fetch('ShopExtract',str(url))
-        if not allowed:
-            # A fail-closed default is not a robots rule; report it as unavailable.
-            self.note('robots_disallowed' if isinstance(policy,RobotFileParser) else 'robots_unavailable')
-        return allowed
 
     async def request(self, method, url, **kwargs):
         if method.upper() != 'GET':
