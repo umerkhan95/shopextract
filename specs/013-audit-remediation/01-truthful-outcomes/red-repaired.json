@@ -1,0 +1,7 @@
+{
+  "command": ".venv/bin/python -m pytest tests/test_truthful_outcomes.py -q --tb=short",
+  "timeout_seconds": 120,
+  "exit_code": 1,
+  "elapsed_seconds": 41.628,
+  "provenance": "synthetic offline; external HTTP/DNS/crawler boundaries controlled"
+}

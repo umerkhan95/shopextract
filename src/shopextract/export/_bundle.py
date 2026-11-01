@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import csv
+from dataclasses import dataclass
 import io
 import xml.etree.ElementTree as ET
 import hashlib
@@ -114,8 +115,33 @@ def read_evidence_bundle(path: str | Path) -> list[Product]:
     return load_evidence_bundle(bundle)
 
 
+@dataclass(frozen=True)
+class _SnapshotRow:
+    external_id:str
+    sku:str | None
+    canonical_product_id:str
+
+@dataclass(frozen=True)
+class PreparedEvidenceSnapshot:
+    bundle_bytes:bytes
+    rows:tuple[_SnapshotRow,...]
+
+def prepare_evidence_snapshot(products):
+    bundle=create_evidence_bundle(products)
+    return PreparedEvidenceSnapshot(_json_bytes(bundle),tuple(_SnapshotRow(p.external_id,p.sku,p.canonical_product_id) for p in products))
+
+def subset_evidence_snapshot(snapshot,indices):
+    if not isinstance(snapshot,PreparedEvidenceSnapshot) or any(type(i) is not int or i<0 or i>=len(snapshot.rows) for i in indices) or list(indices)!=sorted(set(indices)):
+        raise ValueError('Invalid retained evidence indices')
+    bundle=json.loads(snapshot.bundle_bytes)
+    bundle['records']=[bundle['records'][i] for i in indices]
+    return PreparedEvidenceSnapshot(_json_bytes(bundle),tuple(snapshot.rows[i] for i in indices))
+
+
 def _row_id(product, format):
-    return (product.sku or product.external_id) if format == "idealo" else product.external_id
+    if format=='google_shopping':return product.external_id or product.canonical_product_id
+    if format=='idealo':return product.sku or product.external_id or product.canonical_product_id
+    return product.external_id
 
 
 def _verify_projection(products, payload, format):
@@ -147,17 +173,22 @@ def create_evidence_sidecar(products: list[Product], exported_bytes: bytes, *, f
     Row indices are zero-based; repeated marketplace IDs stay separate. The
     digest establishes correspondence, not capture authenticity or confidence.
     """
+    return _create_sidecar_from_snapshot(prepare_evidence_snapshot(products),exported_bytes,format=format)
+
+
+def _create_sidecar_from_snapshot(snapshot,exported_bytes,*,format):
+    if not isinstance(snapshot,PreparedEvidenceSnapshot):raise ValueError('Expected prepared evidence snapshot')
     if type(exported_bytes) is not bytes:
         raise ValueError("Export payload must be bytes")
     if not isinstance(format, str) or format not in {"csv", "google_shopping", "idealo"}:
         raise ValueError("Unsupported sidecar format")
-    bundle = create_evidence_bundle(products)
-    _verify_projection(products, exported_bytes, format)
+    bundle = json.loads(snapshot.bundle_bytes)
+    _verify_projection(snapshot.rows, exported_bytes, format)
     sidecar = {"sidecar_type": "shopextract.evidence-sidecar", "schema_version": 1,
                "format": format, "sha256": hashlib.sha256(exported_bytes).hexdigest(),
                "rows": [{"row_index": i, "record_key": item["record_key"],
                          "external_id": _row_id(product, format)}
-                        for i, (product, item) in enumerate(zip(products, bundle["records"]))],
+                        for i, (product, item) in enumerate(zip(snapshot.rows, bundle["records"]))],
                "bundle": bundle}
     _json_bytes(sidecar)
     return sidecar

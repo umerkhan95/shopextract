@@ -60,7 +60,7 @@ class TestAnalyzeProducts:
         assert stats.avg_price == 29.99
         assert stats.median_price == 29.99
         assert stats.price_range == (29.99, 29.99)
-        assert stats.in_stock == 1
+        assert stats.in_stock == 0 and stats.out_of_stock == 0 and stats.unknown_stock == 1
         assert stats.has_images == 1
 
     def test_multiple_products(self, sample_products_dicts):

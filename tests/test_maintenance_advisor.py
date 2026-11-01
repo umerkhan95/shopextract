@@ -77,6 +77,7 @@ async def test_overrun_records_actual_violation_and_stops_second_model_dispatch(
                          profiles={'0': 'hardware-v1', '1': 'hardware-v1'})
     _, report = await Harness(tmp_path / 'jobs.db', investigator=advisor).run(configured)
     assert advisor.calls == 1
+    assert report['coverage']['source_complete'] is False
     assert report['state'] == 'partial' and report['stop_reason'] == 'budget_violation'
     assert report['usage']['tokens'] == 112 and report['usage']['cost_micros'] == 15
     assert report['usage']['violations'] == 1
@@ -89,6 +90,7 @@ async def test_cost_reservation_denies_before_model_dispatch(tmp_path):
     _, report = await Harness(tmp_path / 'jobs.db', investigator=advisor).run(
         ambiguous_goal(budgets=Budgets(tokens=128, cost_micros=9)))
     assert advisor.calls == 0
+    assert report['coverage']['source_complete'] is False
     assert report['stop_reason'] == 'cost_budget'
     assert report['usage']['tokens'] == report['usage']['cost_micros'] == 0
 

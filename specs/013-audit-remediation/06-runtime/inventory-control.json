@@ -1,0 +1,16 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_runtime_lazy_imports.py",
+    "-q",
+    "-k",
+    "frozen_public",
+    "--tb=short"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 15.367,
+  "outer_timeout": 120,
+  "fresh_timeout": 15
+}

@@ -1,0 +1,27 @@
+{
+  "provenance": "actual read-only HTTP discovery; borrowed guarded transport, not live worker timing",
+  "at": "2026-11-01T03:40:27.376146+00:00",
+  "url": "https://www.khaadi.com",
+  "request_cap": 5,
+  "requests": [
+    "https://www.khaadi.com/robots.txt"
+  ],
+  "responses": [
+    {
+      "url": "https://www.khaadi.com/robots.txt",
+      "status": 200
+    }
+  ],
+  "urls": [],
+  "reasons": [
+    "discovery_coverage_unverified",
+    "robots_unavailable",
+    "robots_disallowed",
+    "browser_discovery_unassessed"
+  ],
+  "request_count": 1,
+  "policy_observed": false,
+  "home_allowed": false,
+  "forbidden_requests": [],
+  "assertion": false
+}

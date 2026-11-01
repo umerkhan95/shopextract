@@ -14,6 +14,8 @@ from __future__ import annotations
 
 import hashlib
 import logging
+import re
+from urllib.parse import urljoin
 from typing import Any
 
 import httpx
@@ -22,6 +24,9 @@ from . import _markdown_price as markdown_price_extractor
 from .._models import ExtractorResult
 from .._execution import browser_allowed
 from .._capture import capture
+from .._structured_html import extract_structured_products, StructuredHTMLResult, coverage_issues
+from .._product_admission import has_product_evidence, crawl_document_allowed
+
 from ._browser import (
     DEFAULT_HEADERS,
     StealthLevel,
@@ -56,9 +61,17 @@ class UnifiedCrawlExtractor:
     async def extract(self, shop_url: str) -> ExtractorResult:
         """Extract product data from a single URL."""
         url = shop_url
+        from .._execution import record_progress_attempt,record_progress_rows
+        record_progress_attempt(url)
         html = await self._fetch_html_httpx(url)
         if html:
-            products = self._extract_structured_from_html(html, getattr(html, "source_url", url))
+            parsed = extract_structured_products(html, getattr(html, "source_url", url))
+            products = parsed.products
+            record_progress_rows(products,url)
+            issues = coverage_issues(parsed.diagnostics)
+            if issues:
+                return ExtractorResult(products=products,complete=False,
+                    error='; '.join(d['code'] for d in issues))
             for product in products:
                 if "_capture" in product and hasattr(html, "observed_at"):
                     product["_capture"]["at"] = html.observed_at.isoformat()
@@ -71,7 +84,12 @@ class UnifiedCrawlExtractor:
         if not browser_allowed():
             return ExtractorResult(products=httpx_products)
 
-        browser_products = await self._extract_with_browser(url)
+        browser_parsed = await self._extract_with_browser(url,include_diagnostics=True)
+        browser_products = browser_parsed.products
+        if browser_products:record_progress_rows(browser_products,url)
+        issues = coverage_issues(browser_parsed.diagnostics)
+        if issues:
+            return ExtractorResult(products=browser_products or httpx_products,complete=False,error='; '.join(d['code'] for d in issues))
         if browser_products:
             return ExtractorResult(products=browser_products)
 
@@ -85,6 +103,7 @@ class UnifiedCrawlExtractor:
         if not urls:
             return ExtractorResult(products=[])
 
+        from .._execution import record_progress_rows
         from crawl4ai import AsyncWebCrawler
         from crawl4ai.async_dispatcher import MemoryAdaptiveDispatcher
 
@@ -106,9 +125,16 @@ class UnifiedCrawlExtractor:
             ) as crawler:
                 results = await crawler.arun_many(urls=urls, config=crawl_config, dispatcher=dispatcher)
                 for result in results:
-                    if not result.success:
+                    if not crawl_document_allowed(result):
+                        error = "Browser document failed HTTP/product admission"
                         continue
-                    products = self._extract_from_crawl_result(result, result.url)
+                    parsed = self._extract_from_crawl_result(result, result.url,include_diagnostics=True)
+                    products=parsed.products
+                    if products:record_progress_rows(products,result.url)
+                    issues=coverage_issues(parsed.diagnostics)
+                    if issues:error='; '.join(d['code'] for d in issues)
+                    if not products:
+                        error = f"Browser document has no admitted product evidence: {result.url}"
                     all_products.extend(products)
         except Exception as e:
             logger.exception("Batch unified crawl failed: %s", e)
@@ -151,26 +177,13 @@ class UnifiedCrawlExtractor:
 
     @staticmethod
     def _extract_structured_from_html(html: str, url: str, *, include_categories=False) -> list[dict]:
-        products = SchemaOrgExtractor.extract_from_html(html, url)
-        if products:
-            og_list = OpenGraphExtractor.extract_from_html(html, url, include_categories=include_categories)
-            if og_list:
-                og = og_list[0]
-                for product in products:
-                    _fill_gaps_from_og(product, og)
-            enrich_product_html(products, html, url)
-            return products
-
-        og_list = OpenGraphExtractor.extract_from_html(html, url, include_categories=include_categories)
-        if og_list:
-            enrich_product_html(og_list, html, url)
-            return og_list
-
-        return []
+        return extract_structured_products(html,url,include_categories=include_categories).products
 
     # -- Browser path ---------------------------------------------------------
 
-    async def _extract_with_browser(self, url: str) -> list[dict]:
+    async def _extract_with_browser(self, url: str, *, include_diagnostics=False):
+        diagnostics=[]
+        def finish(products):return StructuredHTMLResult(products,diagnostics) if include_diagnostics else products
         from crawl4ai import AsyncWebCrawler
 
         levels = [
@@ -179,7 +192,7 @@ class UnifiedCrawlExtractor:
         ]
 
         if not levels:
-            return []
+            return finish([])
 
         max_level = levels[-1]
         browser_config = get_browser_config(max_level)
@@ -194,23 +207,24 @@ class UnifiedCrawlExtractor:
                     crawl_config = get_crawl_config(stealth_level=level, scan_full_page=True)
                     try:
                         result = await crawler.arun(url=url, config=crawl_config)
-                        if not result.success:
+                        if not crawl_document_allowed(result):
                             continue
-                        products = self._extract_from_crawl_result(result, getattr(result, "url", None) or url)
+                        parsed = self._extract_from_crawl_result(result, getattr(result, "url", None) or url,include_diagnostics=True)
+                        products=parsed.products;diagnostics.extend(parsed.diagnostics)
                         if products:
-                            return products
+                            return finish(products)
                     except Exception as e:
                         logger.debug("Browser crawl at stealth level %s failed for %s: %s", level.value, url, e)
                         continue
         except Exception as e:
             logger.warning("Browser startup error for %s: %s", url, e)
 
-        return []
+        return finish([])
 
     # -- Core extraction from CrawlResult -------------------------------------
 
     @staticmethod
-    def _extract_from_crawl_result(result: Any, url: str) -> list[dict]:
+    def _extract_from_crawl_result(result: Any, url: str, *, include_diagnostics=False):
         url = getattr(result, "url", None) or url
         html = getattr(result, "html", "") or ""
         metadata = getattr(result, "metadata", {}) or {}
@@ -228,8 +242,9 @@ class UnifiedCrawlExtractor:
 
         media = getattr(result, "media", {}) or {}
 
-        # Layer 1: JSON-LD
-        products = SchemaOrgExtractor.extract_from_html(html, url) if html else []
+        parsed=extract_structured_products(html,url) if html else StructuredHTMLResult([],[])
+        def finish(products):return StructuredHTMLResult(products,parsed.diagnostics) if include_diagnostics else products
+        products=parsed.products
 
         # Layer 2: OG tags
         og_from_meta = OpenGraphExtractor.from_metadata(metadata) if metadata else []
@@ -246,15 +261,59 @@ class UnifiedCrawlExtractor:
         best_image = _extract_best_image(media)
 
         if products:
-            products = _deduplicate_products(products)
-            for product in products:
-                if og:
-                    _fill_gaps_from_og(product, og)
-                _fill_gaps_from_markdown(product, md_data)
-                if best_image:
-                    _fill_image(product, best_image)
-            enrich_product_html(products, html, url)
-            return products
+            matches=[p for p in products if p.get('url')==url or p.get('@id')==url]
+            owner=matches[0] if len(matches)==1 else products[0] if len(products)==1 else None
+            if owner is not None:
+                schema='name' in owner
+                selected_image=og.get('og:image') or best_image
+                if selected_image and ('/placeholder/' in selected_image.lower() or selected_image.startswith('data:')):selected_image=best_image
+                offers=owner.get('offers') or {}
+                structured_offer=offers[0] if isinstance(offers,list) else offers
+                contexts=[v for v in [structured_offer.get('priceCurrency') if isinstance(structured_offer,dict) else None,
+                    metadata.get('product:price:currency'),metadata.get('og:price:currency'),
+                    og.get('product:price:currency'),og.get('og:price:currency')] if v]
+                contexts=[v.strip().upper() if isinstance(v,str) else v for v in contexts]
+                context=contexts[0] if contexts else None
+                md_data=markdown_price_extractor.extract(md_text,url,currency=context) if md_text else {}
+                from .._normalization import Normalizer
+                authorities=contexts+([md_data['currency']] if md_data.get('currency') else [])
+                n=Normalizer({str(i):v for i,v in enumerate(authorities)})
+                currency=n.currency('currency',*['/'+str(i) for i in range(len(authorities))]) if authorities else ''
+                # A found explicit markdown currency conflicting with context is unresolved.
+                explicit=markdown_price_extractor.extract(md_text,url) if md_text else {}
+                if explicit.get('currency') and context and explicit['currency']!=context:currency=''
+                if authorities and (not currency or len(set(authorities))>1):
+                    parsed.diagnostics.append({'code':'currency_conflict','message':'Captured rendered currency authorities conflict or are invalid'})
+                prices=[mapping[k] for mapping in (metadata,og) for k in ('product:price:amount','og:price:amount') if k in mapping and mapping[k] is not None]
+                rendered={'metadata':metadata,'markdown':md_text,'price':prices[0] if prices else md_data.get('price'),
+                          'currency':currency,'image':urljoin(url,selected_image) if selected_image else None,
+                          'description':og.get('og:description'),'url':og.get('og:url')}
+                source=capture({'rendered':rendered},url,'browser_rendered',excerpt=md_text or None)['_capture']
+                def put(path,value,source_key):
+                    parts=path[1:].split('/');target=owner
+                    for token in parts[:-1]:target=target[int(token)] if isinstance(target,list) else target.setdefault(token,{})
+                    target[parts[-1]]=value
+                    owner.setdefault('_field_sources',{})[path]={'capture_path':'/rendered/'+source_key,'_capture':source}
+                for key,field in [('description','description' if schema else 'og:description'),('url','url' if schema else 'og:url')]:
+                    if rendered[key] and not owner.get(field):put('/'+field,rendered[key],key)
+                if rendered['image'] and not (owner.get('image') or owner.get('og:image')):put('/image' if schema else '/og:image',rendered['image'],'image')
+                if schema:
+                    offers=owner.get('offers')
+                    if not offers:owner['offers']={};offers=owner['offers']
+                    offer=offers[0] if isinstance(offers,list) else offers
+                    prefix='/offers/0' if isinstance(offers,list) else '/offers'
+                    if isinstance(offer,dict):
+                        if 'price' not in offer and rendered['price'] is not None:put(prefix+'/price',rendered['price'],'price')
+                        if contexts and not currency:
+                            offer['priceCurrency']=''
+                        elif not offer.get('priceCurrency') and currency:put(prefix+'/priceCurrency',currency,'currency')
+                else:
+                    if not any(k in owner for k in ('og:price:amount','product:price:amount')) and rendered['price'] is not None:put('/product:price:amount',rendered['price'],'price')
+                    if contexts and not currency:
+                        for key in ('product:price:currency','og:price:currency'):
+                            if key in owner:owner[key]=''
+                    elif not owner.get('product:price:currency') and currency:put('/product:price:currency',currency,'currency')
+            return finish(products)
 
         if og or md_data:
             product: dict = {}
@@ -264,10 +323,9 @@ class UnifiedCrawlExtractor:
             if best_image:
                 _fill_image(product, best_image)
             if product and _has_product_signal(product, og):
-                enrich_product_html([product], html, url)
-                return [product]
+                return finish([product])
 
-        return []
+        return finish([])
 
     @staticmethod
     def _has_price_and_image(product: dict) -> bool:
@@ -365,16 +423,7 @@ def _extract_best_image(media: dict | list) -> str | None:
 
 
 def _has_product_signal(product: dict, og: dict) -> bool:
-    og_type = og.get("og:type", "").lower() if og else ""
-    if "product" in og_type:
-        return True
-    for key in ("og:price:amount", "product:price:amount"):
-        val = product.get(key) or (og.get(key) if og else None)
-        if val and str(val).strip() and str(val).strip() != "0":
-            return True
-    if product.get("price"):
-        return True
-    return False
+    return has_product_evidence({**og, **product})
 
 
 def _deduplicate_products(products: list[dict]) -> list[dict]:

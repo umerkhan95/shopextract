@@ -209,9 +209,12 @@ def test_artifact_same_input_output_rejected(tmp_path):
     assert source.read_bytes()==before
 
 
-def test_read_json_byte_record_depth_boundaries(tmp_path):
+def test_read_json_byte_record_depth_boundaries(tmp_path,monkeypatch):
     from shopextract._cli_data import read_json_file, products_from_value,bounded_tree
     from shopextract._cli_core import CliFailure
+    import shopextract._cli_data as data
+    assert (data.MAX_BYTES,data.MAX_NODES)==(33554432,1000000)
+    monkeypatch.setattr(data,'MAX_BYTES',1048576)
     file=tmp_path/'bounded.json'
     for size in (1048575,1048576):
         file.write_bytes(b'[]'+b' '*(size-2));assert read_json_file(file)==[]

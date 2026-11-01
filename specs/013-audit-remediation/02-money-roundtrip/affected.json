@@ -1,0 +1,18 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_normalize.py",
+    "tests/test_capture_provenance.py",
+    "tests/test_cli_extract.py",
+    "tests/test_cli_extract_limits.py",
+    "tests/test_cli_analysis.py",
+    "tests/test_export.py",
+    "-q",
+    "--tb=short"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 8.872,
+  "timeout": 120
+}

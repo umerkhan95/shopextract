@@ -5,11 +5,13 @@ from __future__ import annotations
 import logging
 import re
 from decimal import Decimal, InvalidOperation
+from html import unescape
 from urllib.parse import urljoin
 
 from ._models import Platform, Product, Variant
 from .identity import assign_identity
 from ._normalization import Normalizer
+from ._product_admission import has_product_evidence
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +25,7 @@ def _strip_html(html: str) -> str:
     html = re.sub(r"<style[\s>].*?</style>", "", html, flags=re.IGNORECASE | re.DOTALL)
     # Strip remaining tags
     html = re.sub(r"<[^>]+>", "", html)
-    return html.strip()
+    return unescape(html).strip()
 
 
 def _validate_gtin(value: str | None) -> str | None:
@@ -270,10 +272,10 @@ def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
     return t.result({
         'external_id': t.emit('external_id', '/id', default='', convert=str),
         'title': title,
-        'description': t.emit('description', '/body_html', default='', convert=_strip_html, operation='Strip HTML and whitespace'),
+        'description': t.emit('description', '/body_html', default='', convert=_strip_html, operation='Strip HTML, decode entities and whitespace'),
         'price': t.money('price', '/variants/0/price'),
         'compare_at_price': t.money('compare_at_price', '/variants/0/compare_at_price', default=None, truthy=True),
-        'currency': t.emit('currency', '/variants/0/price_currency', '/currency', '/_shop_currency', default='USD', truthy=True),
+        'currency': t.currency('currency', '/variants/0/price_currency', '/currency', '/_shop_currency'),
         'image_url': t.emit('image_url', '/images/0/src', default=''),
         'product_url': t.emit('product_url', '/handle', default=shop_url, truthy=True,
                               convert=lambda handle: f"{shop_url.rstrip('/')}/products/{handle}", operation='Resolve product handle using configured shop URL'),
@@ -289,16 +291,52 @@ def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
     })
 
 
+def _woo_text(value):
+    """Woo Store API returns WordPress display text with HTML entities encoded."""
+    return unescape(value).strip() if isinstance(value,str) else value
+
+
+def _woo_variants(raw,trace):
+    key='variants' if isinstance(raw.get('variants'),list) else 'variations'
+    records=raw.get(key) or []
+    identifiers=[str(v.get('id')) for v in records if isinstance(v,dict) and v.get('id') is not None]
+    duplicates={i for i in identifiers if identifiers.count(i)>1}
+    if duplicates:raw.setdefault('_adapter_diagnostics',[]).append({'code':'duplicate_variant_id'})
+    variants=[]
+    for index,child in enumerate(records):
+        if not isinstance(child,dict) or child.get('id') is None or str(child['id']) in duplicates:continue
+        n=Normalizer(child)
+        if 'prices' in child:
+            minor=child['prices'].get('currency_minor_unit',2)
+            price=n.money('price','/prices/price',divisor=10**minor)
+        else:price=n.money('price','/price')
+        if not n.outcomes['/price'].accepted:continue
+        attrs={}
+        for name,value in (child.get('attributes') or {}).items() if isinstance(child.get('attributes'),dict) else []:
+            token=str(name).replace('~','~0').replace('/','~1')
+            attrs[name]=n.emit('attributes/'+token,'/attributes/'+token)
+        if isinstance(child.get('attributes'),list):
+            for j,a in enumerate(child['attributes']):
+                if isinstance(a,dict) and a.get('name') and 'value' in a:
+                    token=str(a['name']).replace('~','~0').replace('/','~1')
+                    attrs[a['name']]=n.emit('attributes/'+token,f'/attributes/{j}/value')
+        v=Variant(variant_id=n.emit('variant_id','/id',convert=str),title=n.emit('title','/name','/title',default='',convert=_woo_text,operation='Decode HTML entities'),
+            price=price,sku=n.emit('sku','/sku'),in_stock=n.emit('in_stock','/is_in_stock','/in_stock',default=None,convert=lambda x:x if isinstance(x,bool) else None),attributes=attrs)
+        trace.inherit(n,f'/variants/{len(variants)}',f'/{key}/{index}')
+        variants.append(v)
+    return variants
+
+
 def _normalize_woocommerce(raw: dict, shop_url: str) -> dict | None:
     t = Normalizer(raw)
-    title = t.emit('title', '/title', '/name', default='', truthy=True, convert=str.strip)
+    title = t.emit('title', '/title', '/name', default='', truthy=True, convert=_woo_text, operation='Decode HTML entities')
     if not title:
         return None
     admin = raw.get('_source') == 'woocommerce_admin_api' or (isinstance(raw.get('price'), str) and 'prices' not in raw)
     if admin:
         price = t.money('price', '/price', truthy=True)
         compare = t.money('compare_at_price', '/compare_at_price', default=None, truthy=True)
-        currency = t.emit('currency', '/currency', default='USD')
+        currency = t.currency('currency', '/currency')
     else:
         minor_unit = raw.get('prices', {}).get('currency_minor_unit', 2)
         divisor = 10**minor_unit
@@ -306,7 +344,7 @@ def _normalize_woocommerce(raw: dict, shop_url: str) -> dict | None:
         price = t.money('price', '/prices/price', divisor=divisor, operation=operation)
         compare = t.money('compare_at_price', '/prices/regular_price', default=None,
                           truthy=True, divisor=divisor, operation=operation)
-        currency = t.emit('currency', '/prices/currency_code', default='USD')
+        currency = t.currency('currency', '/prices/currency_code')
     if compare == price:
         compare = None
     images = raw.get('images', [])
@@ -323,7 +361,7 @@ def _normalize_woocommerce(raw: dict, shop_url: str) -> dict | None:
     tags_raw = raw.get('tags', [])
     if tags_raw and isinstance(tags_raw[0], dict):
         positions = [i for i,v in enumerate(tags_raw) if isinstance(v, dict)]
-        tags = [tags_raw[i].get('name', '') for i in positions]
+        tags = [_woo_text(tags_raw[i].get('name', '')) for i in positions]
         paths = [f'/tags/{i}/name' for i in positions]
     else:
         tags, paths = tags_raw, [f'/tags/{i}' for i in range(len(tags_raw))]
@@ -333,24 +371,29 @@ def _normalize_woocommerce(raw: dict, shop_url: str) -> dict | None:
         category, cat_paths = [], []
     elif categories and isinstance(categories[0], dict):
         positions = [i for i,v in enumerate(categories) if isinstance(v, dict) and v.get('name')]
-        category = [categories[i]['name'] for i in positions]
+        category = [_woo_text(categories[i]['name']) for i in positions]
         cat_paths = [f'/categories/{i}/name' for i in positions]
     else:
         category, cat_paths = categories, [f'/categories/{i}' for i in range(len(categories))]
+    brands=raw.get('brands') or []
+    names={b.get('name') for b in brands if isinstance(b,dict) and isinstance(b.get('name'),str) and b['name']}
+    if len(names)>1:raw.setdefault('_adapter_diagnostics',[]).append({'code':'brand_conflict'})
+    vendor=t.emit('vendor',f'/brands/{next((i for i,b in enumerate(brands) if isinstance(b,dict) and b.get("name") in names),0)}/name',convert=_woo_text,operation='Decode HTML entities') if len(names)==1 else None
     return t.result({
         'external_id': t.emit('external_id', '/id', default='', convert=str), 'title':title,
-        'description': t.emit('description', '/description', default='', convert=_strip_html, operation='Strip HTML and whitespace'),
+        'description': t.emit('description', '/description', default='', convert=_strip_html, operation='Strip HTML, decode entities and whitespace'),
         'price':price, 'compare_at_price':compare, 'currency':currency, 'image_url':image,
         'product_url': t.emit('product_url', '/permalink', '/product_url', default='', truthy=True),
+        'vendor':vendor,'variants':_woo_variants(raw,t),
         'sku': t.emit('sku', '/sku'),
         'gtin': t.emit('gtin', '/gtin', '/ean', '/barcode', truthy=True, convert=_validate_gtin, operation='Validate GTIN; pad 12-digit UPC with zero'),
         'mpn': t.emit('mpn', '/mpn', truthy=True),
         'in_stock': t.emit('in_stock', '/is_in_stock', default=True, convert=lambda v: v if isinstance(v, bool) else None),
-        'tags': _record_items(t, 'tags', '/tags', tags, paths, 'Project tag names'),
+        'tags': _record_items(t, 'tags', '/tags', tags, paths, 'Project tag names; decode HTML entities'),
         'additional_images':additional,
         'category_path': (t.record('category_path', '/categories', [], accepted=False,
             reason='Invalid category collection; compatibility default has no support') if invalid_categories else
-            _record_items(t, 'category_path', '/categories', category, cat_paths, 'Project category names')),
+            _record_items(t, 'category_path', '/categories', category, cat_paths, 'Project category names; decode HTML entities')),
     })
 
 
@@ -390,10 +433,13 @@ def _normalize_magento_graphql(raw: dict, shop_url: str) -> dict | None:
         'external_id': t.emit('external_id', '/sku', default=''),
         'sku': t.emit('sku', '/sku'), 'title': title,
         'price': t.money('price', price_path + '/value', stringify=True),
-        'currency': t.emit('currency', price_path + '/currency', default='USD'),
+        'currency': t.currency('currency', price_path + '/currency'),
         'description': t.emit('description', '/description/html', default='',
-                              convert=_strip_html, operation='Strip HTML and whitespace'),
+                              convert=_strip_html, operation='Strip HTML, decode entities and whitespace'),
         'image_url': t.emit('image_url', '/image/url', default=''),
+        'vendor':t.emit('vendor','/brand',convert=lambda v:v if isinstance(v,str) and not v.isnumeric() else None),
+        'gtin':t.emit('gtin','/gtin',convert=_validate_gtin),
+        'additional_images':_record_items(t,'additional_images','/media_gallery',[v['url'] for v in raw.get('media_gallery',[]) if isinstance(v,dict) and v.get('url') and v['url']!=raw.get('image',{}).get('url')],[f'/media_gallery/{i}/url' for i,v in enumerate(raw.get('media_gallery',[])) if isinstance(v,dict) and v.get('url') and v['url']!=raw.get('image',{}).get('url')],'Project captured gallery URLs'),
         'product_url': product_url, 'variants': variants,
         'in_stock': t.emit('in_stock', '/stock_status', default=True,
                            convert=lambda v: {'IN_STOCK': True, 'OUT_OF_STOCK': False}.get(v),
@@ -429,11 +475,11 @@ def _normalize_shopware_store_api(raw: dict, shop_url: str) -> dict | None:
         'title': title, 'sku': t.emit('sku', '/productNumber'),
         'description': t.emit('description', '/translated/description', '/description',
                               default='', truthy=True, convert=_strip_html,
-                              operation='Strip HTML and whitespace'),
+                              operation='Strip HTML, decode entities and whitespace'),
         'price': t.money('price', '/calculatedPrice/unitPrice', stringify=True),
         'compare_at_price': t.money('compare_at_price', '/calculatedPrice/listPrice/price',
                                     default=None, stringify=True),
-        'currency': t.emit('currency', '/currency', default='EUR', truthy=True),
+        'currency': t.currency('currency', '/currency'),
         'image_url': t.emit('image_url', '/cover/media/url', default='', truthy=True),
         'product_url': t.emit('product_url', '/seoUrls/0/seoPathInfo', default=shop_url,
                               truthy=True, convert=lambda v: urljoin(shop_url.rstrip('/') + '/', v),
@@ -475,9 +521,9 @@ def _normalize_bigcommerce(raw: dict, shop_url: str) -> dict | None:
         'external_id': t.emit('external_id', '/entityId', default='', convert=str),
         'title': title, 'sku': t.emit('sku', '/sku'),
         'description': t.emit('description', '/description', default='', convert=_strip_html,
-                              operation='Strip HTML and whitespace'),
+                              operation='Strip HTML, decode entities and whitespace'),
         'price': t.money('price', '/prices/price/value', stringify=True),
-        'currency': t.emit('currency', '/prices/price/currencyCode', default='USD'),
+        'currency': t.currency('currency', '/prices/price/currencyCode'),
         'image_url': t.emit('image_url', '/defaultImage/urlOriginal', default=''),
         'product_url': t.emit('product_url', '/path', default=shop_url,
                               convert=lambda v: urljoin(shop_url, v),
@@ -515,9 +561,9 @@ def _normalize_magento(raw: dict, shop_url: str) -> dict | None:
             paths.append(f'/media_gallery_entries/{i}/file')
     return t.result({
         'external_id':t.emit('external_id', '/sku', '/id', default='', convert=lambda v: v if 'sku' in raw else str(v)),
-        'title':title, 'currency':t.emit('currency','/currency',default='USD'),
+        'title':title, 'currency':t.currency('currency','/currency'),
         'price':t.money('price','/price',stringify=True),
-        'description':attr('description',default='',convert=_strip_html,operation='Strip HTML and whitespace'),
+        'description':attr('description',default='',convert=_strip_html,operation='Strip HTML, decode entities and whitespace'),
         'image_url':attr('image_url',default='',truthy=True,convert=lambda v:f"{shop_url.rstrip('/')}/media/catalog/product{v}",operation='Resolve Magento media path'),
         'product_url':attr('product_url',default=shop_url,truthy=True,convert=lambda v:f"{shop_url.rstrip('/')}/{v}.html",operation='Resolve Magento product URL key'),
         'sku':t.emit('sku','/sku'), 'gtin':attr('gtin',truthy=True),
@@ -539,9 +585,9 @@ def _normalize_shopware(raw: dict, shop_url: str) -> dict | None:
         compare = None
     return t.result({
         'external_id':t.emit('external_id','/id','/sku',default='',truthy=True,convert=str),
-        'title':title, 'description':t.emit('description','/description',default='',truthy=True,convert=_strip_html,operation='Strip HTML and whitespace'),
+        'title':title, 'description':t.emit('description','/description',default='',truthy=True,convert=_strip_html,operation='Strip HTML, decode entities and whitespace'),
         'price':price, 'compare_at_price':compare,
-        'currency':t.emit('currency','/currency',default='EUR',truthy=True),
+        'currency':t.currency('currency','/currency'),
         'image_url':t.emit('image_url','/image_url',default='',truthy=True),
         'product_url':t.emit('product_url','/product_url',default=shop_url,truthy=True),
         'sku':t.emit('sku','/sku'),
@@ -576,9 +622,9 @@ def _normalize_google_feed(raw: dict, shop_url: str) -> dict | None:
     category = [c.strip() for c in re.split(r'\s*>\s*',product_type) if c.strip()] if product_type else []
     return t.result({
         'external_id':t.emit('external_id','/id',default=''), 'title':title,
-        'description':t.emit('description','/description',default='',convert=_strip_html,operation='Strip HTML and whitespace'),
+        'description':t.emit('description','/description',default='',convert=_strip_html,operation='Strip HTML, decode entities and whitespace'),
         'price':price,'compare_at_price':compare,
-        'currency':t.emit('currency','/currency',default='EUR',truthy=True),
+        'currency':t.currency('currency','/currency'),
         'image_url':t.emit('image_url','/image_link',default=''),
         'product_url':t.emit('product_url','/link',default=shop_url,truthy=True),
         'sku':t.emit('sku','/id',default=''),
@@ -671,9 +717,9 @@ def _normalize_schema_org(raw: dict, shop_url: str) -> dict | None:
         categories, cat_paths = [], []
     return t.result({
         'external_id':external,'title':title,
-        'description':t.emit('description','/description',default='',convert=_strip_html,operation='Strip HTML and whitespace'),
+        'description':t.emit('description','/description',default='',convert=_strip_html,operation='Strip HTML, decode entities and whitespace'),
         'price':t.money('price',offer+'/price',stringify=True),
-        'currency':t.emit('currency',offer+'/priceCurrency',default='USD'),
+        'currency':t.currency('currency',offer+'/priceCurrency'),
         'image_url':image_url, 'product_url':t.emit('product_url','/url',default=shop_url),
         'sku':sku,'gtin':gtin,'mpn':t.emit('mpn','/mpn',offer+'/mpn',truthy=True),
         'vendor':t.emit('vendor',*(['/brand/name'] if isinstance(raw.get('brand'),dict) else ['/brand'])),
@@ -685,6 +731,8 @@ def _normalize_schema_org(raw: dict, shop_url: str) -> dict | None:
 
 
 def _normalize_opengraph(raw: dict, shop_url: str) -> dict | None:
+    if not has_product_evidence(raw):
+        return None
     t = Normalizer(raw)
     title = t.emit('title','/og:title',default='',convert=str.strip)
     if not title:
@@ -699,9 +747,9 @@ def _normalize_opengraph(raw: dict, shop_url: str) -> dict | None:
     additional = [_extract_image_url(item) for item in gallery[1:]]
     return t.result({
         'external_id':t.emit('external_id','/og:product_id','/product:retailer_item_id',default=''),
-        'title':title,'description':t.emit('description','/og:description',default='',convert=_strip_html,operation='Strip HTML and whitespace'),
+        'title':title,'description':t.emit('description','/og:description',default='',convert=_strip_html,operation='Strip HTML, decode entities and whitespace'),
         'price':t.money('price',price_path,stringify=True),
-        'currency':t.emit('currency',currency_path,default='USD'),
+        'currency':t.currency('currency',currency_path),
         'image_url':t.emit('image_url','/image/0','/og:image',default='',truthy=True,convert=_extract_image_url),
         'sku':t.emit('sku','/sku',truthy=True),
         'vendor':t.emit('vendor','/brand/name' if isinstance(raw.get('brand'),dict) else '/brand',truthy=True),
@@ -717,7 +765,7 @@ def _normalize_css_generic(raw: dict, shop_url: str) -> dict | None:
     title = t.emit('title','/title','/name','/product_name','/heading',default='',truthy=True,convert=str.strip)
     if not title:
         return None
-    currency = t.emit('currency', '/currency', '/price_currency', default='USD', truthy=True)
+    currency = t.currency('currency', '/currency', '/price_currency')
     if not t.outcomes['/currency'].accepted:
         price_input = t.select('/price')
         symbols = [code for symbol, code in [('£', 'GBP'), ('€', 'EUR')]
@@ -727,8 +775,8 @@ def _normalize_css_generic(raw: dict, shop_url: str) -> dict | None:
                                 operation='Infer currency from unambiguous price symbol')
     return t.result({
         'external_id':t.emit('external_id','/sku','/id',default=''), 'title':title,
-        'description':t.emit('description','/description',default='',convert=_strip_html,operation='Strip HTML and whitespace'),
-        'price':t.money('price','/price',stringify=True,css=True),
+        'description':t.emit('description','/description',default='',convert=_strip_html,operation='Strip HTML, decode entities and whitespace'),
+        'price':t.money('price','/price',stringify=True,css=True,currency=currency,locale=raw.get('price_locale') or raw.get('locale')),
         'currency':currency,
         'image_url':t.emit('image_url','/image','/image_url','/src',default='',truthy=True,
                            convert=lambda v: urljoin(shop_url, v), operation='Resolve image reference against fetched page URL'),

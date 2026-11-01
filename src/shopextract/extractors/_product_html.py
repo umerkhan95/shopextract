@@ -62,7 +62,7 @@ def clean_product_images(product) -> None:
             product.pop(key)
 
 
-def enrich_product_html(products: list[dict], html: str, url: str) -> None:
+def enrich_product_html(products: list[dict], html: str, url: str, *, include_brand: bool = True) -> None:
     for product in products:
         clean_product_images(product)
     if len(products) != 1 or not html:
@@ -83,7 +83,7 @@ def enrich_product_html(products: list[dict], html: str, url: str) -> None:
                 excerpts.append(str(node))
         if images:
             selected['image'] = images
-    if not product.get('brand'):
+    if include_brand and not product.get('brand'):
         node = root.select_one('.brand-name a')
         if node and (value := node.get_text(' ', strip=True)):
             selected['brand'] = value

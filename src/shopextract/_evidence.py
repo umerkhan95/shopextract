@@ -1,11 +1,12 @@
 """Version-one field trust contracts; capture and policy are separate concerns."""
 from __future__ import annotations
 
-from dataclasses import dataclass, field, fields, asdict
+from dataclasses import dataclass, field, fields, is_dataclass
 from datetime import datetime, timezone
 from decimal import Decimal
 from enum import Enum
 import math
+import copy
 import re
 from urllib.parse import urlsplit
 from uuid import UUID
@@ -218,7 +219,7 @@ class TrustContract:
 
     def to_dict(self) -> dict:
         self.validate()
-        return encode_value(asdict(self))
+        return encode_value(_record_values(self))
 
     @classmethod
     def from_dict(cls, payload: dict) -> TrustContract:
@@ -237,6 +238,29 @@ class TrustContract:
                    observations=observations,
                    resolutions=[FieldResolution(**r) for r in data.get("resolutions", [])],
                    schema_version=data["schema_version"])
+
+
+def _record_values(value):
+    """asdict-compatible detached containers, without copying immutable leaves."""
+    if type(value) in (str,int,float,bool,type(None),Decimal,datetime):
+        return value
+    # Python3.10 uses Enum's reducer; newer versions also expose deepcopy.
+    # Preserve overrides and mutable values rather than shortcut arbitrary enums.
+    if isinstance(value,Enum):
+        copier=getattr(type(value),'__deepcopy__',None)
+        standard=(copier is not None and copier is getattr(Enum,'__deepcopy__',None) or
+                  copier is None and type(value).__reduce_ex__ is Enum.__reduce_ex__)
+        if standard and type(value.value) in (str,int,float,bool,type(None),Decimal,datetime):
+            return value
+    if is_dataclass(value) and not isinstance(value,type):
+        return {f.name:_record_values(getattr(value,f.name)) for f in fields(value)}
+    if isinstance(value,tuple) and hasattr(value,'_fields'):
+        return type(value)(*(_record_values(v) for v in value))
+    if isinstance(value,(list,tuple)):
+        return type(value)(_record_values(v) for v in value)
+    if isinstance(value,dict):
+        return type(value)((_record_values(k),_record_values(v)) for k,v in value.items())
+    return copy.deepcopy(value)
 
 
 def encode_value(value):

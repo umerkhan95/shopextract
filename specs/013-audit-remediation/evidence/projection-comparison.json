@@ -1,0 +1,16 @@
+[
+  {
+    "label": "before",
+    "profile_total_seconds": 5.175899911999937,
+    "deepcopy_calls": 57842,
+    "contract_validation_calls": 400,
+    "portable_seconds": 1.456768875
+  },
+  {
+    "label": "after",
+    "profile_total_seconds": 4.825750764999984,
+    "deepcopy_calls": 8942,
+    "contract_validation_calls": 300,
+    "portable_seconds": 1.0759185230000001
+  }
+]

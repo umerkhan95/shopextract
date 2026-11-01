@@ -1,0 +1,21 @@
+{
+  "exit_code": 1,
+  "seconds": 51.606,
+  "timeout": 120,
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_html_coverage.py",
+    "tests/test_agent_tool_api.py::test_complete_domain_flow_uses_native_code_paths",
+    "tests/test_tool_native_modes.py",
+    "tests/test_capture_provenance.py",
+    "tests/test_normalize.py",
+    "tests/test_extract.py",
+    "tests/test_static_schema_cache.py",
+    "tests/test_truthful_outcomes.py",
+    "tests/test_truthful_outcomes_stress.py",
+    "-q",
+    "--tb=short"
+  ]
+}

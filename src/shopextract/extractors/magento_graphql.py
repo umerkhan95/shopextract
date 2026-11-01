@@ -21,6 +21,13 @@ _QUERY = '''query Catalog($size:Int!, $page:Int!) {
 _QUERY_WITH_CATEGORIES = _QUERY.replace(_FIELDS, _FIELDS + ' ' + MAGENTO_CATEGORY_SELECTION)
 
 
+_CAPABILITIES={'media_gallery':'media_gallery { url }','brand':'brand','gtin':'gtin'}
+def validate_capabilities(value):
+    if not isinstance(value,(tuple,list)) or any(not isinstance(v,str) or v not in _CAPABILITIES for v in value):
+        raise ValueError('Unknown Magento capability; expected media_gallery, brand or gtin')
+    return tuple(dict.fromkeys(value))
+
+
 class MagentoGraphQLExtractor:
     def __init__(self, timeout=30, page_size=20, max_pages=100, http_client=None):
         positive_limits(page_size, max_pages)
@@ -28,9 +35,16 @@ class MagentoGraphQLExtractor:
         self.http_client = http_client
 
     async def extract(self, shop_url, *, max_products=20, endpoint=None, access_token=None,
-                      include_categories=False):
+                      include_categories=False, capabilities=()):
         positive_limits(max_products)
+        capabilities=validate_capabilities(capabilities)
+        query=_QUERY_WITH_CATEGORIES if include_categories else _QUERY
+        if capabilities:query=query.replace(_FIELDS,_FIELDS+" "+" ".join(_CAPABILITIES[v] for v in capabilities))
+        fallback=False
         products, seen = [], set()
+        from .._execution import register_progress_source
+        from .._models import Platform
+        register_progress_source(products,Platform.MAGENTO,shop_url)
         source_errors = False
         try:
             url = endpoint_url(endpoint or shop_url.rstrip('/') + '/graphql')
@@ -41,7 +55,13 @@ class MagentoGraphQLExtractor:
                     if size <= 0:
                         break
                     response = await request(client, 'GET', url, headers=headers,
-                        params={'query': _QUERY_WITH_CATEGORIES if include_categories else _QUERY, 'variables': json.dumps({'size':size, 'page':page})})
+                        params={'query':query, 'variables': json.dumps({'size':size, 'page':page})})
+                    payload=response.json()
+                    unknown=any('cannot query field' in str(e.get('message','')).lower() for e in payload.get('errors',[]) if isinstance(e,dict)) if isinstance(payload,dict) else False
+                    if capabilities and not fallback and unknown:
+                        fallback=True;source_errors=True
+                        query=_QUERY_WITH_CATEGORIES if include_categories else _QUERY
+                        response=await request(client,'GET',url,headers=headers,params={'query':query,'variables':json.dumps({'size':size,'page':page})})
                     at = datetime.now(timezone.utc)
                     body = native_body(response, include_categories=True) if include_categories else json_body(response)
                     errors = body.get('_category_errors', ())

@@ -1,0 +1,25 @@
+{
+  "provenance": "summary archived from recorded tool outputs; not a new execution",
+  "attempts": [
+    {
+      "limit_seconds": 30,
+      "status": "timeout",
+      "stage": "uncheckpointed"
+    },
+    {
+      "limit_seconds": 30,
+      "status": "timeout",
+      "stage": "record-equality",
+      "checks": {}
+    },
+    {
+      "limit_seconds": 30,
+      "status": "timeout",
+      "stage": "export",
+      "checks": {
+        "reader_variants_evidence": true,
+        "analyzer": true
+      }
+    }
+  ]
+}

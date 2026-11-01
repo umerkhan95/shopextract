@@ -1,0 +1,25 @@
+{
+  "case": "shopify",
+  "provenance": "actual read-only HTTP observation",
+  "at": "2026-11-01T03:38:57.671845+00:00",
+  "requests": [
+    "https://www.allbirds.com/products.json?limit=2&page=1"
+  ],
+  "responses": [
+    {
+      "url": "https://www.allbirds.com/products.json?limit=2&page=1",
+      "status": 200
+    }
+  ],
+  "request_cap": 3,
+  "exit_code": 3,
+  "ok": false,
+  "completeness": "partial",
+  "error": {
+    "code": "E_PARTIAL",
+    "message": "Operation returned bounded or incomplete results; inspect metadata.",
+    "retryable": false
+  },
+  "product_count": 2,
+  "assertion": true
+}

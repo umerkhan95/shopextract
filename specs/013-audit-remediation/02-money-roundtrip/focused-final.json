@@ -1,0 +1,19 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_money_roundtrip.py",
+    "tests/test_normalize.py",
+    "tests/test_capture_provenance.py",
+    "tests/test_cli_extract.py",
+    "tests/test_cli_extract_limits.py",
+    "tests/test_cli_analysis.py",
+    "tests/test_export.py",
+    "-q",
+    "--tb=short"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 10.706,
+  "timeout": 120
+}

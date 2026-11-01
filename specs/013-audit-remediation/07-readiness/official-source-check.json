@@ -1,0 +1,23 @@
+{
+  "retrieved_date": "2026-11-01",
+  "source": "https://developers.openai.com/commerce/specs/file-upload/products?fields=required&version=currently-stable&view=table",
+  "route": "OpenAI Docs skill; official-domain search then actual page retrieval",
+  "required_basic_fields": [
+    "item_id",
+    "title",
+    "description",
+    "url",
+    "brand",
+    "seller_name",
+    "image_url",
+    "availability",
+    "price"
+  ],
+  "availability_unknown_explicitly_allowed": true,
+  "other_unknown_placeholders_not_universally_valid": true,
+  "stable_is_supported_upload_schema": true,
+  "draft_is_not_production_schema": true,
+  "discovery_does_not_verify_ads_or_checkout": true,
+  "variant_rows_have_distinct_item_ids_shared_group_id_and_selected_options": true,
+  "note": "Matches existing O1 register; basic-field profile must declare variant/grouping checks unassessed or implement them before claiming whole-feed readiness."
+}

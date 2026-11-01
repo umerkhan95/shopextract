@@ -65,6 +65,7 @@ def _add_google_item_fields(item: ET.Element, product: dict) -> None:
         "mpn": f"{{{_GOOGLE_NS}}}mpn",
         "condition": f"{{{_GOOGLE_NS}}}condition",
         "product_type": f"{{{_GOOGLE_NS}}}product_type",
+        **{key:f"{{{_GOOGLE_NS}}}{key}" for key in ("identifier_exists","item_group_id","color","size","gender","age_group")},
     }
 
     for src_field, xml_tag in field_map.items():
@@ -74,14 +75,15 @@ def _add_google_item_fields(item: ET.Element, product: dict) -> None:
             el.text = _format_price(value, product) if src_field == "price" else str(value)
 
     # Availability
-    in_stock = product.get("in_stock", True)
-    avail = ET.SubElement(item, f"{{{_GOOGLE_NS}}}availability")
-    avail.text = "in stock" if in_stock else "out of stock"
+    in_stock = product.get("in_stock")
+    if type(in_stock) is bool:
+        avail = ET.SubElement(item, f"{{{_GOOGLE_NS}}}availability")
+        avail.text = "in stock" if in_stock else "out of stock"
 
 
 def _format_price(price: object, product: dict) -> str:
     """Format price with currency for Google Shopping feed."""
-    currency = product.get("currency", "USD")
+    currency = product.get("currency", "")
     return f"{price} {currency}"
 
 

@@ -1,0 +1,33 @@
+{
+  "sdk_root": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/crawl4ai",
+  "network_requests": 0,
+  "browser_launched": false,
+  "service_worker_config_parameter": false,
+  "matches": {
+    "async_crawler_strategy.py": [
+      {
+        "line": 103,
+        "text": "\"on_page_context_created\": None,"
+      },
+      {
+        "line": 168,
+        "text": "- on_page_context_created: Called when a new page context is created."
+      },
+      {
+        "line": 615,
+        "text": "await self.execute_hook(\"on_page_context_created\", page, context=context, config=config)"
+      }
+    ],
+    "browser_manager.py": [
+      {
+        "line": 22,
+        "text": "\"--disable-background-networking\","
+      },
+      {
+        "line": 1400,
+        "text": "context = await self.browser.new_context(**context_settings)"
+      }
+    ],
+    "async_configs.py": []
+  }
+}

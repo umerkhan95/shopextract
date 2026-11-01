@@ -1,0 +1,7 @@
+{
+  "status": "timeout",
+  "seconds_limit": 30,
+  "purpose": "map four full-suite failure markers to collection node order",
+  "result": "collection subprocess exceeded30s; no candidate node mapping established; no focused candidate rerun or further sweep",
+  "full_suite_failure_markers": 4
+}

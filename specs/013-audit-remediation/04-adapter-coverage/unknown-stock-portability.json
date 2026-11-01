@@ -1,0 +1,5 @@
+{
+  "variant_stock": null,
+  "portable": "failed",
+  "reason": "Invalid type at product/variants/0/in_stock"
+}

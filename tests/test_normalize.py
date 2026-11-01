@@ -324,7 +324,7 @@ class TestNormalizeGeneric:
         assert product.price == Decimal("1299.99")
 
     def test_css_comma_decimal(self):
-        raw = {"title": "DE Product", "price": "29,99", "sku": "DE-001"}
+        raw = {"title": "DE Product", "price": "29,99", "sku": "DE-001", "currency":"EUR", "price_locale":"de-DE"}
         product = normalize(raw, platform=Platform.GENERIC)
         assert product.price == Decimal("29.99")
 

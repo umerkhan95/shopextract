@@ -10,7 +10,7 @@ import httpx
 
 from .._models import ExtractorResult
 from .._capture import capture
-from ._browser import DEFAULT_HEADERS, get_default_user_agent
+from ._http_defaults import DEFAULT_HEADERS, get_default_user_agent
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +27,9 @@ class MagentoExtractor:
                       endpoint: str | None = None, access_token: str | None = None) -> ExtractorResult:
         """Fetch all products from Magento 2 REST API with pagination."""
         all_products: list[dict[str, Any]] = []
+        from .._execution import register_progress_source
+        from .._models import Platform
+        register_progress_source(all_products,Platform.MAGENTO,shop_url)
         base_url = shop_url.rstrip("/")
         current_page = 1
         complete = True

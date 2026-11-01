@@ -1,8 +1,7 @@
-"""URL discovery for e-commerce stores.
+"""Bounded URL discovery: native API probes and robots-aware HTTP sitemaps.
 
-Uses platform-specific product sitemaps, crawl4ai AsyncUrlSeeder for generic
-sitemap discovery, and BestFirstCrawlingStrategy for browser-based link
-discovery when API and sitemap strategies fail.
+Default public calls own an isolated worker. Explicit private browser discovery
+remains separate from the bounded profile and imports browser dependencies lazily.
 """
 
 from __future__ import annotations
@@ -16,31 +15,10 @@ from bs4 import BeautifulSoup
 import defusedxml.ElementTree as ET
 from defusedxml.common import DefusedXmlException
 import httpx
-from crawl4ai import AsyncUrlSeeder, AsyncWebCrawler, CacheMode, SeedingConfig
-from crawl4ai.deep_crawling import (
-    BestFirstCrawlingStrategy,
-    DomainFilter,
-    FilterChain,
-    URLPatternFilter,
-)
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
-
-try:
-    from crawl4ai.deep_crawling import ContentTypeFilter
-    _HAS_CONTENT_TYPE_FILTER = True
-except ImportError:
-    _HAS_CONTENT_TYPE_FILTER = False
-
 from ._filters import PLATFORM_PRODUCT_SITEMAPS, is_non_product_url
 from ._models import Platform
 from ._execution import browser_allowed, current_state
 from ._discovery_sitemaps import discover_sitemap_urls
-from .extractors._browser import (
-    StealthLevel,
-    get_browser_config,
-    get_crawl_config,
-    get_crawler_strategy,
-)
 
 logger = logging.getLogger(__name__)
 
@@ -56,8 +34,6 @@ PRODUCT_KEYWORDS = [
     "sku", "inventory", "catalog", "collection",
 ]
 
-# Overall discovery timeout (5 minutes)
-_DISCOVERY_TIMEOUT = 300
 
 _USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -65,60 +41,49 @@ _USER_AGENT = (
 )
 
 
-class _DiscoveryStopped(Exception):
-    pass
-
-
-async def discover(
-    url: str,
-    *,
-    platform: Platform | None = None,
-    max_urls: int = 100,
-    timeout: float = 30.0,
-    client: httpx.AsyncClient | None = None,
-) -> list[str]:
-    """Discover product URLs for the given store.
-
-    Args:
-        url: The merchant's website URL.
-        platform: Detected platform (auto-detected if None).
-        max_urls: Maximum URLs to return.
-        timeout: HTTP request timeout in seconds.
-        client: Optional shared httpx.AsyncClient.
-
-    Returns:
-        List of discovered product URLs.
-    """
-    if platform is None:
-        from ._detect import detect as detect_platform
-        result = await detect_platform(url, client=client)
-        platform = result.platform
-
-    base_url = url.rstrip("/")
-    logger.info("Discovering URLs for %s (platform: %s)", base_url, platform)
-
-    state = current_state()
-    deadline = min(float(timeout), _DISCOVERY_TIMEOUT)
+async def discover(url: str, *, platform: Platform | None = None,
+                   max_urls: int = 100, timeout: float = 30.0,
+                   client: httpx.AsyncClient | None = None) -> list[str]:
+    """Bounded public discovery; borrowed transports have cooperative deadlines."""
+    from ._discovery_runtime import run_discovery_worker
+    if type(max_urls) is not int or not 1 <= max_urls <= 1000 or isinstance(timeout,bool) or not 0 < timeout <= 300:
+        raise ValueError('Discovery requires max_urls 1..1000 and positive timeout <=300')
+    state=current_state()
     if state is not None:
-        deadline = min(deadline, state.deadline - time.monotonic())
-    if deadline <= 0:
-        return []
+        timeout=min(timeout,state.deadline-time.monotonic())
+        if timeout<=0:
+            from ._discovery_runtime import DiscoveryURLs
+            return DiscoveryURLs(reasons=['discovery_timeout'])
+    if client is not None:
+        return await _discover_local(url,platform=platform,max_urls=max_urls,timeout=min(timeout,30),client=client)
+    return await run_discovery_worker({'url':url,'platform':platform.value if platform else None,
+                                       'max_urls':max_urls,'timeout':min(timeout,30)})
+
+
+async def _discover_local(url, *, platform=None, max_urls=100, timeout=30, client=None):
+    from ._discovery_runtime import DiscoveryClient, DiscoveryURLs
+    own=client is None
+    raw=client or httpx.AsyncClient(timeout=timeout,follow_redirects=False)
+    guarded=raw if isinstance(raw,DiscoveryClient) else DiscoveryClient(raw)
+    async def operation():
+        nonlocal platform
+        if platform is None:
+            from ._detect import detect
+            platform=(await detect(url,client=guarded)).platform
+        urls=await _discover_for_platform(url.rstrip('/'),platform,timeout,guarded,max_urls=max_urls)
+        allowed=[]
+        for item in urls[:5000]:
+            if isinstance(item,str) and await guarded.allowed(item):allowed.append(item)
+        return sorted(set(allowed))[:max_urls]
     try:
-        coro = _discover_for_platform(base_url, platform, timeout, client, max_urls=max_urls)
-        urls = await asyncio.wait_for(coro, timeout=deadline)
-    except _DiscoveryStopped:
-        return []
+        urls=await asyncio.wait_for(operation(),min(timeout,30))
     except asyncio.TimeoutError:
-        logger.error("URL discovery timed out after %gs for %s", deadline, base_url)
-        return []
-    except Exception as e:
-        logger.error("Error discovering URLs for %s: %s", base_url, e)
-        return []
-
-    if max_urls and len(urls) > max_urls:
-        urls = urls[:max_urls]
-
-    return urls
+        guarded.note('discovery_timeout');urls=[]
+    except Exception:
+        guarded.note('discovery_source_error');urls=[]
+    finally:
+        if own:await raw.aclose()
+    return DiscoveryURLs(urls,reasons=guarded.reasons,request_count=guarded.request_count)
 
 
 async def _discover_for_platform(
@@ -188,7 +153,8 @@ async def _discover_woocommerce(
     if urls:
         return _filter_woocommerce_urls(urls)
 
-    return await _discover_via_crawl4ai(base_url)
+    client.note('browser_discovery_unassessed')
+    return []
 
 
 async def _discover_magento(
@@ -213,7 +179,8 @@ async def _discover_magento(
     if urls:
         return urls
 
-    return await _discover_via_crawl4ai(base_url)
+    client.note('browser_discovery_unassessed')
+    return []
 
 
 async def _discover_bigcommerce(
@@ -242,7 +209,8 @@ async def _discover_bigcommerce(
     urls = await _discover_via_sitemap(base_url, platform, timeout, client, max_urls=max_urls)
     if urls:
         return urls
-    return await _discover_via_crawl4ai(base_url)
+    client.note('browser_discovery_unassessed')
+    return []
 
 
 async def _discover_generic(
@@ -253,11 +221,8 @@ async def _discover_generic(
     if urls:
         return urls
 
-    urls = await _discover_via_crawl4ai(base_url)
-    if urls:
-        return urls
-
-    return [base_url]
+    client.note('browser_discovery_unassessed')
+    return []
 
 
 # -- Sitemap discovery -------------------------------------------------------
@@ -266,48 +231,19 @@ async def _discover_via_sitemap(
     base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None,
     max_urls: int = 100,
 ) -> list[str]:
-    base_url = base_url.rstrip("/")
-    domain = urlparse(base_url).netloc
-
-    native = await discover_sitemap_urls(base_url, max_urls=max_urls, timeout=timeout, client=client)
-    if native.urls:
-        return list(native.urls)
-    if native.stop_fallback:
-        raise _DiscoveryStopped()
-
-    # Phase 1: platform-specific product sitemaps
-    product_sitemap_paths = PLATFORM_PRODUCT_SITEMAPS.get(platform.value, [])
-    if product_sitemap_paths:
-        product_urls = await _try_product_sitemaps(base_url, product_sitemap_paths, timeout, client)
-        if product_urls:
-            filtered = [u for u in product_urls if not is_non_product_url(u)]
-            logger.info(
-                "Product sitemaps yielded %d URLs (%d after filtering)",
-                len(product_urls), len(filtered),
-            )
-            return filtered
-
-    # Phase 2: generic sitemap via AsyncUrlSeeder
-    config = SeedingConfig(
-        source="sitemap",
-        pattern="*",
-        filter_nonsense_urls=True,
-        max_urls=max_urls,
-        force=False,
-    )
-    urls: list[str] = []
+    from ._discovery_runtime import DiscoveryClient, bounded_sitemaps
+    own=client is None
+    raw=client or httpx.AsyncClient(timeout=timeout,follow_redirects=False)
+    guarded=raw if isinstance(raw,DiscoveryClient) else DiscoveryClient(raw)
     try:
-        async with AsyncUrlSeeder() as seeder:
-            results = await seeder.urls(domain, config)
-        urls = [r["url"] for r in results if r.get("status") != "not_valid"]
-    except Exception as e:
-        logger.warning("AsyncUrlSeeder failed for %s: %s", domain, e)
-
-    # Phase 3: denylist filter
-    filtered = [u for u in urls if not is_non_product_url(u)]
-    if filtered:
-        logger.info("Sitemap discovery: %d URLs, %d after filtering", len(urls), len(filtered))
-    return filtered
+        native=await discover_sitemap_urls(base_url,max_urls=max_urls,timeout=timeout,client=guarded)
+        if native.stop_fallback:
+            guarded.note(native.stop_reason or 'native_sitemap_incomplete')
+        if native.urls:return list(native.urls)
+        if native.stop_fallback:return []
+        return await bounded_sitemaps(base_url,platform,guarded,max_urls=max_urls)
+    finally:
+        if own:await raw.aclose()
 
 
 async def _try_product_sitemaps(
@@ -370,6 +306,15 @@ def _filter_woocommerce_urls(urls: list[str]) -> list[str]:
 # -- Browser-based discovery -------------------------------------------------
 
 async def _discover_via_crawl4ai(base_url: str, max_pages: int = 100) -> list[str]:
+    from crawl4ai import AsyncWebCrawler, CacheMode
+    from crawl4ai.deep_crawling import BestFirstCrawlingStrategy, DomainFilter, FilterChain, URLPatternFilter
+    from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
+    from .extractors._browser import StealthLevel, get_browser_config, get_crawl_config, get_crawler_strategy
+    try:
+        from crawl4ai.deep_crawling import ContentTypeFilter
+        _HAS_CONTENT_TYPE_FILTER=True
+    except ImportError:
+        _HAS_CONTENT_TYPE_FILTER=False
     if not browser_allowed():
         return []
     parsed = urlparse(base_url)

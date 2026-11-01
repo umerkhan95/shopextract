@@ -1,0 +1,7 @@
+{
+  "command": "fresh process import shopextract",
+  "exit": 0,
+  "wall_seconds": 1.897,
+  "stdout": "{\"seconds\": 1.6476, \"modules\": 1194, \"crawl4ai_loaded\": true, \"torch_loaded\": false}",
+  "stderr_tail": "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!\n  warnings.warn(\n"
+}

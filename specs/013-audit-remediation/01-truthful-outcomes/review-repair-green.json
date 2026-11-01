@@ -1,0 +1,21 @@
+{
+  "exit_code": 1,
+  "elapsed_seconds": 56.306,
+  "timeout": 120,
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_truthful_outcomes.py",
+    "tests/test_truthful_outcomes_stress.py",
+    "tests/test_extract.py",
+    "tests/test_normalize.py",
+    "tests/test_cli_extract.py",
+    "tests/test_cli_extract_limits.py",
+    "tests/test_agent_tool_api.py",
+    "tests/test_tool_native_modes.py",
+    "tests/test_tool_lifecycle.py",
+    "-q",
+    "--tb=short"
+  ]
+}

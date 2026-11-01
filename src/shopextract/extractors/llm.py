@@ -12,12 +12,12 @@ from crawl4ai import (
     LLMConfig,
 )
 from crawl4ai.async_dispatcher import MemoryAdaptiveDispatcher
-from crawl4ai.content_filter_strategy import PruningContentFilter
 from crawl4ai.extraction_strategy import LLMExtractionStrategy
 
 from .._models import ExtractorResult
 from .._capture import capture
 from ._browser import (
+    PruningContentFilter,
     StealthLevel,
     get_browser_config,
     get_crawl_config,

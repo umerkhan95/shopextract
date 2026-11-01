@@ -1,0 +1,36 @@
+{
+  "method": "one non-invasive ps snapshot; executable paths only, no arguments/environment",
+  "load_average": [
+    4.22216796875,
+    3.3671875,
+    2.98095703125
+  ],
+  "logical_cpu_count": 16,
+  "top_cpu": [
+    {
+      "cpu_percent": 70.6,
+      "executable": "/Library/Application Support/Logitech.localized/LogiOptionsPlus/logioptionsplus_agent.app/Contents/Frameworks/logioptionsplus_updater.app/Contents/MacOS/logioptionsplus_updater"
+    },
+    {
+      "cpu_percent": 12.3,
+      "executable": "/Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    },
+    {
+      "cpu_percent": 10.3,
+      "executable": "/usr/sbin/coreaudiod"
+    },
+    {
+      "cpu_percent": 8.6,
+      "executable": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.GPU.xpc/Contents/MacOS/com.apple.WebKit.GPU"
+    },
+    {
+      "cpu_percent": 6.9,
+      "executable": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.Networking.xpc/Contents/MacOS/com.apple.WebKit.Networking"
+    },
+    {
+      "cpu_percent": 5.8,
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+    }
+  ],
+  "causation_established": false
+}

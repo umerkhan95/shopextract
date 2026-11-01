@@ -1,0 +1,24 @@
+{
+  "provenance": "synthetic offline independent review; actual production parser/emitter",
+  "product_group_fixture": {
+    "@type": "ProductGroup",
+    "name": "Widget",
+    "hasVariant": [
+      {
+        "@type": "Product",
+        "name": "Widget red",
+        "offers": {
+          "price": "10",
+          "priceCurrency": "PKR"
+        }
+      }
+    ]
+  },
+  "schema_count": 1,
+  "unified_count": 0,
+  "empty_normalize_emission": {
+    "exception": "CliFailure",
+    "code": "E_OPERATION"
+  },
+  "network_requests": 0
+}

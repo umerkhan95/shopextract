@@ -24,7 +24,7 @@ from ._portable import product_to_record
 
 # Concrete report model schema, deliberately no generic dataclass/default=str dump.
 _REPORT_FIELDS = {
-    'CatalogStats': ('total_products','price_range','avg_price','median_price','currencies','brands','categories','in_stock','out_of_stock','has_gtin','has_images','completeness_score'),
+    'CatalogStats': ('total_products','price_range','avg_price','median_price','currencies','brands','categories','in_stock','out_of_stock','unknown_stock','has_gtin','has_images','completeness_score'),
     'MatchDecision': ('relation','confidence','evidence','conflicts','needs_review','index_a','index_b','candidate_method','field_support'),
     'Match': ('title','price','currency','store','product_url','similarity'),
     'ComparisonResult': ('query','matches','cheapest','most_expensive','avg_price','price_spread'),
@@ -34,8 +34,8 @@ _REPORT_FIELDS = {
     'PricePosition': ('product_title','my_price','rank','total_competitors','percentile','market_avg','cheapest','most_expensive','competitor_prices'),
     'SafePosition': ('position','currency','excluded','sources'),
     'AssortmentGaps': ('missing_categories','missing_brands','competitor_category_counts','competitor_brand_counts','my_categories','my_brands','sources'),
-    'ValidationReport': ('marketplace','total','valid','invalid','issues','warnings','pass_rate'),
-    'ValidationIssue': ('product_index','product_title','field','error','severity'),
+    'ValidationReport': ('marketplace','total','valid','invalid','issues','warnings','pass_rate','subset_status','rules_version','unassessed_checks'),
+    'ValidationIssue': ('product_index','product_title','field','error','severity','rule_id'),
     'ImageIssue': ('product_index','product_title','image_url','status_code','content_type','error'),
 }
 
@@ -158,7 +158,8 @@ def analyze_command(url,maximum,timeout):
 
 def validate_command(file,marketplace):
     from .validate import validate
-    result=validate(load_catalog(file).records,marketplace=marketplace)
+    catalog=load_catalog(file)
+    result=validate(catalog.products if catalog.products is not None else catalog.records,marketplace=marketplace)
     output(result,validation=result.invalid>0)
 
 
@@ -180,11 +181,8 @@ def export_artifact(catalog,fmt,target,companion=None,source=None,categories=Non
         raise CliFailure('E_USAGE','Input, output and evidence paths must differ, including aliases.')
     # Sidecar native validation happens before any artifact replacement.
     products=catalog.products if companion else catalog.records
-    if companion:
-        from .export import create_evidence_bundle
-        create_evidence_bundle(products)
     if categories:
-        from ._cli_data import MAX_BYTES
+        from ._cli_categories import MAX_BYTES
         category_value=dict(schema_version='1.0',data=dict(products=[product_to_record(p) for p in catalog.products],categorized_products=catalog.categorized_records,**catalog.category_policy)) if catalog.category_policy else catalog.categorized_records
         category_bytes=json.dumps(category_value,ensure_ascii=False,allow_nan=False,separators=(',',':')).encode('utf-8')
         if len(category_bytes)>MAX_BYTES:
@@ -207,7 +205,8 @@ def export_artifact(catalog,fmt,target,companion=None,source=None,categories=Non
         if category_stage:Path(category_stage).write_bytes(category_bytes)
         if fmt=='json':to_json(products,payload)
         elif fmt=='csv':to_csv(products,payload,evidence_path=side)
-        elif fmt in ('google_shopping','idealo'):to_feed(products,payload,format=fmt,evidence_path=side)
+        elif fmt in ('google_shopping','idealo'):
+            feed_result=to_feed(catalog.products if catalog.products is not None else products,payload,format=fmt,evidence_path=side)
         else:
             try:to_parquet(products,payload)
             except ImportError:
@@ -219,7 +218,7 @@ def export_artifact(catalog,fmt,target,companion=None,source=None,categories=Non
             return
         pairs=[(payload,target)]+([(side,companion)] if companion else [])+([(category_stage,categories)] if categories else [])
         if categories:
-            from ._cli_data import MAX_BYTES
+            from ._cli_categories import MAX_BYTES
             if any(Path(temporary).stat().st_size>MAX_BYTES for temporary,_ in pairs):
                 raise CliFailure('E_USAGE','Categorized export payload or companion exceeds CLI1MiB; reduce input.')
         for _,destination in pairs:
@@ -243,7 +242,7 @@ def export_artifact(catalog,fmt,target,companion=None,source=None,categories=Non
                 retain=True
                 raise CliFailure('E_OPERATION','Export replacement/recovery failed; retained recovery files: '+ '; '.join(recovery)+'; retained stages='+','.join(stages)) from None
             raise CliFailure('E_OPERATION','Export replacement failed; previous outputs restored.') from None
-        output({'format':fmt,'output':target,'evidence_output':companion,**({'categories_output':categories} if categories else {}),**({'structured_json_columns':structured_columns,'structured_json_encoding':'evidence-json-v1'} if structured_columns else {}),'product_count':len(catalog.records),'bytes':Path(target).stat().st_size})
+        output({'format':fmt,'output':target,'evidence_output':companion,**({'categories_output':categories} if categories else {}),**({'structured_json_columns':structured_columns,'structured_json_encoding':'evidence-json-v1'} if structured_columns else {}),'product_count':len(catalog.records),'bytes':Path(target).stat().st_size,**(feed_result if fmt in ('google_shopping','idealo') else {})})
     except CliFailure:raise
     except (OSError,ValueError,TypeError):
         raise CliFailure('E_OPERATION','Cannot stage export; previous outputs preserved.') from None
@@ -348,7 +347,8 @@ def register(main):
     @click.argument('file')
     def analyze_file(file):
         from .analyze import analyze_products
-        output({'statistics':analyze_products(load_catalog(file).records),'aggregate_precision':'native_float_approximate'})
+        catalog=load_catalog(file)
+        output({'statistics':analyze_products(catalog.products if catalog.products is not None else catalog.records),'aggregate_precision':'native_float_approximate'})
 
     @main.group('stats',cls=click.Group)
     def stats():

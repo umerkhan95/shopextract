@@ -17,6 +17,11 @@ from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 try:
     from crawl4ai import DefaultMarkdownGenerator
     from crawl4ai.content_filter_strategy import PruningContentFilter
+    try:
+        # crawl4ai 0.9.5 deprecates the BeautifulSoup filter for this lxml twin with identical output.
+        from crawl4ai.content_filter_strategy import PruningContentFilterLXML as PruningContentFilter
+    except ImportError:
+        pass
 except ImportError:
     DefaultMarkdownGenerator = None  # type: ignore[assignment,misc]
     PruningContentFilter = None  # type: ignore[assignment,misc]
@@ -55,17 +60,7 @@ PRODUCT_WAIT_CONDITION = (
 DEFAULT_PAGE_TIMEOUT = 30000
 DEFAULT_DELAY_BEFORE_RETURN = 3.0
 
-# Modern Chrome UA for httpx (non-browser) requests
-HTTPX_USER_AGENT = (
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
-)
-
-# Default HTTP headers
-DEFAULT_HEADERS: dict[str, str] = {
-    "Accept-Language": "en-US,en;q=0.9",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-}
+from ._http_defaults import DEFAULT_HEADERS, HTTPX_USER_AGENT, get_default_user_agent
 
 # Cookie consent dismiss script
 DISMISS_COOKIE_JS = """
@@ -109,9 +104,6 @@ DISMISS_COOKIE_JS = """
 """
 
 
-def get_default_user_agent() -> str:
-    """Return a modern Chrome User-Agent for httpx (non-browser) requests."""
-    return HTTPX_USER_AGENT
 
 
 class StealthLevel(str, Enum):
@@ -227,6 +219,9 @@ def get_crawl_config(
         remove_overlay_elements=remove_overlay_elements,
         scroll_delay=scroll_delay,
         check_robots_txt=check_robots_txt,
+        # crawl4ai defaults verbose=True and arun() applies it to its logger, which
+        # wrote [FETCH]/[SCRAPE] lines to stdout before 0.8.7 (#1968).
+        verbose=False,
         js_code=DISMISS_COOKIE_JS,
         locale=locale,
         **geo_kwargs,

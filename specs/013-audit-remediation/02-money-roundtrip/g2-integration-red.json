@@ -1,0 +1,17 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_money_roundtrip.py",
+    "-q",
+    "-k",
+    "every_currency_dispatcher or currency_lower_invalid_conflict or full_compact_reader or invalid_compact_input",
+    "--tb=short"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 7.366,
+  "timeout": 120,
+  "total_cases": 64,
+  "selected_cases": 25
+}

@@ -97,7 +97,7 @@ async def main():
 
     print(f"Platform: {result.platform}")       # shopify, woocommerce, magento, ...
     print(f"Tier: {result.tier}")               # api, unified_crawl, css
-    print(f"Quality: {result.quality_score}")    # 0.0 - 1.0
+    print(f"Field presence: {result.quality_score}")  # 0.0–1.0; not source support or eligibility
     print(f"Products: {result.product_count}")
 
     for p in result.products[:5]:
@@ -388,7 +388,7 @@ for brand, stores in coverage.items():
 
 ### Validate for marketplaces
 
-Check if your product data meets marketplace requirements before submitting feeds.
+Run local marketplace checks before preparing feeds. Google results cover a versioned catalog subset; inspect `subset_status` and `unassessed_checks` for missing context and checks outside that subset.
 
 ```python
 import shopextract
@@ -603,9 +603,46 @@ Additional families include `extract-one`, `feed`, `normalize`, `quality`,
 `match`, `match-gtin`, `match-pair`, `match-evaluate`, `compare-catalogs`,
 `analyze-file`, `stats`, `competitive`, `identity`, `images`, `duplicates`,
 `export`, `watch`, `snapshot-save`, `snapshot-load`, `resolve`, `evidence`,
-`categories`, `maintenance`, `tools`, `capabilities` and `schema`.
+`categories`, `readiness`, `maintenance`, `tools`, `capabilities` and `schema`.
 Use `COMMAND --help` and nested `GROUP COMMAND --help` for exact options.
 The module entry point is `python -m shopextract.cli`.
+
+### Catalog transport and local readiness
+
+```bash
+shopextract --output-format json extract https://example.com -n 25 --compact -o catalog.json
+shopextract --output-format json analyze-file catalog.json
+shopextract --output-format json readiness catalog.json --target openai_discovery --seller-name "Example Merchant"
+shopextract --output-format json readiness catalog.json --target google_shopping --context destination.json --strict
+```
+
+`--compact` preserves product values, variants and captured evidence while reducing
+repeated provenance. Catalog JSON readers accept up to32MiB,1000 products,1million
+nodes and64 nested levels; compact expansion has the same byte/node ceilings.
+Use an evidence companion when a CSV/feed projection must retain trust metadata.
+
+Extraction with no usable products fails. Unknown catalog coverage stays unknown
+and uses partial exit3; a nonempty page does not prove completeness. Field presence
+scores do not measure factual support or destination eligibility. Missing, invalid
+or conflicting source currency remains unresolved; monetary values retain Decimal
+precision and explicit zero. Destination checks assess zero-price eligibility
+separately. Direct model constructor defaults remain compatible and are not source
+observations.
+
+`readiness` is a local informational report with no network, API key or paid service.
+Non-strict mode returns operation success even when `ready=false`; `--strict`
+returns exit3 and retains the report. Google assesses only the named catalog subset,
+schema.org reports model coverage, and OpenAI assesses its
+[basic stable product fields](https://developers.openai.com/commerce/specs/file-upload/products?fields=required&version=currently-stable&view=table).
+Variant/grouping requirements remain explicit when unassessed. ACP reports protocol
+integration unassessed with RFCProposal provenance. These reports do not establish
+merchant approval, advertising eligibility or checkout integration.
+
+Woo `--enrich-variants` is opt-in with at most5 detail attempts per parent and20
+extra detail attempts per extraction. Shopify identifier enrichment remains opt-in;
+missing bulk barcodes are not invented. Magento storefront configuration accepts
+explicit `capabilities` (`media_gallery`, `brand`, `gtin`); unsupported optional
+schema fields fall back to the core query once and report incomplete coverage.
 
 ---
 
@@ -943,3 +980,11 @@ captured native GIDs with bounded mapping policies and category-specific schemas
 optional Storefront acquisition preserves existing product and variant data.
 See [lookup, extraction, packaging and measured limits](docs/shopify-taxonomy.md).
 Full source/generated data stays outside Git and is embedded in release artifacts.
+
+Bounded discovery uses one owned worker (maximum30s plus2s cleanup),16 HTTP
+requests including robots and redirects, and at most1000 URLs. Robots policy is
+checked before crawling/emitting; unavailable policy fails closed,404 is absent.
+The bounded path uses HTTP sitemaps rather than an unaccounted browser walk.
+Extract-store timeout can retain accepted products with a partial result; bounded
+recovery and rendering add time after source cancellation. See [CLI limits and
+outcomes](docs/cli.md).

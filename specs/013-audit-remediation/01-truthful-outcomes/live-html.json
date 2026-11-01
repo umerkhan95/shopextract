@@ -1,0 +1,21 @@
+{
+  "case": "html",
+  "provenance": "actual read-only HTTP observation",
+  "at": "2026-11-01T03:39:31.788239+00:00",
+  "requests": [
+    "https://www.naheed.pk/max-factor-creme-puff-pressed-powder-42-deep-beige"
+  ],
+  "responses": [
+    {
+      "url": "https://www.naheed.pk/max-factor-creme-puff-pressed-powder-42-deep-beige",
+      "status": 200
+    }
+  ],
+  "request_cap": 3,
+  "exit_code": 0,
+  "ok": true,
+  "completeness": "complete",
+  "error": null,
+  "product_count": 1,
+  "assertion": true
+}

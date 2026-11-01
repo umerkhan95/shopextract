@@ -1,0 +1,13 @@
+[
+  "/Users/umerkhan/code/shopextract/.venv/bin/python",
+  "-m",
+  "pytest",
+  "tests/test_portable_projection_perf.py",
+  "tests/test_evidence_contracts.py",
+  "tests/test_evidence_bundle.py",
+  "tests/test_evidence_persistence.py",
+  "tests/test_evidence_trust_e2e.py",
+  "tests/test_reliable_changes.py",
+  "tests/test_money_roundtrip.py",
+  "-q"
+]

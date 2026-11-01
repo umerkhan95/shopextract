@@ -155,7 +155,7 @@ class TestToFeedGoogleShopping:
         assert avail_1.text == "out of stock"
 
     def test_xml_price_format(self, tmp_path):
-        products = [{"title": "A", "price": "19.99", "currency": "EUR", "external_id": "1"}]
+        products = [{"title": "A", "price": "19.99", "currency": "EUR", "external_id": "1", "description":"Source", "product_url":"https://fixture.invalid/p", "image_url":"https://fixture.invalid/i.jpg", "in_stock":True}]
         path = str(tmp_path / "feed.xml")
         to_feed(products, path, format="google_shopping")
 
@@ -192,7 +192,7 @@ class TestToFeedIdealo:
         assert headers == expected
 
     def test_sku_fallback_to_external_id(self, tmp_path):
-        products = [{"external_id": "EXT-1", "title": "A"}]
+        products = [{"external_id": "EXT-1", "title": "A", "price":"1", "currency":"USD"}]
         path = str(tmp_path / "feed.tsv")
         to_feed(products, path, format="idealo")
 

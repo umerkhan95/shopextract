@@ -1,0 +1,13 @@
+{
+  "provenance": "supplied historical extraction; current bounded pipeline diagnostic",
+  "source": "/private/tmp/claude-502/-Users-umerkhan/8731b0e2-9664-4309-82d7-cebd215bf991/scratchpad/audit/downstream/allbirds.json",
+  "sha256": "eed411877bda8741a2af679626d3fba4d09725b47a798c651a59d7dfcc34e22d",
+  "known_nodes": 193134,
+  "checks": {
+    "reader_variants_evidence": true,
+    "analyzer": true
+  },
+  "status": "timeout",
+  "stage": "export",
+  "limit_seconds": 30
+}

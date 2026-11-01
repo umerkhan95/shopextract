@@ -226,7 +226,12 @@ def test_layered_fallback_cannot_borrow_jsonld_or_parent_support():
     product = normalize(raw)
     view = audit(product)
     assert view['/title']['state'] == 'observed'
-    assert view['/price']['state'] == 'unsupported'
+    assert view['/price']['state'] == 'observed'
+    price=observation(product,'/price')
+    evidence=next(e for e in product.evidence_contract.evidence if e.evidence_id in price.evidence_ids)
+    assert evidence.method=='browser_rendered'
+    assert evidence.retained_data['source_pointer']=='/rendered/price'
+    assert evidence.retained_data['source_excerpt']==result.markdown
 
 
 def test_filtered_nested_images_retain_correct_source_item():
@@ -293,7 +298,7 @@ async def test_browser_redirect_capture_uses_final_url(structured):
             {'@type':'Product','name':'A','sku':'a','image':'a.jpg','offers':{'price':'10'}})+'</script>'
     else:
         html = '<meta property="og:title" content="A"><meta property="product:price:amount" content="10"><meta property="og:image" content="a.jpg">'
-    result = SimpleNamespace(success=True, url='https://final.test/p', html=html,
+    result = SimpleNamespace(success=True, status_code=200, url='https://final.test/p', html=html,
                              metadata={}, markdown='', media={})
     crawler = MagicMock()
     crawler.__aenter__ = AsyncMock(return_value=crawler)

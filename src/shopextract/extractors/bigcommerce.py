@@ -43,6 +43,9 @@ class BigCommerceExtractor:
             raise ValueError('include_categories must be boolean')
         validate_auth(token_type, access_token, customer_access_token, customer_id)
         products, seen, cursors = [], set(), set()
+        from .._execution import register_progress_source
+        from .._models import Platform
+        register_progress_source(products,Platform.BIGCOMMERCE,shop_url)
         try:
             async with storefront_client(self.http_client, self.timeout) as client:
                 if token_type != 'storefront':

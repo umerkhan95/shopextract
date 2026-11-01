@@ -1,0 +1,12 @@
+{
+  "retrieved_date": "2026-11-01",
+  "source": "https://developer.woocommerce.com/docs/apis/store-api/resources-endpoints/products/",
+  "verified_parameter": "offset",
+  "description": "Offset the result set by a specific number of items.",
+  "verified_sort_parameters": [
+    "orderby=id",
+    "order=asc"
+  ],
+  "decision": "bounded requests use page=1 plus explicit offset=accepted catalog count and shrinking per_page; legacy max_products=None keeps existing page traversal",
+  "scope": "single official primary page, no live merchant probe"
+}

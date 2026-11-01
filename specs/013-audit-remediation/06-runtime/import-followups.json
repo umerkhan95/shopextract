@@ -1,0 +1,14 @@
+[
+  {
+    "module": "shopextract.tools.domain",
+    "exit": 0,
+    "wall_seconds": 1.888,
+    "stdout": "{\"seconds\": 1.5522, \"modules\": 1200, \"crawl4ai_loaded\": true}"
+  },
+  {
+    "module": "shopextract.extractors",
+    "exit": 0,
+    "wall_seconds": 2.133,
+    "stdout": "{\"seconds\": 1.8192, \"modules\": 1194, \"crawl4ai_loaded\": true}"
+  }
+]

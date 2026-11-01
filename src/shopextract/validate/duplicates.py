@@ -51,6 +51,9 @@ def _find_by_title(
         for j in range(i + 1, len(titles)):
             if not titles[j]:
                 continue
+            from ..compare.identity_match import classify_match
+            decision=classify_match(products[i],products[j],threshold=threshold)
+            if any(not c.startswith('missing attributes:') for c in decision.conflicts):continue
             ratio = SequenceMatcher(None, titles[i], titles[j]).ratio()
             if ratio >= threshold:
                 duplicates.append((i, j, ratio))

@@ -6,7 +6,7 @@ sets and bytes are intentionally outside this transport contract.
 """
 from __future__ import annotations
 
-from dataclasses import asdict, fields, is_dataclass
+from dataclasses import fields, is_dataclass
 from datetime import datetime
 from decimal import Decimal
 from enum import Enum
@@ -14,7 +14,7 @@ import math
 import types
 from typing import get_args, get_origin, Union
 
-from ._evidence import TrustContract, decode_value, encode_value, trust_view, _id, _utc
+from ._evidence import TrustContract, decode_value, encode_value, trust_view, _id, _utc, _record_values
 from ._models import Product, Variant, Platform
 from ._schemas import schema_hints
 
@@ -108,7 +108,8 @@ def _contract_to_dict(owner):
         return None
     _check_type(contract, TrustContract, "evidence_contract")
     trust_view(owner, contract)
-    return contract.to_dict()
+    # trust_view validated this contract synchronously; preserve the same values.
+    return encode_value(_record_values(contract))
 
 
 def _contract_from_dict(value, owner):
@@ -147,7 +148,7 @@ def product_to_record(product: Product) -> dict:
     """Encode typed values and separately aligned dynamic trust attachments."""
     try:
         _check_type(product, Product, "product")
-        values = asdict(product)
+        values = _record_values(product)
         validate_tree(values)
         record = {"schema_version": PORTABLE_RECORD_VERSION,
                   "product": encode_value(values),

@@ -1,0 +1,83 @@
+{
+  "status": "timeout",
+  "exit_code": 1,
+  "limits": {
+    "group_seconds": 240,
+    "total_seconds": 480,
+    "workers": 1
+  },
+  "planned_groups": [
+    {
+      "name": "main",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--ignore=tests/test_maintenance_acceptance.py",
+        "--ignore=tests/test_maintenance_advisor.py",
+        "--ignore=tests/test_maintenance_remaining_edges.py",
+        "--ignore=tests/test_maintenance_review_repairs.py",
+        "--ignore=tests/test_maintenance_store.py",
+        "--ignore=tests/test_maintenance_stress_prerequisites.py",
+        "--ignore=tests/test_maintenance_workflow.py",
+        "--ignore=tests/test_reliable_changes_stress.py"
+      ]
+    },
+    {
+      "name": "reliable-oracle",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_reliable_changes_stress.py"
+      ]
+    },
+    {
+      "name": "maintenance",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_maintenance_acceptance.py",
+        "tests/test_maintenance_advisor.py",
+        "tests/test_maintenance_remaining_edges.py",
+        "tests/test_maintenance_review_repairs.py",
+        "tests/test_maintenance_store.py",
+        "tests/test_maintenance_stress_prerequisites.py",
+        "tests/test_maintenance_workflow.py"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "main",
+      "command": [
+        "/Users/umerkhan/code/shopextract/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--ignore=tests/test_maintenance_acceptance.py",
+        "--ignore=tests/test_maintenance_advisor.py",
+        "--ignore=tests/test_maintenance_remaining_edges.py",
+        "--ignore=tests/test_maintenance_review_repairs.py",
+        "--ignore=tests/test_maintenance_store.py",
+        "--ignore=tests/test_maintenance_stress_prerequisites.py",
+        "--ignore=tests/test_maintenance_workflow.py",
+        "--ignore=tests/test_reliable_changes_stress.py"
+      ],
+      "status": "timeout",
+      "pid": 70059,
+      "log": "specs/013-audit-remediation/evidence/final-driver-2/main.log",
+      "group_alive_after_cleanup": false,
+      "cleanup_seconds": 0.060271,
+      "exit_code": 1,
+      "timeout_kind": "group",
+      "returncode": -15,
+      "seconds": 239.06152
+    }
+  ],
+  "elapsed_seconds": 239.062602
+}

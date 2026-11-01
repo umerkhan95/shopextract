@@ -1,0 +1,16 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_html_coverage.py",
+    "-q",
+    "--tb=short"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 10.353,
+  "timeout": 120,
+  "fresh_timeout": 15,
+  "tool_poll_seconds": 10,
+  "workers": 1
+}

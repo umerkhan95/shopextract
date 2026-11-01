@@ -1,0 +1,29 @@
+Sun Nov  1 04:19:10 2026    specs/013-audit-remediation/evidence/integration-profile.pstats
+
+         5727616 function calls (5450337 primitive calls) in 5.176 seconds
+
+   Ordered by: cumulative time
+   List reduced from 9399 to 333 due to restriction <'shopextract'>
+   List reduced from 333 to 18 due to restriction <18>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    2.149    2.149 /Users/umerkhan/code/shopextract/tests/test_truthful_outcomes.py:238(test_woo_later_page_pipeline_cli_retention)
+        1    0.000    0.000    2.087    2.087 /Users/umerkhan/code/shopextract/tests/test_truthful_outcomes.py:141(invoke)
+        1    0.000    0.000    2.087    2.087 /Users/umerkhan/code/shopextract/src/shopextract/_cli_core.py:239(main)
+        1    0.000    0.000    2.082    2.082 /Users/umerkhan/code/shopextract/src/shopextract/_cli_core.py:230(invoke)
+        1    0.000    0.000    2.082    2.082 /Users/umerkhan/code/shopextract/src/shopextract/cli.py:25(extract)
+        1    0.000    0.000    2.082    2.082 /Users/umerkhan/code/shopextract/src/shopextract/_cli_extract.py:158(extract_store)
+        1    0.000    0.000    2.053    2.053 /Users/umerkhan/code/shopextract/src/shopextract/_cli_extract.py:141(run_operation)
+        1    0.000    0.000    2.051    2.051 /Users/umerkhan/code/shopextract/src/shopextract/_cli_extract.py:170(operation)
+        1    0.000    0.000    1.473    1.473 /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:107(extraction_data)
+        1    0.001    0.001    1.457    1.457 /Users/umerkhan/code/shopextract/src/shopextract/_cli_data.py:110(<listcomp>)
+      100    0.001    0.000    1.457    0.015 /Users/umerkhan/code/shopextract/src/shopextract/_portable.py:154(product_to_record)
+      100    0.001    0.000    1.161    0.012 /Users/umerkhan/code/shopextract/src/shopextract/_portable.py:113(_contract_to_dict)
+        1    0.000    0.000    1.151    1.151 /Users/umerkhan/code/shopextract/tests/test_truthful_outcomes.py:1(<module>)
+        1    0.000    0.000    1.089    1.089 /Users/umerkhan/code/shopextract/src/shopextract/extractors/unified.py:1(<module>)
+        1    0.000    0.000    0.893    0.893 /Users/umerkhan/code/shopextract/src/shopextract/extractors/_browser.py:1(<module>)
+      100    0.002    0.000    0.602    0.006 /Users/umerkhan/code/shopextract/src/shopextract/_evidence.py:219(to_dict)
+        1    0.000    0.000    0.578    0.578 /Users/umerkhan/code/shopextract/src/shopextract/_extract.py:37(extract)
+        1    0.000    0.000    0.523    0.523 /Users/umerkhan/code/shopextract/src/shopextract/_extract.py:582(_normalize_batch)
+
+

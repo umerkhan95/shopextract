@@ -26,6 +26,7 @@ _CATEGORY_MAP = re.compile(r'(?:^|[_-])(?:categor(?:y|ies)|collections?|product_
 class SitemapDiscovery:
     urls: tuple[str, ...]
     stop_fallback: bool = False
+    stop_reason: str = ''
 
 
 class _BudgetStop(Exception):
@@ -156,7 +157,7 @@ async def discover_sitemap_urls(base_url, *, max_urls=100, timeout=30, client=No
                 for entry in entries:
                     entry.rulelines.sort(key=lambda rule: (len(rule.path.encode('utf-8')), rule.allowance), reverse=True)
                 if not robots.can_fetch(USER_AGENT, base):
-                    return SitemapDiscovery((), True)
+                    return SitemapDiscovery((), True, 'robots_disallowed')
                 roots = robots.site_maps() or []
             if not roots:
                 roots = [base.rstrip('/') + '/sitemap.xml']
@@ -203,11 +204,12 @@ async def discover_sitemap_urls(base_url, *, max_urls=100, timeout=30, client=No
                     emitted.add(candidate)
                     if len(urls) == max_urls:
                         break
-            return SitemapDiscovery(tuple(urls), bool(robots is not None and ((roots and not allowed_source) or (denied_candidate and not urls))))
+            blocked=bool(robots is not None and ((roots and not allowed_source) or (denied_candidate and not urls)))
+            return SitemapDiscovery(tuple(urls),blocked,'robots_disallowed' if blocked else '')
         except _BudgetStop:
             if state is not None:
                 state.warnings.append('Native sitemap discovery resource limit reached')
-            return SitemapDiscovery(tuple(urls), True)
+            return SitemapDiscovery(tuple(urls), True, 'native_sitemap_budget')
         except httpx.HTTPError:
             return SitemapDiscovery(())
 
