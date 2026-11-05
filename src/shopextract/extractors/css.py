@@ -12,6 +12,7 @@ from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
 
 from .._models import ExtractorResult
 from .._capture import capture
+from .._url_safety import ValidatingProxy, operator_allows_private_urls, validate_url_target
 from ._browser import (
     StealthLevel,
     get_browser_config,
@@ -51,6 +52,7 @@ class CSSExtractor:
 
     async def extract(self, url: str) -> ExtractorResult:
         """Extract product data with stealth escalation."""
+        await validate_url_target(url, allow_private=operator_allows_private_urls())
         start_idx = self._ESCALATION_ORDER.index(self.stealth_level)
         levels = self._ESCALATION_ORDER[start_idx:]
 
@@ -58,28 +60,29 @@ class CSSExtractor:
             return ExtractorResult(products=[], complete=False, error="No stealth levels to try")
 
         max_level = levels[-1]
-        browser_config = get_browser_config(max_level)
-        crawler_strategy = get_crawler_strategy(max_level, browser_config)
-
         try:
-            async with AsyncWebCrawler(
-                config=browser_config,
-                crawler_strategy=crawler_strategy,
-            ) as crawler:
-                for level in levels:
-                    extraction_strategy = JsonCssExtractionStrategy(self.schema, verbose=False)
-                    crawler_config = get_crawl_config(
-                        stealth_level=level,
-                        extraction_strategy=extraction_strategy,
-                    )
-                    try:
-                        result = await crawler.arun(url=url, config=crawler_config)
-                        products = self._parse_extracted_content(url, result)
-                        if products:
-                            return ExtractorResult(products=products)
-                    except Exception as e:
-                        logger.debug("CSS extraction at stealth level %s failed for %s: %s", level.value, url, e)
-                        continue
+            async with ValidatingProxy() as proxy:
+                browser_config = get_browser_config(max_level)
+                crawler_strategy = get_crawler_strategy(max_level, browser_config)
+                async with AsyncWebCrawler(
+                    config=browser_config,
+                    crawler_strategy=crawler_strategy,
+                ) as crawler:
+                    for level in levels:
+                        extraction_strategy = JsonCssExtractionStrategy(self.schema, verbose=False)
+                        crawler_config = get_crawl_config(
+                            stealth_level=level,
+                            extraction_strategy=extraction_strategy,
+                            proxy_config=proxy.crawl4ai_config,
+                        )
+                        try:
+                            result = await crawler.arun(url=url, config=crawler_config)
+                            products = self._parse_extracted_content(url, result)
+                            if products:
+                                return ExtractorResult(products=products)
+                        except Exception as e:
+                            logger.debug("CSS extraction at stealth level %s failed for %s: %s", level.value, url, e)
+                            continue
         except Exception as e:
             logger.exception("CSS browser startup failed for %s: %s", url, e)
 
@@ -90,12 +93,10 @@ class CSSExtractor:
         if not urls:
             return ExtractorResult(products=[])
 
-        browser_config = get_browser_config(self.stealth_level)
+        for url in urls:
+            await validate_url_target(url, allow_private=operator_allows_private_urls())
+
         extraction_strategy = JsonCssExtractionStrategy(self.schema, verbose=False)
-        crawler_config = get_crawl_config(
-            stealth_level=self.stealth_level,
-            extraction_strategy=extraction_strategy,
-        )
         dispatcher = MemoryAdaptiveDispatcher(
             max_session_permit=5,
             memory_threshold_percent=70.0,
@@ -104,19 +105,26 @@ class CSSExtractor:
         all_products = []
         error: str | None = None
         try:
-            crawler_strategy = get_crawler_strategy(self.stealth_level, browser_config)
-            async with AsyncWebCrawler(
-                config=browser_config,
-                crawler_strategy=crawler_strategy,
-            ) as crawler:
-                results = await crawler.arun_many(urls=urls, config=crawler_config, dispatcher=dispatcher)
-                for result in results:
-                    if not result.success or not result.extracted_content:
-                        continue
-                    try:
-                        all_products.extend(self._parse_extracted_content(result.url, result))
-                    except json.JSONDecodeError as e:
-                        logger.debug("Failed to parse extracted content for %s: %s", result.url, e)
+            async with ValidatingProxy() as proxy:
+                browser_config = get_browser_config(self.stealth_level)
+                crawler_config = get_crawl_config(
+                    stealth_level=self.stealth_level,
+                    extraction_strategy=extraction_strategy,
+                    proxy_config=proxy.crawl4ai_config,
+                )
+                crawler_strategy = get_crawler_strategy(self.stealth_level, browser_config)
+                async with AsyncWebCrawler(
+                    config=browser_config,
+                    crawler_strategy=crawler_strategy,
+                ) as crawler:
+                    results = await crawler.arun_many(urls=urls, config=crawler_config, dispatcher=dispatcher)
+                    for result in results:
+                        if not result.success or not result.extracted_content:
+                            continue
+                        try:
+                            all_products.extend(self._parse_extracted_content(result.url, result))
+                        except json.JSONDecodeError as e:
+                            logger.debug("Failed to parse extracted content for %s: %s", result.url, e)
         except Exception as e:
             logger.exception("Batch CSS extraction failed: %s", e)
             error = str(e)

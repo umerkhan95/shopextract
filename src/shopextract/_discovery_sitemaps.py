@@ -13,6 +13,7 @@ from defusedxml.common import DefusedXmlException
 
 from ._execution import current_state
 from ._filters import is_non_product_url
+from ._url_safety import async_client
 
 MAX_REQUESTS = 12
 MAX_RESPONSE_BYTES = 10 * 1024 * 1024
@@ -216,7 +217,7 @@ async def discover_sitemap_urls(base_url, *, max_urls=100, timeout=30, client=No
     async def operation():
         if client is not None:
             return await resolve(client)
-        async with httpx.AsyncClient(follow_redirects=False) as owned:
+        async with async_client(follow_redirects=False) as owned:
             return await resolve(owned)
 
     # Covers response-body consumption as well as transport header/read timeouts.

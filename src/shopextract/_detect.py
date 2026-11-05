@@ -15,6 +15,7 @@ import re
 import time
 
 import httpx
+from ._url_safety import async_client, require_guarded_client
 
 from ._models import Platform, PlatformResult
 
@@ -59,6 +60,8 @@ async def detect(url: str, *, client: httpx.AsyncClient | None = None) -> Platfo
     Returns:
         PlatformResult with detected platform, confidence score, and signals.
     """
+    if client is not None:
+        require_guarded_client(client)
     start_time = time.time()
     logger.info("Starting platform detection for %s", url)
 
@@ -72,7 +75,7 @@ async def detect(url: str, *, client: httpx.AsyncClient | None = None) -> Platfo
 
     own_client = client is None
     if own_client:
-        client = httpx.AsyncClient(
+        client = async_client(
             timeout=httpx.Timeout(PROBE_TIMEOUT),
             follow_redirects=True,
             headers={"User-Agent": _USER_AGENT},

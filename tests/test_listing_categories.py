@@ -170,14 +170,12 @@ async def test_dripping_body_cannot_outlive_total_acquisition_deadline(monkeypat
 
 
 @pytest.mark.asyncio
-async def test_final_response_identity_and_store_base_path_are_checked():
+async def test_redirect_and_store_base_path_are_checked():
     from shopextract.categories.listings import build_listing_index
-    from contextlib import asynccontextmanager
-    class MismatchedClient:
-        @asynccontextmanager
-        async def stream(self,*args,**kwargs):
-            yield httpx.Response(200,text=listing(),request=httpx.Request('GET','https://outside.test/cat'))
-    index=await build_listing_index([CATEGORY],STORE,client=MismatchedClient())
+    async with httpx.AsyncClient(transport=httpx.MockTransport(
+        lambda req:httpx.Response(302,headers={'location':'https://outside.test/cat'})
+    )) as redirect_client:
+        index=await build_listing_index([CATEGORY],STORE,client=redirect_client)
     assert not index['complete'] and not index['memberships']
     with pytest.raises(ValueError):await build_listing_index([STORE+'/outside'],STORE+'/shop')
     async with httpx.AsyncClient(transport=httpx.MockTransport(lambda req:httpx.Response(200,text=listing((STORE+'/outside',)))) ) as client:

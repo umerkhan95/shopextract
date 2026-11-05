@@ -19,6 +19,7 @@ from ._filters import PLATFORM_PRODUCT_SITEMAPS, is_non_product_url
 from ._models import Platform
 from ._execution import browser_allowed, current_state
 from ._discovery_sitemaps import discover_sitemap_urls
+from ._url_safety import async_client, require_guarded_client
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +56,7 @@ async def discover(url: str, *, platform: Platform | None = None,
             from ._discovery_runtime import DiscoveryURLs
             return DiscoveryURLs(reasons=['discovery_timeout'])
     if client is not None:
+        require_guarded_client(client)
         return await _discover_local(url,platform=platform,max_urls=max_urls,timeout=min(timeout,30),client=client)
     return await run_discovery_worker({'url':url,'platform':platform.value if platform else None,
                                        'max_urls':max_urls,'timeout':min(timeout,30)})
@@ -62,8 +64,10 @@ async def discover(url: str, *, platform: Platform | None = None,
 
 async def _discover_local(url, *, platform=None, max_urls=100, timeout=30, client=None):
     from ._discovery_runtime import DiscoveryClient, DiscoveryURLs
+    if client is not None:
+        require_guarded_client(client)
     own=client is None
-    raw=client or httpx.AsyncClient(timeout=timeout,follow_redirects=False)
+    raw=client or async_client(timeout=timeout,follow_redirects=False)
     guarded=raw if isinstance(raw,DiscoveryClient) else DiscoveryClient(raw)
     async def operation():
         nonlocal platform
@@ -109,7 +113,7 @@ async def _discover_shopify(
     api_url = f"{base_url}/products.json?limit=250&page=1"
 
     own_client = client is None
-    c = client or httpx.AsyncClient(timeout=timeout, follow_redirects=True)
+    c = client or async_client(timeout=timeout, follow_redirects=True)
     try:
         response = await c.get(api_url)
         response.raise_for_status()
@@ -138,7 +142,7 @@ async def _discover_woocommerce(
     api_url = f"{base_url}/wp-json/wc/store/v1/products"
 
     own_client = client is None
-    c = client or httpx.AsyncClient(timeout=timeout, follow_redirects=True)
+    c = client or async_client(timeout=timeout, follow_redirects=True)
     try:
         response = await c.get(api_url)
         response.raise_for_status()
@@ -164,7 +168,7 @@ async def _discover_magento(
     api_url = f"{base_url}/rest/V1/products?searchCriteria[pageSize]=100"
 
     own_client = client is None
-    c = client or httpx.AsyncClient(timeout=timeout, follow_redirects=True)
+    c = client or async_client(timeout=timeout, follow_redirects=True)
     try:
         response = await c.get(api_url)
         response.raise_for_status()
@@ -233,7 +237,7 @@ async def _discover_via_sitemap(
 ) -> list[str]:
     from ._discovery_runtime import DiscoveryClient, bounded_sitemaps
     own=client is None
-    raw=client or httpx.AsyncClient(timeout=timeout,follow_redirects=False)
+    raw=client or async_client(timeout=timeout,follow_redirects=False)
     guarded=raw if isinstance(raw,DiscoveryClient) else DiscoveryClient(raw)
     try:
         native=await discover_sitemap_urls(base_url,max_urls=max_urls,timeout=timeout,client=guarded)
@@ -251,7 +255,7 @@ async def _try_product_sitemaps(
 ) -> list[str]:
     urls: list[str] = []
     own_client = client is None
-    c = client or httpx.AsyncClient(timeout=timeout, follow_redirects=True)
+    c = client or async_client(timeout=timeout, follow_redirects=True)
     try:
         for path in paths:
             sitemap_url = f"{base_url}{path}"
@@ -310,6 +314,7 @@ async def _discover_via_crawl4ai(base_url: str, max_pages: int = 100) -> list[st
     from crawl4ai.deep_crawling import BestFirstCrawlingStrategy, DomainFilter, FilterChain, URLPatternFilter
     from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
     from .extractors._browser import StealthLevel, get_browser_config, get_crawl_config, get_crawler_strategy
+    from ._url_safety import ValidatingProxy, operator_allows_private_urls, validate_url_target
     try:
         from crawl4ai.deep_crawling import ContentTypeFilter
         _HAS_CONTENT_TYPE_FILTER=True
@@ -317,6 +322,7 @@ async def _discover_via_crawl4ai(base_url: str, max_pages: int = 100) -> list[st
         _HAS_CONTENT_TYPE_FILTER=False
     if not browser_allowed():
         return []
+    await validate_url_target(base_url, allow_private=operator_allows_private_urls())
     parsed = urlparse(base_url)
     domain = parsed.netloc
 
@@ -362,19 +368,21 @@ async def _discover_via_crawl4ai(base_url: str, max_pages: int = 100) -> list[st
 
     found_urls: set[str] = set()
     try:
-        crawler_strategy = get_crawler_strategy(stealth_level, browser_config)
-        async with AsyncWebCrawler(
-            config=browser_config,
-            crawler_strategy=crawler_strategy,
-        ) as crawler:
-            results = await crawler.arun(url=base_url, config=crawl_config)
-            if isinstance(results, list):
-                for result in results:
-                    if result.success and not is_non_product_url(result.url):
-                        found_urls.add(result.url)
-            elif hasattr(results, "success") and results.success:
-                if not is_non_product_url(results.url):
-                    found_urls.add(results.url)
+        async with ValidatingProxy() as proxy:
+            crawl_config.proxy_config = proxy.crawl4ai_config
+            crawler_strategy = get_crawler_strategy(stealth_level, browser_config)
+            async with AsyncWebCrawler(
+                config=browser_config,
+                crawler_strategy=crawler_strategy,
+            ) as crawler:
+                results = await crawler.arun(url=base_url, config=crawl_config)
+                if isinstance(results, list):
+                    for result in results:
+                        if result.success and not is_non_product_url(result.url):
+                            found_urls.add(result.url)
+                elif hasattr(results, "success") and results.success:
+                    if not is_non_product_url(results.url):
+                        found_urls.add(results.url)
     except Exception as e:
         logger.error("Deep crawl discovery failed for %s: %s", base_url, e)
 

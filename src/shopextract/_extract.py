@@ -227,7 +227,8 @@ async def extract(
     # Step 3: Discover URLs for crawl-based extraction
     from ._discover import discover
     # Borrow this operation's HTTP boundary; direct public discovery owns a worker.
-    async with httpx.AsyncClient(timeout=30,follow_redirects=False) as discovery_client:
+    from ._url_safety import async_client
+    async with async_client(timeout=30,follow_redirects=False) as discovery_client:
         urls = await discover(url, platform=platform, max_urls=max_urls,client=discovery_client)
 
     if not urls:
