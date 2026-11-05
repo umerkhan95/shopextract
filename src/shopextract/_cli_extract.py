@@ -12,7 +12,7 @@ from pathlib import Path
 
 import click
 
-from ._cli_core import CliFailure, emit_response, make_response
+from ._cli_core import CliFailure, emit_response, failure_exit, make_response
 from ._cli_data import (atomic_json, extraction_data, products_from_value,
                         raw_records, read_json_file)
 from ._execution import ExecutionPolicy, LLMBudget, execution_policy
@@ -188,6 +188,32 @@ def emit_extraction_result(data, *, partial=False):
         raise click.exceptions.Exit(3)
 
 
+def _extract_file_summary(output_path, data=None):
+    """Small stdout result for extract -o; the file retains the full envelope."""
+    data = data or {}
+    products = data.get('products') or []
+    completeness = None
+    if products:
+        completeness = ('partial' if assess_extraction_outcome(
+            product_count=len(products), catalog_complete=data.get('catalog_complete'),
+            errors=data.get('errors') or [],
+            incompleteness_reasons=data.get('incompleteness_reasons') or []) != 'complete'
+            else 'complete')
+    return {'output_path': str(output_path), 'product_count': len(products),
+            'completeness': completeness}
+
+
+def _emit_extract_file_failure(failure, output_path, data=None):
+    """Emit failure details with the bounded file-operation summary attached."""
+    if failure.code == 'E_OPERATION' and failure.cause is None:
+        failure.cause = 'source_error'
+    response = make_response(failure=failure,
+                             completeness='partial' if data else 'unavailable')
+    response['data'] = _extract_file_summary(output_path, data)
+    emit_response(response)
+    raise click.exceptions.Exit(failure_exit(failure))
+
+
 def run_operation(operation, policy, timeout, *, recover=None):
     async def run():
         with execution_policy(policy, timeout) as state:
@@ -223,6 +249,15 @@ def _run_extraction_operation(operation, policy, timeout, *, recover=None):
 
 
 def extract_store(url, max_urls, fmt, output_path, options):
+    try:
+        return _extract_store_impl(url, max_urls, fmt, output_path, options)
+    except CliFailure as failure:
+        if output_path:
+            _emit_extract_file_failure(failure, output_path)
+        raise
+
+
+def _extract_store_impl(url, max_urls, fmt, output_path, options):
     from . import extract
     validate_url(url); validate_max(max_urls)
     if fmt != 'json':
@@ -241,19 +276,35 @@ def extract_store(url, max_urls, fmt, output_path, options):
             restore_short_gtin=options.get('restore_short_gtin',False), api_options=api,
             **({'enrich_variants':True} if options.get('enrich_variants') else {}))
         return extraction_data(result)
-    data, warnings = _run_extraction_operation(operation, policy, timeout, recover=extraction_data)
+    try:
+        data, warnings = _run_extraction_operation(operation, policy, timeout, recover=extraction_data)
+    except CliFailure as failure:
+        if output_path:
+            _emit_extract_file_failure(failure, output_path)
+        raise
     data['errors'].extend(warnings)
     partial = assess_extraction_outcome(product_count=len(data['products']),
         catalog_complete=data['catalog_complete'], errors=data['errors'],
         incompleteness_reasons=data['incompleteness_reasons']) != 'complete'
     if partial and not data['products']:
-        raise _source_failure(data)
+        failure = _source_failure(data)
+        if output_path:
+            _emit_extract_file_failure(failure, output_path, data)
+        raise failure
     if options.get('compact'):
         from ._compact_catalog import encode_compact_catalog
         import json
         data=json.loads(encode_compact_catalog(data))
     if output_path:
-        atomic_json(output_path, make_response(data, completeness='partial' if partial else 'complete'))
+        try:
+            atomic_json(output_path, make_response(data, completeness='partial' if partial else 'complete'))
+        except CliFailure as failure:
+            _emit_extract_file_failure(failure, output_path, data)
+        summary = _extract_file_summary(output_path, data)
+        emit_response(make_response(summary, completeness='partial' if partial else 'complete'))
+        if partial:
+            raise click.exceptions.Exit(3)
+        return
     emit_extraction_result(data, partial=partial)
 
 
