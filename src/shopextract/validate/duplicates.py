@@ -9,6 +9,7 @@ from difflib import SequenceMatcher
 from itertools import combinations
 import math
 import re
+import unicodedata
 
 _SUPPORTED_METHODS = ("title", "gtin", "sku")
 
@@ -86,25 +87,15 @@ def _find_by_title(
                     candidate_pairs.add(pair)
                     continue
                 i, j = pair
-                shared = len(tokens[i] & tokens[j])
-                union = len(tokens[i] | tokens[j])
-                if not union or shared / union < threshold * 0.75:
-                    continue
                 if SequenceMatcher(None, titles[i], titles[j]).quick_ratio() >= threshold:
                     candidate_pairs.add(pair)
         checked_pairs.clear()
         for indexes in gram_rows.values():
-            frequent = len(indexes) > common_limit
             for pair in combinations(indexes, 2):
                 if pair in checked_pairs or pair in candidate_pairs:
                     continue
                 checked_pairs.add(pair)
                 i, j = pair
-                if frequent:
-                    shared = len(grams[i] & grams[j])
-                    union = len(grams[i] | grams[j])
-                    if not union or shared / union < threshold * 0.9:
-                        continue
                 if SequenceMatcher(None, titles[i], titles[j]).quick_ratio() >= threshold:
                     candidate_pairs.add(pair)
         short_rows = [index for index, title in enumerate(titles) if title and len(title) < 3]
@@ -123,11 +114,23 @@ def _find_by_title(
     for i, j in candidates:
         if not titles[i] or not titles[j]:
             continue
+        brand_a = " ".join(unicodedata.normalize(
+            "NFKC", str(products[i].get("vendor") or products[i].get("brand") or "")
+        ).casefold().split())
+        brand_b = " ".join(unicodedata.normalize(
+            "NFKC", str(products[j].get("vendor") or products[j].get("brand") or "")
+        ).casefold().split())
+        if brand_a and brand_b and brand_a != brand_b:
+            continue
+        matcher = SequenceMatcher(None, titles[i], titles[j])
+        if matcher.quick_ratio() < threshold:
+            continue
+        ratio = matcher.ratio()
+        if ratio < threshold:
+            continue
         decision=classify_match(products[i],products[j],threshold=threshold)
         if any(not c.startswith('missing attributes:') for c in decision.conflicts):continue
-        ratio = SequenceMatcher(None, titles[i], titles[j]).ratio()
-        if ratio >= threshold:
-            duplicates.append((i, j, ratio))
+        duplicates.append((i, j, ratio))
 
     return duplicates
 

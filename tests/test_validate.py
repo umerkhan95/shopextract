@@ -242,6 +242,14 @@ class TestFindDuplicates:
         dupes = find_duplicates(products, method="title", threshold=0.9)
         assert (0, 25) in {(left, right) for left, right, _ in dupes}
 
+    def test_similar_titles_with_changed_chars_survive_frequent_gram_filter(self):
+        products = [{"title": "Anex deluxe air fryer abcdefghijklmnopqrstuvwxyz", "vendor": "Anex"}
+                    for _ in range(20)]
+        products.extend({"title": "Anex deluxe air fryer abc3efghijklmnopqrs4uvwxyz", "vendor": "Anex"}
+                        for _ in range(20))
+        dupes = find_duplicates(products, method="title", threshold=0.9)
+        assert (0, 20) in {(left, right) for left, right, _ in dupes}
+
     def test_gtin_duplicates(self):
         products = [
             {"title": "A", "gtin": "4006381333931"},
