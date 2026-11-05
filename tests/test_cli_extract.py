@@ -90,7 +90,8 @@ def test_eleven_products_native_transport_and_exact_codec(transport):
     from shopextract._portable import product_from_record
     routes,calls=transport
     routes['/products.json']={'products':shopify_products()}
-    result=invoke('extract','https://fixture.invalid','--platform','shopify','--max','11')
+    result=invoke('extract','https://fixture.invalid','--platform','shopify','--max','11',
+                  '--include-evidence')
     assert result.exit_code == 3, result.output[:800]
     response=value(result); data=response['data']
     assert response['ok'] is True and response['error'] is None and response['completeness']=='partial'
@@ -143,7 +144,7 @@ def test_native_feed_cap_reports_partial(transport,kind):
         body='<rss xmlns:g="http://base.google.com/ns/1.0"><channel>'+''.join(f'<item><g:id>00{i}</g:id><title>{t}</title><g:price>0.10 EUR</g:price><link>https://fixture.invalid/{i}</link><g:image_link>https://fixture.invalid/{i}.png</g:image_link><g:availability>out_of_stock</g:availability></item>' for i,t in [(1,'A'),(2,'B')])+'</channel></rss>'
         content_type='application/xml'
     routes['/feed']=lambda r:httpx.Response(200,text=body,headers={'content-type':content_type})
-    result=invoke('feed','https://fixture.invalid/feed','--max','1')
+    result=invoke('feed','https://fixture.invalid/feed','--max','1','--include-evidence')
     assert result.exit_code==3, result.output[:800]
     data=value(result)['data']; assert data['product_count']==1 and len(data['raw_products'])==1
     assert data['catalog_complete'] is False

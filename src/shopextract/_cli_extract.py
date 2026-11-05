@@ -284,15 +284,17 @@ def _extract_store_impl(url, max_urls, fmt, output_path, options):
     api = storefront_options(options.get('storefront'), options.get('platform'))
     secrets = tuple(v for k,v in (api or {}).items() if k in ('access_token','customer_access_token','customer_id'))
     policy, timeout = policy_options(options, secrets)
+    include_evidence = bool(options.get('include_evidence') or options.get('compact'))
+    serialize = lambda value: extraction_data(value, include_evidence=include_evidence)
     async def operation():
         result = await extract(url, max_urls=max_urls,
             platform=Platform(options['platform']) if options.get('platform') else None,
             shop_url=options.get('shop_url'), enrich_identifiers=options.get('enrich_identifiers',False),
             restore_short_gtin=options.get('restore_short_gtin',False), api_options=api,
             **({'enrich_variants':True} if options.get('enrich_variants') else {}))
-        return extraction_data(result)
+        return serialize(result)
     try:
-        data, warnings = _run_extraction_operation(operation, policy, timeout, recover=extraction_data)
+        data, warnings = _run_extraction_operation(operation, policy, timeout, recover=serialize)
     except CliFailure as failure:
         if output_path:
             _emit_extract_file_failure(failure, output_path)
@@ -347,7 +349,7 @@ def extract_single(url, options):
     emit_result({'product':encode_value(product)}, partial=bool(warnings))
 
 
-def extract_feed(url, shop_url, max_products, timeout):
+def extract_feed(url, shop_url, max_products, timeout, *, include_evidence=False):
     from . import from_feed
     validate_url(url); validate_max(max_products)
     if shop_url:
@@ -359,7 +361,7 @@ def extract_feed(url, shop_url, max_products, timeout):
             result.raw_products = result.raw_products[:max_products]
             result.catalog_complete = False
             result.incompleteness_reasons.append('product_budget_reached')
-        return extraction_data(result)
+        return extraction_data(result, include_evidence=include_evidence)
     data, _ = _run_extraction_operation(operation, ExecutionPolicy(), validate_timeout(timeout))
     if not data['products']:
         raise _source_failure(data)
@@ -383,7 +385,7 @@ def normalize_file(path, platform, shop_url, restore_short_gtin):
         dropped_reasons = []
         for index, record in enumerate(records):
             try:
-                product = product_from_record(record)
+                product = product_from_record(record, allow_compact=True)
             except (ValueError, TypeError, KeyError, RecursionError):
                 dropped.append(index)
                 dropped_reasons.append({'index': index, 'reason': 'invalid_portable_product_record'})

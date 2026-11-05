@@ -720,6 +720,101 @@ def test_sc07_default_payload_is_compact_and_evidence_is_explicit_opt_in():
     assert record["variant_contracts"] == []
 
 
+def test_sc07_cli_include_evidence_restores_extract_and_feed_payloads(monkeypatch):
+    from datetime import datetime, timezone
+    from shopextract import Evidence, TrustContract
+    import shopextract
+
+    product = Product(title="CLI evidence product", raw_data={"source": "retained"})
+    product.evidence_contract = TrustContract([
+        Evidence("e_00000000-0000-4000-8000-000000000007",
+                 "https://fixture.invalid/product", datetime(2026, 1, 1, tzinfo=timezone.utc),
+                 "html", "captured product title")
+    ], [])
+    result = ExtractionResult(products=[product], raw_products=[{"raw": "retained"}],
+                              platform=Platform.GENERIC, catalog_complete=True)
+
+    async def fake_extract(*args, **kwargs):
+        return result
+
+    async def fake_feed(*args, **kwargs):
+        return result
+
+    monkeypatch.setattr(shopextract, "extract", fake_extract)
+    extract = invoke("extract", "https://fixture.invalid", "--include-evidence")
+    assert extract.exit_code == 0, extract.output[:500]
+    extract_data = response(extract)["data"]
+    assert extract_data["raw_products"] == [{"raw": "retained"}]
+    assert extract_data["products"][0]["product"]["raw_data"] == {"source": "retained"}
+    assert extract_data["products"][0]["evidence_contract"]["evidence"][0]["evidence_id"] == \
+        "e_00000000-0000-4000-8000-000000000007"
+    assert extract_data["products"][0]["variant_contracts"] == []
+
+    monkeypatch.setattr(shopextract, "from_feed", fake_feed)
+    feed = invoke("feed", "https://fixture.invalid/feed.csv", "--include-evidence")
+    assert feed.exit_code == 0, feed.output[:500]
+    feed_data = response(feed)["data"]
+    assert feed_data["raw_products"] == [{"raw": "retained"}]
+    assert feed_data["products"][0]["product"]["raw_data"] == {"source": "retained"}
+    assert feed_data["products"][0]["evidence_contract"]["evidence"][0]["evidence_id"] == \
+        "e_00000000-0000-4000-8000-000000000007"
+
+
+def test_sc07_compact_default_extract_envelope_remains_normalizable(tmp_path):
+    from shopextract._models import Variant
+
+    result = ExtractionResult(
+        products=[Product(title="Visible canonical title", price=Decimal("17.50"),
+                          currency="EUR", vendor="Example Vendor",
+                          variants=[Variant(variant_id="v1", title="Blue", price=Decimal("17.50"),
+                                            sku="SKU-1")],
+                          raw_data={"source": "omitted by default"})],
+        raw_products=[{"raw": "omitted by default"}], platform=Platform.GENERIC)
+    compact_data = _cli_data.extraction_data(result)
+    envelope = {"schema_version": "1.0", "ok": True, "error": None, "data": compact_data}
+    source = tmp_path / "compact-default.json"
+    source.write_text(json.dumps(envelope))
+
+    normalized = invoke("normalize", str(source), "--platform", "generic")
+    assert normalized.exit_code == 0, normalized.output[:500]
+    data = response(normalized)["data"]
+    assert data["product_count"] == 1, data
+    record = data["products"][0]["product"]
+    assert record["title"] == "Visible canonical title"
+    assert record["price"] == {"$type": "decimal", "value": "17.50"}
+    assert record["currency"] == "EUR" and record["vendor"] == "Example Vendor"
+    assert record["variants"][0]["variant_id"] == "v1"
+    assert record["variants"][0]["sku"] == "SKU-1"
+
+
+def test_sc09_compact_record_omissions_are_envelope_only_and_invalid_fields_drop(tmp_path):
+    from shopextract._portable import product_to_record
+
+    canonical = product_to_record(Product(title="Canonical"))
+    compact = json.loads(json.dumps(canonical))
+    compact["product"].pop("raw_data")
+    compact.pop("evidence_contract")
+    compact.pop("variant_contracts")
+    envelope = {"schema_version": "1.0", "ok": True, "error": None,
+                "data": {"products": [compact]}}
+    assert len(_cli_data.products_from_value(envelope)) == 1
+    # A bare portable array still requires the complete portable record shape.
+    with pytest.raises(_cli_core.CliFailure) as failure:
+        _cli_data.products_from_value([compact])
+    assert failure.value.code == "E_USAGE"
+
+    invalid = json.loads(json.dumps(compact))
+    invalid["product"].pop("title")
+    envelope["data"]["products"].append(invalid)
+    source = tmp_path / "malformed-compact-record.json"
+    source.write_text(json.dumps(envelope))
+    normalized = invoke("normalize", str(source), "--platform", "generic")
+    assert normalized.exit_code == 0, normalized.output[:500]
+    assert response(normalized)["data"]["dropped_indices"] == [1]
+    assert response(normalized)["data"]["dropped_reasons"] == [
+        {"index": 1, "reason": "invalid_portable_product_record"}]
+
+
 def test_sc07_forty_large_normalized_titles_remain_just_under_default_size_cap():
     result = ExtractionResult(products=[Product(title=f"P{index}-" + "x" * 10300)
                                         for index in range(40)],

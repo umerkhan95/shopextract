@@ -130,7 +130,7 @@ def products_from_value(value):
             value = product_records_from_extract_envelope(value)
         if not isinstance(value, list) or len(value) > MAX_RECORDS:
             raise ValueError()
-        return [product_from_record(record) for record in value]
+        return [product_from_record(record, allow_compact=envelope) for record in value]
     except CliFailure:
         raise
     except (ValueError, TypeError, KeyError, RecursionError):
@@ -138,7 +138,7 @@ def products_from_value(value):
         raise CliFailure(code, 'Expected portable product records or a successful extraction envelope.') from None
 
 
-def extraction_data(result):
+def extraction_data(result, *, include_evidence=False):
     from ._execution import safe_error
     import json
     records=[product_to_record(p) for p in result.products]
@@ -148,13 +148,20 @@ def extraction_data(result):
         return (values.get('canonical_product_id') or values.get('external_id') or '',
                 values.get('product_url') or '',
                 json.dumps(facts,sort_keys=True,separators=(',',':'),allow_nan=False))
-    data = dict(products=sorted(records,key=order),
-                raw_products=encode_value(result.raw_products), platform=result.platform.value,
+    records = sorted(records, key=order)
+    if not include_evidence:
+        for record in records:
+            record['product'].pop('raw_data', None)
+            record.pop('evidence_contract', None)
+            record.pop('variant_contracts', None)
+    data = dict(products=records, platform=result.platform.value,
                 tier=result.tier.value, quality_score=result.quality_score,
                 urls_attempted=result.urls_attempted, urls_succeeded=result.urls_succeeded,
                 errors=[safe_error(error) for error in result.errors],
                 observation_scope=result.observation_scope, catalog_complete=result.catalog_complete,
                 incompleteness_reasons=list(result.incompleteness_reasons), product_count=result.product_count)
+    if include_evidence:
+        data['raw_products'] = encode_value(result.raw_products)
     if result.retry_after_seconds is not None:
         data["retry_after_seconds"] = result.retry_after_seconds
     return data

@@ -114,8 +114,10 @@ performed by help, config parsing, normalization or quality scoring.
 `normalize FILE` and `quality FILE` accept bounded UTF-8 JSON; `-` reads stdin once.
 Normalize accepts raw product objects/arrays and successful shopextract extraction
 envelopes (`schema_version: "1.0"`, `ok: true`, `data.products`). It preserves
-portable product records from an extraction envelope; raw JSON-LD, `ok: false`, and
-malformed or unrelated envelopes fail with `E_VALIDATION`. Invalid records in a
+portable product records from an extraction envelope; compact records retain
+visible product facts while omitted evidence fields decode to empty values. Raw
+JSON-LD, `ok: false`, and malformed or unrelated envelopes fail with `E_VALIDATION`.
+Invalid records in a
 valid envelope are reported by index and drop reason. Quality also accepts native
 portable record arrays or extraction/normalization result envelopes. Inputs are
 limited to32MiB,1000 records,64 nested levels and1000000 nodes, with duplicate keys,
@@ -136,8 +138,12 @@ A known incomplete source or retained product cap produces usable data with
 `E_PARTIAL`, exit3, `retryable:false`, and explicit completeness metadata. Unknown
 catalog coverage remains explicit metadata and does not alone fail the operation.
 An empty `extract-one` has no usable partial data and fails with `E_OPERATION`.
-Extraction payloads include products/raw_products, platform/tier, quality, attempted/
-succeeded counts, errors, observation scope and catalog completeness/reasons.
+Extraction payloads include products, platform/tier, quality, attempted/succeeded
+counts, errors, observation scope and catalog completeness/reasons. By default,
+extract and feed omit duplicated `raw_products` and per-product `raw_data`,
+`evidence_contract` and `variant_contracts` fields to keep responses compact.
+Use `--include-evidence` with either command to restore the complete payload;
+`extract --compact` also retains the complete payload for compatibility.
 
 P2 analysis and exports are available. New commands emit versioned JSON envelopes
 by default; existing `compare`, `analyze`, and `validate` opt in with the root

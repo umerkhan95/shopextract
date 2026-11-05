@@ -29,6 +29,8 @@ def main() -> None:
               help="Output format.")
 @click.option("-o", "--output", "output_path", default=None, help="Output file path.")
 @click.option("--compact", is_flag=True, help="Deduplicate captured provenance in bounded catalog transport.")
+@click.option("--include-evidence", is_flag=True,
+              help="Include the full raw product and evidence payload in extraction results.")
 @click.option("--platform", type=click.Choice([p.value for p in Platform]))
 @click.option("--shop-url")
 @click.option("--enrich-identifiers", is_flag=True)
@@ -175,10 +177,12 @@ def extract_one_cmd(url, **options):
 @click.option("--shop-url", default="")
 @click.option("--max", "max_products", type=click.IntRange(1,1000), default=1000)
 @click.option("--timeout", type=float, default=None)
-def feed_cmd(url, shop_url, max_products, timeout):
+@click.option("--include-evidence", is_flag=True,
+              help="Include the full raw product and evidence payload in extraction results.")
+def feed_cmd(url, shop_url, max_products, timeout, include_evidence):
     """Extract a feed URL, retaining at most --max products explicitly."""
     from ._cli_extract import extract_feed
-    extract_feed(url, shop_url, max_products, timeout)
+    extract_feed(url, shop_url, max_products, timeout, include_evidence=include_evidence)
 
 
 @main.command(name="normalize")
