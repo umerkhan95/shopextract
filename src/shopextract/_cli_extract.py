@@ -140,6 +140,54 @@ def emit_result(data, partial=False):
         raise click.exceptions.Exit(3)
 
 
+def _source_failure(data):
+    """Translate source diagnostics into the finite C1 extraction error contract."""
+    errors = list(data.get('errors') or [])
+    reasons = list(data.get('incompleteness_reasons') or [])
+    text = ' '.join(str(value) for value in (*errors, *reasons)).casefold()
+    normalized = {str(reason).casefold() for reason in reasons}
+
+    if 'rate_limited' in normalized or re.search(r'\b429\b|too many requests|rate.?limit', text):
+        cause = 'rate_limited'
+    elif ('blocked' in normalized or 'access_denied' in normalized or 'forbidden' in normalized
+          or re.search(r'\b403\b|access denied|permission denied', text)):
+        cause = 'blocked'
+    elif 'dns_failure' in normalized or re.search(
+            r'dns lookup failed|name or service not known|getaddrinfo failed|temporary failure in name resolution',
+            text):
+        cause = 'dns_failure'
+    elif 'no_product_links' in normalized or re.search(r'no product links', text):
+        cause = 'no_product_links'
+    elif ({'network_unreachable', 'source_timeout', 'connect_timeout', 'read_timeout'} & normalized
+          or re.search(r'connection (?:refused|reset|timed out)|connect(?:ion)? timeout|read timeout|network unreachable', text)):
+        cause = 'network_unreachable'
+    else:
+        cause = 'source_error'
+
+    retryable = cause in {'rate_limited', 'network_unreachable'}
+    retry_after = data.get('retry_after_seconds')
+    if isinstance(retry_after, bool) or not isinstance(retry_after, (int, float)):
+        retry_after = None
+    elif not math.isfinite(retry_after) or retry_after < 0:
+        retry_after = None
+    return CliFailure(
+        'E_OPERATION',
+        'No usable products were extracted; source failed or was incomplete.',
+        cause=cause,
+        retryable=retryable,
+        errors=errors,
+        incompleteness_reasons=reasons,
+        retry_after_seconds=retry_after,
+    )
+
+
+def emit_extraction_result(data, *, partial=False):
+    """Extraction partials retain products as successful, explicitly partial data."""
+    emit_response(make_response(data, completeness='partial' if partial else 'complete'))
+    if partial:
+        raise click.exceptions.Exit(3)
+
+
 def run_operation(operation, policy, timeout, *, recover=None):
     async def run():
         with execution_policy(policy, timeout) as state:
@@ -157,6 +205,21 @@ def run_operation(operation, policy, timeout, *, recover=None):
     # stdout carries only the response; crawl4ai 0.8 progress lines otherwise land there.
     with contextlib.redirect_stdout(sys.stderr):
         return asyncio.run(run())
+
+
+def _run_extraction_operation(operation, policy, timeout, *, recover=None):
+    """Keep operation deadlines distinguishable from source timeouts (C1)."""
+    try:
+        return run_operation(operation, policy, timeout, recover=recover)
+    except CliFailure as exc:
+        if exc.code == 'E_TIMEOUT':
+            exc.cause = exc.cause or 'source_error'
+            exc.retryable = True
+        raise
+    except (TimeoutError, asyncio.TimeoutError):
+        raise CliFailure(
+            'E_TIMEOUT', 'Operation timed out.', cause='source_error', retryable=True
+        ) from None
 
 
 def extract_store(url, max_urls, fmt, output_path, options):
@@ -178,21 +241,20 @@ def extract_store(url, max_urls, fmt, output_path, options):
             restore_short_gtin=options.get('restore_short_gtin',False), api_options=api,
             **({'enrich_variants':True} if options.get('enrich_variants') else {}))
         return extraction_data(result)
-    data, warnings = run_operation(operation, policy, timeout, recover=extraction_data)
+    data, warnings = _run_extraction_operation(operation, policy, timeout, recover=extraction_data)
     data['errors'].extend(warnings)
     partial = assess_extraction_outcome(product_count=len(data['products']),
         catalog_complete=data['catalog_complete'], errors=data['errors'],
         incompleteness_reasons=data['incompleteness_reasons']) != 'complete'
     if partial and not data['products']:
-        raise CliFailure('E_OPERATION', 'No usable products were extracted; source failed or was incomplete.')
+        raise _source_failure(data)
     if options.get('compact'):
         from ._compact_catalog import encode_compact_catalog
         import json
         data=json.loads(encode_compact_catalog(data))
     if output_path:
-        failure = CliFailure('E_PARTIAL', 'Operation returned bounded or incomplete results; inspect metadata.') if partial else None
-        atomic_json(output_path, make_response(data, failure=failure))
-    emit_result(data, partial=partial)
+        atomic_json(output_path, make_response(data, completeness='partial' if partial else 'complete'))
+    emit_extraction_result(data, partial=partial)
 
 
 def discover_urls(url, max_urls, platform, options):
@@ -231,12 +293,13 @@ def extract_feed(url, shop_url, max_products, timeout):
             result.catalog_complete = False
             result.incompleteness_reasons.append('product_budget_reached')
         return extraction_data(result)
-    data, _ = run_operation(operation, ExecutionPolicy(), validate_timeout(timeout))
+    data, _ = _run_extraction_operation(operation, ExecutionPolicy(), validate_timeout(timeout))
     if not data['products']:
-        raise CliFailure('E_OPERATION', 'No usable products were extracted; source failed or was incomplete.')
-    emit_result(data, partial=assess_extraction_outcome(product_count=len(data['products']),
+        raise _source_failure(data)
+    partial = assess_extraction_outcome(product_count=len(data['products']),
         catalog_complete=data['catalog_complete'], errors=data['errors'],
-        incompleteness_reasons=data['incompleteness_reasons']) != 'complete')
+        incompleteness_reasons=data['incompleteness_reasons']) != 'complete'
+    emit_extraction_result(data, partial=partial)
 
 
 def normalize_file(path, platform, shop_url, restore_short_gtin):

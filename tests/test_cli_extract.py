@@ -93,7 +93,7 @@ def test_eleven_products_native_transport_and_exact_codec(transport):
     result=invoke('extract','https://fixture.invalid','--platform','shopify','--max','11')
     assert result.exit_code == 3, result.output[:800]
     response=value(result); data=response['data']
-    assert response['error']['retryable'] is False and response['completeness']=='partial'
+    assert response['ok'] is True and response['error'] is None and response['completeness']=='partial'
     assert data['product_count']==11 and len(data['products'])==11
     assert len(calls)==1
     assert {r['product']['external_id'] for r in data['products']}=={f'{i:04}' for i in range(11)}

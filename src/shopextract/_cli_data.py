@@ -114,13 +114,16 @@ def extraction_data(result):
         return (values.get('canonical_product_id') or values.get('external_id') or '',
                 values.get('product_url') or '',
                 json.dumps(facts,sort_keys=True,separators=(',',':'),allow_nan=False))
-    return dict(products=sorted(records,key=order),
+    data = dict(products=sorted(records,key=order),
                 raw_products=encode_value(result.raw_products), platform=result.platform.value,
                 tier=result.tier.value, quality_score=result.quality_score,
                 urls_attempted=result.urls_attempted, urls_succeeded=result.urls_succeeded,
                 errors=[safe_error(error) for error in result.errors],
                 observation_scope=result.observation_scope, catalog_complete=result.catalog_complete,
                 incompleteness_reasons=list(result.incompleteness_reasons), product_count=result.product_count)
+    if result.retry_after_seconds is not None:
+        data["retry_after_seconds"] = result.retry_after_seconds
+    return data
 
 
 def atomic_json(path, data, *, compact=False):

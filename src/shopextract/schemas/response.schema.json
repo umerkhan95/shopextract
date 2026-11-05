@@ -75,6 +75,34 @@
             },
             "retryable": {
               "type": "boolean"
+            },
+            "cause": {
+              "type": "string",
+              "enum": [
+                "rate_limited",
+                "blocked",
+                "network_unreachable",
+                "dns_failure",
+                "no_product_links",
+                "category_scope_unavailable",
+                "source_error"
+              ]
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "incompleteness_reasons": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "retry_after_seconds": {
+              "type": "number",
+              "minimum": 0
             }
           }
         }
@@ -103,7 +131,10 @@
             "type": "null"
           },
           "completeness": {
-            "const": "complete"
+            "enum": [
+              "complete",
+              "partial"
+            ]
           }
         }
       }
@@ -147,6 +178,34 @@
               },
               "retryable": {
                 "type": "boolean"
+              },
+              "cause": {
+                "type": "string",
+                "enum": [
+                  "rate_limited",
+                  "blocked",
+                  "network_unreachable",
+                  "dns_failure",
+                  "no_product_links",
+                  "category_scope_unavailable",
+                  "source_error"
+                ]
+              },
+              "errors": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "incompleteness_reasons": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "retry_after_seconds": {
+                "type": "number",
+                "minimum": 0
               }
             }
           },
@@ -189,13 +248,6 @@
             "not": {
               "type": "null"
             }
-          },
-          "error": {
-            "properties": {
-              "code": {
-                "const": "E_PARTIAL"
-              }
-            }
           }
         }
       }
@@ -212,7 +264,12 @@
             },
             "required": [
               "code"
-            ]
+            ],
+            "not": {
+              "required": [
+                "cause"
+              ]
+            }
           }
         }
       },
@@ -475,6 +532,99 @@
           },
           "completeness": {
             "const": "unavailable"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "properties": {
+              "cause": {
+                "enum": [
+                  "rate_limited",
+                  "network_unreachable"
+                ]
+              }
+            },
+            "required": [
+              "cause"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "properties": {
+              "cause": {
+                "enum": [
+                  "blocked",
+                  "dns_failure",
+                  "no_product_links",
+                  "category_scope_unavailable"
+                ]
+              }
+            },
+            "required": [
+              "cause"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "error": {
+            "properties": {
+              "code": {
+                "const": "E_OPERATION"
+              },
+              "cause": {
+                "const": "source_error"
+              }
+            },
+            "required": [
+              "code",
+              "cause"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "properties": {
+              "retryable": {
+                "const": false
+              }
+            }
           }
         }
       }

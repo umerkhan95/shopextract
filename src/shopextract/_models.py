@@ -135,6 +135,7 @@ class ExtractionResult:
     catalog_complete: bool | None = None
     observation_scope: str = ""
     incompleteness_reasons: list[str] = field(default_factory=list)
+    retry_after_seconds: float | None = None
 
     @property
     def outcome(self) -> str:
