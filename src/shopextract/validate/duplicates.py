@@ -6,6 +6,9 @@ Supports exact matching (GTIN, SKU) and fuzzy matching (title similarity).
 from __future__ import annotations
 
 from difflib import SequenceMatcher
+from itertools import combinations
+import math
+import re
 
 _SUPPORTED_METHODS = ("title", "gtin", "sku")
 
@@ -45,18 +48,40 @@ def _find_by_title(
     duplicates: list[tuple[int, int, float]] = []
     titles = [_normalize_title(p.get("title", "")) for p in products]
 
-    for i in range(len(titles)):
-        if not titles[i]:
+    # Low thresholds can match titles without a shared word, so retain the
+    # exhaustive path there. At the normal duplicate threshold, rare-token
+    # blocking avoids scoring unrelated catalog rows while preserving exact
+    # duplicate groups even when their only words are common.
+    if threshold < 0.75:
+        candidates = ((i, j) for i in range(len(titles)) for j in range(i + 1, len(titles)))
+    else:
+        tokens = [set(re.findall(r"[a-z0-9]+", title)) for title in titles]
+        token_rows: dict[str, list[int]] = {}
+        exact_rows: dict[str, list[int]] = {}
+        for index, (title, row_tokens) in enumerate(zip(titles, tokens)):
+            if title:
+                exact_rows.setdefault(title, []).append(index)
+            for token in row_tokens:
+                token_rows.setdefault(token, []).append(index)
+
+        common_limit = max(8, math.ceil(math.sqrt(len(titles)) * 2))
+        candidate_pairs: set[tuple[int, int]] = set()
+        for indexes in exact_rows.values():
+            candidate_pairs.update(combinations(indexes, 2))
+        for indexes in token_rows.values():
+            if len(indexes) <= common_limit:
+                candidate_pairs.update(combinations(indexes, 2))
+        candidates = iter(sorted(candidate_pairs))
+
+    from ..compare.identity_match import classify_match
+    for i, j in candidates:
+        if not titles[i] or not titles[j]:
             continue
-        for j in range(i + 1, len(titles)):
-            if not titles[j]:
-                continue
-            from ..compare.identity_match import classify_match
-            decision=classify_match(products[i],products[j],threshold=threshold)
-            if any(not c.startswith('missing attributes:') for c in decision.conflicts):continue
-            ratio = SequenceMatcher(None, titles[i], titles[j]).ratio()
-            if ratio >= threshold:
-                duplicates.append((i, j, ratio))
+        decision=classify_match(products[i],products[j],threshold=threshold)
+        if any(not c.startswith('missing attributes:') for c in decision.conflicts):continue
+        ratio = SequenceMatcher(None, titles[i], titles[j]).ratio()
+        if ratio >= threshold:
+            duplicates.append((i, j, ratio))
 
     return duplicates
 
