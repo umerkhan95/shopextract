@@ -110,6 +110,16 @@ def _find_by_title(
                         continue
                 if SequenceMatcher(None, titles[i], titles[j]).quick_ratio() >= threshold:
                     candidate_pairs.add(pair)
+        short_rows = [index for index, title in enumerate(titles) if title and len(title) < 3]
+        for i in short_rows:
+            for j, title in enumerate(titles):
+                if i == j or not title:
+                    continue
+                pair = (i, j) if i < j else (j, i)
+                if pair in candidate_pairs:
+                    continue
+                if SequenceMatcher(None, titles[pair[0]], titles[pair[1]]).quick_ratio() >= threshold:
+                    candidate_pairs.add(pair)
         candidates = iter(sorted(candidate_pairs))
 
     from ..compare.identity_match import classify_match

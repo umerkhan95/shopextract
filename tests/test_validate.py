@@ -229,6 +229,13 @@ class TestFindDuplicates:
         dupes = find_duplicates(products, method="title", threshold=0.9)
         assert (0, 25) in {(left, right) for left, right, _ in dupes}
 
+    def test_short_title_pairs_without_character_trigrams_are_candidates(self):
+        dupes = find_duplicates(
+            [{"title": "abc"}, {"title": "ab"}],
+            method="title", threshold=0.75,
+        )
+        assert len(dupes) == 1 and dupes[0][:2] == (0, 1)
+
     def test_gtin_duplicates(self):
         products = [
             {"title": "A", "gtin": "4006381333931"},
