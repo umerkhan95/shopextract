@@ -518,6 +518,13 @@ def test_normalize_accepts_successful_extract_envelope_and_validates_malformed_i
     assert data['product_count'] == 1
     assert data['products'][0] == record
 
+    raw_product = {'schema_version': 'supplier-raw-1', 'title': 'Raw product',
+                   'price': '2.00', 'sku': 'RAW-2',
+                   'data': {'seller_note': 'not an envelope'}, 'products': []}
+    raw_result = invoke('normalize', '-', '--platform', 'generic', input=json.dumps(raw_product))
+    assert raw_result.exit_code == 0, raw_result.output[:800]
+    assert value(raw_result)['data']['product_count'] == 1
+
     empty = invoke('normalize', '-', '--platform', 'generic', input=json.dumps(
         {'schema_version': '1.0', 'ok': True, 'data': {'products': []}}))
     assert empty.exit_code == 0 and value(empty)['data']['product_count'] == 0

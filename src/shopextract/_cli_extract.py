@@ -304,12 +304,12 @@ def extract_feed(url, shop_url, max_products, timeout):
 
 def normalize_file(path, platform, shop_url, restore_short_gtin):
     from . import normalize
-    from ._cli_data import product_records_from_extract_envelope
+    from ._cli_data import is_extract_envelope_candidate, product_records_from_extract_envelope
     from ._portable import product_from_record, product_to_record
     if shop_url:
         validate_url(shop_url)
     value = read_json_file(path)
-    if isinstance(value, dict) and ('ok' in value or 'data' in value or 'schema_version' in value):
+    if is_extract_envelope_candidate(value):
         records = product_records_from_extract_envelope(value)
         products = []
         dropped = []

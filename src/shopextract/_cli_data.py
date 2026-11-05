@@ -91,6 +91,25 @@ def load_products(path):
     return products_from_value(value)
 
 
+
+def is_extract_envelope_candidate(value):
+    """Recognize response-shaped objects without shadowing raw product fields."""
+    if not isinstance(value, dict):
+        return False
+    if 'ok' in value:
+        return True
+    product_fields = {'title', 'name', 'price', 'variants', 'sku', 'images',
+                      'vendor', 'product_url', 'url', 'id'}
+    has_product_shape = bool(product_fields & value.keys())
+    if has_product_shape:
+        return False
+    if 'data' in value:
+        return True
+    if 'schema_version' in value:
+        envelope_fields = {'products', 'records', 'error', 'warnings', 'completeness'}
+        return bool(envelope_fields & value.keys()) or not has_product_shape
+    return False
+
 def product_records_from_extract_envelope(value):
     """Return portable product records from a successful extraction response."""
     if (not isinstance(value, dict)
@@ -104,8 +123,10 @@ def product_records_from_extract_envelope(value):
 
 
 def products_from_value(value):
+    envelope = isinstance(value, dict) and ('ok' in value or 'data' in value)
+    validation_error = envelope or (isinstance(value, dict) and ('@type' in value or '@context' in value))
     try:
-        if isinstance(value, dict) and ('ok' in value or 'data' in value):
+        if envelope:
             value = product_records_from_extract_envelope(value)
         if not isinstance(value, list) or len(value) > MAX_RECORDS:
             raise ValueError()
@@ -113,7 +134,8 @@ def products_from_value(value):
     except CliFailure:
         raise
     except (ValueError, TypeError, KeyError, RecursionError):
-        raise CliFailure('E_VALIDATION', 'Expected portable product records or a successful extraction envelope.') from None
+        code = 'E_VALIDATION' if validation_error else 'E_USAGE'
+        raise CliFailure(code, 'Expected portable product records or a successful extraction envelope.') from None
 
 
 def extraction_data(result):
