@@ -48,9 +48,10 @@ def _text(value: object) -> str:
 
 
 _MODEL_CODE_RE = re.compile(
-    r"(?<![A-Z0-9])([A-Z]{1,6}(?:[-/ ]?\d)[A-Z0-9]{1,10}(?:/[A-Z0-9]{1,8})?)(?![A-Z0-9])",
+    r"(?<![A-Z0-9])(?P<prefix>[A-Z]{1,6})(?P<separator>[-/ ]?)(?P<suffix>\d[A-Z0-9]{1,10}(?:/[A-Z0-9]{1,8})?)(?![A-Z0-9])",
     re.IGNORECASE,
 )
+_NON_MODEL_PREFIXES = {"AIR", "FRYER", "MODEL", "SERIES"}
 _CAPACITY_CUE_RE = re.compile(
     r"\b\d+(?:\.\d+)?\s*(?:GB|TB|MB|ML|KG|KW|KWH|WH|W|V|HZ|L|LITRES?|LITERS?)\b",
     re.IGNORECASE,
@@ -71,7 +72,19 @@ def extract_model_codes(product: Mapping[str, object]) -> frozenset[str]:
     for field_name in ("title", "sku"):
         source = unicodedata.normalize("NFKC", str(product.get(field_name) or "")).upper()
         for match in _MODEL_CODE_RE.finditer(source):
-            token = match.group(1)
+            prefix = match.group("prefix")
+            separator = match.group("separator")
+            if prefix in _NON_MODEL_PREFIXES:
+                continue
+            # Space-delimited codes in titles are ambiguous; accept only
+            # short acronym prefixes such as ``QX 900``. Compact codes also
+            # use short letter prefixes; explicit hyphen/slash forms may be
+            # longer (for example ``HAF-4LMB0``).
+            if separator == " " and len(prefix) > 3:
+                continue
+            if not separator and len(prefix) > 4:
+                continue
+            token = match.group(0)
             if _CAPACITY_CUE_RE.search(token):
                 continue
             canonical = re.sub(r"[^A-Z0-9]", "", token)

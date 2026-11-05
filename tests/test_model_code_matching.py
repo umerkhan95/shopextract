@@ -20,6 +20,8 @@ def test_extract_model_codes_ignores_capacity_and_generic_words():
 
     product = {"title": "Air Fryer 4 L, 1200 W, 16 GB", "sku": "BLACK-XL"}
     assert extract_model_codes(product) == frozenset()
+    assert extract_model_codes({"title": "Anex Air Fryer 2024 Deluxe"}) == frozenset()
+    assert extract_model_codes({"title": "Brand A QX 900 air fryer"}) == frozenset({"QX900"})
 
 
 def test_conflicting_model_codes_are_hard_unmatched_candidates():
