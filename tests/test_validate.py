@@ -236,6 +236,12 @@ class TestFindDuplicates:
         )
         assert len(dupes) == 1 and dupes[0][:2] == (0, 1)
 
+    def test_common_word_does_not_hide_near_match_in_frequent_title_bucket(self):
+        products = [{"title": "air abcdefghijklmnopqrst"} for _ in range(25)]
+        products.extend({"title": "air abcdefghijklmnopqrstu"} for _ in range(25))
+        dupes = find_duplicates(products, method="title", threshold=0.9)
+        assert (0, 25) in {(left, right) for left, right, _ in dupes}
+
     def test_gtin_duplicates(self):
         products = [
             {"title": "A", "gtin": "4006381333931"},

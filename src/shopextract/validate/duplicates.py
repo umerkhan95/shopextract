@@ -100,13 +100,10 @@ def _find_by_title(
                     continue
                 checked_pairs.add(pair)
                 i, j = pair
-                if tokens[i] & tokens[j]:
-                    # Shared words were already considered by the word index.
-                    continue
                 if frequent:
                     shared = len(grams[i] & grams[j])
                     union = len(grams[i] | grams[j])
-                    if not union or shared / union < threshold * 0.75:
+                    if not union or shared / union < threshold * 0.9:
                         continue
                 if SequenceMatcher(None, titles[i], titles[j]).quick_ratio() >= threshold:
                     candidate_pairs.add(pair)
