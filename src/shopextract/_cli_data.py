@@ -91,17 +91,29 @@ def load_products(path):
     return products_from_value(value)
 
 
+def product_records_from_extract_envelope(value):
+    """Return portable product records from a successful extraction response."""
+    if (not isinstance(value, dict)
+            or value.get('schema_version') != '1.0'
+            or value.get('ok') is not True
+            or not isinstance(value.get('data'), dict)
+            or not isinstance(value['data'].get('products'), list)
+            or len(value['data']['products']) > MAX_RECORDS):
+        raise CliFailure('E_VALIDATION', 'Expected a successful extraction envelope with a product list.')
+    return value['data']['products']
+
+
 def products_from_value(value):
     try:
-        if isinstance(value, dict) and 'data' in value:
-            if value.get('schema_version') != '1.0' or not isinstance(value['data'], dict):
-                raise ValueError()
-            value = value['data']['products']
+        if isinstance(value, dict) and ('ok' in value or 'data' in value):
+            value = product_records_from_extract_envelope(value)
         if not isinstance(value, list) or len(value) > MAX_RECORDS:
             raise ValueError()
         return [product_from_record(record) for record in value]
+    except CliFailure:
+        raise
     except (ValueError, TypeError, KeyError, RecursionError):
-        raise CliFailure('E_USAGE', 'Expected native portable product records or a product result envelope.') from None
+        raise CliFailure('E_VALIDATION', 'Expected portable product records or a successful extraction envelope.') from None
 
 
 def extraction_data(result):

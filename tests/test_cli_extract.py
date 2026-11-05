@@ -504,3 +504,39 @@ def test_operation_prints_never_reach_response_stdout(monkeypatch):
 def test_browser_run_config_disables_crawl4ai_progress_logging():
     from shopextract.extractors._browser import get_crawl_config, StealthLevel
     assert all(get_crawl_config(stealth_level=level).verbose is False for level in StealthLevel)
+
+
+def test_normalize_accepts_successful_extract_envelope_and_validates_malformed_input():
+    from shopextract._models import Product
+    from shopextract._portable import product_to_record
+
+    record = product_to_record(Product(title='Captured product'))
+    envelope = {'schema_version': '1.0', 'ok': True, 'data': {'products': [record]}}
+    normalized = invoke('normalize', '-', '--platform', 'generic', input=json.dumps(envelope))
+    assert normalized.exit_code == 0, normalized.output[:800]
+    data = value(normalized)['data']
+    assert data['product_count'] == 1
+    assert data['products'][0] == record
+
+    empty = invoke('normalize', '-', '--platform', 'generic', input=json.dumps(
+        {'schema_version': '1.0', 'ok': True, 'data': {'products': []}}))
+    assert empty.exit_code == 0 and value(empty)['data']['product_count'] == 0
+
+    invalid = {'schema_version': '1.0', 'ok': True,
+               'data': {'products': [record, {'schema_version': 1, 'product': {}}]}}
+    dropped = invoke('normalize', '-', '--platform', 'generic', input=json.dumps(invalid))
+    assert dropped.exit_code == 0, dropped.output[:800]
+    dropped_data = value(dropped)['data']
+    assert dropped_data['dropped_indices'] == [1]
+    assert dropped_data['dropped_reasons'] == [
+        {'index': 1, 'reason': 'invalid_portable_product_record'}]
+
+    for malformed in (
+        {'schema_version': '1.0', 'ok': False, 'data': {'products': []}},
+        {'schema_version': '1.0', 'ok': True, 'data': {}},
+        {'schema_version': '2.0', 'records': []},
+        {'@type': 'Product', 'name': 'Raw JSON-LD'},
+    ):
+        result = invoke('normalize', '-', '--platform', 'generic', input=json.dumps(malformed))
+        assert result.exit_code == 4, result.output[:800]
+        assert value(result)['error']['code'] == 'E_VALIDATION'

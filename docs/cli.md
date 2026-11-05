@@ -54,6 +54,7 @@ shopextract --output-format json extract https://example.com --platform shopify 
 shopextract extract-one https://example.com/products/item --timeout 20
 shopextract feed https://example.com/feed.xml --max 100 --shop-url https://example.com
 shopextract normalize raw-products.json --platform shopify --shop-url https://example.com
+shopextract normalize catalog.json --platform shopify --shop-url https://example.com
 shopextract quality catalog.json
 cat raw-products.json | shopextract normalize -
 ```
@@ -110,13 +111,17 @@ tokens. **These limits are not a currency billing guarantee:** providers may bil
 timed-out requests. LLM options require explicit activation. No inference is
 performed by help, config parsing, normalization or quality scoring.
 
-`normalize FILE` and `quality FILE` accept UTF-8 JSON object or object array;
-`-` reads stdin once. Inputs are limited to32MiB,1000 records,64 nested levels and
-1000000 nodes, with duplicate keys, nonfinite values, BOM and malformed typed
-values rejected. Normalize takes raw platform records and reports dropped indices;
-quality also accepts native portable record arrays or extraction/normalization
-result envelopes. It returns native per-product and batch scores, including an
-empty batch score0. No CSV sniffing or arbitrary Python code is supported.
+`normalize FILE` and `quality FILE` accept bounded UTF-8 JSON; `-` reads stdin once.
+Normalize accepts raw product objects/arrays and successful shopextract extraction
+envelopes (`schema_version: "1.0"`, `ok: true`, `data.products`). It preserves
+portable product records from an extraction envelope; raw JSON-LD, `ok: false`, and
+malformed or unrelated envelopes fail with `E_VALIDATION`. Invalid records in a
+valid envelope are reported by index and drop reason. Quality also accepts native
+portable record arrays or extraction/normalization result envelopes. Inputs are
+limited to32MiB,1000 records,64 nested levels and1000000 nodes, with duplicate keys,
+nonfinite values, BOM and malformed typed values rejected. Quality returns native
+per-product and batch scores, including an empty batch score0. No CSV sniffing or
+arbitrary Python code is supported.
 
 Extraction and normalization return native portable v1 product records, preserving
 variant evidence, leading-zero identifiers, missing/false values and exact money:

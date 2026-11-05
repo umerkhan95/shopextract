@@ -304,18 +304,49 @@ def extract_feed(url, shop_url, max_products, timeout):
 
 def normalize_file(path, platform, shop_url, restore_short_gtin):
     from . import normalize
-    from ._portable import product_to_record
+    from ._cli_data import product_records_from_extract_envelope
+    from ._portable import product_from_record, product_to_record
     if shop_url:
         validate_url(shop_url)
-    records = raw_records(read_json_file(path))
-    products=[]; dropped=[]
+    value = read_json_file(path)
+    if isinstance(value, dict) and ('ok' in value or 'data' in value or 'schema_version' in value):
+        records = product_records_from_extract_envelope(value)
+        products = []
+        dropped = []
+        dropped_reasons = []
+        for index, record in enumerate(records):
+            try:
+                product = product_from_record(record)
+            except (ValueError, TypeError, KeyError, RecursionError):
+                dropped.append(index)
+                dropped_reasons.append({'index': index, 'reason': 'invalid_portable_product_record'})
+            else:
+                products.append(product_to_record(product))
+        result = {'products': products, 'product_count': len(products), 'dropped_indices': dropped}
+        if dropped_reasons:
+            result['dropped_reasons'] = dropped_reasons
+        emit_result(result)
+        return
+
+    raw_values = value if isinstance(value, list) else [value]
+    if any(isinstance(item, dict) and ('@context' in item or '@type' in item)
+           for item in raw_values):
+        raise CliFailure('E_VALIDATION', 'Raw JSON-LD is not a supported normalize input; use an extract result envelope or raw product record.')
+    records = raw_records(value)
+    products = []
+    dropped = []
+    dropped_reasons = []
     for index, record in enumerate(records):
         product = normalize(record, platform=Platform(platform), shop_url=shop_url or '', restore_short_gtin=restore_short_gtin)
         if product is None:
             dropped.append(index)
+            dropped_reasons.append({'index': index, 'reason': 'no_product_evidence'})
         else:
             products.append(product_to_record(product))
-    emit_result({'products':products,'product_count':len(products),'dropped_indices':dropped})
+    result = {'products': products, 'product_count': len(products), 'dropped_indices': dropped}
+    if dropped_reasons:
+        result['dropped_reasons'] = dropped_reasons
+    emit_result(result)
 
 
 def quality_file(path):
