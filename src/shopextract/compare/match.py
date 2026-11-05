@@ -1,8 +1,12 @@
-"""Legacy candidate lookup helpers; use match_products for identity decisions."""
+"""Shared indexed match decisions and simple GTIN candidate lookup."""
 
 from __future__ import annotations
 
 from difflib import SequenceMatcher
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .identity_match import MatchDecision
 
 _DEFAULT_THRESHOLD = 0.8
 
@@ -21,37 +25,52 @@ def fuzzy_match(
     products_b: list[dict],
     *,
     threshold: float = _DEFAULT_THRESHOLD,
-) -> list[tuple[dict, dict, float]]:
-    """Match products by fuzzy title similarity.
+) -> list[MatchDecision]:
+    """Return indexed identity decisions for fuzzy title candidates.
 
-    Returns list of (product_a, product_b, similarity) tuples
-    where similarity >= threshold.
+    The public result shape matches :func:`identity_match.match_products`.
+    Strong shared identifiers can authorize a decision below the title
+    threshold; conflicting model codes and incompatible attributes veto it.
     """
-    from .identity_match import classify_match
+    from .identity_match import MatchRelation, classify_match
 
-    matches: list[tuple[dict, dict, float]] = []
+    if not 0 <= threshold <= 1:
+        raise ValueError("threshold must be between 0 and 1")
+    matches = []
     used_b: set[int] = set()
 
-    for prod_a in products_a:
+    for index_a, prod_a in enumerate(products_a):
         title_a = prod_a.get("title", "")
         best_sim = 0.0
         best_idx = -1
-        best_prod = None
+        best_decision = None
 
         for idx, prod_b in enumerate(products_b):
             if idx in used_b:
                 continue
             decision = classify_match(prod_a, prod_b, threshold=threshold)
+            if decision.relation == MatchRelation.UNMATCHED:
+                continue
             if any(not c.startswith("missing attributes:") for c in decision.conflicts):
                 continue
             sim = title_similarity(title_a, prod_b.get("title", ""))
-            if sim > best_sim:
-                best_sim = sim
+            if decision.relation == MatchRelation.EXACT:
+                score = 1.0
+            else:
+                if sim < threshold:
+                    continue
+                score = sim
+                decision.confidence = sim
+            if score > best_sim:
+                best_sim = score
                 best_idx = idx
-                best_prod = prod_b
+                best_decision = decision
 
-        if best_sim >= threshold and best_prod is not None:
-            matches.append((prod_a, best_prod, best_sim))
+        if best_decision is not None:
+            best_decision.index_a = index_a
+            best_decision.index_b = best_idx
+            best_decision.candidate_method = "fuzzy"
+            matches.append(best_decision)
             used_b.add(best_idx)
 
     return matches

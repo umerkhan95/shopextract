@@ -8,7 +8,7 @@ Public API:
     from_feed(feed_url, ...) -> ExtractionResult
     compare(query, stores) -> ComparisonResult
     compare_catalogs(store_a, store_b) -> CatalogDiff
-    fuzzy_match(products_a, products_b) -> list[tuple]
+    fuzzy_match(products_a, products_b) -> list[MatchDecision]
     match_gtin(gtin, products) -> list[dict]
     snapshot(url) -> int
     changes(domain) -> list[Change]

@@ -9,7 +9,7 @@ import re
 import unicodedata
 from dataclasses import asdict, dataclass, field
 from enum import Enum
-from typing import Callable, Iterable
+from typing import Callable, Iterable, Mapping
 
 from .._models import Product
 from .._resolution import resolution_references
@@ -45,6 +45,40 @@ def _record(product: Product | dict) -> dict:
 
 def _text(value: object) -> str:
     return " ".join(unicodedata.normalize("NFKC", str(value or "")).casefold().split())
+
+
+_MODEL_CODE_RE = re.compile(
+    r"(?<![A-Z0-9])([A-Z]{1,6}(?:[-/ ]?\d)[A-Z0-9]{1,10}(?:/[A-Z0-9]{1,8})?)(?![A-Z0-9])",
+    re.IGNORECASE,
+)
+_CAPACITY_CUE_RE = re.compile(
+    r"\b\d+(?:\.\d+)?\s*(?:GB|TB|MB|ML|KG|KW|KWH|WH|W|V|HZ|L|LITRES?|LITERS?)\b",
+    re.IGNORECASE,
+)
+
+
+def extract_model_codes(product: Mapping[str, object]) -> frozenset[str]:
+    """Return conservative normalized model-code tokens from title and SKU.
+
+    Separators are removed for comparison, so ``AG-2017`` and ``AG2017``
+    agree. Candidates need both letters and at least two digits; common size,
+    capacity, and power cues are discarded. The function never infers codes
+    from brand, vendor, or product URL text.
+    """
+    if not isinstance(product, Mapping):
+        raise TypeError("product must be a mapping")
+    result: set[str] = set()
+    for field_name in ("title", "sku"):
+        source = unicodedata.normalize("NFKC", str(product.get(field_name) or "")).upper()
+        for match in _MODEL_CODE_RE.finditer(source):
+            token = match.group(1)
+            if _CAPACITY_CUE_RE.search(token):
+                continue
+            canonical = re.sub(r"[^A-Z0-9]", "", token)
+            if (len(canonical) >= 4 and any(char.isalpha() for char in canonical)
+                    and sum(char.isdigit() for char in canonical) >= 2):
+                result.add(canonical)
+    return frozenset(result)
 
 
 def _gtin(value: object) -> str:
@@ -113,6 +147,15 @@ def _classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 
     if a.get("condition") and b.get("condition") and _text(a["condition"]) != _text(b["condition"]):
         conflicts.append("condition differs")
     evidence = []
+    model_codes_a, model_codes_b = extract_model_codes(a), extract_model_codes(b)
+    if model_codes_a and model_codes_b:
+        if model_codes_a != model_codes_b:
+            conflicts.append(
+                "model codes differ: "
+                f"{','.join(sorted(model_codes_a))} != {','.join(sorted(model_codes_b))}"
+            )
+            return MatchDecision(MatchRelation.UNMATCHED, 0.0, [], conflicts)
+        evidence.append("model code agrees: " + ",".join(sorted(model_codes_a)))
     ga = _gtin(a.get("gtin") or a.get("ean") or a.get("upc"))
     gb = _gtin(b.get("gtin") or b.get("ean") or b.get("upc"))
     approved = False
@@ -188,7 +231,8 @@ def _classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 
         variant_conflict = any(c.split(":")[0] in variant_keys for c in conflicts)
         relation = MatchRelation.VARIANT if variant_conflict and "brand differs" not in conflicts else MatchRelation.UNCERTAIN
         return MatchDecision(relation, 0.7, evidence or ["title candidate"], conflicts, True)
-    if missing:
+    strong_model_code = any(item.startswith("model code agrees:") for item in evidence)
+    if missing and not strong_model_code:
         return MatchDecision(MatchRelation.UNCERTAIN, 0.5, evidence or ["title candidate"],
                              ["missing attributes: " + ", ".join(missing)], True)
     if evidence:

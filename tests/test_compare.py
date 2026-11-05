@@ -34,15 +34,16 @@ class TestFuzzyMatch:
         products_b = [{"title": "Widget B"}, {"title": "Widget A"}]
         matches = fuzzy_match(products_a, products_b)
         assert len(matches) == 2
-        for prod_a, prod_b, sim in matches:
-            assert sim >= 0.8
+        assert all(match.index_a is not None and match.index_b is not None for match in matches)
+        assert all(match.confidence >= 0.8 for match in matches)
 
     def test_partial_matches(self):
         products_a = [{"title": "Widget A"}, {"title": "Unique Product"}]
         products_b = [{"title": "Widget A - Large"}, {"title": "Something Else"}]
         matches = fuzzy_match(products_a, products_b, threshold=0.6)
         assert len(matches) >= 1
-        assert matches[0][0]["title"] == "Widget A"
+        assert matches[0].index_a == 0
+        assert matches[0].index_b == 0
 
     def test_no_matches(self):
         products_a = [{"title": "Apple"}]
@@ -60,6 +61,7 @@ class TestFuzzyMatch:
         products_b = [{"title": "Widget"}]
         matches = fuzzy_match(products_a, products_b, threshold=0.8)
         assert len(matches) == 1
+        assert matches[0].index_a == 0 and matches[0].index_b == 0
 
     def test_custom_threshold(self):
         products_a = [{"title": "Blue Widget Pro"}]
