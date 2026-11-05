@@ -203,14 +203,29 @@ def _extract_file_summary(output_path, data=None):
             'completeness': completeness}
 
 
+def _extract_file_stdout_response(data, *, completeness, failure=None):
+    """Build the approved compact C3 envelope, preserving C1 error fields."""
+    response = make_response(data, failure=failure, completeness=completeness)
+    compact = {key: response[key] for key in ('ok', 'error', 'data')}
+    if failure is not None:
+        compact['data'] = data
+    return compact
+
+
 def _emit_extract_file_failure(failure, output_path, data=None):
     """Emit failure details with the bounded file-operation summary attached."""
     if failure.code == 'E_OPERATION' and failure.cause is None:
         failure.cause = 'source_error'
-    response = make_response(failure=failure,
-                             completeness='partial' if data else 'unavailable')
-    response['data'] = _extract_file_summary(output_path, data)
-    emit_response(response)
+    if data is not None:
+        if failure.errors is None:
+            failure.errors = list(data.get('errors') or [])
+        if failure.incompleteness_reasons is None:
+            failure.incompleteness_reasons = list(data.get('incompleteness_reasons') or [])
+        if failure.retry_after_seconds is None:
+            failure.retry_after_seconds = data.get('retry_after_seconds')
+    summary = _extract_file_summary(output_path, data)
+    emit_response(_extract_file_stdout_response(
+        summary, failure=failure, completeness=summary['completeness'] or 'unavailable'))
     raise click.exceptions.Exit(failure_exit(failure))
 
 
@@ -301,7 +316,8 @@ def _extract_store_impl(url, max_urls, fmt, output_path, options):
         except CliFailure as failure:
             _emit_extract_file_failure(failure, output_path, data)
         summary = _extract_file_summary(output_path, data)
-        emit_response(make_response(summary, completeness='partial' if partial else 'complete'))
+        emit_response(_extract_file_stdout_response(
+            summary, completeness='partial' if partial else 'complete'))
         if partial:
             raise click.exceptions.Exit(3)
         return

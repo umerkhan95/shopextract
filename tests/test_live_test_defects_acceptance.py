@@ -440,6 +440,7 @@ def test_sc06_extract_output_file_stdout_is_summary_only(monkeypatch, tmp_path):
     result = invoke("extract", "https://fixture.invalid", "-o", str(target))
     assert result.exit_code == 0, result.output[:500]
     value = response(result)
+    assert set(value) == {"ok", "error", "data"}
     assert value["ok"] is True and value["error"] is None
     assert value["data"] == {"output_path": str(target), "product_count": 1, "completeness": "complete"}
     assert "products" in json.loads(target.read_text())["data"]
@@ -457,6 +458,7 @@ def test_sc06_partial_extract_file_stdout_reports_partial_summary(monkeypatch, t
     result = invoke("extract", "https://fixture.invalid", "-o", str(target))
     assert result.exit_code == 3, result.output[:500]
     value = response(result)
+    assert set(value) == {"ok", "error", "data"}
     assert value["ok"] is True and value["error"] is None
     assert value["data"] == {"output_path": str(target), "product_count": 1, "completeness": "partial"}
 
@@ -472,6 +474,7 @@ def test_sc06_extract_prewrite_failure_reports_requested_path_without_file(monke
     target = tmp_path / "not-written.json"
     result = invoke("extract", "https://fixture.invalid", "-o", str(target))
     value = response(result)
+    assert set(value) == {"ok", "error", "data"}
     assert value["ok"] is False and value["error"]["code"] == "E_OPERATION"
     assert value["error"].get("cause") == "source_error"
     assert value["data"] == {"output_path": str(target), "product_count": 0, "completeness": None}
@@ -482,6 +485,7 @@ def test_sc06_extract_early_validation_failure_reports_requested_path_without_fi
     target = tmp_path / "invalid-url.json"
     result = invoke("extract", "file:///etc/passwd", "-o", str(target))
     value = response(result)
+    assert set(value) == {"ok", "error", "data"}
     assert result.exit_code == 2
     assert value["ok"] is False and value["error"]["code"] == "E_USAGE"
     assert value["data"] == {"output_path": str(target), "product_count": 0,
@@ -500,8 +504,11 @@ def test_sc06_extract_zero_product_failure_has_null_completeness(monkeypatch, tm
     target = tmp_path / "empty.json"
     result = invoke("extract", "https://fixture.invalid", "-o", str(target))
     value = response(result)
+    assert set(value) == {"ok", "error", "data"}
     assert result.exit_code == 1
     assert value["ok"] is False and value["error"]["code"] == "E_OPERATION"
+    assert value["data"]["completeness"] is None
+    assert "completeness" not in value["error"]
     assert value["data"] == {"output_path": str(target), "product_count": 0,
                               "completeness": None}
     assert not target.exists()
@@ -514,7 +521,8 @@ def test_sc06_extract_atomic_write_failure_keeps_extracted_summary(monkeypatch, 
 
     async def extract(*args, **kwargs):
         return ExtractionResult(products=[Product(title="Synthetic")], catalog_complete=False,
-                                incompleteness_reasons=["catalog_coverage_unverified"])
+                                errors=["source returned 429 after first page"],
+                                incompleteness_reasons=["rate_limited"], retry_after_seconds=12)
 
     def fail_write(*args, **kwargs):
         raise CliFailure("E_OPERATION", "Cannot write result file; existing output was preserved.")
@@ -525,7 +533,12 @@ def test_sc06_extract_atomic_write_failure_keeps_extracted_summary(monkeypatch, 
     target.write_text("old artifact")
     result = invoke("extract", "https://fixture.invalid", "-o", str(target))
     value = response(result)
+    assert set(value) == {"ok", "error", "data"}
+    assert "completeness" not in value["error"]
     assert value["ok"] is False and value["error"].get("cause") == "source_error"
+    assert value["error"]["errors"] == ["source returned 429 after first page"]
+    assert value["error"]["incompleteness_reasons"] == ["rate_limited"]
+    assert value["error"]["retry_after_seconds"] == 12
     assert value["data"] == {"output_path": str(target), "product_count": 1,
                               "completeness": "partial"}
     assert target.read_text() == "old artifact"
