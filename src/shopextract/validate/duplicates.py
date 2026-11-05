@@ -68,9 +68,23 @@ def _find_by_title(
         candidate_pairs: set[tuple[int, int]] = set()
         for indexes in exact_rows.values():
             candidate_pairs.update(combinations(indexes, 2))
+        checked_pairs: set[tuple[int, int]] = set()
         for indexes in token_rows.values():
-            if len(indexes) <= common_limit:
-                candidate_pairs.update(combinations(indexes, 2))
+            frequent = len(indexes) > common_limit
+            for pair in combinations(indexes, 2):
+                if pair in checked_pairs:
+                    continue
+                checked_pairs.add(pair)
+                if not frequent:
+                    candidate_pairs.add(pair)
+                    continue
+                i, j = pair
+                shared = len(tokens[i] & tokens[j])
+                union = len(tokens[i] | tokens[j])
+                if not union or shared / union < threshold * 0.75:
+                    continue
+                if SequenceMatcher(None, titles[i], titles[j]).quick_ratio() >= threshold:
+                    candidate_pairs.add(pair)
         candidates = iter(sorted(candidate_pairs))
 
     from ..compare.identity_match import classify_match

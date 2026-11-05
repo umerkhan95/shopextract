@@ -147,18 +147,22 @@ def brand_coverage(catalogs: dict[str, list[dict]]) -> dict[str, dict[str, int]]
     Returns:
         Dict mapping brand to dict of {store: count}.
     """
-    all_brands: set[str] = set()
+    displays: dict[str, str] = {}
     store_brands: dict[str, dict[str, int]] = {}
 
     for store, products in catalogs.items():
         brands = count_field(products, "vendor")
-        store_brands[store] = brands
-        all_brands.update(brands.keys())
+        normalized: dict[str, int] = {}
+        for brand, count in brands.items():
+            key = brand.casefold()
+            displays[key] = min(displays.get(key, brand), brand)
+            normalized[key] = count
+        store_brands[store] = normalized
 
     result: dict[str, dict[str, int]] = {}
-    for brand in sorted(all_brands):
+    for key, brand in sorted(displays.items(), key=lambda item: item[1]):
         result[brand] = {
-            store: store_brands[store].get(brand, 0)
+            store: store_brands[store].get(key, 0)
             for store in catalogs
         }
     return result

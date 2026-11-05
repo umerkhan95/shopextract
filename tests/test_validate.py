@@ -215,6 +215,14 @@ class TestFindDuplicates:
         dupes = find_duplicates(products, method="title", threshold=0.9)
         assert len(dupes) == 0
 
+    def test_common_token_near_duplicates_survive_candidate_blocking(self):
+        products = [{"title": "Acme premium toaster model"} for _ in range(25)]
+        products.extend({"title": "Acme premium toaster model!"} for _ in range(25))
+        dupes = find_duplicates(products, method="title", threshold=0.97)
+        pairs = {(left, right) for left, right, _ in dupes}
+        assert (0, 25) in pairs
+        assert len(dupes) == 25 * 24 // 2 * 2 + 25 * 25
+
     def test_gtin_duplicates(self):
         products = [
             {"title": "A", "gtin": "4006381333931"},

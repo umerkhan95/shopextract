@@ -230,6 +230,13 @@ class TestBrandCoverage:
         assert result["BrandB"] == {"store1": 1, "store2": 0}
         assert result["BrandC"] == {"store1": 0, "store2": 1}
 
+    def test_casefolds_across_catalogs_with_stable_display_name(self):
+        catalogs = {
+            "store1": [{"vendor": "acme"}],
+            "store2": [{"vendor": " ACME "}],
+        }
+        assert brand_coverage(catalogs) == {"ACME": {"store1": 1, "store2": 1}}
+
     def test_empty_catalogs(self):
         result = brand_coverage({})
         assert result == {}
