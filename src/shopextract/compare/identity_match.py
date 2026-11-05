@@ -82,6 +82,8 @@ def extract_model_codes(product: Mapping[str, object]) -> frozenset[str]:
             # longer (for example ``HAF-4LMB0``).
             if separator == " " and len(prefix) > 3:
                 continue
+            if separator == " " and re.fullmatch(r"(?:19|20)\d{2}", match.group("suffix")):
+                continue
             if not separator and len(prefix) > 4:
                 continue
             token = match.group(0)
@@ -162,6 +164,21 @@ def _classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 
     evidence = []
     model_codes_a, model_codes_b = extract_model_codes(a), extract_model_codes(b)
     if model_codes_a and model_codes_b:
+        if len(model_codes_a) > 1 or len(model_codes_b) > 1:
+            overlap = model_codes_a & model_codes_b
+            conflicts.append(
+                "ambiguous model codes: "
+                f"{','.join(sorted(model_codes_a))} vs {','.join(sorted(model_codes_b))}"
+            )
+            if overlap:
+                return MatchDecision(
+                    MatchRelation.UNCERTAIN,
+                    0.5,
+                    ["overlapping ambiguous model-code candidates"],
+                    conflicts,
+                    True,
+                )
+            return MatchDecision(MatchRelation.UNMATCHED, 0.0, [], conflicts)
         if model_codes_a != model_codes_b:
             conflicts.append(
                 "model codes differ: "

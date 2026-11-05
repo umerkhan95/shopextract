@@ -21,6 +21,7 @@ def test_extract_model_codes_ignores_capacity_and_generic_words():
     product = {"title": "Air Fryer 4 L, 1200 W, 16 GB", "sku": "BLACK-XL"}
     assert extract_model_codes(product) == frozenset()
     assert extract_model_codes({"title": "Anex Air Fryer 2024 Deluxe"}) == frozenset()
+    assert extract_model_codes({"title": "TV 2024"}) == frozenset()
     assert extract_model_codes({"title": "Brand A QX 900 air fryer"}) == frozenset({"QX900"})
 
 
@@ -34,6 +35,19 @@ def test_conflicting_model_codes_are_hard_unmatched_candidates():
     )
     assert decision.relation is MatchRelation.UNMATCHED
     assert any("model code" in conflict for conflict in decision.conflicts)
+
+
+def test_multiple_distinct_codes_remain_ambiguous_even_when_sets_agree():
+    from shopextract.compare.identity_match import MatchRelation, classify_match
+
+    decision = classify_match(
+        {"title": "Anex AG-2017 / AG-2020 air fryer"},
+        {"title": "Anex AG-2017 / AG-2020 fryer"},
+        threshold=0.5,
+    )
+    assert decision.relation is MatchRelation.UNCERTAIN
+    assert decision.needs_review
+    assert any("ambiguous model code" in conflict for conflict in decision.conflicts)
 
 
 def test_equal_model_code_does_not_override_brand_conflict():
