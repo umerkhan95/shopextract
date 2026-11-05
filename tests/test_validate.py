@@ -223,6 +223,12 @@ class TestFindDuplicates:
         assert (0, 25) in pairs
         assert len(dupes) == 25 * 24 // 2 * 2 + 25 * 25
 
+    def test_high_similarity_titles_without_shared_word_are_candidates(self):
+        products = [{"title": "airfryer"} for _ in range(25)]
+        products.extend({"title": "airfryers"} for _ in range(25))
+        dupes = find_duplicates(products, method="title", threshold=0.9)
+        assert (0, 25) in {(left, right) for left, right, _ in dupes}
+
     def test_gtin_duplicates(self):
         products = [
             {"title": "A", "gtin": "4006381333931"},

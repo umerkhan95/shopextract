@@ -15,6 +15,7 @@ from shopextract.analyze.stats import (
 )
 from shopextract.analyze.competitive import (
     _build_price_position,
+    assortment_gaps,
     brand_coverage,
 )
 from shopextract._models import CatalogStats
@@ -236,6 +237,19 @@ class TestBrandCoverage:
             "store2": [{"vendor": " ACME "}],
         }
         assert brand_coverage(catalogs) == {"ACME": {"store1": 1, "store2": 1}}
+
+    def test_assortment_gaps_casefolds_brands_across_stores(self, monkeypatch):
+        import asyncio
+        from shopextract import _extract
+        from shopextract._models import ExtractionResult
+
+        async def fake_extract(url, *, max_urls):
+            vendor = "ACME" if url == "competitor" else "acme"
+            return ExtractionResult(raw_products=[{"vendor": vendor}])
+
+        monkeypatch.setattr(_extract, "extract", fake_extract)
+        result = asyncio.run(assortment_gaps("mine", ["competitor"]))
+        assert result.missing_brands == []
 
     def test_empty_catalogs(self):
         result = brand_coverage({})

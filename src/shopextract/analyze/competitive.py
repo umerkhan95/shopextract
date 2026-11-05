@@ -110,12 +110,14 @@ async def assortment_gaps(
     my_products = my_result.raw_products or []
 
     my_cats = set(count_categories(my_products).keys())
-    my_brands = set(count_field(my_products, "vendor").keys())
+    my_brand_names = count_field(my_products, "vendor")
+    my_brand_keys = {brand.casefold() for brand in my_brand_names}
+    my_brands = set(my_brand_names)
 
     comp_cat_counts: dict[str, dict[str, int]] = {}
     comp_brand_counts: dict[str, dict[str, int]] = {}
     all_comp_cats: set[str] = set()
-    all_comp_brands: set[str] = set()
+    all_comp_brands: dict[str, str] = {}
 
     for url in competitors:
         result = await fetch(url)
@@ -125,11 +127,17 @@ async def assortment_gaps(
         comp_cat_counts[url] = cats
         comp_brand_counts[url] = brands
         all_comp_cats.update(cats.keys())
-        all_comp_brands.update(brands.keys())
+        for brand in brands:
+            key = brand.casefold()
+            all_comp_brands[key] = min(all_comp_brands.get(key, brand), brand)
+
+    missing_brand_names = sorted(
+        brand for key, brand in all_comp_brands.items() if key not in my_brand_keys
+    )
 
     return AssortmentGaps(
         missing_categories=sorted(all_comp_cats - my_cats),
-        missing_brands=sorted(all_comp_brands - my_brands),
+        missing_brands=missing_brand_names,
         competitor_category_counts=comp_cat_counts,
         competitor_brand_counts=comp_brand_counts,
         my_categories=sorted(my_cats),

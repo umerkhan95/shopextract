@@ -56,13 +56,20 @@ def _find_by_title(
         candidates = ((i, j) for i in range(len(titles)) for j in range(i + 1, len(titles)))
     else:
         tokens = [set(re.findall(r"[a-z0-9]+", title)) for title in titles]
+        grams = [
+            {title[offset:offset + 3] for offset in range(max(0, len(title) - 2))}
+            for title in titles
+        ]
         token_rows: dict[str, list[int]] = {}
+        gram_rows: dict[str, list[int]] = {}
         exact_rows: dict[str, list[int]] = {}
         for index, (title, row_tokens) in enumerate(zip(titles, tokens)):
             if title:
                 exact_rows.setdefault(title, []).append(index)
             for token in row_tokens:
                 token_rows.setdefault(token, []).append(index)
+            for gram in grams[index]:
+                gram_rows.setdefault(gram, []).append(index)
 
         common_limit = max(8, math.ceil(math.sqrt(len(titles)) * 2))
         candidate_pairs: set[tuple[int, int]] = set()
@@ -83,6 +90,24 @@ def _find_by_title(
                 union = len(tokens[i] | tokens[j])
                 if not union or shared / union < threshold * 0.75:
                     continue
+                if SequenceMatcher(None, titles[i], titles[j]).quick_ratio() >= threshold:
+                    candidate_pairs.add(pair)
+        checked_pairs.clear()
+        for indexes in gram_rows.values():
+            frequent = len(indexes) > common_limit
+            for pair in combinations(indexes, 2):
+                if pair in checked_pairs or pair in candidate_pairs:
+                    continue
+                checked_pairs.add(pair)
+                i, j = pair
+                if tokens[i] & tokens[j]:
+                    # Shared words were already considered by the word index.
+                    continue
+                if frequent:
+                    shared = len(grams[i] & grams[j])
+                    union = len(grams[i] | grams[j])
+                    if not union or shared / union < threshold * 0.75:
+                        continue
                 if SequenceMatcher(None, titles[i], titles[j]).quick_ratio() >= threshold:
                     candidate_pairs.add(pair)
         candidates = iter(sorted(candidate_pairs))
