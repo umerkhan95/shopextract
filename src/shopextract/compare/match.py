@@ -51,11 +51,17 @@ def fuzzy_match(
             decision = classify_match(prod_a, prod_b, threshold=threshold)
             if decision.relation == MatchRelation.UNMATCHED:
                 continue
-            if any(not c.startswith("missing attributes:") for c in decision.conflicts):
+            ambiguous_codes = any(c.startswith("ambiguous model codes:") for c in decision.conflicts)
+            if any(not c.startswith(("missing attributes:", "ambiguous model codes:"))
+                   for c in decision.conflicts):
                 continue
             sim = title_similarity(title_a, prod_b.get("title", ""))
             if decision.relation == MatchRelation.EXACT:
                 score = 1.0
+            elif ambiguous_codes:
+                # Keep overlapping ambiguous-code candidates visible for review
+                # even when title similarity alone misses the caller threshold.
+                score = decision.confidence
             else:
                 if sim < threshold:
                     continue

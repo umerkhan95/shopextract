@@ -22,6 +22,7 @@ def test_extract_model_codes_ignores_capacity_and_generic_words():
     assert extract_model_codes(product) == frozenset()
     assert extract_model_codes({"title": "Anex Air Fryer 2024 Deluxe"}) == frozenset()
     assert extract_model_codes({"title": "TV 2024"}) == frozenset()
+    assert extract_model_codes({"title": "TV-2024 HD-1080"}) == frozenset()
     assert extract_model_codes({"title": "Brand A QX 900 air fryer"}) == frozenset({"QX900"})
 
 
@@ -48,6 +49,17 @@ def test_multiple_distinct_codes_remain_ambiguous_even_when_sets_agree():
     assert decision.relation is MatchRelation.UNCERTAIN
     assert decision.needs_review
     assert any("ambiguous model code" in conflict for conflict in decision.conflicts)
+
+    from shopextract.compare.match import fuzzy_match
+
+    fuzzy = fuzzy_match(
+        [{"title": "Anex AG-2017 / AG-2020 air fryer"}],
+        [{"title": "Anex AG-2017 / AG-2020 fryer"}],
+        threshold=0.99,
+    )
+    assert len(fuzzy) == 1
+    assert fuzzy[0].relation is MatchRelation.UNCERTAIN
+    assert fuzzy[0].needs_review and fuzzy[0].index_a == 0 and fuzzy[0].index_b == 0
 
 
 def test_equal_model_code_does_not_override_brand_conflict():

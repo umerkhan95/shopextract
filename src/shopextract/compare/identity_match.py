@@ -51,7 +51,7 @@ _MODEL_CODE_RE = re.compile(
     r"(?<![A-Z0-9])(?P<prefix>[A-Z]{1,6})(?P<separator>[-/ ]?)(?P<suffix>\d[A-Z0-9]{1,10}(?:/[A-Z0-9]{1,8})?)(?![A-Z0-9])",
     re.IGNORECASE,
 )
-_NON_MODEL_PREFIXES = {"AIR", "FRYER", "MODEL", "SERIES"}
+_NON_MODEL_PREFIXES = {"AIR", "FRYER", "MODEL", "SERIES", "TV", "HD", "FHD", "UHD", "LCD", "LED", "OLED"}
 _CAPACITY_CUE_RE = re.compile(
     r"\b\d+(?:\.\d+)?\s*(?:GB|TB|MB|ML|KG|KW|KWH|WH|W|V|HZ|L|LITRES?|LITERS?)\b",
     re.IGNORECASE,
