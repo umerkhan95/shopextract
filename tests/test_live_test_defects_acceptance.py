@@ -857,11 +857,39 @@ def test_sc08_shopify_missing_price_context_zero_compare_at_and_canonical_url():
     assert not product.currency, "currency must not be fabricated without price-context evidence"
     assert product.compare_at_price is None
     assert product.product_url == "https://shop.invalid/products/anex-fryer"
+    credentialed = normalize(raw, Platform.SHOPIFY,
+                             "https://user:secret@shop.invalid/collections/fryers")
+    assert credentialed.product_url == "https://shop.invalid/products/anex-fryer"
 
     request_price = {"id": 3, "title": "Anex fryer", "body_html": "Price on request",
                      "variants": [{"id": 4, "price": "0", "available": True}]}
     unavailable = normalize(request_price, Platform.SHOPIFY, "https://shop.invalid")
     assert unavailable.price is None and unavailable.in_stock is None
+
+
+def test_sc08_request_price_marker_is_source_qualified_and_zero_remains_a_real_value():
+    from shopextract._normalize import normalize
+
+    numeric_zero = normalize({"id": 1, "title": "Fryer", "variants": [
+        {"price": "0", "available": False}]}, Platform.SHOPIFY, "https://shop.invalid")
+    assert numeric_zero.price == Decimal("0") and numeric_zero.in_stock is False
+
+    marker_only = normalize({"id": 2, "title": "Price on request fryer", "variants": [
+        {"price": "0", "available": True}]}, Platform.SHOPIFY, "https://shop.invalid")
+    assert marker_only.price is None and marker_only.in_stock is None
+
+    unrelated_text = normalize({"id": 3, "title": "Fryer", "body_html": "Ask for details", "variants": [
+        {"price": "0", "available": True}]}, Platform.SHOPIFY, "https://shop.invalid")
+    assert unrelated_text.price == Decimal("0") and unrelated_text.in_stock is True
+
+    description_marker = normalize({"id": 4, "title": "Fryer",
+        "description": "<p>Price on request</p>",
+        "variants": [{"price": "0", "available": True}]}, Platform.SHOPIFY, "https://shop.invalid")
+    hidden_marker = normalize({"id": 5, "title": "Fryer",
+        "body_html": "<script>Price on request</script><p>Ask for details</p>",
+        "variants": [{"price": "0", "available": True}]}, Platform.SHOPIFY, "https://shop.invalid")
+    assert description_marker.price is None and description_marker.in_stock is None
+    assert hidden_marker.price == Decimal("0") and hidden_marker.in_stock is True
 
 
 @pytest.mark.parametrize(("shop_currency", "price_currency", "expected"), [

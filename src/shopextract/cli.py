@@ -349,7 +349,7 @@ def _match_dict(match: object) -> dict:
     """Convert a Match to a plain dict."""
     return {
         "title": match.title,  # type: ignore[attr-defined]
-        "price": str(match.price),  # type: ignore[attr-defined]
+        "price": str(match.price) if match.price is not None else None,  # type: ignore[attr-defined]
         "currency": match.currency,  # type: ignore[attr-defined]
         "store": match.store,  # type: ignore[attr-defined]
         "product_url": match.product_url,  # type: ignore[attr-defined]

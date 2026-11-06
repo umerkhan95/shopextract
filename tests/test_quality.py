@@ -74,6 +74,19 @@ class TestQualityScorer:
         score = self.scorer.score_product({"title": "Widget", "price": 0})
         assert score == 0.4
 
+    def test_shopify_price_currency_and_stock_gaps_reduce_quality(self):
+        complete = {"handle": "fryer", "title": "Fryer", "variants": [{
+            "price": "0", "price_currency": "EUR", "available": True}],
+            "image_url": "image.jpg", "description": "Useful fryer", "sku": "F-1"}
+        no_currency = {**complete, "variants": [{"price": "0", "available": True}]}
+        no_stock = {**complete, "variants": [{"price": "0", "price_currency": "EUR"}]}
+        request_price = {**complete, "title": "Price on request fryer"}
+
+        complete_score = self.scorer.score_product(complete)
+        assert self.scorer.score_product(no_currency) == pytest.approx(complete_score - 0.05)
+        assert self.scorer.score_product(no_stock) == pytest.approx(complete_score - 0.05)
+        assert self.scorer.score_product(request_price) == pytest.approx(complete_score - 0.15)
+
     def test_empty_list_images_ignored(self):
         score = self.scorer.score_product({"title": "Widget", "images": []})
         assert score == 0.4

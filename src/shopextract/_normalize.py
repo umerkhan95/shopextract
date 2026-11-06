@@ -6,12 +6,13 @@ import logging
 import re
 from decimal import Decimal, InvalidOperation
 from html import unescape
-from urllib.parse import urljoin
+from urllib.parse import quote, urljoin, urlsplit
 
 from ._models import Platform, Product, Variant
 from .identity import assign_identity
 from ._normalization import Normalizer
 from ._product_admission import has_product_evidence
+from ._shopify_price import request_price_source
 
 logger = logging.getLogger(__name__)
 
@@ -171,7 +172,7 @@ def normalize(
 
 
 def _is_valid_product(product: Product) -> bool:
-    has_price = product.price > 0
+    has_price = product.price is not None and product.price > 0
     has_image = bool(product.image_url and product.image_url.strip())
     has_identifier = bool(product.sku) or bool(product.external_id and product.external_id.strip())
     if not has_price and not has_image and not has_identifier:
@@ -252,6 +253,17 @@ def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
     if not title:
         return None
     variants_raw = raw.get('variants', [])
+    parts = urlsplit(shop_url)
+    shop_origin = ""
+    try:
+        if parts.scheme in ("http", "https") and parts.hostname:
+            host = parts.hostname
+            if ":" in host and not host.startswith("["):
+                host = f"[{host}]"
+            authority = host + (f":{parts.port}" if parts.port else "")
+            shop_origin = f"{parts.scheme}://{authority}"
+    except ValueError:
+        pass
     images = raw.get('images', [])
     additional = [img['src'] for img in images[1:] if img.get('src')]
     image_paths = [f'/images/{i}/src' for i,img in enumerate(images) if i > 0 and img.get('src')]
@@ -265,6 +277,21 @@ def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
         stock = t.record_inputs('in_stock', stock_inputs, _shopify_stock_status(variants_raw),
                                 accepted=all(s.value is not None for s in stock_inputs),
                                 operation='Aggregate explicit variant availability/inventory')
+    price = t.money('price', '/variants/0/price')
+    compare_at_price = t.money('compare_at_price', '/variants/0/compare_at_price', default=None)
+    marker_path = request_price_source(raw)
+    if marker_path and price == 0:
+        marker = t.select(marker_path)
+        price = t.record('price', marker, None, accepted=False,
+                         reason='Explicit source says price on request; zero is a placeholder',
+                         operation='Qualify zero Shopify price using source marker')
+        stock = t.record('in_stock', marker, None, accepted=False,
+                          reason='Stock eligibility is unknown while price is on request',
+                          operation='Do not infer sellable stock from request-price placeholder')
+    if compare_at_price == 0:
+        compare_at_price = t.record('compare_at_price', '/variants/0/compare_at_price', None,
+                                    accepted=False, reason='Zero compare-at price is not a sale price',
+                                    operation='Reject zero compare-at price')
     tags = raw.get('tags', '')
     parsed_tags = [tag.strip() for tag in tags.split(',') if tag.strip()] if isinstance(tags, str) else list(tags) if tags else []
     tag_paths = ['/tags']*len(parsed_tags) if isinstance(tags, str) else [f'/tags/{i}' for i in range(len(parsed_tags))]
@@ -273,12 +300,13 @@ def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
         'external_id': t.emit('external_id', '/id', default='', convert=str),
         'title': title,
         'description': t.emit('description', '/body_html', default='', convert=_strip_html, operation='Strip HTML, decode entities and whitespace'),
-        'price': t.money('price', '/variants/0/price'),
-        'compare_at_price': t.money('compare_at_price', '/variants/0/compare_at_price', default=None, truthy=True),
+        'price': price,
+        'compare_at_price': compare_at_price,
         'currency': t.currency('currency', '/variants/0/price_currency', '/currency', '/_shop_currency'),
         'image_url': t.emit('image_url', '/images/0/src', default=''),
-        'product_url': t.emit('product_url', '/handle', default=shop_url, truthy=True,
-                              convert=lambda handle: f"{shop_url.rstrip('/')}/products/{handle}", operation='Resolve product handle using configured shop URL'),
+        'product_url': t.emit('product_url', '/handle', default=shop_origin, truthy=True,
+                              convert=lambda handle: f"{shop_origin}/products/{quote(str(handle), safe='-._~')}" if shop_origin else "",
+                              operation='Resolve canonical Shopify product URL at store origin'),
         'sku': t.emit('sku', '/variants/0/sku'),
         'gtin': t.emit('gtin', '/variants/0/barcode', convert=_validate_gtin, operation='Validate GTIN; pad 12-digit UPC with zero'),
         'vendor': t.emit('vendor', '/vendor'),

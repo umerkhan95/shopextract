@@ -60,7 +60,7 @@ class Product:
     """Unified product model across all platforms."""
 
     title: str = ""
-    price: Decimal = Decimal("0")
+    price: Decimal | None = Decimal("0")
     currency: str = "USD"
     description: str = ""
     image_url: str = ""
@@ -167,7 +167,7 @@ class Match:
     """A product matched across stores."""
 
     title: str
-    price: Decimal
+    price: Decimal | None
     currency: str
     store: str
     product_url: str

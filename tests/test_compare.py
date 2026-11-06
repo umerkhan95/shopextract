@@ -144,6 +144,14 @@ class TestDiffCatalogs:
         assert len(diff.cheaper_in_a) == 1
         assert len(diff.cheaper_in_b) == 0
 
+    def test_missing_price_keeps_match_without_price_classification(self):
+        a = [self._make_product("Widget", 10.0)]
+        b = [self._make_product("Widget", 20.0)]
+        a[0].price = None
+        diff = _diff_catalogs("A", "B", a, b, 0.8)
+        assert len(diff.in_both) == 1
+        assert diff.cheaper_in_a == [] and diff.cheaper_in_b == []
+
     def test_mixed_catalog(self):
         a = [
             self._make_product("Widget A", 10.0),
@@ -180,3 +188,20 @@ class TestBuildResult:
         assert result.most_expensive.price == Decimal("30")
         assert result.price_spread == Decimal("20")
         assert float(result.avg_price) == pytest.approx(20.0)
+
+    def test_missing_price_is_retained_but_excluded_from_price_math(self):
+        matches = [
+            Match(title="Request", price=None, currency="", store="s1", product_url="u1"),
+            Match(title="Priced", price=Decimal("10"), currency="EUR", store="s2", product_url="u2"),
+        ]
+        result = _build_result("widget", matches)
+        assert len(result.matches) == 2
+        assert result.cheapest.title == "Priced"
+        assert result.most_expensive.title == "Priced"
+        assert result.avg_price == Decimal("10") and result.price_spread == Decimal("0")
+
+    def test_missing_match_price_serializes_as_null(self):
+        from shopextract.cli import _match_dict
+
+        match = Match(title="Request", price=None, currency="", store="s1", product_url="u1")
+        assert _match_dict(match)["price"] is None
