@@ -359,6 +359,7 @@ async def test_sc05_detection_context_preserves_probe_failure_details():
 @pytest.mark.parametrize(("status", "body", "content_type"), [
     (200, "<html>login page</html>", "text/html"),
     (200, "not-json", "application/json"),
+    (200, "{}", "application/json"),
     (302, '{"version":"6.5"}', "application/json"),
 ])
 async def test_sc05_shopware_probe_rejects_non_json_and_redirects(status, body, content_type):
@@ -1025,6 +1026,13 @@ async def test_sc14_retry_after_boundaries_use_injected_remaining_clock(
     assert result is expected_result
 
 
+def test_sc14_detection_retry_after_rejects_non_finite_header():
+    from shopextract._detect import _retry_after
+
+    assert _retry_after("Infinity") is None
+    assert _retry_after("NaN") is None
+
+
 @pytest.mark.asyncio
 async def test_sc14_detection_probes_origin_sequentially_and_stops_at_shopify_signal():
     import asyncio
@@ -1034,19 +1042,18 @@ async def test_sc14_detection_probes_origin_sequentially_and_stops_at_shopify_si
     active = 0
     max_active = 0
 
-    class Recorder(httpx.AsyncBaseTransport):
-        async def handle_async_request(self, request):
-            nonlocal active, max_active
-            active += 1
-            max_active = max(max_active, active)
-            calls.append((request.method, request.url.host, request.url.path))
-            await asyncio.sleep(0)
-            active -= 1
-            if request.url.path == "/products.json":
-                return httpx.Response(200, json={"products": [{"id": 1}]}, request=request)
-            return httpx.Response(404, request=request)
+    async def record(request):
+        nonlocal active, max_active
+        active += 1
+        max_active = max(max_active, active)
+        calls.append((request.method, request.url.host, request.url.path))
+        await asyncio.sleep(0)
+        active -= 1
+        if request.url.path == "/products.json":
+            return httpx.Response(200, json={"products": [{"id": 1}]}, request=request)
+        return httpx.Response(404, request=request)
 
-    async with httpx.AsyncClient(transport=Recorder(), follow_redirects=False) as client:
+    async with httpx.AsyncClient(transport=httpx.MockTransport(record), follow_redirects=False) as client:
         result = await detect("https://fixture.invalid/collections/fryers?page=2", client=client)
 
     assert result.platform is Platform.SHOPIFY
@@ -1060,10 +1067,56 @@ async def test_sc14_detection_probes_origin_sequentially_and_stops_at_shopify_si
     assert sum(path == "/collections/fryers" for _, _, path in calls) <= 1
 
 
-@pytest.mark.skip(reason="Blocked: detector has no injected execution-clock/retry policy seam; 29/30/31 is only covered at the retry helper boundary")
 @pytest.mark.asyncio
 async def test_sc14_detection_429_retry_after_uses_operation_deadline_boundary():
-    pytest.fail("Blocked until detector accepts an injected execution clock/retry policy")
+    from shopextract._detect import detect_context
+
+    calls = []
+    async def rate_limited(request):
+        calls.append(request.url.path)
+        return httpx.Response(429, headers={"Retry-After": "31"}, request=request)
+
+    async with httpx.AsyncClient(transport=httpx.MockTransport(rate_limited),
+                                 follow_redirects=False) as client:
+        context = await detect_context("https://fixture.invalid", client=client)
+
+    assert context.retry_after_seconds == 31
+    assert context.errors == ["HTTP 429 https://fixture.invalid/products.json"]
+    assert calls == ["/products.json"]  # Surface the delay; do not sleep or keep probing.
+
+
+@pytest.mark.asyncio
+async def test_sc14_detection_stops_on_429_without_retry_after():
+    from shopextract._detect import detect_context
+
+    calls = []
+    async def rate_limited(request):
+        calls.append(request.url.path)
+        return httpx.Response(429, request=request)
+
+    async with httpx.AsyncClient(transport=httpx.MockTransport(rate_limited),
+                                 follow_redirects=False) as client:
+        context = await detect_context("https://fixture.invalid", client=client)
+
+    assert context.retry_after_seconds is None
+    assert calls == ["/products.json"]
+
+
+@pytest.mark.asyncio
+async def test_sc05_detection_context_records_total_timeout(monkeypatch):
+    import asyncio
+    from shopextract import _detect
+
+    monkeypatch.setattr(_detect, "TOTAL_TIMEOUT", 0.001)
+    async def slow(request):
+        await asyncio.sleep(0.05)
+        return httpx.Response(404, request=request)
+
+    async with httpx.AsyncClient(transport=httpx.MockTransport(slow),
+                                 follow_redirects=False) as client:
+        context = await _detect.detect_context("https://fixture.invalid", client=client)
+
+    assert context.errors == ["detection_timeout: exceeded 0.001s"]
 
 
 @pytest.mark.parametrize(("error_text", "reason", "cause", "retryable", "retry_after"), [

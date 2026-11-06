@@ -23,6 +23,7 @@ class Platform(str, Enum):
     MAGENTO = "magento"
     BIGCOMMERCE = "bigcommerce"
     SHOPWARE = "shopware"
+    DEMANDWARE = "demandware"
     GENERIC = "generic"
 
 
@@ -98,6 +99,15 @@ class PlatformResult:
     platform: Platform
     confidence: float  # 0.0-1.0
     signals: list[str] = field(default_factory=list)
+
+
+@dataclass
+class DetectionContext:
+    """Platform decision together with bounded source-probe diagnostics."""
+
+    result: PlatformResult
+    errors: list[str] = field(default_factory=list)
+    retry_after_seconds: float | None = None
 
 
 @dataclass
