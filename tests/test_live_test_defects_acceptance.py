@@ -75,6 +75,28 @@ async def test_sc01_discovery_keeps_category_scope_and_caps_requests():
                     "https://fixture.invalid/shop/products/airfryer-b"], urls
 
 
+@pytest.mark.asyncio
+async def test_sc01_category_listing_rejects_external_products_and_next_page():
+    from shopextract._discover import discover
+
+    calls = []
+    def handler(request):
+        calls.append(str(request.url))
+        if request.url.path == "/category/fryers":
+            return httpx.Response(200, text=(
+                '<main><a href="/products/safe">Safe fryer</a>'
+                '<a href="https://outside.invalid/products/unsafe">External fryer</a>'
+                '<a rel="next" href="https://outside.invalid/category/fryers?page=2">Next</a></main>'))
+        return httpx.Response(404)
+
+    async with httpx.AsyncClient(transport=httpx.MockTransport(handler), follow_redirects=False) as client:
+        urls = await discover("https://fixture.invalid/category/fryers", platform=Platform.GENERIC,
+                              max_urls=10, client=client)
+
+    assert urls == ["https://fixture.invalid/products/safe"]
+    assert all("outside.invalid" not in call for call in calls)
+
+
 def test_sc02_failure_envelope_preserves_cause_retryability_and_partial_diagnostics():
     failure = _cli_core.CliFailure("E_OPERATION", "network failed")
     # Existing exception remains source-compatible while carrying C1 metadata.

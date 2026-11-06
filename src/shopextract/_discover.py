@@ -9,7 +9,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import time
-from urllib.parse import urlparse, urljoin
+from urllib.parse import urlparse, urljoin, urlsplit, urlunsplit
 from bs4 import BeautifulSoup
 
 import defusedxml.ElementTree as ET
@@ -94,6 +94,8 @@ async def _discover_for_platform(
     base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None,
     max_urls: int = 100,
 ) -> list[str]:
+    if platform in (Platform.GENERIC, Platform.MAGENTO, Platform.WOOCOMMERCE) and _is_category_scope(base_url):
+        return await _discover_category_listing(base_url, timeout, client, max_urls=max_urls)
     if platform == Platform.SHOPIFY:
         return await _discover_shopify(base_url, platform, timeout, client, max_urls=max_urls)
     elif platform == Platform.WOOCOMMERCE:
@@ -104,6 +106,63 @@ async def _discover_for_platform(
         return await _discover_bigcommerce(base_url, platform, timeout, client, max_urls=max_urls)
     else:
         return await _discover_generic(base_url, platform, timeout, client, max_urls=max_urls)
+
+
+_CATEGORY_SEGMENTS = {"category", "categories", "collection", "collections"}
+_PRODUCT_SEGMENTS = {"product", "products", "p"}
+_MAX_CATEGORY_PAGES = 5
+
+
+def _is_category_scope(url: str) -> bool:
+    return any(segment.lower() in _CATEGORY_SEGMENTS
+               for segment in urlsplit(url).path.split("/") if segment)
+
+
+async def _discover_category_listing(
+    category_url: str, timeout: float, client, *, max_urls: int,
+) -> list[str]:
+    """Return product links from a bounded category listing and its next pages."""
+    from ._discovery_runtime import DiscoveryClient
+
+    guarded = client if isinstance(client, DiscoveryClient) else DiscoveryClient(client)
+    next_url = category_url
+    seen_pages: set[str] = set()
+    products: list[str] = []
+    for _ in range(_MAX_CATEGORY_PAGES):
+        if next_url in seen_pages or not await guarded.allowed(next_url):
+            break
+        seen_pages.add(next_url)
+        try:
+            response = await guarded.get(next_url)
+        except (httpx.HTTPError, ValueError):
+            guarded.note("category_listing_source_error")
+            break
+        if response.status_code != 200 or len(response.content) > 2 * 1024 * 1024:
+            guarded.note("category_listing_unavailable")
+            break
+        soup = BeautifulSoup(response.text, "html.parser")
+        main = soup.find("main") or soup.body or soup
+        for anchor in main.select("a[href]"):
+            href = anchor.get("href", "").strip()
+            if not href or href.startswith("#"):
+                continue
+            candidate = urljoin(str(response.url), href)
+            path_segments = {part.lower() for part in urlsplit(candidate).path.split("/") if part}
+            product_card = any(
+                "product" in " ".join(node.get("class", [])).lower()
+                for node in [anchor, *anchor.parents]
+                if getattr(node, "get", None)
+            )
+            if path_segments & _PRODUCT_SEGMENTS or product_card:
+                if await guarded.allowed(candidate):
+                    products.append(candidate)
+                    if len(products) >= max_urls:
+                        return list(dict.fromkeys(products))
+        next_link = soup.select_one('a[rel~="next"][href], link[rel~="next"][href]')
+        next_url = urljoin(str(response.url), next_link["href"]) if next_link else ""
+        if not next_url:
+            break
+    return list(dict.fromkeys(products))
 
 
 async def _discover_shopify(
