@@ -108,6 +108,8 @@ class DetectionContext:
     result: PlatformResult
     errors: list[str] = field(default_factory=list)
     retry_after_seconds: float | None = None
+    shopify_response: object | None = None
+    rate_limited: bool = False
 
 
 @dataclass

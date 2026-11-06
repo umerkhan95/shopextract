@@ -1043,9 +1043,59 @@ def test_sc13_live_rendered_dom_title_price_and_parsed_product():
 
 
 @pytest.mark.asyncio
-@pytest.mark.skip(reason="Blocked: no stable injected seam exposes detector page HTML consumption by extraction")
-async def test_sc14_extraction_reuses_detection_context_without_second_root_fetch():
-    pytest.fail("Blocked until extraction accepts and consumes the detector context seam")
+async def test_sc14_extraction_reuses_detection_context_without_second_root_fetch(monkeypatch):
+    from shopextract._extract import extract
+    from shopextract import _detect
+    from shopextract.extractors import _storefront
+
+    calls = []
+    def product(index):
+        return {"id": index, "title": f"Context fryer {index}", "handle": f"context-fryer-{index}",
+            "variants": [{"id": index, "price": "25.00", "price_currency": "EUR",
+                          "available": True, "sku": f"CF-{index}"}]}
+
+    def respond(request):
+        page = int(request.url.params.get("page", "1"))
+        calls.append(page)
+        records = [product(index) for index in range((page - 1) * 250, min(page * 250, 300))]
+        return httpx.Response(200, json={"products": records},
+            headers={"Set-Cookie": "cart_currency=EUR; Path=/"}, request=request)
+
+    original_client = httpx.AsyncClient
+    def client_factory(*args, **kwargs):
+        kwargs["transport"] = httpx.MockTransport(respond)
+        return original_client(*args, **kwargs)
+
+    monkeypatch.setattr(_detect, "async_client", client_factory)
+    monkeypatch.setattr(_storefront, "async_client", client_factory)
+    result = await extract("https://fixture.invalid/collections/fryers", max_urls=300)
+
+    assert result.platform is Platform.SHOPIFY
+    assert result.product_count == 300
+    assert calls == [1, 2]
+
+
+@pytest.mark.asyncio
+async def test_sc14_extract_stops_on_429_without_retry_after(monkeypatch):
+    from shopextract._extract import extract
+    from shopextract import _detect
+
+    calls = []
+    def respond(request):
+        calls.append((request.url.path, request.url.query.decode()))
+        return httpx.Response(429, request=request)
+
+    original_client = httpx.AsyncClient
+    def client_factory(*args, **kwargs):
+        kwargs["transport"] = httpx.MockTransport(respond)
+        return original_client(*args, **kwargs)
+
+    monkeypatch.setattr(_detect, "async_client", client_factory)
+    result = await extract("https://fixture.invalid/collections/fryers")
+
+    assert result.retry_after_seconds is None
+    assert result.errors == ["HTTP 429 https://fixture.invalid/products.json?limit=250&page=1"]
+    assert calls == [("/products.json", "limit=250&page=1")]
 
 
 @pytest.mark.asyncio
@@ -1131,7 +1181,7 @@ async def test_sc14_detection_429_retry_after_uses_operation_deadline_boundary()
         context = await detect_context("https://fixture.invalid", client=client)
 
     assert context.retry_after_seconds == 31
-    assert context.errors == ["HTTP 429 https://fixture.invalid/products.json"]
+    assert context.errors == ["HTTP 429 https://fixture.invalid/products.json?limit=250&page=1"]
     assert calls == ["/products.json"]  # Surface the delay; do not sleep or keep probing.
 
 

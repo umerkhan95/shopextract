@@ -144,11 +144,20 @@ async def extract(
             llm_api_key = _resolve_llm_api_key(llm_model)
         llm_model = os.environ.get("SHOPEXTRACT_LLM_MODEL", llm_model)
 
-    # Step 1: Detect platform
+    detection_context = None
+    detection_errors: list[str] = []
+    # Step 1: Detect platform and retain its bounded source context for extraction.
     if platform is None:
-        from ._detect import detect
-        result = await detect(url)
-        platform = result.platform
+        from ._detect import detect_context
+        detection_context = await detect_context(url)
+        detection_errors = list(detection_context.errors)
+        platform = detection_context.result.platform
+        if detection_context.rate_limited:
+            return ExtractionResult(
+                platform=platform, catalog_complete=False,
+                incompleteness_reasons=["rate_limited"], errors=detection_errors,
+                retry_after_seconds=detection_context.retry_after_seconds,
+            )
 
     if enrich_variants and platform!=Platform.WOOCOMMERCE:
         raise ValueError('Variant enrichment is only supported for WooCommerce')
@@ -178,6 +187,8 @@ async def extract(
     if enrich_variants:api_kwargs['enrich_variants']=True
     if api_options:
         api_kwargs['api_options'] = api_options
+    if detection_context is not None:
+        api_kwargs['detection_context'] = detection_context
     api_result = await _try_api_extraction(url, platform, **api_kwargs)
     if api_result is not None and (api_result.products or api_result.complete):
         truncated = len(api_result.products) > max_urls
@@ -213,12 +224,12 @@ async def extract(
                 platform=platform,
                 urls_attempted=1,
                 urls_succeeded=1,
-                errors=([api_result.error] if api_result.error else []) + [
+                errors=detection_errors + ([api_result.error] if api_result.error else []) + [
                     error for raw in api_result.products for error in raw.get("_identifier_enrichment_errors", [])
                 ],
             )
 
-    api_errors = [api_result.error] if api_result is not None and api_result.error else []
+    api_errors = detection_errors + ([api_result.error] if api_result is not None and api_result.error else [])
     if customer_context:
         return ExtractionResult(observation_scope=observation_scope, catalog_complete=False,
             incompleteness_reasons=['customer_context_unavailable'], tier=ExtractionTier.API,
@@ -497,14 +508,19 @@ async def _try_api_extraction(url: str, platform: Platform, *, max_products: int
                               enrich_identifiers: bool = False,
                               enrich_variants: bool = False,
                               api_options: dict[str, str] | None = None,
-                              include_categories: bool = False, category_mode: bool = False, shopify_storefront=None) -> ExtractorResult | None:
+                              include_categories: bool = False, category_mode: bool = False, shopify_storefront=None,
+                              detection_context=None) -> ExtractorResult | None:
     """Try platform-specific API extraction."""
     base_url = url.rstrip("/")
 
     if platform == Platform.SHOPIFY:
         from .extractors.shopify import ShopifyExtractor
         extractor = ShopifyExtractor()
-        result = await extractor.extract(base_url, max_products=max_products, enrich_identifiers=enrich_identifiers)
+        from ._detect import _origin
+        store_origin = _origin(base_url)
+        result = await extractor.extract(store_origin, max_products=max_products,
+            enrich_identifiers=enrich_identifiers,
+            initial_response=getattr(detection_context, "shopify_response", None))
         if shopify_storefront is not None:
             if not category_mode:raise ValueError('Storefront supplement requires category mode')
             from .extractors.shopify_taxonomy import supplement_categories

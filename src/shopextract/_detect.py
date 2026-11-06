@@ -85,6 +85,7 @@ class _ProbeObserver:
         self.errors = []
         self.retry_after_seconds = None
         self.rate_limited = False
+        self.shopify_response = None
 
     async def _request(self, method, url, **kwargs):
         try:
@@ -173,7 +174,9 @@ async def detect_context(url: str, *, client: httpx.AsyncClient | None = None) -
 
     result = PlatformResult(platform=platform, confidence=confidence, signals=platform_signals)
     return DetectionContext(result=result, errors=observer.errors,
-                            retry_after_seconds=observer.retry_after_seconds)
+                            retry_after_seconds=observer.retry_after_seconds,
+                            shopify_response=observer.shopify_response,
+                            rate_limited=observer.rate_limited)
 
 
 # -- Header probes -----------------------------------------------------------
@@ -222,11 +225,17 @@ async def _probe_shopify_api(
     client: httpx.AsyncClient, base_url: str, signals: dict[Platform, list[str]]
 ) -> None:
     try:
-        response = await client.get(f"{base_url}/products.json", timeout=PROBE_TIMEOUT)
+        # Use Shopify's maximum bounded page size so this context can be reused
+        # under any extraction limit without mistaking a short default page for
+        # catalog exhaustion.
+        response = await client.get(f"{base_url}/products.json?limit=250&page=1",
+                                    timeout=PROBE_TIMEOUT)
         if response.status_code == 200 and not response.history:
             data = response.json()
-            if "products" in data:
+            if isinstance(data, dict) and isinstance(data.get("products"), list):
                 signals[Platform.SHOPIFY].append("api:/products.json")
+                if hasattr(client, "shopify_response"):
+                    client.shopify_response = response
     except Exception as e:
         logger.debug("Shopify API probe failed for %s: %s", base_url, e)
 
