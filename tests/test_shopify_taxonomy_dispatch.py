@@ -13,6 +13,7 @@ from shopextract.tools.context import OperationContext,OperationBudget
 from shopextract.tools.security import GuardedTransport,NativeReadPolicy
 from shopextract.tools.contracts import ToolError
 from shopextract.extractors.shopify_taxonomy import ShopifyStorefrontConfig,SHOPIFY_TAXONOMY_QUERY
+from tests.mock_wire import mock_wire
 
 async def resolver(host,context):return ['93.184.216.34']
 
@@ -27,7 +28,7 @@ def wire(sent):
 async def test_public_real_dispatch(catalog,monkeypatch):
     sent=[]
     original=httpx.AsyncClient
-    monkeypatch.setattr(httpx,"AsyncClient",lambda **kw:original(transport=httpx.MockTransport(wire(sent)),**kw))
+    monkeypatch.setattr(httpx,"AsyncClient",lambda **kw:original(**mock_wire(kw,httpx.MockTransport(wire(sent)))))
     value=await extract_with_shopify_taxonomy(STORE,taxonomy=catalog,allow_unknown_source_version=True,
         storefront=ShopifyStorefrontConfig(STORE+'/api/2026-10/graphql.json',auth_mode='tokenless'))
     assert len(value.products)==1 and catalog.schema_for(value.products[0]).resolved
@@ -77,7 +78,7 @@ async def test_configured_endpoint_wrong_methods_denied_before_wire(method,suffi
 
 async def test_extract_preserves_configured_merchant_basepath(catalog,monkeypatch):
     sent=[];original=httpx.AsyncClient
-    monkeypatch.setattr(httpx,'AsyncClient',lambda **kw:original(transport=httpx.MockTransport(wire(sent)),**kw))
+    monkeypatch.setattr(httpx,'AsyncClient',lambda **kw:original(**mock_wire(kw,httpx.MockTransport(wire(sent)))))
     values=[]
     for path in ('/a','/b'):
         result=await extract_with_shopify_taxonomy(STORE+path,taxonomy=catalog,allow_unknown_source_version=True,

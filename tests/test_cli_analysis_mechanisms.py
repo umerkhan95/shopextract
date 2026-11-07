@@ -267,8 +267,10 @@ def test_record_and_byte_boundaries():
         assert result.exit_code==(0 if size<=MAX_BYTES else 2)
 
 
-def test_controlled_http_images_and_invalid_preflight():
+def test_controlled_http_images_and_invalid_preflight(monkeypatch):
     from http.server import BaseHTTPRequestHandler,HTTPServer
+    # The fixture server is on loopback, which needs the operator opt-in.
+    monkeypatch.setenv('SHOPEXTRACT_ALLOW_PRIVATE_URLS','1')
     import threading
     requests=[]
     class Handler(BaseHTTPRequestHandler):

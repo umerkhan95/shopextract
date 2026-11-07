@@ -186,19 +186,22 @@ async def test_sc03_ipv4_mapped_ipv6_loopback_is_rejected():
 async def test_sc03_public_redirect_to_private_target_makes_no_second_request():
     from shopextract.extractors.unified import UnifiedCrawlExtractor
 
+    from shopextract._url_safety import async_client
+
     calls = []
 
     def route(request):
         calls.append((request.url.host, request.url.path))
-        if request.url.host == "public.fixture.invalid":
+        if request.url.host == "93.184.216.34":
             return httpx.Response(302, headers={"location": "http://127.0.0.1/secret"})
         return httpx.Response(200, text="must not reach private redirect")
 
-    async with httpx.AsyncClient(transport=httpx.MockTransport(route), follow_redirects=True) as client:
+    async with async_client(wire_transport=httpx.MockTransport(route),
+                            follow_redirects=True) as client:
         fetched = await UnifiedCrawlExtractor(http_client=client)._fetch_html_httpx(
-            "https://public.fixture.invalid/start")
+            "https://93.184.216.34/start")
     assert fetched is None
-    assert calls == [("public.fixture.invalid", "/start")]
+    assert calls == [("93.184.216.34", "/start")]
 
 
 @pytest.mark.asyncio
@@ -225,10 +228,11 @@ async def test_sc03_mixed_public_and_private_dns_answer_is_rejected(monkeypatch)
 
 @pytest.mark.asyncio
 async def test_sc03_product_image_private_target_makes_no_request():
+    from shopextract._url_safety import async_client
     from shopextract.validate.images import check_images
 
     calls = []
-    async with httpx.AsyncClient(transport=httpx.MockTransport(
+    async with async_client(wire_transport=httpx.MockTransport(
             lambda request: (calls.append(request) or httpx.Response(200, headers={"content-type": "image/png"})))) as client:
         await check_images([{"title": "Synthetic", "image_url": "http://127.0.0.1/private.png"}], client=client)
     assert calls == [], "source-controlled unsafe image URL reached the transport"
@@ -238,18 +242,17 @@ async def test_sc03_product_image_private_target_makes_no_request():
 async def test_sc03_feed_private_target_raises_policy_error_before_transport(monkeypatch):
     import shopextract.extractors.feed as feed
     safety = importlib.import_module("shopextract._url_safety")
-    original = httpx.AsyncClient
+    from functools import partial
     calls = []
 
-    def factory(*args, **kwargs):
-        def respond(request):
-            calls.append(request)
-            return httpx.Response(200, text="id,title\\n1,Fixture\\n",
-                                  headers={"content-type": "text/csv"})
-        kwargs["transport"] = httpx.MockTransport(respond)
-        return original(*args, **kwargs)
+    def respond(request):
+        calls.append(request)
+        return httpx.Response(200, text="id,title\\n1,Fixture\\n",
+                              headers={"content-type": "text/csv"})
 
-    monkeypatch.setattr(feed.httpx, "AsyncClient", factory)
+    # Keep the production guarded transport; only the wire is replaced.
+    monkeypatch.setattr(feed, "async_client",
+                        partial(feed.async_client, wire_transport=httpx.MockTransport(respond)))
     with pytest.raises(safety.UnsafeURLTarget):
         await feed.GoogleFeedExtractor()._fetch_feed("http://127.0.0.1/feed.csv")
     assert calls == []
@@ -258,19 +261,18 @@ async def test_sc03_feed_private_target_raises_policy_error_before_transport(mon
 @pytest.mark.asyncio
 async def test_sc03_operator_environment_is_the_local_feed_opt_in(monkeypatch):
     import shopextract.extractors.feed as feed
-    original = httpx.AsyncClient
+    from functools import partial
     calls = []
     monkeypatch.setenv("SHOPEXTRACT_ALLOW_PRIVATE_URLS", "1")
 
-    def factory(*args, **kwargs):
-        def respond(request):
-            calls.append(request)
-            return httpx.Response(200, text="id,title\\n1,Fixture\\n",
-                                  headers={"content-type": "text/csv"})
-        kwargs["transport"] = httpx.MockTransport(respond)
-        return original(*args, **kwargs)
+    def respond(request):
+        calls.append(request)
+        return httpx.Response(200, text="id,title\\n1,Fixture\\n",
+                              headers={"content-type": "text/csv"})
 
-    monkeypatch.setattr(feed.httpx, "AsyncClient", factory)
+    # Keep the production guarded transport; only the wire is replaced.
+    monkeypatch.setattr(feed, "async_client",
+                        partial(feed.async_client, wire_transport=httpx.MockTransport(respond)))
     body, content_type = await feed.GoogleFeedExtractor()._fetch_feed("http://127.0.0.1/feed.csv")
     assert body and "csv" in content_type
     assert len(calls) == 1
@@ -308,20 +310,120 @@ async def test_sc03_mcp_private_dns_is_rejected_without_wire_request():
         await runtime.aclose()
 
 
-def test_sc03_crawl4ai_uses_proxy_hook_and_browser_config_disallows_bypass():
+@pytest.mark.asyncio
+async def test_sc03_crawl4ai_requires_guarded_per_crawl_proxy_and_disallows_bypass():
+    from crawl4ai import ProxyConfig
     from shopextract.extractors._browser import get_browser_config, get_crawl_config
+    from shopextract._url_safety import ValidatingProxy
 
     browser = get_browser_config()
-    run = get_crawl_config()
-    assert getattr(run, "proxy_config", None), "Crawl4AI arun must receive guarded per-crawl proxy_config"
-    proxy = getattr(browser, "proxy", None)
-    assert proxy, "browser config must route through the guarded local proxy"
-    assert not getattr(proxy, "bypass", None), "browser proxy bypass list must be empty"
+    assert "--proxy-bypass-list=<-loopback>" in browser.extra_args
+    async with ValidatingProxy() as proxy:
+        run = get_crawl_config(proxy_config=proxy.crawl4ai_config)
+        assert run.proxy_config.server == proxy.url
+        with pytest.raises(ValueError, match="ValidatingProxy"):
+            get_crawl_config()
+        with pytest.raises(ValueError, match="ValidatingProxy"):
+            get_crawl_config(proxy_config=ProxyConfig(server="http://127.0.0.1:3128"))
 
 
-@pytest.mark.skip(reason="Blocked: no production-facing OS/network-sandbox egress audit seam exists yet")
-def test_sc03_browser_direct_egress_cannot_bypass_proxy():
-    pytest.fail("T3 stays blocked until browser socket egress can be observed and denied")
+@pytest.mark.asyncio
+async def test_sc03_browser_loopback_navigation_and_subresources_use_validating_proxy(monkeypatch):
+    import asyncio
+    from crawl4ai import AsyncWebCrawler, CacheMode
+    from shopextract._url_safety import ValidatingProxy
+    from shopextract.extractors._browser import get_browser_config, get_crawl_config
+
+    monkeypatch.setenv("SHOPEXTRACT_ALLOW_PRIVATE_URLS", "1")
+    requests = []
+    async def deny_external_dns(host, port):
+        return []
+
+    async def serve(reader, writer):
+        try:
+            line = await asyncio.wait_for(reader.readline(), 3)
+            if not line:
+                return
+            headers = await reader.readuntil(b"\r\n\r\n")
+            path = line.decode("latin-1").split(" ", 2)[1]
+            requests.append(path)
+            body = (b'<html><body><main><h1>Proxy route fixture</h1>'
+                    b'<img src="/pixel.png"></main></body></html>' if path == "/" else b"image")
+            content_type = b"text/html" if path == "/" else b"image/png"
+            writer.write(b"HTTP/1.1 200 OK\r\nContent-Length: " + str(len(body)).encode() +
+                         b"\r\nContent-Type: " + content_type +
+                         b"\r\nConnection: close\r\n\r\n" + body)
+            await writer.drain()
+        finally:
+            writer.close()
+            await writer.wait_closed()
+
+    server = await asyncio.start_server(serve, "127.0.0.1", 0)
+    port = int(server.sockets[0].getsockname()[1])
+    try:
+        async with ValidatingProxy(resolver=deny_external_dns) as proxy:
+            run = get_crawl_config(proxy_config=proxy.crawl4ai_config,
+                                   check_robots_txt=False, wait_for=None,
+                                   delay_before_return_html=0)
+            run.cache_mode = CacheMode.BYPASS
+            async with AsyncWebCrawler(config=get_browser_config()) as crawler:
+                result = await crawler.arun(f"http://127.0.0.1:{port}/", config=run)
+            assert result.status_code == 200
+            assert "Proxy route fixture" in (result.html or "")
+            assert "/" in requests and "/pixel.png" in requests
+            local_events = [event for event in proxy.events
+                            if event["host"] == "127.0.0.1" and event["port"] == port]
+            assert len(local_events) == len(requests), (local_events, requests)
+            assert all(not event["blocked"] and event["connected_address"] == "127.0.0.1"
+                       for event in local_events)
+    finally:
+        server.close()
+        await server.wait_closed()
+
+
+@pytest.mark.asyncio
+async def test_sc03_browser_cannot_reach_loopback_without_operator_opt_in(monkeypatch):
+    import asyncio
+    from crawl4ai import AsyncWebCrawler, CacheMode
+    from shopextract._url_safety import ValidatingProxy
+    from shopextract.extractors._browser import get_browser_config, get_crawl_config
+
+    monkeypatch.delenv("SHOPEXTRACT_ALLOW_PRIVATE_URLS", raising=False)
+    hits = []
+
+    async def serve(reader, writer):
+        hits.append(await reader.read(64))
+        writer.close()
+
+    server = await asyncio.start_server(serve, "127.0.0.1", 0)
+    port = int(server.sockets[0].getsockname()[1])
+    # The page itself is inline, so every network attempt targets loopback.
+    page = (f'raw:<html><body><h1>Egress fixture</h1>'
+            f'<img src="http://127.0.0.1:{port}/img.png">'
+            f'<iframe src="http://127.0.0.1:{port}/frame"></iframe>'
+            f'<script>fetch("http://127.0.0.1:{port}/fetch").catch(() => {{}});'
+            f'try {{ new WebSocket("ws://127.0.0.1:{port}/ws"); }} catch (e) {{}}'
+            f'</script></body></html>')
+    try:
+        async with ValidatingProxy() as proxy:
+            run = get_crawl_config(proxy_config=proxy.crawl4ai_config,
+                                   check_robots_txt=False, wait_for=None,
+                                   delay_before_return_html=1.0)
+            run.cache_mode = CacheMode.BYPASS
+            async with AsyncWebCrawler(config=get_browser_config()) as crawler:
+                navigation = await crawler.arun(f"http://127.0.0.1:{port}/", config=run)
+                inline = await crawler.arun(page, config=run)
+            assert "Egress fixture" in (inline.html or "")
+            assert "Egress fixture" not in (navigation.html or "")
+            loopback = [event for event in proxy.events if event["host"] == "127.0.0.1"]
+            # Navigation, image, iframe and fetch arrive as GET; the websocket as CONNECT.
+            assert sum(event["method"] == "GET" for event in loopback) >= 4, loopback
+            assert any(event["method"] == "CONNECT" for event in loopback), loopback
+            assert all(event["blocked"] for event in loopback), loopback
+    finally:
+        server.close()
+        await server.wait_closed()
+    assert hits == [], "browser reached a loopback socket directly"
 
 
 def test_sc04_saved_airfryer_oracle_requires_shared_indexed_model_code_decisions():
@@ -1030,7 +1132,7 @@ def test_sc12_normal_diagnostics_still_emit_a_cli_diagnostic(monkeypatch):
         return ["https://fixture.invalid/products/item"]
 
     monkeypatch.setattr(shopextract, "discover", discovered)
-    result = CliRunner(mix_stderr=False).invoke(
+    result = CliRunner().invoke(
         main, ["--output-format", "legacy", "--diagnostics", "normal", "discover", "https://fixture.invalid"])
     assert result.exit_code == 0, result.output[:500]
     assert "1 URLs discovered" in result.stderr

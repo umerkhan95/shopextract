@@ -14,6 +14,7 @@ import pytest
 import shopextract._discovery_sitemaps as native
 from shopextract._discover import discover
 from shopextract._models import Platform
+from tests.mock_wire import mock_wire
 
 
 BASE = 'https://merchant.test/shop'
@@ -285,7 +286,7 @@ async def test_cancellation_closes_owned_client_but_preserves_supplied_client(mo
     real=httpx.AsyncClient
     class Tracked(real):
         def __init__(self,*a,**kw):
-            kw.setdefault('transport', transport)
+            kw = mock_wire(kw, transport)
             super().__init__(*a,**kw); created.append(self)
     monkeypatch.setattr(native.httpx,'AsyncClient',Tracked)
     class Blocking(httpx.AsyncByteStream):

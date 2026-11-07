@@ -254,14 +254,17 @@ def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
         return None
     variants_raw = raw.get('variants', [])
     parts = urlsplit(shop_url)
-    shop_origin = ""
+    shop_base = ""
     try:
         if parts.scheme in ("http", "https") and parts.hostname:
             host = parts.hostname
             if ":" in host and not host.startswith("["):
                 host = f"[{host}]"
             authority = host + (f":{parts.port}" if parts.port else "")
-            shop_origin = f"{parts.scheme}://{authority}"
+            # Keep a merchant base path (/en-pk); drop a collection or product
+            # page the caller extracted from, and never the credentials.
+            base_path = re.split(r"/(?:collections|products)(?:/|$)", parts.path, maxsplit=1)[0]
+            shop_base = f"{parts.scheme}://{authority}{base_path.rstrip('/')}"
     except ValueError:
         pass
     images = raw.get('images', [])
@@ -304,9 +307,9 @@ def _normalize_shopify(raw: dict, shop_url: str) -> dict | None:
         'compare_at_price': compare_at_price,
         'currency': t.currency('currency', '/variants/0/price_currency', '/currency', '/_shop_currency'),
         'image_url': t.emit('image_url', '/images/0/src', default=''),
-        'product_url': t.emit('product_url', '/handle', default=shop_origin, truthy=True,
-                              convert=lambda handle: f"{shop_origin}/products/{quote(str(handle), safe='-._~')}" if shop_origin else "",
-                              operation='Resolve canonical Shopify product URL at store origin'),
+        'product_url': t.emit('product_url', '/handle', default=shop_base, truthy=True,
+                              convert=lambda handle: f"{shop_base}/products/{quote(str(handle), safe='-._~')}" if shop_base else "",
+                              operation='Resolve canonical Shopify product URL at the store base path'),
         'sku': t.emit('sku', '/variants/0/sku'),
         'gtin': t.emit('gtin', '/variants/0/barcode', convert=_validate_gtin, operation='Validate GTIN; pad 12-digit UPC with zero'),
         'vendor': t.emit('vendor', '/vendor'),

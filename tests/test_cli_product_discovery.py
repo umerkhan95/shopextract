@@ -72,11 +72,12 @@ def test_actual_cli_fifty_products_no_category_crawl(monkeypatch,no_browser,tmp_
     monkeypatch.setattr('shopextract._cli_extract._browser_preflight',lambda:None)
     path=tmp_path/'products.json'
     result=CliRunner().invoke(main,['--output-format','json','extract',SHOP,'--max','50',
-        '--browser','--timeout','30','--format','json','--output',str(path)])
+        '--browser','--timeout','30','--format','json','--output',str(path),'--include-evidence'])
     # Crawled coverage is unverified, so a full budget is still a truthful partial.
     assert result.exit_code == 3, result.output[:800]
     value=json.loads(path.read_text());data=value['data']
-    assert not value['ok'] and value['error']['code'] == 'E_PARTIAL'
+    # The file holds an ok envelope marked partial; the exit code carries E_PARTIAL.
+    assert value['ok'] and value['completeness'] == 'partial'
     assert data['incompleteness_reasons'] == ['crawl_coverage_unverified']
     assert len(data['products']) == len(data['raw_products']) == 50
     assert data['catalog_complete'] is not True

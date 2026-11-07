@@ -256,13 +256,15 @@ def _classify_match(a: Product | dict, b: Product | dict, *, threshold: float = 
     if pack_conflict or aa.get("bundle") != ab.get("bundle"):
         return MatchDecision(MatchRelation.BUNDLE, 0.7, evidence or ["title candidate"], conflicts +
                              (["bundle composition differs or unknown"] if not pack_conflict else []), True)
+    variant_keys = {"memory", "storage", "capacity", "title_capacity", "color", "size"}
     if conflicts:
-        variant_keys = {"memory", "storage", "capacity", "title_capacity", "color", "size"}
         variant_conflict = any(c.split(":")[0] in variant_keys for c in conflicts)
         relation = MatchRelation.VARIANT if variant_conflict and "brand differs" not in conflicts else MatchRelation.UNCERTAIN
         return MatchDecision(relation, 0.7, evidence or ["title candidate"], conflicts, True)
+    # A shared model code covers attributes one listing omits, but not a variant
+    # axis: one model code is sold in several memory, colour or size variants.
     strong_model_code = any(item.startswith("model code agrees:") for item in evidence)
-    if missing and not strong_model_code:
+    if missing and (not strong_model_code or variant_keys & set(missing)):
         return MatchDecision(MatchRelation.UNCERTAIN, 0.5, evidence or ["title candidate"],
                              ["missing attributes: " + ", ".join(missing)], True)
     if evidence:

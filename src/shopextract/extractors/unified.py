@@ -36,6 +36,7 @@ from ._browser import (
     get_default_user_agent,
 )
 from .._url_safety import (
+    UnsafeURLTarget,
     ValidatingProxy,
     async_client,
     operator_allows_private_urls,
@@ -169,7 +170,12 @@ class UnifiedCrawlExtractor:
             )
             try:
                 await validate_client_url(url, client)
-                response = await client.get(url)
+                try:
+                    response = await client.get(url)
+                except UnsafeURLTarget as exc:
+                    # The guarded transport rejected a redirect hop.
+                    logger.debug("httpx redirect rejected for %s: %s", url, exc)
+                    return None
                 response.raise_for_status()
 
                 content_length = int(response.headers.get("content-length", 0))

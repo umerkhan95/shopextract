@@ -15,6 +15,7 @@ from shopextract.categories import (CategoryOptions, CategoryScope, CategorySele
     categorized_product_from_record)
 from shopextract.categories._codec import wire
 from shopextract.cli import main
+from tests.mock_wire import mock_wire
 
 STORE = 'https://www.naheed.pk'
 CATEGORY = STORE + '/health-beauty/setting-powders'
@@ -134,7 +135,7 @@ def test_cli_index_then_normalize_uses_existing_mapper(tmp_path):
     from shopextract.categories.listings import build_listing_index
     client_type=httpx.AsyncClient
     def factory(**kwargs):
-        return client_type(transport=httpx.MockTransport(lambda req:httpx.Response(200,text=listing())),**kwargs)
+        return client_type(**mock_wire(kwargs,httpx.MockTransport(lambda req:httpx.Response(200,text=listing()))))
     urls=tmp_path/'urls.json';urls.write_text(json.dumps([CATEGORY]))
     config=tmp_path/'options.json';config.write_text(json.dumps(wire(options())))
     source=tmp_path/'raw.json';source.write_text(json.dumps(raw()))

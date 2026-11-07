@@ -197,6 +197,8 @@ def get_crawl_config(
     proxy_config=None,
 ) -> CrawlerRunConfig:
     """Create a CrawlerRunConfig with anti-bot settings for the requested tier."""
+    if not getattr(proxy_config, "_shopextract_guarded", False):
+        raise ValueError("Crawl4AI runs require a shopextract ValidatingProxy configuration")
     use_anti_bot = stealth_level in (StealthLevel.STEALTH, StealthLevel.UNDETECTED)
 
     if use_anti_bot and page_timeout == DEFAULT_PAGE_TIMEOUT:

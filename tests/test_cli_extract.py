@@ -483,7 +483,10 @@ def test_atomic_output_roundtrip_quality_file(transport,tmp_path,cap,exit_code):
     routes,_=transport;routes['/products.json']={'products':shopify_products(1)}
     path=tmp_path/'catalog.json'
     result=invoke('extract','https://fixture.invalid','--platform','shopify','--max',str(cap),'-o',str(path))
-    assert result.exit_code==exit_code and json.loads(path.read_text())==value(result)
+    envelope=json.loads(path.read_text())
+    assert result.exit_code==exit_code and len(envelope['data']['products'])==1
+    assert value(result)['data']=={'output_path':str(path),'product_count':1,
+                                   'completeness':envelope['completeness']}
     quality=invoke('quality',str(path))
     assert quality.exit_code==0 and value(quality)['data']['product_count']==1
     assert value(quality)['data']['batch_score']>0
@@ -502,9 +505,14 @@ def test_operation_prints_never_reach_response_stdout(monkeypatch):
     assert '[FETCH]' not in result.stdout and '[FETCH]' in result.stderr
 
 
-def test_browser_run_config_disables_crawl4ai_progress_logging():
+@pytest.mark.asyncio
+async def test_browser_run_config_disables_crawl4ai_progress_logging():
     from shopextract.extractors._browser import get_crawl_config, StealthLevel
-    assert all(get_crawl_config(stealth_level=level).verbose is False for level in StealthLevel)
+    from shopextract._url_safety import ValidatingProxy
+    async with ValidatingProxy() as proxy:
+        assert all(get_crawl_config(stealth_level=level,
+                                    proxy_config=proxy.crawl4ai_config).verbose is False
+                   for level in StealthLevel)
 
 
 def test_normalize_accepts_successful_extract_envelope_and_validates_malformed_input():

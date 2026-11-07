@@ -17,6 +17,10 @@ from urllib.parse import urlsplit
 import httpcore
 import httpx
 
+# Bound at import: callers may wrap ``httpx.AsyncClient`` in a factory, and the
+# type checks below must still see the class.
+_ASYNC_CLIENT = httpx.AsyncClient
+
 
 class UnsafeURLTarget(ValueError):
     """A URL is invalid or resolves to an address outside the public internet."""
@@ -35,19 +39,33 @@ def _unwrap_discovery_client(candidate):
     return candidate
 
 
+def _is_tool_guarded(transport) -> bool:
+    """MCP tool clients carry the tool layer's own per-request guard."""
+    # Import lazily: the tools package imports this module.
+    from .tools.security import GuardedTransport
+    from .tools.sources import _TransportLease
+
+    if type(transport) is _TransportLease:
+        transport = transport.transport
+    return type(transport) is GuardedTransport
+
+
 def require_guarded_client(client):
     """Reject injected clients that can perform unpinned network I/O.
 
-    Only a client whose actual transport is exactly GuardedHTTPXTransport, or
-    the exact HTTPX MockTransport, is accepted. MockTransport is an explicitly
+    Only a client whose actual transport is exactly GuardedHTTPXTransport, the
+    MCP tool layer's GuardedTransport, or the exact HTTPX MockTransport, is
+    accepted. MockTransport is an explicitly
     trusted, no-wire seam for programmatic callers writing deterministic tests;
     it does not guard real networking and isn't exposed through CLI/MCP input.
     """
     candidate = _unwrap_discovery_client(client)
-    if isinstance(candidate, httpx.AsyncClient):
+    if isinstance(candidate, _ASYNC_CLIENT):
         if type(candidate._transport) is GuardedHTTPXTransport:
             return client
         if type(candidate._transport) is httpx.MockTransport:
+            return client
+        if _is_tool_guarded(candidate._transport):
             return client
     raise UnguardedHTTPClient(
         "Injected clients must use shopextract._url_safety.async_client; "
@@ -59,8 +77,10 @@ async def validate_client_url(url: str, client):
     """Validate a request URL, using lexical-only checks for no-wire mocks."""
     require_guarded_client(client)
     candidate = _unwrap_discovery_client(client)
-    if (isinstance(candidate, httpx.AsyncClient)
-            and type(candidate._transport) is httpx.MockTransport):
+    if isinstance(candidate, _ASYNC_CLIENT) and (
+            type(candidate._transport) is httpx.MockTransport
+            or _is_tool_guarded(candidate._transport)):
+        # Mocks have no wire; tool transports authorize every request themselves.
         _parse_url(url)
         return
     await validate_url_target(url, allow_private=operator_allows_private_urls())
@@ -294,8 +314,12 @@ class ValidatingProxy:
     @property
     def crawl4ai_config(self):
         from crawl4ai import ProxyConfig
-
-        return ProxyConfig(server=self.url)
+        config = ProxyConfig(server=self.url)
+        # Crawl4AI accepts ordinary third-party proxies too. Preserve an
+        # in-process marker so shopextract's run-config factory can reject
+        # unvalidated proxy objects before constructing an arun.
+        config._shopextract_guarded = True
+        return config
 
     async def start(self):
         if self._server is None:

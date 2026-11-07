@@ -3,6 +3,7 @@ import hashlib
 import httpx,pytest
 from shopextract.taxonomies.shopify.contracts import ShopifyReleaseSource,TaxonomyIntegrityError
 from shopextract.taxonomies.shopify.download import download_shopify_taxonomy_release
+from tests.mock_wire import mock_wire
 
 @pytest.mark.parametrize('fault',['none','hash','redirect','redirect_budget','bytes'])
 async def test_bounded_official_download(tmp_path,monkeypatch,fault):
@@ -18,7 +19,7 @@ async def test_bounded_official_download(tmp_path,monkeypatch,fault):
         if fault=='bytes':body=b'x'*(8*1024*1024+1)
         return httpx.Response(200,content=body)
     original=httpx.AsyncClient
-    monkeypatch.setattr(httpx,'AsyncClient',lambda **kw:original(transport=httpx.MockTransport(wire),**kw))
+    monkeypatch.setattr(httpx,'AsyncClient',lambda **kw:original(**mock_wire(kw,httpx.MockTransport(wire))))
     if fault=='none':
         result=await download_shopify_taxonomy_release(source,staging_root=tmp_path)
         assert result.taxonomy_path.read_bytes()==blobs['taxonomy.en.json.gz'] and len(sent)==3

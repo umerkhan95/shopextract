@@ -10,6 +10,7 @@ from shopextract import Platform, classify_match, extract, match_products, norma
 from shopextract.compare.catalog import _diff_catalogs
 from shopextract.extractors.shopify import ShopifyExtractor
 from shopextract._models import ExtractorResult
+from tests.mock_wire import mock_wire
 
 ROWS = json.loads((Path(__file__).parent / 'fixtures/live_catan_pairs.json').read_text())
 ALIASES = {row['b']['variants'][0]['barcode']: ['Mayfair Games', 'Catan Studio'] for row in ROWS}
@@ -63,7 +64,7 @@ async def test_shopify_budget_and_id_checked_enrichment():
                                        'variants': [{'id': 10, 'barcode': '29877030712', 'price': 999, 'available': False}]})
     transport = httpx.MockTransport(respond)
     factory = httpx.AsyncClient
-    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: factory(transport=transport, **kwargs)):
+    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: factory(**mock_wire(kwargs, transport))):
         result = await ShopifyExtractor().extract('https://s.example/collections/catan', max_products=2, enrich_identifiers=True)
     assert len(result.products) == 2 and len(requests) == 3
     assert requests[0].url.params['limit'] == '2'
@@ -106,7 +107,7 @@ async def test_enrichment_failure_retains_products_and_surfaces_error():
                  'variants': [{'id': 10, 'price': '10', 'available': False}]}]})
         return httpx.Response(503)
     factory = httpx.AsyncClient
-    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: factory(transport=httpx.MockTransport(respond), **kwargs)):
+    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: factory(**mock_wire(kwargs, httpx.MockTransport(respond)))):
         result = await extract('https://s.example', platform=Platform.SHOPIFY, max_urls=1, enrich_identifiers=True)
     assert len(result.products) == 1 and result.products[0].gtin is None
     assert result.errors and '503' in result.errors[0]
@@ -121,7 +122,7 @@ async def test_budget_across_pages_keeps_constant_page_size():
         page = int(request.url.params['page'])
         return httpx.Response(200, json={'products': [{'id': (page-1)*250+i} for i in range(250)]})
     factory = httpx.AsyncClient
-    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: factory(transport=httpx.MockTransport(respond), **kwargs)):
+    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: factory(**mock_wire(kwargs, httpx.MockTransport(respond)))):
         result = await ShopifyExtractor().extract('https://s.example', max_products=260)
     assert len(result.products) == 260 and result.pages_completed == 2
     assert len(requests) == 2 and all(r.url.params['limit'] == '250' for r in requests)

@@ -415,20 +415,19 @@ async def _discover_via_crawl4ai(base_url: str, max_pages: int = 100) -> list[st
     )
 
     stealth_level = StealthLevel.STANDARD
-    browser_config = get_browser_config(stealth_level)
-    crawl_config = get_crawl_config(
-        stealth_level=stealth_level,
-        deep_crawl_strategy=strategy,
-        wait_until="domcontentloaded",
-        wait_for=None,
-    )
-    crawl_config.cache_mode = CacheMode.ENABLED
-    crawl_config.only_text = True
-
     found_urls: set[str] = set()
     try:
         async with ValidatingProxy() as proxy:
-            crawl_config.proxy_config = proxy.crawl4ai_config
+            browser_config = get_browser_config(stealth_level)
+            crawl_config = get_crawl_config(
+                stealth_level=stealth_level,
+                deep_crawl_strategy=strategy,
+                wait_until="domcontentloaded",
+                wait_for=None,
+                proxy_config=proxy.crawl4ai_config,
+            )
+            crawl_config.cache_mode = CacheMode.ENABLED
+            crawl_config.only_text = True
             crawler_strategy = get_crawler_strategy(stealth_level, browser_config)
             async with AsyncWebCrawler(
                 config=browser_config,
