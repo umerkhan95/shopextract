@@ -11,6 +11,8 @@ from typing import Mapping, Sequence
 
 import click
 
+from ._failure_origin import failure_origin
+
 
 @dataclass(frozen=True)
 class CliSettings:
@@ -300,6 +302,9 @@ class CoreGroup(click.Group):
                     exc.show()
                 else:
                     click.echo(f"Error: {failure.message}", err=True)
+                if failure.code == "E_INTERNAL" and settings().diagnostics != "quiet":
+                    # The envelope stays generic; stderr names the origin only.
+                    click.echo(f"Internal error: {failure_origin(exc)}", err=True)
                 code = failure_exit(failure)
             except (OSError, ValueError, TypeError):
                 code = 1

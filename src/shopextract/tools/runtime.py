@@ -8,11 +8,16 @@ from typing import Any, Callable, Mapping, TYPE_CHECKING
 import httpx
 import asyncio
 import copy
+import logging
 import math
 import time
 
+from .._failure_origin import failure_origin
+
 if TYPE_CHECKING:
     from .context import Resolver
+
+logger = logging.getLogger(__name__)
 
 TOOL_NAMES = ('discover', 'extract', 'match', 'changes', 'evidence',
               'job_status', 'job_result', 'job_cancel')
@@ -128,7 +133,8 @@ class ToolRuntime:
             return envelope({'status': 'available', 'reason': 'retained_capture', 'evidence': evidence})
         except ToolError as error:
             return envelope(error=error)
-        except Exception:
+        except Exception as error:
+            logger.warning('Tool %s failed: %s', name, failure_origin(error))
             return envelope(error=ToolError('internal_error', 'Tool operation failed'))
 
     def tool_schemas(self):

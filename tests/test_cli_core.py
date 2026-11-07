@@ -186,6 +186,16 @@ def test_machine_internal_failure_sanitizes_exception(native, monkeypatch):
     assert "Traceback" not in result.output
 
 
+def test_internal_failure_names_origin_without_message(native, monkeypatch):
+    async def broken(*args, **kwargs):
+        raise RuntimeError("SECRET-provider-token")
+    monkeypatch.setattr(shopextract, "detect", broken)
+    result = invoke(["detect", URL])
+    assert result.exit_code == 1
+    assert "Internal error: RuntimeError at " in result.stderr
+    assert "SECRET-provider-token" not in result.output
+
+
 def test_invalid_explicit_format_uses_valid_env_for_error(native):
     result = invoke(["--output-format", "invalid", "detect", URL],
                     {"SHOPEXTRACT_OUTPUT_FORMAT": "json"})
