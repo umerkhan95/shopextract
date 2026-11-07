@@ -186,12 +186,16 @@ def read_product(html: str, page_url: str, profile: RenderedProfile) -> dict | N
     price = _text(soup, profile.price)
     if not title or not price:
         return None
-    # Selected variant options ("Color: Purple"); the label is the store's own.
+    # Selected variant options ("Color: Red"); the label is the store's own. The
+    # swatch title can be an internal key ("Red*HRF-368 - 14 Cu Ft/368 Liter"),
+    # so the shown text wins and the title only names an image-only swatch.
     options = {}
     for row in soup.select(profile.option_rows):
         key, chosen = row.select_one(profile.option_key), row.select_one(profile.option_selected)
         if key is not None and chosen is not None:
-            options[key.get_text(strip=True)] = str(chosen.get('title') or chosen.get_text(strip=True))
+            value = chosen.get_text(strip=True) or str(chosen.get('title') or '').strip()
+            if value:
+                options[key.get_text(strip=True)] = value
     images = [urljoin(page_url, str(img.get('src'))) for img in soup.select(profile.images) if img.get('src')]
     raw = {
         'title': title,

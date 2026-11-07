@@ -15,7 +15,7 @@ from .extractors._opengraph import OpenGraphExtractor
 _GALLERY='.product.media,[data-gallery-role="gallery-placeholder"],.MagicToolboxContainer,.woocommerce-product-gallery'
 _IMAGE_PATH=re.compile(r'\.(?:jpe?g|png|webp|gif|avif)$',re.I)
 _BRAND='[itemprop="brand"],.product-brand,.brand-name'
-_BREADCRUMB='.breadcrumbs li,nav[aria-label="breadcrumb"] li,nav[aria-label="Breadcrumb"] li'
+_BREADCRUMB='.breadcrumbs li,ol.breadcrumb li,nav[aria-label="breadcrumb"] li,nav[aria-label="Breadcrumb"] li'
 
 
 def _theme_asset(url):
@@ -41,6 +41,48 @@ def coverage_issues(diagnostics):
     return [d for d in diagnostics if d['code'] not in CLEANUP_CODES]
 
 
+# SFRA's description tab; themes keep the reference .description/.long-description markup or an id.
+_SFRA_DESCRIPTION='.description-and-detail #nav-description .content,.description-and-detail .description .content,.long-description'
+_CURRENCY_CODE=re.compile(r'"currencyCode"\s*:\s*"([A-Z]{3})"')
+
+
+def _sfra_products(soup,url,issues):
+    """Salesforce B2C Commerce (SFRA) product view without JSON-LD or product Open Graph.
+
+    The storefront renders the product id on ``.product-detail[data-pid]``, the
+    sales price as ``.prices .sales .value[content]`` and the analytics currency
+    in its data layer, the description in its detail tabs. Only the page's own
+    product is read, and a field the page does not render stays absent: the
+    view states no stock, so availability stays unknown.
+    """
+    details=soup.select('.product-detail[data-pid]')
+    if len(details)!=1:return []
+    detail=details[0];pid=(detail.get('data-pid') or '').strip()
+    if not pid or pid not in urlsplit(url).path:return []
+    name=detail.select_one('.product-name')
+    name=name.get_text(' ',strip=True) if name else ''
+    price=detail.select_one('.prices .sales .value[content]')
+    currencies={m.group(1) for script in soup.select('script') for m in _CURRENCY_CODE.finditer(script.get_text())}
+    if not name or price is None:
+        issues.append({'code':'sfra_product_incomplete','message':'SFRA product view has no name or sales price'})
+        return []
+    product={'@type':'Product','name':name,'sku':pid,'productID':pid,'url':url,
+             'offers':{'@type':'Offer','price':price['content'].strip()}}
+    description=soup.select_one(_SFRA_DESCRIPTION)
+    description=description.get_text(' ',strip=True) if description else ''
+    if description:product['description']=description
+    if len(currencies)==1:product['offers']['priceCurrency']=currencies.pop()
+    elif currencies:issues.append({'code':'conflicting_currency','message':'Data layer names several currencies'})
+    images=[]
+    for image in detail.select('.primary-images img'):
+        candidate=image.get('data-high-src') or image.get('data-src') or image.get('src') or ''
+        if candidate and not candidate.startswith('data:'):
+            candidate=urljoin(url,candidate)
+            if candidate not in images:images.append(candidate)
+    if images:product['image']=images
+    return [capture(product,url,'html_sfra')]
+
+
 @dataclass
 class StructuredHTMLResult:
     products:list
@@ -54,6 +96,7 @@ def extract_structured_products(html,url,*,include_categories=False,max_nodes=25
     products=SchemaOrgExtractor.extract_from_html(html,url,diagnostics=issues,max_nodes=max_nodes,max_depth=max_depth,_soup=soup,collected_nodes=breadcrumbs)
     og=OpenGraphExtractor.extract_from_html(html,url,include_categories=include_categories)
     if not products:products=[p for p in og if has_product_evidence(p)]
+    if not products:products=_sfra_products(soup,url,issues)
     def warn(code,message):
         if not any(i['code']==code for i in issues):issues.append({'code':code,'message':message})
     def bind(product,key,value,source,source_path):
@@ -81,6 +124,10 @@ def extract_structured_products(html,url,*,include_categories=False,max_nodes=25
         dom={}
         if sku:dom['sku']=sku
         if product_id:dom['productID']=str(product_id)
+        # Magento renders the regular price beside the final one, keyed by the
+        # form's product id; related-product price boxes carry other ids.
+        regular=soup.select_one(f'#old-price-{product_id}[data-price-type="oldPrice"][data-price-amount]') if product_id and str(product_id).isdigit() else None
+        if regular is not None:dom['compare_at_price']=regular['data-price-amount']
         containers=soup.select(_GALLERY)
         containers=[c for c in containers if not any(p in containers for p in c.parents)]
         if len(containers)>1:warn('ambiguous_gallery','Several gallery containers; info column used instead')
@@ -103,7 +150,7 @@ def extract_structured_products(html,url,*,include_categories=False,max_nodes=25
         if len(brands)>1:warn('conflicting_brand','Scoped DOM brand values disagree')
         elif brands:dom['brand']=brands.pop()
         source=capture({'dom':dom},url,'html_dom')['_capture']
-        for field in ('sku','productID','brand'):
+        for field in ('sku','productID','brand','compare_at_price'):
             if dom.get(field):
                 current=owner.get(field);current=current.get('name') if isinstance(current,dict) else current
                 if current and str(current)!=str(dom[field]):

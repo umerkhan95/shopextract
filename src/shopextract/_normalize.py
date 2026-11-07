@@ -643,6 +643,15 @@ def _positive_money(value) -> bool:
         return False
 
 
+def _blinkx_product_url(t, raw, shop_url):
+    origin = raw.get('_storefront_origin')
+    if not isinstance(origin, str) or not origin:
+        return t.emit('product_url', '/product_url', default=shop_url, truthy=True)
+    from .extractors.blinkx import product_url
+    return t.emit('product_url', '/id', default=shop_url, convert=lambda _: product_url(origin, raw),
+                  operation='Build storefront link /product/<slug>-<id> from the captured id and slug')
+
+
 def _normalize_blinkx(raw: dict, shop_url: str) -> dict | None:
     """Mirror the BlinkX storefront: a positive discount_price is the selling price
     and price is then struck through; stock is the branch's dish_branch_stock."""
@@ -661,7 +670,7 @@ def _normalize_blinkx(raw: dict, shop_url: str) -> dict | None:
         'price': price, 'compare_at_price': compare,
         'currency': t.currency('currency', '/currency'),
         'image_url': t.emit('image_url', '/img_url', default='', truthy=True),
-        'product_url': t.emit('product_url', '/product_url', default=shop_url, truthy=True),
+        'product_url': _blinkx_product_url(t, raw, shop_url),
         'sku': t.emit('sku', '/tp_deal_code', truthy=True),
         'gtin': t.emit('gtin', '/tp_product_code', truthy=True,
                        convert=lambda v: _validate_gtin(str(v).split(',')[0].strip()),
@@ -815,10 +824,11 @@ def _normalize_schema_org(raw: dict, shop_url: str) -> dict | None:
         cat_paths = [f'/category/{i}' for i in positions]
     else:
         categories, cat_paths = [], []
+    price = t.money('price',offer+'/price',stringify=True)
     return t.result({
         'external_id':external,'title':title,
         'description':t.emit('description','/description',default='',convert=_strip_html,operation='Strip HTML, decode entities and whitespace'),
-        'price':t.money('price',offer+'/price',stringify=True),
+        'price':price,'compare_at_price':_page_compare_at(t, price),
         'currency':t.currency('currency',offer+'/priceCurrency'),
         'image_url':image_url, 'product_url':t.emit('product_url','/url',default=shop_url),
         'sku':sku,'gtin':gtin,'mpn':t.emit('mpn','/mpn',offer+'/mpn',truthy=True),
@@ -828,6 +838,16 @@ def _normalize_schema_org(raw: dict, shop_url: str) -> dict | None:
         'additional_images':_record_items(t,'additional_images','/image',images,image_paths,'Project remaining image URLs'),
         'category_path':_record_items(t,'category_path','/category',categories,cat_paths,'Split/project category path'),
     })
+
+
+def _page_compare_at(t, price) -> Decimal | None:
+    """Regular price a product page renders beside its final price; only a higher one is a sale."""
+    compare = t.money('compare_at_price', '/compare_at_price', default=None, stringify=True, truthy=True)
+    if compare is not None and (price is None or compare <= price):
+        return t.record('compare_at_price', '/compare_at_price', None, accepted=False,
+                        reason='Regular price is not above the selling price',
+                        operation='Reject compare-at price that is not a sale')
+    return compare
 
 
 def _normalize_opengraph(raw: dict, shop_url: str) -> dict | None:
@@ -845,10 +865,11 @@ def _normalize_opengraph(raw: dict, shop_url: str) -> dict | None:
     gallery = gallery if isinstance(gallery, list) else []
     image_paths = [f'/image/{i}' for i in range(1, len(gallery))]
     additional = [_extract_image_url(item) for item in gallery[1:]]
+    price = t.money('price',price_path,stringify=True)
     return t.result({
         'external_id':t.emit('external_id','/og:product_id','/product:retailer_item_id',default=''),
         'title':title,'description':t.emit('description','/og:description',default='',convert=_strip_html,operation='Strip HTML, decode entities and whitespace'),
-        'price':t.money('price',price_path,stringify=True),
+        'price':price,'compare_at_price':_page_compare_at(t, price),
         'currency':t.currency('currency',currency_path),
         'image_url':t.emit('image_url','/image/0','/og:image',default='',truthy=True,convert=_extract_image_url),
         'sku':t.emit('sku','/sku',truthy=True),

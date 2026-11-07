@@ -30,6 +30,12 @@ PRODUCT_HTML = """<html><body>
 </div></div></body></html>"""
 
 
+def test_image_only_swatch_is_named_by_its_title():
+    html = PRODUCT_HTML.replace('<div class="type_main_img xuan" title="Red*HRF-368 - 14 Cu Ft/368 Liter"><span>Red</span></div>',
+                                '<div class="type_main_img xuan" title="Red"><img src="https://obs.haiermall.pk/r.png"></div>')
+    assert read_product(html, SHOP + '/en/products/x', HAIER_MALL)['attributes'] == {'Color': 'Red'}
+
+
 def test_profile_matches_the_store_host_only():
     assert profile_for('https://haiermall.pk/en/refrigerators') is HAIER_MALL
     assert profile_for('https://www.haiermall.pk/en/air-fryers') is HAIER_MALL
@@ -43,7 +49,8 @@ def test_product_view_is_read_with_compare_price_stock_and_selected_option():
     assert product.title.startswith('Haier - 13CFT') and product.price == Decimal('106899')
     assert product.compare_at_price == Decimal('115000') and product.currency == 'PKR'
     assert product.in_stock is True and product.mpn is None
-    assert product.attributes == {'Color': 'Red*HRF-368 - 14 Cu Ft/368 Liter'}
+    # The swatch shows "Red"; its title is the store's internal variant key.
+    assert product.attributes == {'Color': 'Red'}
     assert product.category_path == ['Home Appliances', 'Refrigerators', 'Inverter Refrigerator']
     assert product.image_url == 'https://obs.haiermall.pk/1.png' and product.product_url == url
     observed = {o.field_path: o.state.value for o in product.evidence_contract.observations}
