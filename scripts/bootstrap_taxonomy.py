@@ -2,6 +2,8 @@
 import argparse
 import importlib
 import importlib.machinery
+import importlib.util
+import shutil
 import subprocess
 import sys
 import types
@@ -45,6 +47,18 @@ def load_preparer(root):
     return prepared
 
 
+def installer_command(offline=False):
+    # uv-created environments ship without pip; install into this same
+    # interpreter through uv instead of failing on `python -m pip`.
+    if importlib.util.find_spec('pip') is not None:
+        command=[sys.executable,'-m','pip','install','--disable-pip-version-check','--no-input']
+    elif (uv:=shutil.which('uv')) is not None:
+        command=[uv,'pip','install','--python',sys.executable]
+    else:raise RuntimeError('Build requirements need pip or uv for this interpreter')
+    if offline:command.append('--no-index')
+    return command
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-cache',type=Path)
@@ -54,8 +68,7 @@ def main(argv=None):
     args=parser.parse_args(argv)
     if args.offline and args.allow_download:parser.error('--offline cannot allow downloads')
     root=Path(__file__).resolve().parents[1]
-    command=[sys.executable,'-m','pip','install','--disable-pip-version-check','--no-input']
-    if args.offline:command.append('--no-index')
+    command=installer_command(args.offline)
     command.extend(build_requirements(read_project(root/'pyproject.toml')))
     subprocess.run(command,check=True,timeout=90)
     prepare=load_preparer(root)
