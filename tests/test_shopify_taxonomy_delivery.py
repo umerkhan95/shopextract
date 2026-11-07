@@ -42,6 +42,19 @@ def test_workflows_prepare_before_project_install_and_publish():
         assert 'allow-download: "true"' in text
 
 
+@pytest.mark.parametrize('offline',[False,True])
+def test_installer_prefers_pip_then_uv_for_same_interpreter(monkeypatch,offline):
+    module=bootstrap();index=['--no-index'] if offline else []
+    monkeypatch.setattr(module.importlib.util,'find_spec',lambda name:object())
+    monkeypatch.setattr(module.shutil,'which',lambda name:pytest.fail('uv must not be used while pip exists'))
+    assert module.installer_command(offline)==[sys.executable,'-m','pip','install','--disable-pip-version-check','--no-input',*index]
+    monkeypatch.setattr(module.importlib.util,'find_spec',lambda name:None)
+    monkeypatch.setattr(module.shutil,'which',lambda name:'/bin/uv' if name=='uv' else None)
+    assert module.installer_command(offline)==['/bin/uv','pip','install','--python',sys.executable,*index]
+    monkeypatch.setattr(module.shutil,'which',lambda name:None)
+    with pytest.raises(RuntimeError,match='pip or uv'):module.installer_command(offline)
+
+
 def cold_tree(tmp_path,pin):
     import shutil
     root=tmp_path/'checkout';root.mkdir()
