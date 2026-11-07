@@ -20,8 +20,8 @@ from shopextract.categories._codec import wire,canonical
 from shopextract.categories import normalize_with_categories,categorized_product_to_record
 from tests.mock_wire import mock_wire
 
-# Platforms with a category adapter; Demandware is detected but has none.
-CATEGORY_PLATFORMS=[p for p in Platform if p is not Platform.DEMANDWARE]
+# Platforms with a category adapter; Demandware and BlinkX are detected but have none.
+CATEGORY_PLATFORMS=[p for p in Platform if p not in (Platform.DEMANDWARE, Platform.BLINKX)]
 
 @pytest.mark.parametrize('platform',CATEGORY_PLATFORMS)
 def test_six_normalize_real_adapters(tmp_path,platform):

@@ -24,6 +24,7 @@ class Platform(str, Enum):
     BIGCOMMERCE = "bigcommerce"
     SHOPWARE = "shopware"
     DEMANDWARE = "demandware"
+    BLINKX = "blinkx"
     GENERIC = "generic"
 
 

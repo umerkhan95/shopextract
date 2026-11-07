@@ -147,6 +147,14 @@ def _source_failure(data):
     text = ' '.join(str(value) for value in (*errors, *reasons)).casefold()
     normalized = {str(reason).casefold() for reason in reasons}
 
+    if 'browser_required' in normalized:
+        return CliFailure('E_USAGE', 'This store renders its catalog only in the browser; pass --browser.',
+                          retryable=False, errors=errors, incompleteness_reasons=reasons)
+    if normalized & {'location_required', 'location_unmatched'}:
+        # The store needs a delivery area the caller did not name; nothing was tried.
+        return CliFailure('E_USAGE', next((str(e) for e in errors if 'location' in str(e).casefold()),
+                                          'This store needs --location "Area, City".'),
+                          retryable=False, errors=errors, incompleteness_reasons=reasons)
     if 'rate_limited' in normalized or re.search(r'\b429\b|too many requests|rate.?limit', text):
         cause = 'rate_limited'
     elif 'blocked' in normalized or 'robots_disallowed' in normalized:
@@ -298,7 +306,8 @@ def _extract_store_impl(url, max_urls, fmt, output_path, options):
             platform=Platform(options['platform']) if options.get('platform') else None,
             shop_url=options.get('shop_url'), enrich_identifiers=options.get('enrich_identifiers',False),
             restore_short_gtin=options.get('restore_short_gtin',False), api_options=api,
-            **({'enrich_variants':True} if options.get('enrich_variants') else {}))
+            **({'enrich_variants':True} if options.get('enrich_variants') else {}),
+            **({'location':options['location']} if options.get('location') else {}))
         return serialize(result)
     try:
         data, warnings = _run_extraction_operation(operation, policy, timeout, recover=serialize)

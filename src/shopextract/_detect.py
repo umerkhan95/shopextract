@@ -40,6 +40,7 @@ _MAX_SIGNALS = {
     Platform.BIGCOMMERCE: 3,
     Platform.SHOPWARE: 4,
     Platform.DEMANDWARE: 2,
+    Platform.BLINKX: 1,
     Platform.GENERIC: 1,
 }
 
@@ -138,6 +139,7 @@ async def detect_context(url: str, *, client: httpx.AsyncClient | None = None) -
         Platform.BIGCOMMERCE: [],
         Platform.SHOPWARE: [],
         Platform.DEMANDWARE: [],
+        Platform.BLINKX: [],
     }
 
     own_client = client is None
@@ -328,6 +330,9 @@ async def _probe_html_content(
         if re.search(r"(?:^|[\s;,])(?:dwsid|dwac_[0-9a-f]+|dwanonymous_[0-9a-f]+)=", cookies):
             signals[Platform.DEMANDWARE].append("cookie:demandware-session")
         _analyze_magento_html(raw_html, signals)
+        from .extractors.blinkx import store_config
+        if store_config(raw_html, str(response.url)) is not None:
+            signals[Platform.BLINKX].append("html:blinkx-store-config")
         from .extractors._storefront import public_config
         endpoint, token = public_config(raw_html, 'shopware', str(response.url))
         if endpoint and token:

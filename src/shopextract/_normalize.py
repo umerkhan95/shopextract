@@ -83,6 +83,7 @@ def normalize(
         Platform.MAGENTO: _normalize_magento,
         Platform.SHOPWARE: _normalize_shopware,
         Platform.BIGCOMMERCE: _normalize_bigcommerce,
+        Platform.BLINKX: _normalize_blinkx,
     }
 
     normalized_data = None
@@ -91,7 +92,9 @@ def normalize(
                       or raw.get('_source') == 'google_feed'
                       or 'offers' in raw or 'og:title' in raw
                       or 'Product' in str(raw.get('@type', '')))
-    if generic_source:
+    if method == 'rendered_dom':
+        normalized_data = _normalize_rendered_dom(raw, shop_url)
+    elif generic_source:
         normalized_data = _normalize_generic(raw, shop_url)
     elif platform in normalizers:
         normalized_data = normalizers[platform](raw, shop_url)
@@ -630,6 +633,72 @@ def _normalize_shopware(raw: dict, shop_url: str) -> dict | None:
         'tags':t.emit('tags','/tags',default=[],convert=lambda v:list(v or [])),
         'additional_images':t.emit('additional_images','/additional_images',default=[],convert=lambda v:list(v or [])),
         'category_path':t.emit('category_path','/categories',default=[],convert=lambda v:list(v or [])),
+    })
+
+
+def _positive_money(value) -> bool:
+    try:
+        return Decimal(str(value)) > 0
+    except (ArithmeticError, ValueError, TypeError):
+        return False
+
+
+def _normalize_blinkx(raw: dict, shop_url: str) -> dict | None:
+    """Mirror the BlinkX storefront: a positive discount_price is the selling price
+    and price is then struck through; stock is the branch's dish_branch_stock."""
+    t = Normalizer(raw)
+    title = t.emit('title', '/name', default='', truthy=True, convert=str.strip)
+    if not title:
+        return None
+    discounted = _positive_money(raw.get('discount_price'))
+    price = t.money('price', '/discount_price' if discounted else '/price', stringify=True)
+    compare = t.money('compare_at_price', '/price', default=None, stringify=True) if discounted else None
+    return t.result({
+        'external_id': t.emit('external_id', '/id', default='', convert=str),
+        'title': title,
+        'description': t.emit('description', '/desc', default='', truthy=True, convert=_strip_html,
+                              operation='Strip HTML, decode entities and whitespace'),
+        'price': price, 'compare_at_price': compare,
+        'currency': t.currency('currency', '/currency'),
+        'image_url': t.emit('image_url', '/img_url', default='', truthy=True),
+        'product_url': t.emit('product_url', '/product_url', default=shop_url, truthy=True),
+        'sku': t.emit('sku', '/tp_deal_code', truthy=True),
+        'gtin': t.emit('gtin', '/tp_product_code', truthy=True,
+                       convert=lambda v: _validate_gtin(str(v).split(',')[0].strip()),
+                       operation='Take the first listed barcode; validate GTIN'),
+        'vendor': t.emit('vendor', '/brand_name', truthy=True),
+        'in_stock': t.emit('in_stock', '/dish_branch_stock/stock', default=False,
+                           convert=lambda v: isinstance(v, int) and not isinstance(v, bool) and v > 0,
+                           operation='In stock when the branch holds more than zero units'),
+        'category_path': t.emit('category_path', '/category_path', default=[], convert=lambda v: list(v or [])),
+    })
+
+
+def _normalize_rendered_dom(raw: dict, shop_url: str) -> dict | None:
+    """Fields a rendered-storefront profile read from the product view."""
+    from .extractors.rendered_profiles import availability_in_stock
+    t = Normalizer(raw)
+    title = t.emit('title', '/title', default='', truthy=True, convert=str.strip)
+    if not title:
+        return None
+    currency = t.currency('currency', '/currency')
+    price = t.money('price', '/price', css=True, currency=currency)
+    compare = t.money('compare_at_price', '/compare_at_price', default=None, css=True, truthy=True,
+                      currency=currency)
+    if compare is not None and compare <= price:
+        compare = None
+    return t.result({
+        'external_id': t.emit('external_id', '/product_url', default='', truthy=True,
+                              operation='The rendered storefront exposes no product id; use its URL'),
+        'title': title, 'price': price, 'compare_at_price': compare, 'currency': currency,
+        'image_url': t.emit('image_url', '/image_url', default='', truthy=True),
+        'product_url': t.emit('product_url', '/product_url', default=shop_url, truthy=True),
+        'in_stock': t.emit('in_stock', '/availability', default=True, truthy=True,
+                           convert=availability_in_stock,
+                           operation='Read the rendered availability label'),
+        'additional_images': t.emit('additional_images', '/additional_images', default=[],
+                                    convert=lambda v: list(v or [])),
+        'category_path': t.emit('category_path', '/category_path', default=[], convert=lambda v: list(v or [])),
     })
 
 
