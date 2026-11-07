@@ -350,6 +350,9 @@ async def test_public_discovery_retains_positive_native_budget_diagnostic(monkey
     calls=[]
     def route(request):
         calls.append(request.url.path)
+        if request.url.path=='/shop':
+            # A base-path store is first read as a page; it lists nothing here.
+            return httpx.Response(404)
         if request.url.path=='/robots.txt':
             return httpx.Response(200,text=robots(ORIGIN+'/maps/index.xml'))
         if request.url.path=='/maps/index.xml':
@@ -360,4 +363,4 @@ async def test_public_discovery_retains_positive_native_budget_diagnostic(monkey
         result=await discover(BASE,platform=Platform.GENERIC,max_urls=50,client=client)
     assert result==[BASE+'/item/retained']
     assert 'native_sitemap_budget' in result.reasons
-    assert calls==['/robots.txt','/maps/index.xml','/maps/first.xml']
+    assert calls==['/robots.txt','/shop','/maps/index.xml','/maps/first.xml']

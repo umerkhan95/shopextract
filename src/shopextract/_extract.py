@@ -242,12 +242,14 @@ async def extract(
     async with async_client(timeout=30,follow_redirects=False) as discovery_client:
         urls = await discover(url, platform=platform, max_urls=max_urls,client=discovery_client)
 
+    scope_reasons = [reason for reason in getattr(urls, "reasons", ()) if reason in _SCOPE_REASONS]
     if not urls:
         return ExtractionResult(
             observation_scope=observation_scope,
-            incompleteness_reasons=["crawl_coverage_unverified"],
+            incompleteness_reasons=["crawl_coverage_unverified", *scope_reasons],
             platform=platform,
-            errors=api_errors + ["No product URLs discovered"],
+            errors=api_errors + ["No product URLs discovered"] + [
+                reason for reason in getattr(urls, "reasons", ()) if reason != "discovery_coverage_unverified"],
         )
 
     # Step 4: Try UnifiedCrawl on a sample URL
@@ -274,7 +276,7 @@ async def extract(
             products = _normalize_batch(all_products, platform, shop_url)
             return ExtractionResult(
                 observation_scope=observation_scope,
-                incompleteness_reasons=["crawl_coverage_unverified"],
+                incompleteness_reasons=["crawl_coverage_unverified", *scope_reasons],
                 products=products,
                 raw_products=all_products,
                 tier=ExtractionTier.UNIFIED_CRAWL,
@@ -346,6 +348,13 @@ async def extract(
         urls_succeeded=len(products),
         errors=api_errors,
     )
+
+# Discovery reasons that change what the caller may conclude about the result.
+_SCOPE_REASONS = frozenset({"category_scope_unavailable", "category_listing_truncated",
+                            "category_listing_unavailable", "category_listing_source_error",
+                            "category_listing_parse_error", "rate_limited", "blocked",
+                            "robots_disallowed"})
+
 
 async def extract_one(
     url: str,
@@ -511,22 +520,34 @@ async def _try_api_extraction(url: str, platform: Platform, *, max_products: int
                               include_categories: bool = False, category_mode: bool = False, shopify_storefront=None,
                               detection_context=None) -> ExtractorResult | None:
     """Try platform-specific API extraction."""
+    from ._scope import is_store_root
     base_url = url.rstrip("/")
 
     if platform == Platform.SHOPIFY:
         from .extractors.shopify import ShopifyExtractor
         extractor = ShopifyExtractor()
         from ._detect import _origin
-        store_origin = _origin(base_url)
-        result = await extractor.extract(store_origin, max_products=max_products,
-            enrich_identifiers=enrich_identifiers,
-            initial_response=getattr(detection_context, "shopify_response", None))
+        from ._scope import shopify_catalog_base
+        catalog_base = shopify_catalog_base(base_url)
+        if catalog_base is None:
+            # A product or search page has no catalog endpoint; discovery reads it.
+            return None
+        # Detection probed the origin catalog; reuse it only for a whole-store request.
+        initial = getattr(detection_context, "shopify_response", None) if catalog_base == _origin(base_url) else None
+        result = await extractor.extract(catalog_base, max_products=max_products,
+            enrich_identifiers=enrich_identifiers, initial_response=initial)
         if shopify_storefront is not None:
             if not category_mode:raise ValueError('Storefront supplement requires category mode')
             from .extractors.shopify_taxonomy import supplement_categories
             await supplement_categories(result.products,shopify_storefront)
         if result.products or result.complete:
             return result
+
+    elif platform in (Platform.WOOCOMMERCE, Platform.MAGENTO, Platform.SHOPWARE, Platform.BIGCOMMERCE) \
+            and not api_options and not category_mode and not is_store_root(base_url):
+        # These catalog APIs enumerate the whole store. A category, search or
+        # product URL is read through scoped listing discovery instead.
+        return None
 
     elif platform == Platform.WOOCOMMERCE:
         from .extractors.woocommerce import WooCommerceExtractor

@@ -384,7 +384,8 @@ def test_detect_deadline_cleanup(monkeypatch):
     async def slow(*a,**k):
         try: await asyncio.sleep(10)
         finally: cleanup.append(True)
-    monkeypatch.setattr(shopextract,'detect',slow)
+    from shopextract import _detect
+    monkeypatch.setattr(_detect,'detect_context',slow)
     result=invoke('detect','https://fixture.invalid','--timeout','.01')
     assert result.exit_code==1 and value(result)['error']['code']=='E_TIMEOUT'
     assert cleanup==[True]

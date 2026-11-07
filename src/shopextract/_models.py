@@ -110,6 +110,9 @@ class DetectionContext:
     retry_after_seconds: float | None = None
     shopify_response: object | None = None
     rate_limited: bool = False
+    timed_out: bool = False
+    # Status of the requested page itself; None when it was never fetched.
+    page_status: int | None = None
 
 
 @dataclass

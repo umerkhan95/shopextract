@@ -86,6 +86,7 @@ class _ProbeObserver:
         self.retry_after_seconds = None
         self.rate_limited = False
         self.shopify_response = None
+        self.page_status = None
 
     async def _request(self, method, url, **kwargs):
         try:
@@ -148,6 +149,7 @@ async def detect_context(url: str, *, client: httpx.AsyncClient | None = None) -
         )
 
     observer = _ProbeObserver(client)
+    timed_out = False
     try:
         await asyncio.wait_for(
             _run_all_probes(observer, url, signals),
@@ -156,6 +158,7 @@ async def detect_context(url: str, *, client: httpx.AsyncClient | None = None) -
     except asyncio.TimeoutError:
         logger.warning("Platform detection timed out after %ss for %s", TOTAL_TIMEOUT, url)
         observer.errors.append(f"detection_timeout: exceeded {TOTAL_TIMEOUT:g}s")
+        timed_out = True
     except Exception as e:
         logger.error("Error during platform detection for %s: %s", url, e)
     finally:
@@ -176,7 +179,8 @@ async def detect_context(url: str, *, client: httpx.AsyncClient | None = None) -
     return DetectionContext(result=result, errors=observer.errors,
                             retry_after_seconds=observer.retry_after_seconds,
                             shopify_response=observer.shopify_response,
-                            rate_limited=observer.rate_limited)
+                            rate_limited=observer.rate_limited, timed_out=timed_out,
+                            page_status=observer.page_status)
 
 
 # -- Header probes -----------------------------------------------------------
@@ -298,6 +302,8 @@ async def _probe_html_content(
 ) -> None:
     try:
         response = await client.get(url, timeout=PROBE_TIMEOUT)
+        if hasattr(client, "page_status"):
+            client.page_status = response.status_code
         if response.status_code != 200:
             return
 
@@ -313,8 +319,14 @@ async def _probe_html_content(
         if 'text/x-magento-init' in html or 'data-mage-init=' in html:signals[Platform.MAGENTO].append('html:magento-init')
         _analyze_meta_tags(html, signals)
         _analyze_cdn_sources(html, signals)
-        if "dwsid" in html and ("/static/default/" in html or "demandware" in html):
+        # Salesforce B2C Commerce serves assets and controllers under /on/demandware.*.
+        if "/on/demandware.static/" in html or "/on/demandware.store/sites-" in html:
+            signals[Platform.DEMANDWARE].append("html:demandware-assets")
+        elif "dwsid" in html and ("/static/default/" in html or "demandware" in html):
             signals[Platform.DEMANDWARE].append("html:demandware-session-and-assets")
+        cookies = " ".join(response.headers.get_list("set-cookie")).lower()
+        if re.search(r"(?:^|[\s;,])(?:dwsid|dwac_[0-9a-f]+|dwanonymous_[0-9a-f]+)=", cookies):
+            signals[Platform.DEMANDWARE].append("cookie:demandware-session")
         _analyze_magento_html(raw_html, signals)
         from .extractors._storefront import public_config
         endpoint, token = public_config(raw_html, 'shopware', str(response.url))

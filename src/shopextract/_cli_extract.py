@@ -149,6 +149,13 @@ def _source_failure(data):
 
     if 'rate_limited' in normalized or re.search(r'\b429\b|too many requests|rate.?limit', text):
         cause = 'rate_limited'
+    elif 'blocked' in normalized or 'robots_disallowed' in normalized:
+        # robots.txt refusing the page is the store's answer, honoured as-is.
+        cause = 'blocked'
+    elif 'category_scope_unavailable' in normalized:
+        # API probe 4xx answers are expected on other platforms; the scope
+        # failure is the decisive fact for a category request.
+        cause = 'category_scope_unavailable'
     elif ('blocked' in normalized or 'access_denied' in normalized or 'forbidden' in normalized
           or re.search(r'\b403\b|access denied|permission denied', text)):
         cause = 'blocked'

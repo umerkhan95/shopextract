@@ -1170,11 +1170,41 @@ async def test_sc14_extraction_reuses_detection_context_without_second_root_fetc
 
     monkeypatch.setattr(_detect, "async_client", client_factory)
     monkeypatch.setattr(_storefront, "async_client", client_factory)
-    result = await extract("https://fixture.invalid/collections/fryers", max_urls=300)
+    result = await extract("https://fixture.invalid", max_urls=300)
 
     assert result.platform is Platform.SHOPIFY
     assert result.product_count == 300
     assert calls == [1, 2]
+
+
+@pytest.mark.asyncio
+async def test_shopify_collection_request_reads_the_collection_not_the_store(monkeypatch):
+    """The origin catalog probe proves Shopify but must not stand in for a collection."""
+    from shopextract._extract import extract
+    from shopextract import _detect
+    from shopextract.extractors import _storefront
+
+    paths = []
+    def respond(request):
+        paths.append(request.url.path)
+        handle = "fryers" if request.url.path.startswith("/collections/fryers") else "store"
+        records = [{"id": index, "title": f"{handle} item {index}", "handle": f"{handle}-{index}",
+                    "variants": [{"id": index, "price": "25.00", "available": True, "sku": f"{handle}-{index}"}]}
+                   for index in range(3 if handle == "fryers" else 40)]
+        return httpx.Response(200, json={"products": records}, request=request)
+
+    original_client = httpx.AsyncClient
+    def client_factory(*args, **kwargs):
+        kwargs["transport"] = httpx.MockTransport(respond)
+        return original_client(*args, **kwargs)
+
+    monkeypatch.setattr(_detect, "async_client", client_factory)
+    monkeypatch.setattr(_storefront, "async_client", client_factory)
+    result = await extract("https://fixture.invalid/collections/fryers", max_urls=20)
+
+    assert result.platform is Platform.SHOPIFY
+    assert [p.title for p in result.products] == [f"fryers item {i}" for i in range(3)]
+    assert paths == ["/products.json", "/collections/fryers/products.json"]
 
 
 @pytest.mark.asyncio

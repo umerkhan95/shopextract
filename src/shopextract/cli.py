@@ -8,7 +8,7 @@ import sys
 
 import click
 
-from ._cli_core import CoreGroup, emit_success, emit_diagnostic, settings
+from ._cli_core import CoreGroup, emit_success, emit_diagnostic, emit_response, make_response, settings
 from ._cli_extract import execution_options
 from ._models import Platform
 
@@ -221,14 +221,23 @@ async def _extract(url: str, max_urls: int, fmt: str, output_path: str | None) -
 
 
 async def _detect(url: str) -> None:
-    from . import detect as do_detect
-    result = await do_detect(url)
+    from ._detect import detect_context
+    context = await detect_context(url)
+    result = context.result
     data = {"platform": result.platform.value, "confidence": result.confidence,
             "signals": result.signals}
-    if settings().output_format == "json":
-        emit_success(data)
-    else:
+    if settings().output_format != "json":
         click.echo(json.dumps(data, indent=2))
+        return
+    from ._cli_detect import detect_failure, detect_warnings
+    failure = detect_failure(context, url)
+    if failure is not None:
+        raise failure
+    warnings = detect_warnings(context)
+    if warnings:
+        emit_response(make_response(data, warnings=warnings, completeness="partial"))
+    else:
+        emit_success(data)
 
 
 async def _discover(url: str, max_urls: int) -> None:

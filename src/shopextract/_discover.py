@@ -74,7 +74,7 @@ async def _discover_local(url, *, platform=None, max_urls=100, timeout=30, clien
         if platform is None:
             from ._detect import detect
             platform=(await detect(url,client=guarded)).platform
-        urls=await _discover_for_platform(url.rstrip('/'),platform,timeout,guarded,max_urls=max_urls)
+        urls=await _discover_for_platform(url,platform,timeout,guarded,max_urls=max_urls)
         allowed=[]
         for item in urls[:5000]:
             if isinstance(item,str) and await guarded.allowed(item):allowed.append(item)
@@ -94,8 +94,29 @@ async def _discover_for_platform(
     base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None,
     max_urls: int = 100,
 ) -> list[str]:
-    if platform in (Platform.GENERIC, Platform.MAGENTO, Platform.WOOCOMMERCE) and _is_category_scope(base_url):
-        return await _discover_category_listing(base_url, timeout, client, max_urls=max_urls)
+    # The listing is fetched exactly as requested: /airconditioners/ and
+    # /airconditioners are different resources on some stores (mega.pk 404s
+    # the latter). Store-level endpoints are joined onto the stripped base.
+    page_url, base_url = base_url, base_url.rstrip("/")
+    if _is_listing_scope(base_url, platform):
+        listed = await _discover_category_listing(page_url, timeout, client, max_urls=max_urls)
+        if listed is not None:
+            return listed
+        # The page is not a listing we can read. Platform discovery may still
+        # cover the scope (a store mounted under a base path), but only URLs
+        # under the requested path are kept: never whole-store products.
+        urls = await _discover_for_store(base_url, platform, timeout, client, max_urls=max_urls)
+        scoped = [url for url in urls if _under_path(url, base_url)]
+        if not scoped:
+            _note(client, "category_scope_unavailable")
+        return scoped
+    return await _discover_for_store(base_url, platform, timeout, client, max_urls=max_urls)
+
+
+async def _discover_for_store(
+    base_url: str, platform: Platform, timeout: float, client: httpx.AsyncClient | None,
+    max_urls: int = 100,
+) -> list[str]:
     if platform == Platform.SHOPIFY:
         return await _discover_shopify(base_url, platform, timeout, client, max_urls=max_urls)
     elif platform == Platform.WOOCOMMERCE:
@@ -108,28 +129,53 @@ async def _discover_for_platform(
         return await _discover_generic(base_url, platform, timeout, client, max_urls=max_urls)
 
 
-_CATEGORY_SEGMENTS = {"category", "categories", "collection", "collections"}
-_PRODUCT_SEGMENTS = {"product", "products", "p"}
 _MAX_CATEGORY_PAGES = 5
+_MAX_LISTING_BYTES = 8 * 1024 * 1024
 
 
-def _is_category_scope(url: str) -> bool:
-    return any(segment.lower() in _CATEGORY_SEGMENTS
-               for segment in urlsplit(url).path.split("/") if segment)
+def _is_listing_scope(url: str, platform: Platform) -> bool:
+    """A non-root path names a category, search or brand page, not the store.
+
+    Shopify collections keep native /products.json discovery; every other page
+    is read itself, because SEO category paths such as /groceries-pets/dairy
+    carry no fixed marker.
+    """
+    from ._scope import is_store_root, shopify_catalog_base
+    if is_store_root(url):
+        return False
+    return platform != Platform.SHOPIFY or shopify_catalog_base(url) is None
+
+
+def _under_path(url: str, scope_url: str) -> bool:
+    scope = urlsplit(scope_url).path.rstrip("/")
+    path = urlsplit(url).path
+    return path == scope or path.startswith(scope + "/")
+
+
+def _note(client, code: str) -> None:
+    note = getattr(client, "note", None)
+    if callable(note):
+        note(code)
 
 
 async def _discover_category_listing(
     category_url: str, timeout: float, client, *, max_urls: int,
-) -> list[str]:
-    """Return product links from a bounded category listing and its next pages."""
+) -> list[str] | None:
+    """Return product links from a bounded listing and its next pages.
+
+    Returns None when the first page is not a readable listing, so the caller
+    can try scoped platform discovery. A product page returns itself.
+    """
     from ._discovery_runtime import DiscoveryClient
+    from ._listing import parse_listing
 
     guarded = client if isinstance(client, DiscoveryClient) else DiscoveryClient(client)
     next_url = category_url
     seen_pages: set[str] = set()
     products: list[str] = []
+    total = None
     for _ in range(_MAX_CATEGORY_PAGES):
-        if next_url in seen_pages or not await guarded.allowed(next_url):
+        if not next_url or next_url in seen_pages or not await guarded.allowed(next_url):
             break
         seen_pages.add(next_url)
         try:
@@ -137,32 +183,45 @@ async def _discover_category_listing(
         except (httpx.HTTPError, ValueError):
             guarded.note("category_listing_source_error")
             break
-        if response.status_code != 200 or len(response.content) > 2 * 1024 * 1024:
+        if response.status_code != 200 or len(response.content) > _MAX_LISTING_BYTES:
             guarded.note("category_listing_unavailable")
+            # The status decides the cause: a throttled or refused listing is
+            # retryable or blocked, not a missing category.
+            if response.status_code == 429:
+                guarded.note("rate_limited")
+            elif response.status_code in (401, 403):
+                guarded.note("blocked")
+            elif response.status_code != 200:
+                guarded.note(f"category_listing_http_{response.status_code}")
             break
-        soup = BeautifulSoup(response.text, "html.parser")
-        main = soup.find("main") or soup.body or soup
-        for anchor in main.select("a[href]"):
-            href = anchor.get("href", "").strip()
-            if not href or href.startswith("#"):
+        try:
+            page = parse_listing(response.text, str(response.url))
+        except Exception as error:
+            # A theme the parser cannot read must not abort extraction; the
+            # reason is kept and the stack names only where it failed.
+            from ._failure_origin import failure_origin
+            logger.warning("Listing parse failed for %s: %s", next_url, failure_origin(error))
+            guarded.note("category_listing_parse_error")
+            break
+        if not seen_pages - {category_url} and page.is_product_page:
+            return [category_url]
+        total = page.total if page.total is not None else total
+        added = 0
+        for candidate in page.product_urls:
+            if candidate in products or not await guarded.allowed(candidate):
                 continue
-            candidate = urljoin(str(response.url), href)
-            path_segments = {part.lower() for part in urlsplit(candidate).path.split("/") if part}
-            product_card = any(
-                "product" in " ".join(node.get("class", [])).lower()
-                for node in [anchor, *anchor.parents]
-                if getattr(node, "get", None)
-            )
-            if path_segments & _PRODUCT_SEGMENTS or product_card:
-                if await guarded.allowed(candidate):
-                    products.append(candidate)
-                    if len(products) >= max_urls:
-                        return list(dict.fromkeys(products))
-        next_link = soup.select_one('a[rel~="next"][href], link[rel~="next"][href]')
-        next_url = urljoin(str(response.url), next_link["href"]) if next_link else ""
-        if not next_url:
+            products.append(candidate)
+            added += 1
+            if len(products) >= max_urls:
+                return products
+        if not added or (total is not None and len(products) >= total):
             break
-    return list(dict.fromkeys(products))
+        next_url = page.next_url
+    if not products:
+        return None
+    if total is not None and len(products) < min(total, max_urls):
+        guarded.note("category_listing_truncated")
+    return products
 
 
 async def _discover_shopify(
