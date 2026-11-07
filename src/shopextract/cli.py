@@ -397,5 +397,8 @@ _register_discovery(main)
 from ._readiness import register as _register_readiness
 _register_readiness(main)
 
+from ._cli_google import register as _register_google
+_register_google(main)
+
 if __name__ == "__main__":
     main()
