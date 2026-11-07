@@ -1,0 +1,14 @@
+{
+  "command": [
+    "claude",
+    "plugin",
+    "validate",
+    "--strict",
+    "--json",
+    "<plugin-directory>"
+  ],
+  "disposable_profile": true,
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "error: unknown option '--strict'\n(Did you mean --print?)\n"
+}

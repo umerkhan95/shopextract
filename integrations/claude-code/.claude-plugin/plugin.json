@@ -1,0 +1,7 @@
+{
+  "name": "shopextract",
+  "version": "0.1.1",
+  "description": "Bounded local product extraction and captured evidence review with ShopExtract.",
+  "author": {"name": "ShopExtract contributors"},
+  "license": "MIT"
+}

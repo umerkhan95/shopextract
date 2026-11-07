@@ -1,0 +1,14 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____ test_supervisor_normal_exit_cleans_owned_descendant_preserving_success ____
+tests/test_claude_code_revision.py:426: in test_supervisor_normal_exit_cleans_owned_descendant_preserving_success
+    assert not state or state.startswith('Z'), 'Successful parent left an owned descendant running'
+E   AssertionError: Successful parent left an owned descendant running
+E   assert (not 'S' or False)
+E    +  where False = <built-in method startswith of str object at 0x10561fe30>('Z')
+E    +    where <built-in method startswith of str object at 0x10561fe30> = 'S'.startswith
+=========================== short test summary info ============================
+FAILED tests/test_claude_code_revision.py::test_supervisor_normal_exit_cleans_owned_descendant_preserving_success
+1 failed, 42 deselected in 0.52s

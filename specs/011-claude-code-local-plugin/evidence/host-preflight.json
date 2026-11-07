@@ -1,0 +1,33 @@
+[
+  {
+    "command": [
+      "claude",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "1.0.35 (Claude Code)\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "claude",
+      "auth",
+      "status",
+      "--text"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "error: unknown option '--text'\n"
+  },
+  {
+    "command": [
+      "claude",
+      "auth",
+      "status"
+    ],
+    "disposable_profile": true,
+    "exit_code": 1,
+    "stdout": "Invalid API key \u00b7 Please run /login\n",
+    "stderr": ""
+  }
+]

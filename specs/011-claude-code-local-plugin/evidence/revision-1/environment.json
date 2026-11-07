@@ -1,0 +1,26 @@
+{
+  "plugin_version": "0.1.1",
+  "package_files": 5,
+  "package_bytes": 18956,
+  "package_sha256": {
+    ".claude-plugin/plugin.json": "057ea101802ddc63a54ade2c7b4d64ba67c600afdc634e4621787fd11df0b7d5",
+    ".mcp.json": "a30ea4ec1468cbf74a0944ddcacc418bd5b5698a1d2f303eb9ae4514bf6c5abd",
+    "LICENSE": "1dfef98018c8b7ad8a9f34f3de9383cf704435b8e7729bb6f89e2f95858a81a2",
+    "README.md": "79c88d450e67b93816efc422ebafb8958652d5e1a913c6cbf8b14d4368127a0f",
+    "skills/shopextract-review/SKILL.md": "a818009d84e4f6fbac9530c28fd91907addbe77af44b560929b6638ee648b921"
+  },
+  "mcp_version": "1.30.0",
+  "pytest_version": "9.1.1",
+  "fixture_seed": 24,
+  "model_calls": 0,
+  "actual_session_token_counters": "unavailable; no quota inference",
+  "bounds": {
+    "domain_calls": 6,
+    "products": 2,
+    "model_case_seconds": 120,
+    "turns": 10,
+    "cleanup_seconds": 2,
+    "max_model_cases": 3
+  },
+  "source_core_changes": false
+}
