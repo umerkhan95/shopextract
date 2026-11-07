@@ -1,0 +1,803 @@
+{
+  "provenance": {
+    "kind": "derived from recorded live extraction envelopes",
+    "extracted_on": "2026-11-02",
+    "extractor_version": "shopextract 0.1.2 at d31c7c6",
+    "left_sha256": "aa4f5b810be98452c9acb19ac8125d30aced14aa2044a4123a31eceaf964ce38",
+    "right_sha256": "bc69a7a28e56077a76154626e3d43b7f2440784a53089a44180ee1cb03645377",
+    "labels_sha256": "3552a118fd8b4b309d9b9a6db9699b76a890aa1fbc3fc8d4b00e82d1c0316374",
+    "label_method": "manual exact model-code equality from product titles only; no product-page or MPN verification; labels are not independent ground truth",
+    "projection": "title, SKU, vendor, MPN, GTIN and product URL only; raw_data/evidence/variants omitted"
+  },
+  "left": {
+    "name": "ph.json (powerhouseexpress fryer-and-cookers, 38 products)",
+    "products": [
+      {
+        "index": 0,
+        "title": "Anex AG-2121 Deluxe Air Fryer With Oven",
+        "sku": "AG-2121",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2121-air-fryer"
+      },
+      {
+        "index": 1,
+        "title": "Westpoint WF-5255 Air Fryer",
+        "sku": "WF-5255",
+        "vendor": "Westpoint",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/westpoint-wf-5255-air-fryer"
+      },
+      {
+        "index": 2,
+        "title": "Philips NA110/00 1000 Series Small (3.2L) Air fryer",
+        "sku": "NA110/00",
+        "vendor": "Philips",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/philips-na110-00-1000-series-air-fryer"
+      },
+      {
+        "index": 3,
+        "title": "Sencor SFR 4500BK Vita Fryer",
+        "sku": "SFR-4500BK",
+        "vendor": "Sencor",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/sencor-sfr-4500bk-vita-fryer"
+      },
+      {
+        "index": 4,
+        "title": "De'Longhi FH-2101 Ideal Fry Hot Air Fryer",
+        "sku": "FH-2101",
+        "vendor": "De'Longhi",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/delonghi-fh-2101-hot-air-fryer"
+      },
+      {
+        "index": 5,
+        "title": "Sencor SFR 6550BK Vita Fryer",
+        "sku": "SFR-6550BK",
+        "vendor": "Sencor",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/sencor-sfr-6550bk-vita-fryer"
+      },
+      {
+        "index": 6,
+        "title": "Anex AG-2014 Deluxe Deep Fryer",
+        "sku": "AG-2014",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2014-deep-fryer"
+      },
+      {
+        "index": 7,
+        "title": "Anex AG-2017 Deluxe Air Fryer",
+        "sku": "AG-2017",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2017-deluxe-air-fryer"
+      },
+      {
+        "index": 8,
+        "title": "Sencor SFR 5010BK Vita Fryer",
+        "sku": "SFR5010BK",
+        "vendor": "Sencor",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/sencor-sfr-5010bk-vita-fryer"
+      },
+      {
+        "index": 9,
+        "title": "E-lite eaf-001 Air Fryer Black",
+        "sku": "eaf-001",
+        "vendor": "E-Lite",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/e-lite-eaf-001-air-fryer"
+      },
+      {
+        "index": 10,
+        "title": "Gaba National GN-7522 Air Fryer",
+        "sku": "GN-7522",
+        "vendor": "Gaba National",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/gaba-gn-7522-air-fryer"
+      },
+      {
+        "index": 11,
+        "title": "Anex AG-2016 Air Fryer",
+        "sku": "AG-2016",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2016-air-fryer"
+      },
+      {
+        "index": 12,
+        "title": "Bingo AF-9030 Jumbo Air Fryer - 6.0 Liter",
+        "sku": "AF-9030",
+        "vendor": "Bingo",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/bingo-af-9030-jumbo-air-fryer-6-0-liter"
+      },
+      {
+        "index": 13,
+        "title": "Westpoint WF-5256 Air Fryer",
+        "sku": "WF-5256",
+        "vendor": "Westpoint",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/westpoint-wf-5256-air-fryer"
+      },
+      {
+        "index": 14,
+        "title": "Philips HD9270/90 3000 Series XL (6.2L) Air Fryer",
+        "sku": "HD9270/90",
+        "vendor": "Philips",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/philips-hd9270-90-xl-6-2l-air-fryer"
+      },
+      {
+        "index": 15,
+        "title": "Westinghouse WKAFGOT01WH Simple Life Series Digital Air Fryer - 4.5L",
+        "sku": "WKAFGOT01WH",
+        "vendor": "Westinghouse",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/westinghouse-wkafgot01wh-simple-life-series-digital-air-fryer-4-5l"
+      },
+      {
+        "index": 16,
+        "title": "National Gold NG-786-AF23 Digital & Touch System Air Fryer",
+        "sku": "NG-786-AF23",
+        "vendor": "National Gold",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/national-gold-ng-786-af23-air-fryer"
+      },
+      {
+        "index": 17,
+        "title": "Gaba National GN-3522 Air Fryer",
+        "sku": "GN-3522",
+        "vendor": "Gaba National",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/gaba-gn-3522-air-fryer"
+      },
+      {
+        "index": 18,
+        "title": "Philips HD9252/91 4.1L Large Air Fryer",
+        "sku": "HD9252/91",
+        "vendor": "Philips",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/philips-hd9252-air-fryer"
+      },
+      {
+        "index": 19,
+        "title": "Decakila KEEC010B Air Fryer",
+        "sku": "KEEC010B",
+        "vendor": "Decakila",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/decakila-keec010b-air-fryer"
+      },
+      {
+        "index": 20,
+        "title": "Westinghouse WKAFQK5511WH Dual Zone Air Fryer (White)",
+        "sku": "WKAFQK5511WH",
+        "vendor": "Westinghouse",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/westinghouse-wkafqk5511wh-dual-zone-air-fryer-white"
+      },
+      {
+        "index": 21,
+        "title": "Sencor SFR3130BK Vita Fryer",
+        "sku": "SFR3130BK",
+        "vendor": "Sencor",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/sencor-sfr3130bk-vita-fryer"
+      },
+      {
+        "index": 22,
+        "title": "Gaba National GN-5522 Air Fryer",
+        "sku": "GN-5522",
+        "vendor": "Gaba National",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/gaba-gn-5522-air-fryer"
+      },
+      {
+        "index": 23,
+        "title": "Philips HD9200/90 3000 Series Large (4.1L) Air Fryer",
+        "sku": "HD9200/90",
+        "vendor": "Philips",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/philips-hd9200-90-3000-series-air-fryer"
+      },
+      {
+        "index": 24,
+        "title": "Gaba National GN-3522G Air Fryer",
+        "sku": "GN-3522G",
+        "vendor": "Gaba National",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/gaba-gn-3522g-air-fryer"
+      },
+      {
+        "index": 25,
+        "title": "Alpina SF-4003 S.S Deep Fryer 3.1 Litres-2000W",
+        "sku": "SF-4003",
+        "vendor": "Alpina",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/alpina-s-s-deep-fryer"
+      },
+      {
+        "index": 26,
+        "title": "Decakila KEEC003W Air Fryer",
+        "sku": "KEEC003W",
+        "vendor": "Decakila",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/decakila-keec003w-air-fryer"
+      },
+      {
+        "index": 27,
+        "title": "Westinghouse WKAFQK5511 Dual Zone Air Fryer",
+        "sku": "WKAFQK5511",
+        "vendor": "Westinghouse",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/westinghouse-wkafqk5511bk-dual-zone-air-fryer"
+      },
+      {
+        "index": 28,
+        "title": "Alpina SF-6012 Dual Air Grill",
+        "sku": "SF-6012",
+        "vendor": "Alpina",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/alpina-sf-6012-dual-air-grill"
+      },
+      {
+        "index": 29,
+        "title": "Westpoint WF-4257 XL Deluxe Easy Air Fryer",
+        "sku": "WF-4257",
+        "vendor": "Westpoint",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/westpoint-wf-4257-xl-deluxe-easy-air-fryer"
+      },
+      {
+        "index": 30,
+        "title": "Anex AG-2123 Deluxe Air Fryer With Oven",
+        "sku": "AG-2123",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2123-air-fryer-oven"
+      },
+      {
+        "index": 31,
+        "title": "Anex AG-2019 Deluxe Air Fryer",
+        "sku": "AG-2019",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2019-air-fryer"
+      },
+      {
+        "index": 32,
+        "title": "Westpoint WF-5254 Air Fryer",
+        "sku": "WF-5254",
+        "vendor": "Westpoint",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/westpoint-wf-5254-air-fryer"
+      },
+      {
+        "index": 33,
+        "title": "Gaba National GN-3521 Air Fryer",
+        "sku": "GN-3521",
+        "vendor": "Gaba National",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/gaba-gn-3521-air-fryer"
+      },
+      {
+        "index": 34,
+        "title": "Decakila KEEC008B Air Fryer",
+        "sku": "KEEC008B",
+        "vendor": "Decakila",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/decakila-keec008b-air-fryer"
+      },
+      {
+        "index": 35,
+        "title": "Anex AG-2020 Deluxe Air Fryer",
+        "sku": "AG-2020",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2020-air-fryer"
+      },
+      {
+        "index": 36,
+        "title": "Anex AG-2024 Digital Air Fryer",
+        "sku": "AG-2024",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2024-digital-air-fryer"
+      },
+      {
+        "index": 37,
+        "title": "Homage HAF-4LMB0 4L Air Fryer",
+        "sku": "HAF-4LMB0",
+        "vendor": "Homage",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/homage-haf-4lmb0-4l-air-fryer"
+      }
+    ]
+  },
+  "right": {
+    "name": "je.json (japanelectronics air fryer, 36 products)",
+    "products": [
+      {
+        "index": 0,
+        "title": "BEETRO AIR FRYER (BOAF-601WD)",
+        "sku": "80012479",
+        "vendor": "Beetro",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/beetro-air-fryer-boaf-601wd"
+      },
+      {
+        "index": 1,
+        "title": "Kenwood Air Fryer HFP-80 Digital Display",
+        "sku": "80009544",
+        "vendor": "Kenwood",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/kenwood-air-fryer-hfp-80-digital-display"
+      },
+      {
+        "index": 2,
+        "title": "Westpoint Air Fryer (WF-5254)",
+        "sku": "80010267",
+        "vendor": "Westpoint",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/westpoint-air-fryer-wf-5254"
+      },
+      {
+        "index": 3,
+        "title": "Homage Air Fryer (HAF-5LDB0",
+        "sku": "80011353",
+        "vendor": "Homage",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/homage-air-fryer-haf-5ldb0"
+      },
+      {
+        "index": 4,
+        "title": "Electrolux Air Fryer (E6AF1-520K Digital)",
+        "sku": "80012016",
+        "vendor": "Electrolux",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/electrolux-air-fryer-e6af1-520k-digital"
+      },
+      {
+        "index": 5,
+        "title": "ANEX Air Fryer AG-2020 Black 1700W",
+        "sku": "80006884",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/anex-air-fryer-ag-2020"
+      },
+      {
+        "index": 6,
+        "title": "Braun Air Fryer HF-3000",
+        "sku": "80011549",
+        "vendor": "Braun",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/braun-air-fryer-hf-3000"
+      },
+      {
+        "index": 7,
+        "title": "Xiaomi Smart Air Fryer 5.5Ltr",
+        "sku": "80011604",
+        "vendor": "Xiaomi",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/xiaomi-smart-air-fryer-5-5ltr"
+      },
+      {
+        "index": 8,
+        "title": "Black & Decker Air Fryer (AF-700 Digital)",
+        "sku": "80012018",
+        "vendor": "Black & Decker",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/black-decker-air-fryer-af-700-digital"
+      },
+      {
+        "index": 9,
+        "title": "TEFAL AIR FRYER EY-9018",
+        "sku": "80012805",
+        "vendor": "Tefal",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/tefal-air-fryer-ey-9018"
+      },
+      {
+        "index": 10,
+        "title": "Philips Air Fryer (NA-120)",
+        "sku": "80011391",
+        "vendor": "Philips",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/philips-air-fryer-na-120"
+      },
+      {
+        "index": 11,
+        "title": "Westpoint Air Fryer (WF-5256)",
+        "sku": "80010637",
+        "vendor": "Westpoint",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/westpoint-air-fryer-wf-5256"
+      },
+      {
+        "index": 12,
+        "title": "Haier Air Fryer (HAF-50MB)",
+        "sku": "80012826",
+        "vendor": "Haier",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/haier-air-fryer-haf-50mb"
+      },
+      {
+        "index": 13,
+        "title": "Anex Air Fryer (AG-2017)",
+        "sku": "80011412",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/anex-air-fryer-ag-2017"
+      },
+      {
+        "index": 14,
+        "title": "Westpoint Air Fryer (WF-5257)",
+        "sku": "80010767",
+        "vendor": "Westpoint",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/westpoint-air-fryer-wf-5257"
+      },
+      {
+        "index": 15,
+        "title": "BEETRO AIR FRYER (BOAF-801D)",
+        "sku": "80012480",
+        "vendor": "Beetro",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/air-fryer-1"
+      },
+      {
+        "index": 16,
+        "title": "Westpoint Air Fryer (WF-4257)",
+        "sku": "80011083",
+        "vendor": "Westpoint",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/westpoint-air-fryer-wf-4257"
+      },
+      {
+        "index": 17,
+        "title": "Dawlance Air Fryer DWAF-6322 D",
+        "sku": "80010347",
+        "vendor": "Dawlance",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/dawlance-air-fryer-dwaf-6322-d"
+      },
+      {
+        "index": 18,
+        "title": "Beetro Air Fryer (BAF-401 Digital)",
+        "sku": "80010928",
+        "vendor": "Beetro",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/beetro-air-fryer-baf-401-digital"
+      },
+      {
+        "index": 19,
+        "title": "Philips Air Fryer (NA-110)",
+        "sku": "80011392",
+        "vendor": "Philips",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/philips-air-fryer-na-110"
+      },
+      {
+        "index": 20,
+        "title": "Westpoint Air Fryer (WF-4256)",
+        "sku": "80010676",
+        "vendor": "Westpoint",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/westpoint-air-fryer-wf-4256"
+      },
+      {
+        "index": 21,
+        "title": "Dawlance Air Fryer DWAF-3374 B",
+        "sku": "80010356",
+        "vendor": "Dawlance",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/dawlance-air-fryer-dwaf-3374-b"
+      },
+      {
+        "index": 22,
+        "title": "Anex Air Fryer With Oven AG-2123",
+        "sku": "80009720",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/anex-air-fryer-with-oven-ag-2123"
+      },
+      {
+        "index": 23,
+        "title": "Westpoint Air Fryer (WF-5253)",
+        "sku": "80011055",
+        "vendor": "Westpoint",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/westpoint-air-fryer-wf-5253"
+      },
+      {
+        "index": 24,
+        "title": "Braun Air Fryer (HF-3030)",
+        "sku": "80011551",
+        "vendor": "Braun",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/braun-air-fryer-hf-3030"
+      },
+      {
+        "index": 25,
+        "title": "Dawlance Air Fryer DWAF-6321 L",
+        "sku": "80010369",
+        "vendor": "Dawlance",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/dawlance-air-fryer-dwaf-6321-l"
+      },
+      {
+        "index": 26,
+        "title": "Electrolux Air Fryer (E6AF1-720 Digital)",
+        "sku": "80012015",
+        "vendor": "Electrolux",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/electrolux-air-fryer-e6af1-720-digital"
+      },
+      {
+        "index": 27,
+        "title": "Philips Air Fryer 9200",
+        "sku": "80007650",
+        "vendor": "Philips",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/philips-air-fryer-9200"
+      },
+      {
+        "index": 28,
+        "title": "BEETRO AIR FRYER (BOAF-401WD)",
+        "sku": "80012481",
+        "vendor": "Beetro",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/beetro-air-fryer-boaf-401wd"
+      },
+      {
+        "index": 29,
+        "title": "ANEX Deep Fryer AG-2012",
+        "sku": "80000079",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/anex-deep-fryer-ag-2012"
+      },
+      {
+        "index": 30,
+        "title": "Haier Air Fryer (HAF-50DB Digital)",
+        "sku": "80012827",
+        "vendor": "Haier",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/haier-air-fryer-haf-50db-digital"
+      },
+      {
+        "index": 31,
+        "title": "Kenwood Air Fryer (HFP-72BK)",
+        "sku": "80011962",
+        "vendor": "Kenwood",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/kenwood-air-fryer-hfp-72bk"
+      },
+      {
+        "index": 32,
+        "title": "Anex Air Fryer (AG-2024 Digital)",
+        "sku": "80011413",
+        "vendor": "Anex",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/anex-air-fryer-ag-2024-digital"
+      },
+      {
+        "index": 33,
+        "title": "Xiaomi Smart Air Fryer 6.5Ltr (Black)",
+        "sku": "80011606",
+        "vendor": "Xiaomi",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/xiaomi-smart-air-fryer-6-5ltr-black"
+      },
+      {
+        "index": 34,
+        "title": "Sharp Air Fryer (AF-70RT-S3) 7L",
+        "sku": "80009378",
+        "vendor": "Sharp",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/sharp-air-fryer-af-70rt-s3"
+      },
+      {
+        "index": 35,
+        "title": "Philips Air Fryer (HD-9280)",
+        "sku": "80010859",
+        "vendor": "Philips",
+        "mpn": null,
+        "gtin": null,
+        "product_url": "https://japanelectronics.com.pk/collections/air-fryer/products/philips-air-fryer-hd-9280"
+      }
+    ]
+  },
+  "positive_pairs": [
+    {
+      "index_a": 7,
+      "index_b": 13,
+      "model_code": "AG-2017",
+      "title_a": "Anex AG-2017 Deluxe Air Fryer",
+      "title_b": "Anex Air Fryer (AG-2017)",
+      "url_a": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2017-deluxe-air-fryer",
+      "url_b": "https://japanelectronics.com.pk/collections/air-fryer/products/anex-air-fryer-ag-2017"
+    },
+    {
+      "index_a": 13,
+      "index_b": 11,
+      "model_code": "WF-5256",
+      "title_a": "Westpoint WF-5256 Air Fryer",
+      "title_b": "Westpoint Air Fryer (WF-5256)",
+      "url_a": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/westpoint-wf-5256-air-fryer",
+      "url_b": "https://japanelectronics.com.pk/collections/air-fryer/products/westpoint-air-fryer-wf-5256"
+    },
+    {
+      "index_a": 29,
+      "index_b": 16,
+      "model_code": "WF-4257",
+      "title_a": "Westpoint WF-4257 XL Deluxe Easy Air Fryer",
+      "title_b": "Westpoint Air Fryer (WF-4257)",
+      "url_a": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/westpoint-wf-4257-xl-deluxe-easy-air-fryer",
+      "url_b": "https://japanelectronics.com.pk/collections/air-fryer/products/westpoint-air-fryer-wf-4257"
+    },
+    {
+      "index_a": 30,
+      "index_b": 22,
+      "model_code": "AG-2123",
+      "title_a": "Anex AG-2123 Deluxe Air Fryer With Oven",
+      "title_b": "Anex Air Fryer With Oven AG-2123",
+      "url_a": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2123-air-fryer-oven",
+      "url_b": "https://japanelectronics.com.pk/collections/air-fryer/products/anex-air-fryer-with-oven-ag-2123"
+    },
+    {
+      "index_a": 32,
+      "index_b": 2,
+      "model_code": "WF-5254",
+      "title_a": "Westpoint WF-5254 Air Fryer",
+      "title_b": "Westpoint Air Fryer (WF-5254)",
+      "url_a": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/westpoint-wf-5254-air-fryer",
+      "url_b": "https://japanelectronics.com.pk/collections/air-fryer/products/westpoint-air-fryer-wf-5254"
+    },
+    {
+      "index_a": 35,
+      "index_b": 5,
+      "model_code": "AG-2020",
+      "title_a": "Anex AG-2020 Deluxe Air Fryer",
+      "title_b": "ANEX Air Fryer AG-2020 Black 1700W",
+      "url_a": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2020-air-fryer",
+      "url_b": "https://japanelectronics.com.pk/collections/air-fryer/products/anex-air-fryer-ag-2020"
+    },
+    {
+      "index_a": 36,
+      "index_b": 32,
+      "model_code": "AG-2024",
+      "title_a": "Anex AG-2024 Digital Air Fryer",
+      "title_b": "Anex Air Fryer (AG-2024 Digital)",
+      "url_a": "https://powerhouseexpress.com.pk/collections/fryer-and-cookers/products/anex-ag-2024-digital-air-fryer",
+      "url_b": "https://japanelectronics.com.pk/collections/air-fryer/products/anex-air-fryer-ag-2024-digital"
+    }
+  ],
+  "known_wrong_pairs": [
+    {
+      "index_a": 0,
+      "index_b": 22,
+      "code_a": "AG-2121",
+      "code_b": "AG-2123",
+      "title_a": "Anex AG-2121 Deluxe Air Fryer With Oven",
+      "title_b": "Anex Air Fryer With Oven AG-2123"
+    },
+    {
+      "index_a": 1,
+      "index_b": 2,
+      "code_a": "WF-5255",
+      "code_b": "WF-5254",
+      "title_a": "Westpoint WF-5255 Air Fryer",
+      "title_b": "Westpoint Air Fryer (WF-5254)"
+    },
+    {
+      "index_a": 6,
+      "index_b": 29,
+      "code_a": "AG-2014",
+      "code_b": "AG-2012",
+      "title_a": "Anex AG-2014 Deluxe Deep Fryer",
+      "title_b": "ANEX Deep Fryer AG-2012"
+    },
+    {
+      "index_a": 11,
+      "index_b": 32,
+      "code_a": "AG-2016",
+      "code_b": "AG-2024",
+      "title_a": "Anex AG-2016 Air Fryer",
+      "title_b": "Anex Air Fryer (AG-2024 Digital)"
+    },
+    {
+      "index_a": 29,
+      "index_b": 14,
+      "code_a": "WF-4257",
+      "code_b": "WF-5257",
+      "title_a": "Westpoint WF-4257 XL Deluxe Easy Air Fryer",
+      "title_b": "Westpoint Air Fryer (WF-5257)"
+    },
+    {
+      "index_a": 37,
+      "index_b": 3,
+      "code_a": "HAF-4LMB0",
+      "code_b": "HAF-5LDB0",
+      "title_a": "Homage HAF-4LMB0 4L Air Fryer",
+      "title_b": "Homage Air Fryer (HAF-5LDB0"
+    }
+  ]
+}

@@ -11,6 +11,7 @@ from shopextract._execution import ExecutionPolicy, execution_policy
 from shopextract._models import Platform
 from shopextract._normalize import normalize
 from shopextract.extractors.unified import UnifiedCrawlExtractor
+from tests.mock_wire import mock_wire
 
 STORE = 'https://www.naheed.pk'
 URL = STORE + '/max-factor-powder'
@@ -131,7 +132,7 @@ async def test_detected_magento_blocked_api_routes_static_raw_through_generic_no
         return httpx.Response(403)
     client_type=httpx.AsyncClient
     def factory(**kwargs):
-        return client_type(transport=httpx.MockTransport(handler),**kwargs)
+        return client_type(**mock_wire(kwargs,httpx.MockTransport(handler)))
     with patch('httpx.AsyncClient',side_effect=factory), patch('shopextract._discover.discover',AsyncMock(return_value=[URL])), execution_policy(ExecutionPolicy()):
         result=await extract(STORE,max_urls=1)
     assert result.platform==Platform.MAGENTO

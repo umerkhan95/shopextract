@@ -18,8 +18,12 @@ from shopextract._cli_core import CliFailure
 from shopextract._cli_data import read_json_file,catalog_from_value,categorized_from_value
 from shopextract.categories._codec import wire,canonical
 from shopextract.categories import normalize_with_categories,categorized_product_to_record
+from tests.mock_wire import mock_wire
 
-@pytest.mark.parametrize('platform',list(Platform))
+# Platforms with a category adapter; Demandware and BlinkX are detected but have none.
+CATEGORY_PLATFORMS=[p for p in Platform if p not in (Platform.DEMANDWARE, Platform.BLINKX)]
+
+@pytest.mark.parametrize('platform',CATEGORY_PLATFORMS)
 def test_six_normalize_real_adapters(tmp_path,platform):
     opt=options(platform)
     result=invoke(['categories','normalize',dump(tmp_path/'raw.json',raw(platform)),
@@ -34,7 +38,7 @@ def test_six_normalize_real_adapters(tmp_path,platform):
     assert any(f['support']=='observed' for o in observations for t in o['terms'] for f in t['facts'])
     assert all(o['scope']==wire(opt.scope) for o in observations)
 
-@pytest.mark.parametrize('platform',list(Platform))
+@pytest.mark.parametrize('platform',CATEGORY_PLATFORMS)
 def test_six_extract_real_wire_parsers(tmp_path,monkeypatch,platform):
     original=httpx.AsyncClient;requests=[]
     product=raw(platform);product.pop('_capture',None)
@@ -54,7 +58,7 @@ def test_six_extract_real_wire_parsers(tmp_path,monkeypatch,platform):
             return httpx.Response(200,text='<html><script type="application/ld+json">'+json.dumps(product)+'</script></html>',headers={'Content-Type':'text/html'})
         return httpx.Response(200,json=payload,headers={'X-WP-Total':'1','X-WP-TotalPages':'1'})
     def client(*args,**kwargs):
-        kwargs.setdefault('transport',httpx.MockTransport(response));return original(*args,**kwargs)
+        return original(*args,**mock_wire(kwargs,httpx.MockTransport(response)))
     monkeypatch.setattr(httpx,'AsyncClient',client)
     command=['categories','extract',STORE,'--max-products','1','--options',dump(tmp_path/'opt.json',wire(options(platform)))]
     if platform in (Platform.SHOPWARE,Platform.BIGCOMMERCE):
@@ -560,7 +564,7 @@ def test_shopify_native_flags_change_observed_identifiers(tmp_path,monkeypatch,c
             return httpx.Response(200,json={'id':501,'variants':[{'id':701,'barcode':'0012345678905'}]})
         return httpx.Response(200,json={'products':[product]})
     def client(*args,**kwargs):
-        kwargs.setdefault('transport',httpx.MockTransport(handler));return original(*args,**kwargs)
+        return original(*args,**mock_wire(kwargs,httpx.MockTransport(handler)))
     monkeypatch.setattr(httpx,'AsyncClient',client)
     command=['categories','extract',STORE,'--max-products','1','--options',dump(tmp_path/'opt',wire(options(Platform.SHOPIFY)))]
     default=invoke(command);assert default.exit_code==3,default.output

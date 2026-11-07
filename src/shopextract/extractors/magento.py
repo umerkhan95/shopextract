@@ -11,6 +11,7 @@ import httpx
 from .._models import ExtractorResult
 from .._capture import capture
 from ._http_defaults import DEFAULT_HEADERS, get_default_user_agent
+from .._url_safety import async_client
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +46,7 @@ class MagentoExtractor:
         if access_token:
             headers['Authorization'] = 'Bearer ' + access_token
 
-        async with httpx.AsyncClient(timeout=self.timeout, follow_redirects=True, headers=headers) as client:
+        async with async_client(timeout=self.timeout, follow_redirects=True, headers=headers) as client:
             while current_page <= self.max_pages:
                 url = (
                     f"{endpoint or base_url + '/rest/V1/products'}?"

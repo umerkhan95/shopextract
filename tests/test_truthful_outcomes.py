@@ -58,7 +58,7 @@ def crawl_boundary(monkeypatch):
         async def __aexit__(self,*a): pass
         async def arun(self,**kw): return results[0]
         async def arun_many(self,**kw): return results
-    monkeypatch.setitem(sys.modules,'crawl4ai',SimpleNamespace(AsyncWebCrawler=Crawler))
+    monkeypatch.setitem(sys.modules,'crawl4ai',SimpleNamespace(AsyncWebCrawler=Crawler,ProxyConfig=lambda **kw:SimpleNamespace(**kw)))
     monkeypatch.setitem(sys.modules,'crawl4ai.async_dispatcher',SimpleNamespace(MemoryAdaptiveDispatcher=lambda **kw:None))
     for name in ('get_browser_config','get_crawl_config','get_crawler_strategy'):
         monkeypatch.setattr(module,name,lambda *a,**k:None)
@@ -209,7 +209,11 @@ def test_cli_atomic_outcome(cli_transport,tmp_path,kind,platform,expected):
     r=invoke('extract',URL,'--platform',platform,'--max','2','-o',str(target))
     assert r.exit_code==expected,r.output[:300]
     if expected==1:assert target.read_text()=='sentinel'
-    else:assert json.loads(target.read_text())==json.loads(r.stdout)
+    else:
+        # The file holds the envelope; stdout summarises it.
+        envelope=json.loads(target.read_text())
+        assert json.loads(r.stdout)['data']=={'output_path':str(target),'product_count':envelope['data']['product_count'],
+                                             'completeness':envelope['completeness']}
 
 
 @pytest.mark.parametrize('rows,expected',[(0,1),(1,3),(2,3)])
@@ -221,7 +225,7 @@ def test_feed_own_outcome_projection(monkeypatch,rows,expected):
         kw['transport']=httpx.MockTransport(lambda req:httpx.Response(200,text=body,headers={'content-type':'text/csv'}))
         return original(*a,**kw)
     monkeypatch.setattr(httpx,'AsyncClient',factory)
-    result=invoke('feed',URL+'/feed.csv','--max','1')
+    result=invoke('feed',URL+'/feed.csv','--max','1','--include-evidence')
     assert result.exit_code==expected,result.output[:400]
     value=json.loads(result.stdout)
     if rows==0:
@@ -254,7 +258,7 @@ def test_woo_later_page_pipeline_cli_retention(monkeypatch,later_status):
         kw['transport']=httpx.MockTransport(respond)
         return original(*a,**kw)
     monkeypatch.setattr(httpx,'AsyncClient',factory)
-    result=invoke('extract',URL,'--platform','woocommerce','--max','101')
+    result=invoke('extract',URL,'--platform','woocommerce','--max','101','--include-evidence')
     assert result.exit_code==3,result.output[:400]
     data=json.loads(result.stdout)['data']
     assert data['product_count']==100 and len(data['products'])==100
@@ -288,7 +292,10 @@ def test_product_group_substring_not_type():
 def test_normalize_empty_compatibility(records,dropped):
     result=CliRunner().invoke(main,['--output-format','json','normalize','-','--platform','shopify'],input=json.dumps(records))
     assert result.exit_code==0,result.output[:300]
-    assert json.loads(result.stdout)['data']=={'products':[],'product_count':0,'dropped_indices':dropped}
+    expected={'products':[],'product_count':0,'dropped_indices':dropped}
+    if dropped:
+        expected['dropped_reasons']=[{'index':0,'reason':'no_product_evidence'}]
+    assert json.loads(result.stdout)['data']==expected
 
 
 @pytest.mark.asyncio

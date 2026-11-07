@@ -2,15 +2,48 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
+import socket
 from decimal import Decimal
 from pathlib import Path
 
+import httpcore
 import pytest
 
 from shopextract._models import Product, Platform
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
+
+# RFC 6761 reserves these names and they never resolve. Tests use them as fake
+# public stores, so they get one public address that the URL guard accepts.
+# Every other host keeps real resolution and the guard's private-address check.
+_RESERVED_TEST_SUFFIXES = (".test", ".invalid", ".example")
+_RESERVED_TEST_ADDRESS = "93.184.216.34"
+
+
+@pytest.fixture(autouse=True)
+def _reserved_test_hosts_resolve_public(monkeypatch):
+    real = asyncio.BaseEventLoop.getaddrinfo
+
+    async def getaddrinfo(self, host, port, *args, **kwargs):
+        name = host.decode() if isinstance(host, bytes) else str(host or "")
+        if name.rstrip(".").lower().endswith(_RESERVED_TEST_SUFFIXES):
+            return [(socket.AF_INET, socket.SOCK_STREAM, 6, "", (_RESERVED_TEST_ADDRESS, port or 0))]
+        return await real(self, host, port, *args, **kwargs)
+
+    monkeypatch.setattr(asyncio.BaseEventLoop, "getaddrinfo", getaddrinfo)
+
+    # The address is real, so a test that forgot its mock wire must fail here
+    # instead of sending traffic to it.
+    real_connect = httpcore.AnyIOBackend.connect_tcp
+
+    async def connect_tcp(self, host, port, *args, **kwargs):
+        if host == _RESERVED_TEST_ADDRESS:
+            raise httpcore.ConnectError("reserved test host has no mock wire")
+        return await real_connect(self, host, port, *args, **kwargs)
+
+    monkeypatch.setattr(httpcore.AnyIOBackend, "connect_tcp", connect_tcp)
 
 
 @pytest.fixture

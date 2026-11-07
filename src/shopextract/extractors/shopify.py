@@ -26,7 +26,8 @@ class ShopifyExtractor:
         self.http_client = http_client
 
     async def extract(self, shop_url: str, *, max_products: int | None = None,
-                      enrich_identifiers: bool = False) -> ExtractorResult:
+                      enrich_identifiers: bool = False,
+                      initial_response: httpx.Response | None = None) -> ExtractorResult:
         """Fetch bounded products; optionally enrich missing variant barcodes by ID."""
         if max_products is not None and (not isinstance(max_products, int) or isinstance(max_products, bool) or max_products <= 0):
             raise ValueError("max_products must be a positive integer")
@@ -57,7 +58,11 @@ class ShopifyExtractor:
                 logger.info("Fetching page %s from %s", page, url)
 
                 try:
-                    response = await client.get(url)
+                    if page == 1 and initial_response is not None:
+                        response = initial_response
+                        initial_response = None
+                    else:
+                        response = await client.get(url)
 
                     if response.status_code == 429:
                         from ._retry import wait_for_retry

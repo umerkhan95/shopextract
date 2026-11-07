@@ -15,6 +15,7 @@ from shopextract.categories import (CategoryOptions, CategoryScope, CategorySele
     categorized_product_from_record)
 from shopextract.categories._codec import wire
 from shopextract.cli import main
+from tests.mock_wire import mock_wire
 
 STORE = 'https://www.naheed.pk'
 CATEGORY = STORE + '/health-beauty/setting-powders'
@@ -134,7 +135,7 @@ def test_cli_index_then_normalize_uses_existing_mapper(tmp_path):
     from shopextract.categories.listings import build_listing_index
     client_type=httpx.AsyncClient
     def factory(**kwargs):
-        return client_type(transport=httpx.MockTransport(lambda req:httpx.Response(200,text=listing())),**kwargs)
+        return client_type(**mock_wire(kwargs,httpx.MockTransport(lambda req:httpx.Response(200,text=listing()))))
     urls=tmp_path/'urls.json';urls.write_text(json.dumps([CATEGORY]))
     config=tmp_path/'options.json';config.write_text(json.dumps(wire(options())))
     source=tmp_path/'raw.json';source.write_text(json.dumps(raw()))
@@ -170,14 +171,12 @@ async def test_dripping_body_cannot_outlive_total_acquisition_deadline(monkeypat
 
 
 @pytest.mark.asyncio
-async def test_final_response_identity_and_store_base_path_are_checked():
+async def test_redirect_and_store_base_path_are_checked():
     from shopextract.categories.listings import build_listing_index
-    from contextlib import asynccontextmanager
-    class MismatchedClient:
-        @asynccontextmanager
-        async def stream(self,*args,**kwargs):
-            yield httpx.Response(200,text=listing(),request=httpx.Request('GET','https://outside.test/cat'))
-    index=await build_listing_index([CATEGORY],STORE,client=MismatchedClient())
+    async with httpx.AsyncClient(transport=httpx.MockTransport(
+        lambda req:httpx.Response(302,headers={'location':'https://outside.test/cat'})
+    )) as redirect_client:
+        index=await build_listing_index([CATEGORY],STORE,client=redirect_client)
     assert not index['complete'] and not index['memberships']
     with pytest.raises(ValueError):await build_listing_index([STORE+'/outside'],STORE+'/shop')
     async with httpx.AsyncClient(transport=httpx.MockTransport(lambda req:httpx.Response(200,text=listing((STORE+'/outside',)))) ) as client:

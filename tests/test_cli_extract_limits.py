@@ -50,7 +50,8 @@ def test_mixed_and_variant_misalignment_rejected():
     record['variant_contracts']=[None]
     with pytest.raises(CliFailure): products_from_value([record])
     valid=product_to_record(Product(title='B'))
-    with pytest.raises(CliFailure): products_from_value([valid,{'title':'raw'}])
+    with pytest.raises(CliFailure) as failure: products_from_value([valid,{'title':'raw'}])
+    assert failure.value.code == 'E_USAGE'
 
 
 def test_empty_batch_quality():

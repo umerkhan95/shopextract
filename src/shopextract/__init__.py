@@ -8,7 +8,7 @@ Public API:
     from_feed(feed_url, ...) -> ExtractionResult
     compare(query, stores) -> ComparisonResult
     compare_catalogs(store_a, store_b) -> CatalogDiff
-    fuzzy_match(products_a, products_b) -> list[tuple]
+    fuzzy_match(products_a, products_b) -> list[MatchDecision]
     match_gtin(gtin, products) -> list[dict]
     snapshot(url) -> int
     changes(domain) -> list[Change]
@@ -31,6 +31,11 @@ Public API:
     to_dataframe(products) -> pandas.DataFrame
     to_parquet(products, path) -> None"""
 from importlib import import_module as _import_module
+import os as _os
+
+# Keep Crawl4AI's optional cloud notice out of library and CLI output. This is
+# set at package import time so it takes effect before any extractor imports it.
+_os.environ["CRAWL4AI_NO_CLOUD_NOTICE"] = "1"
 
 _EXPORTS = {'detect': ('._detect', 'detect'),
  'discover': ('._discover', 'discover'),

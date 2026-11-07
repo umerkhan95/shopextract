@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from types import SimpleNamespace
 
 import pytest
 from click.testing import CliRunner
@@ -21,12 +20,14 @@ URL = "https://fixture.invalid/product"
 def native(monkeypatch):
     calls = []
 
-    async def detect(url, **kwargs):
+    async def detect_context(url, **kwargs):
+        from shopextract._models import DetectionContext, PlatformResult
         calls.append((url, kwargs))
-        return SimpleNamespace(platform=Platform.SHOPIFY, confidence=0.9,
-                               signals=["synthetic platform marker"])
+        return DetectionContext(result=PlatformResult(platform=Platform.SHOPIFY, confidence=0.9,
+                                                      signals=["synthetic platform marker"]), page_status=200)
 
-    monkeypatch.setattr(shopextract, "detect", detect)
+    from shopextract import _detect
+    monkeypatch.setattr(_detect, "detect_context", detect_context)
     for name in ("SHOPEXTRACT_CONFIG", "SHOPEXTRACT_OUTPUT_FORMAT", "SHOPEXTRACT_DIAGNOSTICS"):
         monkeypatch.delenv(name, raising=False)
     return calls
@@ -178,12 +179,22 @@ def test_option_looking_operand_after_sentinel_is_native_url(native):
 def test_machine_internal_failure_sanitizes_exception(native, monkeypatch):
     async def broken(*args, **kwargs):
         raise RuntimeError("SECRET-provider-token")
-    monkeypatch.setattr(shopextract, "detect", broken)
+    monkeypatch.setattr(shopextract._detect, "detect_context", broken)
     result = invoke(["--output-format", "json", "detect", URL])
     assert result.exit_code == 1, result.output
     envelope(result, "E_INTERNAL")
     assert "SECRET-provider-token" not in result.output
     assert "Traceback" not in result.output
+
+
+def test_internal_failure_names_origin_without_message(native, monkeypatch):
+    async def broken(*args, **kwargs):
+        raise RuntimeError("SECRET-provider-token")
+    monkeypatch.setattr(shopextract._detect, "detect_context", broken)
+    result = invoke(["detect", URL])
+    assert result.exit_code == 1
+    assert "Internal error: RuntimeError at " in result.stderr
+    assert "SECRET-provider-token" not in result.output
 
 
 def test_invalid_explicit_format_uses_valid_env_for_error(native):
@@ -249,7 +260,7 @@ def test_quiet_preserves_machine_errors(tmp_path, native, monkeypatch, failure_k
     else:
         async def broken(*args, **kwargs):
             raise RuntimeError("SECRET-native-error")
-        monkeypatch.setattr(shopextract, "detect", broken)
+        monkeypatch.setattr(shopextract._detect, "detect_context", broken)
     result = invoke(args + ["detect", URL])
     assert result.exit_code == (2 if failure_kind == "config" else 1)
     envelope(result, "E_CONFIG" if failure_kind == "config" else "E_INTERNAL")
@@ -334,14 +345,14 @@ def test_public_native_failure_classes_and_settings_reset(native, monkeypatch, e
                                                           code, exit_code, retryable):
     async def fail(*args, **kwargs):
         raise exception
-    original = shopextract.detect
-    monkeypatch.setattr(shopextract, "detect", fail)
+    original = shopextract._detect.detect_context
+    monkeypatch.setattr(shopextract._detect, "detect_context", fail)
     result = invoke(["--output-format", "json", "detect", URL])
     assert result.exit_code == exit_code, result.output
     value = envelope(result, code)
     assert value["error"]["retryable"] is retryable
     assert "SECRET" not in result.output and "Traceback" not in result.output
-    monkeypatch.setattr(shopextract, "detect", original)
+    monkeypatch.setattr(shopextract._detect, "detect_context", original)
     legacy = invoke(["detect", URL])
     assert legacy.exit_code == 0 and "schema_version" not in json.loads(legacy.stdout)
 

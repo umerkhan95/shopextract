@@ -11,6 +11,8 @@ from typing import Mapping, Sequence
 
 import click
 
+from ._failure_origin import failure_origin
+
 
 @dataclass(frozen=True)
 class CliSettings:
@@ -22,6 +24,11 @@ class CliSettings:
 class CliFailure(Exception):
     code: str
     message: str
+    cause: str | None = None
+    retryable: bool | None = None
+    errors: list[str] | None = None
+    incompleteness_reasons: list[str] | None = None
+    retry_after_seconds: float | None = None
 
 
 @dataclass(frozen=True)
@@ -171,16 +178,26 @@ def resolve_settings(scan: BootstrapScan, env: Mapping[str, str], source: Config
     return CliSettings(**merged)
 
 
-def make_response(data=None, *, failure: CliFailure | None = None, warnings=()):
+def make_response(data=None, *, failure: CliFailure | None = None, warnings=(), completeness=None):
     if failure is None:
         return dict(schema_version="1.0", ok=True, data=data, warnings=list(warnings),
-                    error=None, completeness="complete")
+                    error=None, completeness=completeness or "complete")
     if failure.code not in _CODES or (failure.code == "E_PARTIAL" and data is None):
         raise ValueError("invalid CLI response invariant")
     partial = failure.code == "E_PARTIAL"
+    retryable = failure.retryable if failure.retryable is not None else failure.code == "E_TIMEOUT"
+    error = dict(code=failure.code, message=failure.message, retryable=retryable)
+    if failure.cause is not None:
+        error["cause"] = failure.cause
+    if failure.errors is not None:
+        error["errors"] = list(failure.errors)
+    if failure.incompleteness_reasons is not None:
+        error["incompleteness_reasons"] = list(failure.incompleteness_reasons)
+    if failure.retry_after_seconds is not None:
+        error["retry_after_seconds"] = failure.retry_after_seconds
     return dict(schema_version="1.0", ok=False, data=data if partial else None,
-                warnings=list(warnings), error=dict(code=failure.code, message=failure.message,
-                retryable=failure.code == "E_TIMEOUT"), completeness="partial" if partial else "unavailable")
+                warnings=list(warnings), error=error,
+                completeness=completeness or ("partial" if partial else "unavailable"))
 
 
 def emit_response(response, stream=None, *, compact=False):
@@ -285,6 +302,9 @@ class CoreGroup(click.Group):
                     exc.show()
                 else:
                     click.echo(f"Error: {failure.message}", err=True)
+                if failure.code == "E_INTERNAL" and settings().diagnostics != "quiet":
+                    # The envelope stays generic; stderr names the origin only.
+                    click.echo(f"Internal error: {failure_origin(exc)}", err=True)
                 code = failure_exit(failure)
             except (OSError, ValueError, TypeError):
                 code = 1

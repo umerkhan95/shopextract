@@ -94,14 +94,15 @@ def _collect_matches(
 
 def _build_result(query: str, matches: list[Match]) -> ComparisonResult:
     """Build ComparisonResult from collected matches."""
-    matches.sort(key=lambda m: m.price)
+    matches.sort(key=lambda m: (m.price is None, m.price if m.price is not None else Decimal("0")))
     result = ComparisonResult(query=query, matches=matches)
-    if not matches:
+    priced = [match for match in matches if match.price is not None]
+    if not priced:
         return result
 
-    result.cheapest = matches[0]
-    result.most_expensive = matches[-1]
-    prices = [m.price for m in matches]
+    result.cheapest = priced[0]
+    result.most_expensive = priced[-1]
+    prices = [m.price for m in priced]
     result.avg_price = Decimal(str(sum(prices) / len(prices)))
     result.price_spread = max(prices) - min(prices)
     return result

@@ -23,6 +23,8 @@ class Platform(str, Enum):
     MAGENTO = "magento"
     BIGCOMMERCE = "bigcommerce"
     SHOPWARE = "shopware"
+    DEMANDWARE = "demandware"
+    BLINKX = "blinkx"
     GENERIC = "generic"
 
 
@@ -59,7 +61,7 @@ class Product:
     """Unified product model across all platforms."""
 
     title: str = ""
-    price: Decimal = Decimal("0")
+    price: Decimal | None = Decimal("0")
     currency: str = "USD"
     description: str = ""
     image_url: str = ""
@@ -101,6 +103,20 @@ class PlatformResult:
 
 
 @dataclass
+class DetectionContext:
+    """Platform decision together with bounded source-probe diagnostics."""
+
+    result: PlatformResult
+    errors: list[str] = field(default_factory=list)
+    retry_after_seconds: float | None = None
+    shopify_response: object | None = None
+    rate_limited: bool = False
+    timed_out: bool = False
+    # Status of the requested page itself; None when it was never fetched.
+    page_status: int | None = None
+
+
+@dataclass
 class ExtractorResult:
     """Result from a single extractor call."""
 
@@ -135,6 +151,7 @@ class ExtractionResult:
     catalog_complete: bool | None = None
     observation_scope: str = ""
     incompleteness_reasons: list[str] = field(default_factory=list)
+    retry_after_seconds: float | None = None
 
     @property
     def outcome(self) -> str:
@@ -156,7 +173,7 @@ class Match:
     """A product matched across stores."""
 
     title: str
-    price: Decimal
+    price: Decimal | None
     currency: str
     store: str
     product_url: str

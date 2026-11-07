@@ -17,7 +17,7 @@ def invoke_timeout(monkeypatch,*,before=False):
   return httpx.Response(200,json=expected)
  def factory(*a,**kw):kw['transport']=httpx.MockTransport(respond);return original(*a,**kw)
  monkeypatch.setattr(httpx,'AsyncClient',factory)
- result=CliRunner().invoke(main,['--output-format','json','extract',URL,'--platform','woocommerce','--max','101','--timeout','0.05'])
+ result=CliRunner().invoke(main,['--output-format','json','extract',URL,'--include-evidence','--platform','woocommerce','--max','101','--timeout','0.05'])
  return result,expected,calls
 
 
@@ -65,7 +65,7 @@ def test_owned_cli_html_probe_before_later_url_timeout(monkeypatch):
   return httpx.Response(404)
  def factory(*args,**kw):kw['transport']=httpx.MockTransport(respond);return original(*args,**kw)
  monkeypatch.setattr(httpx,'AsyncClient',factory)
- r=CliRunner().invoke(main,['--output-format','json','extract',URL,'--platform','magento','--max','2','--timeout','0.3'])
+ r=CliRunner().invoke(main,['--output-format','json','extract',URL,'--include-evidence','--platform','magento','--max','2','--timeout','0.3'])
  assert r.exit_code==3,r.output[:300]
  data=json.loads(r.stdout)['data'];assert data['product_count']==1 and b in seen
  from shopextract._portable import product_from_record
@@ -87,7 +87,7 @@ def test_owned_shopify_timeout_preserves_captured_currency(monkeypatch):
   return httpx.Response(200,json={'products':rows},headers={'Set-Cookie':'cart_currency=CAD; Path=/'})
  def factory(*a,**kw):kw['transport']=httpx.MockTransport(respond);return original(*a,**kw)
  monkeypatch.setattr(httpx,'AsyncClient',factory)
- r=CliRunner().invoke(main,['--output-format','json','extract',URL,'--platform','shopify','--max','251','--timeout','0.05'])
+ r=CliRunner().invoke(main,['--output-format','json','extract',URL,'--include-evidence','--platform','shopify','--max','251','--timeout','0.05'])
  assert r.exit_code==3,r.output[:300]
  from shopextract._portable import product_from_record
  products=[product_from_record(row) for row in json.loads(r.stdout)['data']['products']]
@@ -156,7 +156,7 @@ def test_timeout_restore_short_gtin_matches_normal_completion(monkeypatch,restor
   return httpx.Response(200,json={'products':rows},headers={'Set-Cookie':'cart_currency=USD; Path=/'})
  def factory(*a,**kw):kw['transport']=httpx.MockTransport(respond);return original(*a,**kw)
  monkeypatch.setattr(httpx,'AsyncClient',factory)
- args=['--output-format','json','extract',URL,'--platform','shopify','--max','251','--shop-url','https://supplier.fixture.invalid/catalog']+(['--restore-short-gtin'] if restore else [])
+ args=['--output-format','json','extract',URL,'--include-evidence','--platform','shopify','--max','251','--shop-url','https://supplier.fixture.invalid/catalog']+(['--restore-short-gtin'] if restore else [])
  control=CliRunner().invoke(main,args+['--timeout','10'])
  assert control.exit_code in (0,3),control.output[:200]
  phase.update(blocked=True,calls=0)

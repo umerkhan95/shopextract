@@ -165,20 +165,31 @@ def product_to_record(product: Product) -> dict:
         raise ValueError(f"Invalid portable product: {exc}") from exc
 
 
-def product_from_record(record: dict) -> Product:
-    """Strictly reconstruct Product/Variant/Platform without changing history."""
+def product_from_record(record: dict, *, allow_compact=False) -> Product:
+    """Reconstruct a full record or an explicitly allowed compact extract record."""
     try:
         validate_tree(record, encoded=True)
-        required = {"schema_version", "product", "evidence_contract", "variant_contracts"}
+        required = {"schema_version", "product"}
+        if not allow_compact:
+            required |= {"evidence_contract", "variant_contracts"}
         optional = {"evidence_availability", "variant_evidence_availability"}
-        if not isinstance(record, dict) or not required <= record.keys() or record.keys() - required - optional:
+        compact_optional = {"evidence_contract", "variant_contracts"} if allow_compact else set()
+        if (not isinstance(record, dict) or not required <= record.keys()
+                or record.keys() - required - optional - compact_optional):
             raise ValueError("Malformed portable record fields")
         if type(record["schema_version"]) is not int or record["schema_version"] != PORTABLE_RECORD_VERSION:
             raise ValueError("Unsupported portable record version")
         data = decode_value(record["product"])
         validate_tree(data)
-        if not isinstance(data, dict) or set(data) != {f.name for f in fields(Product)}:
-            raise ValueError("Portable product requires exactly the Product fields")
+        product_fields = {f.name for f in fields(Product)}
+        if not isinstance(data, dict) or not set(data) <= product_fields:
+            raise ValueError("Portable product has unknown fields")
+        missing = product_fields - data.keys()
+        if missing:
+            if allow_compact and missing == {"raw_data"}:
+                data["raw_data"] = {}
+            else:
+                raise ValueError("Compact product omitted canonical fields")
         data["platform"] = Platform(data["platform"])
         if not isinstance(data["variants"], list):
             raise ValueError("variants must be a list")
@@ -190,10 +201,13 @@ def product_from_record(record: dict) -> Product:
         data["variants"] = variants
         product = Product(**data)
         _check_type(product, Product, "product")
-        contracts = record["variant_contracts"]
+        if "variant_contracts" not in record and allow_compact:
+            contracts = [None] * len(variants)
+        else:
+            contracts = record.get("variant_contracts")
         if not isinstance(contracts, list) or len(contracts) != len(variants):
             raise ValueError("Variant contracts must be index-aligned")
-        _contract_from_dict(record["evidence_contract"], product)
+        _contract_from_dict(record.get("evidence_contract"), product)
         for variant, contract in zip(variants, contracts):
             _contract_from_dict(contract, variant)
         if "evidence_availability" in record:

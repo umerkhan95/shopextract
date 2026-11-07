@@ -9,6 +9,7 @@ from datetime import datetime
 from urllib.parse import unquote, urljoin, urlsplit, urlunsplit
 
 import httpx
+from .._url_safety import async_client, require_guarded_client
 from bs4 import BeautifulSoup
 from defusedxml import ElementTree
 
@@ -149,7 +150,9 @@ async def build_listing_index(urls, store_url, *, client=None, max_pages=20,
     size = 1024
     own = client is None
     if own:
-        client = httpx.AsyncClient(follow_redirects=False, timeout=15)
+        client = async_client(follow_redirects=False, timeout=15)
+    else:
+        require_guarded_client(client)
     deadline = time.monotonic() + _TOTAL_TIMEOUT
     try:
         while queue:

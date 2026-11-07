@@ -30,6 +30,10 @@ jobs:
       - name: Install dependencies
         run: pip install -e ".[dev,mcp]" pyarrow
 
+      # The browser egress tests launch Chromium through crawl4ai.
+      - name: Install Chromium for browser tests
+        run: python -m playwright install --with-deps chromium
+
       - name: Optional SDK import compatibility
         run: |
           python - <<'PYCODE'

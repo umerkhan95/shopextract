@@ -23,6 +23,7 @@ from ._browser import (
     get_crawl_config,
     get_crawler_strategy,
 )
+from .._url_safety import ValidatingProxy, operator_allows_private_urls, validate_url_target
 
 logger = logging.getLogger(__name__)
 
@@ -146,21 +147,24 @@ class LLMExtractor:
 
     async def extract(self, url: str) -> ExtractorResult:
         """Extract products from any page using LLM."""
+        await validate_url_target(url, allow_private=operator_allows_private_urls())
         strategy = self._create_strategy()
         try:
-            browser_config = get_browser_config(self.stealth_level)
-            crawler_config = get_crawl_config(
-                stealth_level=self.stealth_level,
-                extraction_strategy=strategy,
-                markdown_generator=self._create_markdown_generator(),
-            )
+            async with ValidatingProxy() as proxy:
+                browser_config = get_browser_config(self.stealth_level)
+                crawler_config = get_crawl_config(
+                    stealth_level=self.stealth_level,
+                    extraction_strategy=strategy,
+                    markdown_generator=self._create_markdown_generator(),
+                    proxy_config=proxy.crawl4ai_config,
+                )
 
-            crawler_strategy = get_crawler_strategy(self.stealth_level, browser_config)
-            async with AsyncWebCrawler(
-                config=browser_config,
-                crawler_strategy=crawler_strategy,
-            ) as crawler:
-                result = await crawler.arun(url=url, config=crawler_config)
+                crawler_strategy = get_crawler_strategy(self.stealth_level, browser_config)
+                async with AsyncWebCrawler(
+                    config=browser_config,
+                    crawler_strategy=crawler_strategy,
+                ) as crawler:
+                    result = await crawler.arun(url=url, config=crawler_config)
 
                 if not result.success:
                     return ExtractorResult(products=[], complete=False, error=f"Crawl failed: {result.error_message}")
@@ -194,13 +198,10 @@ class LLMExtractor:
         if not urls:
             return ExtractorResult(products=[])
 
+        for url in urls:
+            await validate_url_target(url, allow_private=operator_allows_private_urls())
+
         strategy = self._create_strategy()
-        browser_config = get_browser_config(self.stealth_level)
-        crawler_config = get_crawl_config(
-            stealth_level=self.stealth_level,
-            extraction_strategy=strategy,
-            markdown_generator=self._create_markdown_generator(),
-        )
         dispatcher = MemoryAdaptiveDispatcher(
             max_session_permit=5,
             memory_threshold_percent=70.0,
@@ -209,31 +210,39 @@ class LLMExtractor:
         all_products = []
         error: str | None = None
         try:
-            crawler_strategy = get_crawler_strategy(self.stealth_level, browser_config)
-            async with AsyncWebCrawler(
-                config=browser_config,
-                crawler_strategy=crawler_strategy,
-            ) as crawler:
-                results = await crawler.arun_many(
-                    urls=urls, config=crawler_config, dispatcher=dispatcher,
+            async with ValidatingProxy() as proxy:
+                browser_config = get_browser_config(self.stealth_level)
+                crawler_config = get_crawl_config(
+                    stealth_level=self.stealth_level,
+                    extraction_strategy=strategy,
+                    markdown_generator=self._create_markdown_generator(),
+                    proxy_config=proxy.crawl4ai_config,
                 )
-                for result in results:
-                    if not result.success or not result.extracted_content:
-                        continue
-                    try:
-                        extracted = json.loads(result.extracted_content)
-                        if isinstance(extracted, dict):
-                            url_products = [extracted] if extracted.get("title") else []
-                        elif isinstance(extracted, list):
-                            url_products = [p for p in extracted if isinstance(p, dict) and p.get("title")]
-                        else:
-                            url_products = []
-                        url_products = self._merge_chunk_products(url_products)
-                        for product in url_products:
-                            capture(product, result.url, "llm", source={})
-                        all_products.extend(url_products)
-                    except json.JSONDecodeError as e:
-                        logger.debug("Failed to parse LLM extracted content for %s: %s", result.url, e)
+                crawler_strategy = get_crawler_strategy(self.stealth_level, browser_config)
+                async with AsyncWebCrawler(
+                    config=browser_config,
+                    crawler_strategy=crawler_strategy,
+                ) as crawler:
+                    results = await crawler.arun_many(
+                        urls=urls, config=crawler_config, dispatcher=dispatcher,
+                    )
+                    for result in results:
+                        if not result.success or not result.extracted_content:
+                            continue
+                        try:
+                            extracted = json.loads(result.extracted_content)
+                            if isinstance(extracted, dict):
+                                url_products = [extracted] if extracted.get("title") else []
+                            elif isinstance(extracted, list):
+                                url_products = [p for p in extracted if isinstance(p, dict) and p.get("title")]
+                            else:
+                                url_products = []
+                            url_products = self._merge_chunk_products(url_products)
+                            for product in url_products:
+                                capture(product, result.url, "llm", source={})
+                            all_products.extend(url_products)
+                        except json.JSONDecodeError as e:
+                            logger.debug("Failed to parse LLM extracted content for %s: %s", result.url, e)
         except Exception as e:
             logger.exception("Batch LLM extraction failed: %s", e)
             error = str(e)

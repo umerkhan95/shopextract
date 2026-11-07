@@ -91,20 +91,54 @@ def load_products(path):
     return products_from_value(value)
 
 
+
+def is_extract_envelope_candidate(value):
+    """Recognize response-shaped objects without shadowing raw product fields."""
+    if not isinstance(value, dict):
+        return False
+    if 'ok' in value:
+        return True
+    product_fields = {'title', 'name', 'price', 'variants', 'sku', 'images',
+                      'vendor', 'product_url', 'url', 'id'}
+    has_product_shape = bool(product_fields & value.keys())
+    if has_product_shape:
+        return False
+    if 'data' in value:
+        return True
+    if 'schema_version' in value:
+        envelope_fields = {'products', 'records', 'error', 'warnings', 'completeness'}
+        return bool(envelope_fields & value.keys()) or not has_product_shape
+    return False
+
+def product_records_from_extract_envelope(value):
+    """Return portable product records from a successful extraction response."""
+    if (not isinstance(value, dict)
+            or value.get('schema_version') != '1.0'
+            or value.get('ok') is not True
+            or not isinstance(value.get('data'), dict)
+            or not isinstance(value['data'].get('products'), list)
+            or len(value['data']['products']) > MAX_RECORDS):
+        raise CliFailure('E_VALIDATION', 'Expected a successful extraction envelope with a product list.')
+    return value['data']['products']
+
+
 def products_from_value(value):
+    envelope = isinstance(value, dict) and ('ok' in value or 'data' in value)
+    validation_error = envelope or (isinstance(value, dict) and ('@type' in value or '@context' in value))
     try:
-        if isinstance(value, dict) and 'data' in value:
-            if value.get('schema_version') != '1.0' or not isinstance(value['data'], dict):
-                raise ValueError()
-            value = value['data']['products']
+        if envelope:
+            value = product_records_from_extract_envelope(value)
         if not isinstance(value, list) or len(value) > MAX_RECORDS:
             raise ValueError()
-        return [product_from_record(record) for record in value]
+        return [product_from_record(record, allow_compact=envelope) for record in value]
+    except CliFailure:
+        raise
     except (ValueError, TypeError, KeyError, RecursionError):
-        raise CliFailure('E_USAGE', 'Expected native portable product records or a product result envelope.') from None
+        code = 'E_VALIDATION' if validation_error else 'E_USAGE'
+        raise CliFailure(code, 'Expected portable product records or a successful extraction envelope.') from None
 
 
-def extraction_data(result):
+def extraction_data(result, *, include_evidence=False):
     from ._execution import safe_error
     import json
     records=[product_to_record(p) for p in result.products]
@@ -114,13 +148,23 @@ def extraction_data(result):
         return (values.get('canonical_product_id') or values.get('external_id') or '',
                 values.get('product_url') or '',
                 json.dumps(facts,sort_keys=True,separators=(',',':'),allow_nan=False))
-    return dict(products=sorted(records,key=order),
-                raw_products=encode_value(result.raw_products), platform=result.platform.value,
+    records = sorted(records, key=order)
+    if not include_evidence:
+        for record in records:
+            record['product'].pop('raw_data', None)
+            record.pop('evidence_contract', None)
+            record.pop('variant_contracts', None)
+    data = dict(products=records, platform=result.platform.value,
                 tier=result.tier.value, quality_score=result.quality_score,
                 urls_attempted=result.urls_attempted, urls_succeeded=result.urls_succeeded,
                 errors=[safe_error(error) for error in result.errors],
                 observation_scope=result.observation_scope, catalog_complete=result.catalog_complete,
                 incompleteness_reasons=list(result.incompleteness_reasons), product_count=result.product_count)
+    if include_evidence:
+        data['raw_products'] = encode_value(result.raw_products)
+    if result.retry_after_seconds is not None:
+        data["retry_after_seconds"] = result.retry_after_seconds
+    return data
 
 
 def atomic_json(path, data, *, compact=False):

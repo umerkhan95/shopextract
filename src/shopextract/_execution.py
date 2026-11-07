@@ -202,7 +202,8 @@ async def _bounded_llm(urls: list[str]) -> list[dict]:
 
     budget = state.policy.llm
     products = []
-    async with httpx.AsyncClient(follow_redirects=True) as client:
+    from ._url_safety import async_client
+    async with async_client(follow_redirects=True) as client:
         for url in urls:
             if state.llm_calls >= budget.max_calls:
                 state.warnings.append('LLM call budget exhausted')

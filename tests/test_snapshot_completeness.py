@@ -12,6 +12,7 @@ from shopextract import ChangeType, ExtractionResult, Platform, Product, changes
 from shopextract._models import ExtractorResult
 from shopextract._scope import catalog_scope
 from shopextract.extractors.shopify import ShopifyExtractor
+from tests.mock_wire import mock_wire
 
 URL = 'https://s.example/collections/catan'
 SCOPE = catalog_scope(URL, Platform.SHOPIFY)
@@ -43,7 +44,7 @@ async def test_full_to_bounded_snapshot_consumes_real_pipeline_completeness(tmp_
     async def known_platform(url, **kwargs):
         return await extract(url, platform=Platform.SHOPIFY, **kwargs)
     path = str(tmp_path / 'snapshots.db')
-    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(transport=httpx.MockTransport(respond), **kwargs)), patch.object(module, 'extract', known_platform):
+    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(**mock_wire(kwargs, httpx.MockTransport(respond)))), patch.object(module, 'extract', known_platform):
         assert await snapshot(URL, db_path=path, max_urls=19) == 18
         assert await snapshot(URL, db_path=path, max_urls=5) == 5
     assert changes('s.example', db_path=path) == []
@@ -112,7 +113,7 @@ async def test_complete_empty_shopify_catalog_is_preserved_in_public_result():
     async def respond(request):
         return httpx.Response(200, json={'products': []})
     client = httpx.AsyncClient
-    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(transport=httpx.MockTransport(respond), **kwargs)), patch('shopextract._discover.discover', AsyncMock(side_effect=AssertionError('complete empty API should not fall back'))):
+    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(**mock_wire(kwargs, httpx.MockTransport(respond)))), patch('shopextract._discover.discover', AsyncMock(side_effect=AssertionError('complete empty API should not fall back'))):
         result = await extract(URL, platform=Platform.SHOPIFY, max_urls=5)
     assert result.products == [] and result.catalog_complete is True
     assert result.observation_scope == SCOPE and not result.incompleteness_reasons
@@ -143,7 +144,7 @@ async def test_different_collection_scopes_do_not_compare_even_when_complete(tmp
 @pytest.mark.parametrize('count,budget,expected', [(5, 5, False), (18, 5, False), (4, 5, True)])
 async def test_short_page_or_budget_boundary_completeness(count, budget, expected):
     client = httpx.AsyncClient
-    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(transport=httpx.MockTransport(lambda request: httpx.Response(200, json={'products': raw_products(count)})), **kwargs)):
+    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(**mock_wire(kwargs, httpx.MockTransport(lambda request: httpx.Response(200, json={'products': raw_products(count)}))))):
         result = await ShopifyExtractor().extract(URL, max_products=budget)
     assert result.complete is expected
     assert result.completeness_reason == (None if expected else 'product_budget_reached')
@@ -155,7 +156,7 @@ async def test_failed_later_page_cannot_certify_completeness(second_status):
     def respond(request):
         return httpx.Response(200, json={'products': raw_products(250)}) if request.url.params['page'] == '1' else httpx.Response(second_status)
     client = httpx.AsyncClient
-    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(transport=httpx.MockTransport(respond), **kwargs)):
+    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(**mock_wire(kwargs, httpx.MockTransport(respond)))):
         result = await ShopifyExtractor().extract(URL)
     assert len(result.products) == 250 and not result.complete and result.completeness_reason == 'source_error'
 
@@ -163,7 +164,7 @@ async def test_failed_later_page_cannot_certify_completeness(second_status):
 @pytest.mark.asyncio
 async def test_page_budget_is_incomplete():
     client = httpx.AsyncClient
-    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(transport=httpx.MockTransport(lambda request: httpx.Response(200, json={'products': raw_products(250)})), **kwargs)):
+    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(**mock_wire(kwargs, httpx.MockTransport(lambda request: httpx.Response(200, json={'products': raw_products(250)}))))):
         result = await ShopifyExtractor(max_pages=1).extract(URL)
     assert not result.complete and result.completeness_reason == 'page_budget_reached'
 
@@ -202,7 +203,7 @@ async def test_short_final_page_at_budget_can_prove_exhaustion():
     def respond(request):
         return httpx.Response(200, json={'products': raw_products(250 if request.url.params['page'] == '1' else 10)})
     client = httpx.AsyncClient
-    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(transport=httpx.MockTransport(respond), **kwargs)):
+    with patch('shopextract.extractors.shopify.httpx.AsyncClient', side_effect=lambda **kwargs: client(**mock_wire(kwargs, httpx.MockTransport(respond)))):
         result = await ShopifyExtractor().extract(URL, max_products=260)
     assert len(result.products) == 260 and result.complete and result.completeness_reason is None
 

@@ -8,6 +8,7 @@ from shopextract.categories import normalize_with_categories
 from shopextract.categories.contracts import CategoryScope
 from tests.test_shopify_taxonomy_pipeline import catalog
 from shopextract.taxonomies.shopify import shopify_taxonomy_options
+from tests.mock_wire import mock_wire
 
 STORE='https://merchant.test'
 
@@ -79,7 +80,7 @@ async def test_owned_supplement_drops_response_cookies_between_products(monkeypa
         sent.append(request);assert 'cookie' not in request.headers
         return httpx.Response(200,headers={'set-cookie':'native=fixture; Path=/'},json={'data':{'product':{'id':'gid://shopify/Product/101','handle':'laptop','category':None}}})
     original=httpx.AsyncClient
-    monkeypatch.setattr(httpx,'AsyncClient',lambda **kw:original(transport=httpx.MockTransport(wire),**kw))
+    monkeypatch.setattr(httpx,'AsyncClient',lambda **kw:original(**mock_wire(kw,httpx.MockTransport(wire))))
     await supplement_categories([public(),public()],ShopifyStorefrontConfig(STORE+'/api/2026-10/graphql.json',auth_mode='tokenless'))
     assert len(sent)==2
 

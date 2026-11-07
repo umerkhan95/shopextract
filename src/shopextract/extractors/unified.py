@@ -35,6 +35,15 @@ from ._browser import (
     get_crawler_strategy,
     get_default_user_agent,
 )
+from .._url_safety import (
+    UnsafeURLTarget,
+    ValidatingProxy,
+    async_client,
+    operator_allows_private_urls,
+    require_guarded_client,
+    validate_client_url,
+    validate_url_target,
+)
 from ._opengraph import OpenGraphExtractor
 from ._schema_org import SchemaOrgExtractor
 from ._product_html import enrich_product_html, usable_image
@@ -57,6 +66,8 @@ class UnifiedCrawlExtractor:
     ):
         self._stealth_level = stealth_level
         self._http_client = http_client
+        if http_client is not None:
+            require_guarded_client(http_client)
 
     async def extract(self, shop_url: str) -> ExtractorResult:
         """Extract product data from a single URL."""
@@ -107,8 +118,8 @@ class UnifiedCrawlExtractor:
         from crawl4ai import AsyncWebCrawler
         from crawl4ai.async_dispatcher import MemoryAdaptiveDispatcher
 
-        browser_config = get_browser_config(self._stealth_level)
-        crawl_config = get_crawl_config(stealth_level=self._stealth_level, scan_full_page=True)
+        for url in urls:
+            await validate_url_target(url, allow_private=operator_allows_private_urls())
         dispatcher = MemoryAdaptiveDispatcher(
             max_session_permit=5,
             memory_threshold_percent=70.0,
@@ -118,24 +129,31 @@ class UnifiedCrawlExtractor:
         error: str | None = None
 
         try:
-            crawler_strategy = get_crawler_strategy(self._stealth_level, browser_config)
-            async with AsyncWebCrawler(
-                config=browser_config,
-                crawler_strategy=crawler_strategy,
-            ) as crawler:
-                results = await crawler.arun_many(urls=urls, config=crawl_config, dispatcher=dispatcher)
-                for result in results:
-                    if not crawl_document_allowed(result):
-                        error = "Browser document failed HTTP/product admission"
-                        continue
-                    parsed = self._extract_from_crawl_result(result, result.url,include_diagnostics=True)
-                    products=parsed.products
-                    if products:record_progress_rows(products,result.url)
-                    issues=coverage_issues(parsed.diagnostics)
-                    if issues:error='; '.join(d['code'] for d in issues)
-                    if not products:
-                        error = f"Browser document has no admitted product evidence: {result.url}"
-                    all_products.extend(products)
+            async with ValidatingProxy() as proxy:
+                browser_config = get_browser_config(self._stealth_level)
+                crawl_config = get_crawl_config(
+                    stealth_level=self._stealth_level,
+                    scan_full_page=True,
+                    proxy_config=proxy.crawl4ai_config,
+                )
+                crawler_strategy = get_crawler_strategy(self._stealth_level, browser_config)
+                async with AsyncWebCrawler(
+                    config=browser_config,
+                    crawler_strategy=crawler_strategy,
+                ) as crawler:
+                    results = await crawler.arun_many(urls=urls, config=crawl_config, dispatcher=dispatcher)
+                    for result in results:
+                        if not crawl_document_allowed(result):
+                            error = "Browser document failed HTTP/product admission"
+                            continue
+                        parsed = self._extract_from_crawl_result(result, result.url,include_diagnostics=True)
+                        products=parsed.products
+                        if products:record_progress_rows(products,result.url)
+                        issues=coverage_issues(parsed.diagnostics)
+                        if issues:error='; '.join(d['code'] for d in issues)
+                        if not products:
+                            error = f"Browser document has no admitted product evidence: {result.url}"
+                        all_products.extend(products)
         except Exception as e:
             logger.exception("Batch unified crawl failed: %s", e)
             error = str(e)
@@ -147,11 +165,17 @@ class UnifiedCrawlExtractor:
     async def _fetch_html_httpx(self, url: str) -> str | None:
         try:
             headers = {**DEFAULT_HEADERS, "User-Agent": get_default_user_agent()}
-            client = self._http_client or httpx.AsyncClient(
+            client = self._http_client or async_client(
                 follow_redirects=True, timeout=30.0, headers=headers,
             )
             try:
-                response = await client.get(url)
+                await validate_client_url(url, client)
+                try:
+                    response = await client.get(url)
+                except UnsafeURLTarget as exc:
+                    # The guarded transport rejected a redirect hop.
+                    logger.debug("httpx redirect rejected for %s: %s", url, exc)
+                    return None
                 response.raise_for_status()
 
                 content_length = int(response.headers.get("content-length", 0))
@@ -182,6 +206,7 @@ class UnifiedCrawlExtractor:
     # -- Browser path ---------------------------------------------------------
 
     async def _extract_with_browser(self, url: str, *, include_diagnostics=False):
+        await validate_url_target(url, allow_private=operator_allows_private_urls())
         diagnostics=[]
         def finish(products):return StructuredHTMLResult(products,diagnostics) if include_diagnostics else products
         from crawl4ai import AsyncWebCrawler
@@ -195,27 +220,31 @@ class UnifiedCrawlExtractor:
             return finish([])
 
         max_level = levels[-1]
-        browser_config = get_browser_config(max_level)
-        crawler_strategy = get_crawler_strategy(max_level, browser_config)
-
         try:
-            async with AsyncWebCrawler(
-                config=browser_config,
-                crawler_strategy=crawler_strategy,
-            ) as crawler:
-                for level in levels:
-                    crawl_config = get_crawl_config(stealth_level=level, scan_full_page=True)
-                    try:
-                        result = await crawler.arun(url=url, config=crawl_config)
-                        if not crawl_document_allowed(result):
+            async with ValidatingProxy() as proxy:
+                browser_config = get_browser_config(max_level)
+                crawler_strategy = get_crawler_strategy(max_level, browser_config)
+                async with AsyncWebCrawler(
+                    config=browser_config,
+                    crawler_strategy=crawler_strategy,
+                ) as crawler:
+                    for level in levels:
+                        crawl_config = get_crawl_config(
+                            stealth_level=level,
+                            scan_full_page=True,
+                            proxy_config=proxy.crawl4ai_config,
+                        )
+                        try:
+                            result = await crawler.arun(url=url, config=crawl_config)
+                            if not crawl_document_allowed(result):
+                                continue
+                            parsed = self._extract_from_crawl_result(result, getattr(result, "url", None) or url,include_diagnostics=True)
+                            products=parsed.products;diagnostics.extend(parsed.diagnostics)
+                            if products:
+                                return finish(products)
+                        except Exception as e:
+                            logger.debug("Browser crawl at stealth level %s failed for %s: %s", level.value, url, e)
                             continue
-                        parsed = self._extract_from_crawl_result(result, getattr(result, "url", None) or url,include_diagnostics=True)
-                        products=parsed.products;diagnostics.extend(parsed.diagnostics)
-                        if products:
-                            return finish(products)
-                    except Exception as e:
-                        logger.debug("Browser crawl at stealth level %s failed for %s: %s", level.value, url, e)
-                        continue
         except Exception as e:
             logger.warning("Browser startup error for %s: %s", url, e)
 

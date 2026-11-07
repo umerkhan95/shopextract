@@ -168,6 +168,8 @@ async def bounded_sitemaps(base_url, platform, client, max_urls=1000):
         except Exception:
             if client.request_count>=client.max_requests:
                 break
+            # An unreadable sitemap narrows coverage; say so instead of skipping silently.
+            client.note('sitemap_unreadable')
             continue
         is_index=root.tag.rsplit('}',1)[-1]=='sitemapindex'
         for element in root.iter():

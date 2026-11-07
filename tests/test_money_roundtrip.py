@@ -70,7 +70,7 @@ def test_compact_real_capture_evidence_variant_roundtrip():
         'variants':[{'id':2,'price':'1.20','barcode':'036000291452','available':True}]},
         'https://fixture.invalid/products/widget','shopify_api',observed_at='2026-11-01T00:00:00+00:00')
     product=normalize(raw,Platform.SHOPIFY,'https://fixture.invalid')
-    data=extraction_data(ExtractionResult(products=[product],raw_products=[raw]))
+    data=extraction_data(ExtractionResult(products=[product],raw_products=[raw]), include_evidence=True)
     c=codec();wire=c.encode_compact_catalog(data)
     assert json.loads(wire)['schema_version']=='catalog-1'
     assert c.decode_compact_catalog(wire)==data

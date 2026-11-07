@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import logging
+from decimal import Decimal, InvalidOperation
+
+from ._shopify_price import has_explicit_request_price_marker
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +38,8 @@ class QualityScorer:
             return 0.0
 
         score = 0.4
-        if self._has_any_field(product, _PRICE_FIELDS):
+        if self._has_any_field(product, _PRICE_FIELDS) or (
+                self._is_shopify_record(product) and self._has_shopify_price(product)):
             score += 0.15
         if self._has_any_field(product, _IMAGE_FIELDS):
             score += 0.15
@@ -44,6 +48,11 @@ class QualityScorer:
         if self._has_any_field(product, _SKU_FIELDS):
             score += 0.15
 
+        if self._is_shopify_record(product):
+            if not self._has_shopify_currency(product):
+                score -= 0.05
+            if not self._has_shopify_stock(product):
+                score -= 0.05
         return min(score, 1.0)
 
     def score_batch(self, products: list[dict]) -> float:
@@ -81,3 +90,48 @@ class QualityScorer:
             if str(val).strip():
                 return True
         return False
+
+    @staticmethod
+    def _is_shopify_record(product: dict) -> bool:
+        return isinstance(product.get("handle"), str) and isinstance(product.get("variants"), list)
+
+    @staticmethod
+    def _numeric_price(values) -> bool:
+        for value in values:
+            try:
+                amount = Decimal(str(value))
+                if amount.is_finite() and amount >= 0:
+                    return True
+            except (InvalidOperation, ValueError, TypeError):
+                continue
+        return False
+
+    @classmethod
+    def _has_shopify_price(cls, product: dict) -> bool:
+        if has_explicit_request_price_marker(product):
+            return False
+        variants = product.get("variants") or []
+        values = [variant.get("price") for variant in variants if isinstance(variant, dict)]
+        return cls._numeric_price(values)
+
+    @staticmethod
+    def _has_shopify_currency(product: dict) -> bool:
+        from ._currencies import is_pricing_currency
+
+        values = [product.get("currency"), product.get("_shop_currency")]
+        values.extend(variant.get("price_currency") for variant in product.get("variants", [])
+                      if isinstance(variant, dict))
+        present = [value.strip().upper() for value in values
+                   if isinstance(value, str) and value.strip()]
+        return bool(present) and all(is_pricing_currency(value) for value in present) and len(set(present)) == 1
+
+    @staticmethod
+    def _has_shopify_stock(product: dict) -> bool:
+        if isinstance(product.get("available"), bool):
+            return True
+        variants = product.get("variants") or []
+        return bool(variants) and all(
+            isinstance(variant, dict) and (
+                isinstance(variant.get("available"), bool)
+                or isinstance(variant.get("inventory_quantity"), (int, float))
+            ) for variant in variants)

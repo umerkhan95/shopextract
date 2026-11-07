@@ -14,6 +14,7 @@ from shopextract._models import Platform
 from shopextract.categories import (CategoryScope,CategoryOptions,CategoryLimits,TargetRegistry,
     CategorySelector,MappingRule,normalize_with_categories,categorized_product_to_record)
 from shopextract.categories._codec import wire
+from tests.mock_wire import mock_wire
 
 STORE='https://supplier.test/shop'
 AT=datetime(2026,10,25,tzinfo=timezone.utc)
@@ -115,8 +116,7 @@ def install_transport(monkeypatch,rows=None,status=200):
     monkeypatch.setattr(woo_tree,'fetch_woocommerce_category_tree',delegated)
     original_client=httpx.AsyncClient
     def client(*args,**kwargs):
-        kwargs.setdefault('transport',httpx.MockTransport(lambda request:httpx.Response(status,json=[{'id':501,'name':'Boot','permalink':STORE+'/boot','prices':{'price':'9900','currency_code':'EUR','currency_minor_unit':2},'categories':[{'id':7,'name':'Boots'}]}],headers={'X-WP-Total':'1','X-WP-TotalPages':'1'})))
-        return original_client(*args,**kwargs)
+        return original_client(*args,**mock_wire(kwargs,httpx.MockTransport(lambda request:httpx.Response(status,json=[{'id':501,'name':'Boot','permalink':STORE+'/boot','prices':{'price':'9900','currency_code':'EUR','currency_minor_unit':2},'categories':[{'id':7,'name':'Boots'}]}],headers={'X-WP-Total':'1','X-WP-TotalPages':'1'}))))
     monkeypatch.setattr(httpx,'AsyncClient',client)
 
 @pytest.mark.parametrize('flag,args',[('--storefront-config',True),('--enrich-identifiers',False),('--restore-short-gtin',False)])

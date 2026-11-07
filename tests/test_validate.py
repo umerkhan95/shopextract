@@ -215,6 +215,41 @@ class TestFindDuplicates:
         dupes = find_duplicates(products, method="title", threshold=0.9)
         assert len(dupes) == 0
 
+    def test_common_token_near_duplicates_survive_candidate_blocking(self):
+        products = [{"title": "Acme premium toaster model"} for _ in range(25)]
+        products.extend({"title": "Acme premium toaster model!"} for _ in range(25))
+        dupes = find_duplicates(products, method="title", threshold=0.97)
+        pairs = {(left, right) for left, right, _ in dupes}
+        assert (0, 25) in pairs
+        assert len(dupes) == 25 * 24 // 2 * 2 + 25 * 25
+
+    def test_high_similarity_titles_without_shared_word_are_candidates(self):
+        products = [{"title": "airfryer"} for _ in range(25)]
+        products.extend({"title": "airfryers"} for _ in range(25))
+        dupes = find_duplicates(products, method="title", threshold=0.9)
+        assert (0, 25) in {(left, right) for left, right, _ in dupes}
+
+    def test_short_title_pairs_without_character_trigrams_are_candidates(self):
+        dupes = find_duplicates(
+            [{"title": "abc"}, {"title": "ab"}],
+            method="title", threshold=0.75,
+        )
+        assert len(dupes) == 1 and dupes[0][:2] == (0, 1)
+
+    def test_common_word_does_not_hide_near_match_in_frequent_title_bucket(self):
+        products = [{"title": "air abcdefghijklmnopqrst"} for _ in range(25)]
+        products.extend({"title": "air abcdefghijklmnopqrstu"} for _ in range(25))
+        dupes = find_duplicates(products, method="title", threshold=0.9)
+        assert (0, 25) in {(left, right) for left, right, _ in dupes}
+
+    def test_similar_titles_with_changed_chars_survive_frequent_gram_filter(self):
+        products = [{"title": "Anex deluxe air fryer abcdefghijklmnopqrstuvwxyz", "vendor": "Anex"}
+                    for _ in range(20)]
+        products.extend({"title": "Anex deluxe air fryer abc3efghijklmnopqrs4uvwxyz", "vendor": "Anex"}
+                        for _ in range(20))
+        dupes = find_duplicates(products, method="title", threshold=0.9)
+        assert (0, 20) in {(left, right) for left, right, _ in dupes}
+
     def test_gtin_duplicates(self):
         products = [
             {"title": "A", "gtin": "4006381333931"},

@@ -12,7 +12,7 @@ from pathlib import Path
 
 import click
 
-from ._cli_core import CliFailure, emit_response, make_response
+from ._cli_core import CliFailure, emit_response, failure_exit, make_response
 from ._cli_data import (atomic_json, extraction_data, products_from_value,
                         raw_records, read_json_file)
 from ._execution import ExecutionPolicy, LLMBudget, execution_policy
@@ -140,6 +140,110 @@ def emit_result(data, partial=False):
         raise click.exceptions.Exit(3)
 
 
+def _source_failure(data):
+    """Translate source diagnostics into the finite C1 extraction error contract."""
+    errors = list(data.get('errors') or [])
+    reasons = list(data.get('incompleteness_reasons') or [])
+    text = ' '.join(str(value) for value in (*errors, *reasons)).casefold()
+    normalized = {str(reason).casefold() for reason in reasons}
+
+    if 'browser_required' in normalized:
+        return CliFailure('E_USAGE', 'This store renders its catalog only in the browser; pass --browser.',
+                          retryable=False, errors=errors, incompleteness_reasons=reasons)
+    if normalized & {'location_required', 'location_unmatched'}:
+        # The store needs a delivery area the caller did not name; nothing was tried.
+        return CliFailure('E_USAGE', next((str(e) for e in errors if 'location' in str(e).casefold()),
+                                          'This store needs --location "Area, City".'),
+                          retryable=False, errors=errors, incompleteness_reasons=reasons)
+    if 'rate_limited' in normalized or re.search(r'\b429\b|too many requests|rate.?limit', text):
+        cause = 'rate_limited'
+    elif 'blocked' in normalized or 'robots_disallowed' in normalized:
+        # robots.txt refusing the page is the store's answer, honoured as-is.
+        cause = 'blocked'
+    elif 'category_scope_unavailable' in normalized:
+        # API probe 4xx answers are expected on other platforms; the scope
+        # failure is the decisive fact for a category request.
+        cause = 'category_scope_unavailable'
+    elif ('blocked' in normalized or 'access_denied' in normalized or 'forbidden' in normalized
+          or re.search(r'\b403\b|access denied|permission denied', text)):
+        cause = 'blocked'
+    elif 'dns_failure' in normalized or re.search(
+            r'dns lookup failed|name or service not known|getaddrinfo failed|temporary failure in name resolution',
+            text):
+        cause = 'dns_failure'
+    elif 'no_product_links' in normalized or re.search(r'no product links', text):
+        cause = 'no_product_links'
+    elif ({'network_unreachable', 'source_timeout', 'connect_timeout', 'read_timeout'} & normalized
+          or re.search(r'connection (?:refused|reset|timed out)|connect(?:ion)? timeout|read timeout|network unreachable', text)):
+        cause = 'network_unreachable'
+    else:
+        cause = 'source_error'
+
+    retryable = cause in {'rate_limited', 'network_unreachable'}
+    retry_after = data.get('retry_after_seconds')
+    if isinstance(retry_after, bool) or not isinstance(retry_after, (int, float)):
+        retry_after = None
+    elif not math.isfinite(retry_after) or retry_after < 0:
+        retry_after = None
+    return CliFailure(
+        'E_OPERATION',
+        'No usable products were extracted; source failed or was incomplete.',
+        cause=cause,
+        retryable=retryable,
+        errors=errors,
+        incompleteness_reasons=reasons,
+        retry_after_seconds=retry_after,
+    )
+
+
+def emit_extraction_result(data, *, partial=False):
+    """Extraction partials retain products as successful, explicitly partial data."""
+    emit_response(make_response(data, completeness='partial' if partial else 'complete'))
+    if partial:
+        raise click.exceptions.Exit(3)
+
+
+def _extract_file_summary(output_path, data=None):
+    """Small stdout result for extract -o; the file retains the full envelope."""
+    data = data or {}
+    products = data.get('products') or []
+    completeness = None
+    if products:
+        completeness = ('partial' if assess_extraction_outcome(
+            product_count=len(products), catalog_complete=data.get('catalog_complete'),
+            errors=data.get('errors') or [],
+            incompleteness_reasons=data.get('incompleteness_reasons') or []) != 'complete'
+            else 'complete')
+    return {'output_path': str(output_path), 'product_count': len(products),
+            'completeness': completeness}
+
+
+def _extract_file_stdout_response(data, *, completeness, failure=None):
+    """Build the approved compact C3 envelope, preserving C1 error fields."""
+    response = make_response(data, failure=failure, completeness=completeness)
+    compact = {key: response[key] for key in ('ok', 'error', 'data')}
+    if failure is not None:
+        compact['data'] = data
+    return compact
+
+
+def _emit_extract_file_failure(failure, output_path, data=None):
+    """Emit failure details with the bounded file-operation summary attached."""
+    if failure.code == 'E_OPERATION' and failure.cause is None:
+        failure.cause = 'source_error'
+    if data is not None:
+        if failure.errors is None:
+            failure.errors = list(data.get('errors') or [])
+        if failure.incompleteness_reasons is None:
+            failure.incompleteness_reasons = list(data.get('incompleteness_reasons') or [])
+        if failure.retry_after_seconds is None:
+            failure.retry_after_seconds = data.get('retry_after_seconds')
+    summary = _extract_file_summary(output_path, data)
+    emit_response(_extract_file_stdout_response(
+        summary, failure=failure, completeness=summary['completeness'] or 'unavailable'))
+    raise click.exceptions.Exit(failure_exit(failure))
+
+
 def run_operation(operation, policy, timeout, *, recover=None):
     async def run():
         with execution_policy(policy, timeout) as state:
@@ -159,7 +263,31 @@ def run_operation(operation, policy, timeout, *, recover=None):
         return asyncio.run(run())
 
 
+def _run_extraction_operation(operation, policy, timeout, *, recover=None):
+    """Keep operation deadlines distinguishable from source timeouts (C1)."""
+    try:
+        return run_operation(operation, policy, timeout, recover=recover)
+    except CliFailure as exc:
+        if exc.code == 'E_TIMEOUT':
+            exc.cause = exc.cause or 'source_error'
+            exc.retryable = True
+        raise
+    except (TimeoutError, asyncio.TimeoutError):
+        raise CliFailure(
+            'E_TIMEOUT', 'Operation timed out.', cause='source_error', retryable=True
+        ) from None
+
+
 def extract_store(url, max_urls, fmt, output_path, options):
+    try:
+        return _extract_store_impl(url, max_urls, fmt, output_path, options)
+    except CliFailure as failure:
+        if output_path:
+            _emit_extract_file_failure(failure, output_path)
+        raise
+
+
+def _extract_store_impl(url, max_urls, fmt, output_path, options):
     from . import extract
     validate_url(url); validate_max(max_urls)
     if fmt != 'json':
@@ -171,28 +299,47 @@ def extract_store(url, max_urls, fmt, output_path, options):
     api = storefront_options(options.get('storefront'), options.get('platform'))
     secrets = tuple(v for k,v in (api or {}).items() if k in ('access_token','customer_access_token','customer_id'))
     policy, timeout = policy_options(options, secrets)
+    include_evidence = bool(options.get('include_evidence') or options.get('compact'))
+    serialize = lambda value: extraction_data(value, include_evidence=include_evidence)
     async def operation():
         result = await extract(url, max_urls=max_urls,
             platform=Platform(options['platform']) if options.get('platform') else None,
             shop_url=options.get('shop_url'), enrich_identifiers=options.get('enrich_identifiers',False),
             restore_short_gtin=options.get('restore_short_gtin',False), api_options=api,
-            **({'enrich_variants':True} if options.get('enrich_variants') else {}))
-        return extraction_data(result)
-    data, warnings = run_operation(operation, policy, timeout, recover=extraction_data)
+            **({'enrich_variants':True} if options.get('enrich_variants') else {}),
+            **({'location':options['location']} if options.get('location') else {}))
+        return serialize(result)
+    try:
+        data, warnings = _run_extraction_operation(operation, policy, timeout, recover=serialize)
+    except CliFailure as failure:
+        if output_path:
+            _emit_extract_file_failure(failure, output_path)
+        raise
     data['errors'].extend(warnings)
     partial = assess_extraction_outcome(product_count=len(data['products']),
         catalog_complete=data['catalog_complete'], errors=data['errors'],
         incompleteness_reasons=data['incompleteness_reasons']) != 'complete'
     if partial and not data['products']:
-        raise CliFailure('E_OPERATION', 'No usable products were extracted; source failed or was incomplete.')
+        failure = _source_failure(data)
+        if output_path:
+            _emit_extract_file_failure(failure, output_path, data)
+        raise failure
     if options.get('compact'):
         from ._compact_catalog import encode_compact_catalog
         import json
         data=json.loads(encode_compact_catalog(data))
     if output_path:
-        failure = CliFailure('E_PARTIAL', 'Operation returned bounded or incomplete results; inspect metadata.') if partial else None
-        atomic_json(output_path, make_response(data, failure=failure))
-    emit_result(data, partial=partial)
+        try:
+            atomic_json(output_path, make_response(data, completeness='partial' if partial else 'complete'))
+        except CliFailure as failure:
+            _emit_extract_file_failure(failure, output_path, data)
+        summary = _extract_file_summary(output_path, data)
+        emit_response(_extract_file_stdout_response(
+            summary, completeness='partial' if partial else 'complete'))
+        if partial:
+            raise click.exceptions.Exit(3)
+        return
+    emit_extraction_result(data, partial=partial)
 
 
 def discover_urls(url, max_urls, platform, options):
@@ -218,7 +365,7 @@ def extract_single(url, options):
     emit_result({'product':encode_value(product)}, partial=bool(warnings))
 
 
-def extract_feed(url, shop_url, max_products, timeout):
+def extract_feed(url, shop_url, max_products, timeout, *, include_evidence=False):
     from . import from_feed
     validate_url(url); validate_max(max_products)
     if shop_url:
@@ -230,29 +377,61 @@ def extract_feed(url, shop_url, max_products, timeout):
             result.raw_products = result.raw_products[:max_products]
             result.catalog_complete = False
             result.incompleteness_reasons.append('product_budget_reached')
-        return extraction_data(result)
-    data, _ = run_operation(operation, ExecutionPolicy(), validate_timeout(timeout))
+        return extraction_data(result, include_evidence=include_evidence)
+    data, _ = _run_extraction_operation(operation, ExecutionPolicy(), validate_timeout(timeout))
     if not data['products']:
-        raise CliFailure('E_OPERATION', 'No usable products were extracted; source failed or was incomplete.')
-    emit_result(data, partial=assess_extraction_outcome(product_count=len(data['products']),
+        raise _source_failure(data)
+    partial = assess_extraction_outcome(product_count=len(data['products']),
         catalog_complete=data['catalog_complete'], errors=data['errors'],
-        incompleteness_reasons=data['incompleteness_reasons']) != 'complete')
+        incompleteness_reasons=data['incompleteness_reasons']) != 'complete'
+    emit_extraction_result(data, partial=partial)
 
 
 def normalize_file(path, platform, shop_url, restore_short_gtin):
     from . import normalize
-    from ._portable import product_to_record
+    from ._cli_data import is_extract_envelope_candidate, product_records_from_extract_envelope
+    from ._portable import product_from_record, product_to_record
     if shop_url:
         validate_url(shop_url)
-    records = raw_records(read_json_file(path))
-    products=[]; dropped=[]
+    value = read_json_file(path)
+    if is_extract_envelope_candidate(value):
+        records = product_records_from_extract_envelope(value)
+        products = []
+        dropped = []
+        dropped_reasons = []
+        for index, record in enumerate(records):
+            try:
+                product = product_from_record(record, allow_compact=True)
+            except (ValueError, TypeError, KeyError, RecursionError):
+                dropped.append(index)
+                dropped_reasons.append({'index': index, 'reason': 'invalid_portable_product_record'})
+            else:
+                products.append(product_to_record(product))
+        result = {'products': products, 'product_count': len(products), 'dropped_indices': dropped}
+        if dropped_reasons:
+            result['dropped_reasons'] = dropped_reasons
+        emit_result(result)
+        return
+
+    raw_values = value if isinstance(value, list) else [value]
+    if any(isinstance(item, dict) and ('@context' in item or '@type' in item)
+           for item in raw_values):
+        raise CliFailure('E_VALIDATION', 'Raw JSON-LD is not a supported normalize input; use an extract result envelope or raw product record.')
+    records = raw_records(value)
+    products = []
+    dropped = []
+    dropped_reasons = []
     for index, record in enumerate(records):
         product = normalize(record, platform=Platform(platform), shop_url=shop_url or '', restore_short_gtin=restore_short_gtin)
         if product is None:
             dropped.append(index)
+            dropped_reasons.append({'index': index, 'reason': 'no_product_evidence'})
         else:
             products.append(product_to_record(product))
-    emit_result({'products':products,'product_count':len(products),'dropped_indices':dropped})
+    result = {'products': products, 'product_count': len(products), 'dropped_indices': dropped}
+    if dropped_reasons:
+        result['dropped_reasons'] = dropped_reasons
+    emit_result(result)
 
 
 def quality_file(path):

@@ -8,7 +8,7 @@ import sys
 
 import click
 
-from ._cli_core import CoreGroup, emit_success, emit_diagnostic, settings
+from ._cli_core import CoreGroup, emit_success, emit_diagnostic, emit_response, make_response, settings
 from ._cli_extract import execution_options
 from ._models import Platform
 
@@ -29,12 +29,15 @@ def main() -> None:
               help="Output format.")
 @click.option("-o", "--output", "output_path", default=None, help="Output file path.")
 @click.option("--compact", is_flag=True, help="Deduplicate captured provenance in bounded catalog transport.")
+@click.option("--include-evidence", is_flag=True,
+              help="Include the full raw product and evidence payload in extraction results.")
 @click.option("--platform", type=click.Choice([p.value for p in Platform]))
 @click.option("--shop-url")
 @click.option("--enrich-identifiers", is_flag=True)
 @click.option("--enrich-variants", is_flag=True, help="Read bounded Woo variant details (opt in).")
 @click.option("--restore-short-gtin", is_flag=True)
 @click.option("--storefront", type=click.Path(), help="Closed native storefront JSON options file.")
+@click.option("--location", help='Delivery area "Area, City" for branch-priced stores (BlinkX).')
 @execution_options()
 def extract(url: str, max_urls: int, fmt: str, output_path: str | None, **options) -> None:
     """Extract products from an e-commerce store."""
@@ -175,10 +178,12 @@ def extract_one_cmd(url, **options):
 @click.option("--shop-url", default="")
 @click.option("--max", "max_products", type=click.IntRange(1,1000), default=1000)
 @click.option("--timeout", type=float, default=None)
-def feed_cmd(url, shop_url, max_products, timeout):
+@click.option("--include-evidence", is_flag=True,
+              help="Include the full raw product and evidence payload in extraction results.")
+def feed_cmd(url, shop_url, max_products, timeout, include_evidence):
     """Extract a feed URL, retaining at most --max products explicitly."""
     from ._cli_extract import extract_feed
-    extract_feed(url, shop_url, max_products, timeout)
+    extract_feed(url, shop_url, max_products, timeout, include_evidence=include_evidence)
 
 
 @main.command(name="normalize")
@@ -217,14 +222,23 @@ async def _extract(url: str, max_urls: int, fmt: str, output_path: str | None) -
 
 
 async def _detect(url: str) -> None:
-    from . import detect as do_detect
-    result = await do_detect(url)
+    from ._detect import detect_context
+    context = await detect_context(url)
+    result = context.result
     data = {"platform": result.platform.value, "confidence": result.confidence,
             "signals": result.signals}
-    if settings().output_format == "json":
-        emit_success(data)
-    else:
+    if settings().output_format != "json":
         click.echo(json.dumps(data, indent=2))
+        return
+    from ._cli_detect import detect_failure, detect_warnings
+    failure = detect_failure(context, url)
+    if failure is not None:
+        raise failure
+    warnings = detect_warnings(context)
+    if warnings:
+        emit_response(make_response(data, warnings=warnings, completeness="partial"))
+    else:
+        emit_success(data)
 
 
 async def _discover(url: str, max_urls: int) -> None:
@@ -345,7 +359,7 @@ def _match_dict(match: object) -> dict:
     """Convert a Match to a plain dict."""
     return {
         "title": match.title,  # type: ignore[attr-defined]
-        "price": str(match.price),  # type: ignore[attr-defined]
+        "price": str(match.price) if match.price is not None else None,  # type: ignore[attr-defined]
         "currency": match.currency,  # type: ignore[attr-defined]
         "store": match.store,  # type: ignore[attr-defined]
         "product_url": match.product_url,  # type: ignore[attr-defined]

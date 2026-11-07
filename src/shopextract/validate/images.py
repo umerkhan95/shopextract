@@ -11,6 +11,10 @@ import logging
 import httpx
 
 from .._models import ImageIssue
+from .._url_safety import (
+    UnsafeURLTarget, async_client,
+    require_guarded_client, validate_client_url,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -45,13 +49,14 @@ async def check_images(
     semaphore = asyncio.Semaphore(concurrency)
 
     if client is not None:
+        require_guarded_client(client)
         tasks = [
             _check_single(client, semaphore, idx, product, issues)
             for idx, product in enumerate(products)
         ]
         await asyncio.gather(*tasks, return_exceptions=True)
     else:
-        async with httpx.AsyncClient(
+        async with async_client(
             timeout=timeout, follow_redirects=True,
         ) as _client:
             tasks = [
@@ -83,6 +88,7 @@ async def _check_single(
 
     async with semaphore:
         try:
+            await validate_client_url(image_url, client)
             resp = await client.head(image_url)
             content_type = (resp.headers.get("content-type") or "").split(";")[0].strip().lower()
 
@@ -100,6 +106,11 @@ async def _check_single(
                     content_type=content_type,
                     error=f"Non-image content type: {content_type}",
                 ))
+        except UnsafeURLTarget as exc:
+            issues.append(ImageIssue(
+                product_index=idx, product_title=title,
+                image_url=image_url, error=f"Unsafe image URL: {exc}",
+            ))
         except httpx.TimeoutException:
             issues.append(ImageIssue(
                 product_index=idx, product_title=title,

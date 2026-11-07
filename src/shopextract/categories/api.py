@@ -87,8 +87,8 @@ async def extract_with_categories(url: str, *, category_options: CategoryOptions
         from ..extractors._storefront import request
         from ..extractors.feed import GoogleFeedExtractor
         from ..extractors.unified import UnifiedCrawlExtractor
-        import httpx
-        async with httpx.AsyncClient(timeout=30) as client:
+        from .._url_safety import async_client
+        async with async_client(timeout=30) as client:
             response = await request(client,'GET',url)
         kind = response.headers.get('content-type','')
         if url.lower().endswith(('.xml','.csv','.tsv')) or 'xml' in kind or 'csv' in kind:

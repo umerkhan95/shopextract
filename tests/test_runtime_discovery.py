@@ -84,8 +84,10 @@ async def test_owned_worker_cancel_reaped(tmp_path):
   cleanup_owned(pid,child)
 
 @pytest.mark.asyncio
-async def test_real_worker_loopback_sorted():
+async def test_real_worker_loopback_sorted(monkeypatch):
  from shopextract import discover,Platform
+ # The fixture server is on loopback, which needs the operator opt-in.
+ monkeypatch.setenv('SHOPEXTRACT_ALLOW_PRIVATE_URLS','1')
  with server() as (origin,sent):
   result=await discover(origin,platform=Platform.GENERIC,timeout=6)
  assert list(result)==[origin+'/products/a',origin+'/products/z']
@@ -193,12 +195,14 @@ def test_serialized_products_stable_across_source_order():
  def result(rows):return ExtractionResult(products=rows,platform=Platform.GENERIC,tier=ExtractionTier.API)
  original=result([b,a]);left=extraction_data(original);right=extraction_data(result([a,b]))
  from shopextract._portable import product_from_record
- assert [product_from_record(r).canonical_product_id for r in left['products']]==['a','b']
+ assert [product_from_record(r,allow_compact=True).canonical_product_id for r in left['products']]==['a','b']
  assert left['products']==right['products'] and original.products==[b,a] and original.products[0] is b
 
 
 def test_cli_and_guarded_tool_discovery_policy(monkeypatch):
  from click.testing import CliRunner
+ # The fixture server is on loopback, which needs the operator opt-in.
+ monkeypatch.setenv('SHOPEXTRACT_ALLOW_PRIVATE_URLS','1')
  from shopextract.cli import main
  with server() as (origin,sent):
   r=CliRunner().invoke(main,['--output-format','json','discover',origin,'--platform','generic','--timeout','6'])
@@ -246,7 +250,7 @@ def test_duplicate_identity_order_uses_facts_not_timestamps():
   b=Product(canonical_product_id='same',product_url=ROOT+'/same',title='Same',vendor='B',scraped_at=old if reverse_time else new)
   original=ExtractionResult(products=[b,a])
   rows=extraction_data(original)['products'];assert original.products==[b,a]
-  return [product_from_record(r).vendor for r in rows]
+  return [product_from_record(r,allow_compact=True).vendor for r in rows]
  assert order(False)==order(True)==['A','B']
 
 def terminated(pid):

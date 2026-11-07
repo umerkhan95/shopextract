@@ -61,6 +61,12 @@ DEFAULT_PAGE_TIMEOUT = 30000
 DEFAULT_DELAY_BEFORE_RETURN = 3.0
 
 from ._http_defaults import DEFAULT_HEADERS, HTTPX_USER_AGENT, get_default_user_agent
+from .._url_safety import (
+    UnsafeURLTarget,
+    ValidatingProxy,
+    operator_allows_private_urls,
+    validate_url_target,
+)
 
 # Cookie consent dismiss script
 DISMISS_COOKIE_JS = """
@@ -124,6 +130,14 @@ def get_browser_config(
     if not browser_allowed():
         raise RuntimeError("Browser execution is disabled by the operation policy")
     headers = {**DEFAULT_HEADERS}
+    # A context-level proxy is configured per crawl. Remove Chromium's implicit
+    # loopback bypass and disable WebRTC's independent UDP path; these flags are
+    # defense in depth and do not replace OS-level egress isolation.
+    safe_network_args = [
+        "--proxy-bypass-list=<-loopback>",
+        "--disable-webrtc",
+        "--disable-features=WebRtcHideLocalIpsWithMdns",
+    ]
 
     if stealth_level == StealthLevel.STANDARD:
         return BrowserConfig(
@@ -131,6 +145,7 @@ def get_browser_config(
             verbose=False,
             text_mode=text_mode,
             headers=headers,
+            extra_args=safe_network_args,
         )
 
     # STEALTH and UNDETECTED both use stealth + large viewport
@@ -142,6 +157,7 @@ def get_browser_config(
         viewport_width=1920,
         viewport_height=1080,
         headers=headers,
+        extra_args=safe_network_args,
     )
 
 
@@ -178,8 +194,11 @@ def get_crawl_config(
     check_robots_txt: bool = True,
     locale: str = "en-US",
     timezone: str = "America/New_York",
+    proxy_config=None,
 ) -> CrawlerRunConfig:
     """Create a CrawlerRunConfig with anti-bot settings for the requested tier."""
+    if not getattr(proxy_config, "_shopextract_guarded", False):
+        raise ValueError("Crawl4AI runs require a shopextract ValidatingProxy configuration")
     use_anti_bot = stealth_level in (StealthLevel.STEALTH, StealthLevel.UNDETECTED)
 
     if use_anti_bot and page_timeout == DEFAULT_PAGE_TIMEOUT:
@@ -224,6 +243,7 @@ def get_crawl_config(
         verbose=False,
         js_code=DISMISS_COOKIE_JS,
         locale=locale,
+        proxy_config=proxy_config,
         **geo_kwargs,
     )
 
@@ -238,19 +258,26 @@ async def fetch_html_with_browser(
     """
     from crawl4ai import AsyncWebCrawler
 
+    await validate_url_target(url, allow_private=operator_allows_private_urls())
     try:
-        browser_config = get_browser_config(stealth_level)
-        crawl_config = get_crawl_config(stealth_level=stealth_level)
-        crawler_strategy = get_crawler_strategy(stealth_level, browser_config)
+        async with ValidatingProxy() as proxy:
+            browser_config = get_browser_config(stealth_level)
+            crawl_config = get_crawl_config(
+                stealth_level=stealth_level,
+                proxy_config=proxy.crawl4ai_config,
+            )
+            crawler_strategy = get_crawler_strategy(stealth_level, browser_config)
 
-        async with AsyncWebCrawler(
-            config=browser_config,
-            crawler_strategy=crawler_strategy,
-        ) as crawler:
-            result = await crawler.arun(url=url, config=crawl_config)
-            if result.success and result.html:
-                return result.html
-            return None
+            async with AsyncWebCrawler(
+                config=browser_config,
+                crawler_strategy=crawler_strategy,
+            ) as crawler:
+                result = await crawler.arun(url=url, config=crawl_config)
+                if result.success and result.html:
+                    return result.html
+                return None
+    except UnsafeURLTarget:
+        raise
     except Exception as e:
         logger.error("Browser fetch error for %s: %s", url, e)
         return None

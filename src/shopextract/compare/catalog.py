@@ -107,6 +107,8 @@ def _classify_price(
     prod_b: Product,
 ) -> None:
     """Classify a matched pair by price difference."""
+    if prod_a.price is None or prod_b.price is None:
+        return
     if prod_a.price < prod_b.price:
         diff.cheaper_in_a.append((prod_a, prod_b))
     elif prod_b.price < prod_a.price:

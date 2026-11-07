@@ -6,6 +6,7 @@ import re
 from urllib.parse import urljoin, urlsplit
 
 import httpx
+from .._url_safety import async_client, require_guarded_client
 
 MAX_RESPONSE_BYTES = 10 * 1024 * 1024
 
@@ -18,9 +19,10 @@ def positive_limits(*values):
 @asynccontextmanager
 async def storefront_client(client, timeout, headers=None, *, cookies=None):
     if client is not None:
+        require_guarded_client(client)
         yield client
     else:
-        async with httpx.AsyncClient(timeout=timeout, follow_redirects=True, headers=headers, cookies=cookies) as owned:
+        async with async_client(timeout=timeout, follow_redirects=True, headers=headers, cookies=cookies) as owned:
             yield owned
 
 

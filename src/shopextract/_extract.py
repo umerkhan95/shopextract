@@ -47,6 +47,7 @@ async def extract(
     enrich_variants: bool = False,
     restore_short_gtin: bool = False,
     api_options: dict[str, str] | None = None,
+    location: str | None = None,
 ) -> ExtractionResult:
     """Extract products from an e-commerce store.
 
@@ -109,6 +110,8 @@ async def extract(
             Any model supported by LiteLLM works. See https://docs.litellm.ai/docs/providers
 
         llm_temperature: LLM temperature (default: 0.2).
+        location: Delivery area as "Area, City" for storefronts whose prices and
+            stock belong to a branch (BlinkX). Rejected for other platforms.
 
     Returns:
         ExtractionResult with products, tier used, quality score.
@@ -144,14 +147,25 @@ async def extract(
             llm_api_key = _resolve_llm_api_key(llm_model)
         llm_model = os.environ.get("SHOPEXTRACT_LLM_MODEL", llm_model)
 
-    # Step 1: Detect platform
+    detection_context = None
+    detection_errors: list[str] = []
+    # Step 1: Detect platform and retain its bounded source context for extraction.
     if platform is None:
-        from ._detect import detect
-        result = await detect(url)
-        platform = result.platform
+        from ._detect import detect_context
+        detection_context = await detect_context(url)
+        detection_errors = list(detection_context.errors)
+        platform = detection_context.result.platform
+        if detection_context.rate_limited:
+            return ExtractionResult(
+                platform=platform, catalog_complete=False,
+                incompleteness_reasons=["rate_limited"], errors=detection_errors,
+                retry_after_seconds=detection_context.retry_after_seconds,
+            )
 
     if enrich_variants and platform!=Platform.WOOCOMMERCE:
         raise ValueError('Variant enrichment is only supported for WooCommerce')
+    if location is not None and platform != Platform.BLINKX:
+        raise ValueError('Location selection is only supported for BlinkX storefronts')
     if api_options and 'protocol' in api_options and platform != Platform.MAGENTO:
         raise ValueError('API protocol option is only supported for Magento')
 
@@ -170,6 +184,9 @@ async def extract(
         context = api_options.get('customer_id') or api_options['customer_access_token']
         observation_scope += ':customer:' + hashlib.sha256(context.encode()).hexdigest()
 
+    # A BlinkX catalog is per delivery branch; snapshots of two areas never mix.
+    if platform == Platform.BLINKX:
+        observation_scope += ':branch:' + ' '.join((location or '').split()).casefold()
     from ._execution import configure_progress_result
     configure_progress_result(platform,observation_scope,restore_short_gtin=restore_short_gtin,shop_url=shop_url)
 
@@ -178,6 +195,10 @@ async def extract(
     if enrich_variants:api_kwargs['enrich_variants']=True
     if api_options:
         api_kwargs['api_options'] = api_options
+    if detection_context is not None:
+        api_kwargs['detection_context'] = detection_context
+    if location is not None:
+        api_kwargs['location'] = location
     api_result = await _try_api_extraction(url, platform, **api_kwargs)
     if api_result is not None and (api_result.products or api_result.complete):
         truncated = len(api_result.products) > max_urls
@@ -213,29 +234,47 @@ async def extract(
                 platform=platform,
                 urls_attempted=1,
                 urls_succeeded=1,
-                errors=([api_result.error] if api_result.error else []) + [
+                errors=detection_errors + ([api_result.error] if api_result.error else []) + [
                     error for raw in api_result.products for error in raw.get("_identifier_enrichment_errors", [])
                 ],
             )
 
-    api_errors = [api_result.error] if api_result is not None and api_result.error else []
+    api_errors = detection_errors + ([api_result.error] if api_result is not None and api_result.error else [])
+    if platform == Platform.BLINKX:
+        # Crawled pages carry no branch, so a failed branch read has no fallback.
+        reason = (api_result.completeness_reason if api_result is not None else None) or 'source_error'
+        return ExtractionResult(observation_scope=observation_scope, catalog_complete=False,
+            incompleteness_reasons=[reason], tier=ExtractionTier.API, platform=platform,
+            errors=api_errors or ['BlinkX storefront API unavailable'])
     if customer_context:
         return ExtractionResult(observation_scope=observation_scope, catalog_complete=False,
             incompleteness_reasons=['customer_context_unavailable'], tier=ExtractionTier.API,
             platform=platform, errors=api_errors or ['BigCommerce customer context unavailable'])
 
+    # A store that only renders its catalog in the browser has a profile;
+    # its server HTML is an empty shell that discovery cannot read.
+    from .extractors.rendered_profiles import profile_for
+    profile = profile_for(url) if platform == Platform.GENERIC else None
+    if profile is not None:
+        return await _extract_rendered(url, profile, max_urls=max_urls, platform=platform,
+                                       observation_scope=observation_scope, shop_url=shop_url,
+                                       errors=api_errors)
+
     # Step 3: Discover URLs for crawl-based extraction
     from ._discover import discover
     # Borrow this operation's HTTP boundary; direct public discovery owns a worker.
-    async with httpx.AsyncClient(timeout=30,follow_redirects=False) as discovery_client:
+    from ._url_safety import async_client
+    async with async_client(timeout=30,follow_redirects=False) as discovery_client:
         urls = await discover(url, platform=platform, max_urls=max_urls,client=discovery_client)
 
+    scope_reasons = [reason for reason in getattr(urls, "reasons", ()) if reason in _SCOPE_REASONS]
     if not urls:
         return ExtractionResult(
             observation_scope=observation_scope,
-            incompleteness_reasons=["crawl_coverage_unverified"],
+            incompleteness_reasons=["crawl_coverage_unverified", *scope_reasons],
             platform=platform,
-            errors=api_errors + ["No product URLs discovered"],
+            errors=api_errors + ["No product URLs discovered"] + [
+                reason for reason in getattr(urls, "reasons", ()) if reason != "discovery_coverage_unverified"],
         )
 
     # Step 4: Try UnifiedCrawl on a sample URL
@@ -262,7 +301,7 @@ async def extract(
             products = _normalize_batch(all_products, platform, shop_url)
             return ExtractionResult(
                 observation_scope=observation_scope,
-                incompleteness_reasons=["crawl_coverage_unverified"],
+                incompleteness_reasons=["crawl_coverage_unverified", *scope_reasons],
                 products=products,
                 raw_products=all_products,
                 tier=ExtractionTier.UNIFIED_CRAWL,
@@ -334,6 +373,47 @@ async def extract(
         urls_succeeded=len(products),
         errors=api_errors,
     )
+
+async def _extract_rendered(url, profile, *, max_urls, platform, observation_scope, shop_url, errors):
+    """Read a client-rendered storefront through its profile; nothing else applies."""
+    if not browser_allowed():
+        return ExtractionResult(observation_scope=observation_scope, catalog_complete=False,
+            incompleteness_reasons=['browser_required'], platform=platform,
+            errors=errors + [f'{profile.name} renders its catalog only in the browser; pass --browser'])
+    from .extractors.rendered_profiles import render_catalog
+    try:
+        run = await render_catalog(url, profile, max_urls=max_urls)
+    except Exception as error:
+        from ._failure_origin import failure_origin
+        logger.warning("Rendered storefront read failed for %s: %s", url, failure_origin(error))
+        return ExtractionResult(observation_scope=observation_scope, catalog_complete=False,
+            incompleteness_reasons=['crawl_coverage_unverified', 'source_error'], platform=platform,
+            errors=errors + [f'rendered storefront unavailable: {type(error).__name__}'])
+    products = _normalize_batch(run.products, platform, shop_url)
+    requested = len(run.listing.product_urls[:max_urls]) if run.listing is not None else 1
+    reasons = ['crawl_coverage_unverified']
+    if run.listing is not None and not run.listing.exhausted:
+        reasons.append('category_listing_truncated')
+    if run.listing is not None and not run.listing.product_urls:
+        reasons.append('no_product_links')
+    if len(products) < requested:
+        reasons.append('product_pages_unread')
+    return ExtractionResult(
+        observation_scope=observation_scope,
+        catalog_complete=False if len(reasons) > 1 else None,
+        incompleteness_reasons=reasons, products=products, raw_products=run.products,
+        tier=ExtractionTier.CSS, quality_score=QualityScorer().score_batch(run.products),
+        platform=platform, urls_attempted=requested, urls_succeeded=len(products),
+        errors=errors + run.errors,
+    )
+
+
+# Discovery reasons that change what the caller may conclude about the result.
+_SCOPE_REASONS = frozenset({"category_scope_unavailable", "category_listing_truncated",
+                            "category_listing_unavailable", "category_listing_source_error",
+                            "category_listing_parse_error", "rate_limited", "blocked",
+                            "robots_disallowed"})
+
 
 async def extract_one(
     url: str,
@@ -496,20 +576,41 @@ async def _try_api_extraction(url: str, platform: Platform, *, max_products: int
                               enrich_identifiers: bool = False,
                               enrich_variants: bool = False,
                               api_options: dict[str, str] | None = None,
-                              include_categories: bool = False, category_mode: bool = False, shopify_storefront=None) -> ExtractorResult | None:
+                              include_categories: bool = False, category_mode: bool = False, shopify_storefront=None,
+                              detection_context=None, location=None) -> ExtractorResult | None:
     """Try platform-specific API extraction."""
+    from ._scope import is_store_root
     base_url = url.rstrip("/")
 
     if platform == Platform.SHOPIFY:
         from .extractors.shopify import ShopifyExtractor
         extractor = ShopifyExtractor()
-        result = await extractor.extract(base_url, max_products=max_products, enrich_identifiers=enrich_identifiers)
+        from ._detect import _origin
+        from ._scope import shopify_catalog_base
+        catalog_base = shopify_catalog_base(base_url)
+        if catalog_base is None:
+            # A product or search page has no catalog endpoint; discovery reads it.
+            return None
+        # Detection probed the origin catalog; reuse it only for a whole-store request.
+        initial = getattr(detection_context, "shopify_response", None) if catalog_base == _origin(base_url) else None
+        result = await extractor.extract(catalog_base, max_products=max_products,
+            enrich_identifiers=enrich_identifiers, initial_response=initial)
         if shopify_storefront is not None:
             if not category_mode:raise ValueError('Storefront supplement requires category mode')
             from .extractors.shopify_taxonomy import supplement_categories
             await supplement_categories(result.products,shopify_storefront)
         if result.products or result.complete:
             return result
+
+    elif platform == Platform.BLINKX:
+        from .extractors.blinkx import BlinkXExtractor
+        return await BlinkXExtractor().extract(url, max_products=max_products, location=location)
+
+    elif platform in (Platform.WOOCOMMERCE, Platform.MAGENTO, Platform.SHOPWARE, Platform.BIGCOMMERCE) \
+            and not api_options and not category_mode and not is_store_root(base_url):
+        # These catalog APIs enumerate the whole store. A category, search or
+        # product URL is read through scoped listing discovery instead.
+        return None
 
     elif platform == Platform.WOOCOMMERCE:
         from .extractors.woocommerce import WooCommerceExtractor

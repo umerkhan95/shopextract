@@ -15,6 +15,7 @@ from typing import Any
 
 import defusedxml.ElementTree as ET
 import httpx
+from .._url_safety import async_client
 
 from .._models import ExtractorResult
 from .._capture import capture
@@ -70,7 +71,7 @@ class GoogleFeedExtractor:
         return ExtractorResult(products=products, complete=True)
 
     async def _fetch_feed(self, url: str) -> tuple[str, str]:
-        async with httpx.AsyncClient(
+        async with async_client(
             timeout=60, follow_redirects=True, headers=_FEED_HEADERS
         ) as client:
             resp = await client.get(url)

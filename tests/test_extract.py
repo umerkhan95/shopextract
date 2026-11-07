@@ -19,6 +19,7 @@ from shopextract._models import (
     ExtractionResult,
     ExtractionTier,
     ExtractorResult,
+    DetectionContext,
     Platform,
     PlatformResult,
     Product,
@@ -86,9 +87,9 @@ async def test_extract_api_tier():
         },
     ]
 
-    with patch("shopextract._detect.detect", new_callable=AsyncMock) as mock_detect, \
+    with patch("shopextract._detect.detect_context", new_callable=AsyncMock) as mock_detect, \
          patch("shopextract._extract._try_api_extraction", new_callable=AsyncMock) as mock_api:
-        mock_detect.return_value = PlatformResult(platform=Platform.SHOPIFY, confidence=0.9)
+        mock_detect.return_value = DetectionContext(PlatformResult(platform=Platform.SHOPIFY, confidence=0.9))
         mock_api.return_value = ExtractorResult(products=api_products)
 
         result = await extract("https://shop.example.com")
@@ -106,12 +107,12 @@ async def test_extract_unified_crawl_fallback():
         {"title": "Crawled Widget", "price": "20.00", "image_url": "https://img.jpg", "sku": "CW1", "description": "d"},
     ]
 
-    with patch("shopextract._detect.detect", new_callable=AsyncMock) as mock_detect, \
+    with patch("shopextract._detect.detect_context", new_callable=AsyncMock) as mock_detect, \
          patch("shopextract._extract._try_api_extraction", new_callable=AsyncMock) as mock_api, \
          patch("shopextract._discover.discover", new_callable=AsyncMock) as mock_discover, \
          patch("shopextract.extractors.unified.UnifiedCrawlExtractor") as MockExtractor:
 
-        mock_detect.return_value = PlatformResult(platform=Platform.GENERIC, confidence=0.5)
+        mock_detect.return_value = DetectionContext(PlatformResult(platform=Platform.GENERIC, confidence=0.5))
         mock_api.return_value = None
 
         mock_discover.return_value = ["https://example.com/product/1"]
@@ -128,11 +129,11 @@ async def test_extract_unified_crawl_fallback():
 @pytest.mark.asyncio
 async def test_extract_no_urls_discovered():
     """When no URLs are discovered, return empty result with error."""
-    with patch("shopextract._detect.detect", new_callable=AsyncMock) as mock_detect, \
+    with patch("shopextract._detect.detect_context", new_callable=AsyncMock) as mock_detect, \
          patch("shopextract._extract._try_api_extraction", new_callable=AsyncMock) as mock_api, \
          patch("shopextract._discover.discover", new_callable=AsyncMock) as mock_discover:
 
-        mock_detect.return_value = PlatformResult(platform=Platform.GENERIC, confidence=0.5)
+        mock_detect.return_value = DetectionContext(PlatformResult(platform=Platform.GENERIC, confidence=0.5))
         mock_api.return_value = None
         mock_discover.return_value = []
 

@@ -90,10 +90,11 @@ def test_eleven_products_native_transport_and_exact_codec(transport):
     from shopextract._portable import product_from_record
     routes,calls=transport
     routes['/products.json']={'products':shopify_products()}
-    result=invoke('extract','https://fixture.invalid','--platform','shopify','--max','11')
+    result=invoke('extract','https://fixture.invalid','--platform','shopify','--max','11',
+                  '--include-evidence')
     assert result.exit_code == 3, result.output[:800]
     response=value(result); data=response['data']
-    assert response['error']['retryable'] is False and response['completeness']=='partial'
+    assert response['ok'] is True and response['error'] is None and response['completeness']=='partial'
     assert data['product_count']==11 and len(data['products'])==11
     assert len(calls)==1
     assert {r['product']['external_id'] for r in data['products']}=={f'{i:04}' for i in range(11)}
@@ -143,7 +144,7 @@ def test_native_feed_cap_reports_partial(transport,kind):
         body='<rss xmlns:g="http://base.google.com/ns/1.0"><channel>'+''.join(f'<item><g:id>00{i}</g:id><title>{t}</title><g:price>0.10 EUR</g:price><link>https://fixture.invalid/{i}</link><g:image_link>https://fixture.invalid/{i}.png</g:image_link><g:availability>out_of_stock</g:availability></item>' for i,t in [(1,'A'),(2,'B')])+'</channel></rss>'
         content_type='application/xml'
     routes['/feed']=lambda r:httpx.Response(200,text=body,headers={'content-type':content_type})
-    result=invoke('feed','https://fixture.invalid/feed','--max','1')
+    result=invoke('feed','https://fixture.invalid/feed','--max','1','--include-evidence')
     assert result.exit_code==3, result.output[:800]
     data=value(result)['data']; assert data['product_count']==1 and len(data['raw_products'])==1
     assert data['catalog_complete'] is False
@@ -383,7 +384,8 @@ def test_detect_deadline_cleanup(monkeypatch):
     async def slow(*a,**k):
         try: await asyncio.sleep(10)
         finally: cleanup.append(True)
-    monkeypatch.setattr(shopextract,'detect',slow)
+    from shopextract import _detect
+    monkeypatch.setattr(_detect,'detect_context',slow)
     result=invoke('detect','https://fixture.invalid','--timeout','.01')
     assert result.exit_code==1 and value(result)['error']['code']=='E_TIMEOUT'
     assert cleanup==[True]
@@ -482,7 +484,10 @@ def test_atomic_output_roundtrip_quality_file(transport,tmp_path,cap,exit_code):
     routes,_=transport;routes['/products.json']={'products':shopify_products(1)}
     path=tmp_path/'catalog.json'
     result=invoke('extract','https://fixture.invalid','--platform','shopify','--max',str(cap),'-o',str(path))
-    assert result.exit_code==exit_code and json.loads(path.read_text())==value(result)
+    envelope=json.loads(path.read_text())
+    assert result.exit_code==exit_code and len(envelope['data']['products'])==1
+    assert value(result)['data']=={'output_path':str(path),'product_count':1,
+                                   'completeness':envelope['completeness']}
     quality=invoke('quality',str(path))
     assert quality.exit_code==0 and value(quality)['data']['product_count']==1
     assert value(quality)['data']['batch_score']>0
@@ -501,6 +506,54 @@ def test_operation_prints_never_reach_response_stdout(monkeypatch):
     assert '[FETCH]' not in result.stdout and '[FETCH]' in result.stderr
 
 
-def test_browser_run_config_disables_crawl4ai_progress_logging():
+@pytest.mark.asyncio
+async def test_browser_run_config_disables_crawl4ai_progress_logging():
     from shopextract.extractors._browser import get_crawl_config, StealthLevel
-    assert all(get_crawl_config(stealth_level=level).verbose is False for level in StealthLevel)
+    from shopextract._url_safety import ValidatingProxy
+    async with ValidatingProxy() as proxy:
+        assert all(get_crawl_config(stealth_level=level,
+                                    proxy_config=proxy.crawl4ai_config).verbose is False
+                   for level in StealthLevel)
+
+
+def test_normalize_accepts_successful_extract_envelope_and_validates_malformed_input():
+    from shopextract._models import Product
+    from shopextract._portable import product_to_record
+
+    record = product_to_record(Product(title='Captured product'))
+    envelope = {'schema_version': '1.0', 'ok': True, 'data': {'products': [record]}}
+    normalized = invoke('normalize', '-', '--platform', 'generic', input=json.dumps(envelope))
+    assert normalized.exit_code == 0, normalized.output[:800]
+    data = value(normalized)['data']
+    assert data['product_count'] == 1
+    assert data['products'][0] == record
+
+    raw_product = {'schema_version': 'supplier-raw-1', 'title': 'Raw product',
+                   'price': '2.00', 'sku': 'RAW-2',
+                   'data': {'seller_note': 'not an envelope'}, 'products': []}
+    raw_result = invoke('normalize', '-', '--platform', 'generic', input=json.dumps(raw_product))
+    assert raw_result.exit_code == 0, raw_result.output[:800]
+    assert value(raw_result)['data']['product_count'] == 1
+
+    empty = invoke('normalize', '-', '--platform', 'generic', input=json.dumps(
+        {'schema_version': '1.0', 'ok': True, 'data': {'products': []}}))
+    assert empty.exit_code == 0 and value(empty)['data']['product_count'] == 0
+
+    invalid = {'schema_version': '1.0', 'ok': True,
+               'data': {'products': [record, {'schema_version': 1, 'product': {}}]}}
+    dropped = invoke('normalize', '-', '--platform', 'generic', input=json.dumps(invalid))
+    assert dropped.exit_code == 0, dropped.output[:800]
+    dropped_data = value(dropped)['data']
+    assert dropped_data['dropped_indices'] == [1]
+    assert dropped_data['dropped_reasons'] == [
+        {'index': 1, 'reason': 'invalid_portable_product_record'}]
+
+    for malformed in (
+        {'schema_version': '1.0', 'ok': False, 'data': {'products': []}},
+        {'schema_version': '1.0', 'ok': True, 'data': {}},
+        {'schema_version': '2.0', 'records': []},
+        {'@type': 'Product', 'name': 'Raw JSON-LD'},
+    ):
+        result = invoke('normalize', '-', '--platform', 'generic', input=json.dumps(malformed))
+        assert result.exit_code == 4, result.output[:800]
+        assert value(result)['error']['code'] == 'E_VALIDATION'

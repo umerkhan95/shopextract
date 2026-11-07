@@ -1,10 +1,14 @@
 """Single active bounded jobs, enqueue deadlines and one terminal winner."""
 import asyncio
+import logging
 import time
 from collections import OrderedDict
 from datetime import datetime, timezone
 from .context import OperationContext, OperationBudget
 from .contracts import ToolError
+from .._failure_origin import failure_origin
+
+logger = logging.getLogger(__name__)
 
 TERMINAL = {'succeeded', 'failed', 'cancelled', 'timed_out'}
 
@@ -87,7 +91,8 @@ class JobManager:
             failure = ('cancelled', ToolError('cancelled'))
         except ToolError as error:
             failure = ('timed_out' if error.code == 'timeout' else 'failed', error)
-        except Exception:
+        except Exception as error:
+            logger.warning('Job %s failed: %s', key, failure_origin(error))
             failure = ('failed', ToolError('internal_error', 'Operation failed'))
         finally:
             if not work_task.done():

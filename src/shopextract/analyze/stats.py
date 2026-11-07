@@ -200,12 +200,16 @@ def _safe_median(prices: list[float]) -> float:
 def count_field(products: list[dict], field: str) -> dict[str, int]:
     """Count occurrences of a string field across products."""
     counts: dict[str, int] = {}
+    displays: dict[str, str] = {}
     for p in products:
         val = p.get(field)
         if val and isinstance(val, str) and val.strip():
-            key = val.strip()
+            spelling = val.strip()
+            key = spelling.casefold() if field == "vendor" else spelling
+            displays[key] = min(displays.get(key, spelling), spelling)
             counts[key] = counts.get(key, 0) + 1
-    return dict(sorted(counts.items(), key=lambda x: x[1], reverse=True))
+    grouped = [(displays[key], count) for key, count in counts.items()]
+    return dict(sorted(grouped, key=lambda x: (-x[1], x[0])))
 
 
 def count_categories(products: list[dict]) -> dict[str, int]:
