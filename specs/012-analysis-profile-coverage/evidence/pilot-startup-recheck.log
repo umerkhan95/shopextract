@@ -1,0 +1,34 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________ test_repeated_process_cancel_no_accumulation _________________
+
+tmp_path = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-347/test_repeated_process_cancel_n0')
+
+    @pytest.mark.asyncio
+    async def test_repeated_process_cancel_no_accumulation(tmp_path):
+        """Three explicit cancellation lifetimes share one slot and leave zero child handles."""
+        limits=Limits(cleanup_seconds=.3);owner=OwnedProcess(limits,child_target=_late_resolver_child)
+        for index in range(3):
+            ctx=context(limits,owner)
+            barrier=tmp_path/f'resolver-{index}.ready'
+            task=asyncio.create_task(owner.run('resolve',encoded({'host':'store.example','barrier':str(barrier)}),ctx))
+            for _ in range(300):
+                if barrier.exists():break
+                await asyncio.sleep(.005)
+>           assert barrier.exists(), 'Controlled resolver did not start'
+E           AssertionError: Controlled resolver did not start
+E           assert False
+E            +  where False = exists()
+E            +    where exists = PosixPath('/private/var/folders/tr/xgjgv3k92sxf48qr55g4drjr0000gp/T/pytest-of-umerkhan/pytest-347/test_repeated_process_cancel_n0/resolver-1.ready').exists
+
+tests/test_tool_mechanisms.py:147: AssertionError
+----------------------------- Captured stderr call -----------------------------
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+=========================== short test summary info ============================
+FAILED tests/test_tool_mechanisms.py::test_repeated_process_cancel_no_accumulation
+1 failed in 4.04s

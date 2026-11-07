@@ -1,6 +1,6 @@
 # Implementation plan: category analysis coverage
 
-2026-10-25. Planning deliverable only; implementation and verification remain future work. Read spec.md, test-design.md, research.md and tasks.md together. The task-breaker reviewed SC01–SC11 before breakdown; its findings and FR/SC ownership are recorded in tasks.md.
+2026-10-25. Originally a planning deliverable; implementation is now user-authorized, with production logic waiting for independent inventory G2/G3. Read spec.md, test-design.md, research.md and tasks.md together. The task-breaker reviewed SC01–SC11 before breakdown; its findings and FR/SC ownership are recorded in tasks.md.
 
 ## Intended result and scope
 

@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-25",
+  "source_version": "2026-08",
+  "source_commit": "2e9aa2e9b882383952c63d212add13eb80f46cf9",
+  "files": [
+    {
+      "name": "el_electronics.yml",
+      "bytes": 555297,
+      "sha256": "08f92912aac14164afbd7704067c586499da9f5591df96def1a25adda908469f",
+      "verified": true,
+      "category_nodes": 1176
+    },
+    {
+      "name": "aa_apparel_accessories.yml",
+      "bytes": 285314,
+      "sha256": "3746bf9fab3920b9f529caef076f91225b4f954e6f7e238668aaf49ed90419a6",
+      "verified": true,
+      "category_nodes": 663
+    },
+    {
+      "name": "hg_home_garden.yml",
+      "bytes": 877783,
+      "sha256": "355d32fbc787812c83ff5446dbe7d964d798f8508ec95ee5306f07da8e907a35",
+      "verified": true,
+      "category_nodes": 2286
+    },
+    {
+      "name": "attributes.yml",
+      "bytes": 4769315,
+      "sha256": "91ef3829a6621fbc98b46c6447c9702e394fd7c55bfbd56fd2df0545ea9e16b6",
+      "verified": true
+    },
+    {
+      "name": "LICENSE",
+      "bytes": 1046,
+      "sha256": "6a2261660cc6cb406ed6ef788347d8cb35e939f4537def9e699abf88ed025273",
+      "verified": true
+    }
+  ],
+  "category_nodes": 4125,
+  "total_saved_bytes": 6488755,
+  "network_requests": 0,
+  "model_calls": 0,
+  "method": "SHA-256 verification and anchored top-level YAML id count; not inventory implementation"
+}

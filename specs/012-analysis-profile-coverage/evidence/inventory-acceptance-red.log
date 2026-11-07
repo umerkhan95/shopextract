@@ -1,0 +1,62 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.FFFFFFFF...                                                             [100%]
+=================================== FAILURES ===================================
+____ test_three_reference_smoke_distinguishes_policy_from_product_evidence _____
+tests/test_profile_coverage_inventory.py:32: in test_three_reference_smoke_distinguishes_policy_from_product_evidence
+    result = build_inventory(SOURCES, selected_ids=REFERENCE_IDS)
+src/shopextract/maintenance/inventory.py:25: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+__ test_smoke_denominator_and_unreviewed_counts_do_not_claim_market_coverage ___
+tests/test_profile_coverage_inventory.py:57: in test_smoke_denominator_and_unreviewed_counts_do_not_claim_market_coverage
+    result = build_inventory(SOURCES, selected_ids=REFERENCE_IDS)
+src/shopextract/maintenance/inventory.py:25: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+_____ test_full_saved_branches_are_order_invariant_and_not_runtime_import ______
+tests/test_profile_coverage_inventory.py:70: in test_full_saved_branches_are_order_invariant_and_not_runtime_import
+    first = build_inventory(SOURCES)
+src/shopextract/maintenance/inventory.py:25: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+___________ test_selection_cannot_silently_change_scope[names0-ids0] ___________
+tests/test_profile_coverage_inventory.py:94: in test_selection_cannot_silently_change_scope
+    build_inventory(SOURCES, branch_files=names, selected_ids=ids)
+src/shopextract/maintenance/inventory.py:25: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+___________ test_selection_cannot_silently_change_scope[names1-ids1] ___________
+tests/test_profile_coverage_inventory.py:94: in test_selection_cannot_silently_change_scope
+    build_inventory(SOURCES, branch_files=names, selected_ids=ids)
+src/shopextract/maintenance/inventory.py:25: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+___________ test_selection_cannot_silently_change_scope[names2-None] ___________
+tests/test_profile_coverage_inventory.py:94: in test_selection_cannot_silently_change_scope
+    build_inventory(SOURCES, branch_files=names, selected_ids=ids)
+src/shopextract/maintenance/inventory.py:25: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+___________ test_selection_cannot_silently_change_scope[names3-None] ___________
+tests/test_profile_coverage_inventory.py:94: in test_selection_cannot_silently_change_scope
+    build_inventory(SOURCES, branch_files=names, selected_ids=ids)
+src/shopextract/maintenance/inventory.py:25: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+___ test_changed_source_fails_closed_even_when_smoke_selects_another_branch ____
+tests/test_profile_coverage_inventory.py:104: in test_changed_source_fails_closed_even_when_smoke_selects_another_branch
+    build_inventory(tmp_path, selected_ids=('el-6-6',))
+src/shopextract/maintenance/inventory.py:25: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+=========================== short test summary info ============================
+FAILED tests/test_profile_coverage_inventory.py::test_three_reference_smoke_distinguishes_policy_from_product_evidence
+FAILED tests/test_profile_coverage_inventory.py::test_smoke_denominator_and_unreviewed_counts_do_not_claim_market_coverage
+FAILED tests/test_profile_coverage_inventory.py::test_full_saved_branches_are_order_invariant_and_not_runtime_import
+FAILED tests/test_profile_coverage_inventory.py::test_selection_cannot_silently_change_scope[names0-ids0]
+FAILED tests/test_profile_coverage_inventory.py::test_selection_cannot_silently_change_scope[names1-ids1]
+FAILED tests/test_profile_coverage_inventory.py::test_selection_cannot_silently_change_scope[names2-None]
+FAILED tests/test_profile_coverage_inventory.py::test_selection_cannot_silently_change_scope[names3-None]
+FAILED tests/test_profile_coverage_inventory.py::test_changed_source_fails_closed_even_when_smoke_selects_another_branch
+8 failed, 4 passed in 0.39s

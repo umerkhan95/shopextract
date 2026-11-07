@@ -1,0 +1,80 @@
+{
+  "phase": "invocation",
+  "phase_started": 664437.89113102,
+  "cases": [
+    {
+      "id": "valid-01",
+      "status": "passed",
+      "seconds": 1.37,
+      "result": null
+    },
+    {
+      "id": "valid-02",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-03",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-04",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-05",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-06",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-07",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-08",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-09",
+      "status": "passed",
+      "seconds": 0.177,
+      "result": null
+    },
+    {
+      "id": "valid-10",
+      "status": "passed",
+      "seconds": 0.001,
+      "result": null
+    },
+    {
+      "id": "valid-11",
+      "status": "passed",
+      "seconds": 0.127,
+      "result": null
+    }
+  ],
+  "seed": 26,
+  "status": "failed",
+  "peak_rss_bytes": 102895616,
+  "input_bytes": 5693,
+  "elapsed_seconds": 1.999,
+  "active": "valid-12",
+  "error_type": "AssertionError",
+  "error": ""
+}

@@ -1,0 +1,97 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+.FFFFFFFFFFFFF...                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_reference_smoke_keeps_policy_and_evidence_separate ____________
+tests/test_profile_coverage_inventory.py:58: in test_reference_smoke_keeps_policy_and_evidence_separate
+    result=build_inventory(corpus,selected_ids=REFERENCE_IDS)
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+_____________ test_tiny_full_denominator_order_and_pending_honesty _____________
+tests/test_profile_coverage_inventory.py:75: in test_tiny_full_denominator_order_and_pending_honesty
+    result=build_inventory(corpus)
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+_______________ test_invalid_selection_fails_closed[names0-ids0] _______________
+tests/test_profile_coverage_inventory.py:88: in test_invalid_selection_fails_closed
+    with pytest.raises(InventoryError) as error:build_inventory(corpus,branch_files=names,selected_ids=ids)
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+_______________ test_invalid_selection_fails_closed[names1-ids1] _______________
+tests/test_profile_coverage_inventory.py:88: in test_invalid_selection_fails_closed
+    with pytest.raises(InventoryError) as error:build_inventory(corpus,branch_files=names,selected_ids=ids)
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+_______________ test_invalid_selection_fails_closed[names2-ids2] _______________
+tests/test_profile_coverage_inventory.py:88: in test_invalid_selection_fails_closed
+    with pytest.raises(InventoryError) as error:build_inventory(corpus,branch_files=names,selected_ids=ids)
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+_______________ test_invalid_selection_fails_closed[names3-None] _______________
+tests/test_profile_coverage_inventory.py:88: in test_invalid_selection_fails_closed
+    with pytest.raises(InventoryError) as error:build_inventory(corpus,branch_files=names,selected_ids=ids)
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+_______________ test_invalid_selection_fails_closed[names4-None] _______________
+tests/test_profile_coverage_inventory.py:88: in test_invalid_selection_fails_closed
+    with pytest.raises(InventoryError) as error:build_inventory(corpus,branch_files=names,selected_ids=ids)
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+_______________ test_invalid_selection_fails_closed[names5-None] _______________
+tests/test_profile_coverage_inventory.py:88: in test_invalid_selection_fails_closed
+    with pytest.raises(InventoryError) as error:build_inventory(corpus,branch_files=names,selected_ids=ids)
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+_______ test_source_integrity_applies_before_partial_selection[missing] ________
+tests/test_profile_coverage_inventory.py:97: in test_source_integrity_applies_before_partial_selection
+    with pytest.raises(InventoryError) as error:build_inventory(corpus,selected_ids=('el-6-6',))
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+_______ test_source_integrity_applies_before_partial_selection[changed] ________
+tests/test_profile_coverage_inventory.py:97: in test_source_integrity_applies_before_partial_selection
+    with pytest.raises(InventoryError) as error:build_inventory(corpus,selected_ids=('el-6-6',))
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+________ test_parser_and_graph_reject_invalid_pinned_content[malformed] ________
+tests/test_profile_coverage_inventory.py:108: in test_parser_and_graph_reject_invalid_pinned_content
+    with pytest.raises(InventoryError) as error:build_inventory(corpus)
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+________ test_parser_and_graph_reject_invalid_pinned_content[duplicate] ________
+tests/test_profile_coverage_inventory.py:108: in test_parser_and_graph_reject_invalid_pinned_content
+    with pytest.raises(InventoryError) as error:build_inventory(corpus)
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+_____ test_parser_and_graph_reject_invalid_pinned_content[dangling_child] ______
+tests/test_profile_coverage_inventory.py:108: in test_parser_and_graph_reject_invalid_pinned_content
+    with pytest.raises(InventoryError) as error:build_inventory(corpus)
+src/shopextract/maintenance/inventory.py:34: in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+E   NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3
+=========================== short test summary info ============================
+FAILED tests/test_profile_coverage_inventory.py::test_reference_smoke_keeps_policy_and_evidence_separate
+FAILED tests/test_profile_coverage_inventory.py::test_tiny_full_denominator_order_and_pending_honesty
+FAILED tests/test_profile_coverage_inventory.py::test_invalid_selection_fails_closed[names0-ids0]
+FAILED tests/test_profile_coverage_inventory.py::test_invalid_selection_fails_closed[names1-ids1]
+FAILED tests/test_profile_coverage_inventory.py::test_invalid_selection_fails_closed[names2-ids2]
+FAILED tests/test_profile_coverage_inventory.py::test_invalid_selection_fails_closed[names3-None]
+FAILED tests/test_profile_coverage_inventory.py::test_invalid_selection_fails_closed[names4-None]
+FAILED tests/test_profile_coverage_inventory.py::test_invalid_selection_fails_closed[names5-None]
+FAILED tests/test_profile_coverage_inventory.py::test_source_integrity_applies_before_partial_selection[missing]
+FAILED tests/test_profile_coverage_inventory.py::test_source_integrity_applies_before_partial_selection[changed]
+FAILED tests/test_profile_coverage_inventory.py::test_parser_and_graph_reject_invalid_pinned_content[malformed]
+FAILED tests/test_profile_coverage_inventory.py::test_parser_and_graph_reject_invalid_pinned_content[duplicate]
+FAILED tests/test_profile_coverage_inventory.py::test_parser_and_graph_reject_invalid_pinned_content[dangling_child]
+13 failed, 4 passed in 0.46s

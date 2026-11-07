@@ -1,0 +1,41 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+..FF.                                                                    [100%]
+=================================== FAILURES ===================================
+__________ test_native_schemaorg_lookalike_does_not_enable_projection __________
+
+    def test_native_schemaorg_lookalike_does_not_enable_projection():
+        raw=raw_product(title='Native refrigerator',id=7,variants=[])
+        default=normalize(raw,Platform.SHOPIFY)
+        opted=normalize(raw,Platform.SHOPIFY,include_refrigerator_attributes=True)
+>       assert product_to_record(default)==product_to_record(opted)
+E       AssertionError: assert {'schema_vers...ontracts': []} == {'schema_vers...ontracts': []}
+E
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'evidence_contract': {'evidence': [{'evidence_id': 'e_c905a6bb-e58c-454d-9721-24d98a2f33f6', 'source_url': 'https://s..._path': '/product_url', 'state': 'unsupported', 'raw_value': None, ...}, ...], 'resolutions': [], 'schema_version': 1}} != {'evidence_contract': {'evidence': [{'evidence_id': 'e_e4279b16-e9c8-44a6-8f18-4618b33ffc82', 'source_url': 'https://s..._path': '/product_url', 'state': 'unsupported', 'raw_value': None, ...}, ...], 'resolutions': [], 'schema_version': 1}}
+E         {'product': {'title': 'Synthetic ...
+E
+E         ...Full output truncated (2 lines hidden), use '-vv' to show
+
+tests/profile_coverage_mechanism_checks.py:31: AssertionError
+____________ test_fresh_process_hash_seeds_preserve_portable_bytes _____________
+
+    def test_fresh_process_hash_seeds_preserve_portable_bytes():
+        code="from tests.profile_coverage_helpers import raw_product,normalized;from shopextract._portable import product_to_record;import json;print(json.dumps(product_to_record(normalized(raw_product())),ensure_ascii=False,separators=(',',':')))"
+        outputs=[]
+        for seed in ('1','26'):
+            result=subprocess.run([sys.executable,'-c',code],env={**os.environ,'PYTHONHASHSEED':seed,'OPENBLAS_NUM_THREADS':'1','OMP_NUM_THREADS':'1'},capture_output=True,timeout=10,check=True)
+            assert len(result.stdout)<=65536 and len(result.stderr)<=65536
+            outputs.append(result.stdout)
+>       assert outputs[0]==outputs[1]
+E       assert b'{"schema_ve...tracts":[]}\n' == b'{"schema_ve...tracts":[]}\n'
+E
+E         At index 522 diff: b'0' != b'1'
+E         Use -v to get more diff
+
+tests/profile_coverage_mechanism_checks.py:42: AssertionError
+=========================== short test summary info ============================
+FAILED tests/profile_coverage_mechanism_checks.py::test_native_schemaorg_lookalike_does_not_enable_projection
+FAILED tests/profile_coverage_mechanism_checks.py::test_fresh_process_hash_seeds_preserve_portable_bytes
+2 failed, 3 passed in 3.63s

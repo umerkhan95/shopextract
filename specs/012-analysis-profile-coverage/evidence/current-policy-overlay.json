@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "derived_current_policy_overlay",
+  "baseline_file": "coverage-matrix.json",
+  "baseline_digest": "7800a5a7611c07541d44f201fc4d8690c9e1a52ceb75d31591d87236de41f3ea",
+  "category_id": "hg-11-7-41",
+  "profile": {
+    "name": "refrigerator-v1",
+    "fields": {
+      "description": {
+        "kind": "text",
+        "role": "comparable",
+        "normalization": "exact"
+      },
+      "title": {
+        "kind": "text",
+        "role": "comparable",
+        "normalization": "exact"
+      },
+      "price": {
+        "kind": "decimal",
+        "role": "comparable",
+        "normalization": "decimal"
+      },
+      "currency": {
+        "kind": "text",
+        "role": "price_context",
+        "normalization": "exact"
+      },
+      "attributes/capacity": {
+        "kind": "volume",
+        "role": "identity_variant",
+        "normalization": "volume_total_l_v1"
+      },
+      "attributes/width": {
+        "kind": "length",
+        "role": "identity_variant",
+        "normalization": "length_width_m_v1"
+      },
+      "attributes/height": {
+        "kind": "length",
+        "role": "identity_variant",
+        "normalization": "length_height_m_v1"
+      },
+      "attributes/depth": {
+        "kind": "length",
+        "role": "identity_variant",
+        "normalization": "length_depth_m_v1"
+      },
+      "attributes/model": {
+        "kind": "text",
+        "role": "identity_variant",
+        "normalization": "exact"
+      }
+    }
+  },
+  "profile_definition_digest": "4c8be252c5f771cbb3ce8ac570dcd612531a24ba90a0ea5971a401a3c3f9687c",
+  "policy_coverage": "implemented_selected_fields",
+  "implemented_fields": [
+    "attributes/capacity",
+    "attributes/depth",
+    "attributes/height",
+    "attributes/model",
+    "attributes/width",
+    "currency",
+    "description",
+    "price",
+    "title"
+  ],
+  "whole_family_coverage": "incomplete",
+  "semantic_review": "selected_field_contract_reviewed_family_pending",
+  "checked_fields": [],
+  "live_observation": "blocked_no_concrete_product_url",
+  "remaining_profile_count": null,
+  "provenance": "Derived from immutable saved baseline and actual shipped policy; no new taxonomy parse or captured-product claim"
+}

@@ -1,6 +1,6 @@
 # Category analysis profile coverage expansion
 
-Planning date: 2026-10-25. Author: primary agent. User requests a plan, not implementation. Based on local spec/test templates. This is a phased roadmap; each implementation slice must pass its own workflow gates.
+Planning date: 2026-10-25. Author: primary agent. Originally planning; subsequent user instruction authorizes implementation. Based on local spec/test templates. This is a phased roadmap; each implementation slice must pass its own workflow gates.
 
 ## Outcomes and requirements
 

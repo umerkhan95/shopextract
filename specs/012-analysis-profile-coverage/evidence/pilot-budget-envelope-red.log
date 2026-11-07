@@ -1,0 +1,19 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__________ test_coverage_budget_rejection_keeps_single_error_envelope __________
+tests/test_profile_coverage_cli.py:100: in test_coverage_budget_rejection_keeps_single_error_envelope
+    reporting=importlib.import_module('shopextract.maintenance.reporting')
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1050: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1027: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1004: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'shopextract.maintenance.reporting'
+=========================== short test summary info ============================
+FAILED tests/test_profile_coverage_cli.py::test_coverage_budget_rejection_keeps_single_error_envelope
+1 failed in 0.30s

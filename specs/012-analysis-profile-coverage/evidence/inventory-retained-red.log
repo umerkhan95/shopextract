@@ -1,0 +1,11 @@
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.6.0)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+Pinned source identity: 5 files verified
+Traceback (most recent call last):
+  File "/Users/umerkhan/code/shopextract/specs/012-analysis-profile-coverage/evidence/retained_inventory_acceptance.py", line 43, in <module>
+    if __name__=='__main__':main()
+  File "/Users/umerkhan/code/shopextract/specs/012-analysis-profile-coverage/evidence/retained_inventory_acceptance.py", line 28, in main
+    smoke=build_inventory(args.source_dir,selected_ids=REFERENCE_IDS)
+  File "/Users/umerkhan/code/shopextract/src/shopextract/maintenance/inventory.py", line 34, in build_inventory
+    raise NotImplementedError('APC03 declaration: inventory implementation awaits independent G2/G3')
+NotImplementedError: APC03 declaration: inventory implementation awaits independent G2/G3

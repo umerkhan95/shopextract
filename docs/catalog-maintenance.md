@@ -80,6 +80,49 @@ as a mapping of versioned names to `CategoryProfile`/`FieldRule`. Definitions fr
 with the job. Reopening with missing/changed definitions permits historical reads
 but refuses execution. Restore the original definitions or create a new job.
 
+## Refrigerator pilot
+
+Select `profiles={"supplier-sku": "refrigerator-v1"}` explicitly and request only
+its declared fields: title, description, price, currency, attributes/capacity,
+attributes/width, attributes/height, attributes/depth and attributes/model.
+Execution also requires an enabled trusted `CategoryRuntimeConfig` with an exact
+mapping to `hg-11-7-41` in `shopify:product-taxonomy@2026-08` and
+`profile_bindings=(("hg-11-7-41", "refrigerator-v1"),)`. Pass the same configuration
+to `MaintenanceStore(..., category_config=config)` and
+`MaintenanceEngine(..., category_config=config)`. Missing or conflicting category
+policy keeps the refrigerator finding in review. Selecting a profile does not
+establish product identity or authorize corrections across variants.
+
+Quantity attributes use closed wrappers, for example
+`{"capacity": {"value": "250 L", "semantic": "total_volume"}}` or
+`{"width": {"value": "60 cm", "semantic": "product_width"}}`.
+Capacity accepts ml/L; the three axes accept mm/cm/m with their corresponding
+`product_width`, `product_height` or `product_depth` semantics. Conversion is exact;
+net/gross capacity, package dimensions, ranges and missing units remain unknown.
+Invalid finite captured scalars survive transport for review diagnostics. Bare
+capacity/width values do not establish their physical meaning.
+
+For explicitly selected refrigerator jobs, the generic SchemaOrg lane projects
+reviewed Total capacity/Total volume/Total refrigerator capacity and Product
+width/height/depth labels plus Model, retaining source evidence. The five native
+lanes currently report these quantities unavailable when no supported fact exists.
+Default extraction and the older profile definitions retain their behavior.
+
+Use `store.report(job_id, offset=0, limit=20, include_profile_coverage=True)` for
+additive diagnostics, or add `--coverage` to either report command:
+
+```sh
+python -m shopextract.maintenance --db maintenance.db report JOB_ID --offset 0 --limit 20 --coverage
+python -m shopextract maintenance --db maintenance.db report JOB_ID --offset 0 --limit 20 --coverage
+```
+
+Coverage describes only findings on that report page. Configured rules and
+requested fields are distinct from checked fields: checked requires supported
+inputs, inspectable retained evidence and a valid completed comparison. Missing,
+invalid, unsupported and legacy unrecorded inputs remain explicit. An empty page
+makes no whole-job coverage claim. Omitting the flag preserves the default report;
+coverage responses must fit the1MiB UTF8 envelope limit.
+
 ## Recovery, limits and optional investigation
 
 SQLite and a POSIX file lock support one local runner per canonical store path.
