@@ -981,6 +981,14 @@ optional Storefront acquisition preserves existing product and variant data.
 See [lookup, extraction, packaging and measured limits](docs/shopify-taxonomy.md).
 Full source/generated data stays outside Git and is embedded in release artifacts.
 
+### Google product taxonomy
+
+`shopextract taxonomy google` prepares an operator-supplied Google catalog (all
+5,595 categories of the 2021-09-21 release) with integrity checks, then offers
+lookup, path resolution, product normalization and a hash-pinned directional
+Shopify-to-Google crosswalk. No Google corpus ships or downloads on import.
+See [preparation, mapping and the crosswalk](docs/google-taxonomy.md).
+
 Bounded discovery uses one owned worker (maximum30s plus2s cleanup),16 HTTP
 requests including robots and redirects, and at most1000 URLs. Robots policy is
 checked before crawling/emitting; unavailable policy fails closed,404 is absent.
