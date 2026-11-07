@@ -4,12 +4,13 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import re
 from decimal import Decimal
 
 from .._extract import extract
 from .._models import ComparisonResult, Match
 from .match import title_similarity
-from .identity_match import classify_match
+from .identity_match import _text, classify_match
 
 logger = logging.getLogger(__name__)
 
@@ -36,6 +37,7 @@ async def compare(
         from .._execution import safe_error
         report = SafeComparison(query)
         grouped = {}
+        extracted = []
         for store in stores:
             try:
                 result = await extract(store, max_urls=max_per_store)
@@ -45,8 +47,13 @@ async def compare(
                 report.sources.append(SourceStatus(store, False, False, [safe_error(str(exc))]))
                 continue
             report.sources.append(source_status(store, result))
+            extracted.append((store, result))
+        # Brands are known only once every store has answered.
+        brands = known_brands(result for _, result in extracted)
+        for store, result in extracted:
             for index, product in enumerate(result.products):
-                matches = _collect_matches(query, [store], [type(result)(products=[product])], threshold)
+                matches = _collect_matches(query, [store], [type(result)(products=[product])], threshold,
+                                           brands=brands)
                 currency = observed_currency(product, product.raw_data)
                 for match in matches:
                     match.currency = currency or ""
@@ -63,14 +70,45 @@ async def compare(
     return _build_result(query, matches)
 
 
+def known_brands(results) -> set[str]:
+    """Normalized vendor names the extracted products state."""
+    return {name for result in results if not isinstance(result, Exception)
+            for product in result.products if (name := _text(product.vendor))}
+
+
+def _names(text: str, brand: str) -> bool:
+    return re.search(r"(?<!\w)" + re.escape(brand) + r"(?!\w)", text) is not None
+
+
+def brand_conflict(query: str, product, brands: set[str]) -> bool:
+    """A query that names a known brand rejects products of another brand.
+
+    The brand is the product's stated vendor; without one, its title must name
+    a queried brand. A query naming no known brand constrains nothing.
+    """
+    query = _text(query)
+    queried = {brand for brand in brands if _names(query, brand)}
+    if not queried:
+        return False
+    vendor = _text(product.vendor)
+    if vendor:
+        return vendor not in queried
+    title = _text(product.title)
+    return not any(_names(title, brand) for brand in queried)
+
+
 def _collect_matches(
     query: str,
     stores: list[str],
     results: list,
     threshold: float,
+    *,
+    brands: set[str] | None = None,
 ) -> list[Match]:
     """Collect matching products from extraction results."""
     matches: list[Match] = []
+    if brands is None:
+        brands = known_brands(results)
     for store, result in zip(stores, results):
         if isinstance(result, Exception):
             logger.warning("Extraction failed for %s: %s", store, result)
@@ -78,6 +116,9 @@ def _collect_matches(
         for product in result.products:
             decision = classify_match({"title": query}, product, threshold=threshold)
             if any(not c.startswith("missing attributes:") for c in decision.conflicts):
+                continue
+            if brand_conflict(query, product, brands):
+                logger.debug("Brand conflict: %r is not a queried brand in %r", product.title, query)
                 continue
             sim = title_similarity(query, product.title)
             if sim >= threshold:

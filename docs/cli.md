@@ -87,6 +87,15 @@ are off on bounded/new commands even when provider environment keys exist. Use
 `--browser` only with an already configured Playwright Chromium; missing browser
 setup is actionable and never triggers installation. `--no-browser` is explicit.
 
+`extract --wait-rate-limit SECONDS` (1–120) opts into one wait on HTTP 429: when
+the store sends `Retry-After` no larger than SECONDS and the wait fits the
+remaining `--timeout`, extract waits that long and retries once. Otherwise the
+429 is reported unchanged; a warning in `errors` says why. Raise `--timeout`
+above the wait. A 429 that persists after the wait is still `rate_limited`;
+Shopify applies its strictest limits to clients that do not sign requests (Web
+Bot Auth), and such a 429 is not lifted by waiting.
+A store that refuses the requested page with 401/403 reports cause `blocked`.
+
 Extraction flags also include `--platform`, `--shop-url`, `--enrich-identifiers`,
 `--restore-short-gtin` and `--storefront FILE`. The storefront file is a closed JSON
 object of native string options: `endpoint`, `access_token`, `protocol`,

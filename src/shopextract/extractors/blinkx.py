@@ -271,6 +271,9 @@ class BlinkXExtractor:
         config = context['config']
         capture(item, source_url, 'blinkx_store_api', observed_at=observed_at)
         item['product_url'] = product_url(config.origin, item)
+        # Normalization rebuilds the link from the captured id and slug, so the
+        # link's support is the API record, not an uncaptured derived value.
+        item['_storefront_origin'] = config.origin
         # Currency is the store's, read from the page configuration.
         item['currency'] = config.currency
         item['_field_sources'] = {'/currency': {'capture_path': '/currency', '_capture': context['currency_capture']}}

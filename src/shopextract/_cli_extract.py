@@ -278,6 +278,38 @@ def _run_extraction_operation(operation, policy, timeout, *, recover=None):
         ) from None
 
 
+async def wait_out_rate_limit(attempt, max_wait):
+    """Run attempt; after an empty HTTP 429 result, wait the source's Retry-After once.
+
+    The wait is opt in and bounded: it needs a Retry-After value no larger than
+    max_wait that also fits the remaining operation deadline. Anything else
+    returns the rate-limited result unchanged, so the caller reports it.
+    """
+    from ._execution import remaining_execution_seconds
+    result = await attempt()
+    if not max_wait or result.products or 'rate_limited' not in (result.incompleteness_reasons or []):
+        return result
+    wait = result.retry_after_seconds
+    remaining = remaining_execution_seconds()
+    if wait is None or wait > max_wait or (remaining is not None and wait >= remaining):
+        why = ('source sent no Retry-After' if wait is None else
+               f'Retry-After {wait:g}s exceeds --wait-rate-limit {max_wait}s' if wait > max_wait else
+               f'Retry-After {wait:g}s does not fit the remaining {remaining:.0f}s deadline')
+        _note_warning(f'rate_limited: not retried; {why}')
+        return result
+    _note_warning(f'rate_limited: waited {wait:g}s for Retry-After, then retried once')
+    click.echo(f'shopextract: HTTP 429, waiting {wait:g}s (Retry-After) before one retry', err=True)
+    await asyncio.sleep(wait)
+    return await attempt()
+
+
+def _note_warning(message):
+    from ._execution import current_state
+    state = current_state()
+    if state is not None:
+        state.warnings.append(message)
+
+
 def extract_store(url, max_urls, fmt, output_path, options):
     try:
         return _extract_store_impl(url, max_urls, fmt, output_path, options)
@@ -301,14 +333,15 @@ def _extract_store_impl(url, max_urls, fmt, output_path, options):
     policy, timeout = policy_options(options, secrets)
     include_evidence = bool(options.get('include_evidence') or options.get('compact'))
     serialize = lambda value: extraction_data(value, include_evidence=include_evidence)
-    async def operation():
-        result = await extract(url, max_urls=max_urls,
+    async def attempt():
+        return await extract(url, max_urls=max_urls,
             platform=Platform(options['platform']) if options.get('platform') else None,
             shop_url=options.get('shop_url'), enrich_identifiers=options.get('enrich_identifiers',False),
             restore_short_gtin=options.get('restore_short_gtin',False), api_options=api,
             **({'enrich_variants':True} if options.get('enrich_variants') else {}),
             **({'location':options['location']} if options.get('location') else {}))
-        return serialize(result)
+    async def operation():
+        return serialize(await wait_out_rate_limit(attempt, options.get('wait_rate_limit')))
     try:
         data, warnings = _run_extraction_operation(operation, policy, timeout, recover=serialize)
     except CliFailure as failure:

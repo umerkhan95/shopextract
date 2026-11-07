@@ -68,7 +68,9 @@ def parse_listing(html: str, page_url: str) -> ListingPage:
     if not urls:
         urls = _product_path_links(soup, page_url, host)
         strategy = "product_path_links" if urls else None
-    product_page = not urls and _has_json_ld_type(soup, "Product")
+    # A product page also lists related products as cards, so its own
+    # declaration decides, not the absence of cards.
+    product_page = _declares_product_page(soup, page_url) or (not urls and _has_json_ld_type(soup, "Product"))
     return ListingPage(
         product_urls=tuple(urls),
         next_url=_next_page(soup, page_url, host, len(urls)),
@@ -166,6 +168,34 @@ def _types(node) -> set[str]:
 
 def _has_json_ld_type(soup, name: str) -> bool:
     return any(name in _types(node) for node in _json_ld_nodes(soup))
+
+
+# Layout handles the platform puts on the product view's <body>.
+_PRODUCT_BODY_CLASSES = {"catalog-product-view", "single-product"}
+
+
+def _declares_product_page(soup, page_url: str) -> bool:
+    """True when the page says it shows one product: JSON-LD, Open Graph or layout.
+
+    A listing that publishes an ItemList is never a product page. A JSON-LD
+    Product counts only when it is the page's single Product; category pages
+    that mark up every card carry several. SFRA wraps its product view in
+    ``.product-detail[data-pid]`` and names the product id in the URL.
+    """
+    nodes = list(_json_ld_nodes(soup))
+    if any("ItemList" in _types(node) for node in nodes):
+        return False
+    if sum("Product" in _types(node) for node in nodes) == 1:
+        return True
+    og_type = soup.select_one("meta[property='og:type'][content]")
+    if og_type is not None and og_type["content"].strip().lower() in ("product", "product.item", "og:product"):
+        return True
+    body = soup.body
+    if body is not None and _PRODUCT_BODY_CLASSES.intersection(body.get("class") or ()):
+        return True
+    details = soup.select(".product-detail[data-pid]")
+    pid = details[0].get("data-pid", "").strip() if len(details) == 1 else ""
+    return bool(pid) and pid in urlsplit(page_url).path
 
 
 def _item_list_links(soup, page_url: str, host: str) -> list[str]:

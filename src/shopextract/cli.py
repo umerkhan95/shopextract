@@ -38,6 +38,8 @@ def main() -> None:
 @click.option("--restore-short-gtin", is_flag=True)
 @click.option("--storefront", type=click.Path(), help="Closed native storefront JSON options file.")
 @click.option("--location", help='Delivery area "Area, City" for branch-priced stores (BlinkX).')
+@click.option("--wait-rate-limit", type=click.IntRange(1, 120), default=None, metavar="SECONDS",
+              help="On HTTP 429, wait the store's Retry-After once if it is at most SECONDS (opt in).")
 @execution_options()
 def extract(url: str, max_urls: int, fmt: str, output_path: str | None, **options) -> None:
     """Extract products from an e-commerce store."""

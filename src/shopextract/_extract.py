@@ -269,9 +269,12 @@ async def extract(
 
     scope_reasons = [reason for reason in getattr(urls, "reasons", ()) if reason in _SCOPE_REASONS]
     if not urls:
+        # The store refused the requested page itself; that, not the scope, is the cause.
+        refused = (["blocked"] if detection_context is not None
+                   and detection_context.page_status in (401, 403) else [])
         return ExtractionResult(
             observation_scope=observation_scope,
-            incompleteness_reasons=["crawl_coverage_unverified", *scope_reasons],
+            incompleteness_reasons=["crawl_coverage_unverified", *refused, *scope_reasons],
             platform=platform,
             errors=api_errors + ["No product URLs discovered"] + [
                 reason for reason in getattr(urls, "reasons", ()) if reason != "discovery_coverage_unverified"],

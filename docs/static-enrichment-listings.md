@@ -6,6 +6,27 @@ HTML. Known placeholder paths are discarded before the no-browser fast path.
 Genuine structured fields take precedence. HTML field captures remain separate
 from original JSON-LD evidence. Missing GTIN, SKU or variants stay missing.
 
+A requested product URL is read as that product even when the page also lists
+related products: a single JSON-LD Product, `og:type` product, the Magento
+`catalog-product-view` or WooCommerce `single-product` body class, or an SFRA
+`.product-detail[data-pid]` whose id appears in the URL marks a product page.
+A page with a JSON-LD ItemList stays a listing.
+
+Salesforce B2C Commerce (SFRA) product views without JSON-LD or product Open
+Graph are read from `.product-detail[data-pid]`: product name, sales price
+`.prices .sales .value[content]`, the data layer `currencyCode` (one value only),
+the primary images, the description tab and the `ol.breadcrumb` trail. The view
+states no stock, so availability stays unsupported. The SFRA
+`/on/demandware.store/` controllers are not requested; stores commonly disallow
+them in robots.txt.
+
+On a Magento product page, `#old-price-<product id>` (the add-to-cart form's
+product id) becomes `compare_at_price` when it is above the final price; old
+prices of related products are never used.
+
+A page-relative link (image, product URL) resolved against the captured page
+URL keeps its source support, with the transformation recorded.
+
 Magento module/RequireJS signatures allow platform detection even when its APIs
 are forbidden. Detection does not imply the native API is available. Generic
 fallback confidence is zero; other confidence values remain heuristic scores.

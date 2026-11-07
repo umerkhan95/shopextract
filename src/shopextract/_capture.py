@@ -4,6 +4,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from dataclasses import asdict, is_dataclass, replace
 import json
+from urllib.parse import urljoin, urlsplit
 from uuid import uuid4
 
 from ._evidence import Evidence, FieldObservation, SupportState, TrustContract, factual_paths
@@ -89,7 +90,8 @@ def _support_outcome(raw, outcome, *, normalized_value, remaining_bytes=PRODUCT_
             reason = 'Selected source has no retained capture; support unavailable'
             if source_context and source_context.get('truncated'):
                 reason += ' or truncated by capture byte limits'
-        elif not _same_source(original, outcome.source_values[source_index]):
+        elif not _same_source(original, outcome.source_values[source_index]) and not _resolved_reference(
+                original, outcome.source_values[source_index], source_context, transformations):
             reason = 'Selected input differs from retained capture; changed or enriched value has no matching support'
         elif original is None or original == '':
             state, reason = SupportState.UNKNOWN, 'Source explicitly contains no value'
@@ -158,6 +160,20 @@ def _plain(value):
     return value
 
 
+
+
+_URL_RESOLUTION = 'Resolve relative URL against the captured page URL'
+
+
+def _resolved_reference(retained, selected, context, transformations):
+    """A relative link resolved against the page it was captured from keeps its support."""
+    if not (isinstance(retained, str) and isinstance(selected, str) and context and context.get('url')):
+        return False
+    if urlsplit(retained).scheme or urljoin(context['url'], retained) != selected:
+        return False
+    if _URL_RESOLUTION not in transformations:
+        transformations.append(_URL_RESOLUTION)
+    return True
 
 
 def _same_source(retained, selected):
